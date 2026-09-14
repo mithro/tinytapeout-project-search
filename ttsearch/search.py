@@ -15,6 +15,7 @@ FTS5 syntax through unchanged.
 from __future__ import annotations
 
 import argparse
+import json
 import re
 import sqlite3
 import sys
@@ -25,34 +26,10 @@ from . import DB_PATH
 
 # Groups of terms that mean the same thing for our purposes. A query word that
 # appears in a group is replaced by an OR of the whole group. Entries may use
-# FTS5 syntax (prefix "*" and quoted phrases).
-SYNONYMS: list[list[str]] = [
-    ["risc-v", "riscv", "rv32", "rv32i", "rv32e", "rv32im", "rv32imc", "rv32ic",
-     "rv64", "picorv32", "serv", "femtorv", "tinyqv", "qv"],
-    ["i2c", "iic", "i²c", "twi"],
-    ["spi", "qspi"],
-    ["uart", "rs232", "rs-232"],
-    ["vga", "hsync", "vsync", "\"video output\""],
-    ["hdmi", "dvi", "tmds"],
-    ["crypto", "crypto*", "aes", "sha", "sha1", "sha2", "sha256", "sha-256", "sha3",
-     "keccak", "cipher", "encrypt*", "decrypt*", "chacha", "chacha20", "rsa",
-     "des", "3des", "blake*", "hash*", "md5", "ascon", "present", "trivium",
-     "salsa*", "ecdsa", "curve25519", "ed25519"],
-    ["cpu", "processor", "microprocessor", "microcontroller", "mcu", "soc"],
-    ["fpga", "efpga", "cpld", "lut"],
-    ["neural", "nn", "cnn", "perceptron", "mlp", "\"neural network\"", "ai", "ml",
-     "tpu", "npu"],
-    ["pwm", "\"pulse width\""],
-    ["adc", "\"analog to digital\"", "\"analogue to digital\""],
-    ["dac", "\"digital to analog\"", "\"digital to analogue\""],
-    ["ps2", "ps/2"],
-    ["7seg", "7-seg", "\"7 segment\"", "\"seven segment\"", "\"7-segment\""],
-    ["ws2812", "ws2812b", "neopixel", "sk6812"],
-    ["oscillator", "ring-oscillator", "\"ring oscillator\"", "vco"],
-    ["prng", "lfsr", "\"random number\"", "trng", "rng"],
-    ["fft", "dft", "fourier"],
-    ["game", "games", "pong", "tetris", "snake"],
-]
+# FTS5 syntax (prefix "*" and quoted phrases). The list lives in synonyms.json
+# so the browser-side search (static site) uses exactly the same table.
+SYNONYMS_JSON = Path(__file__).with_name("synonyms.json")
+SYNONYMS: list[list[str]] = json.loads(SYNONYMS_JSON.read_text())
 
 _SYNONYM_LOOKUP: dict[str, list[str]] = {}
 for _group in SYNONYMS:

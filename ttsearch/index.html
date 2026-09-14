@@ -100,6 +100,7 @@
   .detail .pins span b { font-weight: 400; color: var(--ink-soft); display: inline-block; min-width: 3.2rem; }
   .detail a { color: var(--accent); }
   .empty { color: var(--ink-soft); margin-top: 1.5rem; }
+  footer { margin-top: 3rem; color: var(--ink-soft); font-size: 0.85rem; border-top: 1px solid var(--hair); padding-top: 0.75rem; }
   @media (max-width: 40rem) {
     .proj { grid-template-columns: 1fr; }
     .proj .addr { text-align: left; }
@@ -127,15 +128,21 @@
   <p class="filter-note" id="filternote" hidden></p>
 
   <section id="results"></section>
+
+  <footer id="footer">Data from <a href="https://index.tinytapeout.com/">index.tinytapeout.com</a> and the Tiny Tapeout shuttle repositories. Source and data: <a href="https://github.com/mithro/tinytapeout-project-search">github.com/mithro/tinytapeout-project-search</a>.</footer>
 </main>
 
+<!-- sql.js-httpvfs (Apache-2.0): lets the static build query the SQLite file in the browser. -->
+<script src="static/vendor/sql.js-httpvfs/index.js"></script>
 <script>
-(() => {
+(async () => {
   const $ = (id) => document.getElementById(id);
   const q = $("q"), status = $("status"), chips = $("chips"), results = $("results");
   const errorEl = $("error"), filterNote = $("filternote");
   const EXAMPLES = ["vga", "risc-v", "i2c", "crypto", "uart", "neural", "spi", "game", "adc", "fpga"];
   const PDK_LABEL = { "sky130A": "SkyWater sky130", "ihp-sg13g2": "IHP SG13G2", "ihp-sg13cmos5l": "IHP SG13CMOS5L", "gf180mcuD": "GlobalFoundries GF180" };
+  const PROJECT_URL = (s, m) => `https://tinytapeout.com/chips/${s}/${m}`;
+  const SHUTTLE_URL = (s) => `https://tinytapeout.com/chips/${s}/`;
 
   let shuttles = [];          // official order, with .hits after a search
   let selected = null;        // shuttle id filter or null
@@ -146,6 +153,128 @@
   // Snippets come back with \x01 … \x02 around matched words.
   const snip = (s) => esc(s).replace(/\x01/g, "<mark>").replace(/\x02/g, "</mark>").replace(/\s+/g, " ");
 
+  // ------------------------------------------------------------------
+  // Query building (mirrors ttsearch/search.py: build_match / fts_term)
+  // ------------------------------------------------------------------
+  let synonymLookup = new Map();
+  function loadSynonyms(groups) {
+    synonymLookup = new Map();
+    for (const g of groups) for (const t of g) synonymLookup.set(t.replace(/^"|"$/g, "").toLowerCase(), g);
+  }
+  function ftsTerm(term) {
+    if (/^\w+\*?$/.test(term)) return term;
+    const prefix = term.endsWith("*");
+    const core = prefix ? term.slice(0, -1) : term;
+    return '"' + core.replace(/"/g, '""') + '"' + (prefix ? "*" : "");
+  }
+  function buildMatch(query) {
+    const terms = [];
+    for (const raw of query.split(/\s+/)) {
+      if (!raw) continue;
+      const key = raw.toLowerCase().replace(/\*+$/, "");
+      const group = synonymLookup.get(key);
+      if (group) {
+        const alts = group.map((t) => (t.startsWith('"') ? t : ftsTerm(t)));
+        if (!group.some((g) => g.toLowerCase() === raw.toLowerCase())) alts.unshift(ftsTerm(raw));
+        terms.push("(" + alts.join(" OR ") + ")");
+      } else {
+        terms.push(ftsTerm(raw));
+      }
+    }
+    return terms.join(" AND ");
+  }
+
+  // ------------------------------------------------------------------
+  // Backends. Both expose: shuttles(), search(query), project(id).
+  // ------------------------------------------------------------------
+  const apiBackend = {
+    name: "api",
+    async shuttles() { return (await (await fetch("api/shuttles")).json()).shuttles; },
+    async search(query) { return (await fetch(`api/search?q=${encodeURIComponent(query)}`)).json(); },
+    async project(id) { return (await fetch(`api/project/${id}`)).json(); },
+  };
+
+  // The static build reads tt_projects.db in the browser through sql.js-httpvfs.
+  // Only the database pages a query touches are fetched (HTTP Range requests).
+  const SEARCH_SQL = `
+    SELECT p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address, p.subtile_addr,
+           p.type, p.title, p.author, p.description, p.language, p.tiles, p.repo,
+           snippet(projects_fts, -1, char(1), char(2), ' … ', 24) AS snippet,
+           bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0) AS rank
+    FROM projects_fts f
+    JOIN projects p ON p.id = f.rowid
+    JOIN shuttles s ON s.id = p.shuttle
+    WHERE projects_fts MATCH ? AND (p.type IS NULL OR p.type != 'group')
+    ORDER BY rank`;
+  function makeStaticBackend(worker) {
+    const db = worker.db;
+    let shuttleCache = null;
+    return {
+      name: "static",
+      async shuttles() {
+        if (!shuttleCache) {
+          const rows = await db.query("SELECT id, name, pdk, project_count, experimental FROM shuttles ORDER BY sort_order");
+          shuttleCache = rows.map((r) => ({ ...r, url: SHUTTLE_URL(r.id) }));
+        }
+        return shuttleCache;
+      },
+      async search(query) {
+        const match = buildMatch(query);
+        const out = { query, match, hits: [], shuttles: [], error: null, total: 0 };
+        let rows = [];
+        if (match) {
+          try { rows = await db.query(SEARCH_SQL, [match]); }
+          catch (e) { out.error = "Could not understand that query: " + (e.message || e); }
+        }
+        const counts = new Map();
+        for (const r of rows) counts.set(r.shuttle, (counts.get(r.shuttle) || 0) + 1);
+        out.shuttles = (await this.shuttles()).map((s) => ({ ...s, hits: counts.get(s.id) || 0 }));
+        out.total = rows.length;
+        out.hits = rows.map((r) => ({
+          ...r,
+          address: r.address == null ? "" : (r.subtile_addr != null ? `${r.address}/${r.subtile_addr}` : String(r.address)),
+          title: r.title || r.macro,
+          url: PROJECT_URL(r.shuttle, r.macro),
+        }));
+        return out;
+      },
+      async project(id) {
+        const [rec] = await db.query("SELECT p.*, s.name AS shuttle_name, s.pdk FROM projects p JOIN shuttles s ON s.id = p.shuttle WHERE p.id = ?", [id]);
+        if (!rec) return { error: "no such project" };
+        rec.pins = await db.query("SELECT pin, name FROM pins WHERE project_id = ? ORDER BY rowid", [id]);
+        rec.tag_list = (await db.query("SELECT tag FROM tags WHERE project_id = ? ORDER BY tag", [id])).map((r) => r.tag);
+        rec.url = PROJECT_URL(rec.shuttle, rec.macro);
+        return rec;
+      },
+    };
+  }
+
+  async function chooseBackend() {
+    // tt-build-site stamps a <meta name="tt-backend" content="static"> into the
+    // page; ?static in the URL forces it for local testing against tt-serve.
+    const forceStatic = new URLSearchParams(location.search).has("static")
+      || document.querySelector('meta[name="tt-backend"]')?.content === "static";
+    if (!forceStatic) {
+      try {
+        const r = await fetch("api/shuttles", { cache: "no-store" });
+        if (r.ok && (r.headers.get("content-type") || "").includes("json")) return apiBackend;
+      } catch (e) { /* fall through to static */ }
+    }
+    status.textContent = "Loading database…";
+    // URLs must be absolute: the worker resolves relative ones against its own
+    // script location, not the page.
+    const abs = (p) => new URL(p, location.href).href;
+    const base = "static/vendor/sql.js-httpvfs/";
+    const worker = await createDbWorker(
+      [{ from: "inline", config: { serverMode: "full", url: abs("tt_projects.db"), requestChunkSize: 1024 } }],
+      abs(base + "sqlite.worker.js"), abs(base + "sql-wasm.wasm"),
+    );
+    return makeStaticBackend(worker);
+  }
+
+  // ------------------------------------------------------------------
+  // UI
+  // ------------------------------------------------------------------
   for (const ex of EXAMPLES) {
     const b = document.createElement("button");
     b.type = "button"; b.textContent = ex;
@@ -163,7 +292,7 @@
     if (q.value.trim()) p.set("q", q.value.trim());
     if (selected) p.set("shuttle", selected);
     const h = p.toString();
-    if (("#" + h) !== location.hash) history.replaceState(null, "", h ? "#" + h : location.pathname);
+    if (("#" + h) !== location.hash) history.replaceState(null, "", h ? "#" + h : location.pathname + location.search);
   }
 
   function renderChips() {
@@ -243,8 +372,7 @@
           btn.textContent = open ? "Hide details" : "Show details";
           if (open && !det.dataset.loaded) {
             det.textContent = "Loading…";
-            const r = await fetch(`/api/project/${h.id}`);
-            const p = await r.json();
+            const p = await backend.project(h.id);
             det.dataset.loaded = "1";
             det.innerHTML = detailHTML(p);
           }
@@ -284,8 +412,12 @@
     writeHash();
     const id = ++inflight;
     status.textContent = query ? "Searching…" : "";
-    const r = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
-    const data = await r.json();
+    let data;
+    try {
+      data = await backend.search(query);
+    } catch (e) {
+      data = { hits: [], shuttles: shuttles.map((s) => ({ ...s, hits: 0 })), total: 0, error: "Search failed: " + (e.message || e) };
+    }
     if (id !== inflight) return;   // a newer search superseded this one
     shuttles = data.shuttles;
     lastHits = data.hits;
@@ -298,14 +430,28 @@
     renderResults();
   }
 
+  // ------------------------------------------------------------------
+  // Start
+  // ------------------------------------------------------------------
+  let backend;
+  try {
+    const [b, syn] = await Promise.all([chooseBackend(), fetch("synonyms.json").then((r) => r.json())]);
+    backend = b;
+    loadSynonyms(syn);
+    shuttles = (await backend.shuttles()).map((s) => ({ ...s, hits: 0 }));
+  } catch (e) {
+    errorEl.hidden = false;
+    errorEl.textContent = "Could not load the project database: " + (e.message || e);
+    status.textContent = "";
+    return;
+  }
+  const n = shuttles.reduce((a, s) => a + (s.project_count || 0), 0);
+  $("dbinfo").textContent = `${shuttles.length} shuttles, ${n.toLocaleString()} projects`;
+  document.body.dataset.backend = backend.name;
+
   q.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(run, 220); });
   q.addEventListener("keydown", (e) => { if (e.key === "Enter") run(); });
   window.addEventListener("hashchange", () => { readHash(); run(); });
-
-  fetch("/api/shuttles").then((r) => r.json()).then((d) => {
-    const n = d.shuttles.reduce((a, s) => a + (s.project_count || 0), 0);
-    $("dbinfo").textContent = `${d.shuttles.length} shuttles, ${n.toLocaleString()} projects`;
-  });
   readHash();
   run();
 })();
