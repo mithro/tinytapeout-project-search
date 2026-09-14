@@ -4,133 +4,184 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tiny Tapeout project search</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='2' width='12' height='12' rx='2' fill='%235b4bd6'/%3E%3Crect x='5' y='5' width='6' height='6' fill='%23f5f6f8'/%3E%3C/svg%3E">
+<link rel="icon" href="static/ttlogo_120.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
+  /* Tokens follow tinytapeout.fpgas.online (ttsite.css, Apache-2.0) and the
+     tinytapeout.com theme: purple primary, cyan secondary, Work Sans body,
+     uppercase light display titles. */
   :root {
-    --paper: #f5f6f8;
-    --ink: #1a1d24;
-    --ink-soft: #5c6270;
-    --hair: #d9dce3;
-    --accent: #5b4bd6;
-    --accent-ink: #ffffff;
-    --chip-empty: #e6e8ee;
-    --mark: #ece9ff;
-    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --paper: #14171c;
-      --ink: #e6e8ec;
-      --ink-soft: #9aa1ad;
-      --hair: #2b303a;
-      --accent: #9b8dff;
-      --accent-ink: #14171c;
-      --chip-empty: #22262e;
-      --mark: #2d2a52;
-    }
+    --tt-primary: #544ead;
+    --tt-primary-dark: #433d92;
+    --tt-secondary: #8afbfd;
+    --tt-ink: #1c1b2e;
+    --tt-ink-soft: #5e5e5e;
+    --tt-muted: #777;
+    --tt-paper: #fff;
+    --tt-panel: #f4f4f8;
+    --tt-card: #fafafa;
+    --tt-line: #ddd;
+    --tt-line-soft: #e3e3ea;
+    --tt-mark: #efeaff;
+    --tt-link: #544ead;
+    --sans: "Work Sans", "Roboto", -apple-system, "Segoe UI", "Helvetica", "Arial", sans-serif;
+    --mono: "Consolas", Menlo, ui-monospace, "Liberation Mono", monospace;
   }
   * { box-sizing: border-box; }
-  html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
-  body { font-size: 15px; line-height: 1.45; }
-  a { color: inherit; text-decoration-color: var(--hair); text-underline-offset: 3px; }
-  a:hover { text-decoration-color: var(--accent); }
-  mark { background: var(--mark); color: inherit; padding: 0 1px; border-radius: 2px; }
-  main { max-width: 68rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+  html, body { margin: 0; background: var(--tt-paper); color: var(--tt-ink); font-family: var(--sans); }
+  body { font-size: 15px; line-height: 1.5; font-weight: 400; }
+  a { color: var(--tt-link); }
+  a:hover { color: var(--tt-primary-dark); }
+  mark { background: var(--tt-mark); color: inherit; padding: 0 1px; border-radius: 2px; }
+  code { font-family: var(--mono); font-size: 0.9em; }
 
-  header h1 { font-size: 1.15rem; font-weight: 600; margin: 0 0 1rem; letter-spacing: -0.01em; }
-  header h1 span { color: var(--ink-soft); font-weight: 400; }
+  /* Header, as on tinytapeout.fpgas.online */
+  .tt-header {
+    position: sticky; top: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+    gap: 0.5rem 1rem; padding: 0.55rem 1.5rem;
+    background: var(--tt-primary); color: #fff;
+    box-shadow: 0 1px 6px rgba(28, 27, 46, 0.35);
+  }
+  .tt-brand { display: flex; align-items: center; gap: 0.6rem; color: #fff; text-decoration: none; font-weight: 500; }
+  .tt-brand:hover { color: #fff; }
+  .tt-brand img { height: 36px; width: auto; }
+  .tt-brand em { font-style: normal; opacity: 0.8; font-weight: 300; }
+  .tt-nav { display: flex; align-items: center; gap: 0.2rem; }
+  .tt-nav a {
+    color: #fff; text-decoration: none; opacity: 0.85; padding: 0.35rem 0.65rem;
+    border-radius: 6px; border-bottom: 2px solid transparent; white-space: nowrap;
+  }
+  .tt-nav a:hover { opacity: 1; background: rgba(255, 255, 255, 0.12); color: #fff; }
+  .tt-nav a.is-active { opacity: 1; border-bottom-color: var(--tt-secondary); border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+  .tt-nav__ext { opacity: 0.7; font-size: 0.9em; }
 
-  .searchrow { display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; }
+  main { max-width: 1100px; margin: 0 auto; padding: 1.5rem 1.5rem 3rem; }
+
+  /* Page title in the tinytapeout.com manner: light, uppercase, wide. */
+  h1 {
+    font-weight: 300; text-transform: uppercase; letter-spacing: 0.06em;
+    font-size: 1.9rem; line-height: 1.15; margin: 0.5rem 0 0.25rem; color: var(--tt-ink);
+  }
+  .lede { margin: 0 0 1.25rem; color: var(--tt-ink-soft); max-width: 46rem; }
+  .lede span { color: var(--tt-muted); }
+
+  .searchrow { display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
   #q {
-    flex: 1 1 22rem; font: inherit; font-size: 1.35rem; padding: 0.55rem 0.7rem;
-    border: 1px solid var(--hair); border-bottom: 2px solid var(--ink); border-radius: 4px 4px 0 0;
-    background: transparent; color: var(--ink); outline: none;
+    flex: 1 1 22rem; font: inherit; font-size: 1.25rem; padding: 0.6rem 0.8rem;
+    border: 1px solid var(--tt-line); border-radius: 6px; background: #fff; color: var(--tt-ink); outline: none;
   }
-  #q:focus { border-bottom-color: var(--accent); }
-  #status { color: var(--ink-soft); min-width: 10rem; }
-  #status b { color: var(--ink); font-weight: 600; }
-  .hint { color: var(--ink-soft); margin: 0.6rem 0 0; }
-  .hint button, .examples button {
-    font: inherit; background: none; border: 1px solid var(--hair); color: var(--ink);
-    padding: 0.1rem 0.55rem; border-radius: 999px; cursor: pointer; margin: 0 0.25rem 0.25rem 0;
+  #q:focus { border-color: var(--tt-primary); box-shadow: 0 0 0 2px var(--tt-secondary); }
+  #status { color: var(--tt-ink-soft); min-width: 11rem; }
+  #status b { color: var(--tt-ink); font-weight: 600; }
+  .hint { color: var(--tt-muted); margin: 0.6rem 0 0; font-size: 0.9rem; }
+  .examples button {
+    font: inherit; font-size: 0.85rem; background: var(--tt-mark); border: 0; color: var(--tt-primary);
+    padding: 0.15rem 0.7rem; border-radius: 999px; cursor: pointer; margin: 0 0.25rem 0.25rem 0;
   }
-  .hint button:hover, .examples button:hover { border-color: var(--accent); }
-  .error { color: #b3261e; margin: 0.75rem 0 0; }
+  .examples button:hover { background: var(--tt-primary); color: #fff; }
+  .error { color: #8a1c1c; background: #fde8e8; padding: 0.5rem 0.8rem; border-radius: 6px; margin: 0.75rem 0 0; }
 
-  /* The chip strip: one square per shuttle, grouped by process. */
-  #chips { display: flex; flex-wrap: wrap; gap: 1.5rem 2.25rem; margin: 1.75rem 0 0.5rem; }
+  /* The chip strip: one small card per shuttle, grouped by process. */
+  #chips { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; margin: 1.5rem 0 0.5rem; }
   .pdk { display: flex; flex-direction: column; gap: 0.4rem; }
-  .pdk > span { color: var(--ink-soft); font-size: 0.85rem; }
+  .pdk > span { color: var(--tt-muted); font-size: 0.85rem; }
   .pdk .row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
   .chip {
-    width: 3.9rem; height: 3.3rem; border: 1px solid var(--hair); border-radius: 3px;
-    background: var(--chip-empty); display: flex; flex-direction: column; justify-content: space-between;
-    padding: 0.25rem 0.3rem; cursor: pointer; font: inherit; color: var(--ink); text-align: left;
-    position: relative;
+    width: 4rem; height: 3.4rem; border: 1px solid var(--tt-line); border-radius: 6px;
+    background: var(--tt-card); display: flex; flex-direction: column; justify-content: space-between;
+    padding: 0.3rem 0.35rem; cursor: pointer; font: inherit; color: var(--tt-ink); text-align: left;
   }
-  .chip small { font-family: var(--mono); font-size: 0.62rem; line-height: 1; color: var(--ink-soft); white-space: nowrap; overflow: hidden; }
+  .chip small { font-family: var(--mono); font-size: 0.62rem; line-height: 1; color: var(--tt-muted); white-space: nowrap; overflow: hidden; }
   .chip b { font-weight: 600; font-size: 1rem; line-height: 1; }
-  .chip.hot { background: color-mix(in srgb, var(--accent) var(--heat), var(--chip-empty)); }
-  .chip.hot.strong, .chip.hot.strong small { color: var(--accent-ink); }
+  .chip.hot { background: color-mix(in srgb, var(--tt-primary) var(--heat), #fff); border-color: color-mix(in srgb, var(--tt-primary) 40%, var(--tt-line)); }
+  .chip.hot.strong, .chip.hot.strong small { color: #fff; }
   .chip.experimental { border-style: dashed; }
-  .chip.selected { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .filter-note { color: var(--ink-soft); margin: 0.25rem 0 0; }
-  .filter-note button { font: inherit; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; text-decoration: underline; }
+  .chip.selected { border-color: var(--tt-primary); box-shadow: 0 0 0 2px var(--tt-secondary); }
+  .chip:hover { border-color: var(--tt-primary); }
+  .chip:focus-visible { outline: 2px solid var(--tt-primary); outline-offset: 2px; }
+  .filter-note { color: var(--tt-ink-soft); margin: 0.5rem 0 0; }
+  .filter-note button { font: inherit; background: none; border: 0; color: var(--tt-link); cursor: pointer; padding: 0; text-decoration: underline; }
 
   /* Results, grouped by shuttle. */
-  #results { margin-top: 1.5rem; }
-  .shuttle { border-top: 1px solid var(--hair); padding: 1rem 0 0.5rem; }
-  .shuttle h2 { font-size: 1rem; font-weight: 600; margin: 0 0 0.5rem; display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; }
-  .shuttle h2 code { font-family: var(--mono); font-weight: 400; color: var(--ink-soft); font-size: 0.9rem; }
-  .shuttle h2 .count { color: var(--ink-soft); font-weight: 400; }
-  .proj { display: grid; grid-template-columns: 4.5rem 1fr; gap: 0 0.75rem; padding: 0.4rem 0; }
-  .proj .addr { font-family: var(--mono); color: var(--ink-soft); font-size: 0.85rem; padding-top: 0.15rem; text-align: right; }
-  .proj .title { font-weight: 600; }
-  .proj .by { color: var(--ink-soft); }
-  .proj .meta { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); word-break: break-all; }
-  .proj .snip { color: var(--ink); margin-top: 0.15rem; }
-  .proj .toggle { font: inherit; font-size: 0.85rem; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; margin-top: 0.15rem; }
-  .detail { margin: 0.5rem 0 0.25rem; padding: 0.6rem 0.8rem; border-left: 2px solid var(--accent); }
-  .detail h3 { font-size: 0.85rem; font-weight: 600; margin: 0.6rem 0 0.2rem; color: var(--ink-soft); }
+  #results { margin-top: 1.25rem; }
+  .shuttle { border: 1px solid var(--tt-line); border-radius: 8px; background: var(--tt-card); padding: 0.9rem 1rem 0.4rem; margin-top: 1rem; }
+  .shuttle h2 { font-size: 1.05rem; font-weight: 600; margin: 0 0 0.4rem; display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; color: var(--tt-ink); }
+  .shuttle h2 a { color: inherit; text-decoration: none; }
+  .shuttle h2 a:hover { color: var(--tt-primary); }
+  .tt-kind { font-family: var(--mono); font-size: 0.7rem; font-weight: 400; padding: 0.15rem 0.5rem; border-radius: 4px; background: var(--tt-secondary); color: var(--tt-ink); }
+  .shuttle h2 .count { color: var(--tt-muted); font-weight: 400; font-size: 0.9rem; }
+  .proj { display: grid; grid-template-columns: 3.5rem 1fr; gap: 0 0.75rem; padding: 0.5rem 0; border-top: 1px solid var(--tt-line-soft); }
+  .proj .addr { font-family: var(--mono); color: var(--tt-muted); font-size: 0.85rem; padding-top: 0.2rem; text-align: right; }
+  .proj .title { font-weight: 500; }
+  .proj .by { color: var(--tt-ink-soft); }
+  .proj .meta { font-family: var(--mono); font-size: 0.78rem; color: var(--tt-muted); word-break: break-all; }
+  .proj .snip { margin-top: 0.15rem; }
+  .proj .toggle { font: inherit; font-size: 0.85rem; background: none; border: 0; color: var(--tt-link); cursor: pointer; padding: 0; margin-top: 0.15rem; }
+  .proj .toggle:hover { text-decoration: underline; }
+  .detail { margin: 0.5rem 0 0.25rem; padding: 0.7rem 0.9rem; background: var(--tt-panel); border-radius: 6px; }
+  .detail h3 { font-size: 0.85rem; font-weight: 600; margin: 0.6rem 0 0.2rem; color: var(--tt-ink-soft); }
   .detail h3:first-child { margin-top: 0; }
   .detail p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
   .detail .pins { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 0.1rem 1rem; font-family: var(--mono); font-size: 0.8rem; }
-  .detail .pins span b { font-weight: 400; color: var(--ink-soft); display: inline-block; min-width: 3.2rem; }
-  .detail a { color: var(--accent); }
-  .empty { color: var(--ink-soft); margin-top: 1.5rem; }
-  footer { margin-top: 3rem; color: var(--ink-soft); font-size: 0.85rem; border-top: 1px solid var(--hair); padding-top: 0.75rem; }
-  @media (max-width: 40rem) {
+  .detail .pins span b { font-weight: 400; color: var(--tt-muted); display: inline-block; min-width: 3.2rem; }
+  .empty { color: var(--tt-muted); margin-top: 1.5rem; }
+
+  .tt-footer { background: var(--tt-panel); color: #555; padding: 1rem 1.5rem; font-size: 0.85rem; text-align: center; }
+  .tt-footer p { margin: 0.2rem 0; }
+
+  @media (max-width: 700px) {
+    .tt-header { padding: 0.45rem 0.8rem; }
+    .tt-brand em { display: none; }
+    .tt-brand img { height: 28px; }
+    .tt-nav { flex-basis: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+    .tt-nav::-webkit-scrollbar { display: none; }
+    main { padding: 1rem 1rem 2rem; }
     .proj { grid-template-columns: 1fr; }
     .proj .addr { text-align: left; }
   }
   @media (prefers-reduced-motion: no-preference) {
-    .chip { transition: background-color 180ms ease; }
+    .chip { transition: background-color 180ms ease, border-color 120ms ease; }
   }
 </style>
 </head>
 <body>
+<header class="tt-header">
+  <a class="tt-brand" href="./">
+    <img src="static/ttlogo_120.png" alt="Tiny Tapeout logo">
+    <span>Tiny Tapeout <em>project search</em></span>
+  </a>
+  <nav class="tt-nav" aria-label="Site">
+    <a class="is-active" href="./">Search</a>
+    <a href="https://tinytapeout.com/chips/" target="_blank" rel="noopener">Chips <span class="tt-nav__ext">↗</span></a>
+    <a href="https://tinytapeout.fpgas.online/" target="_blank" rel="noopener">fpgas.online <span class="tt-nav__ext">↗</span></a>
+    <a href="https://github.com/mithro/tinytapeout-project-search" target="_blank" rel="noopener">GitHub <span class="tt-nav__ext">↗</span></a>
+    <a href="https://tinytapeout.com/" target="_blank" rel="noopener">tinytapeout.com <span class="tt-nav__ext">↗</span></a>
+  </nav>
+</header>
 <main>
-  <header>
-    <h1>Tiny Tapeout project search <span id="dbinfo"></span></h1>
-    <div class="searchrow">
-      <input id="q" type="search" placeholder="vga, risc-v, i2c, crypto …" autocomplete="off" autofocus spellcheck="false">
-      <div id="status"></div>
-    </div>
-    <p class="hint">Words are combined with AND. Quote a phrase, add <code>*</code> for a prefix, or use <code>title:vga</code> to search one field. Try:
-      <span class="examples" id="examples"></span>
-    </p>
-    <p class="error" id="error" hidden></p>
-  </header>
+  <h1>Find projects on Tiny Tapeout chips</h1>
+  <p class="lede">Search every project on every shuttle by keyword, and see which chips carry the ones you want. <span id="dbinfo"></span></p>
+  <div class="searchrow">
+    <input id="q" type="search" placeholder="vga, risc-v, i2c, crypto …" autocomplete="off" autofocus spellcheck="false">
+    <div id="status"></div>
+  </div>
+  <p class="hint">Words are combined with AND. Quote a phrase, add <code>*</code> for a prefix, or use <code>title:vga</code> to search one field. Try:
+    <span class="examples" id="examples"></span>
+  </p>
+  <p class="error" id="error" hidden></p>
 
   <section id="chips" aria-label="Matches per chip"></section>
   <p class="filter-note" id="filternote" hidden></p>
 
   <section id="results"></section>
-
-  <footer id="footer">Data from <a href="https://index.tinytapeout.com/">index.tinytapeout.com</a> and the Tiny Tapeout shuttle repositories. Source and data: <a href="https://github.com/mithro/tinytapeout-project-search">github.com/mithro/tinytapeout-project-search</a>.</footer>
 </main>
+<footer class="tt-footer">
+  <p>Unofficial community tool, not affiliated with Tiny Tapeout LTD. Data from <a href="https://index.tinytapeout.com/">index.tinytapeout.com</a> and the Tiny Tapeout shuttle repositories; project documentation belongs to its authors.</p>
+  <p>Source and data: <a href="https://github.com/mithro/tinytapeout-project-search">github.com/mithro/tinytapeout-project-search</a></p>
+</footer>
 
 <!-- sql.js-httpvfs (Apache-2.0): lets the static build query the SQLite file in the browser. -->
 <script src="static/vendor/sql.js-httpvfs/index.js"></script>
@@ -194,7 +245,7 @@
     async project(id) { return (await fetch(`api/project/${id}`)).json(); },
   };
 
-  // The static build reads tt_projects.db in the browser through sql.js-httpvfs.
+  // The static build reads the database in the browser through sql.js-httpvfs.
   // Only the database pages a query touches are fetched (HTTP Range requests).
   const SEARCH_SQL = `
     SELECT p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address, p.subtile_addr,
@@ -318,7 +369,7 @@
         b.type = "button";
         const hits = s.hits || 0;
         b.className = "chip" + (hits ? " hot" : "") + (s.experimental ? " experimental" : "") + (selected === s.id ? " selected" : "");
-        const heat = hits ? 25 + Math.round(75 * hits / max) : 0;
+        const heat = hits ? 20 + Math.round(80 * hits / max) : 0;
         if (heat >= 60) b.classList.add("strong");
         b.style.setProperty("--heat", heat + "%");
         b.title = `${s.name}: ${hits} of ${s.project_count} projects match` + (s.experimental ? " (experimental shuttle)" : "");
@@ -357,7 +408,7 @@
       const list = by.get(s.id);
       if (!list) continue;
       const sec = document.createElement("section"); sec.className = "shuttle";
-      sec.innerHTML = `<h2><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a> <code>${esc(s.id)}</code> <span class="count">${list.length} of ${s.project_count} projects</span></h2>`;
+      sec.innerHTML = `<h2><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a> <span class="tt-kind">${esc(s.id)}</span> <span class="count">${list.length} of ${s.project_count} projects</span></h2>`;
       for (const h of list) {
         const d = document.createElement("article"); d.className = "proj";
         d.innerHTML = `
@@ -452,7 +503,7 @@
     return;
   }
   const n = shuttles.reduce((a, s) => a + (s.project_count || 0), 0);
-  $("dbinfo").textContent = `${shuttles.length} shuttles, ${n.toLocaleString()} projects`;
+  $("dbinfo").textContent = `${shuttles.length} shuttles, ${n.toLocaleString()} projects.`;
   document.body.dataset.backend = backend.name;
 
   q.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(run, 220); });
