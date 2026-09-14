@@ -79,7 +79,7 @@ def test_search_synonyms_and_shuttle_filter(con):
     assert search(con, "riscv", shuttles=["tt06"]) == []
     d = search(con, "riscv")[0]
     assert d.address_str == "3/1"
-    assert d.url == "https://tinytapeout.com/chips/tt07/d/"
+    assert d.url == "https://tinytapeout.com/chips/tt07/d"
 
 
 def test_summarise_keeps_official_order(con):

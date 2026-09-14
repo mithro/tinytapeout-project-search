@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tiny Tapeout project search</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect x='2' y='2' width='12' height='12' rx='2' fill='%235b4bd6'/%3E%3Crect x='5' y='5' width='6' height='6' fill='%23f5f6f8'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --paper: #f5f6f8;
+    --ink: #1a1d24;
+    --ink-soft: #5c6270;
+    --hair: #d9dce3;
+    --accent: #5b4bd6;
+    --accent-ink: #ffffff;
+    --chip-empty: #e6e8ee;
+    --mark: #ece9ff;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #14171c;
+      --ink: #e6e8ec;
+      --ink-soft: #9aa1ad;
+      --hair: #2b303a;
+      --accent: #9b8dff;
+      --accent-ink: #14171c;
+      --chip-empty: #22262e;
+      --mark: #2d2a52;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); }
+  body { font-size: 15px; line-height: 1.45; }
+  a { color: inherit; text-decoration-color: var(--hair); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: var(--accent); }
+  mark { background: var(--mark); color: inherit; padding: 0 1px; border-radius: 2px; }
+  main { max-width: 68rem; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+
+  header h1 { font-size: 1.15rem; font-weight: 600; margin: 0 0 1rem; letter-spacing: -0.01em; }
+  header h1 span { color: var(--ink-soft); font-weight: 400; }
+
+  .searchrow { display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; }
+  #q {
+    flex: 1 1 22rem; font: inherit; font-size: 1.35rem; padding: 0.55rem 0.7rem;
+    border: 1px solid var(--hair); border-bottom: 2px solid var(--ink); border-radius: 4px 4px 0 0;
+    background: transparent; color: var(--ink); outline: none;
+  }
+  #q:focus { border-bottom-color: var(--accent); }
+  #status { color: var(--ink-soft); min-width: 10rem; }
+  #status b { color: var(--ink); font-weight: 600; }
+  .hint { color: var(--ink-soft); margin: 0.6rem 0 0; }
+  .hint button, .examples button {
+    font: inherit; background: none; border: 1px solid var(--hair); color: var(--ink);
+    padding: 0.1rem 0.55rem; border-radius: 999px; cursor: pointer; margin: 0 0.25rem 0.25rem 0;
+  }
+  .hint button:hover, .examples button:hover { border-color: var(--accent); }
+  .error { color: #b3261e; margin: 0.75rem 0 0; }
+
+  /* The chip strip: one square per shuttle, grouped by process. */
+  #chips { display: flex; flex-wrap: wrap; gap: 1.5rem 2.25rem; margin: 1.75rem 0 0.5rem; }
+  .pdk { display: flex; flex-direction: column; gap: 0.4rem; }
+  .pdk > span { color: var(--ink-soft); font-size: 0.85rem; }
+  .pdk .row { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .chip {
+    width: 3.9rem; height: 3.3rem; border: 1px solid var(--hair); border-radius: 3px;
+    background: var(--chip-empty); display: flex; flex-direction: column; justify-content: space-between;
+    padding: 0.25rem 0.3rem; cursor: pointer; font: inherit; color: var(--ink); text-align: left;
+    position: relative;
+  }
+  .chip small { font-family: var(--mono); font-size: 0.62rem; line-height: 1; color: var(--ink-soft); white-space: nowrap; overflow: hidden; }
+  .chip b { font-weight: 600; font-size: 1rem; line-height: 1; }
+  .chip.hot { background: color-mix(in srgb, var(--accent) var(--heat), var(--chip-empty)); }
+  .chip.hot.strong, .chip.hot.strong small { color: var(--accent-ink); }
+  .chip.experimental { border-style: dashed; }
+  .chip.selected { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .filter-note { color: var(--ink-soft); margin: 0.25rem 0 0; }
+  .filter-note button { font: inherit; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; text-decoration: underline; }
+
+  /* Results, grouped by shuttle. */
+  #results { margin-top: 1.5rem; }
+  .shuttle { border-top: 1px solid var(--hair); padding: 1rem 0 0.5rem; }
+  .shuttle h2 { font-size: 1rem; font-weight: 600; margin: 0 0 0.5rem; display: flex; gap: 0.75rem; align-items: baseline; flex-wrap: wrap; }
+  .shuttle h2 code { font-family: var(--mono); font-weight: 400; color: var(--ink-soft); font-size: 0.9rem; }
+  .shuttle h2 .count { color: var(--ink-soft); font-weight: 400; }
+  .proj { display: grid; grid-template-columns: 4.5rem 1fr; gap: 0 0.75rem; padding: 0.4rem 0; }
+  .proj .addr { font-family: var(--mono); color: var(--ink-soft); font-size: 0.85rem; padding-top: 0.15rem; text-align: right; }
+  .proj .title { font-weight: 600; }
+  .proj .by { color: var(--ink-soft); }
+  .proj .meta { font-family: var(--mono); font-size: 0.8rem; color: var(--ink-soft); word-break: break-all; }
+  .proj .snip { color: var(--ink); margin-top: 0.15rem; }
+  .proj .toggle { font: inherit; font-size: 0.85rem; background: none; border: 0; color: var(--accent); cursor: pointer; padding: 0; margin-top: 0.15rem; }
+  .detail { margin: 0.5rem 0 0.25rem; padding: 0.6rem 0.8rem; border-left: 2px solid var(--accent); }
+  .detail h3 { font-size: 0.85rem; font-weight: 600; margin: 0.6rem 0 0.2rem; color: var(--ink-soft); }
+  .detail h3:first-child { margin-top: 0; }
+  .detail p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .detail .pins { display: grid; grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr)); gap: 0.1rem 1rem; font-family: var(--mono); font-size: 0.8rem; }
+  .detail .pins span b { font-weight: 400; color: var(--ink-soft); display: inline-block; min-width: 3.2rem; }
+  .detail a { color: var(--accent); }
+  .empty { color: var(--ink-soft); margin-top: 1.5rem; }
+  @media (max-width: 40rem) {
+    .proj { grid-template-columns: 1fr; }
+    .proj .addr { text-align: left; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .chip { transition: background-color 180ms ease; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Tiny Tapeout project search <span id="dbinfo"></span></h1>
+    <div class="searchrow">
+      <input id="q" type="search" placeholder="vga, risc-v, i2c, crypto …" autocomplete="off" autofocus spellcheck="false">
+      <div id="status"></div>
+    </div>
+    <p class="hint">Words are combined with AND. Quote a phrase, add <code>*</code> for a prefix, or use <code>title:vga</code> to search one field. Try:
+      <span class="examples" id="examples"></span>
+    </p>
+    <p class="error" id="error" hidden></p>
+  </header>
+
+  <section id="chips" aria-label="Matches per chip"></section>
+  <p class="filter-note" id="filternote" hidden></p>
+
+  <section id="results"></section>
+</main>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const q = $("q"), status = $("status"), chips = $("chips"), results = $("results");
+  const errorEl = $("error"), filterNote = $("filternote");
+  const EXAMPLES = ["vga", "risc-v", "i2c", "crypto", "uart", "neural", "spi", "game", "adc", "fpga"];
+  const PDK_LABEL = { "sky130A": "SkyWater sky130", "ihp-sg13g2": "IHP SG13G2", "ihp-sg13cmos5l": "IHP SG13CMOS5L", "gf180mcuD": "GlobalFoundries GF180" };
+
+  let shuttles = [];          // official order, with .hits after a search
+  let selected = null;        // shuttle id filter or null
+  let lastHits = [];
+  let timer = null, inflight = 0;
+
+  const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  // Snippets come back with \x01 … \x02 around matched words.
+  const snip = (s) => esc(s).replace(/\x01/g, "<mark>").replace(/\x02/g, "</mark>").replace(/\s+/g, " ");
+
+  for (const ex of EXAMPLES) {
+    const b = document.createElement("button");
+    b.type = "button"; b.textContent = ex;
+    b.addEventListener("click", () => { q.value = ex; run(); });
+    $("examples").appendChild(b);
+  }
+
+  function readHash() {
+    const p = new URLSearchParams(location.hash.slice(1));
+    q.value = p.get("q") || "";
+    selected = p.get("shuttle") || null;
+  }
+  function writeHash() {
+    const p = new URLSearchParams();
+    if (q.value.trim()) p.set("q", q.value.trim());
+    if (selected) p.set("shuttle", selected);
+    const h = p.toString();
+    if (("#" + h) !== location.hash) history.replaceState(null, "", h ? "#" + h : location.pathname);
+  }
+
+  function renderChips() {
+    const max = Math.max(1, ...shuttles.map((s) => s.hits || 0));
+    const groups = new Map();
+    for (const s of shuttles) {
+      if (!groups.has(s.pdk)) groups.set(s.pdk, []);
+      groups.get(s.pdk).push(s);
+    }
+    chips.replaceChildren();
+    for (const [pdk, list] of groups) {
+      const g = document.createElement("div"); g.className = "pdk";
+      const label = document.createElement("span"); label.textContent = PDK_LABEL[pdk] || pdk;
+      const row = document.createElement("div"); row.className = "row";
+      for (const s of list) {
+        const b = document.createElement("button");
+        b.type = "button";
+        const hits = s.hits || 0;
+        b.className = "chip" + (hits ? " hot" : "") + (s.experimental ? " experimental" : "") + (selected === s.id ? " selected" : "");
+        const heat = hits ? 25 + Math.round(75 * hits / max) : 0;
+        if (heat >= 60) b.classList.add("strong");
+        b.style.setProperty("--heat", heat + "%");
+        b.title = `${s.name}: ${hits} of ${s.project_count} projects match` + (s.experimental ? " (experimental shuttle)" : "");
+        b.setAttribute("aria-pressed", selected === s.id ? "true" : "false");
+        b.innerHTML = `<small>${esc(s.id)}</small><b>${hits || ""}</b>`;
+        b.addEventListener("click", () => { selected = selected === s.id ? null : s.id; renderChips(); renderResults(); writeHash(); });
+        row.appendChild(b);
+      }
+      g.append(label, row);
+      chips.appendChild(g);
+    }
+    if (selected) {
+      const s = shuttles.find((x) => x.id === selected);
+      filterNote.hidden = false;
+      filterNote.innerHTML = `Showing only ${esc(s ? s.name : selected)}. <button type="button">Show all chips</button>`;
+      filterNote.querySelector("button").addEventListener("click", () => { selected = null; renderChips(); renderResults(); writeHash(); });
+    } else {
+      filterNote.hidden = true;
+    }
+  }
+
+  function renderResults() {
+    results.replaceChildren();
+    const hits = selected ? lastHits.filter((h) => h.shuttle === selected) : lastHits;
+    if (!q.value.trim()) {
+      results.innerHTML = `<p class="empty">Type a keyword to see which chips carry matching projects.</p>`;
+      return;
+    }
+    if (!hits.length) {
+      results.innerHTML = `<p class="empty">No projects match${selected ? " on this chip" : ""}. Try fewer words, a prefix like <code>spi*</code>, or another spelling.</p>`;
+      return;
+    }
+    const by = new Map();
+    for (const h of hits) { if (!by.has(h.shuttle)) by.set(h.shuttle, []); by.get(h.shuttle).push(h); }
+    for (const s of shuttles) {
+      const list = by.get(s.id);
+      if (!list) continue;
+      const sec = document.createElement("section"); sec.className = "shuttle";
+      sec.innerHTML = `<h2><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a> <code>${esc(s.id)}</code> <span class="count">${list.length} of ${s.project_count} projects</span></h2>`;
+      for (const h of list) {
+        const d = document.createElement("article"); d.className = "proj";
+        d.innerHTML = `
+          <div class="addr">${esc(h.address)}</div>
+          <div>
+            <span class="title"><a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.title)}</a></span>
+            ${h.author ? `<span class="by"> by ${esc(h.author)}</span>` : ""}
+            <div class="meta">${esc(h.macro)}${h.language ? ", " + esc(h.language) : ""}${h.tiles ? ", " + esc(h.tiles) + " tiles" : ""}</div>
+            ${h.snippet ? `<div class="snip">${snip(h.snippet)}</div>` : ""}
+            <button class="toggle" type="button" aria-expanded="false">Show details</button>
+            <div class="detail" hidden></div>
+          </div>`;
+        const btn = d.querySelector(".toggle"), det = d.querySelector(".detail");
+        btn.addEventListener("click", async () => {
+          const open = det.hidden;
+          det.hidden = !open;
+          btn.setAttribute("aria-expanded", String(open));
+          btn.textContent = open ? "Hide details" : "Show details";
+          if (open && !det.dataset.loaded) {
+            det.textContent = "Loading…";
+            const r = await fetch(`/api/project/${h.id}`);
+            const p = await r.json();
+            det.dataset.loaded = "1";
+            det.innerHTML = detailHTML(p);
+          }
+        });
+        sec.appendChild(d);
+      }
+      results.appendChild(sec);
+    }
+  }
+
+  function detailHTML(p) {
+    const parts = [];
+    if (p.description) parts.push(`<h3>Description</h3><p>${esc(p.description)}</p>`);
+    if (p.how_it_works) parts.push(`<h3>How it works</h3><p>${esc(p.how_it_works)}</p>`);
+    if (p.how_to_test) parts.push(`<h3>How to test</h3><p>${esc(p.how_to_test)}</p>`);
+    if (p.external_hw) parts.push(`<h3>External hardware</h3><p>${esc(p.external_hw)}</p>`);
+    if (p.pins && p.pins.length) {
+      parts.push(`<h3>Pins</h3><div class="pins">` + p.pins.map((x) => `<span><b>${esc(x.pin)}</b>${esc(x.name)}</span>`).join("") + `</div>`);
+    }
+    const links = [];
+    if (p.url) links.push(`<a href="${esc(p.url)}" target="_blank" rel="noopener">tinytapeout.com page</a>`);
+    if (p.repo) links.push(`<a href="${esc(p.repo)}" target="_blank" rel="noopener">source repository</a>`);
+    if (p.doc_link) links.push(`<a href="${esc(p.doc_link)}" target="_blank" rel="noopener">documentation link</a>`);
+    const facts = [];
+    if (p.clock_hz) facts.push(`clock ${Number(p.clock_hz).toLocaleString()} Hz`);
+    if (p.tag_list && p.tag_list.length) facts.push("tags: " + p.tag_list.map(esc).join(", "));
+    if (p.danger_level && p.danger_level !== "safe") facts.push(`danger level ${esc(p.danger_level)}${p.danger_reason ? ": " + esc(p.danger_reason) : ""}`);
+    if (p.commit_hash) facts.push(`commit ${esc(p.commit_hash.slice(0, 10))}`);
+    if (facts.length) parts.push(`<h3>Facts</h3><p>${facts.join("\n")}</p>`);
+    if (links.length) parts.push(`<h3>Links</h3><p>${links.join("\n")}</p>`);
+    return parts.join("") || "<p>No further details recorded.</p>";
+  }
+
+  async function run() {
+    clearTimeout(timer);
+    const query = q.value.trim();
+    writeHash();
+    const id = ++inflight;
+    status.textContent = query ? "Searching…" : "";
+    const r = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+    const data = await r.json();
+    if (id !== inflight) return;   // a newer search superseded this one
+    shuttles = data.shuttles;
+    lastHits = data.hits;
+    errorEl.hidden = !data.error;
+    errorEl.textContent = data.error || "";
+    status.innerHTML = query && !data.error
+      ? `<b>${data.total}</b> project${data.total === 1 ? "" : "s"} on <b>${data.shuttles.filter((s) => s.hits).length}</b> chips`
+      : "";
+    renderChips();
+    renderResults();
+  }
+
+  q.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(run, 220); });
+  q.addEventListener("keydown", (e) => { if (e.key === "Enter") run(); });
+  window.addEventListener("hashchange", () => { readHash(); run(); });
+
+  fetch("/api/shuttles").then((r) => r.json()).then((d) => {
+    const n = d.shuttles.reduce((a, s) => a + (s.project_count || 0), 0);
+    $("dbinfo").textContent = `${d.shuttles.length} shuttles, ${n.toLocaleString()} projects`;
+  });
+  readHash();
+  run();
+})();
+</script>
+</body>
+</html>

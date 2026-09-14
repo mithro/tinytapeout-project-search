@@ -59,8 +59,11 @@ for _group in SYNONYMS:
     for _term in _group:
         _SYNONYM_LOOKUP[_term.strip('"').lower()] = _group
 
-# Human readable link to a project page on tinytapeout.com.
-PROJECT_URL = "https://tinytapeout.com/chips/{shuttle}/{macro}/"
+# Link to a project page on tinytapeout.com. The site's Cloudflare function
+# (functions/chips/[shuttle]/[project]/index.ts in the tinytapeout_www repo)
+# serves /chips/<shuttle>/<macro>; a trailing slash 404s and numeric
+# addresses only redirect here.
+PROJECT_URL = "https://tinytapeout.com/chips/{shuttle}/{macro}"
 SHUTTLE_URL = "https://tinytapeout.com/chips/{shuttle}/"
 
 # A bare word for FTS5 purposes: letters, digits and underscore only.
@@ -94,6 +97,13 @@ def build_match(query: str, synonyms: bool = True) -> str:
         else:
             terms.append(fts_term(raw))
     return " AND ".join(terms)
+
+
+# Markers wrapped around matched words inside Hit.snippet. Control characters
+# so that literal brackets in pin names such as ui[0] are never confused with
+# highlighting.
+SNIPPET_START = "\x01"
+SNIPPET_END = "\x02"
 
 
 @dataclass
@@ -146,7 +156,7 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
         SELECT p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address,
                p.subtile_addr, p.type, p.title, p.author, p.description,
                p.language, p.tiles, p.repo,
-               snippet(projects_fts, -1, '[', ']', ' … ', 24) AS snip,
+               snippet(projects_fts, -1, char(1), char(2), ' … ', 24) AS snip,
                bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0) AS rank
         FROM projects_fts f
         JOIN projects p ON p.id = f.rowid
@@ -220,6 +230,7 @@ def print_hits(con: sqlite3.Connection, hits: list[Hit], query: str,
             print(f"          {h.macro}  {h.url}")
             if show_snippets and h.snippet:
                 snippet = " ".join(h.snippet.split())
+                snippet = snippet.replace(SNIPPET_START, "[").replace(SNIPPET_END, "]")
                 print(f"          {snippet}")
 
 
