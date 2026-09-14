@@ -57,8 +57,9 @@ Return for each project:
 Canonical vocabulary (tag (category): meaning):
 {vocab}
 
-Return only the JSON object described by the schema, one entry per input project,
-keyed by the project's "key" field exactly as given."""
+Return only the JSON object described by the schema, one entry per input project, in the
+same order as the input, with "index" set to the project's number (1 for the first project)
+and "key" copied exactly as given."""
 
 SCHEMA = {
     "title": "review_batch",
@@ -71,6 +72,7 @@ SCHEMA = {
                 "type": "object",
                 "additionalProperties": False,
                 "properties": {
+                    "index": {"type": "integer"},
                     "key": {"type": "string"},
                     "verdict": {"type": "string", "enum": ["approve", "fix", "escalate"]},
                     "remove": {"type": "array", "items": {"type": "object", "additionalProperties": False,
@@ -82,7 +84,7 @@ SCHEMA = {
                     "summary": {"type": "string"},
                     "notes": {"type": "string"},
                 },
-                "required": ["key", "verdict", "remove", "add", "summary", "notes"],
+                "required": ["index", "key", "verdict", "remove", "add", "summary", "notes"],
             },
         }
     },
@@ -118,10 +120,10 @@ def facts(d: Doc) -> str:
 
 def batch_prompt(docs: list[Doc], p2: dict[str, dict]) -> str:
     parts = []
-    for d in docs:
+    for i, d in enumerate(docs, 1):
         r = p2[d.key]
         parts.append(
-            f'=== PROJECT key="{d.key}" ===\n{d.text}\n'
+            f'=== PROJECT index={i} key="{d.key}" ===\n{d.text}\n'
             f"--- facts: {facts(d)}\n"
             f"--- proposed tags: {', '.join(r['tags'])}\n"
             f"--- proposed summary: {r['summary']}\n"
@@ -142,10 +144,16 @@ def run_batch(model: str, docs: list[Doc], p2: dict, canon: dict, aliases: dict,
         problems.append(f"unparseable response: {e}: {res.text[:200]!r}")
         raw = []
     want = {d.key: d for d in docs}
+    by_index = {i: d.key for i, d in enumerate(docs, 1)}
     seen = set()
     for r in raw:
         k = r.get("key")
-        if k not in want:
+        idx = r.get("index")
+        if isinstance(idx, int) and idx in by_index and by_index[idx] not in seen:
+            if k != by_index[idx]:
+                problems.append(f"{by_index[idx]}: key echoed as {k!r}, matched by index")
+            k = by_index[idx]
+        if k not in want or k in seen:
             problems.append(f"unknown key {k!r}")
             continue
         before = list(p2[k]["tags"])
@@ -194,6 +202,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--limit-usd", type=float, default=2.5)
     ap.add_argument("--reasoning", choices=["off", "low", "medium", "high"], default="low")
     ap.add_argument("--limit-docs", type=int, default=None)
+    ap.add_argument("--repair", action="store_true",
+                    help="re-run batches whose saved record has missing, unknown-key or unparseable results")
     args = ap.parse_args(argv)
 
     canon, aliases = load_taxonomy()
@@ -205,7 +215,17 @@ def main(argv: list[str] | None = None) -> int:
     system = SYSTEM_TMPL.format(vocab=vocab)
     batches = [docs[i:i + args.batch] for i in range(0, len(docs), args.batch)]
     out_dir = AI_DIR / "review" / args.sub / slug(args.model)
-    todo = [(i, b) for i, b in enumerate(batches) if not (out_dir / f"{i:04d}.json").exists()]
+
+    def needs_run(i: int) -> bool:
+        f = out_dir / f"{i:04d}.json"
+        if not f.exists():
+            return True
+        if not args.repair:
+            return False
+        probs = json.loads(f.read_text()).get("problems", [])
+        return any(("missing" in p or "unparseable" in p or "unknown key" in p) for p in probs)
+
+    todo = [(i, b) for i, b in enumerate(batches) if needs_run(i)]
     print(f"{len(docs)} documents; {len(todo)} of {len(batches)} batches to run", file=sys.stderr)
 
     spent = 0.0

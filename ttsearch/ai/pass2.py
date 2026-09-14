@@ -48,8 +48,9 @@ Return, for each project:
 Canonical vocabulary (tag (category): meaning):
 {vocab}
 
-Return only the JSON object described by the schema, one entry per input project,
-keyed by the project's "key" field exactly as given."""
+Return only the JSON object described by the schema, one entry per input project, in the
+same order as the input, with "index" set to the project's number (1 for the first project)
+and "key" copied exactly as given."""
 
 SCHEMA = {
     "title": "pass2_batch",
@@ -62,12 +63,13 @@ SCHEMA = {
                 "type": "object",
                 "additionalProperties": False,
                 "properties": {
+                    "index": {"type": "integer"},
                     "key": {"type": "string"},
                     "tags": {"type": "array", "items": {"type": "string"}, "minItems": 3, "maxItems": 10},
                     "summary": {"type": "string"},
                     "changed": {"type": "boolean"},
                 },
-                "required": ["key", "tags", "summary", "changed"],
+                "required": ["index", "key", "tags", "summary", "changed"],
             },
         }
     },
@@ -101,11 +103,11 @@ def mapped_tags(raw_tags: list[str], aliases: dict, canon: dict) -> list[str]:
 
 def batch_prompt(docs: list[Doc], p1: dict[str, dict], aliases: dict, canon: dict) -> str:
     parts = []
-    for d in docs:
+    for i, d in enumerate(docs, 1):
         r = p1.get(d.key, {})
         draft_tags = mapped_tags(r.get("tags", []), aliases, canon)
         parts.append(
-            f'=== PROJECT key="{d.key}" ===\n{d.text}\n'
+            f'=== PROJECT index={i} key="{d.key}" ===\n{d.text}\n'
             f"--- draft tags (already mapped to the vocabulary): {', '.join(draft_tags) or '(none)'}\n"
             f"--- draft summary: {r.get('summary', '(none)')}\n"
         )
@@ -125,10 +127,17 @@ def run_batch(model: str, docs: list[Doc], p1: dict, aliases: dict, canon: dict,
         problems.append(f"unparseable response: {e}: {res.text[:200]!r}")
         raw_results = []
     want = {d.key for d in docs}
+    by_index = {i: d.key for i, d in enumerate(docs, 1)}
     seen = set()
     for r in raw_results:
         k = r.get("key")
-        if k not in want:
+        idx = r.get("index")
+        # Match by position first (cheap models garble keys), key as a cross-check.
+        if isinstance(idx, int) and idx in by_index and by_index[idx] not in seen:
+            if k != by_index[idx]:
+                problems.append(f"{by_index[idx]}: key echoed as {k!r}, matched by index")
+            k = by_index[idx]
+        if k not in want or k in seen:
             problems.append(f"unknown key {k!r}")
             continue
         tags = []
@@ -166,6 +175,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--limit-usd", type=float, default=0.8)
     ap.add_argument("--reasoning", choices=["off", "low", "medium", "high"], default="off")
     ap.add_argument("--limit-docs", type=int, default=None, help="only the first N documents (testing)")
+    ap.add_argument("--repair", action="store_true",
+                    help="re-run batches whose saved record has missing, unknown-key or unparseable results")
     args = ap.parse_args(argv)
 
     canon, aliases = load_taxonomy()
@@ -177,7 +188,17 @@ def main(argv: list[str] | None = None) -> int:
     system = SYSTEM_TMPL.format(vocab=vocab)
     batches = [docs[i:i + args.batch] for i in range(0, len(docs), args.batch)]
     out_dir = AI_DIR / "pass2" / args.sub / slug(args.model)
-    todo = [(i, b) for i, b in enumerate(batches) if not (out_dir / f"{i:04d}.json").exists()]
+
+    def needs_run(i: int) -> bool:
+        f = out_dir / f"{i:04d}.json"
+        if not f.exists():
+            return True
+        if not args.repair:
+            return False
+        probs = json.loads(f.read_text()).get("problems", [])
+        return any(("missing" in p or "unparseable" in p or "unknown key" in p) for p in probs)
+
+    todo = [(i, b) for i, b in enumerate(batches) if needs_run(i)]
     print(f"{len(docs)} documents ({len(canon)} canonical tags, system prompt ~{len(system) // 4:,} tokens); "
           f"{len(todo)} of {len(batches)} batches to run", file=sys.stderr)
 
