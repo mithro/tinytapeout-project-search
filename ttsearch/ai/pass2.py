@@ -153,7 +153,7 @@ def run_batch(model: str, docs: list[Doc], p1: dict, aliases: dict, canon: dict,
             problems.append(f"{k}: {n_sent} sentences")
         if len(tags) < 3:
             problems.append(f"{k}: only {len(tags)} canonical tags")
-        results.append({**r, "tags": tags, "sentences": n_sent})
+        results.append({**r, "key": k, "tags": tags, "sentences": n_sent})
         seen.add(k)
     for k in want - seen:
         problems.append(f"{k}: missing")

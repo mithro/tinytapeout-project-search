@@ -99,9 +99,17 @@ def load_pass2(sub: str, model_slug: str | None = None) -> dict[str, dict]:
     for f in sorted(base.rglob("*.json")):
         if model_slug and f.parent.name != model_slug:
             continue
-        for r in json.loads(f.read_text()).get("results", []):
-            if r.get("key") and len(r.get("tags", [])) >= 3:
-                out[r["key"]] = r
+        rec = json.loads(f.read_text())
+        batch_keys = rec.get("keys") or []
+        for r in rec.get("results", []):
+            key = r.get("key")
+            idx = r.get("index")
+            # Earlier runs stored index-matched results under the model's garbled
+            # key; the batch's key list plus the index recovers the real one.
+            if key not in batch_keys and isinstance(idx, int) and 1 <= idx <= len(batch_keys):
+                key = batch_keys[idx - 1]
+            if key in batch_keys and len(r.get("tags", [])) >= 3:
+                out[key] = {**r, "key": key}
     return out
 
 
