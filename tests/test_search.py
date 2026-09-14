@@ -1,0 +1,88 @@
+# SPDX-License-Identifier: Apache-2.0
+import json
+
+import pytest
+
+from ttsearch.build_db import build
+from ttsearch.search import build_match, fts_term, search, summarise
+
+
+def test_fts_term_barewords_pass_through():
+    assert fts_term("vga") == "vga"
+    assert fts_term("tt_um_x") == "tt_um_x"
+    assert fts_term("spi*") == "spi*"
+
+
+def test_fts_term_quotes_punctuation():
+    assert fts_term("risc-v") == '"risc-v"'
+    assert fts_term("ps/2") == '"ps/2"'
+    assert fts_term('say"hi') == '"say""hi"'
+    assert fts_term("sha-*") == '"sha-"*'
+
+
+def test_build_match_implicit_and():
+    assert build_match("vga game", synonyms=False) == "vga AND game"
+    assert build_match("  vga   ", synonyms=False) == "vga"
+    assert build_match("", synonyms=False) == ""
+
+
+def test_build_match_synonyms():
+    m = build_match("risc-v")
+    assert m.startswith("(")
+    assert '"risc-v"' in m and "riscv" in m and "rv32" in m
+    # A member of the group other than the canonical spelling expands the same way.
+    assert build_match("riscv") == build_match("RISC-V".lower())
+    # Non-synonym words are left alone.
+    assert build_match("vga_out", synonyms=False) == "vga_out"
+
+
+def test_build_match_no_synonyms_flag():
+    assert build_match("i2c", synonyms=False) == "i2c"
+
+
+SHUTTLES = {"shuttles": [
+    {"id": "tt06", "name": "TT6", "pdk": "sky130A", "projects": 2},
+    {"id": "tt07", "name": "TT7", "pdk": "sky130A", "projects": 1},
+]}
+PROJECTS = {"projects": [
+    {"shuttle": "tt06", "macro": "a", "address": 1, "title": "VGA pong", "author": "x",
+     "description": "A game on a VGA display", "pinout": {}},
+    {"shuttle": "tt06", "macro": "b", "address": 2, "title": "I2C thing", "author": "y",
+     "description": "IIC peripheral", "pinout": {}},
+    {"shuttle": "tt07", "macro": "c", "address": 3, "title": "Group", "type": "group",
+     "description": "vga group container", "pinout": {}},
+    {"shuttle": "tt07", "macro": "d", "address": 3, "subtile_addr": 1,
+     "title": "RISC-V core", "description": "an rv32i cpu", "pinout": {}},
+]}
+
+
+@pytest.fixture
+def con(tmp_path):
+    (tmp_path / "p.json").write_text(json.dumps(PROJECTS))
+    (tmp_path / "s.json").write_text(json.dumps(SHUTTLES))
+    c = build(tmp_path / "p.json", tmp_path / "s.json", tmp_path / "t.db")
+    c.row_factory = __import__("sqlite3").Row
+    yield c
+    c.close()
+
+
+def test_search_groups_excluded_by_default(con):
+    hits = search(con, "vga")
+    assert [h.macro for h in hits] == ["a"]
+    hits = search(con, "vga", include_groups=True)
+    assert sorted(h.macro for h in hits) == ["a", "c"]
+
+
+def test_search_synonyms_and_shuttle_filter(con):
+    assert [h.macro for h in search(con, "i2c")] == ["b"]        # matches "IIC"
+    assert [h.macro for h in search(con, "riscv")] == ["d"]      # matches "RISC-V"/"rv32i"
+    assert search(con, "riscv", shuttles=["tt06"]) == []
+    d = search(con, "riscv")[0]
+    assert d.address_str == "3/1"
+    assert d.url == "https://tinytapeout.com/chips/tt07/d/"
+
+
+def test_summarise_keeps_official_order(con):
+    hits = search(con, "vga OR rv32i", raw=True)   # raw: no synonym expansion
+    rows = summarise(con, hits)
+    assert [(s["id"], n) for s, n in rows] == [("tt06", 1), ("tt07", 1)]
