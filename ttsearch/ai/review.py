@@ -23,7 +23,8 @@ from . import AI_DIR
 from .corpus import Doc, load_docs
 from .openrouter import chat, print_usage
 from .pass1 import _SENT, slug
-from .pass2 import load_taxonomy
+from .pass2 import load_pass1, load_taxonomy, mapped_tags
+from .pilot_report import interface_mismatches
 from .taxonomy import normalise
 
 BATCH = 6
@@ -118,6 +119,27 @@ def facts(d: Doc) -> str:
     return "; ".join(bits)
 
 
+def risk_score(d: Doc, p1: dict, p2: dict, aliases: dict, canon: dict) -> float:
+    """How likely this entry is to contain a mistake; higher first for review.
+
+    Disagreement between the two cheap passes, low self-reported confidence,
+    interface tags without evidence in the pins, changed or malformed
+    summaries: these are where the pilot showed errors cluster.
+    """
+    r1 = p1.get(d.key, {})
+    r2 = p2[d.key]
+    t1 = set(mapped_tags(r1.get("tags", []), aliases, canon))
+    t2 = set(r2["tags"])
+    jaccard = len(t1 & t2) / len(t1 | t2) if t1 | t2 else 1.0
+    score = 1.0 - jaccard
+    score += {"high": 0.0, "medium": 0.4, "low": 0.8}.get(r1.get("confidence"), 0.4)
+    score += 0.6 * len(interface_mismatches({"tags": list(t2)}, d))
+    score += 0.3 if r2.get("changed") else 0.0
+    score += 0.3 if r2.get("sentences") != 4 else 0.0
+    score += 0.2 * (len(d.members) - 1) ** 0.5     # resubmitted designs: a mistake is copied
+    return score
+
+
 def batch_prompt(docs: list[Doc], p2: dict[str, dict]) -> str:
     parts = []
     for i, d in enumerate(docs, 1):
@@ -204,11 +226,25 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--limit-docs", type=int, default=None)
     ap.add_argument("--repair", action="store_true",
                     help="re-run batches whose saved record has missing, unknown-key or unparseable results")
+    ap.add_argument("--skip-reviewed", action="store_true",
+                    help="leave out documents that already have a review from any model (for a second, cheaper reviewer)")
+    ap.add_argument("--order", choices=["risk", "corpus"], default="risk",
+                    help="risk: most error-prone entries first (so a spend limit reviews the ones that matter)")
     args = ap.parse_args(argv)
 
     canon, aliases = load_taxonomy()
+    p1 = load_pass1(args.pass2_sub)
     p2 = load_pass2(args.pass2_sub)
     docs = [d for d in load_docs() if d.key in p2]
+    if args.skip_reviewed:
+        done: set[str] = set()
+        for f in (AI_DIR / "review" / args.sub).rglob("*.json"):
+            for r in json.loads(f.read_text()).get("results", []):
+                done.add(r.get("key"))
+        docs = [d for d in docs if d.key not in done]
+        print(f"skipping {len(done)} already-reviewed documents", file=sys.stderr)
+    if args.order == "risk":
+        docs.sort(key=lambda d: -risk_score(d, p1, p2, aliases, canon))
     if args.limit_docs:
         docs = docs[: args.limit_docs]
     vocab = "\n".join(f"{t['tag']} ({t['category']}): {t['meaning']}" for t in canon.values())
