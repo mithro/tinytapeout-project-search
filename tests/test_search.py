@@ -74,12 +74,31 @@ FEEDBACK = {"reports": [
 ]}
 
 
+AI_TAXONOMY = {"tags": [
+    {"tag": "game", "category": "domain", "meaning": "interactive game"},
+    {"tag": "vga", "category": "interface", "meaning": "VGA output"},
+    {"tag": "i2c", "category": "interface", "meaning": "I2C bus"},
+    {"tag": "risc-v", "category": "type", "meaning": "RISC-V processor"},
+]}
+AI_TAGS = {"projects": {
+    "tt06/a": {"tags": ["game", "vga"], "summary": "A pong game on VGA. It bounces. It needs a monitor. It works.",
+               "stage": "reviewed", "verdict": "approve", "confidence": "high", "insufficient_docs": False},
+    "tt06/b": {"tags": ["i2c", "not-a-real-tag"], "summary": "An I2C thing. One. Two. Three.",
+               "stage": "pass2", "verdict": None, "confidence": "medium", "insufficient_docs": False},
+    "tt07/d": {"tags": ["risc-v"], "summary": "", "stage": "pass1", "verdict": None,
+               "confidence": "low", "insufficient_docs": True},
+}}
+
+
 @pytest.fixture
 def con(tmp_path):
     (tmp_path / "p.json").write_text(json.dumps(PROJECTS))
     (tmp_path / "s.json").write_text(json.dumps(SHUTTLES))
     (tmp_path / "f.json").write_text(json.dumps(FEEDBACK))
-    c = build(tmp_path / "p.json", tmp_path / "s.json", tmp_path / "t.db", tmp_path / "f.json")
+    (tmp_path / "ai.json").write_text(json.dumps(AI_TAGS))
+    (tmp_path / "tax.json").write_text(json.dumps(AI_TAXONOMY))
+    c = build(tmp_path / "p.json", tmp_path / "s.json", tmp_path / "t.db", tmp_path / "f.json",
+              tmp_path / "ai.json", tmp_path / "tax.json")
     c.row_factory = __import__("sqlite3").Row
     yield c
     c.close()
@@ -135,6 +154,23 @@ def test_status_filter_and_tested_sort(con):
         search(con, "", status="flaky")
     with _pytest.raises(ValueError):
         search(con, "vga", sort="random")
+
+
+def test_ai_tag_filter(con):
+    # Listing by tag alone; unknown tags in the input file are ignored.
+    assert [h.macro for h in search(con, "", tags=["game"])] == ["a"]
+    assert [h.macro for h in search(con, "", tags=["i2c"])] == ["b"]
+    b = search(con, "", tags=["i2c"])[0]
+    assert b.ai_tags == ["i2c"]
+    assert b.ai_summary.startswith("An I2C thing")
+    # Several tags combine with AND.
+    assert [h.macro for h in search(con, "", tags=["game", "vga"])] == ["a"]
+    assert search(con, "", tags=["game", "i2c"]) == []
+    # Keywords plus a tag; AI summaries are searchable.
+    assert [h.macro for h in search(con, "pong", tags=["vga"])] == ["a"]
+    assert [h.macro for h in search(con, "bounces")] == ["a"]
+    # Sub-tile project "d" is keyed tt07/d in the AI file and gets its tag too.
+    assert [h.macro for h in search(con, "", tags=["risc-v"])] == ["d"]
 
 
 def test_summarise_keeps_official_order(con):

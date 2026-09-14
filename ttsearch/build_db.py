@@ -19,6 +19,9 @@ from . import DB_PATH, PROJECTS_JSON, SHUTTLES_JSON
 from .feedback import FEEDBACK_JSON, STATUSES
 from .pmods import PMODS, detect_pmods
 
+AI_TAGS_JSON = Path(__file__).resolve().parent.parent / "data" / "ai" / "tags.json"
+AI_TAXONOMY_JSON = Path(__file__).resolve().parent.parent / "data" / "ai" / "taxonomy.json"
+
 # Derived from the silicon reports for a project:
 #   untested  no reports
 #   working   at least one "working" report and no "broken" ones
@@ -81,6 +84,12 @@ CREATE TABLE projects (
     fb_broken      INTEGER NOT NULL DEFAULT 0,
     test_status    TEXT NOT NULL DEFAULT 'untested',
     feedback_text  TEXT,      -- all report texts joined, for full-text search
+    ai_summary     TEXT,      -- model-written four-sentence summary (data/ai/tags.json)
+    ai_tags        TEXT,      -- space separated canonical tag ids, also in project_ai_tags
+    ai_stage       TEXT,      -- reviewed | pass2 | pass1
+    ai_verdict     TEXT,      -- reviewer verdict when reviewed
+    ai_confidence  TEXT,
+    ai_insufficient_docs INTEGER NOT NULL DEFAULT 0,
     UNIQUE (shuttle, macro, subtile_addr)
 );
 CREATE INDEX projects_shuttle ON projects(shuttle);
@@ -116,6 +125,20 @@ CREATE INDEX project_pmods_pmod ON project_pmods(pmod);
 CREATE INDEX project_pmods_project ON project_pmods(project_id);
 CREATE INDEX projects_test_status ON projects(test_status);
 
+-- Model-generated canonical tags (ttsearch.ai; see data/ai/taxonomy.json).
+CREATE TABLE ai_tags (
+    id          TEXT PRIMARY KEY,
+    category    TEXT NOT NULL,   -- type | interface | output | domain | impl
+    meaning     TEXT NOT NULL,
+    sort_order  INTEGER NOT NULL
+);
+CREATE TABLE project_ai_tags (
+    project_id  INTEGER NOT NULL REFERENCES projects(id),
+    tag         TEXT NOT NULL REFERENCES ai_tags(id)
+);
+CREATE INDEX project_ai_tags_tag ON project_ai_tags(tag);
+CREATE INDEX project_ai_tags_project ON project_ai_tags(project_id);
+
 -- Silicon test reports people filed on tinytapeout.com (tt-fetch-feedback).
 CREATE TABLE feedback (
     project_id  INTEGER NOT NULL REFERENCES projects(id),
@@ -129,7 +152,7 @@ CREATE INDEX feedback_project ON feedback(project_id);
 
 CREATE VIRTUAL TABLE projects_fts USING fts5(
     title, description, how_it_works, how_to_test, external_hw,
-    tags, pin_names, macro, author, pmods, feedback_text,
+    tags, pin_names, macro, author, pmods, feedback_text, ai_summary, ai_tags,
     content='projects', content_rowid='id',
     tokenize='porter unicode61'
 );
@@ -137,31 +160,33 @@ CREATE VIRTUAL TABLE projects_fts USING fts5(
 -- Keep the FTS index in sync with the content table.
 CREATE TRIGGER projects_ai AFTER INSERT ON projects BEGIN
   INSERT INTO projects_fts(rowid, title, description, how_it_works, how_to_test,
-                           external_hw, tags, pin_names, macro, author, pmods, feedback_text)
+                           external_hw, tags, pin_names, macro, author, pmods, feedback_text,
+                           ai_summary, ai_tags)
   VALUES (new.id, new.title, new.description, new.how_it_works, new.how_to_test,
           new.external_hw, new.tags, new.pin_names, new.macro, new.author, new.pmods,
-          new.feedback_text);
+          new.feedback_text, new.ai_summary, new.ai_tags);
 END;
 CREATE TRIGGER projects_au AFTER UPDATE ON projects BEGIN
   INSERT INTO projects_fts(projects_fts, rowid, title, description, how_it_works,
                            how_to_test, external_hw, tags, pin_names, macro, author, pmods,
-                           feedback_text)
+                           feedback_text, ai_summary, ai_tags)
   VALUES ('delete', old.id, old.title, old.description, old.how_it_works,
           old.how_to_test, old.external_hw, old.tags, old.pin_names, old.macro,
-          old.author, old.pmods, old.feedback_text);
+          old.author, old.pmods, old.feedback_text, old.ai_summary, old.ai_tags);
   INSERT INTO projects_fts(rowid, title, description, how_it_works, how_to_test,
-                           external_hw, tags, pin_names, macro, author, pmods, feedback_text)
+                           external_hw, tags, pin_names, macro, author, pmods, feedback_text,
+                           ai_summary, ai_tags)
   VALUES (new.id, new.title, new.description, new.how_it_works, new.how_to_test,
           new.external_hw, new.tags, new.pin_names, new.macro, new.author, new.pmods,
-          new.feedback_text);
+          new.feedback_text, new.ai_summary, new.ai_tags);
 END;
 CREATE TRIGGER projects_ad AFTER DELETE ON projects BEGIN
   INSERT INTO projects_fts(projects_fts, rowid, title, description, how_it_works,
                            how_to_test, external_hw, tags, pin_names, macro, author, pmods,
-                           feedback_text)
+                           feedback_text, ai_summary, ai_tags)
   VALUES ('delete', old.id, old.title, old.description, old.how_it_works,
           old.how_to_test, old.external_hw, old.tags, old.pin_names, old.macro,
-          old.author, old.pmods, old.feedback_text);
+          old.author, old.pmods, old.feedback_text, old.ai_summary, old.ai_tags);
 END;
 
 CREATE TABLE meta (key TEXT PRIMARY KEY, value TEXT);
@@ -181,12 +206,19 @@ def as_int(value) -> int | None:
 
 
 def build(projects_json: Path, shuttles_json: Path, db_path: Path,
-          feedback_json: Path | None = None) -> sqlite3.Connection:
+          feedback_json: Path | None = None, ai_tags_json: Path | None = None,
+          ai_taxonomy_json: Path | None = None) -> sqlite3.Connection:
     projects_doc = json.loads(projects_json.read_text())
     shuttles_doc = json.loads(shuttles_json.read_text())
     reports: list[dict] = []
     if feedback_json is not None and feedback_json.exists():
         reports = json.loads(feedback_json.read_text())["reports"]
+    ai_entries: dict[str, dict] = {}
+    ai_taxonomy: list[dict] = []
+    if ai_tags_json is not None and ai_tags_json.exists():
+        ai_entries = json.loads(ai_tags_json.read_text())["projects"]
+    if ai_taxonomy_json is not None and ai_taxonomy_json.exists():
+        ai_taxonomy = json.loads(ai_taxonomy_json.read_text())["tags"]
 
     if db_path.exists():
         db_path.unlink()
@@ -237,6 +269,7 @@ def build(projects_json: Path, shuttles_json: Path, db_path: Path,
         con.executemany("INSERT INTO project_pmods VALUES (?,?)", [(pid, m) for m in pmod_ids])
 
     load_feedback(con, reports)
+    load_ai_tags(con, ai_entries, ai_taxonomy)
 
     con.execute("INSERT INTO meta VALUES ('source', ?)", (projects_doc.get("source"),))
     con.execute("INSERT INTO meta VALUES ('index_updated', ?)",
@@ -278,26 +311,57 @@ def load_feedback(con: sqlite3.Connection, reports: list[dict]) -> int:
     return len(reports) - unmatched
 
 
+def load_ai_tags(con: sqlite3.Connection, entries: dict[str, dict], taxonomy: list[dict]) -> int:
+    """Attach the model-generated tags and summaries (data/ai/tags.json)."""
+    if not entries:
+        return 0
+    known = set()
+    for order, t in enumerate(taxonomy):
+        con.execute("INSERT OR IGNORE INTO ai_tags VALUES (?,?,?,?)",
+                    (t["tag"], t["category"], t.get("meaning", ""), order))
+        known.add(t["tag"])
+    n = 0
+    for pid, shuttle, macro in con.execute("SELECT id, shuttle, macro FROM projects").fetchall():
+        e = entries.get(f"{shuttle}/{macro}")
+        if not e or not e.get("tags") and not e.get("summary"):
+            continue
+        tags = [t for t in e.get("tags", []) if t in known]
+        con.execute(
+            """UPDATE projects SET ai_summary = ?, ai_tags = ?, ai_stage = ?, ai_verdict = ?,
+               ai_confidence = ?, ai_insufficient_docs = ? WHERE id = ?""",
+            (e.get("summary") or None, " ".join(tags) or None, e.get("stage"), e.get("verdict"),
+             e.get("confidence"), 1 if e.get("insufficient_docs") else 0, pid),
+        )
+        con.executemany("INSERT INTO project_ai_tags VALUES (?,?)", [(pid, t) for t in tags])
+        n += 1
+    return n
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--projects", type=Path, default=PROJECTS_JSON)
     ap.add_argument("--shuttles", type=Path, default=SHUTTLES_JSON)
     ap.add_argument("--feedback", type=Path, default=FEEDBACK_JSON,
                     help="silicon reports from tt-fetch-feedback (optional)")
+    ap.add_argument("--ai-tags", type=Path, default=AI_TAGS_JSON,
+                    help="model-generated tags and summaries from tt-ai-finalize (optional)")
+    ap.add_argument("--ai-taxonomy", type=Path, default=AI_TAXONOMY_JSON)
     ap.add_argument("--db", type=Path, default=DB_PATH)
     args = ap.parse_args(argv)
 
-    con = build(args.projects, args.shuttles, args.db, args.feedback)
+    con = build(args.projects, args.shuttles, args.db, args.feedback, args.ai_tags, args.ai_taxonomy)
     n_shuttles = con.execute("SELECT count(*) FROM shuttles").fetchone()[0]
     n_projects = con.execute("SELECT count(*) FROM projects").fetchone()[0]
     n_pins = con.execute("SELECT count(*) FROM pins").fetchone()[0]
     n_pmods = con.execute("SELECT count(DISTINCT project_id) FROM project_pmods").fetchone()[0]
     n_fb = con.execute("SELECT count(*) FROM feedback").fetchone()[0]
     n_tested = con.execute("SELECT count(*) FROM projects WHERE test_status != 'untested'").fetchone()[0]
+    n_ai = con.execute("SELECT count(*) FROM projects WHERE ai_summary IS NOT NULL").fetchone()[0]
+    n_ai_tags = con.execute("SELECT count(*) FROM ai_tags").fetchone()[0]
     con.close()
     print(f"{args.db}: {n_shuttles} shuttles, {n_projects} projects, {n_pins} named pins, "
           f"{n_pmods} projects with an inferred PMOD pinout, {n_fb} silicon reports on "
-          f"{n_tested} projects", file=sys.stderr)
+          f"{n_tested} projects, AI summaries on {n_ai} projects using {n_ai_tags} tags", file=sys.stderr)
     return 0
 
 

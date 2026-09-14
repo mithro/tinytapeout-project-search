@@ -12,6 +12,7 @@ endpoints, and search runs in Python:
     GET /api/shuttles          shuttle list in official order
     GET /api/pmods             PMOD definitions with match counts
     GET /api/tests             how many projects have each silicon test status
+    GET /api/tags              canonical AI tags with counts (search takes &tag=ID, repeatable)
     GET /api/search?q=...      hits plus per-shuttle counts (also &pmod=ID, &status=S,
                                &sort=relevance|tested|address, &shuttle=ID, &raw=1)
     GET /api/project/<id>      full record for one project
@@ -61,6 +62,7 @@ def project_record(con: sqlite3.Connection, pid: int) -> dict | None:
     rec["tag_list"] = [r["tag"] for r in con.execute(
         "SELECT tag FROM tags WHERE project_id = ? ORDER BY tag", (pid,))]
     rec["pmod_list"] = (rec.get("pmods") or "").split()
+    rec["ai_tag_list"] = (rec.get("ai_tags") or "").split()
     rec["reports"] = [dict(r) for r in con.execute(
         "SELECT status, user, owner, feedback, link FROM feedback WHERE project_id = ? ORDER BY rowid",
         (pid,))]
@@ -83,6 +85,16 @@ def pmod_list(con: sqlite3.Connection) -> list[dict]:
              "count": counts.get(pm.id, 0)} for pm in PMODS]
 
 
+def ai_tag_list(con: sqlite3.Connection) -> list[dict]:
+    """Canonical AI tags with how many projects carry each."""
+    return [
+        {"id": r[0], "category": r[1], "meaning": r[2], "count": r[3]}
+        for r in con.execute("""SELECT t.id, t.category, t.meaning, count(pt.project_id)
+                                FROM ai_tags t LEFT JOIN project_ai_tags pt ON pt.tag = t.id
+                                GROUP BY t.id ORDER BY t.sort_order""").fetchall()
+    ]
+
+
 def test_summary(con: sqlite3.Connection) -> list[dict]:
     """How many projects fall in each test status."""
     counts = dict(con.execute(
@@ -99,15 +111,17 @@ def do_search(con: sqlite3.Connection, params: dict[str, list[str]]) -> dict:
     shuttles = [s for s in params.get("shuttle", []) if s]
     pmod = (params.get("pmod") or [""])[0].strip() or None
     status = (params.get("status") or [""])[0].strip() or None
+    ai_tags = [t.strip() for t in params.get("tag", []) if t.strip()]
     sort = (params.get("sort") or ["relevance"])[0].strip() or "relevance"
     limit = int((params.get("limit") or ["0"])[0]) or None
     match = query if raw else build_match(query)
     out: dict = {"query": query, "match": match, "pmod": pmod, "status": status, "sort": sort,
-                 "hits": [], "shuttles": [], "error": None}
+                 "tags": ai_tags, "hits": [], "shuttles": [], "error": None}
     hits = []
-    if match or pmod or status:
+    if match or pmod or status or ai_tags:
         try:
-            hits = search(con, match, raw=True, limit=limit, pmod=pmod, status=status, sort=sort)
+            hits = search(con, match, raw=True, limit=limit, pmod=pmod, status=status, sort=sort,
+                          tags=ai_tags)
         except sqlite3.OperationalError as e:
             out["error"] = f"Could not understand that query: {e}"
         except ValueError as e:
@@ -127,7 +141,7 @@ def do_search(con: sqlite3.Connection, params: dict[str, list[str]]) -> dict:
             "language": h.language, "tiles": h.tiles, "repo": h.repo,
             "snippet": h.snippet, "url": h.url, "pmods": h.pmods,
             "fb_working": h.fb_working, "fb_partial": h.fb_partial, "fb_broken": h.fb_broken,
-            "test_status": h.test_status,
+            "test_status": h.test_status, "ai_tags": h.ai_tags, "ai_summary": h.ai_summary,
         }
         for h in hits
     ]
@@ -270,6 +284,8 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json({"pmods": pmod_list(con)})
         elif path == "/api/tests":
             self.send_json(test_summary(con))
+        elif path == "/api/tags":
+            self.send_json({"tags": ai_tag_list(con)})
         elif path == "/api/search":
             self.send_json(do_search(con, params))
         elif path.startswith("/api/project/"):

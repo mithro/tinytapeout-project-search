@@ -117,6 +117,24 @@
   .status.partial { background: #fff3cd; color: #6b4f00; }
   .status.broken { background: #f8d6d6; color: #8a1c1c; }
   .status.untested { background: #f0f0f0; color: #777; }
+  /* Tag facet: canonical AI tags grouped by category, any number selectable (AND). */
+  .tagbox { margin: 0.75rem 0 0; padding: 0.8rem 1rem; border: 1px solid var(--tt-line); border-radius: 8px; background: var(--tt-card); }
+  .tagbox .label { margin: 0 0 0.5rem; color: var(--tt-ink-soft); font-size: 0.9rem; display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap; }
+  .tagbox .label input { font: inherit; font-size: 0.9rem; padding: 0.25rem 0.5rem; border: 1px solid var(--tt-line); border-radius: 6px; background: #fff; color: var(--tt-ink); min-width: 12rem; }
+  .tagbox .label input:focus { outline: none; border-color: var(--tt-primary); box-shadow: 0 0 0 2px var(--tt-secondary); }
+  .tagbox .cat { display: flex; gap: 0.35rem 0.4rem; flex-wrap: wrap; align-items: center; margin: 0.35rem 0; }
+  .tagbox .cat > span { color: var(--tt-muted); font-size: 0.8rem; min-width: 5rem; }
+  .tag { font: inherit; font-size: 0.82rem; cursor: pointer; border-radius: 999px; border: 1px solid var(--tt-line); background: #fff; color: var(--tt-ink); padding: 0.1rem 0.6rem; display: inline-flex; gap: 0.35rem; align-items: center; }
+  .tag:hover { border-color: var(--tt-primary); }
+  .tag .n { font-family: var(--mono); font-size: 0.7rem; color: var(--tt-muted); }
+  .tag.selected { background: var(--tt-primary); color: #fff; border-color: var(--tt-primary); }
+  .tag.selected .n { color: rgba(255,255,255,0.8); }
+  .tag.more { border-style: dashed; color: var(--tt-link); }
+  .tagbox .picked { margin: 0.5rem 0 0; color: var(--tt-ink-soft); font-size: 0.9rem; }
+  .tagbox .picked button { font: inherit; background: none; border: 0; color: var(--tt-link); cursor: pointer; padding: 0; text-decoration: underline; }
+  .proj .ai { margin-top: 0.15rem; color: var(--tt-ink); }
+  .proj .ai .tags { margin-top: 0.2rem; display: flex; gap: 0.3rem; flex-wrap: wrap; }
+  .proj .ai .tags .tag { font-size: 0.75rem; padding: 0 0.5rem; }
   .detail .report { margin: 0.35rem 0; padding: 0.4rem 0.6rem; background: #fff; border: 1px solid var(--tt-line-soft); border-radius: 6px; }
   .detail .report .who { color: var(--tt-ink-soft); font-size: 0.85rem; }
   .detail .report p { margin: 0.2rem 0 0; }
@@ -216,6 +234,13 @@
     <p class="pmod-note" id="pmodnote" hidden></p>
   </section>
 
+  <section class="tagbox" aria-label="Filter by tag">
+    <p class="label"><span>Tags were assigned by language models from each project's documentation and checked by a second model; they are a browsing aid, not a claim by the authors.</span>
+      <input id="tagfilter" type="search" placeholder="find a tag…" autocomplete="off" spellcheck="false"></p>
+    <div id="tagcats"></div>
+    <p class="picked" id="tagpicked" hidden></p>
+  </section>
+
   <section class="tests" aria-label="Filter and sort by silicon test results">
     <p class="label">Silicon test results are the <a href="https://tinytapeout.com/chips/silicon-proven/" target="_blank" rel="noopener">reports people file on tinytapeout.com</a> after trying a design on a real chip. <span id="testsinfo"></span></p>
     <div class="row" id="testrow"></div>
@@ -257,6 +282,12 @@
   let tests = { statuses: [], reports: 0 };   // silicon test status counts
   let status = null;          // test status filter or null
   let sort = "relevance";     // relevance | tested | address
+  let aiTags = [];            // canonical AI tags with counts
+  let selectedTags = [];      // AI tag filter (all must match)
+  let tagQuery = "";          // text typed into the tag finder
+  const tagExpanded = {};     // category -> show all tags
+  const CAT_LABEL = { type: "What it is", interface: "Talks to", output: "Drives", domain: "For", impl: "Made with" };
+  const TAGS_SHOWN = 14;
   let lastHits = [];
   const STATUS_LABEL = { working: "✅ Working", partial: "🟡 Partial", broken: "🔴 Broken", untested: "Untested", tested: "Any report" };
   let timer = null, inflight = 0;
@@ -304,11 +335,13 @@
     async shuttles() { return (await (await fetch("api/shuttles")).json()).shuttles; },
     async pmods() { return (await (await fetch("api/pmods")).json()).pmods; },
     async tests() { return (await fetch("api/tests")).json(); },
-    async search(query, pmodId, statusId, sortId) {
+    async tags() { return (await (await fetch("api/tags")).json()).tags; },
+    async search(query, pmodId, statusId, sortId, tagIds) {
       const u = `api/search?q=${encodeURIComponent(query)}`
         + (pmodId ? `&pmod=${encodeURIComponent(pmodId)}` : "")
         + (statusId ? `&status=${encodeURIComponent(statusId)}` : "")
-        + `&sort=${encodeURIComponent(sortId || "relevance")}`;
+        + `&sort=${encodeURIComponent(sortId || "relevance")}`
+        + (tagIds || []).map((t) => `&tag=${encodeURIComponent(t)}`).join("");
       return (await fetch(u)).json();
     },
     async project(id) { return (await fetch(`api/project/${id}`)).json(); },
@@ -320,11 +353,11 @@
   // shuttle/address order when only a PMOD filter is given.
   const HIT_COLS = `p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address, p.subtile_addr,
            p.type, p.title, p.author, p.description, p.language, p.tiles, p.repo, p.pmods,
-           p.fb_working, p.fb_partial, p.fb_broken, p.test_status`;
+           p.fb_working, p.fb_partial, p.fb_broken, p.test_status, p.ai_tags, p.ai_summary`;
   const SEARCH_SQL = `
     SELECT ${HIT_COLS},
            snippet(projects_fts, -1, char(1), char(2), ' … ', 24) AS snippet,
-           bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0, 2.0, 1.0) AS rank
+           bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0, 2.0, 1.0, 2.0, 4.0) AS rank
     FROM projects_fts f
     JOIN projects p ON p.id = f.rowid
     JOIN shuttles s ON s.id = p.shuttle
@@ -359,14 +392,21 @@
         const [{ n }] = await db.query("SELECT count(*) AS n FROM feedback");
         return { statuses: ["working", "partial", "broken", "untested"].map((id) => ({ id, count: counts.get(id) || 0 })), reports: n };
       },
-      async search(query, pmodId, statusId, sortId) {
+      async tags() {
+        return db.query(`SELECT t.id, t.category, t.meaning,
+                           (SELECT count(*) FROM project_ai_tags pt WHERE pt.tag = t.id) AS count
+                         FROM ai_tags t ORDER BY t.sort_order`);
+      },
+      async search(query, pmodId, statusId, sortId, tagIds) {
         const match = buildMatch(query);
-        const out = { query, match, pmod: pmodId, status: statusId, sort: sortId, hits: [], shuttles: [], error: null, total: 0 };
+        tagIds = tagIds || [];
+        const out = { query, match, pmod: pmodId, status: statusId, sort: sortId, tags: tagIds, hits: [], shuttles: [], error: null, total: 0 };
         let rows = [];
-        if (match || pmodId || statusId) {
+        if (match || pmodId || statusId || tagIds.length) {
           let sql = match ? SEARCH_SQL : LIST_SQL;
           const params = match ? [match] : [];
           if (pmodId) { sql += PMOD_FILTER; params.push(pmodId); }
+          for (const t of tagIds) { sql += " AND p.id IN (SELECT project_id FROM project_ai_tags WHERE tag = ?)"; params.push(t); }
           if (statusId === "tested") sql += " AND p.test_status != 'untested'";
           else if (statusId) { sql += " AND p.test_status = ?"; params.push(statusId); }
           const byPlace = "s.sort_order, p.address, p.subtile_addr";
@@ -387,6 +427,8 @@
           url: PROJECT_URL(r.shuttle, r.macro),
           snippet: r.snippet || "",
           pmods: (r.pmods || "").split(" ").filter(Boolean),
+          ai_tags: (r.ai_tags || "").split(" ").filter(Boolean),
+          ai_summary: r.ai_summary || null,
         }));
         return out;
       },
@@ -449,12 +491,14 @@
     pmod = p.get("pmod") || null;
     status = p.get("status") || null;
     sort = ["relevance", "tested", "address"].includes(p.get("sort")) ? p.get("sort") : "relevance";
+    selectedTags = (p.get("tag") || "").split(",").filter(Boolean);
     $("sortsel").value = sort;
   }
   function writeHash() {
     const p = new URLSearchParams();
     if (q.value.trim()) p.set("q", q.value.trim());
     if (pmod) p.set("pmod", pmod);
+    if (selectedTags.length) p.set("tag", selectedTags.join(","));
     if (status) p.set("status", status);
     if (sort !== "relevance") p.set("sort", sort);
     if (selected) p.set("shuttle", selected);
@@ -485,6 +529,55 @@
     const m = pmods.find((x) => x.id === pmod);
     note.hidden = !m;
     if (m) note.innerHTML = `${esc(m.name)}: expects <code>${esc(m.pins)}</code>. <a href="${esc(m.url)}" target="_blank" rel="noopener">About this Pmod</a>`;
+  }
+
+  function toggleTag(id) {
+    selectedTags = selectedTags.includes(id) ? selectedTags.filter((t) => t !== id) : [...selectedTags, id];
+    run();
+  }
+
+  function renderTags() {
+    const cats = $("tagcats"), picked = $("tagpicked");
+    cats.replaceChildren();
+    const needle = tagQuery.trim().toLowerCase();
+    const byCat = new Map(Object.keys(CAT_LABEL).map((c) => [c, []]));
+    for (const t of aiTags) {
+      if (!byCat.has(t.category)) byCat.set(t.category, []);
+      byCat.get(t.category).push(t);
+    }
+    for (const [cat, list] of byCat) {
+      const row = document.createElement("div"); row.className = "cat";
+      const label = document.createElement("span"); label.textContent = CAT_LABEL[cat] || cat;
+      row.appendChild(label);
+      let shown = list.filter((t) => t.count > 0 || selectedTags.includes(t.id));
+      if (needle) shown = shown.filter((t) => t.id.includes(needle) || (t.meaning || "").toLowerCase().includes(needle));
+      shown.sort((a, b) => b.count - a.count);
+      const expanded = tagExpanded[cat] || needle;
+      const visible = expanded ? shown : shown.filter((t, i) => i < TAGS_SHOWN || selectedTags.includes(t.id));
+      for (const t of visible) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "tag" + (selectedTags.includes(t.id) ? " selected" : "");
+        b.setAttribute("aria-pressed", String(selectedTags.includes(t.id)));
+        b.title = t.meaning || t.id;
+        b.innerHTML = `${esc(t.id)} <span class="n">${t.count}</span>`;
+        b.addEventListener("click", () => toggleTag(t.id));
+        row.appendChild(b);
+      }
+      if (!expanded && shown.length > visible.length) {
+        const m = document.createElement("button");
+        m.type = "button"; m.className = "tag more";
+        m.textContent = `${shown.length - visible.length} more`;
+        m.addEventListener("click", () => { tagExpanded[cat] = true; renderTags(); });
+        row.appendChild(m);
+      }
+      if (visible.length) cats.appendChild(row);
+    }
+    picked.hidden = !selectedTags.length;
+    if (selectedTags.length) {
+      picked.innerHTML = `Showing projects tagged ${selectedTags.map((t) => `<b>${esc(t)}</b>`).join(" and ")}. <button type="button">Clear tags</button>`;
+      picked.querySelector("button").addEventListener("click", () => { selectedTags = []; run(); });
+    }
   }
 
   function renderTests() {
@@ -552,14 +645,19 @@
   function renderResults() {
     results.replaceChildren();
     const hits = selected ? lastHits.filter((h) => h.shuttle === selected) : lastHits;
-    if (!q.value.trim() && !pmod && !status) {
-      results.innerHTML = `<p class="empty">Type a keyword, pick a Pmod, or pick a test status above, to see which chips carry matching projects.</p>`;
+    if (!q.value.trim() && !pmod && !status && !selectedTags.length) {
+      results.innerHTML = `<p class="empty">Type a keyword, or pick a tag, a Pmod or a test status above, to see which chips carry matching projects.</p>`;
       return;
     }
     if (!hits.length) {
-      results.innerHTML = `<p class="empty">No projects match${selected ? " on this chip" : ""}${pmod ? " with that pinout" : ""}${status ? " with that test status" : ""}. Try fewer words, a prefix like <code>spi*</code>, or another spelling.</p>`;
+      results.innerHTML = `<p class="empty">No projects match${selected ? " on this chip" : ""}${pmod ? " with that pinout" : ""}${status ? " with that test status" : ""}${selectedTags.length ? " with all those tags" : ""}. Try fewer words or tags, a prefix like <code>spi*</code>, or another spelling.</p>`;
       return;
     }
+    const aiBlock = (h) => {
+      if (!h.ai_summary && !(h.ai_tags || []).length) return "";
+      const pills = (h.ai_tags || []).map((t) => `<button type="button" class="tag${selectedTags.includes(t) ? " selected" : ""}" data-tag="${esc(t)}">${esc(t)}</button>`).join("");
+      return `<div class="ai">${h.ai_summary && !q.value.trim() ? esc(h.ai_summary) : ""}<div class="tags">${pills}</div></div>`;
+    };
     const badge = (h) => h.test_status && h.test_status !== "untested"
       ? `<span class="status ${esc(h.test_status)}" title="Silicon reports: ${h.fb_working} working, ${h.fb_partial} partial, ${h.fb_broken} broken">${esc(STATUS_LABEL[h.test_status])} ${h.fb_working}/${h.fb_partial}/${h.fb_broken}</span>`
       : "";
@@ -581,10 +679,12 @@
             ${badge(h)}
             ${(h.pmods || []).map((id) => `<span class="tt-pill" title="Pinout matches this Pmod">${esc(pmodName(id))}</span>`).join("")}
             <div class="meta">${esc(h.macro)}${h.language ? ", " + esc(h.language) : ""}${h.tiles ? ", " + esc(h.tiles) + " tiles" : ""}</div>
-            ${h.snippet ? `<div class="snip">${snip(h.snippet)}</div>` : ""}
+            ${h.snippet && q.value.trim() ? `<div class="snip">${snip(h.snippet)}</div>` : ""}
+            ${aiBlock(h)}
             <button class="toggle" type="button" aria-expanded="false">Show details</button>
             <div class="detail" hidden></div>
           </div>`;
+        for (const b of d.querySelectorAll(".ai .tag")) b.addEventListener("click", () => toggleTag(b.dataset.tag));
         const btn = d.querySelector(".toggle"), det = d.querySelector(".detail");
         btn.addEventListener("click", async () => {
           const open = det.hidden;
@@ -606,6 +706,10 @@
 
   function detailHTML(p) {
     const parts = [];
+    if (p.ai_summary) {
+      const prov = p.ai_stage === "reviewed" ? `reviewed, ${esc(p.ai_verdict || "")}` : esc(p.ai_stage || "");
+      parts.push(`<h3>Model summary (${prov})</h3><p>${esc(p.ai_summary)}</p>`);
+    }
     if (p.description) parts.push(`<h3>Description</h3><p>${esc(p.description)}</p>`);
     if (p.how_it_works) parts.push(`<h3>How it works</h3><p>${esc(p.how_it_works)}</p>`);
     if (p.how_to_test) parts.push(`<h3>How to test</h3><p>${esc(p.how_to_test)}</p>`);
@@ -642,11 +746,12 @@
     const id = ++inflight;
     renderPmods();
     renderTests();
-    const active = query || pmod || status;
+    renderTags();
+    const active = query || pmod || status || selectedTags.length;
     statusEl.textContent = active ? "Searching…" : "";
     let data;
     try {
-      data = await backend.search(query, pmod, status, sort);
+      data = await backend.search(query, pmod, status, sort, selectedTags);
     } catch (e) {
       data = { hits: [], shuttles: shuttles.map((s) => ({ ...s, hits: 0 })), total: 0, error: "Search failed: " + (e.message || e) };
     }
@@ -670,7 +775,7 @@
     const [b, syn] = await Promise.all([chooseBackend(), fetch("synonyms.json").then((r) => r.json())]);
     backend = b;
     loadSynonyms(syn);
-    [shuttles, pmods, tests] = await Promise.all([backend.shuttles(), backend.pmods(), backend.tests()]);
+    [shuttles, pmods, tests, aiTags] = await Promise.all([backend.shuttles(), backend.pmods(), backend.tests(), backend.tags()]);
     shuttles = shuttles.map((s) => ({ ...s, hits: 0 }));
   } catch (e) {
     errorEl.hidden = false;
@@ -679,6 +784,7 @@
     return;
   }
   $("sortsel").addEventListener("change", (e) => { sort = e.target.value; run(); });
+  $("tagfilter").addEventListener("input", (e) => { tagQuery = e.target.value; renderTags(); });
   const n = shuttles.reduce((a, s) => a + (s.project_count || 0), 0);
   $("dbinfo").textContent = `${shuttles.length} shuttles, ${n.toLocaleString()} projects.`;
   document.body.dataset.backend = backend.name;

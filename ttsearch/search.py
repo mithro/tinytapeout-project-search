@@ -111,6 +111,8 @@ class Hit:
     fb_partial: int = 0
     fb_broken: int = 0
     test_status: str = "untested"
+    ai_tags: list[str] = field(default_factory=list)   # canonical AI tags
+    ai_summary: str | None = None
 
     @property
     def url(self) -> str:
@@ -136,7 +138,8 @@ def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
 def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
            shuttles: list[str] | None = None, limit: int | None = None,
            include_groups: bool = False, pmod: str | None = None,
-           status: str | None = None, sort: str = "relevance") -> list[Hit]:
+           status: str | None = None, sort: str = "relevance",
+           tags: list[str] | None = None) -> list[Hit]:
     """Run a search and return hits.
 
     With a query the FTS index is used and hits are ranked by bm25 (sort
@@ -145,7 +148,8 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
     most "working" silicon reports first, then partial, then fewest broken.
     """
     match = query if raw else build_match(query)
-    if not match and not pmod and not status:
+    tags = [t for t in (tags or []) if t]
+    if not match and not pmod and not status and not tags:
         return []
     if pmod and pmod not in PMOD_BY_ID:
         raise ValueError(f"unknown pmod id {pmod!r}; one of {', '.join(PMOD_BY_ID)}")
@@ -160,8 +164,9 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
                    p.subtile_addr, p.type, p.title, p.author, p.description,
                    p.language, p.tiles, p.repo, p.pmods,
                    p.fb_working, p.fb_partial, p.fb_broken, p.test_status,
+                   p.ai_tags, p.ai_summary,
                    snippet(projects_fts, -1, char(1), char(2), ' … ', 24) AS snip,
-                   bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0, 2.0, 1.0) AS rank
+                   bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0, 2.0, 1.0, 2.0, 4.0) AS rank
             FROM projects_fts f
             JOIN projects p ON p.id = f.rowid
             JOIN shuttles s ON s.id = p.shuttle
@@ -174,6 +179,7 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
                    p.subtile_addr, p.type, p.title, p.author, p.description,
                    p.language, p.tiles, p.repo, p.pmods,
                    p.fb_working, p.fb_partial, p.fb_broken, p.test_status,
+                   p.ai_tags, p.ai_summary,
                    p.description AS snip, 0.0 AS rank
             FROM projects p
             JOIN shuttles s ON s.id = p.shuttle
@@ -182,6 +188,9 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
     if pmod:
         sql += " AND p.id IN (SELECT project_id FROM project_pmods WHERE pmod = ?)"
         params.append(pmod)
+    for t in tags:                     # every requested tag must be present (AND)
+        sql += " AND p.id IN (SELECT project_id FROM project_ai_tags WHERE tag = ?)"
+        params.append(t)
     if status == "tested":
         sql += " AND p.test_status != 'untested'"
     elif status:
@@ -214,6 +223,7 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
             pmods=(r["pmods"] or "").split(),
             fb_working=r["fb_working"], fb_partial=r["fb_partial"], fb_broken=r["fb_broken"],
             test_status=r["test_status"],
+            ai_tags=(r["ai_tags"] or "").split(), ai_summary=r["ai_summary"],
         )
         for r in rows
     ]
@@ -265,6 +275,8 @@ def print_hits(con: sqlite3.Connection, hits: list[Hit], query: str,
             print(f"  [{h.address_str:>5}] {h.title}{author}{tested}")
             pm = f"  pmods: {', '.join(h.pmods)}" if h.pmods else ""
             print(f"          {h.macro}  {h.url}{pm}")
+            if h.ai_tags:
+                print(f"          tags: {', '.join(h.ai_tags)}")
             if show_snippets and h.snippet:
                 snippet = " ".join(h.snippet.split())
                 snippet = snippet.replace(SNIPPET_START, "[").replace(SNIPPET_END, "]")
@@ -279,6 +291,9 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--pmod", metavar="ID",
                     help="only projects whose pinout matches this PMOD (see --list-pmods)")
     ap.add_argument("--list-pmods", action="store_true", help="list the known PMOD ids and exit")
+    ap.add_argument("--tag", action="append", metavar="TAG",
+                    help="only projects carrying this AI tag (repeatable, all must match; see --list-tags)")
+    ap.add_argument("--list-tags", action="store_true", help="list the canonical AI tags with counts and exit")
     ap.add_argument("--status", choices=STATUS_FILTERS, metavar="STATUS",
                     help="silicon test status: working, partial, broken, untested or tested (any report)")
     ap.add_argument("--sort", choices=SORTS, default="relevance",
@@ -302,9 +317,17 @@ def main(argv: list[str] | None = None) -> int:
         for pm in PMOD_BY_ID.values():
             print(f"{pm.id:12} {pm.name:26} {pm.pins}")
         return 0
+    if args.list_tags:
+        con = connect(args.db)
+        rows = con.execute("""SELECT t.category, t.id, t.meaning, count(pt.project_id)
+                              FROM ai_tags t LEFT JOIN project_ai_tags pt ON pt.tag = t.id
+                              GROUP BY t.id ORDER BY t.category, count(pt.project_id) DESC""").fetchall()
+        for cat, tid, meaning, n in rows:
+            print(f"{cat:10} {tid:28} {n:5}  {meaning}")
+        return 0
     query = " ".join(args.query)
-    if not query and not args.pmod and not args.status:
-        ap.error("give search words, --pmod ID, --status STATUS, or --list-pmods")
+    if not query and not args.pmod and not args.status and not args.tag:
+        ap.error("give search words, --pmod ID, --status STATUS, --tag TAG, or --list-pmods/--list-tags")
     con = connect(args.db)
     if args.raw:
         match = query
@@ -314,7 +337,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"MATCH {match}", file=sys.stderr)
     try:
         hits = search(con, match, raw=True, shuttles=args.shuttle, limit=args.limit,
-                      pmod=args.pmod, status=args.status, sort=args.sort)
+                      pmod=args.pmod, status=args.status, sort=args.sort, tags=args.tag)
     except sqlite3.OperationalError as e:
         sys.exit(f"query error: {e}\n(expression was: {match})")
     except ValueError as e:
@@ -323,6 +346,8 @@ def main(argv: list[str] | None = None) -> int:
         query = f"{query} [pmod {args.pmod}]".strip()
     if args.status:
         query = f"{query} [{args.status}]".strip()
+    if args.tag:
+        query = f"{query} [tags: {', '.join(args.tag)}]".strip()
     if args.summary:
         print_summary(con, hits, query)
     else:
