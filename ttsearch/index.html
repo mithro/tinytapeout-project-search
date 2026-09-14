@@ -84,6 +84,26 @@
   .examples button:hover { background: var(--tt-primary); color: #fff; }
   .error { color: #8a1c1c; background: #fde8e8; padding: 0.5rem 0.8rem; border-radius: 6px; margin: 0.75rem 0 0; }
 
+  /* PMOD widget: pick a recommended pinout, see the designs whose pins line up. */
+  .pmods { margin: 1.25rem 0 0; padding: 0.8rem 1rem; border: 1px solid var(--tt-line); border-radius: 8px; background: var(--tt-card); }
+  .pmods .label { margin: 0 0 0.5rem; color: var(--tt-ink-soft); font-size: 0.9rem; }
+  .pmods .label a { color: var(--tt-link); }
+  .pmods .row { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .pmod {
+    font: inherit; font-size: 0.9rem; cursor: pointer; border-radius: 6px;
+    border: 1px solid var(--tt-line); background: #fff; color: var(--tt-ink);
+    padding: 0.3rem 0.7rem; display: inline-flex; align-items: center; gap: 0.45rem;
+  }
+  .pmod:hover { border-color: var(--tt-primary); }
+  .pmod .n { font-family: var(--mono); font-size: 0.75rem; color: var(--tt-muted); }
+  .pmod.selected { background: var(--tt-primary); color: #fff; border-color: var(--tt-primary); box-shadow: 0 0 0 2px var(--tt-secondary); }
+  .pmod.selected .n { color: rgba(255, 255, 255, 0.8); }
+  .pmod:focus-visible { outline: 2px solid var(--tt-primary); outline-offset: 2px; }
+  .pmod-note { margin: 0.5rem 0 0; color: var(--tt-ink-soft); font-size: 0.9rem; }
+  .pmod-note code { background: #fff; padding: 0 0.3rem; border-radius: 3px; border: 1px solid var(--tt-line-soft); }
+  .pmod-note a { color: var(--tt-link); }
+  .tt-pill { display: inline-block; font-size: 0.72rem; padding: 0.05rem 0.5rem; border-radius: 999px; background: var(--tt-mark); color: var(--tt-primary); margin-left: 0.3rem; vertical-align: middle; }
+
   /* The chip strip: one small card per shuttle, grouped by process. */
   #chips { display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; margin: 1.5rem 0 0.5rem; }
   .pdk { display: flex; flex-direction: column; gap: 0.4rem; }
@@ -173,6 +193,12 @@
   </p>
   <p class="error" id="error" hidden></p>
 
+  <section class="pmods" aria-label="Filter by PMOD">
+    <p class="label">Show designs that fit a Pmod. Inferred by matching each project's declared pin names against the <a href="https://tinytapeout.com/specs/pinouts/" target="_blank" rel="noopener">recommended pinouts</a>; a match means the pins line up, not that it has been tested.</p>
+    <div class="row" id="pmodrow"></div>
+    <p class="pmod-note" id="pmodnote" hidden></p>
+  </section>
+
   <section id="chips" aria-label="Matches per chip"></section>
   <p class="filter-note" id="filternote" hidden></p>
 
@@ -197,6 +223,8 @@
 
   let shuttles = [];          // official order, with .hits after a search
   let selected = null;        // shuttle id filter or null
+  let pmods = [];             // PMOD definitions with match counts
+  let pmod = null;            // PMOD id filter or null
   let lastHits = [];
   let timer = null, inflight = 0;
 
@@ -241,22 +269,34 @@
   const apiBackend = {
     name: "api",
     async shuttles() { return (await (await fetch("api/shuttles")).json()).shuttles; },
-    async search(query) { return (await fetch(`api/search?q=${encodeURIComponent(query)}`)).json(); },
+    async pmods() { return (await (await fetch("api/pmods")).json()).pmods; },
+    async search(query, pmodId) {
+      const u = `api/search?q=${encodeURIComponent(query)}` + (pmodId ? `&pmod=${encodeURIComponent(pmodId)}` : "");
+      return (await fetch(u)).json();
+    },
     async project(id) { return (await fetch(`api/project/${id}`)).json(); },
   };
 
   // The static build reads the database in the browser through sql.js-httpvfs.
   // Only the database pages a query touches are fetched (HTTP Range requests).
+  // Mirrors ttsearch/search.py: FTS query ranked by bm25, or a plain listing in
+  // shuttle/address order when only a PMOD filter is given.
+  const HIT_COLS = `p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address, p.subtile_addr,
+           p.type, p.title, p.author, p.description, p.language, p.tiles, p.repo, p.pmods`;
   const SEARCH_SQL = `
-    SELECT p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address, p.subtile_addr,
-           p.type, p.title, p.author, p.description, p.language, p.tiles, p.repo,
+    SELECT ${HIT_COLS},
            snippet(projects_fts, -1, char(1), char(2), ' … ', 24) AS snippet,
-           bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0) AS rank
+           bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0, 2.0) AS rank
     FROM projects_fts f
     JOIN projects p ON p.id = f.rowid
     JOIN shuttles s ON s.id = p.shuttle
-    WHERE projects_fts MATCH ? AND (p.type IS NULL OR p.type != 'group')
-    ORDER BY rank`;
+    WHERE projects_fts MATCH ? AND (p.type IS NULL OR p.type != 'group')`;
+  const LIST_SQL = `
+    SELECT ${HIT_COLS}, p.description AS snippet, 0.0 AS rank
+    FROM projects p
+    JOIN shuttles s ON s.id = p.shuttle
+    WHERE (p.type IS NULL OR p.type != 'group')`;
+  const PMOD_FILTER = ` AND p.id IN (SELECT project_id FROM project_pmods WHERE pmod = ?)`;
   function makeStaticBackend(worker) {
     const db = worker.db;
     let shuttleCache = null;
@@ -269,12 +309,21 @@
         }
         return shuttleCache;
       },
-      async search(query) {
+      async pmods() {
+        return db.query(`SELECT m.id, m.name, m.pins, m.url,
+                           (SELECT count(*) FROM project_pmods pp WHERE pp.pmod = m.id) AS count
+                         FROM pmods m ORDER BY m.sort_order`);
+      },
+      async search(query, pmodId) {
         const match = buildMatch(query);
-        const out = { query, match, hits: [], shuttles: [], error: null, total: 0 };
+        const out = { query, match, pmod: pmodId, hits: [], shuttles: [], error: null, total: 0 };
         let rows = [];
-        if (match) {
-          try { rows = await db.query(SEARCH_SQL, [match]); }
+        if (match || pmodId) {
+          let sql = match ? SEARCH_SQL : LIST_SQL;
+          const params = match ? [match] : [];
+          if (pmodId) { sql += PMOD_FILTER; params.push(pmodId); }
+          sql += match ? " ORDER BY rank, s.sort_order, p.address, p.subtile_addr" : " ORDER BY s.sort_order, p.address, p.subtile_addr";
+          try { rows = await db.query(sql, params); }
           catch (e) { out.error = "Could not understand that query: " + (e.message || e); }
         }
         const counts = new Map();
@@ -286,6 +335,8 @@
           address: r.address == null ? "" : (r.subtile_addr != null ? `${r.address}/${r.subtile_addr}` : String(r.address)),
           title: r.title || r.macro,
           url: PROJECT_URL(r.shuttle, r.macro),
+          snippet: r.snippet || "",
+          pmods: (r.pmods || "").split(" ").filter(Boolean),
         }));
         return out;
       },
@@ -294,6 +345,7 @@
         if (!rec) return { error: "no such project" };
         rec.pins = await db.query("SELECT pin, name FROM pins WHERE project_id = ? ORDER BY rowid", [id]);
         rec.tag_list = (await db.query("SELECT tag FROM tags WHERE project_id = ? ORDER BY tag", [id])).map((r) => r.tag);
+        rec.pmod_list = (rec.pmods || "").split(" ").filter(Boolean);
         rec.url = PROJECT_URL(rec.shuttle, rec.macro);
         return rec;
       },
@@ -343,13 +395,40 @@
     const p = new URLSearchParams(location.hash.slice(1));
     q.value = p.get("q") || "";
     selected = p.get("shuttle") || null;
+    pmod = p.get("pmod") || null;
   }
   function writeHash() {
     const p = new URLSearchParams();
     if (q.value.trim()) p.set("q", q.value.trim());
+    if (pmod) p.set("pmod", pmod);
     if (selected) p.set("shuttle", selected);
     const h = p.toString();
     if (("#" + h) !== location.hash) history.replaceState(null, "", h ? "#" + h : location.pathname + location.search);
+  }
+
+  function renderPmods() {
+    const row = $("pmodrow"), note = $("pmodnote");
+    row.replaceChildren();
+    const all = document.createElement("button");
+    all.type = "button";
+    all.className = "pmod" + (pmod ? "" : " selected");
+    all.setAttribute("aria-pressed", String(!pmod));
+    all.textContent = "Any pinout";
+    all.addEventListener("click", () => { pmod = null; run(); });
+    row.appendChild(all);
+    for (const m of pmods) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.className = "pmod" + (pmod === m.id ? " selected" : "");
+      b.setAttribute("aria-pressed", String(pmod === m.id));
+      b.title = m.pins;
+      b.innerHTML = `${esc(m.name)} <span class="n">${m.count}</span>`;
+      b.addEventListener("click", () => { pmod = pmod === m.id ? null : m.id; run(); });
+      row.appendChild(b);
+    }
+    const m = pmods.find((x) => x.id === pmod);
+    note.hidden = !m;
+    if (m) note.innerHTML = `${esc(m.name)}: expects <code>${esc(m.pins)}</code>. <a href="${esc(m.url)}" target="_blank" rel="noopener">About this Pmod</a>`;
   }
 
   function renderChips() {
@@ -394,14 +473,15 @@
   function renderResults() {
     results.replaceChildren();
     const hits = selected ? lastHits.filter((h) => h.shuttle === selected) : lastHits;
-    if (!q.value.trim()) {
-      results.innerHTML = `<p class="empty">Type a keyword to see which chips carry matching projects.</p>`;
+    if (!q.value.trim() && !pmod) {
+      results.innerHTML = `<p class="empty">Type a keyword, or pick a Pmod above, to see which chips carry matching projects.</p>`;
       return;
     }
     if (!hits.length) {
-      results.innerHTML = `<p class="empty">No projects match${selected ? " on this chip" : ""}. Try fewer words, a prefix like <code>spi*</code>, or another spelling.</p>`;
+      results.innerHTML = `<p class="empty">No projects match${selected ? " on this chip" : ""}${pmod ? " with that pinout" : ""}. Try fewer words, a prefix like <code>spi*</code>, or another spelling.</p>`;
       return;
     }
+    const pmodName = (id) => (pmods.find((m) => m.id === id) || { name: id }).name;
     const by = new Map();
     for (const h of hits) { if (!by.has(h.shuttle)) by.set(h.shuttle, []); by.get(h.shuttle).push(h); }
     for (const s of shuttles) {
@@ -416,6 +496,7 @@
           <div>
             <span class="title"><a href="${esc(h.url)}" target="_blank" rel="noopener">${esc(h.title)}</a></span>
             ${h.author ? `<span class="by"> by ${esc(h.author)}</span>` : ""}
+            ${(h.pmods || []).map((id) => `<span class="tt-pill" title="Pinout matches this Pmod">${esc(pmodName(id))}</span>`).join("")}
             <div class="meta">${esc(h.macro)}${h.language ? ", " + esc(h.language) : ""}${h.tiles ? ", " + esc(h.tiles) + " tiles" : ""}</div>
             ${h.snippet ? `<div class="snip">${snip(h.snippet)}</div>` : ""}
             <button class="toggle" type="button" aria-expanded="false">Show details</button>
@@ -449,6 +530,10 @@
     if (p.pins && p.pins.length) {
       parts.push(`<h3>Pins</h3><div class="pins">` + p.pins.map((x) => `<span><b>${esc(x.pin)}</b>${esc(x.name)}</span>`).join("") + `</div>`);
     }
+    if (p.pmod_list && p.pmod_list.length) {
+      const names = p.pmod_list.map((id) => { const m = pmods.find((x) => x.id === id); return m ? `${esc(m.name)} (${esc(m.pins)})` : esc(id); });
+      parts.push(`<h3>Pinout matches (inferred)</h3><p>${names.join("\n")}</p>`);
+    }
     const links = [];
     if (p.url) links.push(`<a href="${esc(p.url)}" target="_blank" rel="noopener">tinytapeout.com page</a>`);
     if (p.repo) links.push(`<a href="${esc(p.repo)}" target="_blank" rel="noopener">source repository</a>`);
@@ -468,10 +553,11 @@
     const query = q.value.trim();
     writeHash();
     const id = ++inflight;
-    status.textContent = query ? "Searching…" : "";
+    renderPmods();
+    status.textContent = (query || pmod) ? "Searching…" : "";
     let data;
     try {
-      data = await backend.search(query);
+      data = await backend.search(query, pmod);
     } catch (e) {
       data = { hits: [], shuttles: shuttles.map((s) => ({ ...s, hits: 0 })), total: 0, error: "Search failed: " + (e.message || e) };
     }
@@ -480,7 +566,7 @@
     lastHits = data.hits;
     errorEl.hidden = !data.error;
     errorEl.textContent = data.error || "";
-    status.innerHTML = query && !data.error
+    status.innerHTML = (query || pmod) && !data.error
       ? `<b>${data.total}</b> project${data.total === 1 ? "" : "s"} on <b>${data.shuttles.filter((s) => s.hits).length}</b> chips`
       : "";
     renderChips();
@@ -495,7 +581,8 @@
     const [b, syn] = await Promise.all([chooseBackend(), fetch("synonyms.json").then((r) => r.json())]);
     backend = b;
     loadSynonyms(syn);
-    shuttles = (await backend.shuttles()).map((s) => ({ ...s, hits: 0 }));
+    [shuttles, pmods] = await Promise.all([backend.shuttles(), backend.pmods()]);
+    shuttles = shuttles.map((s) => ({ ...s, hits: 0 }));
   } catch (e) {
     errorEl.hidden = false;
     errorEl.textContent = "Could not load the project database: " + (e.message || e);

@@ -10,7 +10,8 @@ endpoints, and search runs in Python:
 
     GET /                      the single-page UI
     GET /api/shuttles          shuttle list in official order
-    GET /api/search?q=...      hits plus per-shuttle counts (also &shuttle=ID, &raw=1)
+    GET /api/pmods             PMOD definitions with match counts
+    GET /api/search?q=...      hits plus per-shuttle counts (also &pmod=ID, &shuttle=ID, &raw=1)
     GET /api/project/<id>      full record for one project
 
 With --site DIR the server only serves files from DIR (the output of
@@ -31,6 +32,7 @@ from pathlib import Path
 from urllib.parse import parse_qs, urlsplit
 
 from . import DB_PATH
+from .pmods import PMODS
 from .search import PROJECT_URL, SHUTTLE_URL, build_match, connect, search, shuttle_order
 
 PKG = Path(__file__).parent
@@ -55,6 +57,7 @@ def project_record(con: sqlite3.Connection, pid: int) -> dict | None:
         "SELECT pin, name FROM pins WHERE project_id = ? ORDER BY rowid", (pid,))]
     rec["tag_list"] = [r["tag"] for r in con.execute(
         "SELECT tag FROM tags WHERE project_id = ? ORDER BY tag", (pid,))]
+    rec["pmod_list"] = (rec.get("pmods") or "").split()
     rec["url"] = PROJECT_URL.format(shuttle=rec["shuttle"], macro=rec["macro"])
     return rec
 
@@ -66,19 +69,31 @@ def shuttle_list(con: sqlite3.Connection) -> list[dict]:
     ]
 
 
+def pmod_list(con: sqlite3.Connection) -> list[dict]:
+    """PMOD definitions with how many projects match each."""
+    counts = dict(con.execute(
+        "SELECT pmod, count(*) FROM project_pmods GROUP BY pmod").fetchall())
+    return [{"id": pm.id, "name": pm.name, "pins": pm.pins, "url": pm.url,
+             "count": counts.get(pm.id, 0)} for pm in PMODS]
+
+
 def do_search(con: sqlite3.Connection, params: dict[str, list[str]]) -> dict:
     query = (params.get("q") or [""])[0].strip()
     raw = (params.get("raw") or ["0"])[0] in ("1", "true", "yes")
     shuttles = [s for s in params.get("shuttle", []) if s]
+    pmod = (params.get("pmod") or [""])[0].strip() or None
     limit = int((params.get("limit") or ["0"])[0]) or None
     match = query if raw else build_match(query)
-    out: dict = {"query": query, "match": match, "hits": [], "shuttles": [], "error": None}
+    out: dict = {"query": query, "match": match, "pmod": pmod, "hits": [], "shuttles": [],
+                 "error": None}
     hits = []
-    if match:
+    if match or pmod:
         try:
-            hits = search(con, match, raw=True, limit=limit)
+            hits = search(con, match, raw=True, limit=limit, pmod=pmod)
         except sqlite3.OperationalError as e:
             out["error"] = f"Could not understand that query: {e}"
+        except ValueError as e:
+            out["error"] = str(e)
     counts: dict[str, int] = {}
     for h in hits:
         counts[h.shuttle] = counts.get(h.shuttle, 0) + 1
@@ -92,7 +107,7 @@ def do_search(con: sqlite3.Connection, params: dict[str, list[str]]) -> dict:
             "macro": h.macro, "address": h.address_str, "type": h.type,
             "title": h.title, "author": h.author, "description": h.description,
             "language": h.language, "tiles": h.tiles, "repo": h.repo,
-            "snippet": h.snippet, "url": h.url,
+            "snippet": h.snippet, "url": h.url, "pmods": h.pmods,
         }
         for h in hits
     ]
@@ -231,6 +246,8 @@ class Handler(BaseHTTPRequestHandler):
     def do_api(self, path: str, params: dict, con: sqlite3.Connection) -> None:
         if path == "/api/shuttles":
             self.send_json({"shuttles": shuttle_list(con)})
+        elif path == "/api/pmods":
+            self.send_json({"pmods": pmod_list(con)})
         elif path == "/api/search":
             self.send_json(do_search(con, params))
         elif path.startswith("/api/project/"):

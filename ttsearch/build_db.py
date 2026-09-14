@@ -16,6 +16,7 @@ import sys
 from pathlib import Path
 
 from . import DB_PATH, PROJECTS_JSON, SHUTTLES_JSON
+from .pmods import PMODS, detect_pmods
 
 SCHEMA = """
 CREATE TABLE shuttles (
@@ -55,6 +56,7 @@ CREATE TABLE projects (
     docs_md        TEXT,
     tags           TEXT,      -- comma separated, also in the tags table
     pin_names      TEXT,      -- space separated, also in the pins table
+    pmods          TEXT,      -- space separated ids, also in project_pmods (inferred)
     analog_pin_count INTEGER NOT NULL DEFAULT 0,
     UNIQUE (shuttle, macro, subtile_addr)
 );
@@ -74,9 +76,25 @@ CREATE TABLE tags (
 );
 CREATE INDEX tags_tag ON tags(tag);
 
+-- Recommended pinouts (PMODs) a project's pin names line up with. Inferred by
+-- ttsearch.pmods from the declared pinout, never declared by the project.
+CREATE TABLE pmods (
+    id          TEXT PRIMARY KEY,
+    name        TEXT NOT NULL,
+    pins        TEXT NOT NULL,
+    url         TEXT NOT NULL,
+    sort_order  INTEGER NOT NULL
+);
+CREATE TABLE project_pmods (
+    project_id  INTEGER NOT NULL REFERENCES projects(id),
+    pmod        TEXT NOT NULL REFERENCES pmods(id)
+);
+CREATE INDEX project_pmods_pmod ON project_pmods(pmod);
+CREATE INDEX project_pmods_project ON project_pmods(project_id);
+
 CREATE VIRTUAL TABLE projects_fts USING fts5(
     title, description, how_it_works, how_to_test, external_hw,
-    tags, pin_names, macro, author,
+    tags, pin_names, macro, author, pmods,
     content='projects', content_rowid='id',
     tokenize='porter unicode61'
 );
@@ -84,16 +102,16 @@ CREATE VIRTUAL TABLE projects_fts USING fts5(
 -- Keep the FTS index in sync with the content table.
 CREATE TRIGGER projects_ai AFTER INSERT ON projects BEGIN
   INSERT INTO projects_fts(rowid, title, description, how_it_works, how_to_test,
-                           external_hw, tags, pin_names, macro, author)
+                           external_hw, tags, pin_names, macro, author, pmods)
   VALUES (new.id, new.title, new.description, new.how_it_works, new.how_to_test,
-          new.external_hw, new.tags, new.pin_names, new.macro, new.author);
+          new.external_hw, new.tags, new.pin_names, new.macro, new.author, new.pmods);
 END;
 CREATE TRIGGER projects_ad AFTER DELETE ON projects BEGIN
   INSERT INTO projects_fts(projects_fts, rowid, title, description, how_it_works,
-                           how_to_test, external_hw, tags, pin_names, macro, author)
+                           how_to_test, external_hw, tags, pin_names, macro, author, pmods)
   VALUES ('delete', old.id, old.title, old.description, old.how_it_works,
           old.how_to_test, old.external_hw, old.tags, old.pin_names, old.macro,
-          old.author);
+          old.author, old.pmods);
 END;
 
 CREATE TABLE meta (key TEXT PRIMARY KEY, value TEXT);
@@ -131,16 +149,20 @@ def build(projects_json: Path, shuttles_json: Path, db_path: Path) -> sqlite3.Co
             ),
         )
 
+    for order, pm in enumerate(PMODS):
+        con.execute("INSERT INTO pmods VALUES (?,?,?,?,?)", (pm.id, pm.name, pm.pins, pm.url, order))
+
     for p in projects_doc["projects"]:
         pinout = p.get("pinout") or {}
         pins = [(k, v.strip()) for k, v in pinout.items() if isinstance(v, str) and v.strip()]
         tags = p.get("tags") or []
+        pmod_ids = detect_pmods(pinout) if p.get("type") != "group" else []
         cur = con.execute(
             """INSERT INTO projects (shuttle, macro, address, subtile_addr, type, title,
                author, description, language, clock_hz, tiles, repo, commit_hash,
                doc_link, danger_level, danger_reason, how_it_works, how_to_test,
-               external_hw, docs_md, tags, pin_names, analog_pin_count)
-               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
+               external_hw, docs_md, tags, pin_names, pmods, analog_pin_count)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (
                 p["shuttle"], p["macro"], as_int(p.get("address")),
                 as_int(p.get("subtile_addr")), p.get("type"), p.get("title"),
@@ -151,12 +173,14 @@ def build(projects_json: Path, shuttles_json: Path, db_path: Path) -> sqlite3.Co
                 p.get("external_hw"), p.get("docs_md"),
                 ", ".join(tags) if tags else None,
                 " ".join(name for _, name in pins) if pins else None,
+                " ".join(pmod_ids) if pmod_ids else None,
                 len(p.get("analog_pins") or []),
             ),
         )
         pid = cur.lastrowid
         con.executemany("INSERT INTO pins VALUES (?,?,?)", [(pid, k, v) for k, v in pins])
         con.executemany("INSERT INTO tags VALUES (?,?)", [(pid, t) for t in tags])
+        con.executemany("INSERT INTO project_pmods VALUES (?,?)", [(pid, m) for m in pmod_ids])
 
     con.execute("INSERT INTO meta VALUES ('source', ?)", (projects_doc.get("source"),))
     con.execute("INSERT INTO meta VALUES ('index_updated', ?)",
@@ -177,9 +201,10 @@ def main(argv: list[str] | None = None) -> int:
     n_shuttles = con.execute("SELECT count(*) FROM shuttles").fetchone()[0]
     n_projects = con.execute("SELECT count(*) FROM projects").fetchone()[0]
     n_pins = con.execute("SELECT count(*) FROM pins").fetchone()[0]
+    n_pmods = con.execute("SELECT count(DISTINCT project_id) FROM project_pmods").fetchone()[0]
     con.close()
-    print(f"{args.db}: {n_shuttles} shuttles, {n_projects} projects, {n_pins} named pins",
-          file=sys.stderr)
+    print(f"{args.db}: {n_shuttles} shuttles, {n_projects} projects, {n_pins} named pins, "
+          f"{n_pmods} projects with an inferred PMOD pinout", file=sys.stderr)
     return 0
 
 

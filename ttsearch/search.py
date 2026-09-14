@@ -19,10 +19,11 @@ import json
 import re
 import sqlite3
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from . import DB_PATH
+from .pmods import PMOD_BY_ID
 
 # Groups of terms that mean the same thing for our purposes. A query word that
 # appears in a group is replaced by an OR of the whole group. Entries may use
@@ -100,6 +101,7 @@ class Hit:
     repo: str | None
     snippet: str
     rank: float
+    pmods: list[str] = field(default_factory=list)   # inferred PMOD ids
 
     @property
     def url(self) -> str:
@@ -124,29 +126,52 @@ def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
 
 def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
            shuttles: list[str] | None = None, limit: int | None = None,
-           include_groups: bool = False) -> list[Hit]:
-    """Run a search and return hits ordered by relevance."""
-    match = query if raw else build_match(query)
-    if not match:
-        return []
-    sql = """
-        SELECT p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address,
-               p.subtile_addr, p.type, p.title, p.author, p.description,
-               p.language, p.tiles, p.repo,
-               snippet(projects_fts, -1, char(1), char(2), ' … ', 24) AS snip,
-               bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0) AS rank
-        FROM projects_fts f
-        JOIN projects p ON p.id = f.rowid
-        JOIN shuttles s ON s.id = p.shuttle
-        WHERE projects_fts MATCH ?
+           include_groups: bool = False, pmod: str | None = None) -> list[Hit]:
+    """Run a search and return hits ordered by relevance.
+
+    With a query the FTS index is used and hits are ranked by bm25. With an
+    empty query and a pmod filter, every project whose pinout matches that
+    PMOD is listed in shuttle/address order instead.
     """
-    params: list = [match]
+    match = query if raw else build_match(query)
+    if not match and not pmod:
+        return []
+    if pmod and pmod not in PMOD_BY_ID:
+        raise ValueError(f"unknown pmod id {pmod!r}; one of {', '.join(PMOD_BY_ID)}")
+    params: list = []
+    if match:
+        sql = """
+            SELECT p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address,
+                   p.subtile_addr, p.type, p.title, p.author, p.description,
+                   p.language, p.tiles, p.repo, p.pmods,
+                   snippet(projects_fts, -1, char(1), char(2), ' … ', 24) AS snip,
+                   bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0, 2.0) AS rank
+            FROM projects_fts f
+            JOIN projects p ON p.id = f.rowid
+            JOIN shuttles s ON s.id = p.shuttle
+            WHERE projects_fts MATCH ?
+        """
+        params.append(match)
+    else:
+        sql = """
+            SELECT p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address,
+                   p.subtile_addr, p.type, p.title, p.author, p.description,
+                   p.language, p.tiles, p.repo, p.pmods,
+                   p.description AS snip, 0.0 AS rank
+            FROM projects p
+            JOIN shuttles s ON s.id = p.shuttle
+            WHERE 1
+        """
+    if pmod:
+        sql += " AND p.id IN (SELECT project_id FROM project_pmods WHERE pmod = ?)"
+        params.append(pmod)
     if shuttles:
         sql += " AND p.shuttle IN (%s)" % ",".join("?" * len(shuttles))
         params.extend(shuttles)
     if not include_groups:
         sql += " AND (p.type IS NULL OR p.type != 'group')"
-    sql += " ORDER BY rank"
+    sql += " ORDER BY rank, s.sort_order, p.address, p.subtile_addr" if match else \
+           " ORDER BY s.sort_order, p.address, p.subtile_addr"
     if limit:
         sql += " LIMIT ?"
         params.append(limit)
@@ -157,7 +182,8 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
             macro=r["macro"], address=r["address"], subtile_addr=r["subtile_addr"],
             type=r["type"], title=r["title"] or r["macro"], author=r["author"],
             description=r["description"], language=r["language"], tiles=r["tiles"],
-            repo=r["repo"], snippet=r["snip"], rank=r["rank"],
+            repo=r["repo"], snippet=r["snip"] or "", rank=r["rank"],
+            pmods=(r["pmods"] or "").split(),
         )
         for r in rows
     ]
@@ -204,7 +230,8 @@ def print_hits(con: sqlite3.Connection, hits: list[Hit], query: str,
         for h in group:
             author = f" — {h.author}" if h.author else ""
             print(f"  [{h.address_str:>5}] {h.title}{author}")
-            print(f"          {h.macro}  {h.url}")
+            pm = f"  pmods: {', '.join(h.pmods)}" if h.pmods else ""
+            print(f"          {h.macro}  {h.url}{pm}")
             if show_snippets and h.snippet:
                 snippet = " ".join(h.snippet.split())
                 snippet = snippet.replace(SNIPPET_START, "[").replace(SNIPPET_END, "]")
@@ -215,7 +242,10 @@ def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0],
                                  formatter_class=argparse.RawDescriptionHelpFormatter,
                                  epilog=__doc__.split("\n\n", 1)[1])
-    ap.add_argument("query", nargs="+", help="search words")
+    ap.add_argument("query", nargs="*", help="search words (may be empty with --pmod)")
+    ap.add_argument("--pmod", metavar="ID",
+                    help="only projects whose pinout matches this PMOD (see --list-pmods)")
+    ap.add_argument("--list-pmods", action="store_true", help="list the known PMOD ids and exit")
     ap.add_argument("--summary", "-s", action="store_true",
                     help="only show how many matches each shuttle has")
     ap.add_argument("--shuttle", action="append", metavar="ID",
@@ -231,7 +261,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--db", type=Path, default=DB_PATH)
     args = ap.parse_args(argv)
 
+    if args.list_pmods:
+        for pm in PMOD_BY_ID.values():
+            print(f"{pm.id:12} {pm.name:26} {pm.pins}")
+        return 0
     query = " ".join(args.query)
+    if not query and not args.pmod:
+        ap.error("give search words, --pmod ID, or --list-pmods")
     con = connect(args.db)
     if args.raw:
         match = query
@@ -240,9 +276,14 @@ def main(argv: list[str] | None = None) -> int:
     if args.show_match:
         print(f"MATCH {match}", file=sys.stderr)
     try:
-        hits = search(con, match, raw=True, shuttles=args.shuttle, limit=args.limit)
+        hits = search(con, match, raw=True, shuttles=args.shuttle, limit=args.limit,
+                      pmod=args.pmod)
     except sqlite3.OperationalError as e:
         sys.exit(f"query error: {e}\n(expression was: {match})")
+    except ValueError as e:
+        sys.exit(str(e))
+    if args.pmod:
+        query = f"{query} [pmod {args.pmod}]".strip()
     if args.summary:
         print_summary(con, hits, query)
     else:

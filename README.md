@@ -62,6 +62,25 @@ uv run tt-search --raw 'title:vga NOT game'  # raw FTS5 syntax
 Words are combined with AND. Common terms are expanded with synonyms from
 `ttsearch/synonyms.json` (risc-v/riscv/rv32, i2c/iic, crypto/aes/sha, ...).
 
+### Pmod compatibility (inferred)
+
+Nothing in a project's `info.yaml` declares which Pmods it works with. What
+exists is the set of [recommended pinouts](https://tinytapeout.com/specs/pinouts/)
+on tinytapeout.com, and the website's own check for Tiny VGA that compares pin
+names position by position. `ttsearch/pmods.py` does the same for each
+recommended pinout (Tiny VGA, TT Audio, QSPI Flash/PSRAM, Gamepad, SPI, UART
+and I2C Pmods, and the demo board's UART-over-USB bridge). A match means the
+declared pin names line up with the pinout, not that anyone has tested the
+project with that board.
+
+```
+uv run tt-search --list-pmods
+uv run tt-search --pmod tiny-vga --summary   # which chips carry Tiny VGA designs
+uv run tt-search game --pmod gamepad         # keywords and a Pmod together
+```
+
+The web UI has the same filter as a row of Pmod buttons with match counts.
+
 ### Static site
 
 ```

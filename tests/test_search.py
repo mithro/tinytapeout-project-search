@@ -44,9 +44,11 @@ SHUTTLES = {"shuttles": [
     {"id": "tt06", "name": "TT6", "pdk": "sky130A", "projects": 2},
     {"id": "tt07", "name": "TT7", "pdk": "sky130A", "projects": 1},
 ]}
+TINY_VGA_PINS = {"uo[0]": "R1", "uo[1]": "G1", "uo[2]": "B1", "uo[3]": "VSync",
+                 "uo[4]": "R0", "uo[5]": "G0", "uo[6]": "B0", "uo[7]": "HSync"}
 PROJECTS = {"projects": [
     {"shuttle": "tt06", "macro": "a", "address": 1, "title": "VGA pong", "author": "x",
-     "description": "A game on a VGA display", "pinout": {}},
+     "description": "A game on a VGA display", "pinout": TINY_VGA_PINS},
     {"shuttle": "tt06", "macro": "b", "address": 2, "title": "I2C thing", "author": "y",
      "description": "IIC peripheral", "pinout": {}},
     {"shuttle": "tt07", "macro": "c", "address": 3, "title": "Group", "type": "group",
@@ -80,6 +82,22 @@ def test_search_synonyms_and_shuttle_filter(con):
     d = search(con, "riscv")[0]
     assert d.address_str == "3/1"
     assert d.url == "https://tinytapeout.com/chips/tt07/d"
+
+
+def test_pmod_filter(con):
+    import pytest as _pytest
+    # Listing by PMOD alone, no keywords.
+    hits = search(con, "", pmod="tiny-vga")
+    assert [h.macro for h in hits] == ["a"]
+    assert hits[0].pmods == ["tiny-vga"]
+    assert hits[0].snippet == "A game on a VGA display"   # description stands in for a snippet
+    # Combined with keywords: the keyword must also match.
+    assert [h.macro for h in search(con, "pong", pmod="tiny-vga")] == ["a"]
+    assert search(con, "i2c", pmod="tiny-vga") == []
+    # The pmods FTS column is searchable too.
+    assert [h.macro for h in search(con, 'pmods:"tiny-vga"', raw=True)] == ["a"]
+    with _pytest.raises(ValueError):
+        search(con, "", pmod="no-such-pmod")
 
 
 def test_summarise_keeps_official_order(con):
