@@ -59,10 +59,10 @@ def main(argv: list[str] | None = None) -> int:
 
     keys = sorted(set.intersection(*(set(m) for m in models.values()))) if models else []
     print(f"{len(models)} models, {len(keys)} documents scored by all\n")
-    print(f"{'model':36} {'docs':>4} {'10tags':>6} {'4sent':>5} {'low':>4} {'thin✓':>5} {'iface?':>6} {'vocab':>5} {'$':>7} {'s/doc':>5}")
+    print(f"{'model':36} {'docs':>4} {'6-10t':>6} {'4sent':>5} {'low':>4} {'thin✓':>5} {'iface?':>6} {'vocab':>5} {'$':>7} {'s/doc':>5}")
     for name, res in models.items():
         n = len(res)
-        ten = sum(1 for r in res.values() if len(r["tags"]) == 10)
+        ten = sum(1 for r in res.values() if 6 <= len(r["tags"]) <= 10)
         four = sum(1 for r in res.values() if len([s for s in re.split(r"[.!?]+(?:\s|$)", r["summary"].strip()) if s.strip()]) == 4)
         low = sum(1 for r in res.values() if r.get("confidence") == "low")
         thin_ok = sum(1 for k, r in res.items() if k in docs and docs[k].thin and r.get("insufficient_docs"))

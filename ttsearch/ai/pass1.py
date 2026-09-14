@@ -53,8 +53,12 @@ shuttle service where each project is a small digital or analog block on a share
 For each project you receive its title, description, pin names, documentation and any
 silicon test reports. Produce, for each project:
 
-1. "tags": exactly 10 lowercase tags, most specific first. Use single words or
-   hyphenated phrases (no spaces). Prefer these spellings when they apply:
+1. "tags": between 6 and 10 lowercase tags, most specific first. Use single words or
+   hyphenated phrases (no spaces). Only add a tag when it says something specific about
+   this design; never pad with generic words such as "digital", "verilog", "test",
+   "demo" or "experiment" unless that is genuinely the point of the project (for
+   example a factory test design or a process experiment). Prefer these spellings when
+   they apply:
    {SEED_TAGS}.
    Cover what the design IS (e.g. cpu, alu, game), what it TALKS TO (interfaces such as
    uart, spi, i2c, vga), what it is FOR (e.g. education, crypto, dsp), and how it was
@@ -85,7 +89,7 @@ RESULT_SCHEMA = {
                 "additionalProperties": False,
                 "properties": {
                     "key": {"type": "string"},
-                    "tags": {"type": "array", "items": {"type": "string"}, "minItems": 10, "maxItems": 10},
+                    "tags": {"type": "array", "items": {"type": "string"}, "minItems": 6, "maxItems": 10},
                     "summary": {"type": "string"},
                     "confidence": {"type": "string", "enum": ["high", "medium", "low"]},
                     "insufficient_docs": {"type": "boolean"},
@@ -124,7 +128,7 @@ def validate(results: list[dict], docs: list[Doc]) -> tuple[dict[str, dict], lis
             continue
         tags = [t.strip().lower() for t in r.get("tags", []) if isinstance(t, str) and t.strip()]
         tags = list(dict.fromkeys(tags))          # dedupe, keep order
-        if len(tags) != 10:
+        if not 6 <= len(tags) <= 10:
             problems.append(f"{k}: {len(tags)} unique tags")
         n_sent = len([s for s in _SENT.split(r.get("summary", "").strip()) if s.strip()])
         if n_sent != 4:
@@ -179,6 +183,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--reasoning", choices=["off", "low", "medium", "high"], default=None,
                     help="reasoning effort for models that think (off saves most of their output cost)")
     ap.add_argument("--sub", default=None, help="output sub-directory name (default: pilot or full)")
+    ap.add_argument("--repair", action="store_true",
+                    help="re-run batches whose saved record has missing or unparseable results")
     args = ap.parse_args(argv)
     models = args.model or [DEFAULT_MODEL]
 
@@ -196,7 +202,17 @@ def main(argv: list[str] | None = None) -> int:
     for model in models:
         sub = args.sub or ("pilot" if args.pilot else "full")
         out_dir = AI_DIR / "pass1" / sub / slug(model)
-        todo = [(i, b) for i, b in enumerate(batches) if not (out_dir / f"{i:04d}.json").exists()]
+
+        def needs_run(i: int) -> bool:
+            f = out_dir / f"{i:04d}.json"
+            if not f.exists():
+                return True
+            if not args.repair:
+                return False
+            probs = json.loads(f.read_text()).get("problems", [])
+            return any(("missing" in p or "unparseable" in p or "unknown key" in p) for p in probs)
+
+        todo = [(i, b) for i, b in enumerate(batches) if needs_run(i)]
         print(f"[{model}] {len(todo)} batches to run ({len(batches) - len(todo)} already done)", file=sys.stderr)
         with ThreadPoolExecutor(max_workers=args.concurrency) as ex:
             futures = {ex.submit(run_batch, model, b, out_dir / f"{i:04d}.json",
