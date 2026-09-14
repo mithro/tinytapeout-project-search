@@ -37,11 +37,15 @@ USER_AGENT = (
 REQUEST_DELAY_S = 1.0
 
 # Files to pull out of each shuttle repository. Patterns are git sparse-checkout
-# non-cone patterns, anchored at the repository root.
+# non-cone (gitignore style) patterns and are deliberately unanchored because
+# the shuttle repos have used several layouts over time: project_info/<name>/
+# (tt02, tt03), projects/<macro>/ (tt04 onward), projects/<group>/docs/<macro>/
+# for sub-tile projects (info.md beside info.yaml rather than under docs/),
+# and main/src/projects/<macro>/ (ttgf0p1). Note that a gitignore pattern
+# containing a slash is anchored to the root unless it starts with "**/".
 SPARSE_PATTERNS = [
-    "/projects/*/info.yaml",
-    "/projects/*/docs/info.md",
-    "/project_info/*/info.yaml",
+    "**/info.yaml",
+    "**/info.md",
 ]
 
 INDEX_CACHE = CACHE_DIR / "index"
@@ -103,6 +107,7 @@ def sparse_clone(repo_url: str, dest: Path, refresh: bool) -> None:
             return
         log(f"  updating clone {dest.relative_to(CACHE_DIR.parent)}")
         run_git(["fetch", "--quiet", "--depth", "1", "origin"], cwd=dest)
+        run_git(["sparse-checkout", "set", "--no-cone", *SPARSE_PATTERNS], cwd=dest)
         run_git(["reset", "--quiet", "--hard", "FETCH_HEAD"], cwd=dest)
         return
     log(f"  sparse clone {repo_url}")
@@ -237,28 +242,38 @@ def parse_info_yaml(text: str) -> dict:
     return out
 
 
-def find_project_dir(clone: Path, macro: str) -> Path | None:
-    for parent in ("projects", "project_info"):
-        candidate = clone / parent / macro
-        if candidate.is_dir():
-            return candidate
-    return None
+def index_project_dirs(clone: Path) -> dict[str, Path]:
+    """Map project directory name -> directory, for every info.yaml in the clone.
+
+    The directory name is the project's macro (top module name), except on
+    tt02/tt03 where it is a free-form name that the index also uses as `macro`.
+    """
+    dirs: dict[str, Path] = {}
+    for info in clone.rglob("info.yaml"):
+        if ".git" in info.parts:
+            continue
+        dirs.setdefault(info.parent.name, info.parent)
+    return dirs
 
 
-def read_project_docs(clone: Path, macro: str) -> dict:
+def read_project_docs(project_dirs: dict[str, Path], macro: str) -> dict:
     """Read info.yaml and docs/info.md for one project, if present."""
     out: dict = {"docs_source": []}
-    pdir = find_project_dir(clone, macro)
+    pdir = project_dirs.get(macro)
     if pdir is None:
         return out
     info_yaml = pdir / "info.yaml"
     if info_yaml.is_file():
         out.update(parse_info_yaml(info_yaml.read_text(errors="replace")))
         out["docs_source"].append("info.yaml")
-    info_md = pdir / "docs" / "info.md"
-    if info_md.is_file():
-        out.update(parse_info_md(info_md.read_text(errors="replace")))
-        out["docs_source"].append("docs/info.md")
+    # Normal projects keep the markdown under docs/; sub-tile projects keep it
+    # beside info.yaml.
+    for rel in ("docs/info.md", "info.md"):
+        info_md = pdir / rel
+        if info_md.is_file():
+            out.update(parse_info_md(info_md.read_text(errors="replace")))
+            out["docs_source"].append(rel)
+            break
     return out
 
 
@@ -333,18 +348,24 @@ def main(argv: list[str] | None = None) -> int:
         sid = s["id"]
         log(f"[{sid}] {s['name']}")
         index = fetch_index_json(sid, f"{INDEX_URL}{sid}.json", args.refresh)
-        clone: Path | None = None
+        project_dirs: dict[str, Path] = {}
         if not args.no_clone:
             clone = SHUTTLE_CACHE / sid
             sparse_clone(s["repo"], clone, args.refresh)
+            project_dirs = index_project_dirs(clone)
 
         n_docs = 0
         for entry in index["projects"]:
-            docs = read_project_docs(clone, entry["macro"]) if clone else {"docs_source": []}
+            docs = read_project_docs(project_dirs, entry["macro"])
             if docs["docs_source"]:
                 n_docs += 1
             all_projects.append(merge_project(sid, entry, docs))
         log(f"  {len(index['projects'])} projects, {n_docs} with docs")
+        if n_docs < len(index["projects"]):
+            missing = [e["macro"] for e in index["projects"]
+                       if not read_project_docs(project_dirs, e["macro"])["docs_source"]]
+            log(f"  no docs found for: {', '.join(missing[:10])}"
+                + (" ..." if len(missing) > 10 else ""))
 
         shuttle_records.append({
             **s,
@@ -352,6 +373,20 @@ def main(argv: list[str] | None = None) -> int:
             "index_commit": index.get("commit"),
             "index_updated": index.get("updated"),
         })
+
+    if args.shuttle:
+        fetched = {s["id"] for s in shuttle_records}
+        if PROJECTS_JSON.exists():
+            old = json.loads(PROJECTS_JSON.read_text())["projects"]
+            all_projects = [p for p in old if p["shuttle"] not in fetched] + all_projects
+        if SHUTTLES_JSON.exists():
+            old = json.loads(SHUTTLES_JSON.read_text())["shuttles"]
+            shuttle_records = [s for s in old if s["id"] not in fetched] + shuttle_records
+        # Keep the official shuttle order.
+        order = {s["id"]: i for i, s in enumerate(root["shuttles"])}
+        shuttle_records.sort(key=lambda s: order.get(s["id"], 999))
+        all_projects.sort(key=lambda p: (order.get(p["shuttle"], 999), p.get("address") or 0,
+                                         p.get("subtile_addr") or 0, p["macro"]))
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     SHUTTLES_JSON.write_text(json.dumps({
