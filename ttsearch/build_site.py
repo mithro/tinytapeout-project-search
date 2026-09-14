@@ -28,6 +28,15 @@ PKG = Path(__file__).parent
 SITE_DIR = ROOT / "site"
 STATIC_PAGE_SIZE = 1024
 
+# The database is published under a .png name. It is a plain SQLite file, not
+# an image: GitHub Pages gzips anything it classifies as data (.db, .sqlite3,
+# .bin, .wasm, .json ...) and then applies Range offsets to the *compressed*
+# stream, which makes byte-range reads return garbage. Image types are left
+# uncompressed, so the suffix is purely a way to opt out of compression.
+# Verified on 2026-09-14 by deploying probe files: .png/.gz/.zip/.woff2 were
+# served raw, .db/.sqlite3/.bin/.tar were gzipped.
+STATIC_DB_NAME = "tt_projects.db.png"
+
 
 def slim_database(src: Path, dest: Path, page_size: int = STATIC_PAGE_SIZE) -> None:
     if dest.exists():
@@ -52,16 +61,24 @@ def build(db_path: Path, site_dir: Path) -> None:
         shutil.rmtree(site_dir)
     site_dir.mkdir(parents=True)
 
+    shutil.copyfile(PKG / "synonyms.json", site_dir / "synonyms.json")
+    shutil.copytree(PKG / "static", site_dir / "static")
+    slim_database(db_path, site_dir / STATIC_DB_NAME)
+    db_length = (site_dir / STATIC_DB_NAME).stat().st_size
+
     # Mark the page as static so it goes straight to the in-browser database
-    # instead of probing for the API first.
+    # instead of probing for the API first, and tell it where the database is
+    # and how long it is (saves a HEAD request and works even if the host
+    # hides Content-Length).
     html = (PKG / "index.html").read_text()
-    marker = '<meta name="tt-backend" content="static">'
+    marker = (
+        '<meta name="tt-backend" content="static">\n'
+        f'<meta name="tt-db-url" content="{STATIC_DB_NAME}">\n'
+        f'<meta name="tt-db-length" content="{db_length}">'
+    )
     assert "<title>" in html
     html = html.replace("<title>", marker + "\n<title>", 1)
     (site_dir / "index.html").write_text(html)
-    shutil.copyfile(PKG / "synonyms.json", site_dir / "synonyms.json")
-    shutil.copytree(PKG / "static", site_dir / "static")
-    slim_database(db_path, site_dir / "tt_projects.db")
     # Tell GitHub Pages not to run Jekyll (it would ignore some paths).
     (site_dir / ".nojekyll").write_text("")
 
@@ -73,7 +90,7 @@ def main(argv: list[str] | None = None) -> int:
     args = ap.parse_args(argv)
     build(args.db, args.out)
     total = sum(p.stat().st_size for p in args.out.rglob("*") if p.is_file())
-    db_size = (args.out / "tt_projects.db").stat().st_size
+    db_size = (args.out / STATIC_DB_NAME).stat().st_size
     print(f"{args.out}: {total / 1e6:.1f} MB total, database {db_size / 1e6:.1f} MB",
           file=sys.stderr)
     return 0

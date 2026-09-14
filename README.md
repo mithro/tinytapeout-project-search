@@ -73,6 +73,11 @@ The same page works in both modes: with `tt-serve` it talks to a small JSON
 API and the search runs in Python; in the static build it runs the same SQL
 against the same database inside the browser.
 
+The published database is named `tt_projects.db.png`. It is an ordinary SQLite
+file, not an image. GitHub Pages gzips anything it classifies as data and then
+applies Range offsets to the compressed stream, which breaks byte-range reads;
+image types are served raw. The suffix only opts the file out of compression.
+
 ## Layout
 
 | Path | Purpose |

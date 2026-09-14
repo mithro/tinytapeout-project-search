@@ -265,8 +265,14 @@
     // script location, not the page.
     const abs = (p) => new URL(p, location.href).href;
     const base = "static/vendor/sql.js-httpvfs/";
+    // tt-build-site stamps the published database name (a .png suffix keeps
+    // GitHub Pages from gzipping it, which would break Range reads) and its
+    // byte length; tt-serve serves the plain file and answers HEAD instead.
+    const meta = (n) => document.querySelector(`meta[name="${n}"]`)?.content;
+    const config = { serverMode: "full", url: abs(meta("tt-db-url") || "tt_projects.db"), requestChunkSize: 1024 };
+    if (meta("tt-db-length")) config.fileLength = Number(meta("tt-db-length"));
     const worker = await createDbWorker(
-      [{ from: "inline", config: { serverMode: "full", url: abs("tt_projects.db"), requestChunkSize: 1024 } }],
+      [{ from: "inline", config }],
       abs(base + "sqlite.worker.js"), abs(base + "sql-wasm.wasm"),
     );
     return makeStaticBackend(worker);
