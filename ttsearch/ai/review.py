@@ -234,6 +234,8 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--limit-docs", type=int, default=None)
     ap.add_argument("--repair", action="store_true",
                     help="re-run batches whose saved record has missing, unknown-key or unparseable results")
+    ap.add_argument("--label", default=None,
+                    help="suffix for the output directory, so a --skip-reviewed follow-up run does not collide")
     ap.add_argument("--skip-reviewed", action="store_true",
                     help="leave out documents that already have a review from any model (for a second, cheaper reviewer)")
     ap.add_argument("--order", choices=["risk", "corpus"], default="risk",
@@ -258,7 +260,8 @@ def main(argv: list[str] | None = None) -> int:
     vocab = "\n".join(f"{t['tag']} ({t['category']}): {t['meaning']}" for t in canon.values())
     system = SYSTEM_TMPL.format(vocab=vocab)
     batches = [docs[i:i + args.batch] for i in range(0, len(docs), args.batch)]
-    out_dir = AI_DIR / "review" / args.sub / slug(args.model)
+    run_name = slug(args.model) + (f"-{args.label}" if args.label else "")
+    out_dir = AI_DIR / "review" / args.sub / run_name
 
     def needs_run(i: int) -> bool:
         f = out_dir / f"{i:04d}.json"
@@ -275,7 +278,7 @@ def main(argv: list[str] | None = None) -> int:
     spent = 0.0
     with ThreadPoolExecutor(max_workers=args.concurrency) as ex:
         futures = {ex.submit(run_batch, args.model, b, p2, canon, aliases, system,
-                             out_dir / f"{i:04d}.json", f"review/{args.sub}/{slug(args.model)}",
+                             out_dir / f"{i:04d}.json", f"review/{args.sub}/{run_name}",
                              args.reasoning): i for i, b in todo}
         for fut in as_completed(futures):
             i = futures[fut]
