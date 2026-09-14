@@ -31,6 +31,13 @@ The whole fetch is about 30 HTTP requests to `index.tinytapeout.com` (one per
 shuttle, spaced one second apart) plus one sparse clone per shuttle from
 GitHub. It is deliberately gentle on the Tiny Tapeout site.
 
+## Hosted version
+
+<https://mith.ro/tinytapeout-project-search/> is a static build published by
+GitHub Actions on every push to `main`. There is no server: the page loads the
+SQLite database in the browser through [sql.js-httpvfs](https://github.com/phiresky/sql.js-httpvfs)
+and HTTP Range requests, so a search fetches only the database pages it touches.
+
 ## Usage
 
 ```
@@ -39,6 +46,53 @@ uv run tt-build-db     # load data/projects.json into tt_projects.db (SQLite + F
 uv run tt-search vga   # search from the command line
 uv run tt-serve        # local web UI at http://127.0.0.1:8765/
 ```
+
+The data files under `data/` are committed, so only `tt-build-db` is needed to
+get a working database. Re-run `tt-fetch --refresh` to pick up new shuttles
+or updated documentation.
+
+### Command line
+
+```
+uv run tt-search "risc-v" --summary        # how many matches on each chip
+uv run tt-search i2c --shuttle tt06        # only one shuttle
+uv run tt-search --raw 'title:vga NOT game'  # raw FTS5 syntax
+```
+
+Words are combined with AND. Common terms are expanded with synonyms from
+`ttsearch/synonyms.json` (risc-v/riscv/rv32, i2c/iic, crypto/aes/sha, ...).
+
+### Static site
+
+```
+uv run tt-build-site           # writes ./site/ (slimmed database, vendored sql.js-httpvfs)
+uv run tt-serve --site site    # preview at http://127.0.0.1:8766/ with Range support
+```
+
+The same page works in both modes: with `tt-serve` it talks to a small JSON
+API and the search runs in Python; in the static build it runs the same SQL
+against the same database inside the browser.
+
+## Layout
+
+| Path | Purpose |
+| --- | --- |
+| `ttsearch/fetch.py` | Download index JSON and sparse-clone the shuttle repos into `data/` |
+| `ttsearch/build_db.py` | Build `tt_projects.db` (tables plus an FTS5 index) |
+| `ttsearch/search.py` | Query building, synonyms, CLI |
+| `ttsearch/serve.py` | Local server: JSON API, or static preview with Range requests |
+| `ttsearch/build_site.py` | Assemble `site/` for GitHub Pages |
+| `ttsearch/index.html` | The single-page UI (API and in-browser SQLite backends) |
+| `ttsearch/static/vendor/` | sql.js-httpvfs 0.8.12 (Apache 2.0) |
+| `data/projects.json` | One record per project, all shuttles |
+| `data/shuttles.json` | Shuttle list from the index |
+| `.github/workflows/pages.yml` | Test, build database and site, deploy to Pages |
+
+## Known gaps
+
+- tt01 is not in the official index and is not included.
+- `tt_um_pad_test` on ttgf0p1 has no `info.yaml` upstream, so it has no
+  documentation here.
 
 ## Licence
 
