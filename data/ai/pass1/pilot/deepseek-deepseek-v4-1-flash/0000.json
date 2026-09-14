@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f8a7e3a495b3",
+  "ab1218eea027",
+  "0ec1d8308b19",
+  "786c1c7a4315",
+  "3e79613524a6",
+  "5b6cc8533fff",
+  "495cf2f44daa",
+  "ada0bb43a606",
+  "d1929284aa2f",
+  "4030333aacd8"
+ ],
+ "results": [
+  {
+   "key": "f8a7e3a495b3",
+   "tags": [
+    "shift-register",
+    "register",
+    "serial",
+    "led",
+    "gpio",
+    "latch",
+    "74hc595",
+    "digital",
+    "demo",
+    "education"
+   ],
+   "summary": "This project is a Verilog implementation of the 74HC595 8-bit serial-in, parallel-out shift register with output latches. Serial data is clocked in through the ser and srck pins, transferred to the output latches by rck, and driven out on the eight q pins, with sclrn and G providing clear and output-enable control. It is intended to be tested by attaching eight LEDs, for example a Pmod LED board, and the author wrote bit-banging C and MicroPython programs to produce a Knight Rider effect. The author reports the design as working on silicon.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ab1218eea027",
+   "tags": [
+    "test",
+    "random-number-generator",
+    "prng",
+    "trng",
+    "crypto",
+    "statistical-test",
+    "nist",
+    "hls",
+    "entropy",
+    "validation"
+   ],
+   "summary": "This design is a high-level-synthesis implementation of the NIST 800.22 Monobit test, which evaluates whether a stream of bits behaves like a random source. It consumes one input bit per clock cycle and produces a result every 65536 cycles, with the is_random output valid only while the valid signal is high. Testing requires only a clock and an input bit stream, and no external hardware is currently used, though the author notes plans to add some. The documentation is brief but sufficient to describe the function and interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0ec1d8308b19",
+   "tags": [
+    "audio",
+    "music",
+    "pwm",
+    "synthesizer",
+    "sound",
+    "piezo",
+    "ringtone",
+    "demo",
+    "differential",
+    "rttl"
+   ],
+   "summary": "This Verilog design plays the Super Mario theme as a differential PWM waveform on the io_out[1:0] pins. An RTTL ringtone was converted into Verilog with a Python script and is replayed through differential pulse-width modulation. It is driven by a roughly 3 kHz clock on io_in[0] and a brief low-high-low reset pulse on io_in[1], and it requires a piezo speaker connected across io_out[1:0]. No silicon test results are reported, so only the intended behaviour is documented.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "786c1c7a4315",
+   "tags": [
+    "7-segment",
+    "display",
+    "decoder",
+    "bcd",
+    "wokwi",
+    "template",
+    "education",
+    "led",
+    "hex",
+    "converter"
+   ],
+   "summary": "The title and pins indicate a design that converts an 8-bit binary input into segment signals for a hexadecimal 7-segment display. The documentation consists only of the unedited Wokwi template prompts, so the internal operation, testing procedure and any external hardware are not actually described. The pin names suggest a straightforward binary-to-seven-segment decoder, but this is inferred rather than documented. There is not enough information to say more about how the design works or was verified.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "3e79613524a6",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "uart",
+    "jtag",
+    "soc",
+    "bootloader",
+    "pwm",
+    "serial",
+    "memory",
+    "debug"
+   ],
+   "summary": "LaRVa is a RISC-V CPU with a serial port, a PWM output, general-purpose inputs and a JTAG interface, but it relies on externally provided memory. An included bootloader loads programs sent over the serial port, and a basic test is to send the character 'L' at 115200 bps and expect the bootloader to echo it back. More complete testing requires an external board with SRAM and address latches attached to the PMOD connectors, and the JTAG port can also be used. The design is documented in accompanying PDF files describing the CPU and JTAG interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5b6cc8533fff",
+   "tags": [
+    "adc",
+    "analog",
+    "sar",
+    "comparator",
+    "dac",
+    "analog-frontend",
+    "sample-and-hold",
+    "mixed-signal",
+    "conversion",
+    "interface"
+   ],
+   "summary": "This is a 4-bit successive-approximation analog-to-digital converter implemented in an analog flow. The analog input Vin is sampled on ua[0], a 5 MHz clock drives the conversion, and the 4-bit result appears on D[3:0] with an end-of-conversion signal on EOC. Each conversion takes five clock cycles, giving a 1 MHz conversion rate, and the active-low reset must be pulsed each time EOC goes high. An external sample-and-hold circuit is required to keep Vin constant during conversion.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "495cf2f44daa",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "alu",
+    "education",
+    "single-cycle",
+    "test",
+    "instruction-memory",
+    "university",
+    "demo",
+    "experiment"
+   ],
+   "summary": "This is a simple one-stage RISC-V CPU created as part of a university lecture course. Because instructions are 32 bits wide and the input bus is only 8 bits, each instruction is loaded over four clock cycles, and the ALU result is presented on the eight output pins. Verification is done with a testbench containing very simple instructions that check whether the calculations are correct. The author notes that the chip is not being shipped at this time, so no silicon results exist.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ada0bb43a606",
+   "tags": [
+    "factory-test",
+    "test",
+    "counter",
+    "gpio",
+    "debug",
+    "sel",
+    "mirror",
+    "digital",
+    "validation",
+    "experiment"
+   ],
+   "summary": "This is a factory test module for the Tiny Tapeout shuttle. When input 0 is high it drives a counter onto the outputs and the bidirectional pins, and otherwise it simply mirrors the inputs to the outputs. Testing consists of setting input 0 high and checking that the outputs toggle. No external hardware is needed, and no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d1929284aa2f",
+   "tags": [
+    "test",
+    "bilbo",
+    "scan-chain",
+    "bist",
+    "dft",
+    "shift-register",
+    "register",
+    "memory",
+    "debug",
+    "verification"
+   ],
+   "summary": "This project implements an 8-bit Built-In Logic Block Observer, a shift register with feedback used for memory testing. It combines AND and XOR gates, D flip-flops and multiplexers to support shifting, feedback and observation modes, with asynchronous reset and clocked logic, and it exposes Tiny Tapeout input and output paths. Testing is intended through a testbench that stimulates the inputs and clock and verifies that data shifts and the feedback logic behaves correctly across all stages. No external hardware is required, and no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4030333aacd8",
+   "tags": [
+    "7-segment",
+    "display",
+    "decoder",
+    "character",
+    "wokwi",
+    "led",
+    "education",
+    "demo",
+    "dip-switch",
+    "font"
+   ],
+   "summary": "This Wokwi project displays a user-selected Latin character on a 7-segment display. Six DIP inputs select a character code covering a-z plus a few punctuation symbols, and the display is driven one segment at a time, so a high clock rate is needed for the character to appear steady. Testing involves connecting the clock, entering the desired binary code on the DIP switches, and checking the displayed character. Two silicon test reports, one from a tester and one from the author, both describe the design as working.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4401,
+  "completion_tokens": 4019,
+  "total_tokens": 8420,
+  "cost": 0.0061431,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0061431,
+   "upstream_inference_prompt_cost": 0.0013203,
+   "upstream_inference_completions_cost": 0.0048228
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 1822,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0061431,
+ "elapsed_s": 49.7
+}

@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "afdbd9ab2d8b",
+  "4a20ce0c206f",
+  "a63807499cf0",
+  "2ad3782fd5db",
+  "249c9401246e",
+  "b4efd96e3285",
+  "6afc5907387f",
+  "d7820c666483",
+  "e398fa034586",
+  "cb4e6f7df7a7"
+ ],
+ "results": [
+  {
+   "key": "afdbd9ab2d8b",
+   "tags": [
+    "dac",
+    "vga",
+    "analog",
+    "current-steering",
+    "video",
+    "display",
+    "transistor-level",
+    "opamp",
+    "test",
+    "experiment"
+   ],
+   "summary": "This analog project implements three current-switching matrix DACs intended to generate analog VGA color signals from 8-bit digital inputs. A 16x16 array of unit current cells, thermometer encoders, and a programmable bias reference form each DAC, alongside a hardened digital controller that produces VGA sync signals and test patterns. Testing requires external pull-up resistors on the red, green, and blue current-sink outputs, followed by inverting opamps or transimpedance amplifiers to shift the signal into a 0-0.7V range, optionally using the TinyVGA PMOD for digital RGB222 output. The documentation is largely marked TBC, with test procedures and external hardware details incomplete, though the design is notable for its transistor-level analog layout and manual macro placement.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4a20ce0c206f",
+   "tags": [
+    "motor-control",
+    "adc",
+    "sensor",
+    "industrial",
+    "state-machine",
+    "timer",
+    "relay",
+    "led",
+    "systemverilog",
+    "test"
+   ],
+   "summary": "This SystemVerilog design is a 60 Hz current-transformer-based automatic pump-out controller that turns a pump on at power-up and every 24 hours, measures RMS current via an external ADC, and shuts the pump off when current drops or a timeout occurs. It uses LEDs for status, a button for manual start, and switches for period, timeout, and setup configuration, with a relay output driving the pump. The design was verified through RTL simulation with ADC and plant models, gate-level testing, and FPGA emulation on Max10 and Renesas Forge devices, with a custom development board and emulation headers for in-system testing. The documentation is unusually thorough for a Tiny Tapeout project, covering datasheet, block and system diagrams, and a full bring-up platform.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a63807499cf0",
+   "tags": [
+    "usb",
+    "uart",
+    "serial",
+    "communication",
+    "protocol",
+    "bridge",
+    "verilog",
+    "debug",
+    "test",
+    "gpio"
+   ],
+   "summary": "This Verilog design implements a USB CDC to UART bridge based on the tinyfpga_bx_usbserial project, presenting itself as a serial port with vendor_id 1209 and product_id 5454. It requires external USB D+ and D- connections, a 1.5k ohm pull-up resistor from dp_pu_o to usb_p, and a 48 MHz clock, with the UART side hardcoded at 115200 baud. Two silicon test reports confirm the device enumerated properly and performed loopback and external UART communication without flow-control errors. The design is notable for being a compact, working USB-to-serial bridge with verified silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2ad3782fd5db",
+   "tags": [
+    "uart",
+    "7-segment",
+    "display",
+    "wokwi",
+    "template",
+    "education",
+    "arduino",
+    "serial",
+    "test",
+    "demo"
+   ],
+   "summary": "This Wokwi project is a UART template that drives a seven-segment display and is intended to be connected to an Arduino. The documentation is minimal, stating only that it can be hooked up to an Arduino and tested with one, with no details on the UART protocol, baud rate, or display mapping. The pin names indicate clock, reset, and seven segment outputs, but the design's internal behavior is not described. Because the documentation is essentially absent beyond a one-line description, the tags and summary are largely inferred from the title and pin names.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "249c9401246e",
+   "tags": [
+    "game",
+    "puzzle",
+    "7-segment",
+    "display",
+    "wokwi",
+    "state-machine",
+    "education",
+    "demo",
+    "security",
+    "test"
+   ],
+   "summary": "This Wokwi design implements a customizable digital padlock where a user sets a code using switches, locks or unlocks with a push button, and sees L or U on a seven-segment display. Switches 3 to 5 set the code, switch 8 sets the code, switch 2 resets the safe, and the push button enters the code. No external hardware is required, and the design is a simple state-machine puzzle suitable for education or demonstration. The documentation is brief but sufficient to understand the intended use.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b4efd96e3285",
+   "tags": [
+    "counter",
+    "register",
+    "led",
+    "wokwi",
+    "education",
+    "demo",
+    "clock",
+    "test",
+    "digital",
+    "experiment"
+   ],
+   "summary": "This Wokwi project is a reverse 8-bit counter built from a series of D flip-flops, with eight output pins intended to drive LEDs. It is tested by resetting with a reset button and stepping with a step button, and it requires LEDs on every output pin plus reset and step buttons as external hardware. The documentation is very short and does not describe the counting sequence or clocking details beyond the 10 Hz clock. It appears to be a simple educational or demonstration design.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6afc5907387f",
+   "tags": [
+    "lfsr",
+    "prng",
+    "random-number-generator",
+    "register",
+    "wokwi",
+    "test",
+    "education",
+    "logic-analyzer",
+    "shift-register",
+    "experiment"
+   ],
+   "summary": "This Wokwi project implements a maximum-cycle 32-bit Fibonacci linear feedback shift register with taps at registers 32, 30, 26, and 25, including an all-zero fail-safe that inserts a one. It provides manual input selection and a manual R0 value through DIP switches, and outputs the eight right-most register values for observation. Testing involves initializing to all zeros, running the LFSR, and comparing the first 100 output values against a provided expected sequence using a logic analyzer, with a Python reference implementation available. A silicon test report confirms the design generated random-looking output and responded correctly to manual initialization inputs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d7820c666483",
+   "tags": [
+    "multiplier",
+    "alu",
+    "verilog",
+    "test",
+    "education",
+    "digital",
+    "arithmetic",
+    "combinational",
+    "experiment",
+    "demo"
+   ],
+   "summary": "This Verilog design implements a 4-bit by 4-bit multiplier that splits the eight input pins into two 4-bit operands and produces an 8-bit product using full adders. It requires no external hardware and was tested using idle test cases, though the documentation does not describe the test methodology in detail. The design is a straightforward arithmetic block suitable for educational or demonstration purposes. The documentation is thin, with only a brief description of the input splitting and full-adder approach.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e398fa034586",
+   "tags": [
+    "pwm",
+    "led",
+    "driver",
+    "counter",
+    "register",
+    "verilog",
+    "test",
+    "education",
+    "digital",
+    "demo"
+   ],
+   "summary": "This Verilog design is a 3-bit 8-channel PWM driver that uses a 3-bit counter and per-channel 3-bit level registers to produce eight PWM outputs with levels from always off to always on. Channels and levels are selected through address and level input pins, with a set pin latching the configuration, and outputs oscillate according to the 1 kHz clock. No external hardware is required beyond observing the output pins, and testing involves setting levels and addresses after reset. The documentation is clear and sufficient for a simple educational PWM peripheral.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cb4e6f7df7a7",
+   "tags": [
+    "latch",
+    "test",
+    "standard-cells",
+    "verilog",
+    "digital",
+    "education",
+    "experiment",
+    "factory-test",
+    "debug",
+    "scan-chain"
+   ],
+   "summary": "This Verilog design provides a positive-level and a negative-level latch to verify that $_DLATCH_N_ can be properly techmapped and hardened. The P latch passes P_D to P_Q when P_E is high and holds state when low, while the N latch passes N_D to N_Q when N_E is low and holds when high. No external hardware is needed, and two silicon test reports confirm both latches behaved as designed on returned chips. The project is notable as a minimal standard-cell test structure with verified silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7765,
+  "completion_tokens": 1926,
+  "total_tokens": 9691,
+  "cost": 0.002182035,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 7680,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002182035,
+   "upstream_inference_prompt_cost": 0.000217515,
+   "upstream_inference_completions_cost": 0.00196452
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002182035,
+ "elapsed_s": 148.2
+}

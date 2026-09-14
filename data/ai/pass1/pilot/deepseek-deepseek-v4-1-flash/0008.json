@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1466ef7db808",
+  "6c62597ab788",
+  "60c7eef837f2",
+  "c0a4dff82e00",
+  "2e07538b77fb",
+  "37d90b259331",
+  "48c2bf335915",
+  "6068e4ff31d0",
+  "d1935aa74097",
+  "8c62dfd476b3"
+ ],
+ "results": [
+  {
+   "key": "1466ef7db808",
+   "tags": [
+    "branch-predictor",
+    "perceptron",
+    "neural-network",
+    "cpu",
+    "risc-v",
+    "memory",
+    "spi",
+    "debug",
+    "state-machine",
+    "test"
+   ],
+   "summary": "This project implements a minimal perceptron-based branch predictor for RISC-V branch instructions. It accepts the lower 8 bits of a branch address and ground-truth direction, then pulses pred_ready with a prediction and training_done when training finishes. It uses latch-based memory and is tested with CocoTB plus a C++ functional simulation against Spike execution logs. External hardware is needed to drive and read the pins, and the documentation notes that memory reset must complete before new data is accepted and that new data during training is ignored.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6c62597ab788",
+   "tags": [
+    "synthesizer",
+    "audio",
+    "music",
+    "i2s",
+    "spi",
+    "dsp",
+    "sound",
+    "karplus-strong",
+    "prbs",
+    "register-file"
+   ],
+   "summary": "This project implements a simplified Karplus-Strong plucked-string synthesizer with a SPI-accessible register map. It runs from a 256 kHz clock to produce a 16 kHz sample rate and sends 8-bit signed samples through an I2S transmitter. The design includes PRBS noise sources and controls for pluck, freeze, and reset, and it is configured through SPI or ui_in pins. An external I2S DAC is required to hear the output, and the documentation cites the original Karplus-Strong papers but reports no silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "60c7eef837f2",
+   "tags": [
+    "7-segment",
+    "display",
+    "led",
+    "wokwi",
+    "demo",
+    "template",
+    "gpio",
+    "output",
+    "decoder",
+    "letter-h"
+   ],
+   "summary": "This Wokwi project drives an LED display to show the letter H. The documentation only says to turn on outputs 2, 3, 4, 6, 7, and 8, and it does not explain the circuit or pin mapping. It appears to be a minimal display-segment demo using generic input and output pins. There is no test report or detailed external hardware description, so most behavior is inferred from the title and brief note.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "c0a4dff82e00",
+   "tags": [
+    "multiplier",
+    "arithmetic",
+    "dsp",
+    "state-machine",
+    "counter",
+    "sequential",
+    "unsigned",
+    "3-bit",
+    "test",
+    "valid"
+   ],
+   "summary": "This project implements a slow 3-bit unsigned multiplier that streams the x and y inputs over three cycles. It computes the product over nine cycles and streams out the 6-bit result over six cycles, holding the result until the next multiplication. The design is intended to be area and resource efficient at the expense of latency, with a valid output indicating completion. Testing can use the motherboard web interface or PMOD connections, and no silicon report is provided.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2e07538b77fb",
+   "tags": [
+    "uart",
+    "serial",
+    "communication",
+    "protocol",
+    "transceiver",
+    "8-bit",
+    "little-endian",
+    "gpio",
+    "interface",
+    "test"
+   ],
+   "summary": "This project is titled UART Transceiver and is described as an 8-bit data frame with little-endian transmit and receive signals. The documentation sections for how it works, how to test, and external hardware are all marked 'to be added later.' Only the title, language, clock, and generic pin names are available, so the exact protocol details and pin mapping cannot be determined. It is likely a UART communication block, but the lack of documentation prevents verification.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "37d90b259331",
+   "tags": [
+    "alu",
+    "spi",
+    "74181",
+    "8-bit",
+    "arithmetic",
+    "register-file",
+    "debug",
+    "7-segment",
+    "peripheral",
+    "test"
+   ],
+   "summary": "This project implements an 8-bit ALU using two replicas of the 74181 4-bit slice ALU, with an SPI slave peripheral for register access. The SPI supports all four modes and exposes eight read/write and eight read-only registers, while a multiplexer maps debug signals to a 7-segment display. It is controlled from an RP2040 SPI master, and silicon tests report that the SPI interface works when the SPI clock is at least 5x slower than the ASIC clock. One tester confirmed the SPI registers work but did not check the ALU.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "48c2bf335915",
+   "tags": [
+    "elevator",
+    "display",
+    "7-segment",
+    "state-machine",
+    "counter",
+    "switch",
+    "led",
+    "simulation",
+    "demo",
+    "control"
+   ],
+   "summary": "This project implements an elevator simulation that shows floor numbers on a 7-segment display based on switch-selected floors. The display increments or decrements according to moving-up, moving-down, or idle states, and it holds the selected floor until a different floor is chosen or the switches are reset. It uses board switches 0-7 for floor selection and an external LED display for output. The documentation describes the behavior and testing but provides no silicon results or detailed implementation notes.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6068e4ff31d0",
+   "tags": [
+    "pwm",
+    "spi",
+    "control",
+    "register-file",
+    "counter",
+    "timer",
+    "analog",
+    "test",
+    "debug",
+    "gpio"
+   ],
+   "summary": "This project implements a PWM module with three PWM outputs controlled through an SPI interface. It has programmable counter and duty-cycle registers, enable control, and override pins for direct testing. Outputs indicate whether registers are non-zero, and bidirectional pin 0 shows whether the enable register is non-zero. It requires an SPI master and an oscilloscope or similar to view the PWM signals, and no silicon results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d1935aa74097",
+   "tags": [
+    "hyperdimensional-computing",
+    "classifier",
+    "machine-learning",
+    "neural-network",
+    "hamming-distance",
+    "comparator",
+    "8-bit",
+    "state-machine",
+    "inference",
+    "test"
+   ],
+   "summary": "This project implements an 8-bit hyperdimensional computing classifier that compares an input vector against two class prototypes using Hamming distance. The smaller distance selects the winning class, with the distance on DIST[5:0], the winner on WINNER, and completion on DONE. It is controlled by MODE, CLASS_SEL, VALID, and START pins and requires no external hardware. The documentation gives a clear test sequence but no silicon results or implementation details beyond the interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8c62dfd476b3",
+   "tags": [
+    "dsp",
+    "fir-filter",
+    "mac",
+    "edge-detection",
+    "nonlinear",
+    "signal-processing",
+    "filter",
+    "accumulator",
+    "sensor",
+    "test"
+   ],
+   "summary": "This project implements a multi-mode 8-bit digital signal processing unit with FIR filtering, multiply-accumulate, edge detection, and nonlinear compression modes. Mode is selected from the two least significant bits of the two 8-bit inputs, and a stored previous output allows operations that depend on past data. The output updates every clock cycle, and the design requires no external hardware for simulation. Testing is done with a Verilog testbench that cycles through all modes and generates a VCD waveform for GTKWave; no silicon results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "2e07538b77fb: 3 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 6399,
+  "completion_tokens": 7944,
+  "total_tokens": 14343,
+  "cost": 0.00665082,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00665082,
+   "upstream_inference_prompt_cost": 0.00140778,
+   "upstream_inference_completions_cost": 0.00524304
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 6378,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00665082,
+ "elapsed_s": 76.4
+}

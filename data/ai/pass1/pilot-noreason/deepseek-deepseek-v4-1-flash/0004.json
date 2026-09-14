@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "51c72b1f9644",
+  "d74d158ac7fc",
+  "67a4a4d1ac14",
+  "175892f212c9",
+  "948ed1298cb6",
+  "3aedadbd6055",
+  "3a7df7c805fa",
+  "fa0a4a53516d",
+  "2b35844ca7d0",
+  "0457004894a8"
+ ],
+ "results": [
+  {
+   "key": "51c72b1f9644",
+   "tags": [
+    "power-sequencer",
+    "sequencer",
+    "channel-enable",
+    "delay",
+    "counter",
+    "timer",
+    "configurable",
+    "power",
+    "control",
+    "verilog"
+   ],
+   "summary": "The design sequentially enables and disables eight output channels with a configurable delay set by five input pins. It uses counters and registers to track the state and timing of each channel activation. After reset, bringing the enable signal high starts enabling channels in order from channel 0, and bringing enable low turns them off starting from channel 7. It is intended for applications such as GaAs amplifiers that require sequenced power supplies, and it requires no external hardware beyond the control signals.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d74d158ac7fc",
+   "tags": [
+    "uart",
+    "serial",
+    "transmitter",
+    "tx",
+    "communication",
+    "interface",
+    "115200-baud",
+    "verilog",
+    "digital",
+    "simple"
+   ],
+   "summary": "This is a simple UART transmitter module that sends 8-bit parallel data at 115200 baud. The data is presented on the eight input pins, and asserting the tx_send pin initiates transmission on the TX output pin, with a tx_busy signal indicating activity. The design is purely digital and requires no external hardware other than the clock and reset. It provides a basic serial communication interface for connecting to other systems.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "67a4a4d1ac14",
+   "tags": [
+    "pwm",
+    "modulator",
+    "duty-cycle",
+    "verilog",
+    "digital",
+    "control",
+    "power",
+    "electronics",
+    "education",
+    "basys3"
+   ],
+   "summary": "This project implements a pulse-width modulator (PWM) in Verilog to regulate power delivered to a device. The duty cycle is set by an 8-bit input bus, and the PWM output is available on a single pin. The documentation is minimal and mostly in Spanish; it specifies that the design was tested on a Xilinx Basys 3 FPGA board. No external hardware is described beyond the FPGA itself.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "175892f212c9",
+   "tags": [
+    "pwm",
+    "generator",
+    "duty-cycle",
+    "verilog",
+    "digital",
+    "counter",
+    "comparator",
+    "waveform",
+    "control",
+    "oscilloscope"
+   ],
+   "summary": "This design generates a pulse-width modulated (PWM) waveform with a duty cycle set by a 7-bit input value. An internal counter continuously increments, and the output is high while the counter value is less than the duty cycle input, producing a PWM signal whose on-time is adjustable. The design is tested by providing a clock, setting the duty cycle via the input pins, and observing the PWM output on an oscilloscope or logic analyzer. No external hardware other than test equipment is required, and two identical PWM outputs are provided.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "948ed1298cb6",
+   "tags": [
+    "music",
+    "sound",
+    "pwm",
+    "piezo-speaker",
+    "super-mario",
+    "tune",
+    "verilog",
+    "differential",
+    "audio",
+    "demo"
+   ],
+   "summary": "This design plays the Super Mario theme tune through a piezo speaker using differential PWM modulation. It converts an RTTL ringtone into Verilog and outputs a differential sound wave on two pins connected across the speaker. The design requires a 100 kHz clock and a brief reset pulse to start playback. The piezo speaker is the only external hardware needed.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3aedadbd6055",
+   "tags": [
+    "psg",
+    "sound",
+    "music",
+    "ay-3-8913",
+    "audio",
+    "pwm",
+    "dac",
+    "lfsr",
+    "envelope",
+    "replica"
+   ],
+   "summary": "This is a Verilog replica of the AY-3-8913 programmable sound generator, a classic 3-voice chip used in 1980s computers and arcade machines. It implements square wave tone generators, a white noise generator, an envelope generator, and 16 volume levels, with digital and PWM outputs. The design is controlled through a multiplexed data/address bus and requires external hardware such as a DAC or an RC filter connected to a speaker for audio output. Silicon test reports confirm it works, with testers successfully playing chiptune music.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3a7df7c805fa",
+   "tags": [
+    "pwm",
+    "dpwm",
+    "dyadic",
+    "dithering",
+    "digital",
+    "power",
+    "dead-time",
+    "configurable",
+    "verilog",
+    "half-bridge"
+   ],
+   "summary": "This digital PWM generator produces complementary high-side and low-side outputs with dead-time, and supports selectable resolution (5 to 9 bits) as well as dyadic modulation and dithering modes to increase effective resolution. A 12-bit control word sets the duty cycle, and static settings are written via a configuration interface. The design is tested with a cocotb testbench that exercises all widths and modes. For power electronics use, it can drive a half-bridge gate driver in applications like synchronous buck converters or class-D stages.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fa0a4a53516d",
+   "tags": [
+    "snn",
+    "spiking-neural-network",
+    "stdp",
+    "reward",
+    "learning",
+    "neural-network",
+    "verilog",
+    "digital",
+    "synapse",
+    "weights"
+   ],
+   "summary": "This is a spiking neural network implemented in Verilog that learns using spike-timing-dependent plasticity (STDP) and reward modulation. It consists of 8 layers with 2 neurons per layer, and weights are loaded from memory. The design is tested by inputting 32 weights in 4 bits with a 3-bit layer address and 1-bit node address, then providing two input values to execute. No external hardware is specified beyond the inputs and outputs.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2b35844ca7d0",
+   "tags": [
+    "matrix-multiply",
+    "axi-stream",
+    "uart",
+    "multiplier",
+    "vector",
+    "dsp",
+    "linear-algebra",
+    "verilog",
+    "communication",
+    "interface"
+   ],
+   "summary": "This design is an AXI-Stream matrix-vector multiplier with a UART interface. It multiplies a matrix by a vector and streams the result over AXI-Stream, with UART used for configuration or data transfer. External hardware includes a USB-FTDI interface for UART communication. The documentation is limited to a GitHub repository, so details of the implementation and testing are not available here.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0457004894a8",
+   "tags": [
+    "cpu",
+    "8-bit",
+    "alu",
+    "registers",
+    "branch",
+    "jal",
+    "pc",
+    "instruction",
+    "verilog",
+    "minimal"
+   ],
+   "summary": "Basic8 is a minimal 8-bit CPU with 8 general-purpose registers, an ALU supporting arithmetic and logic operations, branch instructions, and jump-and-link. The instruction format is 16-bit, and instructions are loaded in two cycles through the input pins with control signals on the bidirectional pins. The program counter is output on the output pins, allowing an external ROM to feed instructions. No external hardware is required, and a cocotb testbench provides full instruction set coverage.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8481,
+  "completion_tokens": 1888,
+  "total_tokens": 10369,
+  "cost": 0.0048099,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0048099,
+   "upstream_inference_prompt_cost": 0.0025443,
+   "upstream_inference_completions_cost": 0.0022656
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0048099,
+ "elapsed_s": 9.0
+}

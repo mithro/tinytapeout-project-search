@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "1466ef7db808",
+  "6c62597ab788",
+  "60c7eef837f2",
+  "c0a4dff82e00",
+  "2e07538b77fb",
+  "37d90b259331",
+  "48c2bf335915",
+  "6068e4ff31d0",
+  "d1935aa74097",
+  "8c62dfd476b3"
+ ],
+ "results": [
+  {
+   "key": "1466ef7db808",
+   "tags": [
+    "branch-predictor",
+    "perceptron",
+    "machine-learning",
+    "spi",
+    "memory",
+    "latch-based-memory",
+    "education",
+    "debug",
+    "state-machine",
+    "sequence-detector"
+   ],
+   "summary": "This design implements a minimal perceptron-based branch predictor that reads the lower 8 bits of a RISC-V instruction address and the ground truth branch direction via dedicated input pins. It uses latch-based memory and a SPI-like interface to load address and direction data, producing a prediction and a training-done signal. External hardware such as an Arduino or FPGA is needed to drive the 10 input bits and read the 5 output bits. The project includes a C++ functional simulation that parses a RISC-V execution log from Spike, and it is best run inside a provided Docker container.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6c62597ab788",
+   "tags": [
+    "audio",
+    "synthesizer",
+    "i2s",
+    "spi",
+    "pwm",
+    "music",
+    "sound",
+    "dac",
+    "register-file",
+    "prng"
+   ],
+   "summary": "This design implements a Karplus-Strong string synthesis algorithm, producing plucked-string audio samples at a 16 kHz sample rate. It is configured via a SPI register map and outputs 8-bit signed sound samples through an I2S transmitter interface. An external I2S DAC is required to convert the digital samples to analog audio. The design runs on a 256 kHz clock and includes a PRBS noise source for excitation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "60c7eef837f2",
+   "tags": [
+    "7-segment",
+    "led",
+    "display",
+    "decoder",
+    "wokwi",
+    "demo",
+    "education",
+    "experiment",
+    "template",
+    "test"
+   ],
+   "summary": "This design drives a 7-segment LED display to show the letter 'H' by turning on segments 2, 3, 4, 6, 7, and 8. It takes 8 input bits and outputs 8 bits directly to the display segments. No external hardware beyond the display is mentioned. The documentation is minimal and does not explain the internal logic or how to test it beyond the segment pattern.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c0a4dff82e00",
+   "tags": [
+    "multiplier",
+    "alu",
+    "dsp",
+    "counter",
+    "state-machine",
+    "education",
+    "experiment",
+    "test",
+    "serial",
+    "debug"
+   ],
+   "summary": "This design implements a slow 3-bit unsigned multiplier that computes the product over multiple clock cycles to save area. It takes 3-bit inputs x and y, and after 18 cycles outputs a 6-bit product, holding the result until the next multiplication completes. The multiplier can be tested using the motherboard web interface or by connecting PMODs to the input and output pins. The documentation includes waveform traces illustrating the timing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2e07538b77fb",
+   "tags": [
+    "uart",
+    "serial",
+    "communication",
+    "protocol",
+    "transceiver",
+    "education",
+    "experiment",
+    "test",
+    "debug",
+    "template"
+   ],
+   "summary": "This design is a UART transceiver that transmits and receives 8-bit data frames in little-endian format. The documentation is incomplete, with no description of how it works, how to test it, or what external hardware is needed. The pin names are generic and do not clarify the interface. The project appears to be a template or work in progress.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "37d90b259331",
+   "tags": [
+    "alu",
+    "spi",
+    "7-segment",
+    "decoder",
+    "debug",
+    "education",
+    "experiment",
+    "register-file",
+    "multiplexer",
+    "test"
+   ],
+   "summary": "This design replicates the classic 74181 4-bit ALU, instantiating two slices to create an 8-bit ALU. A SPI slave peripheral is used to load and read data due to I/O constraints, supporting all four SPI modes. The output is displayed on a 7-segment display via a multiplexer for debugging. Silicon testing confirmed the SPI interface works when the SPI clock is at least 5x slower than the ASIC clock, and all registers are accessible.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "48c2bf335915",
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "state-machine",
+    "game",
+    "demo",
+    "education",
+    "experiment",
+    "test",
+    "led"
+   ],
+   "summary": "This design simulates an elevator interface on a 7-segment LED display. The user selects a floor using 8 switches, and the display increments or decrements to show the elevator moving to the selected floor, with an idle state indicated by a decimal point. When switches are reset, the display returns to the default floor. An external LED display is required to show the floor number.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6068e4ff31d0",
+   "tags": [
+    "pwm",
+    "spi",
+    "register-file",
+    "counter",
+    "timer",
+    "motor-control",
+    "servo",
+    "industrial",
+    "test",
+    "debug"
+   ],
+   "summary": "This design is a PWM module controlled via a SPI interface, allowing configuration of counter value and duty cycle registers. It outputs up to three PWM signals and provides override pins for direct testing without SPI. An external SPI master device and a means to view the PWM signal (e.g., oscilloscope) are required. The design includes status outputs indicating when registers are non-zero.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d1935aa74097",
+   "tags": [
+    "machine-learning",
+    "classifier",
+    "hamming-distance",
+    "neural-network",
+    "dsp",
+    "comparator",
+    "state-machine",
+    "education",
+    "experiment",
+    "test"
+   ],
+   "summary": "This design implements an 8-bit Hyperdimensional Computing (HDC) classifier that compares an input vector against two class prototypes using Hamming distance. It outputs the calculated distance (6 bits), the winning class (1 bit), and a done signal. No external hardware is required beyond the standard Tiny Tapeout clock and reset. The design is intended for educational purposes and can be tested by following the provided step-by-step procedure.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8c62dfd476b3",
+   "tags": [
+    "dsp",
+    "filter",
+    "edge-detection",
+    "multiplier",
+    "accumulator",
+    "alu",
+    "state-machine",
+    "education",
+    "experiment",
+    "test"
+   ],
+   "summary": "This design is a multi-mode digital signal processing unit that takes two 8-bit inputs and processes them in one of four modes: FIR filter, multiply-accumulate (MAC), edge detection, or nonlinear compression. The mode is selected by the two least significant bits of the inputs, and the output updates every clock cycle. No external hardware is required for simulation, and a testbench with waveform output is provided. The design stores a previous output value to enable operations that depend on past data.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6192,
+  "completion_tokens": 1815,
+  "total_tokens": 8007,
+  "cost": 0.0009081107,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 512,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0009081107,
+   "upstream_inference_prompt_cost": 0.0005587232,
+   "upstream_inference_completions_cost": 0.0003493875
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0009081107,
+ "elapsed_s": 26.3
+}

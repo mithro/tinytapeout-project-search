@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b5cddbc2361e",
+  "ec5ca96a0f9b",
+  "370013d5c9ef",
+  "e648787e0bac",
+  "7572ae292ffc",
+  "0d39881015a1",
+  "9cf0cd198c4b",
+  "fbd23d81ea51",
+  "63df183052db",
+  "a2e31479dc3d"
+ ],
+ "results": [
+  {
+   "key": "b5cddbc2361e",
+   "tags": [
+    "cpu",
+    "risc-v",
+    "multiplier",
+    "memory",
+    "sram",
+    "register-file",
+    "state-machine",
+    "bootloader",
+    "debug",
+    "gpio"
+   ],
+   "summary": "It implements an 8-bit RISC-V-inspired CPU with a hardware multiplier, 32-byte RAM, custom branching instructions, and a multi-cycle finite state machine. Programs are loaded through a bootloader mode by setting address and data pins and toggling the clock, after which mode select goes high and the CPU executes from RAM address zero. The outputs provide the current destination register value and program counter for monitoring, requiring an external clock and optionally a logic analyzer or LEDs. The documentation explains the loading and testing procedure, but no silicon test results are included and the RISC-V aspect is described as inspired/custom rather than standards-compliant.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ec5ca96a0f9b",
+   "tags": [
+    "turing-machine",
+    "spi",
+    "rom",
+    "ram",
+    "external-memory",
+    "state-machine",
+    "memory",
+    "protocol",
+    "test",
+    "experiment"
+   ],
+   "summary": "DUMB-Turing implements a Turing machine that uses external SPI ROM for its transition table and external SPI RAM for an emulated tape, supporting 128 states and a 256-symbol alphabet. It exposes two SPI interfaces for state and tape memory plus general-purpose input and output pins. Testing requires pre-filling one or both SPI memory devices, and the author notes that updated instructions for building the transition table will be provided later. The design needs a 512 Kbit ROM and 512 Kbit RAM, though the ROM can be emulated by the onboard RP2040, and no silicon test report or complete usage documentation is present.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "370013d5c9ef",
+   "tags": [
+    "rhd2164",
+    "spi",
+    "analog-frontend",
+    "neural-amplifier",
+    "register-file",
+    "scan-chain",
+    "shift-register",
+    "mcu",
+    "communication",
+    "protocol"
+   ],
+   "summary": "The RHD2164-MCU-SPI Bridge implements a custom SPI interface to RHD2164 neural amplifier chips, selecting channels and forwarding their data to an MCU over SPI. It also contains a register bank that can be accessed either by SPI or through a scan-chain/shift register, with dedicated pins for register and shift-register control. Testing instructions are marked as to be added; the suggested setups use an FPGA with an RHD2164 emulator and MCU-SPI emulator, or a real RHD2164 in CMOS or LVDS mode with adapters and an MCU. The documentation is high-level and lacks silicon validation results, but the pins and description clearly indicate a neural-recording interface bridge.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e648787e0bac",
+   "tags": [
+    "game",
+    "spacewar",
+    "vga",
+    "video",
+    "display",
+    "gamepad",
+    "snes",
+    "graphics",
+    "demo",
+    "experiment"
+   ],
+   "summary": "Spacewar is a Verilog graphics prototype for a scaled-down Spacewar game that outputs VGA video and reads an SNES controller PMOD. Its pins match the Tiny VGA and Gamepad PMODs, with RGB and sync outputs plus gamepad latch, clock, and data inputs. Testing is not yet documented, as the project says CocoTB tests are coming soon, and no silicon results are reported. The design requires external VGA and SNES PMODs, and the available documentation is too thin to describe gameplay or implementation details.",
+   "confidence": "medium",
+   "insufficient_docs": true
+  },
+  {
+   "key": "7572ae292ffc",
+   "tags": [
+    "demo",
+    "vga",
+    "video",
+    "graphics",
+    "3d-graphics",
+    "audio",
+    "synthesizer",
+    "music",
+    "sound",
+    "pwm"
+   ],
+   "summary": "Underflow Cubed is a four-tile demo that renders 3D scenes to VGA using a custom per-scanline algorithm derived from ray tracing and generates a multi-voice audio soundtrack. The synthesizer uses 24 voices, a sequencer with multiple keys and scales, and PWM output with delta-sigma modulation for added resolution. The speedup inputs allow skipping unused cycles per voice to accommodate slower silicon at the intended 50.4 MHz clock, trading off visual artifacts and PWM resolution. It requires a TinyVGA PMOD and Mike's audio PMOD, starts directly after reset, and has extensive documentation but no silicon test report.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0d39881015a1",
+   "tags": [
+    "clock",
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "triangle-renderer",
+    "race-the-beam",
+    "state-machine",
+    "animation",
+    "demo"
+   ],
+   "summary": "No Time For Squares, IHP edition, is a 12-hour clock that draws three moving hands as triangles using an incremental race-the-beam triangle renderer while generating VGA timing. Input pins advance the minute and hour hands, and debug select pins are provided, with VGA RGB and sync outputs intended for a TinyVGA PMOD. A silicon test report marks it working, with a tester confirming that it kept time and allowed minute and hour adjustments. The design requires a TinyVGA-compatible PMOD and VGA monitor, and its concise documentation is supported by successful silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9cf0cd198c4b",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "bnn",
+    "systolic",
+    "accelerator",
+    "xnor",
+    "popcount",
+    "dot-product",
+    "matrix-multiply",
+    "inference"
+   ],
+   "summary": "The Systolic Binary Neural Network Accelerator implements a 16-neuron binary neural network engine using XNOR-popcount dot products with feature expansion and signed biases. Each neuron fires when its popcount plus bias meets the threshold, and the design uses an 8-cycle systolic compute scheme that reuses hardware to reduce silicon area. Inputs and outputs support loading weights or thresholds, selecting neurons, and reading fire signals, with no external hardware required beyond a host MCU such as a Raspberry Pi or Arduino. The documentation includes detailed V1 and V2 notes plus wiring and Python examples, but no silicon test report is provided.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fbd23d81ea51",
+   "tags": [
+    "cgate",
+    "muller-c-gate",
+    "asynchronous",
+    "latch",
+    "combinatorial-logic",
+    "ring-oscillator",
+    "delay",
+    "standard-cells",
+    "test",
+    "experiment"
+   ],
+   "summary": "Cgates compares two implementations of Muller's C-gate, one built from a latch and one from combinatorial logic, and uses them to build 4-, 16-, and 64-stage rings. The basic C-gate outputs should change only when its two inputs agree, while the ring outputs toggle to indicate pulse circulation and average stage delay. An oscilloscope is required to observe the faster rings, and the output frequency limit of 33 MHz means the shortest rings may be too fast to see. Silicon results report the C-gate implementations working, but one tester observed a possibly sick waveform on a ring output, so the ring measurements are only partially validated.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "63df183052db",
+   "tags": [
+    "wokwi",
+    "template",
+    "placeholder",
+    "unfinished",
+    "unknown",
+    "test",
+    "experiment",
+    "gpio",
+    "digital",
+    "io"
+   ],
+   "summary": "The project titled 'idk yet' is a Wokwi one-tile design with generic ttin inputs and ttout outputs and no meaningful description. Its documentation states only that it works, that testing is not done, and that no external hardware is needed. The pin names are generic and give no indication of a specific interface, function, or application. Because the documentation is essentially absent, the tags and summary can only reflect its Wokwi origin, placeholder status, and unverified nature.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "a2e31479dc3d",
+   "tags": [
+    "mac",
+    "multiply-accumulate",
+    "multiplier",
+    "ai",
+    "machine-learning",
+    "neural-network",
+    "accelerator",
+    "dsp",
+    "iterative",
+    "test"
+   ],
+   "summary": "The Iterative MAC LATCHUP2026 design implements a 32-bit multiply-accumulate unit with a 7×8-bit multiplier for tiny AI/ML acceleration. A controller FSM shifts partial sums and aligns bias bytes across four training phases or one inference phase, with a mode pin selecting the operation. It requires no external hardware beyond the Tiny Tapeout carrier, though a host MCU can stream weights and bias bytes over the GPIO pins. Cocotb tests compare the RTL against a Python reference for training cycles, early exits, inference lockstep, and regression vectors, but no silicon test report is included.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6031,
+  "completion_tokens": 8869,
+  "total_tokens": 14900,
+  "cost": 0.0124521,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0124521,
+   "upstream_inference_prompt_cost": 0.0018093,
+   "upstream_inference_completions_cost": 0.0106428
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 6656,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0124521,
+ "elapsed_s": 59.5
+}

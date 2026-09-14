@@ -1,0 +1,227 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "b5cddbc2361e",
+  "ec5ca96a0f9b",
+  "370013d5c9ef",
+  "e648787e0bac",
+  "7572ae292ffc",
+  "0d39881015a1",
+  "9cf0cd198c4b",
+  "fbd23d81ea51",
+  "63df183052db",
+  "a2e31479dc3d"
+ ],
+ "results": [
+  {
+   "confidence": "high",
+   "insufficient_docs": false,
+   "key": "b5cddbc2361e",
+   "summary": "This design is an 8-bit RISC-V-inspired CPU with a hardware multiplier, 32 bytes of RAM, and custom branching instructions. It is loaded with a program via a bootloader mode that writes bytes to RAM using the input pins and clock, then executes from address 0 when mode is set high. The output pins continuously show the destination register value, and the bidirectional pins expose the program counter for debugging. It is notable for being a compact multi-cycle CPU optimized for the IHP26a process, requiring only a clock and LEDs or a logic analyzer for testing.",
+   "tags": [
+    "cpu",
+    "risc-v",
+    "multiplier",
+    "register-file",
+    "sram",
+    "state-machine",
+    "bootloader",
+    "debug",
+    "education",
+    "verilog"
+   ]
+  },
+  {
+   "confidence": "medium",
+   "insufficient_docs": false,
+   "key": "ec5ca96a0f9b",
+   "summary": "This design implements a Turing machine in Turing's original mathematical construction, using external SPI ROM and RAM for the transition table and tape. It requires two 512Kbit SPI memory devices to be pre-filled with data before execution, and the ROM can be emulated by the onboard RP2040. The bidirectional pins provide SPI interfaces for the state and tape memories, while the input and output pins expose GPIO. Testing is difficult because the memory contents must be set up externally, and the documentation notes that updated instructions for building a transition table are pending.",
+   "tags": [
+    "turing-machine",
+    "state-machine",
+    "spi",
+    "rom",
+    "ram",
+    "gpio",
+    "experiment",
+    "education",
+    "verilog",
+    "debug"
+   ]
+  },
+  {
+   "confidence": "high",
+   "insufficient_docs": false,
+   "key": "370013d5c9ef",
+   "summary": "This design implements a custom SPI bridge to interface with RHD2164 neural amplifier chips, selecting specific channels and transferring data to a microcontroller via SPI. It also includes a register bank accessible either by SPI or through a scanchain/shift register. Testing can be done with an FPGA and emulators for the RHD2164 and MCU SPI, or with the actual RHD2164 chip in CMOS or LVDS mode using adapters. The design is notable for its flexible interface and support for neural amplifier data acquisition.",
+   "tags": [
+    "spi",
+    "register-file",
+    "scan-chain",
+    "neural-amplifier",
+    "communication",
+    "protocol",
+    "sensor",
+    "analog-frontend",
+    "verilog",
+    "debug"
+   ]
+  },
+  {
+   "confidence": "medium",
+   "insufficient_docs": false,
+   "key": "e648787e0bac",
+   "summary": "This project is a scaled-down Spacewar game that outputs VGA graphics and audio, using a SNES controller Pmod for input. It is designed to work with a TinyVGA Pmod and an audio Pmod, and the demo starts directly after reset. The game adheres to old demoscene specifications and is notable for its retro gaming implementation on Tiny Tapeout.",
+   "tags": [
+    "game",
+    "vga",
+    "audio",
+    "snes",
+    "controller",
+    "demo",
+    "retro",
+    "pmod",
+    "verilog",
+    "entertainment"
+   ]
+  },
+  {
+   "confidence": "high",
+   "insufficient_docs": false,
+   "key": "7572ae292ffc",
+   "summary": "This design is a four-tile demo for the TTSKY26a demo competition that renders 3D scenes on a VGA display using a custom per-scan-line ray tracing algorithm. It also includes a music synthesizer with multiple voices, using a shared oscillator and a radix-4 Booth multiplier for phase calculation. The synth outputs PWM audio at 63 kHz with delta-sigma modulation for additional resolution. It requires a TinyVGA Pmod and an audio Pmod, and silicon testing confirmed that the clock adjustment and display work as documented.",
+   "tags": [
+    "vga",
+    "audio",
+    "synthesizer",
+    "pwm",
+    "dsp",
+    "multiplier",
+    "ray-tracing",
+    "demo",
+    "music",
+    "verilog"
+   ]
+  },
+  {
+   "confidence": "medium",
+   "insufficient_docs": false,
+   "key": "0d39881015a1",
+   "summary": "This design is a 12-hour clock that displays the time using triangles rendered by a race-the-beam triangle renderer on a VGA display. It uses a state machine to incrementally rasterize the triangles and requires a TinyVGA Pmod connected to the output port. The input pins allow adjusting the minutes and hours, and silicon testing confirmed that the adjustment works as documented. The design is notable for its creative use of triangle rendering for a clock display.",
+   "tags": [
+    "clock",
+    "rtc",
+    "vga",
+    "renderer",
+    "state-machine",
+    "display",
+    "triangle",
+    "demo",
+    "verilog",
+    "time"
+   ]
+  },
+  {
+   "confidence": "high",
+   "insufficient_docs": false,
+   "key": "9cf0cd198c4b",
+   "summary": "This design is a systolic binary neural network accelerator with 16 neurons, computing dot products and firing based on learned biases. It uses an 8-cycle systolic compute engine that reuses hardware to reduce silicon area. The input pins provide 8-bit input features, and the bidirectional pins select the neuron and mode (load or infer). No external hardware is required beyond the Tiny Tapeout carrier; a Raspberry Pi or Arduino can load weights and run inference via the GPIO pins.",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "systolic",
+    "multiply-accumulate",
+    "binary",
+    "accelerator",
+    "dsp",
+    "gpio",
+    "verilog",
+    "inference"
+   ]
+  },
+  {
+   "confidence": "medium",
+   "insufficient_docs": false,
+   "key": "fbd23d81ea51",
+   "summary": "This design tests two different implementations of C-gates (Muller C-element) and ring oscillators. The C-gate outputs change only when both inputs agree, and the ring oscillators have varying stage counts (4, 16, 64). Testing involves setting the two inputs to different values and observing the outputs, but the ring oscillator outputs are too fast to observe without an oscilloscope. The author verified the C-gate behavior manually, but the ring oscillator output on pin 7 appeared too fast for the tester.",
+   "tags": [
+    "c-gate",
+    "ring-oscillator",
+    "asynchronous",
+    "latch",
+    "combinational",
+    "test",
+    "experiment",
+    "oscillator",
+    "verilog",
+    "debug"
+   ]
+  },
+  {
+   "confidence": "low",
+   "insufficient_docs": true,
+   "key": "63df183052db",
+   "summary": "This project has essentially no documentation. The title and description are minimal, and the pin list only shows a single input pin named 'ttin'. It is not possible to determine the functionality, interfaces, or testing requirements from the available information.",
+   "tags": [
+    "test",
+    "experiment",
+    "wokwi",
+    "gpio",
+    "unknown",
+    "template",
+    "education",
+    "verilog",
+    "debug",
+    "minimal"
+   ]
+  },
+  {
+   "confidence": "high",
+   "insufficient_docs": false,
+   "key": "a2e31479dc3d",
+   "summary": "This design implements a 32-bit multiply-accumulate (MAC) unit for tiny ML accelerators, using a 7x8-bit multiplier that produces a 15-bit product every clock. It is designed for AI/ML acceleration and is part of the LatchUp 2026 event. The input pins include an 8-bit data input and a mode pin, and the output pins provide the result. No external hardware is required beyond the Tiny Tapeout carrier; a host MCU can stream weights and bias bytes on the GPIO pins.",
+   "tags": [
+    "multiply-accumulate",
+    "machine-learning",
+    "neural-network",
+    "multiplier",
+    "dsp",
+    "accelerator",
+    "gpio",
+    "verilog",
+    "ai",
+    "ml"
+   ]
+  }
+ ],
+ "problems": [
+  "e648787e0bac: 3 sentences",
+  "63df183052db: 3 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 6213,
+  "completion_tokens": 1955,
+  "total_tokens": 8168,
+  "cost": 0.000503458,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2247,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000503458,
+   "upstream_inference_prompt_cost": 0.000229758,
+   "upstream_inference_completions_cost": 0.0002737
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.000503458,
+ "elapsed_s": 53.6
+}

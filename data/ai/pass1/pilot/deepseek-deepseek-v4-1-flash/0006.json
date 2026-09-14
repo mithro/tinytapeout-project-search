@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e24c5be4614f",
+  "f6dc6a95034a",
+  "e8d77da254bf",
+  "5e58e4866f30",
+  "7d5b723efa83",
+  "877ef51e4e49",
+  "8df467d8980b",
+  "353e0e34adfc",
+  "097f28168f8c",
+  "cea2e502d65e"
+ ],
+ "results": [
+  {
+   "key": "e24c5be4614f",
+   "tags": [
+    "state-machine",
+    "motor-control",
+    "controller",
+    "washing-machine",
+    "led",
+    "button",
+    "simulation",
+    "education",
+    "digital",
+    "demo"
+   ],
+   "summary": "This project is a Verilog finite-state-machine that simulates a simplified washing machine cycle, stepping automatically through stages such as filling, washing and spinning. It is controlled by a start button, a mode-select lever and a door-closed lever, and it drives outputs for a water valve, wash motor, spin motor and a done LED. Testing is done on the demo board with four LEDs, one debounced button and two levers, with the door lever gating whether the start button is accepted. The documentation is short but sufficient to describe the intended behaviour; no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f6dc6a95034a",
+   "tags": [
+    "cpu",
+    "subneg",
+    "8-bit",
+    "sram",
+    "memory",
+    "bus",
+    "latch",
+    "computer-architecture",
+    "education",
+    "experiment"
+   ],
+   "summary": "This is an 8-bit SUBNEG CPU, a minimal one-instruction architecture, implemented in Verilog on a single tile. It talks to external parallel SRAM through an address latch and exposes a bidirectional data bus, with a second latch suggested for capturing CPU output. Programs must be loaded into the SRAM by an external device such as a microcontroller before the CPU enable pin is raised, and three inputs support that loading path. The design requires several external parts, including 3.3V SRAM, 74HC574 latches and a way to display the 8-bit result, and no silicon measurements are given.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e8d77da254bf",
+   "tags": [
+    "oscilloscope",
+    "signal-generator",
+    "adc",
+    "dac",
+    "hdmi",
+    "display",
+    "uart",
+    "fram",
+    "dds",
+    "test"
+   ],
+   "summary": "This VHDL design implements a basic single-channel oscilloscope and a direct-digital-synthesis signal generator on a two-tile ASIC. It samples an external ADC Pmod, buffers roughly 32k samples before and after a trigger event in an external FRAM, and renders the captured waveform over a 3-bit HDMI Pmod, with settings streamed out over 9600-baud UART. Because the FRAM is read without on-chip buffering, the displayed image is rotated 90 degrees and a supplied Python script is used to rotate captured frames back. The signal generator produces sine, square, triangle and sawtooth waves for self-testing the trigger and display, and the project needs a substantial set of Pmods wired individually to the demo board.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5e58e4866f30",
+   "tags": [
+    "game",
+    "reaction-time",
+    "button",
+    "led",
+    "7-segment",
+    "wokwi",
+    "demo",
+    "education",
+    "digital",
+    "priority"
+   ],
+   "summary": "This Wokwi project is a fastest-finger game that latches whichever of eight buttons is pressed first and raises the corresponding output. The outputs can drive either eight individual LEDs or the segments of a 7-segment display, depending on how the board is wired. Testing is simply a matter of connecting buttons to inputs 0 through 7 and observing which output goes high first. The documentation is very brief, consisting of a one-line behaviour description and a short test note, so details such as debouncing or reset behaviour are not specified.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7d5b723efa83",
+   "tags": [
+    "analog",
+    "multiplexer",
+    "passgate",
+    "switch",
+    "ring-oscillator",
+    "counter",
+    "test",
+    "transistor-level",
+    "debug",
+    "signal-routing"
+   ],
+   "summary": "This analog block provides switchable passgates that can be used as a 4:1 multiplexer, an 8:1 multiplexer, or as individual analog switches for routing signals around a board. It also includes a ring oscillator with driver, a manually laid-out digital block that converts selection bits into one-hot passgate controls, and a counter clocked from the ring oscillator so the mux can be exercised at high speed. The design is intended for adding debug and inspection access to analog projects without consuming many pins, and it exposes analog pins for the mux output, ring output, resistor ladder and reference. Documentation is thin beyond the description, with testing deferred to an external video and only vague mention of analog hardware.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "877ef51e4e49",
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "analog",
+    "ptat",
+    "temperature-sensor",
+    "bjt",
+    "transistor-level",
+    "brokaw",
+    "ota",
+    "analog-frontend"
+   ],
+   "summary": "This analog project is a Brokaw bandgap voltage reference built from SKY130 PNP bipolar transistors, with a PTAT current generator feeding a summing amplifier with OTA feedback. It produces a stable reference of roughly 1.2 to 1.3 volts on its single analog output pin, and the PTAT behaviour also allows temperature readout. Testing consists of applying 1.8V and measuring the reference while sweeping temperature from -40 to 125 degrees Celsius to characterise stability. No external hardware is required, and the documentation is a short but clear description with no reported measurement results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8df467d8980b",
+   "tags": [
+    "i2c",
+    "master",
+    "controller",
+    "serial",
+    "protocol",
+    "communication",
+    "state-machine",
+    "transmitter",
+    "digital",
+    "test"
+   ],
+   "summary": "This Verilog block is a simple I2C master controller that transmits one byte to a fixed slave address of 0x50. Asserting the start input causes it to generate a START condition, shift out eight data bits on SDA while clocking SCL, and then issue a STOP condition, with BUSY, DONE and ACK status outputs. It is tested by applying reset, placing a byte on the inputs, asserting start, and observing SDA and SCL activity with a logic analyser or oscilloscope. An I2C slave device is needed to exercise the acknowledge path, and the documentation gives no silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "353e0e34adfc",
+   "tags": [
+    "oscillator",
+    "crystal",
+    "pierce-oscillator",
+    "analog",
+    "clock",
+    "ip-block",
+    "high-speed",
+    "bias",
+    "transistor-level",
+    "analog-frontend"
+   ],
+   "summary": "This project wraps a high-speed crystal oscillator IP block from Chipalooza 2024 into the Tiny Tapeout analog template. It is used by bridging the XIN and XOUT pins with a passive crystal and load capacitors, supplying a 1uA bias current on the IBIAS pin, and setting ENA high with STDBY low, after which a clock appears on the digital DOUT pin following a start-up delay. The block is nominally intended for crystals between 4 and 16 MHz, though the upper end of that range would need shorter traces than the demo board provides. The documentation is clear about the required external components and cautions that probing XIN and XOUT can disturb oscillation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "097f28168f8c",
+   "tags": [
+    "sensor",
+    "photodiode",
+    "7-segment",
+    "display",
+    "wokwi",
+    "counter",
+    "light",
+    "education",
+    "digital",
+    "input"
+   ],
+   "summary": "This Wokwi design reads up to six external photodiodes as digital inputs, sums the ones that are high, and shows the total on a 7-segment display. It can be tested without the photodiodes by using dip switches 1 through 6 as inputs, with switch 7 selecting between step and continuous sampling modes. The design needs a breadboard, resistors and photodiodes, though the exact part number is still to be determined. Documentation is minimal and the pin list omits the segment outputs beyond segment g, so some details of the display wiring are unclear.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cea2e502d65e",
+   "tags": [
+    "fifo",
+    "memory",
+    "queue",
+    "latch",
+    "ram",
+    "buffer",
+    "digital",
+    "storage",
+    "register",
+    "test"
+   ],
+   "summary": "This Verilog design implements a 52-entry, 6-bit FIFO, with the first 48 entries built as a chain of latches for density and the last four as a ring of flip-flops for random access. The oldest four entries can be inspected by setting a peek address, and a ready output indicates whether the latch chain can accept more data, with the caveat that a nearly full FIFO may refuse writes while data shifts down the chain. Writes come from inputs 2 through 7 on a rising clock edge when the mode input is high, while the same pins act as reset, pop and peek address controls when not writing. The documentation is detailed and honest about limitations, including stale peek data when the FIFO is nearly empty and a two-cycle delay before new writes appear.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5422,
+  "completion_tokens": 3178,
+  "total_tokens": 8600,
+  "cost": 0.00516819,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00516819,
+   "upstream_inference_prompt_cost": 0.00154527,
+   "upstream_inference_completions_cost": 0.00362292
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 894,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00516819,
+ "elapsed_s": 166.6
+}

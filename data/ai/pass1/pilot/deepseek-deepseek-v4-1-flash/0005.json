@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "583878a791d7",
+  "d0134b27edc3",
+  "db9a1d1db5fe",
+  "7be864771df0",
+  "226bdf4ca861",
+  "177c04638720",
+  "8af1dac10fc2",
+  "9d9d87b9edf8",
+  "e792644b640b",
+  "64b94eb2d134"
+ ],
+ "results": [
+  {
+   "key": "583878a791d7",
+   "tags": [
+    "cpu",
+    "alu",
+    "scan-chain",
+    "spi",
+    "memory",
+    "state-machine",
+    "debug",
+    "gpio",
+    "education",
+    "experiment"
+   ],
+   "summary": "QTCore-A1 is an accumulator-based 8-bit Von Neumann processor with a 5-bit program counter, an 8-bit instruction register and accumulator, and 19 bytes of shared program and data memory plus an I/O register. All internal registers are chained into one large scan chain that an external microcontroller drives over SPI, using the SPI clock as the processor clock and separate chip selects to select scan or run mode. Programs are written with a Python assembler and loaded by shifting 21 bytes into the chain, after which the processor runs and reports its halt signal on the MISO line. The design is notable because its functional Verilog and assembler were generated conversationally by GPT-4, with human-written testbenches used to find and fix bugs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d0134b27edc3",
+   "tags": [
+    "pwm",
+    "spi",
+    "servo",
+    "gpio",
+    "timer",
+    "counter",
+    "communication",
+    "protocol",
+    "test",
+    "experiment"
+   ],
+   "summary": "spiPWMio provides a PWM generator on output pin 7 and a PWM reader on input pin 7, with the generator duty cycle set by input pins 6:0 and the measured reader value reflected on output pins 6:0. It assumes a 20 ms period with duty cycles between 1 ms and 2 ms, which matches typical hobby servo signalling. An SPI interface on the bidirectional pins allows the behaviour to be reconfigured and read back, as described in the specification document. Testing is done by looping the generated PWM back into the input pin and checking the outputs, optionally with an oscilloscope and signal generator, and the design is intended for use with a development kit.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "db9a1d1db5fe",
+   "tags": [
+    "audio",
+    "synthesizer",
+    "music",
+    "sound",
+    "pwm",
+    "uart",
+    "serial",
+    "register-file",
+    "demo",
+    "communication"
+   ],
+   "summary": "ChipTune implements an 8-bit programmable sound generator modelled on the NES APU, with two square-wave channels, a triangle channel and a noise channel. It is controlled over a 9600 baud UART, where two consecutive bytes encode a register address and data, and it outputs PWM audio plus the individual channel signals. Example register strings are given to play effects such as jumps, coin grabs and power-ups, and the design also drives blink and link status LEDs and a TX frame-sync character. Testing requires a computer COM port and an analog PWM filter with an audio driver, and the documentation notes it was built for the TT04 shuttle with roughly 32% tile utilisation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7be864771df0",
+   "tags": [
+    "multiplier",
+    "dsp",
+    "neural-network",
+    "machine-learning",
+    "matrix-multiply",
+    "state-machine",
+    "test",
+    "experiment",
+    "education",
+    "gpio"
+   ],
+   "summary": "This project is an 8-bit signed Baugh-Wooley multiplier that computes a 16-bit two's complement product from two 8-bit operands. Operand A is presented on the dedicated inputs and operand B on the bidirectional inputs, with two opcode bits selecting load A, load B or start, and the result is read as the low byte on the dedicated outputs and the high byte on the bidirectional outputs. It was developed as part of a third-year neural network project and adapted to the restricted Tiny Tapeout IO, and it needs no external hardware. The documentation describes the partial-product tree and two's complement correction but gives no silicon test results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "226bdf4ca861",
+   "tags": [
+    "cordic",
+    "pwm",
+    "adc",
+    "dsp",
+    "industrial",
+    "motor-control",
+    "sensor",
+    "analog-frontend",
+    "filter",
+    "experiment"
+   ],
+   "summary": "This ASIC generates a 60 Hz grid-forming sine reference using a free-running angle counter and a CORDIC rotation block, then gates and accumulates it in a PWM modulator to produce bipolar PWM for an H-bridge. It also implements a linear dump-load controller that samples AC and DC link voltages through an SPI ADC, accumulates dv*dt error, and drives a dump FET with a guaranteed minimum pulse width of 4 microseconds. Testing requires a substantial external setup including an H-bridge, step-up transformer, rectifier, DC link capacitors, dump FET, resistive load and isolated instrumentation. The documentation is a short design description with no reported silicon measurements.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "177c04638720",
+   "tags": [
+    "vga",
+    "game",
+    "pong",
+    "display",
+    "video",
+    "animation",
+    "sound",
+    "audio",
+    "demo",
+    "education"
+   ],
+   "summary": "Solo Squash is a 640x480 VGA display driver that implements a single-player Pong-like game in which the player moves a paddle to keep a ball bouncing inside a three-walled playfield. Rendering of the walls, ball, paddle and drifting blue background is done with registers and bitwise logic driven by the horizontal and vertical scan counters, and bounce events trigger simple tones derived from divisions of the vertical scan register. The design also includes an experimental 24-bit leading zero counter whose result is exposed on the lower bidirectional pins, with debug signals on the remaining pins. Testing needs 270 ohm resistors on the RGB outputs, hsync and vsync connections, pushbuttons to VCC for the inputs, and an optional piezo speaker or line-in amplifier on the speaker output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8af1dac10fc2",
+   "tags": [
+    "dac",
+    "analog",
+    "analog-frontend",
+    "test",
+    "experiment",
+    "education",
+    "transistor-level",
+    "current-source",
+    "mixed-signal",
+    "demo"
+   ],
+   "summary": "This is a simple 4-bit current-output DAC implemented in analog. The four digital input pins select the output current sunk on the single analog pin, and testing consists of applying a 4-bit code and observing the current. A resistive load connected to the analog output is required to convert the current into a measurable voltage. The documentation is very brief and gives no measured performance, linearity or silicon results.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9d9d87b9edf8",
+   "tags": [
+    "motor-control",
+    "state-machine",
+    "timer",
+    "counter",
+    "clock",
+    "robotics",
+    "education",
+    "test",
+    "experiment",
+    "gpio"
+   ],
+   "summary": "This project implements a stepper motor controller as a Moore state machine with a time base that selects step rates of 1 s, 0.5 s, 0.25 s and 0.125 s. Inputs select the speed, rotation direction and step mode (full, half or double step), and four outputs drive the motor coils in either clockwise or anticlockwise sequence. The design was simulated with a reduced time-base parameter and a 1 ns clock, with the select, direction and step inputs toggled to exercise all combinations, and the documentation includes waveform figures for each case. It was developed as a class exercise and tested on an FPGA Cyclone II board, with the clock brought in on a pin rather than the chip clock for flexibility.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e792644b640b",
+   "tags": [
+    "wokwi",
+    "template",
+    "education",
+    "test",
+    "experiment",
+    "demo",
+    "7-segment",
+    "led",
+    "gpio",
+    "logic-gates"
+   ],
+   "summary": "This Wokwi project is described as an introduction to Tiny Tapeout and contains a small set of AND gates whose function is not explained. The documentation states only that the author is still figuring out how it works, and testing is described as flipping DIP switches. A 7-segment display is listed as external hardware, but the pin list shows only eight inputs and four outputs with no clear mapping to the display. The documentation is essentially absent, so the behaviour and purpose of the design cannot be determined from the provided text.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "64b94eb2d134",
+   "tags": [
+    "wokwi",
+    "template",
+    "test",
+    "experiment",
+    "education",
+    "demo",
+    "gpio",
+    "led",
+    "counter",
+    "introduction"
+   ],
+   "summary": "This Wokwi project is an early test of the Tiny Tapeout method and system, with the description stating that it does not yet do anything. The documentation consists only of placeholder text for how it works, how to test it and what external hardware is needed, and no pins are listed. No functionality, interfaces or test results can be determined from the provided information. It appears to be a template or workshop exercise rather than a completed design.",
+   "confidence": "low",
+   "insufficient_docs": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 11807,
+  "completion_tokens": 5925,
+  "total_tokens": 17732,
+  "cost": 0.0106521,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0106521,
+   "upstream_inference_prompt_cost": 0.0035421,
+   "upstream_inference_completions_cost": 0.00711
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 3888,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0106521,
+ "elapsed_s": 74.8
+}

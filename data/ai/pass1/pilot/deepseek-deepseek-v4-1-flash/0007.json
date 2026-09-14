@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9fc8da96ab1b",
+  "83cfaa9e28ed",
+  "8f18b8a756ef",
+  "90d00870fe58",
+  "cc59312bb5f0",
+  "762654d0db2e",
+  "64a58061ad03",
+  "34282bb584a4",
+  "ce8279d93fd5",
+  "ebcda0c1c7bc"
+ ],
+ "results": [
+  {
+   "key": "9fc8da96ab1b",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "counter",
+    "test",
+    "experiment",
+    "frequency",
+    "clock",
+    "digital",
+    "measurement",
+    "power-gating"
+   ],
+   "summary": "This design is a ring oscillator feeding a 64-bit counter that tallies the number of oscillations, with the count value shifted out on the outputs under control of the cnt_shift, cnt_reset and cnt_stop inputs. It is used as a test module for the TT05 power switching FET, letting a user observe the oscillator frequency by reading the counter bits. Testing is done by setting inputs 0-5 to a shift value and watching outputs 0-7, and the author measured 1.969 MHz at uo[7], implying a ring oscillator running at roughly 504 MHz. Silicon reports confirm it works, with one tester enabling bits 3 and 4 to slow the counter enough to observe.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "83cfaa9e28ed",
+   "tags": [
+    "flip-flop",
+    "register",
+    "shift-register",
+    "wokwi",
+    "digital",
+    "sequential-logic",
+    "daisy-chain",
+    "experiment",
+    "education",
+    "test"
+   ],
+   "summary": "This Wokwi project is described as 128 daisy-chained D flip-flops, with a single flip-flop input on ui[0] and a flip-flop output on uo[0] alongside several switches. The documentation is essentially unusable, stating only that it uses 'magic mixed with stuff' and that testing requires doing 'all the right things in the right places and at the right time'. It claims to need two unspecified 'encabultors', one on the input and one to process the output, which is not a recognizable component. Because the description and test instructions are nonsensical, little can be said about the actual behavior beyond the title and pin names.",
+   "confidence": "low",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8f18b8a756ef",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "spi",
+    "animation",
+    "game",
+    "demo",
+    "graphics",
+    "physics",
+    "test"
+   ],
+   "summary": "This Verilog design draws a small bouncing ball on a 640x480 VGA-style display, with position and velocity controlled by one-byte SPI commands decoded from the bidirectional pins. The upper two command bits select X position, Y position, X velocity or Y velocity, with positions shifted left by three and velocities clamped to -10..10, and the ball updates every six video frames and rebounds at the screen edges. It is tested with a cocotb testbench that sends SPI commands and checks movement, velocity clamping, reset and edge rebound, plus a gate-level smoke test. The design targets a TinyVGA-style PMOD for output and SPI command input, and no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "90d00870fe58",
+   "tags": [
+    "cpu",
+    "processor",
+    "8-bit",
+    "spi",
+    "7-segment",
+    "display",
+    "fpga",
+    "education",
+    "assembler",
+    "animation"
+   ],
+   "summary": "This is an 8-bit processor that can communicate with a single external device over SPI and can animate a seven-segment display. It requires an external driver, here a Digilent Nexys A7 FPGA running a driver.sv module that loads instruction and data memory from .mem files, feeds them to the processor and signals it to start. Users write and assemble a program with the provided assembler, program the FPGA in Vivado, and then use switches to turn the display on and off, select MSBs or LSBs, choose a register address, pick instruction or data memory, and enable animation. The documentation notes that memory contents are only clearly visible once the processor reaches its IDLE state, and no silicon test results are given.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cc59312bb5f0",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "demo",
+    "demoscene",
+    "graphics",
+    "animation",
+    "logo",
+    "procedural",
+    "retro"
+   ],
+   "summary": "This Verilog project is a small demoscene-style VGA generator that produces a 640x480 at 60 Hz signal through the Tiny VGA PMOD interface. The image is computed entirely in combinational logic with no frame buffer, combining a procedurally animated XOR-pattern background with a central circular logo containing two stylized 'T' letters built from rectangular regions and a squared-distance circle approximation. It is used by connecting a VGA PMOD to the demo board, selecting the project and resetting, with optional inputs to invert colors or freeze the logo at center. Reduced-resolution internal coordinates give it a deliberately pixelated retro look, and no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "762654d0db2e",
+   "tags": [
+    "password",
+    "security",
+    "logic-gates",
+    "sr-latch",
+    "wokwi",
+    "education",
+    "combinational-logic",
+    "sequential-logic",
+    "alarm",
+    "buzzer"
+   ],
+   "summary": "This Wokwi circuit is a password-style access controller built from AND, NOT and NOR gates that grants access for a correct code and triggers a persistent alarm for the trap code 1111. An SR latch keeps the buzzer and red LED on even after the inputs change, requiring a manual reset, while a green LED indicates the accepted state. It is tested in simulation by pressing play, setting the DIP switch inputs, stepping the clock and observing the LEDs and buzzer, with a reset button to clear state. The documentation is somewhat inconsistent, describing an 8-bit DIP input in the body while the title and pins indicate a 4-bit password, and no silicon results are given.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "64a58061ad03",
+   "tags": [
+    "kalman-filter",
+    "imu",
+    "sensor-fusion",
+    "spi",
+    "uart",
+    "cordic",
+    "dsp",
+    "filter",
+    "sensor",
+    "fpga"
+   ],
+   "summary": "This Verilog design implements a simplified 1D Kalman filter that fuses accelerometer and gyroscope data from an MPU-6500 IMU to compute Roll and Pitch angles. It contains an SPI master that configures and reads the sensor at 100 Hz, a CORDIC core computing atan2 from accelerometer data, the fusion filter with a steady-state Kalman gain, and a UART transmitter that streams the angles as 8-byte packets at 9600 baud. It is tested on real hardware using the FPGA ASIC simulator breakout with an MPU-6500 module and an FT232 serial probe, with detailed wiring and bitstream upload instructions. The design assumes a 10 MHz system clock and no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "34282bb584a4",
+   "tags": [
+    "game-of-life",
+    "cellular-automata",
+    "display",
+    "led-matrix",
+    "max7219",
+    "game",
+    "animation",
+    "grid",
+    "demo",
+    "spi"
+   ],
+   "summary": "This Verilog design is a silicon implementation of Conway's Game of Life played on an 8x32 grid, with rows loaded manually or via pre-defined demo patterns and generations advanced automatically or one per clock. The grid state can be read out on the cell_out pins or displayed on a MAX7219 LED matrix (FC-16 module) driven over the SPI-like interface. It is tested by loading rows with row_sel and cell_in while pulsing wr_en, or by entering demo mode and selecting a pattern, with en controlling advancement. Silicon reports are mostly positive, including working demos on the LED matrix at 10 and 40 MHz, though one tester could not get the demo patterns to progress and noted a startup delay bug.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ce8279d93fd5",
+   "tags": [
+    "lfsr",
+    "prng",
+    "random-number-generator",
+    "shift-register",
+    "sequential-logic",
+    "digital",
+    "counter",
+    "experiment",
+    "test",
+    "education"
+   ],
+   "summary": "This Verilog project is titled as an 8-bit LFSR circuit, a sequential pseudo-random number generator block, with its eight outputs exposed on uo[0] through uo[7]. The input and bidirectional pins are all marked unused, so the design appears to run freely from the clock and emit its pseudo-random sequence on the outputs. There is no documentation describing the polynomial, reset behavior, seed, or how to test it, so the exact implementation cannot be confirmed from the provided text. No silicon test results are reported.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "ebcda0c1c7bc",
+   "tags": [
+    "ota",
+    "opamp",
+    "analog",
+    "amplifier",
+    "current",
+    "wokwi",
+    "digital",
+    "experiment",
+    "test",
+    "education"
+   ],
+   "summary": "This Wokwi project is described as a digital-based operational transconductance amplifier (OTA) that requires a 50 kHz clock, takes two inputs and produces three outputs. The documentation says the output current is proportional to the number of pulses in the output stages, and that testing involves connecting two input signals and observing that relationship. The description is very brief and does not specify the input and output pin roles beyond generic IN0-IN7 and OUT0-OUT2 names, nor does it list any external hardware. No silicon test results are reported, and the documentation is too thin to confirm the internal implementation.",
+   "confidence": "low",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5906,
+  "completion_tokens": 3879,
+  "total_tokens": 9785,
+  "cost": 0.0064266,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0064266,
+   "upstream_inference_prompt_cost": 0.0017718,
+   "upstream_inference_completions_cost": 0.0046548
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 1353,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0064266,
+ "elapsed_s": 117.8
+}
