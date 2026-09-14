@@ -28,6 +28,8 @@ from . import AI_DIR
 from .openrouter import chat, print_usage
 
 TAXONOMY_JSON = AI_DIR / "taxonomy.json"
+DESIGN_CACHE = AI_DIR / "taxonomy.design.json"     # the designer's answer, kept so re-runs are free
+MAP_CACHE = AI_DIR / "taxonomy.map"                # one file per mapping chunk
 DEFAULT_MODEL = "deepseek/deepseek-v4-pro-0813"
 
 CATEGORIES = [
@@ -53,8 +55,8 @@ Rules:
   rare specific tag is more useful than a common vague one.
 - Every canonical tag is lowercase, single word or hyphenated, unique across categories.
 - Assign each canonical tag to exactly one category: type, interface, output, domain, impl.
-- For each canonical tag list ALL raw spellings from the table that should map to it.
-  Raw tags not listed anywhere are treated as dropped, so be thorough with variants.
+- Return ONLY the canonical tags with a one-line meaning each. Do not list aliases or raw
+  spellings; a separate step maps raw tags onto your vocabulary.
 - Return only JSON matching the schema."""
 
 SCHEMA = {
@@ -71,9 +73,8 @@ SCHEMA = {
                     "tag": {"type": "string"},
                     "category": {"type": "string", "enum": [c for c, _ in CATEGORIES]},
                     "meaning": {"type": "string"},
-                    "aliases": {"type": "array", "items": {"type": "string"}},
                 },
-                "required": ["tag", "category", "meaning", "aliases"],
+                "required": ["tag", "category", "meaning"],
             },
         }
     },
@@ -112,7 +113,7 @@ def normalise(tag: str) -> str:
     t = re.sub(r"[^a-z0-9+#.-]", "", t)
     t = re.sub(r"-{2,}", "-", t).strip("-")
     # Simple plurals: counters -> counter, but not "bus", "analysis", "ss".
-    if len(t) > 4 and t.endswith("s") and not t.endswith(("ss", "us", "is", "os")):
+    if len(t) > 4 and t.endswith("s") and not t.endswith(("ss", "us", "is", "os", "ics")):
         t = t[:-1]
     return t
 
@@ -138,11 +139,16 @@ def freq_table(counts: Counter, min_count: int) -> str:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--sub", default="full", help="pass-one output sub-directory to read")
-    ap.add_argument("--model", default=DEFAULT_MODEL)
+    ap.add_argument("--model", default=DEFAULT_MODEL, help="model that designs the vocabulary")
+    ap.add_argument("--map-model", default="deepseek/deepseek-v4.1-flash",
+                    help="model that maps raw tags onto the vocabulary (easy, high volume)")
     ap.add_argument("--min-count", type=int, default=2,
                     help="raw tags used fewer times than this are only mapped, not shown to the designer")
     ap.add_argument("--out", type=Path, default=TAXONOMY_JSON)
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--reasoning", choices=["off", "low", "medium", "high"], default="off",
+                    help="hidden reasoning effort; DeepSeek Pro spends its whole output budget thinking otherwise")
+    ap.add_argument("--redesign", action="store_true", help="ignore the cached design and ask again")
     args = ap.parse_args(argv)
 
     counts = load_raw_tags(args.sub)
@@ -157,9 +163,40 @@ def main(argv: list[str] | None = None) -> int:
     user = ("Raw tag frequency table (tag count), most common first:\n\n"
             + freq_table(counts, args.min_count)
             + "\n\nCategories: " + "; ".join(f"{c}: {d}" for c, d in CATEGORIES))
-    res = chat(args.model, SYSTEM, user, schema=SCHEMA, tag="taxonomy/design", max_tokens=32000,
-               temperature=0.1)
-    tax = json.loads(res.text)["tags"]
+    if DESIGN_CACHE.exists() and not args.redesign:
+        cached = json.loads(DESIGN_CACHE.read_text())
+        tax, design_model = cached["tags"], cached["model"]
+        print(f"using cached design from {design_model}: {len(tax)} tags", file=sys.stderr)
+        res = None
+    else:
+        res = chat(args.model, SYSTEM, user, schema=SCHEMA, tag="taxonomy/design", max_tokens=12000,
+                   temperature=0.1, reasoning=args.reasoning)
+        design_model = args.model
+    try:
+        if res is not None:
+            tax = json.loads(res.text)["tags"]
+    except (json.JSONDecodeError, KeyError) as e:
+        # Salvage every complete {"tag","category","meaning"} object from a truncated reply.
+        dump = AI_DIR / "taxonomy.raw.txt"
+        dump.write_text(res.text)
+        tax = []
+        for m in re.finditer(r"\{[^{}]*\}", res.text):
+            try:
+                obj = json.loads(m.group(0))
+            except json.JSONDecodeError:
+                continue
+            if {"tag", "category", "meaning"} <= obj.keys() and obj["category"] in dict(CATEGORIES):
+                tax.append(obj)
+        print(f"warning: design response was not valid JSON ({e}); salvaged {len(tax)} entries; "
+              f"raw text in {dump}", file=sys.stderr)
+        if len(tax) < 60:
+            sys.exit("too few entries salvaged; aborting")
+    if len(tax) > 250:
+        print(f"warning: designer returned {len(tax)} tags, more than asked for", file=sys.stderr)
+    if res is not None:
+        AI_DIR.mkdir(parents=True, exist_ok=True)
+        DESIGN_CACHE.write_text(json.dumps({"model": design_model, "tags": tax}, indent=1) + "\n")
+        print(f"designer returned {len(tax)} canonical tags (${res.cost:.4f})", file=sys.stderr)
     canon: dict[str, dict] = {}
     aliases: dict[str, str | None] = {}
     for t in tax:
@@ -168,27 +205,55 @@ def main(argv: list[str] | None = None) -> int:
             continue
         canon[name] = {"tag": name, "category": t["category"], "meaning": t["meaning"].strip()}
         aliases[name] = name
-        for a in t.get("aliases", []):
-            aliases.setdefault(normalise(a), name)
-    print(f"designer returned {len(canon)} canonical tags covering {len(aliases)} raw spellings "
-          f"(${res.cost:.4f})", file=sys.stderr)
 
     # Step 3: map every raw tag not yet covered, in chunks.
     unmapped = [t for t in counts if t not in aliases]
     unmapped.sort(key=lambda t: -counts[t])
     print(f"{len(unmapped)} raw tags still unmapped; asking the model to map them", file=sys.stderr)
     canon_list = "\n".join(f"{c['tag']} ({c['category']}): {c['meaning']}" for c in canon.values())
-    for i in range(0, len(unmapped), 300):
-        chunk = unmapped[i:i + 300]
+    canon_names = set(canon)
+
+    def map_chunk(chunk: list[str], label: str) -> dict[str, str | None]:
+        """Ask the mapping model for one chunk; salvage what parses; cache on disk."""
+        cache_file = MAP_CACHE / f"{label}.json"
+        if cache_file.exists():
+            return json.loads(cache_file.read_text())
         user = ("Canonical tags:\n" + canon_list + "\n\nRaw tags to map (tag count):\n"
                 + "\n".join(f"{t} {counts[t]}" for t in chunk))
-        res = chat(args.model, MAP_SYSTEM, user, schema=MAP_SCHEMA, tag="taxonomy/map",
-                   max_tokens=16000, temperature=0.0)
-        for m in json.loads(res.text)["mappings"]:
-            raw = normalise(m["raw"])
+        res = chat(args.map_model, MAP_SYSTEM, user, schema=MAP_SCHEMA, tag="taxonomy/map",
+                   max_tokens=16000, temperature=0.0, reasoning=args.reasoning)
+        got: dict[str, str | None] = {}
+        try:
+            items = json.loads(res.text)["mappings"]
+        except (json.JSONDecodeError, KeyError):
+            items = []
+            for m in re.finditer(r"\{[^{}]*\}", res.text):
+                try:
+                    obj = json.loads(m.group(0))
+                except json.JSONDecodeError:
+                    continue
+                if "raw" in obj and "canonical" in obj:
+                    items.append(obj)
+            print(f"    {label}: reply not valid JSON, salvaged {len(items)} of {len(chunk)}", file=sys.stderr)
+        for m in items:
+            raw = normalise(str(m.get("raw", "")))
             c = normalise(m["canonical"]) if m.get("canonical") else None
-            aliases[raw] = c if c in canon else None
-        print(f"  mapped {min(i + 300, len(unmapped))}/{len(unmapped)} (${res.cost:.4f})", file=sys.stderr)
+            if raw:
+                got[raw] = c if c in canon_names else None
+        print(f"    {label}: mapped {len(got)}/{len(chunk)} (${res.cost:.4f})", file=sys.stderr)
+        MAP_CACHE.mkdir(parents=True, exist_ok=True)
+        cache_file.write_text(json.dumps(got, indent=0) + "\n")
+        return got
+
+    CHUNK = 250
+    for i in range(0, len(unmapped), CHUNK):
+        chunk = unmapped[i:i + CHUNK]
+        aliases.update(map_chunk(chunk, f"c{i // CHUNK:03d}"))
+    # Anything a truncated reply skipped gets one more try in smaller chunks.
+    leftovers = [t for t in unmapped if t not in aliases]
+    for j in range(0, len(leftovers), 100):
+        chunk = leftovers[j:j + 100]
+        aliases.update(map_chunk(chunk, f"retry{j // 100:03d}"))
     for t in unmapped:
         aliases.setdefault(t, None)
 
@@ -201,7 +266,7 @@ def main(argv: list[str] | None = None) -> int:
         c["uses"] = canon_counts[c["tag"]]
     dropped = sum(counts[r] for r, c in aliases.items() if c is None)
     out = {
-        "model": args.model,
+        "model": design_model, "map_model": args.map_model,
         "source": f"data/ai/pass1/{args.sub}",
         "categories": dict(CATEGORIES),
         "tags": sorted(canon.values(), key=lambda c: (c["category"], -c["uses"], c["tag"])),
