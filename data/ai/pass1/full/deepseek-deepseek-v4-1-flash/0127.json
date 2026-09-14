@@ -1,0 +1,191 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "db9903874a69",
+  "67420c1d906b",
+  "a473f91d14e6",
+  "7d8fb92d798c",
+  "c7da9e591463",
+  "cc3be620a640",
+  "14a023658bd2",
+  "1c40c3c002e8",
+  "135a1329066c",
+  "66be2e544bb1"
+ ],
+ "results": [
+  {
+   "key": "db9903874a69",
+   "tags": [
+    "neuron",
+    "spiking-neural-network",
+    "adaptive",
+    "integrate-and-fire",
+    "neuromorphic",
+    "digital",
+    "state-machine"
+   ],
+   "summary": "This design implements an adaptive leaky integrate-and-fire neuron in Verilog, where the firing threshold adapts based on recent spike activity so that sustained input produces progressively fewer spikes. It accepts an 8-bit input current on ui_in, exposes an 8-bit membrane state variable on uo_out, and emits a spike on uio[7]. Testing is done with the provided test.py by applying varying input currents and comparing observed outputs against expected values. No external hardware is required, and the documentation is limited to a brief description and test instructions.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "67420c1d906b",
+   "tags": [
+    "neuron",
+    "spiking-neural-network",
+    "integrate-and-fire",
+    "neuromorphic",
+    "ring-topology",
+    "oscillator",
+    "synchronization",
+    "digital"
+   ],
+   "summary": "This project implements eight leaky integrate-and-fire neurons connected in a ring topology, with configurable base current, coupling strength, and one of five firing patterns (independent, wave, synchronous, clustered, burst). Inputs are split across ui_in for pattern select and base current scaling, and uio_in for coupling strength, while spike outputs appear on uo_out and the first neuron's membrane potential on uio_out. Testing involves applying reset and enable, selecting a pattern and current, and monitoring the spike outputs for the expected propagation or synchronization behavior. No external hardware is needed, and the design is notable for demonstrating emergent network dynamics on a single Tiny Tapeout tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a473f91d14e6",
+   "tags": [
+    "neuron",
+    "integrate-and-fire",
+    "spiking-neural-network",
+    "neuromorphic",
+    "digital",
+    "state-machine"
+   ],
+   "summary": "This design is a simple leaky integrate-and-fire neuron implemented in Verilog that integrates an 8-bit input current into a membrane potential, leaks it over time, and fires a spike when a threshold is reached before resetting. The input current is applied on ui_in, the membrane state is exposed on uo_out, and the spike appears on uio[7]. The testing section only says 'Do something', so no concrete test procedure is documented. No external hardware is required, but the documentation is too thin to describe the implementation details beyond the general LIF behavior.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7d8fb92d798c",
+   "tags": [
+    "lrc",
+    "error-detection",
+    "checksum",
+    "redundancy",
+    "serial",
+    "digital",
+    "communication"
+   ],
+   "summary": "This design computes a running longitudinal redundancy check (LRC) over a stream of bytes, updating the code each time a new byte is presented on the input pins. A byte is supplied on ui_in and the current LRC is read from uo_out, with the running value resetting when the chip is reset. No external hardware is needed, and the design is a straightforward combinational/sequential checksum generator. The documentation is brief but sufficient to understand the function and basic usage.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c7da9e591463",
+   "tags": [
+    "neuron",
+    "spiking-neural-network",
+    "lstm",
+    "neuromorphic",
+    "adaptive-threshold",
+    "refractory-period",
+    "digital",
+    "counter"
+   ],
+   "summary": "This project implements a leaky spiking neural network (LSNN) neuron with a 12-bit membrane potential, configurable decay, adaptive threshold with optional learning, a three-cycle refractory period, and a 7-bit spike counter. Input current is applied on ui_in, the membrane potential and refractory indicator are output on uo_out, and the spike plus spike counter appear on uio_out, with learning enabled via uio_in[0]. Testing covers reset behavior, basic spiking, learning mode, and spike-count verification entirely through digital I/O. No external hardware is required, and the design is notable for combining adaptive threshold and refractory dynamics in a single Tiny Tapeout tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cc3be620a640",
+   "tags": [
+    "multiplier",
+    "array-multiplier",
+    "arithmetic",
+    "digital",
+    "structural",
+    "adder"
+   ],
+   "summary": "This design is a structural 4x4 array multiplier that takes two 4-bit unsigned factors, m and q, on ui_in and produces their 8-bit product p on uo_out. It works by generating partial products and summing them with full adders in a classic array arrangement. Testing is suggested with a testbench of ten varying 4-bit factor pairs compared against their expected products. No external hardware is needed, and the design is a simple educational arithmetic block.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "14a023658bd2",
+   "tags": [
+    "matrix-multiply",
+    "vector",
+    "arithmetic",
+    "digital",
+    "neural-network",
+    "multiplier"
+   ],
+   "summary": "This design multiplies a 2x2 matrix by a 2x1 vector, with 2-bit elements, producing a 2-element output vector. Matrix elements are supplied on ui_in, the input vector on uio_in, and the output vector is split across uo_out and uio_out. The documentation is inconsistent: the 'How it works' section describes treating inputs as current injection into a LIF neuron, which does not match the title or pin descriptions, and the test section only says 'Test it'. External hardware is listed as 'Possibly', and the documentation is too thin and contradictory to describe the design reliably.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "1c40c3c002e8",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "clock",
+    "inverter",
+    "nand"
+   ],
+   "summary": "This analog design contains two ring oscillators, one built from 18 inverters and a NAND enable gate targeting roughly 600 MHz, and one from 36 inverters targeting roughly 300 MHz, each followed by a two-stage driver to drive the analog pads. Ring 1 is enabled via ui[0] and observed on uo[0], while ring 2 is enabled via ui[1] and observed on uo[1]. Testing requires an oscilloscope to measure the attenuated analog output, and the documentation notes that the 300 MHz oscillator had a missing contact in TT08 and was fixed for TT09. The design is notable for being a transistor-level analog oscillator experiment with known silicon issues.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "135a1329066c",
+   "tags": [
+    "inverter",
+    "analog",
+    "transistor-level",
+    "buffer",
+    "driver",
+    "amplifier"
+   ],
+   "summary": "This analog design is a pair of inverters wired between two analog pins, with a small inverter driving a larger one to form a buffer. A signal is applied to ua[1] and the inverted output is observed on ua[0], with simulated rise time under 4 ns. Testing requires a signal generator and an oscilloscope. The design is a minimal transistor-level analog building block with limited documentation beyond its basic function.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "66be2e544bb1",
+   "tags": [
+    "adc",
+    "analog",
+    "analog-frontend",
+    "transistor-level",
+    "mixed-signal",
+    "sensor"
+   ],
+   "summary": "This project is an analog/mixed-signal design intended to contain a simple ADC, with a single analog output pin ua[0]. The documentation states only that it is planned to contain a simple ADC, with testing and external hardware both marked 'TBC'. There is essentially no usable documentation describing the implementation, pin functions, or test procedure. As a result, the design cannot be evaluated beyond its stated intent.",
+   "confidence": "low",
+   "insufficient_docs": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4934,
+  "completion_tokens": 1772,
+  "total_tokens": 6706,
+  "cost": 0.002078636,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002078636,
+   "upstream_inference_prompt_cost": 0.000909116,
+   "upstream_inference_completions_cost": 0.00116952
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002078636,
+ "elapsed_s": 31.3
+}

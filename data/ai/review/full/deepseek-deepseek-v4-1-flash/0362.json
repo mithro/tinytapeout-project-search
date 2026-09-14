@@ -1,0 +1,245 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a96339d834d5",
+  "b85a6d9744da",
+  "89afe415a05b",
+  "84265d274120",
+  "0a472dcdb0a5",
+  "7c67a4809b85"
+ ],
+ "results": [
+  {
+   "key": "a96339d834d5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes a 4-bit adder, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag because the design is a simple adder, not an arithmetic logic unit.",
+   "tags_before": [
+    "adder",
+    "logic-gate",
+    "combinational",
+    "wokwi",
+    "alu"
+   ],
+   "tags": [
+    "adder",
+    "logic-gate",
+    "combinational",
+    "wokwi"
+   ],
+   "summary_before": "This Wokwi project implements a standard 4-bit adder using AND, XOR, and OR gates, with a 5-bit output to handle overflow. The inputs are arranged as element-wise pairs: IN0 and IN1 are the LSBs of the two numbers, IN2 and IN3 are the next bits, and so on. The design can be tested by performing 4-bit additions on paper and comparing with the circuit's outputs. No external hardware is required beyond the inputs and outputs.",
+   "summary": "This Wokwi project implements a standard 4-bit adder using AND, XOR, and OR gates, with a 5-bit output to handle overflow. The inputs are arranged as element-wise pairs: IN0 and IN1 are the LSBs of the two numbers, IN2 and IN3 are the next bits, and so on. The design can be tested by performing 4-bit additions on paper and comparing with the circuit's outputs. No external hardware is required beyond the inputs and outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "b85a6d9744da",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes a 4-bit adder, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag because the design is a simple adder, not an arithmetic logic unit.",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "alu",
+    "logic-gate"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "logic-gate"
+   ],
+   "summary_before": "This Wokwi project implements a 4-bit adder that outputs a 5-bit sum. Two 4-bit numbers are input via IN0-IN3 and IN4-IN6 (with IN7 possibly unused), and the result is presented on OUT0-OUT4. Testing involves setting input switches to form two numbers and verifying the binary sum on the outputs. No external hardware is required beyond LEDs or other indicators.",
+   "summary": "This Wokwi project implements a 4-bit adder that outputs a 5-bit sum. Two 4-bit numbers are input via IN0-IN3 and IN4-IN6 (with IN7 possibly unused), and the result is presented on OUT0-OUT4. Testing involves setting input switches to form two numbers and verifying the binary sum on the outputs. No external hardware is required beyond LEDs or other indicators.",
+   "summary_changed": false
+  },
+  {
+   "key": "89afe415a05b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not indicate this is a template or starter project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "The design is explicitly non-functional and empty, matching the placeholder tag."
+    }
+   ],
+   "notes": "Replaced template with placeholder because the source describes a non-functional empty design, not a starter template.",
+   "tags_before": [
+    "incomplete",
+    "template",
+    "wokwi"
+   ],
+   "tags": [
+    "incomplete",
+    "wokwi",
+    "placeholder"
+   ],
+   "summary_before": "This Wokwi project is completely non-functional; the documentation states that it does not work and cannot be tested. All pins are labeled N/A, and no external hardware is used. It appears to be an empty or unfinished design, possibly a placeholder or failed experiment. There is no discernible function or purpose.",
+   "summary": "This Wokwi project is completely non-functional; the documentation states that it does not work and cannot be tested. All pins are labeled N/A, and no external hardware is used. It appears to be an empty or unfinished design, possibly a placeholder or failed experiment. There is no discernible function or purpose.",
+   "summary_changed": false
+  },
+  {
+   "key": "84265d274120",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "LEDs are only mentioned as optional external test indicators, not as an output interface of the design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed led tag because LEDs are only suggested as external test indicators, not part of the design.",
+   "tags_before": [
+    "logic-gate",
+    "combinational",
+    "led",
+    "wokwi"
+   ],
+   "tags": [
+    "logic-gate",
+    "combinational",
+    "wokwi"
+   ],
+   "summary_before": "This Wokwi design implements a NAND gate with a NOT gate on one input, using inputs IN2 and IN3 and output OUT3. The documented truth table specifies that output is high except when both inputs are high (for the NAND function after inversion). Testing can be done with LEDs or other indicators. The design is a simple logic gate demonstration with clear documentation.",
+   "summary": "This Wokwi design implements a NAND gate with a NOT gate on one input, using inputs IN2 and IN3 and output OUT3. The documented truth table specifies that output is high except when both inputs are high (for the NAND function after inversion). Testing can be done with LEDs or other indicators. The design is a simple logic gate demonstration with clear documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "0a472dcdb0a5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a 32768 Hz clock; it does not generate a clock."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator circuit is described; the design requires an external clock."
+    },
+    {
+     "tag": "rtc",
+     "reason": "The design is a clock display, not a real-time clock circuit with calendar or timekeeping registers."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The clock counts seconds, minutes, and hours, which is a counting function."
+    }
+   ],
+   "notes": "Removed clock-generator, oscillator, and rtc tags because the design consumes an external clock and is a display clock, not an oscillator or RTC; added counter.",
+   "tags_before": [
+    "7-segment",
+    "clock-generator",
+    "counter",
+    "button",
+    "display",
+    "rtc",
+    "oscillator"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "button",
+    "display"
+   ],
+   "summary_before": "This design implements a six-digit seven-segment clock displaying hours, minutes and seconds. Two active-high pushbuttons increment hours and minutes for setting the time, and the decimal points blink once per second. It requires a 32768 Hz clock, a six-digit common-anode display, and six PMOS/PNP digit-enable transistors. The outputs include active-low segment drives and multiplexed digit enables, and the design is intended for breadboard or custom PCB assembly.",
+   "summary": "This design implements a six-digit seven-segment clock displaying hours, minutes and seconds. Two active-high pushbuttons increment hours and minutes for setting the time, and the decimal points blink once per second. It requires a 32768 Hz clock, a six-digit common-anode display, and six PMOS/PNP digit-enable transistors. The outputs include active-low segment drives and multiplexed digit enables, and the design is intended for breadboard or custom PCB assembly.",
+   "summary_changed": false
+  },
+  {
+   "key": "7c67a4809b85",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design uses external SPI flash and PSRAM, but does not implement on-chip memory; the register file is already tagged."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports indicate partial testing on fabricated silicon."
+    },
+    {
+     "tag": "qspi",
+     "reason": "The design uses a QSPI Pmod and QSPI flash/PSRAM interfaces."
+    },
+    {
+     "tag": "pmod",
+     "reason": "The recommended external hardware is a QSPI Pmod."
+    }
+   ],
+   "notes": "Removed memory tag because memory is external; added silicon-tested, qspi, and pmod based on silicon reports and external hardware.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "register-file",
+    "spi",
+    "uart",
+    "memory",
+    "gpio"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "register-file",
+    "spi",
+    "uart",
+    "gpio",
+    "silicon-tested",
+    "qspi",
+    "pmod"
+   ],
+   "summary_before": "KianV uLinux RISC-V regfile edition is a 32-bit RISC-V IMA processor capable of booting Linux, featuring a 32x32 register file macro. It includes external SPI flash and PSRAM interfaces, a UART, and a SPI peripheral. The system runs at 30 MHz and requires a QSPI Pmod for external memory. Silicon tests showed partial functionality: it could not boot Linux due to an impedance mismatch when integrating the register file, though the register file itself works.",
+   "summary": "KianV uLinux RISC-V regfile edition is a 32-bit RISC-V IMA processor capable of booting Linux, featuring a 32x32 register file macro. It includes external SPI flash and PSRAM interfaces, a UART, and a SPI peripheral. The system runs at 30 MHz and requires a QSPI Pmod for external memory. Silicon tests showed partial functionality: it could not boot Linux due to an impedance mismatch when integrating the register file, though the register file itself works.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6270,
+  "completion_tokens": 1391,
+  "total_tokens": 7661,
+  "cost": 0.00443775,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00443775,
+   "upstream_inference_prompt_cost": 0.00235125,
+   "upstream_inference_completions_cost": 0.0020865
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00443775,
+ "elapsed_s": 4.6
+}

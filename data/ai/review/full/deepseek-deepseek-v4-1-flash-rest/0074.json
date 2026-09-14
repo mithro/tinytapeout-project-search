@@ -1,0 +1,382 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e49d00cfd778",
+  "7c2244872658",
+  "e9b0556efcbb",
+  "33f3ee4d6e9f",
+  "487c6f396f1c",
+  "9adc50d07d17"
+ ],
+ "results": [
+  {
+   "key": "e49d00cfd778",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "tpu",
+     "reason": "No tensor processing unit; the design is a memristive crossbar peripheral controller."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "No systolic array structure is described."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier is present in the design."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning inference or training is described."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing algorithm is implemented."
+    },
+    {
+     "tag": "floating-point",
+     "reason": "No floating point arithmetic is present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memristor",
+     "reason": "Controller for memristive crossbar arrays."
+    },
+    {
+     "tag": "spi",
+     "reason": "Mode-0 SPI slave interface on uio[0:3]."
+    },
+    {
+     "tag": "dac",
+     "reason": "Drives an external DAC via uo[7:4] and has a V/2 half-select DAC value."
+    },
+    {
+     "tag": "adc",
+     "reason": "Reads a 4-bit external ADC nibble on ui[7:4] with adc_ready."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Dedicated peripheral controller accelerating crossbar array operations."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Supports I-V characterization and measurement modes."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Verified with a cocotb test suite of 36 tests."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "asic",
+     "reason": "Targets ASIC implementation on GF180mcuD."
+    }
+   ],
+   "notes": "Tags and summary were entirely wrong, describing a TPU instead of a memristive crossbar controller.",
+   "tags_before": [
+    "tpu",
+    "systolic-array",
+    "multiplier",
+    "accelerator",
+    "machine-learning",
+    "dsp",
+    "floating-point"
+   ],
+   "tags": [
+    "accelerator",
+    "memristor",
+    "spi",
+    "dac",
+    "adc",
+    "instrumentation",
+    "cocotb",
+    "verilog",
+    "asic"
+   ],
+   "summary_before": "This design is a tensor processing unit inspired by Google's TPU that multiplies 8-bit floating-point matrices. It is implemented as a systolic array with a multiplier and accumulator, and is intended for machine learning inference. The design is written in Verilog and targets the Tiny Tapeout ASIC shuttle. It requires external control to load data and read results, likely via a microcontroller.",
+   "summary": "This design is a device-agnostic peripheral controller for 8x8 memristive crossbar arrays, supporting READ, SET, RESET, FORMING, and sweep modes. It is programmed through a Mode-0 SPI slave and drives row/column enables, pulse outputs, and a 4-bit DAC code. The design includes a 16-bit pulse counter, a sticky compliance-history register, and a last-ADC-in-sweep snapshot. It is written in Verilog and verified with a cocotb test suite.",
+   "summary_changed": true
+  },
+  {
+   "key": "7c2244872658",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not describe behavior."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design appears unfinished with placeholder documentation."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added insufficient-doc and incomplete based on placeholder documentation.",
+   "tags_before": [
+    "prng",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "prng",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This project is a pseudo-random number generator intended for a Tiny Tapeout workshop submission. The design is created with Wokwi and is intended for educational purposes. The exact behavior and usage are not fully described in the documentation. No external hardware or silicon results are described.",
+   "summary": "This project is a pseudo-random number generator limited to 1-6 dice numbers. It is implemented in Wokwi and has seven switch inputs and seven seven-segment outputs plus a SET output. The documentation is very thin and does not describe the exact behavior or usage. No external hardware or silicon results are described.",
+   "summary_changed": true
+  },
+  {
+   "key": "e9b0556efcbb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "error-correction",
+     "reason": "ECC here stands for Elliptic Curve Cryptography, not error correction."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU is described; the design performs addition and scaling."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier is described."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "Implements Elliptic Curve Cryptography scalar multiplication."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Dedicated ECC scalar multiplication accelerator."
+    },
+    {
+     "tag": "adder",
+     "reason": "Performs addition of two 8-bit operands."
+    },
+    {
+     "tag": "asic",
+     "reason": "Optimized for ASIC implementation using SKY130 and OpenLane."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Corrected ECC meaning from error correction to elliptic curve cryptography and removed unsupported ALU/multiplier/register-file tags.",
+   "tags_before": [
+    "crypto",
+    "error-correction",
+    "accelerator",
+    "alu",
+    "multiplier",
+    "register-file",
+    "asic"
+   ],
+   "tags": [
+    "crypto",
+    "accelerator",
+    "asic",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This project is a simplified ECC accelerator implemented in Verilog for ASIC implementation. It performs error correction using cryptographic algorithms. The design includes an ALU, multiplier, and register file to support the computation. It can be tested through simulation or on Tiny Tapeout demonstration boards.",
+   "summary": "This project is a simplified ECC scalar multiplication accelerator implemented in Verilog for ASIC implementation. It accepts two 8-bit operands through Tiny Tapeout GPIO pins and performs arithmetic similar to ECC point processing by adding the operands and generating a scaled output. The architecture includes an input interface, arithmetic processing block, scalar multiplication logic, and output interface. It is optimized for the SKY130 process using the OpenLane physical design flow.",
+   "summary_changed": true
+  },
+  {
+   "key": "33f3ee4d6e9f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dip-switch",
+     "reason": "Switches are handled over UART, not as direct DIP switch inputs."
+    },
+    {
+     "tag": "button",
+     "reason": "Buttons are handled over UART, not as direct button inputs."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Seven-segment display data is handled over UART, not as a direct output."
+    },
+    {
+     "tag": "led",
+     "reason": "LED data is handled over UART, not as a direct output."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The interface is UART on the PMOD bus, not general purpose digital IO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "Communicates via a 115200 UART link on uio[0:1]."
+    },
+    {
+     "tag": "pmod",
+     "reason": "UART signals are routed to the bidirectional PMOD bus."
+    },
+    {
+     "tag": "fpga",
+     "reason": "Emulates Basys 3 FPGA board peripherals over UART."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Removed direct peripheral tags since all peripherals are accessed over UART; added uart, pmod, and fpga tags.",
+   "tags_before": [
+    "7-segment",
+    "led",
+    "dip-switch",
+    "button",
+    "uart",
+    "gpio",
+    "education"
+   ],
+   "tags": [
+    "uart",
+    "education",
+    "pmod",
+    "fpga",
+    "verilog"
+   ],
+   "summary_before": "This design handles 16 LED inputs, 16 switch outputs, 12 seven-segment display inputs, and 5 button outputs, communicating via UART RX and TX on the bidirectional PMOD bus. It is intended for educational purposes to demonstrate I/O handling and display control. The design uses a 7-segment display and LEDs for output, and switches and buttons for input. It is implemented in Verilog and targets the Tiny Tapeout platform.",
+   "summary": "This design runs the main Basys 3 peripherals over a 115200 UART link. It handles 16 LED inputs, 16 switch outputs, 12 seven-segment display inputs, and 5 button outputs, communicating via UART RX and TX on the bidirectional PMOD bus. The UART messages use prefixes such as LD, SW, 7S, and BT to identify the peripheral data. It is implemented in Verilog and targets the Tiny Tapeout platform.",
+   "summary_changed": true
+  },
+  {
+   "key": "487c6f396f1c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "No clock divider is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Project allows testing the effect of different logic gates."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Design is created using the Wokwi simulator."
+    },
+    {
+     "tag": "education",
+     "reason": "Intended for learning about logic gates."
+    }
+   ],
+   "notes": "Removed unsupported clock-divider tag; corrected summary to match source.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This project implements basic logic gates and a clock divider. The logic gates are tested with a truth table, and the clock divider can be observed with a 10 kHz clock. The design is implemented in Wokwi and is intended for educational purposes. The project demonstrates fundamental digital logic concepts.",
+   "summary": "This project enables the user to test the effect of different logic gates. It has eight logic inputs and eight logic outputs, with some inputs and outputs interconnected between gates. The design is implemented in Wokwi and is intended for educational purposes. It uses switches and a single-number LED display as external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "9adc50d07d17",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; it is a straight-through connection."
+    },
+    {
+     "tag": "industrial",
+     "reason": "No industrial control application is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Design is created using the Wokwi simulator."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive a 7-segment display."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs light LEDs on the 7-segment display."
+    },
+    {
+     "tag": "template",
+     "reason": "Simple straight-through test design, likely a starter or test template."
+    }
+   ],
+   "notes": "Removed unsupported fsm and industrial tags; added 7-segment, led, and template tags.",
+   "tags_before": [
+    "fsm",
+    "led",
+    "industrial",
+    "wokwi"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "7-segment",
+    "template"
+   ],
+   "summary_before": "This project is a finite state machine that controls LED outputs based on input conditions. It is implemented in Wokwi and uses standard board switches and LEDs for testing. The design is intended for industrial control applications. It demonstrates sequential logic and state-based control.",
+   "summary": "This project is a straight-through test that connects the eight inputs directly to the eight outputs. It is implemented in Wokwi and uses DIP switches for inputs and a 7-segment display for outputs. Setting any DIP switch high lights the corresponding LED segment on the display. The design demonstrates basic input-to-output wiring.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6955,
+  "completion_tokens": 2105,
+  "total_tokens": 9060,
+  "cost": 0.0046125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0046125,
+   "upstream_inference_prompt_cost": 0.0020865,
+   "upstream_inference_completions_cost": 0.002526
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0046125,
+ "elapsed_s": 9.7
+}

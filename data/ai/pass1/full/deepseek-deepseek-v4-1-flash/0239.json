@@ -1,0 +1,196 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e98ccd46e984",
+  "1bfe82e56a30",
+  "0aa016eaadc8",
+  "60b24ecfda2a",
+  "c413a9e71690",
+  "e36cccac896e",
+  "1ddb0a857834",
+  "1c712f0ed305",
+  "e5bad5b1fd8c",
+  "12a178b7404c"
+ ],
+ "results": [
+  {
+   "key": "e98ccd46e984",
+   "tags": [
+    "code-lock",
+    "state-machine",
+    "security",
+    "buttons",
+    "led",
+    "education"
+   ],
+   "summary": "This design implements a simple code lock using a state machine. The user enters a code via four input buttons and confirms with an enter button; after three incorrect attempts, the lock disables until reset. The lock output goes low when the correct code is entered. It is intended as a learning exercise and can be tested with buttons and LEDs or a Digilent Analog Discovery.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1bfe82e56a30",
+   "tags": [
+    "prng",
+    "random-number-generator",
+    "lfsr",
+    "7-segment",
+    "xor-shift",
+    "seed",
+    "modulus"
+   ],
+   "summary": "This project implements an 8-bit pseudo-random number generator using the XorShift32 algorithm. An 8-bit seed is entered via input switches, and after three clock pulses, the first pseudo-random number appears on the bidirectional pins. A seven-segment display shows a random hexadecimal digit, with the modulus selectable via the input pins (default 10). External hardware includes switches, a seven-segment display, and a way to read the random outputs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0aa016eaadc8",
+   "tags": [
+    "risc-v",
+    "soc",
+    "linux",
+    "sv32",
+    "mmu",
+    "cache",
+    "qspi",
+    "spi",
+    "uart",
+    "gpio"
+   ],
+   "summary": "This design is a RISC-V SoC based on the KianV RV32IMA processor with SV32 MMU and hardware caches, capable of booting Linux, µLinux, and xv6. It includes 32 MiB of external QSPI PSRAM, 16 MiB of SPI NOR flash, and memory-mapped peripherals such as UART, SPI, and GPIO. Testing requires a pre-built system image and external hardware including QSPI PSRAM, SPI NOR flash, and optionally an SD card and Ethernet Pmod. The design is notable for being a compact Linux-capable SoC on a Tiny Tapeout tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "60b24ecfda2a",
+   "tags": [
+    "synthesizer",
+    "audio",
+    "pwm",
+    "midi",
+    "adsr",
+    "oscillator",
+    "music"
+   ],
+   "summary": "This is a monophonic digital synthesizer with three oscillators and an ADSR envelope. It accepts a 7-bit MIDI note number and a gate signal to control note on/off, and outputs audio via PWM. It requires the Tiny Tapeout Audio Pmod connected to the output header. A Verilator simulation is provided for testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c413a9e71690",
+   "tags": [
+    "crypto",
+    "simon",
+    "block-cipher",
+    "spi",
+    "encryption",
+    "decryption",
+    "accelerator"
+   ],
+   "summary": "This design implements the Simon block cipher (32/64 configuration) with an SPI slave interface. An external SPI master can write a 64-bit key and 32-bit data block, configure encryption or decryption, and read back the result. It is tested with a cocoTB script and on FPGA with an ESP32 devkit as SPI master. External SPI master hardware is required for operation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e36cccac896e",
+   "tags": [
+    "vga",
+    "trng",
+    "multiplexer",
+    "ring-oscillator",
+    "random-number-generator",
+    "display"
+   ],
+   "summary": "This design multiplexes between four VGA projects, with an option to use a true random number generator based on sampling a ring oscillator to randomly select the active project. Inputs control speed, direction, and selection, and the output drives VGA signals. It requires a VGA Pmod compatible with TinyVGA. The design is notable for combining multiple VGA demos with a hardware random selector.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1ddb0a857834",
+   "tags": [
+    "metastability",
+    "characterization",
+    "detector",
+    "delay-line",
+    "calibration",
+    "counter",
+    "experiment"
+   ],
+   "summary": "This circuit characterizes metastability by sampling a locally generated asynchronous data signal and detecting metastable events. It includes a tunable delay to adjust the detection window and two selectable detector implementations. The output is a count of metastability events, and control inputs allow configuration of data frequency, prescaler, and calibration mode. It is a process characterization experiment intended for studying metastability effects.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1c712f0ed305",
+   "tags": [
+    "mac",
+    "multiplier",
+    "accumulator",
+    "gate-level",
+    "ml-guided",
+    "serial-interface",
+    "arithmetic"
+   ],
+   "summary": "This design is an 8-bit multiply-accumulate unit with a 17-bit accumulator, wrapped in a clocked interface with a serial command interface. The inner MAC core is a gate-level, structurally optimized circuit produced through ML-guided design-space exploration, computing y = a*b + c combinationally. The wrapper adds operand registers and a running accumulator, allowing multiple multiply-add cycles. It requires no external hardware and is controlled via command pins.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e5bad5b1fd8c",
+   "tags": [
+    "neural-network",
+    "npu",
+    "int8",
+    "relu",
+    "multiplier",
+    "adder",
+    "ml-guided",
+    "inference",
+    "register-file"
+   ],
+   "summary": "This is a 4-way parallel INT8 neural network inference engine that computes a fully-connected layer with ReLU activation. It uses custom arithmetic units generated by SproutHDL, including Han-Carlson multipliers and Sparse Kogge-Stone adders, with a register file for weights and biases. The design is configurable for 1–8 inputs and 1–4 outputs, and is controlled via a command interface. It requires no external hardware and is notable for its ML-guided arithmetic optimization.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "12a178b7404c",
+   "tags": [
+    "vga",
+    "pattern-generator",
+    "oscillation",
+    "display",
+    "experiment",
+    "stripes"
+   ],
+   "summary": "This design generates stripes or other patterns on a VGA display, with controls for oscillation and truncation modes. It is a simple experiment with minimal documentation, and the description expresses uncertainty about its usefulness. It requires a VGA Pmod for output. The design is notable for its informal and experimental nature.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4836,
+  "completion_tokens": 1593,
+  "total_tokens": 6429,
+  "cost": 0.0033624,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033624,
+   "upstream_inference_prompt_cost": 0.0014508,
+   "upstream_inference_completions_cost": 0.0019116
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033624,
+ "elapsed_s": 10.9
+}

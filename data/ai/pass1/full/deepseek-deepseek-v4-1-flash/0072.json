@@ -1,0 +1,209 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "fdec2e6e3836",
+  "c3b4a51f2e6d",
+  "baf1223d4020",
+  "0482e60b70b3",
+  "a688c32d9a86",
+  "28df40b56205",
+  "6c62597ab788",
+  "118662d8ea0c",
+  "1f5a9d7e2791",
+  "2bbb34d23db9"
+ ],
+ "results": [
+  {
+   "key": "fdec2e6e3836",
+   "tags": [
+    "prng",
+    "lfsr",
+    "random-number-generator",
+    "noise",
+    "synthesizer",
+    "audio",
+    "seed",
+    "shift-register"
+   ],
+   "summary": "This project implements an 8-bit pseudo-random number generator based on a 16-bit linear feedback shift register with a twist: the upper and lower halves are rotated in opposite directions and XORed. The eight input pins set the initial seed, and the eight output pins provide the generated noise bits. It is intended as a non-cryptographic noise source, for example to feed a musical synthesizer. The documentation notes that an all-zero seed produces only zeros and that the design is not suitable for cryptographic use.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c3b4a51f2e6d",
+   "tags": [
+    "spdif",
+    "i2s",
+    "audio",
+    "decoder",
+    "i2c",
+    "pwm",
+    "amplifier",
+    "fifo",
+    "oversampling"
+   ],
+   "summary": "This design converts an SPDIF digital audio input into I2S output for a Class-D amplifier (MA12070p). It oversamples the SPDIF signal with a 27 MHz clock, recovers the PCM samples into left and right FIFOs, and generates the I2S bit clock, word select, and data signals. It also provides I2C control for the amplifier and a PWM output. Silicon testing confirmed I2C register access, amplifier communication, and working SPDIF-to-I2S audio, though the clock must be set to 27 MHz.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "baf1223d4020",
+   "tags": [
+    "adc",
+    "sigma-delta",
+    "analog",
+    "passive",
+    "pwm",
+    "sinc-filter",
+    "oversampling",
+    "rc-network"
+   ],
+   "summary": "This project implements a first-order passive sigma-delta analog-to-digital converter that requires external resistors and a capacitor connected to a digital input pin. Configuration pins select the sampling clock, oversampling ratio, and SINC filter order, while four output pins provide a 4-bit ADC result and two pins output a PWM signal proportional to the input voltage. The design was simulated with a testbench covering all subcircuits. It is intended for educational use and needs an external RC network and a DC input voltage to operate.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0482e60b70b3",
+   "tags": [
+    "analog",
+    "crossbar",
+    "matrix-multiply",
+    "reram",
+    "placeholder",
+    "poly-resistor",
+    "current-summing",
+    "dac",
+    "adc"
+   ],
+   "summary": "This is an analog crossbar array that performs 4x4 matrix multiplication using poly resistors as fixed weights, serving as a placeholder for future ReRAM projects. Six analog pins provide four input voltages, a supply, and a summing-junction output current, while eight digital inputs control input multiplexers and column selection. External off-the-shelf DACs and ADCs (including a transimpedance amplifier) are required to drive the inputs and read the output current. The design is notable for being an analog matrix-multiply testbed with a fixed weight matrix.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a688c32d9a86",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "linux",
+    "uart",
+    "spi",
+    "qspi",
+    "psram",
+    "flash",
+    "led"
+   ],
+   "summary": "This is a 32-bit RISC-V IMA processor system-on-chip capable of booting Linux, with 16 MiB external SPI flash, 8 MiB external PSRAM, a UART, and a SPI peripheral. It is used by building a system image (bootloader, device tree, kernel) and loading it into the SPI flash, then interacting via a UART console. External hardware includes a QSPI Pmod for flash and PSRAM. Silicon tests by multiple testers confirmed successful Linux boot at 30-31.5 MHz, with a maximum tested speed of 34.5 MHz.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "28df40b56205",
+   "tags": [
+    "stepper-motor",
+    "motor-control",
+    "spi",
+    "step-dir",
+    "pulse-generator",
+    "timer",
+    "irq",
+    "shutdown"
+   ],
+   "summary": "This project generates step and direction pulses for stepper motor drivers, with control over pulse count, interval, and gradual timing changes. It is configured via a 40-bit SPI protocol and provides an IRQ output to indicate when a new schedule entry can be submitted, plus a shutdown input to stop pulsing. The design was tested on silicon and works, with bring-up code and caveats documented by the author. It requires an external SPI master and a stepper motor driver connected to the step/dir outputs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6c62597ab788",
+   "tags": [
+    "synthesizer",
+    "audio",
+    "karplus-strong",
+    "i2s",
+    "spi",
+    "prbs",
+    "noise",
+    "string-synthesis",
+    "music"
+   ],
+   "summary": "This design implements a simplified Karplus-Strong string synthesis algorithm that generates plucked-string and drum timbres. It is configured through a SPI register map or input pins, and the synthesized 8-bit audio samples are continuously transmitted via an I2S interface. An external I2S DAC is required to convert the digital audio to sound. The design operates with a 256 kHz clock to produce a 16 kHz sample rate and includes pseudo-random binary sequence generators for noise.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "118662d8ea0c",
+   "tags": [
+    "fifo",
+    "clock-domain-crossing",
+    "asynchronous",
+    "memory",
+    "buffer",
+    "reset",
+    "full",
+    "empty"
+   ],
+   "summary": "This is a 4-bit wide asynchronous FIFO that buffers data across two independent clock domains, with a capacity of 32 entries (16 bytes). It provides separate write and read clocks, increment signals, resets, and status outputs for full and empty. The design was created by the author while learning logic design and is based on a Cummings paper. To use it, the write and read resets must be held low while clocks run, then raised to initialize the module.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1f5a9d7e2791",
+   "tags": [
+    "7-segment",
+    "display",
+    "decoder",
+    "dip-switch",
+    "education",
+    "hex",
+    "input",
+    "output"
+   ],
+   "summary": "This project reads a 4-bit binary value from the DIP switches on the Tiny Tapeout demo board and displays the corresponding hexadecimal digit (0-F) on the 7-segment display. It was created as a training exercise for inexperienced FPGA and Verilog programmers in the eFabless ChipCraft class. The design is purely combinational and requires only the demo board's switches and display. It serves as a simple educational example of input decoding and display driving.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2bbb34d23db9",
+   "tags": [
+    "ws2812",
+    "led",
+    "i2c",
+    "led-controller",
+    "addressable-led",
+    "open-collector",
+    "pullup",
+    "register-map"
+   ],
+   "summary": "This project is an I2C-controlled driver for WS2812B addressable LEDs, with a register map that directly maps to the green, red, and blue bytes of sequential LEDs. It uses open-collector I2C outputs with external pull-up resistors, and also provides alternative I2C pins on normal outputs. The LED output updates immediately after writing to the registers, and sequential writes auto-increment the register address. External hardware includes an I2C master (such as a microcontroller) and WS2812B LEDs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6141,
+  "completion_tokens": 1965,
+  "total_tokens": 8106,
+  "cost": 0.003570255,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003570255,
+   "upstream_inference_prompt_cost": 0.001565955,
+   "upstream_inference_completions_cost": 0.0020043
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003570255,
+ "elapsed_s": 52.0
+}

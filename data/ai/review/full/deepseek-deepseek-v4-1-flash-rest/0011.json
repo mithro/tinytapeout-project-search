@@ -1,0 +1,394 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2ed94c20df9a",
+  "751af83e1817",
+  "108271f0ef43",
+  "ff31096d8a98",
+  "272eac115abc",
+  "03b5f289583f"
+ ],
+ "results": [
+  {
+   "key": "2ed94c20df9a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "puzzle",
+     "reason": "Source does not describe any puzzle or game logic."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate implementation is described in the source."
+    },
+    {
+     "tag": "led",
+     "reason": "No LED output is described; outputs are generic OUT0/OUT1."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation states testing is TBD and the design is a first ASIC with no functional detail."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Source gives no circuit description beyond a date and location."
+    }
+   ],
+   "notes": "Removed unsupported puzzle, logic-gate and led tags; added incomplete and insufficient-doc.",
+   "tags_before": [
+    "puzzle",
+    "education",
+    "wokwi",
+    "logic-gate",
+    "led"
+   ],
+   "tags": [
+    "education",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a switch-combination puzzle where the correct pattern of inputs turns on a light output. The documentation is thin and does not state the exact winning combination or the full truth table. Testing is listed as to-be-determined, with a logic analyzer suggested as helpful external hardware. The project is notable mainly as a beginner class exercise rather than for any specific circuit capability.",
+   "summary": "This is a simple digital circuit designed beginning November 7, 2024 with TinyTapeout and UCSD in La Jolla. The documentation does not describe the circuit's function or any specific behavior. Testing is listed as to-be-determined, with a logic analyzer suggested as helpful external hardware. The project is a beginner ASIC exercise rather than a documented design.",
+   "summary_changed": true
+  },
+  {
+   "key": "751af83e1817",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is mentioned or pinned."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate implementation is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described; outputs are generic OUT0..OUT7."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation says functionality is still to be decided and test procedure will be filled in."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Source is very thin and does not describe an implemented design."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment, logic-gate and display tags; added incomplete and insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "education",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design uses logic gates to control segments of a 7-segment display based on input values. The documentation is incomplete, so the exact functionality cannot be determined. The design is intended for educational purposes and is simulated in Wokwi. The design is notable for its use of logic gates to drive a display.",
+   "summary": "This design is planned to display a secret initial when a certain combination of inputs is applied. The documentation states the functionality is still to be decided and that the author is planning to spell the letter F. The test procedure is not yet written. The design is simulated in Wokwi and is not yet a complete implementation.",
+   "summary_changed": true
+  },
+  {
+   "key": "108271f0ef43",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cellular-automaton",
+     "reason": "Source describes a SAT solver, not a cellular automaton."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is mentioned or pinned."
+    },
+    {
+     "tag": "game",
+     "reason": "No game is described."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "No puzzle game is described."
+    },
+    {
+     "tag": "education",
+     "reason": "Source does not state an educational purpose."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Verilog, not Wokwi."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "counter",
+     "reason": "Source states it uses a counter to iterate over assignments."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The design uses run/load/done control sequencing typical of a state machine."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Source says testing plans to use an RP2040."
+    }
+   ],
+   "notes": "Replaced incorrect cellular-automaton/7-segment/game/puzzle/education/wokwi tags with verilog, counter, fsm and rp2040.",
+   "tags_before": [
+    "cellular-automaton",
+    "7-segment",
+    "game",
+    "puzzle",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "verilog",
+    "counter",
+    "fsm",
+    "rp2040"
+   ],
+   "summary_before": "This project implements a simple cellular automaton on a 7-segment display using about 200 logic gates, where each segment lives or dies based on the number of living neighbours it touches. It is tested on the standard Tiny Tapeout board using DIP switches for load, run mode and clock division, with no external hardware required. The documentation includes detailed operating instructions and a set of puzzles about the automaton's behaviour, making it a notable educational design. The design is a puzzle game that demonstrates cellular automaton principles.",
+   "summary": "This project implements a tiny SAT solver that uses a counter to iterate over all possible assignments to a simple SAT problem. It is written in Verilog and exposes data, run, load, solution and done signals on its pins. Testing is planned using an RP2040 to replicate the software test procedure on hardware. No silicon test results are documented.",
+   "summary_changed": true
+  },
+  {
+   "key": "ff31096d8a98",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is mentioned or pinned."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "Design is a shift-register UART transmitter, not a counter."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Source describes a shift register, not a finite state machine."
+    },
+    {
+     "tag": "education",
+     "reason": "Source does not state an educational purpose."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation is described; a clock is an input."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "Design is an 8N1 UART transmitter with serial output pins."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Source states the heart is a 13-bit shift register built from D flip-flops."
+    },
+    {
+     "tag": "ascii",
+     "reason": "Limited character set 0x40..0x5F includes ASCII capital letters."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Replaced incorrect 7-segment/display/counter/fsm/education/clock-generator tags with uart, shift-register, ascii and wokwi.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "counter",
+    "fsm",
+    "wokwi",
+    "education",
+    "clock-generator"
+   ],
+   "tags": [
+    "wokwi",
+    "uart",
+    "shift-register",
+    "ascii"
+   ],
+   "summary_before": "This design is a counter with a 7-segment display output, built with Wokwi. It is intended for educational purposes and demonstrates a finite state machine. The design uses a clock input and drives the seven segments of a display. The documentation is minimal but sufficient to understand the configuration options.",
+   "summary": "This design is a low-baudrate 8N1 UART transmitter with a limited character set covering 0x40 to 0x5F, which includes all capital letters in ASCII. Its heart is a 13-bit shift register built from D flip-flops that repeatedly transmits the loaded word until a new word is loaded or the output is disabled. Several output pins provide direct, gated and reverse-polarity UART signals. Testing can be done by loading a character and attaching a UART receiver, oscilloscope or logic analyzer.",
+   "summary_changed": true
+  },
+  {
+   "key": "272eac115abc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "No neural network is described."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "No clock domain crossing synchronizer is described."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is described or pinned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "Source states a 4-bit LFSR configured as a PRBS."
+    },
+    {
+     "tag": "prng",
+     "reason": "LFSR-based PRBS is a pseudo-random number generator."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs are labeled segment a through segment g."
+    },
+    {
+     "tag": "education",
+     "reason": "Source says it is used to teach lower division college students IC design."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported neural-network, synchronizer and uart tags; added lfsr, prng, 7-segment, education and wokwi.",
+   "tags_before": [
+    "shift-register",
+    "neural-network",
+    "prng",
+    "wokwi",
+    "synchronizer",
+    "uart"
+   ],
+   "tags": [
+    "shift-register",
+    "prng",
+    "wokwi",
+    "lfsr",
+    "7-segment",
+    "education"
+   ],
+   "summary_before": "This design is described as a shift register with neural network elements, but the documentation is incomplete. It mentions a UART interface, but no pins are assigned to it. The design is built with Wokwi and may include a PRNG and synchronizer, but details are unclear. There is not enough information to determine the full functionality.",
+   "summary": "This design implements a 4-bit LFSR configured as a PRBS with polynomial X^3+X^2+1. Reset sets the four D flip-flops to zero to ensure oscillation starts, and XNOR is used because of a synthesis warning. The outputs drive a 7-segment display plus a separate PRBS output pin. It is intended as a simple design to verify the flow and teach lower division college students IC design.",
+   "summary_changed": true
+  },
+  {
+   "key": "03b5f289583f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface is described or pinned."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "No signal generator is described."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics output is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "Title and description state a bit-serial implementation to save area."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Source describes a main shift register and a step counter register."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Source describes a state machine coordinating the design."
+    },
+    {
+     "tag": "counter",
+     "reason": "Step counter register stores the number of steps."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Testing procedure is listed as TODO."
+    }
+   ],
+   "notes": "Replaced incorrect VGA/graphics/video tags with verilog, bit-serial, shift-register, fsm, counter and incomplete.",
+   "tags_before": [
+    "vga",
+    "signal-generator",
+    "graphics",
+    "display",
+    "video"
+   ],
+   "tags": [
+    "verilog",
+    "bit-serial",
+    "shift-register",
+    "fsm",
+    "counter",
+    "incomplete"
+   ],
+   "summary_before": "The design is intended to mimic moving a cursor on a screen, and no testing or silicon results are documented. It likely generates VGA signals to display a cursor on a monitor. The design uses a signal generator to produce the cursor movement pattern. External hardware would include a VGA monitor.",
+   "summary": "This design is a Collatz Conjecture checker implemented in a bit-serial fashion to save area. It consists of a main shift register holding the current number, a step counter register storing the orbit length, and a state machine coordinating the operation. The pins provide serial input and output for the main and step registers, plus finished and overflow flags. Testing procedure is still to be determined and no external hardware is required.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5677,
+  "completion_tokens": 2175,
+  "total_tokens": 7852,
+  "cost": 0.0043131,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043131,
+   "upstream_inference_prompt_cost": 0.0017031,
+   "upstream_inference_completions_cost": 0.00261
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043131,
+ "elapsed_s": 32.4
+}

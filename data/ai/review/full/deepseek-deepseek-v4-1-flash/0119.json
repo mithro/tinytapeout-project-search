@@ -1,0 +1,208 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ce2d25099a1d",
+  "beb604836904",
+  "a0fdbb3e39bc",
+  "1ddceb54a10a",
+  "d860a530a6ba",
+  "3888bd4750f9"
+ ],
+ "results": [
+  {
+   "key": "ce2d25099a1d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "PWM is the output mechanism, not a stated design tag; the project is a DAC"
+    }
+   ],
+   "add": [],
+   "notes": "PWM tag removed; it is the described output mechanism, and the summary was lightly tightened to reflect the thin documentation.",
+   "tags_before": [
+    "dac",
+    "pwm",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "dac",
+    "gpio",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 12-bit digital-to-analog converter that produces a PWM output from a digital input. It is controlled by an external ESP32-WROOM-S3, which supplies clock, reset, enable, and the 12 input bits across the ui and uio pins. Testing involves driving the inputs with values such as 1024, 2048, and 4095 and observing the resulting PWM waveform on a wave analyzer or through the ESP32's serial output. The documentation is very brief, consisting of only a single sentence describing the design, so details of the internal implementation are not available.",
+   "summary": "This project is described as a 12-bit digital-to-analog converter in Verilog that converts a digital input into an analog (PWM) output. The testing notes say to connect an external ESP32-WROOM-S3, which provides clk, rst-n, ena, and the 12 input bits across the ui and uio pins. The suggested test is to apply values such as 1024, 2048, and 4095 and observe the resulting output on a wave analyzer or through the ESP32's serial output. The documentation is very brief, consisting of only a single sentence describing the design, so no internal implementation details are given.",
+   "summary_changed": true
+  },
+  {
+   "key": "beb604836904",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "hash",
+    "crypto",
+    "verilog"
+   ],
+   "tags": [
+    "hash",
+    "crypto",
+    "verilog"
+   ],
+   "summary_before": "This project implements the Blake2s hashing algorithm in Verilog with C firmware support, including secret key support and block streaming. It exposes an 8-bit data input, command and valid handshake signals, and an 8-bit hash output with a valid flag. The documentation is essentially absent beyond the pin names and one-line description, so the exact usage and testing procedure are unclear. The design is notable for being a hardware implementation of a modern cryptographic hash.",
+   "summary": "This project implements the Blake2s hashing algorithm in Verilog with C firmware support, including secret key support and block streaming. It exposes an 8-bit data input, command and valid handshake signals, and an 8-bit hash output with a valid flag. The documentation is essentially absent beyond the pin names and one-line description, so the exact usage and testing procedure are unclear. The design is notable for being a hardware implementation of a modern cryptographic hash.",
+   "summary_changed": false
+  },
+  {
+   "key": "a0fdbb3e39bc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The state pins indicate internal sequencing but no FSM tag was claimed or supported beyond generic control signals"
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text ('TESTETSet', 'TESTSEt') and too thin to describe operation"
+    }
+   ],
+   "notes": "Removed fsm tag not clearly evidenced, added insufficient-doc, and kept the CPU vs risc-v distinction since no RISC-V claim is made.",
+   "tags_before": [
+    "cpu",
+    "uart",
+    "fsm"
+   ],
+   "tags": [
+    "cpu",
+    "uart",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a small custom 4-bit CPU with 16 instructions and 16x4-bit storage. It includes a UART receive pin, four input pins, four output pins, and instruction register outputs, along with state signals for program, fetch, decode, and execute phases. The documentation is extremely thin, consisting only of placeholder text like 'TESTETSet' and 'TESTSEt', so the operation and testing procedure cannot be determined. External hardware is mentioned but not specified.",
+   "summary": "This is a small custom 4-bit CPU with 16 instructions and 16x4-bit storage. It includes a RX pin, four input pins, four output pins, instruction register outputs, and state signals for program, fetch, decode, and execute phases. The documentation is extremely thin, consisting only of placeholder text like 'TESTETSet' and 'TESTSEt', so the operation and testing procedure cannot be determined. External hardware is mentioned but not specified.",
+   "summary_changed": true
+  },
+  {
+   "key": "1ddceb54a10a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "vhdl",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "game",
+    "vhdl",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a simple reaction test game implemented in VHDL. It has one input pin and one output pin, but the documentation does not describe how the game works or how to interact with it. The description states only that it works and to send in data. There is no information on external hardware or testing procedures.",
+   "summary": "This project is a simple reaction test game implemented in VHDL. It has one input pin and one output pin, but the documentation does not describe how the game works or how to interact with it. The description states only that it works and to send in data. There is no information on external hardware or testing procedures.",
+   "summary_changed": false
+  },
+  {
+   "key": "d860a530a6ba",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation circuit is described; the design merely uses a clock"
+    },
+    {
+     "tag": "display",
+     "reason": "The source only loosely mentions changing segments, and the generic uo pins do not evidence a display output"
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is extremely sparse and the design is not meaningfully described"
+    }
+   ],
+   "notes": "Removed unsupported clock-generator and display tags; added insufficient-doc to reflect the sparse source.",
+   "tags_before": [
+    "flip-flop",
+    "7-segment",
+    "wokwi",
+    "clock-generator",
+    "display"
+   ],
+   "tags": [
+    "flip-flop",
+    "7-segment",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a test project that uses a flipflop to change segments on a clock signal. The documentation is extremely sparse, with only 'This is a testproject' and 'Test' provided. The pin names are generic inputs and outputs, offering little insight into functionality. It is likely a placeholder or experiment with minimal documentation.",
+   "summary": "This is a test project that uses a flipflop to change segments on a clock signal. The documentation is extremely sparse, with only 'This is a testproject' and 'Test' provided. The pin names are generic inputs and outputs, offering little insight into functionality. It is likely a placeholder or experiment with minimal documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "3888bd4750f9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No teaching or learning purpose is described"
+    },
+    {
+     "tag": "template",
+     "reason": "The text does not state this is a template project"
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is essentially absent and provides no functional details"
+    }
+   ],
+   "notes": "Removed education and template tags unsupported by the source, added insufficient-doc for the placeholder-level documentation.",
+   "tags_before": [
+    "wokwi",
+    "gpio",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "wokwi",
+    "gpio",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project has no description and the documentation states 'it just works by existing' and 'just do it :)', providing no functional details. The pins are generic inputs and outputs, suggesting a simple pass-through or placeholder design. No external hardware is specified. The project is essentially undocumented.",
+   "summary": "This project has no description and the documentation states 'it just works by existing' and 'just do it :)', providing no functional details. The pins are generic inputs and outputs, suggesting a simple pass-through or placeholder design. No external hardware is specified. The project is essentially undocumented.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5494,
+  "completion_tokens": 1201,
+  "total_tokens": 6695,
+  "cost": 0.0030894,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0030894,
+   "upstream_inference_prompt_cost": 0.0016482,
+   "upstream_inference_completions_cost": 0.0014412
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0030894,
+ "elapsed_s": 9.3
+}

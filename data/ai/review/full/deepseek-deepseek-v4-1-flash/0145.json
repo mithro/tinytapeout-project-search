@@ -1,0 +1,218 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e79f2631bc9d",
+  "41d2f803c230",
+  "1125cb7aa140",
+  "97ae3633230d",
+  "d72a3d0d8253",
+  "6279db61004a"
+ ],
+ "results": [
+  {
+   "key": "e79f2631bc9d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "demodulator",
+     "reason": "not in the canonical vocabulary"
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "the IR demodulator is a digital input, not a generic sensor interface"
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "decodes the RC5 infrared remote protocol used by legacy consumer remotes"
+    }
+   ],
+   "notes": "Removed non-vocabulary 'demodulator' and unsupported 'sensor-interface'; added 'retro' for the RC5 remote protocol.",
+   "tags_before": [
+    "decoder",
+    "counter",
+    "7-segment",
+    "display",
+    "verilog",
+    "demodulator",
+    "sensor-interface"
+   ],
+   "tags": [
+    "decoder",
+    "counter",
+    "7-segment",
+    "display",
+    "verilog",
+    "retro"
+   ],
+   "summary_before": "The RC5 decoder decodes infrared remote control signals in the RC5 protocol. It increments or decrements a counter based on the volume up or volume down buttons, and displays the count on a 7-segment display. The design is tested by pointing an IR remote at an IR demodulator connected to the input pin and pressing the volume buttons. It requires an external IR demodulator such as a TSOP1738.",
+   "summary": "The RC5 decoder decodes infrared remote control signals in the RC5 protocol. It increments or decrements a counter based on the volume up or volume down buttons, and displays the count on a 7-segment display. The design is tested by pointing an IR remote at an IR demodulator connected to the input pin and pressing the volume buttons. It requires an external IR demodulator such as a TSOP1738.",
+   "summary_changed": false
+  },
+  {
+   "key": "41d2f803c230",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "the design models a Hodgkin-Huxley/LIF membrane potential, not a spiking neural network hardware block"
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'spiking-neural-network' since the source describes a single neuron model rather than an SNN hardware block.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "fixed-point"
+   ],
+   "tags": [
+    "neuromorphic",
+    "fixed-point"
+   ],
+   "summary_before": "This design implements a Hodgkin-Huxley neuron model in silicon, which produces action potentials in response to input current injection. An 8-bit input current is applied, interpreted as a 16-bit fixed-point value in uA/cm^2, and the membrane potential is output on both dedicated and bidirectional pins. The neuron fires periodically when the current exceeds a threshold of approximately 12 (in the 8-bit representation). It is intended for exploring neuron dynamics and spiking behavior.",
+   "summary": "This design implements a Hodgkin-Huxley neuron model in silicon, which produces action potentials in response to input current injection. An 8-bit input current is applied, interpreted as a 16-bit fixed-point value in uA/cm^2, and the membrane potential is output on both dedicated and bidirectional pins. The neuron fires periodically when the current exceeds a threshold of approximately 12 (in the 8-bit representation). It is intended for exploring neuron dynamics and spiking behavior.",
+   "summary_changed": false
+  },
+  {
+   "key": "1125cb7aa140",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "timer",
+     "reason": "the author tag 'timer' is not supported by the documentation, which describes only neuron integration and spiking"
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported 'timer' tag; the source describes only LIF neuron behavior.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "timer"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic"
+   ],
+   "summary_before": "This design implements a simple leaky integrate-and-fire (LIF) neuron that integrates an input current and produces a spike when the membrane potential exceeds a threshold. It has inputs for clock, current, and reset, and outputs the next membrane potential and a spike signal. The documentation notes that a current input of 100 after 20 cycles should produce a spike. The design is minimal and intended for basic testing of neuron behavior.",
+   "summary": "This design implements a simple leaky integrate-and-fire (LIF) neuron that integrates an input current and produces a spike when the membrane potential exceeds a threshold. It has inputs for clock, current, and reset, and outputs the next membrane potential and a spike signal. The documentation notes that a current input of 100 after 20 cycles should produce a spike. The design is minimal and intended for basic testing of neuron behavior.",
+   "summary_changed": false
+  },
+  {
+   "key": "97ae3633230d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "signal-generator",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "uart",
+    "signal-generator",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "This design implements a small UART transmitter that repeatedly sends a fixed string (the author's name) at 115200 baud with one start bit, eight data bits, one parity bit and one stop bit. It also generates a sinus signal on the remaining seven output pins. The design requires a 10 MHz clock and no inputs; testing only needs a UART receiver connected to uo_out[0]. The documentation is brief but sufficient to describe the behavior and pin usage.",
+   "summary": "This design implements a small UART transmitter that repeatedly sends a fixed string (the author's name) at 115200 baud with one start bit, eight data bits, one parity bit and one stop bit. It also generates a sinus signal on the remaining seven output pins. The design requires a 10 MHz clock and no inputs; testing only needs a UART receiver connected to uo_out[0]. The documentation is brief but sufficient to describe the behavior and pin usage.",
+   "summary_changed": false
+  },
+  {
+   "key": "d72a3d0d8253",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pipeline",
+     "reason": "the source does not describe a pipelined datapath"
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon test report states the design was tested working on fabricated silicon"
+    }
+   ],
+   "notes": "Removed unsupported 'pipeline'; added 'silicon-tested' to match the working silicon report.",
+   "tags_before": [
+    "hash",
+    "crypto",
+    "amaranth",
+    "accelerator",
+    "pipeline"
+   ],
+   "tags": [
+    "hash",
+    "crypto",
+    "amaranth",
+    "accelerator",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements a SHA-256 hasher that generates a digest for data of arbitrary length. Data is fed in 64-byte blocks through an 8-bit input port, with control signals for starting, clocking data, and reading the 32-byte result. It requires an external microcontroller to provide data and read results, and supports a parallel mode for interleaving input and processing. The implementation is naive and unoptimized, with estimated throughput of about 6 MB/s at 50 MHz, and a silicon test report indicates it worked in one test run but not a second.",
+   "summary": "This design implements a SHA-256 hasher that generates a digest for data of arbitrary length. Data is fed in 64-byte blocks through an 8-bit input port, with control signals for starting, clocking data, and reading the 32-byte result. It requires an external microcontroller to provide data and read results, and supports a parallel mode for interleaving input and processing. The implementation is naive and unoptimized, with estimated throughput of about 6 MB/s at 50 MHz, and a silicon test report indicates it worked in one test run but not a second.",
+   "summary_changed": false
+  },
+  {
+   "key": "6279db61004a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "the 144-bit register is incidental storage, not a memory block design"
+    },
+    {
+     "tag": "fsm",
+     "reason": "the IO/COMPUTE state machine is not the design's primary function"
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'memory' and 'fsm' as incidental rather than defining design features.",
+   "tags_before": [
+    "esoteric",
+    "accelerator",
+    "memory",
+    "fsm",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "esoteric",
+    "accelerator",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design computes the Collatz sequence for a large integer and reports the orbit length and the upper 16 bits of the highest value reached. Input bytes are uploaded one at a time into a 144-bit register, and results are read back through an address and select interface. A start pin triggers computation and a busy indicator signals completion. Silicon testing confirmed that the project test cases and additional cases worked as expected.",
+   "summary": "This design computes the Collatz sequence for a large integer and reports the orbit length and the upper 16 bits of the highest value reached. Input bytes are uploaded one at a time into a 144-bit register, and results are read back through an address and select interface. A start pin triggers computation and a busy indicator signals completion. Silicon testing confirmed that the project test cases and additional cases worked as expected.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7975,
+  "completion_tokens": 1097,
+  "total_tokens": 9072,
+  "cost": 0.002359413,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002359413,
+   "upstream_inference_prompt_cost": 0.001240473,
+   "upstream_inference_completions_cost": 0.00111894
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002359413,
+ "elapsed_s": 48.7
+}

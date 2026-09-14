@@ -1,0 +1,196 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "ae058de66f3a",
+  "8d03fa5dac0f",
+  "1a1d37e64607",
+  "d0b54a71efc3",
+  "274c85caabd3",
+  "cac2b734fdab",
+  "1efdf36e3aab",
+  "e5313db3b78d",
+  "17029c7fe5ed",
+  "bccf134b7e83"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "ae058de66f3a",
+   "summary": "TinyQV is a small RV32EC RISC-V SoC that executes code from external QSPI flash and uses QSPI PSRAM for data memory, with peripherals including UART, SPI, gamepad, PWM, CORDIC and others contributed by the Tiny Tapeout community. It is used by loading a program image into flash and following a specific reset and clocking sequence, with MicroPython scripts on the RP2040 demo board handling the setup. External hardware includes a QSPI PMOD with flash and RAM, a UART connection to the demo board, and optional buttons on the GPIO inputs. Silicon testers have confirmed MicroPython boots and runs at up to 59 MHz, though some peripherals have issues at high clock speeds, and the CORDIC core only converges within about ±99.9 degrees.",
+   "tags": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "qspi",
+    "uart",
+    "spi",
+    "gamepad",
+    "pwm",
+    "cordic",
+    "microcontroller"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "8d03fa5dac0f",
+   "summary": "Dog Battle Game is a VGA display engine that renders four animated colored boxes bouncing around a 640x480 screen with a simple physics simulation including friction, elastic collisions and wall bouncing. It runs continuously at 60 FPS on power-up and requires only a VGA monitor connected to the output pins, with no other external hardware or input needed. The design is a small 1x1 tile Verilog project that outputs 2-bit-per-channel RGB plus HS and VS sync signals. No silicon test report is provided, so the actual hardware behaviour is not documented.",
+   "tags": [
+    "vga",
+    "game",
+    "physics",
+    "graphics",
+    "display"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "1a1d37e64607",
+   "summary": "This is a framebuffer-less VGA ray casting engine inspired by Wolfenstein 3D that renders textured walls, optional doors and flat floor and ceiling by racing the beam, with player point-of-view and effect registers controlled over a single SPI interface. It is used by supplying a 21-31.5 MHz clock, attaching a Tiny VGA PMOD, and optionally driving the SPI interface or using the inc_px and inc_py inputs for a demo without an SPI host. External hardware includes a Tiny VGA PMOD, optional SPI controller and optional external QSPI ROM for textures, with a pin selecting between Leo Moser and Digilent QSPI PMODs. The design is an experimental GF180 port of earlier TT07 and TTCAD25a versions, and the documentation notes that testing instructions are still to be completed.",
+   "tags": [
+    "vga",
+    "graphics",
+    "game",
+    "spi",
+    "qspi"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "d0b54a71efc3",
+   "summary": "This design builds a configurable ring oscillator from manually instantiated GF180 inverter cells with selectable tap points, and uses the selected clock to drive a counter whose upper bits generate colored vertical bars on a VGA display. It is used by setting the clksel and clksel2 inputs, attaching a Tiny VGA PMOD and supplying a 25 MHz system clock, with the oscillator and its divided outputs also available on the bidirectional pins for measurement. External hardware is a Tiny VGA PMOD and a VGA monitor, and the oscillator is expected to range from about 15 MHz to 350 MHz. A silicon tester observed VGA output and measured roughly 78 MHz from the ring oscillator, and the documentation notes that jitter and possible logic breakdown are expected at the fastest settings.",
+   "tags": [
+    "ring-oscillator",
+    "vga",
+    "oscillator",
+    "clock-generator",
+    "counter",
+    "transistor-level",
+    "display"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "d0b54a71efc3",
+   "summary": "This design implements a register bank that can be accessed through either an SPI or an I2C serial interface, with a digital input selecting which interface is active. It is used by writing and reading registers over the selected bus, and the first register is documented as controlling LEDs on the demo board. External hardware may include 2k2 pull-up resistors on the I2C SDA and SCL lines, and testers have used a Bus Pirate and a Pico with internal pull-ups to exercise both interfaces. Silicon tests confirmed read and write access over SPI and I2C, including multi-byte transfers and cross-interface access to the same registers.",
+   "tags": [
+    "register-file",
+    "spi",
+    "i2c",
+    "communication"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "cac2b734fdab",
+   "summary": "This is a digital desk clock that keeps hours, minutes and seconds and drives a six-digit 7-segment display through a MAX7219 over SPI because there are not enough output pins to drive the segments directly. The time is set with hours_set and minutes_set inputs, with a fast/slow select input controlling the increment rate, and pressing both set inputs clears the seconds. It requires a 5 MHz clock, a 32.768 kHz reference clock on the refclk pin, and a MAX7219 7-segment display connected to the bidirectional PMOD. The design is a rehardening of a test design from Skywater and IHP processes for GF180, and no silicon test report is included.",
+   "tags": [
+    "clock-generator",
+    "rtc",
+    "7-segment",
+    "spi",
+    "display",
+    "counter",
+    "timer"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "1efdf36e3aab",
+   "summary": "This project is a GF180 implementation of the bad synchronizer example from Dally and Harting, which passes a counter value between two clock domains through multiple register stages to demonstrate synchronization failures. It is used by aligning and then separating the two clocks and observing bit errors on the stage outputs, with an input selecting binary or Gray code counting. External hardware is a way to generate a clock, and the design exposes stage1, stage2 and stage3 outputs plus a skew signal. The documentation is intentionally brief and describes the design as working badly, since the point is to illustrate a known bad synchronization practice.",
+   "tags": [
+    "synchronizer",
+    "clock-domain-crossing",
+    "education",
+    "counter",
+    "gray-code"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "e5313db3b78d",
+   "summary": "This is a GF180 loopback tile with input skew measurement that counts seconds and displays a value on a 7-segment output while exposing counter bits and compare bits on the pins. It is used by clocking the project and varying the timing between clock and data to examine flip-flop capture reliability. External hardware is a skewable clock and data source, and the design is based on an earlier TT05 loopback-with-skew project ported to GF180MCU. The documentation is minimal and no silicon test report is provided, so the measured behaviour is not documented.",
+   "tags": [
+    "communication",
+    "clock-domain-crossing",
+    "7-segment",
+    "counter",
+    "education",
+    "clock-generator"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "17029c7fe5ed",
+   "summary": "This design is a five-inverter ring oscillator with an enable input and a set of divided-down outputs ranging from divide-by-1 up to divide-by-32768. It is used by releasing reset, setting the ring enable input high, and measuring the frequency at the various outputs. External hardware is a frequency counter, and the design is a small 1x1 tile with no other interfaces. No silicon test report is provided, so the actual oscillation frequency on silicon is not documented.",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "divider",
+    "counter"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "bccf134b7e83",
+   "summary": "This is a 2x2 multiply-and-accumulate systolic array for signed 8-bit values with design-for-test infrastructure including a JTAG interface. It is used by feeding data through the data_i inputs with valid and mode controls and reading results from the result_o outputs, while the JTAG port allows scan testing of the internal logic. No external hardware beyond a JTAG controller and signal sources is described, and the design occupies a 1x2 tile area. A silicon tester only performed a basic JTAG test and confirmed the correct IDCODE was returned, so the arithmetic functionality has not been fully verified on silicon.",
+   "tags": [
+    "systolic-array",
+    "mac-unit",
+    "multiplier",
+    "jtag",
+    "dsp",
+    "accelerator"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "274c85caabd3: key echoed as 'd0b54a71efc3', matched by index"
+ ],
+ "usage": {
+  "prompt_tokens": 10947,
+  "completion_tokens": 2106,
+  "total_tokens": 13053,
+  "cost": 0.00129670086,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00129670086,
+   "upstream_inference_prompt_cost": 0.00093640638,
+   "upstream_inference_completions_cost": 0.00036029448
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00129670086,
+ "elapsed_s": 40.8
+}

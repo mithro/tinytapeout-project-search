@@ -1,0 +1,231 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cdd25a746a6c",
+  "d03c4e5fe495",
+  "7c7c80bb833b",
+  "a7012b979d42",
+  "e9eb2a5539fd",
+  "5588fc905a33"
+ ],
+ "results": [
+  {
+   "key": "cdd25a746a6c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The one-line description and pin list do describe the design's function and interface; documentation is thin but not too sparse to describe the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mips",
+     "reason": "The title and description explicitly state this is an 8-bit MIPS single-cycle processor."
+    },
+    {
+     "tag": "single-cycle",
+     "reason": "The title and description explicitly state single-cycle operation."
+    },
+    {
+     "tag": "8-bit",
+     "reason": "The title and description explicitly state 8-bit datapath."
+    }
+   ],
+   "notes": "Removed insufficient-doc because the description and pins adequately identify the design; added MIPS/single-cycle/8-bit tags supported by the title and description.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design is a complete 8-bit MIPS single-cycle processor supporting eight instruction types covering arithmetic, logical, memory, and jump operations. The program counter bits are exposed on bidirectional pins and the ALU result on the outputs, while all dedicated inputs are unused. No documentation is provided beyond the pin list and one-line description, so the instruction encoding and memory interface are not described. The design appears to be an educational processor implementation with no test or usage instructions given.",
+   "summary": "This Verilog design is a complete 8-bit MIPS single-cycle processor supporting eight instruction types covering arithmetic, logical, memory, and jump operations. The program counter bits are exposed on bidirectional pins and the ALU result on the outputs, while all dedicated inputs are unused. No documentation is provided beyond the pin list and one-line description, so the instruction encoding and memory interface are not described. The design appears to be an educational processor implementation with no test or usage instructions given.",
+   "summary_changed": false
+  },
+  {
+   "key": "d03c4e5fe495",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "The design is a CIC filter, not an FIR filter; no FIR filter is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "filter-analog",
+     "reason": "CIC filters are a digital filter type; the closest canonical filter tag is filter-analog, though the design is digital."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    }
+   ],
+   "notes": "Removed fir-filter because the design is a CIC filter, not FIR; added filter-analog as the closest canonical filter tag and systemverilog for the language.",
+   "tags_before": [
+    "dsp",
+    "sigma-delta",
+    "fir-filter",
+    "systemverilog"
+   ],
+   "tags": [
+    "dsp",
+    "sigma-delta",
+    "systemverilog",
+    "filter-analog"
+   ],
+   "summary_before": "lime_cic_filter implements first-order and second-order Cascaded Integrator-Comb (CIC) filters for processing sigma-delta modulator bitstreams. It provides 16-bit output and includes debug selection inputs. The design requires no external hardware and is intended for digital signal processing applications. The documentation is partly AI-generated and lacks a detailed test plan, but the core functionality is described.",
+   "summary": "lime_cic_filter implements first-order and second-order Cascaded Integrator-Comb (CIC) filters for processing sigma-delta modulator bitstreams. It provides 16-bit output and includes debug selection inputs. The design requires no external hardware and is intended for digital signal processing applications. The documentation is partly AI-generated and lacks a detailed test plan, but the core functionality is described.",
+   "summary_changed": false
+  },
+  {
+   "key": "7c7c80bb833b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "can-bus",
+    "communication",
+    "automotive",
+    "verilog"
+   ],
+   "tags": [
+    "can-bus",
+    "communication",
+    "automotive",
+    "verilog"
+   ],
+   "summary_before": "This design implements a transmit-only CAN controller intended to send GPS data. It accepts an 8-bit data bus, a 4-bit address, clock and reset inputs, and drives CAN_TX plus a TXING status output. Testing used an Arty Z7 running the design, a ZYBO Z7 transmitting dummy GPS data, a Raspberry Pi as the CAN destination, and an Analog Discovery 3 for the clock. External hardware requires a GPS data receiver and a mechanism to feed that data into the chip.",
+   "summary": "This design implements a transmit-only CAN controller intended to send GPS data. It accepts an 8-bit data bus, a 4-bit address, clock and reset inputs, and drives CAN_TX plus a TXING status output. Testing used an Arty Z7 running the design, a ZYBO Z7 transmitting dummy GPS data, a Raspberry Pi as the CAN destination, and an Analog Discovery 3 for the clock. External hardware requires a GPS data receiver and a mechanism to feed that data into the chip.",
+   "summary_changed": false
+  },
+  {
+   "key": "a7012b979d42",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "verilog",
+    "accelerator"
+   ],
+   "tags": [
+    "crypto",
+    "verilog",
+    "accelerator"
+   ],
+   "summary_before": "Tiny_ECC implements scalar point multiplication on a binary elliptic curve over GF(2^8), deriving a public key from a private key. It uses a byte-load protocol with control signals for loading the private key and base point coordinates, and status outputs for done, busy, and error. The design requires no external hardware for computation, but for chip-level testing, a logic analyzer or microcontroller is needed to drive the interface and poll the done flag. The documentation is brief and does not provide detailed testing procedures or performance metrics.",
+   "summary": "Tiny_ECC implements scalar point multiplication on a binary elliptic curve over GF(2^8), deriving a public key from a private key. It uses a byte-load protocol with control signals for loading the private key and base point coordinates, and status outputs for done, busy, and error. The design requires no external hardware for computation, but for chip-level testing, a logic analyzer or microcontroller is needed to drive the interface and poll the done flag. The documentation is brief and does not provide detailed testing procedures or performance metrics.",
+   "summary_changed": false
+  },
+  {
+   "key": "e9eb2a5539fd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation states the architecture (external ROM/RAM, 4-bit RISC) and pin functions; it is minimal but sufficient to describe the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc",
+     "reason": "The title and description explicitly state this is a 4-bit RISC microprocessor."
+    },
+    {
+     "tag": "4-bit",
+     "reason": "The title and description explicitly state 4-bit datapath."
+    }
+   ],
+   "notes": "Removed insufficient-doc because the architecture and pins are described; added risc and 4-bit tags supported by the title and description.",
+   "tags_before": [
+    "cpu",
+    "rom",
+    "memory",
+    "systemverilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "cpu",
+    "rom",
+    "memory",
+    "systemverilog",
+    "risc-v"
+   ],
+   "summary_before": "This is a custom 4-bit RISC microprocessor designed for Tiny Tapeout. It uses external ROM for instructions and external RAM for data, with dedicated address and data pins for each. The documentation is minimal, stating only that instructions are executed, and promises future updates with ISA details. External RAM and ROM chips are required, likely emulated by a microcontroller.",
+   "summary": "This is a custom 4-bit RISC microprocessor designed for Tiny Tapeout. It uses external ROM for instructions and external RAM for data, with dedicated address and data pins for each. The documentation is minimal, stating only that instructions are executed, and promises future updates with ISA details. External RAM and ROM chips are required, likely emulated by a microcontroller.",
+   "summary_changed": false
+  },
+  {
+   "key": "5588fc905a33",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The design is a simple logic gate test with clear inputs and outputs; documentation is sloppy but not too sparse to describe it."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Outputs are labeled 'output or' and 'output and', indicating OR and AND logic gates."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed insufficient-doc because the simple logic function is evident from pins; added logic-gate and wokwi tags supported by the design.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This is a small test design named \"chip one\" that includes logic gates, with outputs labeled \"output or\" and \"output and\" suggesting OR and AND functions. It has eight inputs (a, b, c, e, f, g, h, i) and two outputs; the how-it-works and how-to-test sections both say \"Click the switches to see different parts light up\" followed by arbitrary numbers. The documentation is sloppy and incomplete, with no clear explanation of the internal logic or expected behavior. It appears to be a rudimentary experiment, likely from a workshop, with no external hardware listed.",
+   "summary": "This is a small test design named \"chip one\" that includes logic gates, with outputs labeled \"output or\" and \"output and\" suggesting OR and AND functions. It has eight inputs (a, b, c, e, f, g, h, i) and two outputs; the how-it-works and how-to-test sections both say \"Click the switches to see different parts light up\" followed by arbitrary numbers. The documentation is sloppy and incomplete, with no clear explanation of the internal logic or expected behavior. It appears to be a rudimentary experiment, likely from a workshop, with no external hardware listed.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "cdd25a746a6c: reviewer added non-canonical tag '8-bit'",
+  "e9eb2a5539fd: reviewer added non-canonical tag '4-bit'"
+ ],
+ "usage": {
+  "prompt_tokens": 6287,
+  "completion_tokens": 1463,
+  "total_tokens": 7750,
+  "cost": 0.0015144,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0015144,
+   "upstream_inference_prompt_cost": 0.0006366,
+   "upstream_inference_completions_cost": 0.0008778
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0015144,
+ "elapsed_s": 41.0
+}

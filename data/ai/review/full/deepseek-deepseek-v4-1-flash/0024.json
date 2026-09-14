@@ -1,0 +1,230 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d5618eec4942",
+  "109060c626b0",
+  "92866c1526d0",
+  "3fa3d68bb054",
+  "b7efc589d558",
+  "05470548206b"
+ ],
+ "results": [
+  {
+   "key": "d5618eec4942",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator is described; the design just shows a fixed lucky number 6."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The source only says 'LED display', not a seven-segment display."
+    },
+    {
+     "tag": "led",
+     "reason": "No discrete LED output is described; the display is generic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The design drives an LED display showing the word 'roll'."
+    },
+    {
+     "tag": "game",
+     "reason": "It is a digital dice experience for dice games."
+    },
+    {
+     "tag": "button",
+     "reason": "The user interacts via a switch, which is a pushbutton-style input."
+    }
+   ],
+   "notes": "Removed unsupported prng/7-segment/led tags and added display, game and button tags.",
+   "tags_before": [
+    "prng",
+    "game",
+    "7-segment",
+    "led",
+    "wokwi"
+   ],
+   "tags": [
+    "game",
+    "wokwi",
+    "display",
+    "button"
+   ],
+   "summary_before": "This Wokwi design is a digital dice that displays the word roll and lights the number 6 as a lucky result. The user interacts with it through a switch, and the documentation gives no further detail on the internal logic or how the value is generated. No external hardware beyond the on-board display and switch is mentioned. The description is very thin, so the exact behaviour and any randomness cannot be confirmed from the provided text.",
+   "summary": "This Wokwi design is a digital dice that displays the word roll and lights the number 6 as a lucky result. The user interacts with it through a switch. The documentation gives no further detail on the internal logic or how the value is generated. No external hardware beyond the on-board display and switch is mentioned.",
+   "summary_changed": true
+  },
+  {
+   "key": "109060c626b0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "analog",
+    "rf",
+    "radio",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "analog",
+    "rf",
+    "radio",
+    "insufficient-doc"
+   ],
+   "summary_before": "This analog block selects among different peripheral circuits, including RF-based transmission, depending on the chosen mode. The documentation is very thin, giving only that a mode must be selected with the proper input to activate the required RF transmission peripheral. Testing is said to require a VNA, multimeter and oscilloscope, but no pin-level detail or measured results are provided. The design is notable only as an RF peripheral experiment, and the available documentation is insufficient to describe its operation precisely.",
+   "summary": "This analog block selects among different peripheral circuits, including RF-based transmission, depending on the chosen mode. The documentation is very thin, giving only that a mode must be selected with the proper input to activate the required RF transmission peripheral. Testing is said to require a VNA, multimeter and oscilloscope, but no pin-level detail or measured results are provided. The design is notable only as an RF peripheral experiment, and the available documentation is insufficient to describe its operation precisely.",
+   "summary_changed": false
+  },
+  {
+   "key": "92866c1526d0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "placeholder",
+    "wokwi",
+    "template"
+   ],
+   "tags": [
+    "placeholder",
+    "wokwi",
+    "template"
+   ],
+   "summary_before": "The project is titled 'nothing-yet' and has no actual design implemented. The documentation explicitly states that there is no design yet and that the how-to-test section is a placeholder. It has eight inputs and eight outputs, but no functionality is described. No external hardware is required, and the project appears to be an empty template.",
+   "summary": "The project is titled 'nothing-yet' and has no actual design implemented. The documentation explicitly states that there is no design yet and that the how-to-test section is a placeholder. It has eight inputs and eight outputs, but no functionality is described. No external hardware is required, and the project appears to be an empty template.",
+   "summary_changed": false
+  },
+  {
+   "key": "3fa3d68bb054",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a test design with eight input and eight output pins, but the documentation is essentially empty, containing only the words 'test' and 'test it'. The functionality is not described, and no external hardware is mentioned. It appears to be a placeholder or minimal test project. Due to the lack of information, the design's purpose cannot be determined.",
+   "summary": "This is a test design with eight input and eight output pins, but the documentation is essentially empty, containing only the words 'test' and 'test it'. The functionality is not described, and no external hardware is mentioned. It appears to be a placeholder or minimal test project. Due to the lack of information, the design's purpose cannot be determined.",
+   "summary_changed": false
+  },
+  {
+   "key": "b7efc589d558",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The project claims to test logic gates and a clock divider, so it is not a boilerplate starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The one-line description says it tests logic gates."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The one-line description says it includes a clock divider."
+    }
+   ],
+   "notes": "Removed template tag and added logic-gate and clock-divider tags supported by the one-line description.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "logic-gate",
+    "clock-divider"
+   ],
+   "summary_before": "This project is titled 'Tiney Tapeout Test Gates' and claims to test logic gates and a clock divider, but the documentation is filled with placeholder text ('123') and all pins are marked as 'not used'. There is no meaningful description of the design's functionality or how to test it. It appears to be an incomplete or abandoned project. Due to the lack of documentation, no further details can be provided.",
+   "summary": "This project is titled 'Tiney Tapeout Test Gates' and claims to test logic gates and a clock divider. The documentation is filled with placeholder text ('123') and all pins are marked as 'not used'. There is no meaningful description of the design's functionality or how to test it. It appears to be an incomplete or abandoned project.",
+   "summary_changed": true
+  },
+  {
+   "key": "05470548206b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that the project is intended for teaching or learning."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "The switches are described as slide switches and pushbuttons, not DIP switches."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "The design uses pushbuttons and switches as inputs."
+    },
+    {
+     "tag": "led",
+     "reason": "The outputs drive lines that light up, described as lights."
+    }
+   ],
+   "notes": "Removed unsupported education and dip-switch tags; added button and led tags.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "education",
+    "dip-switch"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "button",
+    "led"
+   ],
+   "summary_before": "This design connects input switches through NOT and AND gates to drive the segments of a 7-segment display. The documentation is poorly written and vague, but it indicates that each switch controls a specific segment or combination, with some segments requiring multiple switches. It is a simple educational project, likely for learning basic logic and display driving. External hardware includes resistors, pushbuttons, a 7-segment display, and a slide switch.",
+   "summary": "This design connects input switches through NOT and AND gates to drive the segments of a 7-segment display. The documentation is poorly written and vague, but it indicates that each switch controls a specific segment or combination, with some segments requiring multiple switches. It is a simple project for learning basic logic and display driving. External hardware includes resistors, pushbuttons, a 7-segment display, and a slide switch.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5580,
+  "completion_tokens": 1190,
+  "total_tokens": 6770,
+  "cost": 0.0021612,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0021612,
+   "upstream_inference_prompt_cost": 0.0007332,
+   "upstream_inference_completions_cost": 0.001428
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0021612,
+ "elapsed_s": 7.2
+}

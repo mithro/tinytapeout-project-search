@@ -1,0 +1,340 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "671faa7c4023",
+  "65fbbe30f1aa",
+  "10b343a35188",
+  "44a1e3718817",
+  "f763fd9e877b",
+  "f5c108c0ffdc"
+ ],
+ "results": [
+  {
+   "key": "671faa7c4023",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "flip-flop",
+     "reason": "The design is a combinational (C ? A : B) ^ D function; no flip-flop or storage element is described."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational intent; it is a silicon implementation of an optical computation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplexer",
+     "reason": "The core operation (C ? A : B) is a 2:1 multiplexer selected by C."
+    },
+    {
+     "tag": "prng",
+     "reason": "The design implements a pseudorandom bit sequence generator core."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The output is a pure combinational function of the five inputs with no clock or state."
+    }
+   ],
+   "notes": "Removed unsupported flip-flop and education tags; added multiplexer, prng and combinational based on the described (C ? A : B) ^ D function.",
+   "tags_before": [
+    "flip-flop",
+    "logic-gate",
+    "multiplexer",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "multiplexer",
+    "wokwi",
+    "prng",
+    "combinational"
+   ],
+   "summary_before": "This design implements a flip-flop and logic gate circuit, built with Wokwi. It is intended for educational purposes and demonstrates basic sequential logic. The design uses a clock input and drives outputs based on the logic. The documentation is minimal but sufficient to understand the configuration options.",
+   "summary": "This design implements the core of a paper-tape pseudorandom bit sequence generator electrically, computing (C ? A : B) ^ D from five input bits. It is built with Wokwi and uses a multiplexer and XOR logic rather than the original optomechanical tape mechanism. The design is purely combinational, with no clock or sequential storage elements. Testing consists of applying the 32 possible input patterns and verifying the documented output sequence.",
+   "summary_changed": true
+  },
+  {
+   "key": "65fbbe30f1aa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR is mentioned or implied by the source; the design is a hardware trojan example."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation is described."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "hardware-trojan",
+     "reason": "The design explicitly demonstrates a hardware trojan circuit."
+    },
+    {
+     "tag": "security",
+     "reason": "It contrasts a normal 'secure' circuit with a compromised one, a hardware security topic."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "The test instructions say to use DIP switches as inputs."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output pin names map to 7-segment display segments."
+    }
+   ],
+   "notes": "Replaced unsupported LFSR/clock-generator/education tags with hardware-trojan, security, dip-switch and 7-segment supported by the source.",
+   "tags_before": [
+    "lfsr",
+    "7-segment",
+    "education",
+    "wokwi",
+    "clock-generator"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "hardware-trojan",
+    "security",
+    "dip-switch"
+   ],
+   "summary_before": "This design appears to be a linear feedback shift register (LFSR) that drives a 7-segment display. The documentation mentions an LFSR and the pin names map outputs to 7-segment segments, but the exact connection is not described. It is built with Wokwi and likely intended for educational purposes. The design may also include a clock generator, but details are sparse.",
+   "summary": "This design is a simple hardware trojan example based on a Medium article by Ryan Cornateanu. It provides two four-input circuits, one normal and one containing an embedded hardware trojan, selected via DIP switches. The outputs are shown on a 7-segment display, with the normal circuit driving some segments and the trojan circuit driving others. It is built with Wokwi and requires only the Tiny Tapeout carrier board for testing.",
+   "summary_changed": true
+  },
+  {
+   "key": "10b343a35188",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The design drives 6 of 8 segments of a 7-segment display."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "It uses inverters, XOR and OR gates."
+    },
+    {
+     "tag": "display",
+     "reason": "The output is a segment display pattern."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added 7-segment, logic-gate and display tags supported by the source.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "logic-gate",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This design uses logic gates to control segments of a 7-segment display based on input values. The documentation is incomplete, so the exact functionality cannot be determined. The design is intended for educational purposes and is simulated in Wokwi. The design is notable for its use of logic gates to drive a display.",
+   "summary": "This design uses inverters, XOR and OR gates to control six segments of a 7-segment display from eight switch inputs. The documentation describes which switches turn each segment on or off, producing a D or O shape for certain switch combinations. It is built with Wokwi and requires an external LED display for testing. The design is a simple combinational logic exercise.",
+   "summary_changed": true
+  },
+  {
+   "key": "44a1e3718817",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "robotics",
+     "reason": "The source says microrobotics applications, but the canonical tag 'robotics' is for robotics control; the design is a test chip of basic IP blocks, not a robotics controller."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The design is analog and includes analog pins."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "An oscillator IP block is listed."
+    },
+    {
+     "tag": "decoder",
+     "reason": "A decoder IP block is listed."
+    },
+    {
+     "tag": "driver",
+     "reason": "A driver IP block is listed."
+    },
+    {
+     "tag": "temperature-sensor",
+     "reason": "A PTAT (proportional to absolute temperature) block is listed."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the design is a first test of basic IPs."
+    }
+   ],
+   "notes": "Removed robotics tag as the design is a test chip of IP blocks, not a robotics controller; added analog, oscillator, decoder, driver, temperature-sensor and incomplete.",
+   "tags_before": [
+    "analog",
+    "oscillator",
+    "decoder",
+    "driver",
+    "robotics"
+   ],
+   "tags": [
+    "analog",
+    "oscillator",
+    "decoder",
+    "driver",
+    "temperature-sensor",
+    "incomplete"
+   ],
+   "summary_before": "This project is a first test for basic IP blocks such as a PTAT (proportional to absolute temperature) sensor, oscillator, decoder, command checker, and driver, intended for microrobotics applications. The design includes analog and digital components. The documentation is sparse, but the design appears to be a test chip for various IP blocks. The capabilities and usage cannot be fully determined from the provided documentation.",
+   "summary": "This project is a first test for basic IP blocks such as a PTAT temperature sensor, oscillator, decoder, command checker and driver, intended for microrobotics applications. It is an analog design with two analog pins and spans a 1x2 tile area. The documentation is very thin, so the exact capabilities and usage cannot be fully determined. It appears to be a test chip for evaluating these IP blocks.",
+   "summary_changed": true
+  },
+  {
+   "key": "f763fd9e877b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "No PWM generation is described; the design is dual-edge-triggered D flip-flops."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'no reports', so it has not been validated on fabricated silicon."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "The design is a collection of four dual-edge-triggered D flip-flops."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The outputs Q and QN are shown on the 7-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The design is built with Wokwi."
+    },
+    {
+     "tag": "security",
+     "reason": "The intended application is tamper detection for a computer server enclosure."
+    }
+   ],
+   "notes": "Removed unsupported PWM and silicon-tested tags; added flip-flop, 7-segment, wokwi and security based on the source.",
+   "tags_before": [
+    "pwm",
+    "7-segment",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "flip-flop",
+    "security"
+   ],
+   "summary_before": "This project implements a 4-channel PWM generator with programmable frequency, duty cycle, and phase offset for channels 2-4. It uses an 8-bit input bus to load control registers, with a 7-segment display showing the current register address, and outputs PWM signals on four bidirectional pins. The design is built using the Wokwi simulator and is intended for educational purposes. It has been tested on fabricated silicon.",
+   "summary": "This project implements four dual-edge-triggered D flip-flops, each latching the D input to Q on either the rising or falling edge of its CLK input. The intended application is tamper detection, where sensors connected to the CLK inputs latch a logic-high D value when triggered. The Q and QN outputs are displayed on the 7-segment display, and asynchronous reset inputs are provided. It is built with Wokwi and requires no external hardware for testing.",
+   "summary_changed": true
+  },
+  {
+   "key": "f5c108c0ffdc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design is a clock divider, not a clock generator."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design is a clock divider implemented as a simple counter."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The design divides the input clock."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The design is built with Wokwi."
+    },
+    {
+     "tag": "led",
+     "reason": "Output LEDs are used for testing."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the one-line description is TBD."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator and education tags; added counter, clock-divider, wokwi, led and incomplete based on the source.",
+   "tags_before": [
+    "counter",
+    "clock-generator",
+    "wokwi",
+    "led",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "wokwi",
+    "led",
+    "clock-divider",
+    "incomplete"
+   ],
+   "summary_before": "This design is a clock divider implemented as a simple counter, with pins labeled for neural network data input and output as well as configuration bits. The documentation is minimal and does not explain how the neural network functionality is implemented or how the configuration bits are used. It is intended to be tested by providing a clock and observing the outputs as binary numbers counting up, with LEDs connected to the outputs. The design is minimal and intended to illustrate basic stream processing without complex control logic.",
+   "summary": "This design is a clock divider implemented as a simple counter, with pins labeled for neural network data input and output as well as configuration bits. The documentation is minimal and does not explain how the neural network functionality is implemented or how the configuration bits are used. It is intended to be tested by providing a clock and observing the outputs as binary numbers counting up, with LEDs connected to the outputs. The design is minimal and its full capabilities cannot be determined from the provided documentation.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "671faa7c4023: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6642,
+  "completion_tokens": 2044,
+  "total_tokens": 8686,
+  "cost": 0.0044454,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044454,
+   "upstream_inference_prompt_cost": 0.0019926,
+   "upstream_inference_completions_cost": 0.0024528
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044454,
+ "elapsed_s": 61.7
+}

@@ -1,0 +1,304 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "74cf4143b208",
+  "5fa410ef2625",
+  "aeed373e60f9",
+  "bffe19636e1f",
+  "8ee8f5bff875",
+  "285db0a477b7"
+ ],
+ "results": [
+  {
+   "key": "74cf4143b208",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "music",
+     "reason": "The design is an FM transmitter/modulator for audio, not music generation or playback."
+    },
+    {
+     "tag": "spi",
+     "reason": "SPI pins are listed as optional external hardware but the documentation does not describe an implemented SPI interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rf",
+     "reason": "The design generates an FM signal in the broadcast band, which is a radio-frequency application."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "The design is explicitly intended to drive an external R-2R resistor ladder DAC."
+    }
+   ],
+   "notes": "Removed unsupported music and spi tags; added rf and r2r-dac based on the FM broadcast output and external R-2R DAC.",
+   "tags_before": [
+    "radio",
+    "audio",
+    "i2s",
+    "modulator",
+    "music",
+    "nco",
+    "dac",
+    "spi"
+   ],
+   "tags": [
+    "radio",
+    "audio",
+    "i2s",
+    "modulator",
+    "nco",
+    "dac",
+    "rf",
+    "r2r-dac"
+   ],
+   "summary_before": "This design is an FM transmitter that takes an audio signal via I2S and modulates it onto a higher carrier frequency using a numerically controlled oscillator with a piecewise linear approximation of a sine wave. It outputs a 4-bit digital signal to an external R-2R ladder DAC to generate the analog FM signal, and also includes an optional SPI interface. The design is not intended for real on-air use and requires external filtering to comply with regulations. It is notable for its resource-efficient approximation of sine generation and its ability to produce FM signals in the broadcast band despite a lower sampling frequency.",
+   "summary": "This design is an FM transmitter that takes an audio signal via I2S and modulates it onto a higher carrier frequency using a numerically controlled oscillator with a piecewise linear approximation of a sine wave. It outputs a 4-bit digital signal intended for an external R-2R ladder DAC to generate the analog FM signal. The design is not intended for real on-air use and requires external filtering to comply with regulations. It is notable for its resource-efficient approximation of sine generation and its ability to produce FM signals in the broadcast band despite a lower sampling frequency.",
+   "summary_changed": true
+  },
+  {
+   "key": "5fa410ef2625",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The 7-segment pins are present, but the documentation does not describe any 7-segment display functionality."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sound-generator",
+     "reason": "The design is a plucked-string sound synthesis module, matching the sound-generator type."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment tag; added sound-generator for the plucked-string synthesis.",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "i2s",
+    "spi",
+    "music",
+    "lfsr",
+    "prng",
+    "7-segment"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "i2s",
+    "spi",
+    "music",
+    "lfsr",
+    "prng",
+    "sound-generator"
+   ],
+   "summary_before": "This design implements a Karplus-Strong string synthesis algorithm to generate plucked string sounds, with a register map configurable via SPI and audio output via I2S. It also includes two PRBS noise generators for adding noise to the string model, and displays status on a 7-segment display. The design requires an external I2S DAC or codec to output the synthesized audio. It is notable for being a digital music synthesizer implementation based on published papers and for its use of a 2x2 tile area.",
+   "summary": "This design implements a Karplus-Strong string synthesis algorithm to generate plucked string sounds, with a register map configurable via SPI and audio output via I2S. It also includes two PRBS noise generators for adding noise to the string model. The design requires an external I2S DAC or codec to output the synthesized audio. It is notable for being a digital music synthesizer implementation based on published papers and for its use of a 2x2 tile area.",
+   "summary_changed": true
+  },
+  {
+   "key": "aeed373e60f9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The documentation describes a vector MAC/adder compute-in-SRAM design, not a neural network."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine-learning inference or training is described."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing application is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systolic-array",
+     "reason": "The design is a vector multiplier with stationary weights and an adder tree, matching a systolic-array compute structure."
+    },
+    {
+     "tag": "compute-in-sram",
+     "reason": "The title and description explicitly identify the design as compute-in-SRAM."
+    }
+   ],
+   "notes": "Removed unsupported neural-network, machine-learning, and dsp tags; added systolic-array and compute-in-sram.",
+   "tags_before": [
+    "sram",
+    "mac-unit",
+    "accelerator",
+    "multiplier",
+    "adder",
+    "neural-network",
+    "machine-learning",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "sram",
+    "mac-unit",
+    "accelerator",
+    "multiplier",
+    "adder",
+    "verilog",
+    "systolic-array"
+   ],
+   "summary_before": "This design implements an 8-bit vector compute-in-SRAM with eight multiply-and-add units and an adder tree that sums the results without precision loss. Weights and activations are programmed via operation codes, with weights remaining stationary for reuse. The design is tested through a Python test suite that covers individual MAC operations, weight loading, adder tree functionality, and readout, though most tests are commented out due to limited external signal access. It operates entirely within its own resources and does not interface with external hardware, though external signals might be needed to orchestrate multiple units with a control processor.",
+   "summary": "This design implements an 8-bit vector compute-in-SRAM with eight multiply-and-add units and an adder tree that sums the results without precision loss. Weights and activations are programmed via operation codes, with weights remaining stationary for reuse. The design is tested through a Python test suite that covers individual MAC operations, weight loading, adder tree functionality, and readout, though most tests are commented out due to limited external signal access. It operates entirely within its own resources and does not interface with external hardware, though external signals might be needed to orchestrate multiple units with a control processor.",
+   "summary_changed": false
+  },
+  {
+   "key": "bffe19636e1f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplexer",
+     "reason": "The design uses mode selection but does not implement a multiplexer as a block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ram",
+     "reason": "The design includes a 16x4 RAM block."
+    },
+    {
+     "tag": "frequency-counter",
+     "reason": "The FDC block is a frequency-to-digital converter, matching the frequency-counter type."
+    },
+    {
+     "tag": "pwm",
+     "reason": "The design includes a PWM generator block."
+    }
+   ],
+   "notes": "Removed unsupported multiplexer tag; added ram, frequency-counter, and pwm for the described blocks.",
+   "tags_before": [
+    "education",
+    "alu",
+    "counter",
+    "pwm",
+    "7-segment",
+    "memory",
+    "logic-gate",
+    "multiplexer",
+    "verilog"
+   ],
+   "tags": [
+    "education",
+    "alu",
+    "counter",
+    "pwm",
+    "7-segment",
+    "memory",
+    "logic-gate",
+    "verilog",
+    "frequency-counter"
+   ],
+   "summary_before": "This project is a digital playground that selects and tests eight classic digital blocks on a single Tiny Tapeout tile: logic gates, an 8-bit counter, a PWM generator, a 7-segment display driver, a 4-bit ALU, a frequency-to-digital converter, a 16x4 RAM, and turn-signal indicators. The active block is chosen with three mode-select inputs, and the remaining pins serve as block-specific inputs and outputs. Testing requires external hardware such as LEDs, switches, a 7-segment display, a function generator, and a logic analyzer or oscilloscope. The design is intended for education and experimentation, with all unused outputs forced to zero and bidirectional pins used only as inputs.",
+   "summary": "This project is a digital playground that selects and tests eight classic digital blocks on a single Tiny Tapeout tile: logic gates, an 8-bit counter, a PWM generator, a 7-segment display driver, a 4-bit ALU, a frequency-to-digital converter, a 16x4 RAM, and turn-signal indicators. The active block is chosen with three mode-select inputs, and the remaining pins serve as block-specific inputs and outputs. Testing requires external hardware such as LEDs, switches, a 7-segment display, a function generator, and a logic analyzer or oscilloscope. The design is intended for education and experimentation, with all unused outputs forced to zero and bidirectional pins used only as inputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "8ee8f5bff875",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "qspi",
+    "uart",
+    "spi",
+    "memory",
+    "gamepad",
+    "register-file",
+    "silicon-tested"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "qspi",
+    "uart",
+    "spi",
+    "memory",
+    "gamepad",
+    "register-file",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a modified FemtoRV RISC-V SoC that uses a register file from tnt and a QSPI controller from TinyQV. It executes code from QSPI flash and uses QSPI PSRAM for data memory, with shared clock and data lines. The SoC includes a UART and an SPI controller, and is intended to work with a QSPI PMOD containing flash and RAM, as well as an ST7789 LCD display. Silicon testing showed it works perfectly, even at 80 MHz, and a minimal MicroPython binary was run on it.",
+   "summary": "This is a modified FemtoRV RISC-V SoC that uses a register file from tnt and a QSPI controller from TinyQV. It executes code from QSPI flash and uses QSPI PSRAM for data memory, with shared clock and data lines. The SoC includes a UART and an SPI controller, and is intended to work with a QSPI PMOD containing flash and RAM, as well as an ST7789 LCD display. Silicon testing showed it works perfectly, even at 80 MHz, and a minimal MicroPython binary was run on it.",
+   "summary_changed": false
+  },
+  {
+   "key": "285db0a477b7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "The audio output is described as 1-bit PCM, not PWM."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "The design is a looping GIF and sound playback showcase, matching a demoscene-style visual/audio display."
+    }
+   ],
+   "notes": "Removed unsupported pwm tag; added demoscene for the looping GIF/sound showcase.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "audio",
+    "graphics",
+    "sprite",
+    "rom",
+    "pwm",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "audio",
+    "graphics",
+    "sprite",
+    "rom",
+    "verilog",
+    "demoscene"
+   ],
+   "summary_before": "This design plays a looping MOSS GIF animation and a \"wiwiwi\" sound, with the sprite and audio data stored in LUT-based ROMs. The sprite ROM holds four 64x64 frames scaled 4x and centered on a 640x480 VGA display, while the audio ROM holds 1-bit samples played back as 1-bit PCM on a bidirectional pin. It requires a TinyVGA Pmod and an Audio Pmod, and pulling an input pin high mutes the audio. The documentation is reasonably detailed about the data and display but does not describe the background animation in depth.",
+   "summary": "This design plays a looping MOSS GIF animation and a \"wiwiwi\" sound, with the sprite and audio data stored in LUT-based ROMs. The sprite ROM holds four 64x64 frames scaled 4x and centered on a 640x480 VGA display, while the audio ROM holds 1-bit samples played back as 1-bit PCM on a bidirectional pin. It requires a TinyVGA Pmod and an Audio Pmod, and pulling an input pin high mutes the audio. The background is intended to imitate flowing electricity.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9402,
+  "completion_tokens": 1671,
+  "total_tokens": 11073,
+  "cost": 0.0048258,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0048258,
+   "upstream_inference_prompt_cost": 0.0028206,
+   "upstream_inference_completions_cost": 0.0020052
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0048258,
+ "elapsed_s": 6.9
+}

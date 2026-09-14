@@ -1,0 +1,221 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8919ce8ef095",
+  "70e0494b1b39",
+  "456a22c0bf63",
+  "a41a59a55bb0",
+  "5dc96c65a52d",
+  "6a4626cb54cc"
+ ],
+ "results": [
+  {
+   "key": "8919ce8ef095",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design outputs a VGA signal, not a generic display interface; 'vga' and 'video' already cover this."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported 'display' tag; corrected summary to state the Tiny VGA pinout rather than claiming a PMOD requirement.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "verilog",
+    "art"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "verilog",
+    "art"
+   ],
+   "summary_before": "This design generates a VGA video signal that animates columns of pink hearts transitioning on and off the screen. It is implemented in Verilog using the VGA Playground environment and is intended to be tested by running the simulation and observing the output. The design requires a VGA monitor connected to the Tiny VGA PMOD pinout. The project is a playful visual demonstration rather than a practical application.",
+   "summary": "This design generates a VGA video signal that animates columns of pink hearts transitioning on and off the screen. It is implemented in Verilog using the VGA Playground environment and is intended to be tested by running the simulation and observing the output. The design uses the Tiny VGA pinout to drive a VGA monitor. The project is a playful visual demonstration rather than a practical application.",
+   "summary_changed": true
+  },
+  {
+   "key": "70e0494b1b39",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a multiplier, not an arithmetic logic unit."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing function is described."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning hardware is described."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network hardware is described."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "The design is a 4x4 array multiplier, not a multiply-accumulate unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The array multiplier is purely combinational logic."
+    },
+    {
+     "tag": "education",
+     "reason": "The project is an ECE-UY 2204 course assignment for learning digital design."
+    }
+   ],
+   "notes": "Removed unsupported ML/DSP/MAC tags and replaced the invented DLFloat MAC summary with the actual 4x4 array multiplier description.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "alu",
+    "dsp",
+    "machine-learning",
+    "neural-network",
+    "mac-unit"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "education"
+   ],
+   "summary_before": "This design implements a multiply-accumulate (MAC) unit for the 16-bit DLFloat data type, intended for deep learning applications. It performs multiply and accumulate operations, which are fundamental to neural network inference. The design is implemented in Verilog and is suitable for educational or research purposes. It demonstrates a key building block for machine learning hardware.",
+   "summary": "This design implements a 4x4 structural array multiplier in Verilog that multiplies two 4-bit numbers to produce an 8-bit product. It generates partial products using two-input AND gates and sums them column by column with full adders, propagating carries between stages. The design is purely combinational and is intended as an educational exercise for a university digital design course. Testing is done by applying 8-bit input values and comparing the output to the expected product.",
+   "summary_changed": true
+  },
+  {
+   "key": "456a22c0bf63",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Removed the invented external hardware claim; the source only says the test explanation is TODO.",
+   "tags_before": [
+    "alu",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This is an 8-bit arithmetic logic unit (ALU) that performs arithmetic and bitwise operations on integer binary numbers. It uses a state machine to read two 8-bit inputs (A and B) via the 8 digital input pins, with operation control and status output over the bidirectional pins. The ALU is implemented in Verilog and is suitable for educational purposes. External hardware includes switches or buttons to provide inputs and LEDs to display results.",
+   "summary": "This is an 8-bit arithmetic logic unit (ALU) that performs arithmetic and bitwise operations on integer binary numbers. It uses a state machine to read two 8-bit inputs (A and B) via the 8 digital input pins, with operation control and status output over the bidirectional pins. The ALU is implemented in Verilog and is suitable for educational purposes. The documentation does not specify external hardware, and the test procedure is marked as TODO.",
+   "summary_changed": true
+  },
+  {
+   "key": "a41a59a55bb0",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Summary is accurate; no tag changes needed.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This Wokwi project implements a small combinational logic circuit with one AND gate, one OR gate, and a second AND gate, each connected to pairs of the eight input pins. The outputs of the gates are routed to the output pins, and the design is intended to be tested by toggling the input switches and observing the corresponding outputs. The project is built using the Wokwi simulator and serves as an educational example of basic logic gate operation. No external hardware is required beyond the simulator's input switches and output LEDs.",
+   "summary": "This Wokwi project implements a small combinational logic circuit with one AND gate, one OR gate, and a second AND gate, each connected to pairs of the eight input pins. The outputs of the gates are routed to the output pins, and the design is intended to be tested by toggling the input switches and observing the corresponding outputs. The project is built using the Wokwi simulator and serves as an educational example of basic logic gate operation. No external hardware is required beyond the simulator's input switches and output LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "5dc96c65a52d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "timer",
+     "reason": "The design is a coin counter, not a programmable timer."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "It is a measurement/counting application for coin amounts."
+    }
+   ],
+   "notes": "Removed unsupported 'timer' tag, added 'instrumentation', and replaced the invented cocotb/serial-command summary with the actual coin counter description.",
+   "tags_before": [
+    "uart",
+    "sensor-interface",
+    "counter",
+    "timer"
+   ],
+   "tags": [
+    "uart",
+    "sensor-interface",
+    "counter",
+    "instrumentation"
+   ],
+   "summary_before": "This design is a counter that can be controlled and monitored through a UART interface. It includes a sensor interface for external input, and the counter value can be read or set via serial commands. The design is intended for use as a simple measurement or timing tool. It is implemented in Verilog and verified with a cocotb testbench.",
+   "summary": "This design is a piggy bank coin counter that detects and counts four types of coins (10, 5, 2, and 1 baht) from sensor inputs. It reports the amount of each coin type over a UART transmit interface. The design is implemented in Verilog and uses a reset input and a switch input. Testing is done by applying input pulses and checking that the UART output matches the expected count.",
+   "summary_changed": true
+  },
+  {
+   "key": "6a4626cb54cc",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "This project implements a 4x4 structural array multiplier in Verilog that multiplies two 4-bit binary numbers using full adders. The design generates partial products by ANDing each bit of one operand with all bits of the other, then sums them in a staged manner. The circuit is combinational and purely digital, producing an 8-bit product. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary": "This project implements a 4x4 structural array multiplier in Verilog that multiplies two 4-bit binary numbers using full adders. The design generates partial products by ANDing each bit of one operand with all bits of the other, then sums them in a staged manner. The circuit is combinational and purely digital, producing an 8-bit product. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6199,
+  "completion_tokens": 1252,
+  "total_tokens": 7451,
+  "cost": 0.0033621,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033621,
+   "upstream_inference_prompt_cost": 0.0018597,
+   "upstream_inference_completions_cost": 0.0015024
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033621,
+ "elapsed_s": 92.7
+}

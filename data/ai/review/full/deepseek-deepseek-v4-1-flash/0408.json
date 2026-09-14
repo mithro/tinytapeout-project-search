@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6408ebcb93dd",
+  "b2078321697e",
+  "20b4e3949f08",
+  "96899c91d82e",
+  "285fe021b569",
+  "7ae9a9cb1e68"
+ ],
+ "results": [
+  {
+   "key": "6408ebcb93dd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "parity",
+     "reason": "The design generates Hamming parity bits as part of the Hamming(12,8) codeword, but there is no standalone parity generation or checking logic described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed parity tag because the source describes Hamming parity bits, not a standalone parity generator/checker.",
+   "tags_before": [
+    "error-correction",
+    "crc",
+    "combinational",
+    "parity",
+    "multiplexer",
+    "encoder",
+    "verilog"
+   ],
+   "tags": [
+    "error-correction",
+    "crc",
+    "combinational",
+    "multiplexer",
+    "encoder",
+    "verilog"
+   ],
+   "summary_before": "This design is a combinational error detection engine that combines Hamming(12,8) encoding and CRC-8 checksum for 8-bit data protection. It uses pure XOR trees to provide zero-latency encoding, and a 4-to-1 multiplexer allows the 20-bit protected frame to be read in three 8-bit chunks. The design is tested by setting input data and toggling selection bits to read the segments. It requires an external controller to cycle through select states and reconstruct the frame.",
+   "summary": "This design is a combinational error detection engine that combines Hamming(12,8) encoding and CRC-8 checksum for 8-bit data protection. It uses pure XOR trees to provide zero-latency encoding, and a 4-to-1 multiplexer allows the 20-bit protected frame to be read in three 8-bit chunks. The design is tested by setting input data and toggling selection bits to read the segments. It requires an external controller to cycle through select states and reconstruct the frame.",
+   "summary_changed": false
+  },
+  {
+   "key": "b2078321697e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "text",
+    "graphics",
+    "prng",
+    "fsm",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "text",
+    "graphics",
+    "prng",
+    "fsm",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This design displays the sentence 'As above, so below' with a typewriter effect on a VGA monitor. It uses a standard 640x480 VGA timing generator and a state machine to manage the sequential animation, with a coordinate-based spatial hash to generate a flickering matrix of tiny green ASCII characters. The design requires a Tiny Tapeout VGA PMOD and a 25 MHz clock. It is notable for its text animation and pseudo-random character rendering.",
+   "summary": "This design displays the sentence 'As above, so below' with a typewriter effect on a VGA monitor. It uses a standard 640x480 VGA timing generator and a state machine to manage the sequential animation, with a coordinate-based spatial hash to generate a flickering matrix of tiny green ASCII characters. The design requires a Tiny Tapeout VGA PMOD and a 25 MHz clock. It is notable for its text animation and pseudo-random character rendering.",
+   "summary_changed": false
+  },
+  {
+   "key": "20b4e3949f08",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "sprite",
+    "graphics",
+    "display",
+    "art",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "sprite",
+    "graphics",
+    "display",
+    "art",
+    "pmod",
+    "verilog"
+   ],
+   "summary_before": "This project renders a 16x16 smiley sprite bouncing around a 640x480 VGA screen, with each pixel computed live from the beam position and ball coordinates without a framebuffer. The smiley blinks every approximately two seconds and its eyes shift toward the direction of motion. It is tested by plugging the TT VGA PMOD into the output PMOD and connecting a 640x480 at 60 Hz monitor, with no input controls. The design is notable for its live pixel computation and simple animation, requiring only the VGA PMOD and a compatible monitor.",
+   "summary": "This project renders a 16x16 smiley sprite bouncing around a 640x480 VGA screen, with each pixel computed live from the beam position and ball coordinates without a framebuffer. The smiley blinks every approximately two seconds and its eyes shift toward the direction of motion. It is tested by plugging the TT VGA PMOD into the output PMOD and connecting a 640x480 at 60 Hz monitor, with no input controls. The design is notable for its live pixel computation and simple animation, requiring only the VGA PMOD and a compatible monitor.",
+   "summary_changed": false
+  },
+  {
+   "key": "96899c91d82e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "communication",
+    "modulator",
+    "nco",
+    "dsp",
+    "crc",
+    "spi",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "modulator",
+    "nco",
+    "dsp",
+    "crc",
+    "spi",
+    "verilog"
+   ],
+   "summary_before": "This design implements a digital binary FSK modem for underwater acoustic communication in the 46-56 kHz band, using 48 kHz for mark and 54 kHz for space. It transmits and receives framed data with preamble, sync word, payload, and CRC-8, generating samples via a numerically controlled oscillator and decoding with parallel Goertzel filters. The chip interfaces through SPI for configuration and data transfer, and provides several debug outputs for monitoring. Notable limitations include half-duplex operation and lack of symbol-timing recovery, which may require multiple frames for initial synchronization.",
+   "summary": "This design implements a digital binary FSK modem for underwater acoustic communication in the 46-56 kHz band, using 48 kHz for mark and 54 kHz for space. It transmits and receives framed data with preamble, sync word, payload, and CRC-8, generating samples via a numerically controlled oscillator and decoding with parallel Goertzel filters. The chip interfaces through SPI for configuration and data transfer, and provides several debug outputs for monitoring. Notable limitations include half-duplex operation and lack of symbol-timing recovery, which may require multiple frames for initial synchronization.",
+   "summary_changed": false
+  },
+  {
+   "key": "285fe021b569",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "rgb-led",
+    "pwm",
+    "led",
+    "button",
+    "dip-switch",
+    "education"
+   ],
+   "tags": [
+    "rgb-led",
+    "pwm",
+    "led",
+    "button",
+    "dip-switch",
+    "education"
+   ],
+   "summary_before": "This design implements an RGB mixer that uses two push buttons (inc and dec) and a 2-position dip switch to select one of three PWM outputs. The selected output's pulse width is increased or decreased by the buttons, allowing control of the brightness of each RGB LED color. It requires external push buttons, a dip switch, an RGB LED, and resistors for pull-up configurations. The design is a custom implementation of the Z2A course's RGB mixer, intended for educational purposes.",
+   "summary": "This design implements an RGB mixer that uses two push buttons (inc and dec) and a 2-position dip switch to select one of three PWM outputs. The selected output's pulse width is increased or decreased by the buttons, allowing control of the brightness of each RGB LED color. It requires external push buttons, a dip switch, an RGB LED, and resistors for pull-up configurations. The design is a custom implementation of the Z2A course's RGB mixer, intended for educational purposes.",
+   "summary_changed": false
+  },
+  {
+   "key": "7ae9a9cb1e68",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "The design decodes a 4-bit ALU opcode, not processor instructions; no instruction decode logic is described."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The ALU supports bitwise operations but is not a basic logic gate implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed instruction-decoder and logic-gate tags because the source describes an ALU opcode decoder and bitwise ALU operations, not instruction decoding or basic logic gates.",
+   "tags_before": [
+    "alu",
+    "register-file",
+    "multiplexer",
+    "instruction-decoder",
+    "logic-gate",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "register-file",
+    "multiplexer",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8-bit arithmetic logic unit with two internal registers and a multiplexed output that can show either the 8-bit result or the carry flag. It supports eleven operations selected by a 4-bit opcode, including addition, subtraction, bitwise logic, shifts, and negation. The design is intended to be driven by an external microcontroller or Raspberry Pi, which loads operands, selects the operation, and reads the result. It is a straightforward educational ALU with no on-chip test features, and it requires external hardware for control and observation.",
+   "summary": "This project implements an 8-bit arithmetic logic unit with two internal registers and a multiplexed output that can show either the 8-bit result or the carry flag. It supports eleven operations selected by a 4-bit opcode, including addition, subtraction, bitwise logic, shifts, and negation. The design is intended to be driven by an external microcontroller or Raspberry Pi, which loads operands, selects the operation, and reads the result. It is a straightforward educational ALU with no on-chip test features, and it requires external hardware for control and observation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7802,
+  "completion_tokens": 1155,
+  "total_tokens": 8957,
+  "cost": 0.0037266,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0037266,
+   "upstream_inference_prompt_cost": 0.0023406,
+   "upstream_inference_completions_cost": 0.001386
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0037266,
+ "elapsed_s": 14.0
+}

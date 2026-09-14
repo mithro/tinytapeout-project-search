@@ -1,0 +1,327 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "03bccc0157d9",
+  "a3b449c2fd9d",
+  "762654d0db2e",
+  "2e14e815d903",
+  "e476acce26e6",
+  "6a0a5615dc17"
+ ],
+ "results": [
+  {
+   "key": "03bccc0157d9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design has a single CRC register and FIFO, not a multi-register storage block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crc",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "fifo",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "vga",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "display",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "interrupt-controller",
+     "reason": "Already present; no change."
+    }
+   ],
+   "notes": "Removed register-file tag; the design has a single CRC register and FIFO, not a multi-register file.",
+   "tags_before": [
+    "crc",
+    "fifo",
+    "vga",
+    "display",
+    "register-file",
+    "interrupt-controller"
+   ],
+   "tags": [
+    "crc",
+    "fifo",
+    "vga",
+    "display",
+    "interrupt-controller"
+   ],
+   "summary_before": "This design implements an IEEE 802.3 CRC-32 engine with polynomial 0xEDB88320, an 8-byte FIFO, and a one-bit-per-cycle serial processing path. It exposes a bidirectional register read interface with write, read, address, enable, and reset controls, plus an interrupt output, and it renders FIFO occupancy, FSM state, and all 32 CRC bits on a VGA display across two grid rows. A TinyVGA PMOD is required for the visual output, and a microcontroller such as an Arduino or RP2040 drives the input and bidirectional data buses. The project targets edge AI data-integrity use cases and runs in a single clock domain at 25 MHz.",
+   "summary": "This design implements an IEEE 802.3 CRC-32 engine with polynomial 0xEDB88320, an 8-byte FIFO, and a one-bit-per-cycle serial processing path. It exposes a bidirectional register read interface with write, read, address, enable, and reset controls, plus an interrupt output, and it renders FIFO occupancy, FSM state, and all 32 CRC bits on a VGA display across two grid rows. A TinyVGA PMOD is required for the visual output, and a microcontroller such as an Arduino or RP2040 drives the input and bidirectional data buses. The project runs in a single clock domain at 25 MHz.",
+   "summary_changed": true
+  },
+  {
+   "key": "a3b449c2fd9d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-art",
+     "reason": "The design is a VGA logo display, not an artistic silicon layout or decorative design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "video",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "display",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "rom",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; no change."
+    }
+   ],
+   "notes": "Removed silicon-art tag; the design is a VGA logo display, not an artistic silicon layout.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "silicon-art",
+    "rom",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "rom",
+    "verilog"
+   ],
+   "summary_before": "This project displays the Hackerspace Trójmiasto logo on a VGA monitor at 640x480 resolution. It includes a VGA timing generator and a bitmap ROM for the logo, with configurable color modes and animation such as bouncing or tiling. The design requires an external PMOD-to-VGA adapter to connect to a standard monitor. It is part of the IEEE Open-Silicon initiative and is fully synthesizable for ASIC implementation.",
+   "summary": "This project displays the Hackerspace Trójmiasto logo on a VGA monitor at 640x480 resolution. It includes a VGA timing generator and a bitmap ROM for the logo, with configurable color modes and animation such as bouncing or tiling. The design requires an external PMOD-to-VGA adapter to connect to a standard monitor. It is fully synthesizable for ASIC implementation.",
+   "summary_changed": true
+  },
+  {
+   "key": "762654d0db2e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "security",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "latch",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; no change."
+    }
+   ],
+   "notes": "Removed education tag; the source does not state an educational purpose.",
+   "tags_before": [
+    "security",
+    "latch",
+    "sequential-logic",
+    "combinational",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "security",
+    "latch",
+    "sequential-logic",
+    "combinational",
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This is a 4-bit password security system that grants access for a correct code and triggers a persistent alarm for the trap code 1111. It uses combinational logic for comparison and an SR latch so that the alarm state remains active until a manual reset, demonstrating both combinational and sequential logic in hardware security. The design is implemented in Wokwi. To test it, DIP switches provide the 4-bit input, and LEDs (red and green) plus a buzzer indicate access granted or alarm states. External hardware includes an 8-position DIP switch, pushbuttons for step and reset, LEDs, a buzzer, and resistors. The documentation notes that the circuit processes an 8-bit input in the description despite the 4-bit title, which may be a inconsistency.",
+   "summary": "This is a 4-bit password security system that grants access for a correct code and triggers a persistent alarm for the trap code 1111. It uses combinational logic for comparison and an SR latch so that the alarm state remains active until a manual reset, demonstrating both combinational and sequential logic in hardware security. The design is implemented in Wokwi. To test it, DIP switches provide the 4-bit input, and LEDs (red and green) plus a buzzer indicate access granted or alarm states. External hardware includes an 8-position DIP switch, pushbuttons for step and reset, LEDs, a buzzer, and resistors.",
+   "summary_changed": true
+  },
+  {
+   "key": "2e14e815d903",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The LFSRs are used as entropy sources for a PUF, not as a pseudo-random number generator output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puf",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "memristor",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "security",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "spi",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; no change."
+    }
+   ],
+   "notes": "Removed prng tag; the LFSRs are used as PUF entropy sources, not as a pseudo-random number generator.",
+   "tags_before": [
+    "puf",
+    "lfsr",
+    "memristor",
+    "security",
+    "spi",
+    "prng",
+    "verilog"
+   ],
+   "tags": [
+    "puf",
+    "lfsr",
+    "memristor",
+    "security",
+    "spi",
+    "verilog"
+   ],
+   "summary_before": "This design is a digital physical unclonable function (PUF) that uses eight distinct-tap maximal-length 10-bit LFSRs as virtual ring oscillators. A 6-bit challenge selects a pair of LFSRs, and an arbiter compares their popcounts over a programmable window to produce a response bit. 64 challenges accumulate into a 64-bit response, which can be XORed with a host-loaded memristor vector for dual-entropy mode. It is SPI-programmable and requires no external hardware, though an SPI master is needed for configuration.",
+   "summary": "This design is a digital physical unclonable function (PUF) that uses eight distinct-tap maximal-length 10-bit LFSRs as virtual ring oscillators. A 6-bit challenge selects a pair of LFSRs, and an arbiter compares their popcounts over a programmable window to produce a response bit. 64 challenges accumulate into a 64-bit response, which can be XORed with a host-loaded memristor vector for dual-entropy mode. It is SPI-programmable and requires no external hardware, though an SPI master is needed for configuration.",
+   "summary_changed": false
+  },
+  {
+   "key": "e476acce26e6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "This design generates a VGA test pattern resembling NTSC color bars, with optional station ID display, scrolling ID, and scrolling bars. It is configured through input pins for showing the ID, using a custom ID, scrolling the ID, and scrolling the bars, and it outputs RGB and sync signals on the Tiny VGA pinout. A TinyVGA PMOD is required to connect to a VGA monitor, and the colors are explicitly not accurate to real NTSC color bars. Silicon test reports indicate it works, though one tester noted the clock must be manually set to 25 MHz in the commander app.",
+   "summary": "This design generates a VGA test pattern resembling NTSC color bars, with optional station ID display, scrolling ID, and scrolling bars. It is configured through input pins for showing the ID, using a custom ID, scrolling the ID, and scrolling the bars, and it outputs RGB and sync signals on the Tiny VGA pinout. A TinyVGA PMOD is required to connect to a VGA monitor, and the colors are explicitly not accurate to real NTSC color bars. Silicon test reports indicate it works, though one tester noted the clock must be manually set to 25 MHz in the commander app.",
+   "summary_changed": false
+  },
+  {
+   "key": "6a0a5615dc17",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "Matrix-vector multiplication is not described as digital signal processing in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "accelerator",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "uart",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "axi",
+     "reason": "Already present; no change."
+    }
+   ],
+   "notes": "Removed dsp tag; the source describes matrix-vector multiplication, not digital signal processing.",
+   "tags_before": [
+    "accelerator",
+    "uart",
+    "axi",
+    "dsp"
+   ],
+   "tags": [
+    "accelerator",
+    "uart",
+    "axi"
+   ],
+   "summary_before": "This design performs matrix-vector multiplication, receiving the matrix and vector via UART and outputting the result via UART. Internally, it uses AXI-Stream to pass data between the UART modules and the multiplication core. The design is tested with a provided testbench using iverilog. No external hardware is required.",
+   "summary": "This design performs matrix-vector multiplication, receiving the matrix and vector via UART and outputting the result via UART. Internally, it uses AXI-Stream to pass data between the UART modules and the multiplication core. The design is tested with a provided testbench using iverilog. No external hardware is required.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "762654d0db2e: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 7683,
+  "completion_tokens": 1882,
+  "total_tokens": 9565,
+  "cost": 0.0045633,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0045633,
+   "upstream_inference_prompt_cost": 0.0023049,
+   "upstream_inference_completions_cost": 0.0022584
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0045633,
+ "elapsed_s": 15.1
+}

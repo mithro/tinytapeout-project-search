@@ -1,0 +1,303 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "24854593b94d",
+  "d71c3f4c8510",
+  "a9fd3b6c8536",
+  "c2b2f622b42e",
+  "286d883e8696",
+  "6d86a129c367"
+ ],
+ "results": [
+  {
+   "key": "24854593b94d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The source describes a general math accelerator with vector/scalar ops, not a digital signal processing design specifically."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pipeline",
+     "reason": "The design is explicitly built around a 4-bit ALU pipeline."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "The ALU supports multiply-accumulate style operations such as dot product and sum of squares."
+    }
+   ],
+   "notes": "Removed unsupported DSP tag and added pipeline and mac-unit tags supported by the ALU architecture.",
+   "tags_before": [
+    "accelerator",
+    "alu",
+    "spi",
+    "dsp",
+    "systemverilog"
+   ],
+   "tags": [
+    "accelerator",
+    "alu",
+    "spi",
+    "systemverilog",
+    "pipeline",
+    "mac-unit"
+   ],
+   "summary_before": "The SIMD2 Math Accelerator Unit is a 4-bit ALU pipeline that performs various vector and scalar math operations. It communicates over an SPI-style interface using a 20-bit instruction word. The design supports operations like dot product, vector add/sub, and distance squared. It is intended as a hardware accelerator for math-intensive tasks.",
+   "summary": "The SIMD2 Math Accelerator Unit is a 4-bit ALU pipeline that performs various vector and scalar math operations. It communicates over an SPI-style interface using a 20-bit instruction word. The design supports operations like dot product, vector add/sub, and distance squared. It is intended as a hardware accelerator for math-intensive tasks.",
+   "summary_changed": false
+  },
+  {
+   "key": "d71c3f4c8510",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The design uses eight switches as inputs for operands and mode selection."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added dip-switch tag based on the switch inputs.",
+   "tags_before": [
+    "alu",
+    "multiplier",
+    "subtractor",
+    "adder",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "alu",
+    "multiplier",
+    "subtractor",
+    "adder",
+    "7-segment",
+    "wokwi",
+    "dip-switch"
+   ],
+   "summary_before": "This is a 3-bit ALU that supports addition, subtraction, and multiplication, with a fourth mode that passes through switches, clock, and reset signals. The inputs are eight switches: six for two 3-bit operands and two for mode selection. The outputs are eight pins that can drive a 7-segment display, though the segments light up according to the binary output rather than decimal digits. The design is purely combinational and requires no external hardware beyond the standard board and a 7-segment display.",
+   "summary": "This is a 3-bit ALU that supports addition, subtraction, and multiplication, with a fourth mode that passes through switches, clock, and reset signals. The inputs are eight switches: six for two 3-bit operands and two for mode selection. The outputs are eight pins that can drive a 7-segment display, though the segments light up according to the binary output rather than decimal digits. The design is purely combinational and requires no external hardware beyond the standard board and a 7-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "a9fd3b6c8536",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not indicate an educational purpose."
+    },
+    {
+     "tag": "template",
+     "reason": "The source does not describe this as a boilerplate or starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is very thin and the design is a resubmission with minimal description."
+    }
+   ],
+   "notes": "Removed unsupported education and template tags; added incomplete due to very thin documentation.",
+   "tags_before": [
+    "fpga",
+    "template",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "fpga",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "This project is a resubmission of a TinyFPGA design for Tiny Tapeout 8, implemented in Verilog. It provides four inputs, two command pins, and eight outputs, and is configured and then observed via the outputs. No special external hardware is required, and the design includes tests. The documentation is very brief, so the exact function of the FPGA configuration is not detailed.",
+   "summary": "This project is a resubmission of a TinyFPGA design for Tiny Tapeout 8, implemented in Verilog. It provides four inputs, two command pins, and eight outputs, and is configured and then observed via the outputs. No special external hardware is required, and the design includes tests. The documentation is very brief, so the exact function of the FPGA configuration is not detailed.",
+   "summary_changed": false
+  },
+  {
+   "key": "c2b2f622b42e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source does not mention an arithmetic logic unit."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is very thin and all pins are marked unused, indicating an unfinished or placeholder design."
+    }
+   ],
+   "notes": "Removed unsupported alu and education tags; added incomplete due to minimal documentation and unused pins.",
+   "tags_before": [
+    "calculator",
+    "alu",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "calculator",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "This is an 8-bit calculator design originating from a ChipCraft lab exercise. It is implemented in Verilog and tested using Makerchip simulation. No external hardware is required, and all pins are marked unused in the provided pin list. The documentation is minimal, consisting only of a one-line description and a note about simulation testing.",
+   "summary": "This is an 8-bit calculator design originating from a ChipCraft lab exercise. It is implemented in Verilog and tested using Makerchip simulation. No external hardware is required, and all pins are marked unused in the provided pin list. The documentation is minimal, consisting only of a one-line description and a note about simulation testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "286d883e8696",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rtc",
+     "reason": "The design does not implement a real-time clock; it optionally interfaces with an external RTC."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The output is a multiplexed LED matrix, not a seven-segment display."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design does not generate a clock; it uses an external clock and PPS input."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led-matrix",
+     "reason": "The design drives a multiplexed matrix of 12 LEDs."
+    },
+    {
+     "tag": "timer",
+     "reason": "The design counts hours, minutes, and seconds using registers and overflow comparisons."
+    }
+   ],
+   "notes": "Removed unsupported rtc, 7-segment, and clock-generator tags; added led-matrix and timer tags.",
+   "tags_before": [
+    "counter",
+    "clock-divider",
+    "multiplexer",
+    "led",
+    "rtc",
+    "display",
+    "7-segment",
+    "clock-generator"
+   ],
+   "tags": [
+    "counter",
+    "clock-divider",
+    "multiplexer",
+    "led",
+    "display",
+    "led-matrix",
+    "timer"
+   ],
+   "summary_before": "This design implements a binary clock that counts hours, minutes, and seconds using registers and displays the time on a multiplexed array of 12 LEDs. It supports an optional pulse-per-second input for accurate timekeeping and allows presetting the hours via input pins. The design requires external hardware: a matrix of 12 LEDs and optionally a real-time clock or GPS with PPS output. It is notable for its efficient use of only 7 outputs to control 12 LEDs through multiplexing.",
+   "summary": "This design implements a binary clock that counts hours, minutes, and seconds using registers and displays the time on a multiplexed array of 12 LEDs. It supports an optional pulse-per-second input for accurate timekeeping and allows presetting the hours via input pins. The design requires external hardware: a matrix of 12 LEDs and optionally a real-time clock or GPS with PPS output. It is notable for its efficient use of only 7 outputs to control 12 LEDs through multiplexing.",
+   "summary_changed": false
+  },
+  {
+   "key": "6d86a129c367",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The design is a TPU accelerator, not a general-purpose CPU."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The design does not implement an esoteric programming language."
+    },
+    {
+     "tag": "memory",
+     "reason": "The design does not include on-chip memory; it uses an external SPI memory interface."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "tpu",
+     "reason": "The design is explicitly a 2x2 INT8 systolic-array TPU."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "The core is a 2x2 systolic array of processing elements."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "The design performs matrix multiplication for machine learning inference."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "The design is targeted at embedded AI inference with INT8 operations."
+    },
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "The SPI slave bridge uses 2-FF CDC synchronizers for SCLK, CS_N, and MOSI."
+    }
+   ],
+   "notes": "Replaced incorrect CPU/esoteric/memory/education tags with TPU, systolic-array, machine-learning, edge-ai, and clock-domain-crossing tags; corrected summary to match the actual TPU design.",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "spi",
+    "memory",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "spi",
+    "verilog",
+    "tpu",
+    "systolic-array",
+    "machine-learning",
+    "edge-ai",
+    "clock-domain-crossing"
+   ],
+   "summary_before": "This design is a multicycle CPU that executes programs written in the BF (Brainfuck) language. It has no on-chip RAM; both program and data tape reside in an external SPI RAM emulated by an RP2040 running spi-ram-emu. The CPU uses an on-chip SPI master to access memory, performing at least one SPI transaction per instruction. It is tested with cocotb and requires an external RP2040 for memory, making it suitable for educational purposes.",
+   "summary": "TeenyTPU is a 2x2 INT8 systolic array TPU designed for matrix multiplication operations. It features a 2x2 grid of Processing Elements that perform matrix multiplication on INT8 data, producing 16-bit partial sums. The design includes an SPI slave bridge for communication with an external host, supporting opcodes for loading weights, activations, and reading results. It requires an external SPI master connected to the designated pins for testing and operation.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8966,
+  "completion_tokens": 1703,
+  "total_tokens": 10669,
+  "cost": 0.002815,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002815,
+   "upstream_inference_prompt_cost": 0.0017932,
+   "upstream_inference_completions_cost": 0.0010218
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002815,
+ "elapsed_s": 69.7
+}

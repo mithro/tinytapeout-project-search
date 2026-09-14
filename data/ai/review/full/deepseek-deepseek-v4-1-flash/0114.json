@@ -1,0 +1,239 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "514076101151",
+  "6c0e80008154",
+  "abd1109e01fe",
+  "770b3f640165",
+  "6eafaf3737e0",
+  "68145dc7f24a"
+ ],
+ "results": [
+  {
+   "key": "514076101151",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design detects edges to create pulses; it does not generate a clock signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "The project is a test structure measuring DDR throughput and flop aperture behavior."
+    }
+   ],
+   "notes": "Removed clock-generator because the design only detects edges; added characterization for the process/device test intent.",
+   "tags_before": [
+    "edge-detector",
+    "flip-flop",
+    "clock-generator",
+    "verilog"
+   ],
+   "tags": [
+    "edge-detector",
+    "flip-flop",
+    "verilog",
+    "characterization"
+   ],
+   "summary_before": "This project is a DDR throughput and flop aperture test that grabs data on every clock edge with varying positive pulse widths. It uses positive edge detectors on the clock and its complement to generate two pulses per period, with pulse width adjusted by the number of inverters. The design outputs the captured data and includes a normal flop for comparison. Testing requires an Analog Discovery 3, and the documentation is minimal, with the author stating it works 'badly probably'.",
+   "summary": "This project is a DDR throughput and flop aperture test that grabs data on every clock edge with varying positive pulse widths. It uses positive edge detectors on the clock and its complement to generate two pulses per period, with pulse width adjusted by the number of inverters. The design outputs the captured data and includes a normal flop for comparison. Testing requires an Analog Discovery 3, and the documentation is minimal, with the author stating it works 'badly probably'.",
+   "summary_changed": false
+  },
+  {
+   "key": "6c0e80008154",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "No factory self-test structure is described; it is a user-selectable standard-cell mux."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The source reports a working silicon test by the author."
+    }
+   ],
+   "notes": "Removed factory-test (no factory self-test described); added silicon-tested based on the working report.",
+   "tags_before": [
+    "standard-cell",
+    "multiplexer",
+    "factory-test",
+    "verilog",
+    "characterization"
+   ],
+   "tags": [
+    "standard-cell",
+    "multiplexer",
+    "verilog",
+    "characterization",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a multiplexer that allows selection of different IHP standard cells for testing. It uses page bits to select among cells and input bits to drive them, with outputs reflecting the selected cell's behavior. The documentation is minimal, with 'to be filled later' for how it works and how to test. Silicon testing by the author confirmed it works as expected, with manual testing of the mux and standard cells.",
+   "summary": "This design is a multiplexer that allows selection of different IHP standard cells for testing. It uses page bits to select among cells and input bits to drive them, with outputs reflecting the selected cell's behavior. The documentation is minimal, with 'to be filled later' for how it works and how to test. Silicon testing by the author confirmed it works as expected, with manual testing of the mux and standard cells.",
+   "summary_changed": false
+  },
+  {
+   "key": "abd1109e01fe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational or teaching purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "The design is tested with a dedicated Simon Says Pmod and the documentation references it."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The source reports a working silicon test by a tester."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added pmod and silicon-tested from the source.",
+   "tags_before": [
+    "game",
+    "led",
+    "7-segment",
+    "audio",
+    "speaker",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "game",
+    "led",
+    "7-segment",
+    "audio",
+    "speaker",
+    "wokwi",
+    "pmod",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a Simon Says memory game where the player repeats an ever-growing sequence of colors shown on four LEDs, each with a corresponding tone, and the current level is shown on a two-digit seven-segment display. It uses four buttons, four LEDs, an optional speaker and a multiplexed seven-segment display, and can be tested with a dedicated Simon Says Pmod or with discrete components. A Wokwi simulation with wiring diagram is provided. Silicon testing confirmed it works as expected with the Pmod when the design is reset after selection.",
+   "summary": "This is a Simon Says memory game where the player repeats an ever-growing sequence of colors shown on four LEDs, each with a corresponding tone, and the current level is shown on a two-digit seven-segment display. It uses four buttons, four LEDs, an optional speaker and a multiplexed seven-segment display, and can be tested with a dedicated Simon Says Pmod or with discrete components. A Wokwi simulation with wiring diagram is provided. Silicon testing confirmed it works as expected with the Pmod when the design is reset after selection.",
+   "summary_changed": false
+  },
+  {
+   "key": "770b3f640165",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans a 6x2 tile area."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added multi-tile because the design occupies 6x2 tiles.",
+   "tags_before": [
+    "cpu",
+    "risc-v",
+    "memory",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "risc-v",
+    "memory",
+    "verilog",
+    "multi-tile"
+   ],
+   "summary_before": "This project implements a 16-bit RISC-V CPU with a memory management unit in Verilog. It uses an external RAM system for program and data storage, with separate buses for read data, address/data, and control signals. Testing requires that external RAM be connected, as the CPU cannot run standalone. The design is noted as a CPU plus MMU, but the documentation is brief and gives few details beyond the pin names and the need for external RAM.",
+   "summary": "This project implements a 16-bit RISC-V CPU with a memory management unit in Verilog. It uses an external RAM system for program and data storage, with separate buses for read data, address/data, and control signals. Testing requires that external RAM be connected, as the CPU cannot run standalone. The design is noted as a CPU plus MMU, but the documentation is brief and gives few details beyond the pin names and the need for external RAM.",
+   "summary_changed": false
+  },
+  {
+   "key": "6eafaf3737e0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is described as a Verilog ring oscillator; no analog circuit design is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "The oscillator is intended for characterization with externally selectable length."
+    }
+   ],
+   "notes": "Removed analog (no analog design evidence); added characterization for the oscillator test intent.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "verilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "verilog",
+    "characterization"
+   ],
+   "summary_before": "This project is a sky130 inv_2 ring oscillator with an externally selectable length, allowing the oscillator frequency to be tuned via tap inputs. It provides eight output pins, likely for observing different taps or buffered outputs. The documentation is minimal, with only a one-line description and pin names, and no testing details. It is an experimental design for oscillator characterization.",
+   "summary": "This project is a sky130 inv_2 ring oscillator with an externally selectable length, allowing the oscillator frequency to be tuned via tap inputs. It provides eight output pins, likely for observing different taps or buffered outputs. The documentation is minimal, with only a one-line description and pin names, and no testing details. It is an experimental design for oscillator characterization.",
+   "summary_changed": false
+  },
+  {
+   "key": "68145dc7f24a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "workshop",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "workshop",
+    "education",
+    "wokwi"
+   ],
+   "summary_before": "This design controls the segments of a 7-segment display, including the decimal point, based on input signals. It was created as part of an IEEE-sponsored Tiny Tapeout workshop in San Diego in November 2024, in collaboration with UCSD. The design is tested by toggling the inputs and observing the segments turn on and off. It requires an external 7-segment display for output.",
+   "summary": "This design controls the segments of a 7-segment display, including the decimal point, based on input signals. It was created as part of an IEEE-sponsored Tiny Tapeout workshop in San Diego in November 2024, in collaboration with UCSD. The design is tested by toggling the inputs and observing the segments turn on and off. It requires an external 7-segment display for output.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6319,
+  "completion_tokens": 1317,
+  "total_tokens": 7636,
+  "cost": 0.004345125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004345125,
+   "upstream_inference_prompt_cost": 0.002369625,
+   "upstream_inference_completions_cost": 0.0019755
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004345125,
+ "elapsed_s": 5.4
+}

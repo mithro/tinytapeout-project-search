@@ -1,0 +1,321 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "0d26f7e801c8",
+  "1e20871ee709",
+  "a4b7e5570e2c",
+  "79a23b52b722",
+  "8485f20ded7e",
+  "fdc236dea757"
+ ],
+ "results": [
+  {
+   "key": "0d26f7e801c8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is digital (triangle wave synthesizers, FIR filter, phase detector); analog interfacing is external via comparator and R-2R DAC, not on-chip mixed-signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "modulator",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "fsk",
+     "reason": "Not in vocabulary; cannot add."
+    },
+    {
+     "tag": "serial",
+     "reason": "Not in vocabulary; cannot add."
+    }
+   ],
+   "notes": "Removed mixed-signal: analog interfacing is external, not on-chip.",
+   "tags_before": [
+    "communication",
+    "modulator",
+    "demodulator",
+    "fir-filter",
+    "spi",
+    "dac",
+    "mixed-signal",
+    "amaranth"
+   ],
+   "tags": [
+    "communication",
+    "modulator",
+    "demodulator",
+    "fir-filter",
+    "spi",
+    "dac",
+    "amaranth",
+    "uart"
+   ],
+   "summary_before": "This is a simple FSK modem comparable to Bell 103. It transmits using triangle wave synthesizers and receives by heterodyning, FIR filtering, and phase detection. It is configured over SPI and requires external analog hardware such as a comparator and an R-2R DAC for the phone line interface. The design supports serial data at 300 bps, but the documentation notes that noise immunity is questionable.",
+   "summary": "This is a simple FSK modem comparable to Bell 103. It transmits using triangle wave synthesizers and receives by heterodyning, FIR filtering, and phase detection. It is configured over SPI and requires external analog hardware such as a comparator and an R-2R DAC for the phone line interface. The design supports serial data at 300 bps, but the documentation notes that noise immunity is questionable.",
+   "summary_changed": false
+  },
+  {
+   "key": "1e20871ee709",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The source only names the project 'RiscV Scan Chain based CPU'; no RISC-V ISA implementation is described in this block, and the documentation is a TODO."
+    },
+    {
+     "tag": "cpu",
+     "reason": "This block is described only as the clocking block; no processor core is implemented here."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin with a TODO for how it works."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed risc-v and cpu: this block is only the clocking portion and no ISA implementation is documented.",
+   "tags_before": [
+    "risc-v",
+    "scan-chain",
+    "cpu",
+    "clock-generator",
+    "counter",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "scan-chain",
+    "clock-generator",
+    "counter",
+    "7-segment",
+    "verilog",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is the clocking block of a RISC-V scan-chain based CPU. It provides a slow clock output and drives a 7-segment display counter that increments every second after reset. The design is intended to be tested by observing the counter on the display. The documentation is minimal, with a TODO for how it works, so details of the clocking scheme are not described.",
+   "summary": "This is the clocking block of a RISC-V scan-chain based CPU. It provides a slow clock output and drives a 7-segment display counter that increments every second after reset. The design is intended to be tested by observing the counter on the display. The documentation is minimal, with a TODO for how it works, so details of the clocking scheme are not described.",
+   "summary_changed": false
+  },
+  {
+   "key": "a4b7e5570e2c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "No RISC-V ISA implementation is described in this block; documentation is a TODO."
+    },
+    {
+     "tag": "cpu",
+     "reason": "This block is described only as the instructions block; no processor core is implemented here."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "The source does not describe instruction decode logic; only a counter and 7-segment display are documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin with a TODO for how it works."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed risc-v, cpu, and instruction-decoder: no ISA or decode logic is documented in this block.",
+   "tags_before": [
+    "risc-v",
+    "scan-chain",
+    "cpu",
+    "instruction-decoder",
+    "counter",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "scan-chain",
+    "counter",
+    "7-segment",
+    "verilog",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is the instructions block of a RISC-V scan-chain based CPU. It drives a 7-segment display counter that increments every second after reset. The design is intended to be tested by observing the counter on the display. The documentation is minimal, with a TODO for how it works, so details of the instruction handling are not described.",
+   "summary": "This is the instructions block of a RISC-V scan-chain based CPU. It drives a 7-segment display counter that increments every second after reset. The design is intended to be tested by observing the counter on the display. The documentation is minimal, with a TODO for how it works, so details of the instruction handling are not described.",
+   "summary_changed": false
+  },
+  {
+   "key": "79a23b52b722",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "No RISC-V ISA implementation is described in this block; documentation is a TODO."
+    },
+    {
+     "tag": "cpu",
+     "reason": "This block is described only as the registers block; no processor core is implemented here."
+    },
+    {
+     "tag": "register-file",
+     "reason": "The source does not describe a register file; only a counter and 7-segment display are documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin with a TODO for how it works."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed risc-v, cpu, and register-file: no register file or ISA is documented in this block.",
+   "tags_before": [
+    "risc-v",
+    "scan-chain",
+    "cpu",
+    "register-file",
+    "counter",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "scan-chain",
+    "counter",
+    "7-segment",
+    "verilog",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is the registers block of a RISC-V scan-chain based CPU. It drives a 7-segment display counter that increments every second after reset. The design is intended to be tested by observing the counter on the display. The documentation is minimal, with a TODO for how it works, so details of the register file are not described.",
+   "summary": "This is the registers block of a RISC-V scan-chain based CPU. It drives a 7-segment display counter that increments every second after reset. The design is intended to be tested by observing the counter on the display. The documentation is minimal, with a TODO for how it works, so details of the register file are not described.",
+   "summary_changed": false
+  },
+  {
+   "key": "8485f20ded7e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "No RISC-V ISA implementation is described in this block; documentation is a TODO."
+    },
+    {
+     "tag": "cpu",
+     "reason": "This block is described only as the ALU block; no processor core is implemented here."
+    },
+    {
+     "tag": "alu",
+     "reason": "The source does not describe ALU logic; only a counter and 7-segment display are documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin with a TODO for how it works."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed risc-v, cpu, and alu: no ALU or ISA is documented in this block.",
+   "tags_before": [
+    "risc-v",
+    "scan-chain",
+    "cpu",
+    "alu",
+    "counter",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "scan-chain",
+    "counter",
+    "7-segment",
+    "verilog",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is the ALU block of a RISC-V scan-chain based CPU. It drives a 7-segment display counter that increments every second after reset. The design is intended to be tested by observing the counter on the display. The documentation is minimal, with a TODO for how it works, so details of the ALU are not described.",
+   "summary": "This is the ALU block of a RISC-V scan-chain based CPU. It drives a 7-segment display counter that increments every second after reset. The design is intended to be tested by observing the counter on the display. The documentation is minimal, with a TODO for how it works, so details of the ALU are not described.",
+   "summary_changed": false
+  },
+  {
+   "key": "fdc236dea757",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The output is a 7-segment display, already covered by the 7-segment tag; generic display tag is redundant and unsupported as a separate interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The one-line description contains a TODO and the documentation is incomplete."
+    }
+   ],
+   "notes": "Removed redundant display tag; added incomplete due to TODO in description.",
+   "tags_before": [
+    "instrumentation",
+    "frequency-counter",
+    "7-segment",
+    "display",
+    "clock-divider",
+    "music"
+   ],
+   "tags": [
+    "instrumentation",
+    "frequency-counter",
+    "7-segment",
+    "clock-divider",
+    "music",
+    "incomplete"
+   ],
+   "summary_before": "This project is a guitar tuner that measures the frequency of input pulses and displays the result on a 7-segment display. It uses clock dividers and combinational logic to convert binary to decimal for the display, and outputs a slower square wave on output 7. The design is documented with a TODO placeholder, so detailed operation and testing are not fully described. It requires an external signal representing the frequency to be measured.",
+   "summary": "This project is a guitar tuner that measures the frequency of input pulses and displays the result on a 7-segment display. It uses clock dividers and combinational logic to convert binary to decimal for the display, and outputs a slower square wave on output 7. The design is documented with a TODO placeholder, so detailed operation and testing are not fully described. It requires an external signal representing the frequency to be measured.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5755,
+  "completion_tokens": 1415,
+  "total_tokens": 7170,
+  "cost": 0.002117673,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002117673,
+   "upstream_inference_prompt_cost": 0.000674373,
+   "upstream_inference_completions_cost": 0.0014433
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002117673,
+ "elapsed_s": 33.5
+}

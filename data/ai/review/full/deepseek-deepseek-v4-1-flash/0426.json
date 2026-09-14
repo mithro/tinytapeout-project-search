@@ -1,0 +1,219 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5120135726ae",
+  "2158fbf21fd2",
+  "93cc06d450de",
+  "c323dc076bbf",
+  "82122fc10bba",
+  "572bcbdddeac"
+ ],
+ "results": [
+  {
+   "key": "5120135726ae",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the design was validated on fabricated silicon."
+    }
+   ],
+   "notes": "Added silicon-tested because the source includes a working silicon test report.",
+   "tags_before": [
+    "cpu",
+    "retro",
+    "alu",
+    "memory"
+   ],
+   "tags": [
+    "cpu",
+    "retro",
+    "alu",
+    "memory",
+    "silicon-tested"
+   ],
+   "summary_before": "Silly 4b CPU v2 is a minimal 4-bit CPU inspired by the PDP-8, implemented in Verilog. It features 8 words of 6-bit memory, a 4-bit accumulator, and a 3-bit program counter, and can execute simple programs like Fibonacci. The CPU is controlled via input pins for commands and arguments, and outputs the accumulator and program counter. Silicon tests confirm it works as expected.",
+   "summary": "Silly 4b CPU v2 is a minimal 4-bit CPU inspired by the PDP-8, implemented in Verilog. It features 8 words of 6-bit memory, a 4-bit accumulator, and a 3-bit program counter, and can execute simple programs like Fibonacci. The CPU is controlled via input pins for commands and arguments, and outputs the accumulator and program counter. Silicon tests confirm it works as expected.",
+   "summary_changed": false
+  },
+  {
+   "key": "2158fbf21fd2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "interrupt-controller",
+     "reason": "The design is a watchdog timer; no interrupt handling logic is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed interrupt-controller because the source describes watchdog timers, not interrupt handling.",
+   "tags_before": [
+    "watchdog",
+    "timer",
+    "interrupt-controller"
+   ],
+   "tags": [
+    "watchdog",
+    "timer"
+   ],
+   "summary_before": "Triple Watchdog is a redundant watchdog timer implemented in Verilog, consisting of three watchdog modules operating in lockstep. Each watchdog must be kicked by writing a different value to the input within a 1 ms timeout; otherwise, it sets an output pin high. The design is intended as part of a larger fault-tolerant supervisor system. No silicon test reports are provided.",
+   "summary": "Triple Watchdog is a redundant watchdog timer implemented in Verilog, consisting of three watchdog modules operating in lockstep. Each watchdog must be kicked by writing a different value to the input within a 1 ms timeout; otherwise, it sets an output pin high. The design is intended as part of a larger fault-tolerant supervisor system. No silicon test reports are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "93cc06d450de",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source does not state that the design is built from discrete transistors rather than standard cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the design was validated on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level tag and added silicon-tested based on the working silicon reports.",
+   "tags_before": [
+    "charge-pump",
+    "analog",
+    "power-management",
+    "transistor-level"
+   ],
+   "tags": [
+    "charge-pump",
+    "analog",
+    "power-management",
+    "silicon-tested"
+   ],
+   "summary_before": "Dickson Charge Pump is an analog circuit that boosts the input voltage to approximately 5.4 V using a 3-stage Dickson charge pump. The output voltage is divided by 6 for measurement due to the 1.8 V analog pin limit. It requires a 2 MHz clock input and was tested at various frequencies, showing best performance at 5-10 MHz. Silicon tests confirm it works, with output voltage around 4.3 V at optimal frequencies.",
+   "summary": "Dickson Charge Pump is an analog circuit that boosts the input voltage to approximately 5.4 V using a 3-stage Dickson charge pump. The output voltage is divided by 6 for measurement due to the 1.8 V analog pin limit. It requires a 2 MHz clock input and was tested at various frequencies, showing best performance at 5-10 MHz. Silicon tests confirm it works, with output voltage around 4.3 V at optimal frequencies.",
+   "summary_changed": false
+  },
+  {
+   "key": "c323dc076bbf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sram",
+     "reason": "The design uses a DFFRAM macro, not SRAM."
+    },
+    {
+     "tag": "register-file",
+     "reason": "The design is a RAM module, not a multi-register storage block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed sram and register-file because the source specifies a DFFRAM macro and a RAM module.",
+   "tags_before": [
+    "memory",
+    "sram",
+    "register-file"
+   ],
+   "tags": [
+    "memory",
+    "sram",
+    "register-file"
+   ],
+   "summary_before": "DFFRAM Example (128 bytes) is a 128-byte RAM module implemented using a 32x32 1RW DFFRAM macro. It provides an 8-bit address bus, 8-bit data input, and 8-bit data output, with a write-enable pin. The RAM contents are not reset by the system reset. The design is a simple memory block for integration into larger systems.",
+   "summary": "DFFRAM Example (128 bytes) is a 128-byte RAM module implemented using a 32x32 1RW DFFRAM macro. It provides an 8-bit address bus, 8-bit data input, and 8-bit data output, with a write-enable pin. The RAM contents are not reset by the system reset. The design is a simple memory block for integration into larger systems.",
+   "summary_changed": false
+  },
+  {
+   "key": "82122fc10bba",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "memory",
+    "led",
+    "7-segment",
+    "speaker",
+    "button",
+    "wokwi"
+   ],
+   "tags": [
+    "game",
+    "memory",
+    "led",
+    "7-segment",
+    "speaker",
+    "button",
+    "wokwi"
+   ],
+   "summary_before": "Simon Says game is a memory game implemented in Verilog where the user must repeat an ever-growing sequence of colors. It uses four LEDs, four buttons, a speaker for tones, and a two-digit 7-segment display for the score. The design requires external hardware including buttons, LEDs, and optionally a speaker and 7-segment display. Silicon tests confirm it works with a Simon Says PMOD.",
+   "summary": "Simon Says game is a memory game implemented in Verilog where the user must repeat an ever-growing sequence of colors. It uses four LEDs, four buttons, a speaker for tones, and a two-digit 7-segment display for the score. The design requires external hardware including buttons, LEDs, and optionally a speaker and 7-segment display. Silicon tests confirm it works with a Simon Says PMOD.",
+   "summary_changed": false
+  },
+  {
+   "key": "572bcbdddeac",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source does not state that the design is built from discrete transistors rather than standard cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the design was validated on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level tag, added silicon-tested, and corrected the summary to reflect the silicon test result.",
+   "tags_before": [
+    "timer",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "education",
+    "led"
+   ],
+   "tags": [
+    "timer",
+    "oscillator",
+    "analog",
+    "education",
+    "led",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog block reimplements the behaviour of a 555 timer, with threshold, trigger, discharge, reset and output pins exposed for external RC networks. It is intended to be wired on a breadboard with through-hole resistors and capacitors and configured in astable or monostable circuits taken from a 555 datasheet. A tester built the suggested astable circuit with 4.7k resistors and roughly 15uF capacitance and observed about 10Hz on the output. The design is notable for being a transistor-level analog clone of a classic part rather than a digital timer, and its maximum frequency was not established.",
+   "summary": "This analog block reimplements the behaviour of a 555 timer, with threshold, trigger, discharge, reset and output pins exposed for external RC networks. It is intended to be wired on a breadboard with through-hole resistors and capacitors and configured in astable or monostable circuits taken from a 555 datasheet. A tester built the suggested astable circuit with 4.7k resistors and roughly 15uF capacitance and observed about 10Hz on the output. Silicon tests confirm it works, and its maximum frequency was not established.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "c323dc076bbf: only 1 tags after review; keeping pass-two tags"
+ ],
+ "usage": {
+  "prompt_tokens": 6882,
+  "completion_tokens": 1225,
+  "total_tokens": 8107,
+  "cost": 0.00441825,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00441825,
+   "upstream_inference_prompt_cost": 0.00258075,
+   "upstream_inference_completions_cost": 0.0018375
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00441825,
+ "elapsed_s": 4.7
+}

@@ -1,0 +1,209 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1e28265ee37e",
+  "56165c918486",
+  "0a771a4d4d99",
+  "35fe7ad8e89e",
+  "95774b4d3797",
+  "93c30a070bd3"
+ ],
+ "results": [
+  {
+   "key": "1e28265ee37e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a voltage divider, not a measurement/instrumentation application; a multimeter is only used for testing."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the design was fabricated and measured working."
+    }
+   ],
+   "notes": "Removed instrumentation because the design is a voltage divider, not a measurement application; added silicon-tested based on the working test report.",
+   "tags_before": [
+    "analog",
+    "instrumentation",
+    "voltage-reference"
+   ],
+   "tags": [
+    "analog",
+    "voltage-reference",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog design implements a voltage divider using precision resistors that meander through geometric shapes to output a voltage of approximately π volts from a 3.3 V supply. The output is a single analog pin, and the design is tested by measuring the voltage with a multimeter. Silicon tests show an output of about 3.16 V, which is close to π when accounting for the actual supply voltage. The project is notable for its creative use of resistor geometry to achieve a mathematical constant.",
+   "summary": "This analog design implements a voltage divider using precision resistors that meander through geometric shapes to output a voltage of approximately π volts from a 3.3 V supply. The output is a single analog pin, and the design is tested by measuring the voltage with a multimeter. Silicon tests show an output of about 3.16 V, which is close to π when accounting for the actual supply voltage. The project is notable for its creative use of resistor geometry to achieve a mathematical constant.",
+   "summary_changed": false
+  },
+  {
+   "key": "56165c918486",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "i2c",
+    "hash",
+    "communication",
+    "decoder",
+    "verilog"
+   ],
+   "tags": [
+    "i2c",
+    "hash",
+    "communication",
+    "decoder",
+    "verilog"
+   ],
+   "summary_before": "This design implements several I2C peripherals: an FNV-1a 32-bit hash calculator, a leading zero counter (LZC), and two constant byte generators (0x55 and 0xAA). It demonstrates address decoding and I2C read/write operations, with each peripheral accessible via specific addresses. The design requires an I2C master device for testing, and Arduino test code is provided. It is a compact example of I2C peripheral integration.",
+   "summary": "This design implements several I2C peripherals: an FNV-1a 32-bit hash calculator, a leading zero counter (LZC), and two constant byte generators (0x55 and 0xAA). It demonstrates address decoding and I2C read/write operations, with each peripheral accessible via specific addresses. The design requires an I2C master device for testing, and Arduino test code is provided. It is a compact example of I2C peripheral integration.",
+   "summary_changed": false
+  },
+  {
+   "key": "0a771a4d4d99",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design has only two configuration registers, not a multi-register storage block."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counting circuit is described; the design generates PWM from period and duty registers."
+    }
+   ],
+   "add": [],
+   "notes": "Removed register-file and counter because the source describes only two configuration registers and no counting circuit.",
+   "tags_before": [
+    "pwm",
+    "timer",
+    "register-file",
+    "counter"
+   ],
+   "tags": [
+    "pwm",
+    "timer"
+   ],
+   "summary_before": "This is a configurable PWM generator with a 12-bit period register and a duty-cycle register whose low 7 bits set a 1-99% duty. The sel pin chooses whether the duty or period register is written, wr_en latches the value from the 12 input pins, and out_en gates the pwm_out signal. Testing is done by connecting pwm_out to an oscilloscope and checking that the observed frequency and duty cycle match the programmed values. External hardware consists of a wire for pwm_out plus about 15 input signals from a microcontroller or pattern generator to drive the data and control pins.",
+   "summary": "This is a configurable PWM generator with a 12-bit period register and a duty-cycle register whose low 7 bits set a 1-99% duty. The sel pin chooses whether the duty or period register is written, wr_en latches the value from the 12 input pins, and out_en gates the pwm_out signal. Testing is done by connecting pwm_out to an oscilloscope and checking that the observed frequency and duty cycle match the programmed values. External hardware consists of a wire for pwm_out plus about 15 input signals from a microcontroller or pattern generator to drive the data and control pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "35fe7ad8e89e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "The design is an 8b10b decoder and multiplier; no encoding function is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed encoder because the source describes only decoding, not encoding.",
+   "tags_before": [
+    "communication",
+    "decoder",
+    "multiplier",
+    "encoder",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "decoder",
+    "multiplier",
+    "verilog"
+   ],
+   "summary_before": "This design decodes two 8b10b-encoded serial streams and can optionally multiply the decoded bytes. It uses the K.28.5 comma symbol to establish synchronization and indicates valid data on an output pin. The decoded or multiplied results are presented on the outputs, and the bidirectional pins can be configured as differential pairs when in reset. The design requires no external hardware and is intended for testing high-speed cell libraries.",
+   "summary": "This design decodes two 8b10b-encoded serial streams and can optionally multiply the decoded bytes. It uses the K.28.5 comma symbol to establish synchronization and indicates valid data on an output pin. The decoded or multiplied results are presented on the outputs, and the bidirectional pins can be configured as differential pairs when in reset. The design requires no external hardware and is intended for testing high-speed cell libraries.",
+   "summary_changed": false
+  },
+  {
+   "key": "95774b4d3797",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spi",
+     "reason": "The source says coefficients are set via an SDI interface, not SPI."
+    }
+   ],
+   "add": [],
+   "notes": "Removed SPI because the source specifies an SDI interface for coefficient programming.",
+   "tags_before": [
+    "fir-filter",
+    "dsp",
+    "audio",
+    "i2s",
+    "spi",
+    "pmod",
+    "systemverilog",
+    "fixed-point"
+   ],
+   "tags": [
+    "fir-filter",
+    "dsp",
+    "audio",
+    "i2s",
+    "pmod",
+    "systemverilog",
+    "fixed-point"
+   ],
+   "summary_before": "FIREngine is a digital FIR filter designed to process audio from an I2S2 PMOD ADC and DAC module. It supports programmable coefficients for low, band, and high pass filtering, with a fixed number of taps determined at synthesis. Coefficients are set via an SPI interface, and the filter uses 2's complement fixed-point arithmetic. Testing requires the I2S2 PMOD and a serial programmer, and the design is intended for audio filtering applications.",
+   "summary": "FIREngine is a digital FIR filter designed to process audio from an I2S2 PMOD ADC and DAC module. It supports programmable coefficients for low, band, and high pass filtering, with a fixed number of taps determined at synthesis. Coefficients are set via an SDI interface, and the filter uses 2's complement fixed-point arithmetic. Testing requires the I2S2 PMOD and a serial programmer, and the design is intended for audio filtering applications.",
+   "summary_changed": true
+  },
+  {
+   "key": "93c30a070bd3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lookup-table",
+    "reconfigurable",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "lookup-table",
+    "reconfigurable",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project implements a small Configurable Logic Block (CLB) with a 3-input Look-Up Table (LUT3). It takes two 8-bit inputs: one for the LUT configuration and control signals, and another for the boolean function arguments. The output is the evaluation of the configured boolean function. The design can be tested by setting the LUT to implement a NAND3 function and using switches and LEDs for input and output.",
+   "summary": "This project implements a small Configurable Logic Block (CLB) with a 3-input Look-Up Table (LUT3). It takes two 8-bit inputs: one for the LUT configuration and control signals, and another for the boolean function arguments. The output is the evaluation of the configured boolean function. The design can be tested by setting the LUT to implement a NAND3 function and using switches and LEDs for input and output.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6579,
+  "completion_tokens": 1183,
+  "total_tokens": 7762,
+  "cost": 0.0033933,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033933,
+   "upstream_inference_prompt_cost": 0.0019737,
+   "upstream_inference_completions_cost": 0.0014196
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033933,
+ "elapsed_s": 8.4
+}

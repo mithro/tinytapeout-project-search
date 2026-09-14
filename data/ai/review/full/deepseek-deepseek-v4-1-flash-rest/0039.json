@@ -1,0 +1,349 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2c8ff49eb32f",
+  "6c912f42c1f0",
+  "ab9877431545",
+  "4a0dc0955b57",
+  "ad9b9f0620a1",
+  "48514409d079"
+ ],
+ "results": [
+  {
+   "key": "2c8ff49eb32f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "placeholder",
+     "reason": "The design is a real, working 8-bit counter, not an empty placeholder submission."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation explains the D flip-flop chain, the missing reset, and the workshop origin."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "Source states eight D flip-flops chained together count the clock."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "Source explicitly says the counter is built from D flip-flops."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Pin names map uo[0..7] to the seven segments plus dot."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the design was built in the simulator."
+    },
+    {
+     "tag": "workshop",
+     "reason": "Source says it was constructed during the Hackaday Supercon 2023 ASIC workshop."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show two working tester results."
+    }
+   ],
+   "notes": "Proposed tags and summary described a placeholder submission, contradicting the actual counter documentation and working silicon reports.",
+   "tags_before": [
+    "7-segment",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "flip-flop",
+    "wokwi",
+    "workshop",
+    "silicon-tested"
+   ],
+   "summary_before": "This project is titled \"TT05 Submission\" and its description states the author does not yet know what it does. The documentation consists only of the default placeholder text for how it works and how to test it. The pin names map the outputs to 7-segment display segments, but nothing indicates what is driven onto them. There is essentially no information about the design's function or usage.",
+   "summary": "This project is a naive 8-bit binary counter built from eight chained D flip-flops that count the clock input. Its eight outputs drive the segments and dot of a 7-segment display, and it lacks features such as a deterministic initial state or a reset. It was constructed during the Hackaday Supercon 2023 ASIC workshop as a rapid learning exercise. Testing consists of pulsing the clock and monitoring the outputs for the binary value, and silicon testers report it counts correctly.",
+   "summary_changed": true
+  },
+  {
+   "key": "6c912f42c1f0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "characterization",
+     "reason": "No evidence of process or device parameter characterization; it is a demoscene VGA entry."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "No test structure exploring fabrication process behavior is described."
+    },
+    {
+     "tag": "analog",
+     "reason": "Design is digital VGA/PWM logic; the VGA DAC is external hardware, not on-chip analog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "One-line description says competition entry and external hardware links the Demoscene rules."
+    },
+    {
+     "tag": "vga",
+     "reason": "Pins match Tiny VGA and the design drives RGB, hsync and vsync."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It renders VGA graphics output."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Pin uio[7] is labeled PWM output."
+    },
+    {
+     "tag": "audio",
+     "reason": "Pins match the TT Audio pinout."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report shows a working tester result."
+    }
+   ],
+   "notes": "Proposed tags and summary invented a process-characterization test structure that the source does not describe.",
+   "tags_before": [
+    "characterization",
+    "process-experiment",
+    "analog"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "graphics",
+    "pwm",
+    "audio",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a test structure for characterizing fabrication process parameters. It is intended to measure device characteristics on the fabricated chip. The documentation is sparse, but the pin names and description indicate its purpose as a test structure. It likely includes test circuits for process monitoring.",
+   "summary": "This project is a demoscene competition entry written in HardCaml that outputs VGA video and PWM audio. Its pins match the Tiny VGA and TT Audio pinouts, with uo[0..7] carrying RGB, vsync and hsync and uio[7] providing a PWM output. A test mode input is provided on ui[0], and the design runs from a 25.25 MHz clock. A silicon tester reports it works as expected when tested with the Tiny VGA PMOD using default settings.",
+   "summary_changed": true
+  },
+  {
+   "key": "ab9877431545",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "Source describes a ternary matrix multiplication processor, not LIF neurons or synapses."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network is described; the design is a ternary matmul processor."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is present in the pins or documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pipeline",
+     "reason": "Source explicitly describes a pipelined architecture with pipeline registers."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is a dedicated matrix multiplication compute block."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "It multiplies input vector elements by weights and sums the results."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Testing instructions describe connecting an external MCU such as a Raspberry Pi over GPIO."
+    }
+   ],
+   "notes": "Proposed tags and summary described a spiking neural network that does not appear anywhere in the source.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi"
+   ],
+   "tags": [
+    "pipeline",
+    "accelerator",
+    "mac-unit",
+    "verilog",
+    "rp2040"
+   ],
+   "summary_before": "This project implements a spiking neural network with 18 programmable digital LIF neurons and 144 synapses arranged in three fully connected layers. The design is notable for being generated by ChatGPT and for its use of programmable delays, but it lacks silicon test results.",
+   "summary": "This project is a ternary matrix multiplication processor using carry-save adders, written in Verilog. It loads weights into an internal register array and multiplies input vectors by those weights, summing the products to produce 8-bit integer outputs. The datapath is pipelined so it can accept new input vectors while computing on previous ones, producing continuous results. Testing is done by driving the inputs from an external MCU such as a Raspberry Pi over GPIO, and no silicon test reports are available.",
+   "summary_changed": true
+  },
+  {
+   "key": "4a0dc0955b57",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "Documentation is very thin but the project is a first chip design exercise; no explicit workshop statement, so this is not added."
+    }
+   ],
+   "notes": "Summary was corrected to match the three AND gates and pin names; no workshop tag added since the source does not state one.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "combinational"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "combinational",
+    "workshop"
+   ],
+   "summary_before": "This design uses three AND gates in a Wokwi simulation, with outputs driving pins 1-3.",
+   "summary": "This design implements three AND gates in a Wokwi simulation, with two AND gates driving OUT1 and OUT2 and a further AND of the gates driving OUT3. The inputs are labeled IN0 through IN7 and the outputs OUT0 through OUT7. Testing is done by switching the dipswitch, and the listed external hardware includes a 7-segment display, dipswitch and pushbutton. Documentation is very thin and no silicon test reports are available.",
+   "summary_changed": true
+  },
+  {
+   "key": "ad9b9f0620a1",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "logic-gate",
+    "7-segment",
+    "led",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "logic-gate",
+    "7-segment",
+    "led",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This Wokwi design uses an AND gate to drive a seven-segment LED display so that it shows the digit seven. It is controlled by two input switches, and the documentation says toggling inputs 3 and 4 causes the seven to appear. The project is a minimal educational logic example with very little documentation beyond the test instruction. It is a simple demonstration of combinational logic controlling a display.",
+   "summary": "This Wokwi design uses an AND gate to drive a seven-segment LED display so that it shows the digit seven. It is controlled by two input switches, and the documentation says toggling inputs 3 and 4 causes the seven to appear. The project is a minimal educational logic example with very little documentation beyond the test instruction. It is a simple demonstration of combinational logic controlling a display.",
+   "summary_changed": false
+  },
+  {
+   "key": "48514409d079",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sequencer",
+     "reason": "No pattern or event sequencing circuit is described; it is a generative video synthesizer."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching or learning purpose is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "It is a generative procedural-art video synthesizer in demoscene style."
+    },
+    {
+     "tag": "vga",
+     "reason": "Pins match Tiny VGA and it drives a 640x480 VGA output."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It renders procedural graphics to the screen."
+    },
+    {
+     "tag": "art",
+     "reason": "Description calls it continuously evolving procedural art."
+    },
+    {
+     "tag": "video",
+     "reason": "It produces a VGA video signal."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Source states it is a purely combinatorial design."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "A multiplexer routes one of six art engines to the output."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "Testing notes mention an equivalent resistor-ladder DAC for VGA output."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "External hardware lists DIP switches on the first five input pins."
+    }
+   ],
+   "notes": "Proposed tags and summary described a programmable sequencer and state machine, which the source does not contain.",
+   "tags_before": [
+    "sequencer",
+    "fsm",
+    "education"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "graphics",
+    "art",
+    "video",
+    "verilog",
+    "combinational",
+    "multiplexer",
+    "r2r-dac",
+    "dip-switch"
+   ],
+   "summary_before": "This project implements a programmable sequencer that can generate a sequence of events. It is designed for educational purposes and demonstrates a simple state machine. The sequencer can be programmed via a serial interface and outputs a pattern on the output pins. It is tested by loading a sequence and observing the output.",
+   "summary": "This project is a purely combinatorial generative VGA video synthesizer written in Verilog that renders procedural art at 640x480 and 60Hz. It uses a custom VGA sync engine and screen-space coordinates, relying on bitwise operations and triangle waves instead of RAM or DSP blocks, with a frame counter driving animation over time. A multiplexer selects one of six art engines based on input pins, with a strict priority where ui_in[4] overrides the lower inputs. Testing requires a 25.175 MHz clock and a Tiny VGA PMOD or equivalent resistor-ladder DAC connected to a 640x480 monitor, with DIP switches or buttons on ui_in[4:0] to change modes. No silicon test reports are available.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "48514409d079: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6677,
+  "completion_tokens": 2014,
+  "total_tokens": 8691,
+  "cost": 0.002078666,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002078666,
+   "upstream_inference_prompt_cost": 0.000749426,
+   "upstream_inference_completions_cost": 0.00132924
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002078666,
+ "elapsed_s": 25.0
+}

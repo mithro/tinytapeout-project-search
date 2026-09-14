@@ -1,0 +1,240 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a9571a2a4d96",
+  "fe003be6b13b",
+  "e6beb2398a1a",
+  "362c72cb132d",
+  "c8f4765437c4",
+  "1b40d9f4942d"
+ ],
+ "results": [
+  {
+   "key": "a9571a2a4d96",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "This describes an external SPI flash component, not an on-chip memory block implemented by the design."
+    },
+    {
+     "tag": "communication",
+     "reason": "SPI is used only as a lookup mechanism for state transitions, not as a communication protocol feature of the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "Kept? no"
+    }
+   ],
+   "notes": "External SPI flash is a lookup component; memory and communication tags overstate on-chip features and SPI is not used as a protocol endpoint.",
+   "tags_before": [
+    "fsm",
+    "spi",
+    "memory",
+    "wokwi",
+    "communication"
+   ],
+   "tags": [
+    "fsm",
+    "spi",
+    "wokwi",
+    "memory"
+   ],
+   "summary_before": "This project implements a state machine whose transition table is stored in an external SPI flash device, with inputs and current state shifted out to look up the next state and outputs. It uses a clock, reset, data in, and four general inputs, and drives chip select, data out, and five general outputs. Testing requires connecting a SPI flash device that supports the 0x03 read command with 24-bit addressing and is preloaded with state machine values. The design is notable for offloading state machine storage to external flash, but the documentation gives no details on the state encoding or flash contents.",
+   "summary": "This project implements a state machine whose transition table is stored in an external SPI flash device, with inputs and current state shifted out to look up the next state and outputs. It uses a clock, reset, data in, and four general inputs, and drives chip select, data out, and five general outputs. Testing requires connecting a SPI flash device that supports the 0x03 read command with 24-bit addressing and is preloaded with state machine values. The documentation gives no details on the state encoding or flash contents.",
+   "summary_changed": true
+  },
+  {
+   "key": "fe003be6b13b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led-matrix",
+     "reason": "Outputs are eight discrete LED lines in a chaser, not a multiplexed matrix."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The facts state the project language/source is Wokwi, though it is a LiteX-generated Verilog demo; flag if the intent was pure HDL."
+    }
+   ],
+   "notes": "Removed led-matrix because outputs are discrete LED lines; added wokwi per facts, though the design itself is a LiteX/Verilog demo.",
+   "tags_before": [
+    "led",
+    "pwm",
+    "verilog",
+    "led-matrix"
+   ],
+   "tags": [
+    "led",
+    "pwm",
+    "verilog",
+    "wokwi"
+   ],
+   "summary_before": "This design implements an LED chaser effect using the LiteX LED core demo, with the duty cycle controlled by input pins. It is written in LiteX/Migen and synthesizes to Verilog, and it does not include a CPU. The design can be tested by connecting LEDs to the outputs or probing the signals with an oscilloscope to observe a moving train of pulses. It serves as a small demonstration of synthesizing Verilog from LiteX.",
+   "summary": "This design implements an LED chaser effect using the LiteX LED core demo, with the duty cycle controlled by input pins io_in[7:2]. It is generated from LiteX/Migen and synthesizes to Verilog, and it does not include a CPU. The design can be tested by connecting LEDs to the eight outputs or probing the signals with an oscilloscope to observe a moving train of pulses. It serves as a small demonstration of synthesizing Verilog from LiteX.",
+   "summary_changed": true
+  },
+  {
+   "key": "e6beb2398a1a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "An ALU performs multiple operations; this block only performs floating-point addition."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is partial and a tester report exists; this is the closest canonical tag for fabricated-silicon validation."
+    }
+   ],
+   "notes": "Removed alu because the block is a dedicated adder; added silicon-tested because fabrication reports exist, even though the report is partial.",
+   "tags_before": [
+    "floating-point",
+    "adder",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "floating-point",
+    "adder",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design adds two 8-bit floating point numbers, each with a 1-bit sign, 4-bit exponent and 3-bit mantissa, taking one operand from the input pins and the other from the bidirectional pins. The result, including rounding and infinity handling, appears on the output pins every clock cycle. A silicon test report notes that the adder works well for most values but produces incorrect results for some small values, and a linked script tests all possible input combinations. It is a compact arithmetic building block rather than a complete calculator.",
+   "summary": "This design adds two 8-bit floating point numbers, each with a 1-bit sign, 4-bit exponent and 3-bit mantissa, taking one operand from the input pins and the other from the bidirectional pins. The result, including rounding and infinity handling, appears on the output pins every clock cycle. A silicon test report notes that the adder works well for most values but produces incorrect results for some small values, and a linked script tests all possible input combinations. It is a compact arithmetic building block rather than a complete calculator.",
+   "summary_changed": false
+  },
+  {
+   "key": "362c72cb132d",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "rs232",
+     "reason": "A UART serial link is the core interface; rs232 is the closest canonical serial-interface tag."
+    }
+   ],
+   "notes": "Added rs232 as the canonical serial-interface tag for the UART link; no incorrect tags were present.",
+   "tags_before": [
+    "uart",
+    "communication",
+    "7-segment",
+    "systemverilog"
+   ],
+   "tags": [
+    "uart",
+    "communication",
+    "7-segment",
+    "systemverilog",
+    "rs232"
+   ],
+   "summary_before": "This SystemVerilog design implements a UART transceiver with both transmit and receive functions at 9600 baud, using oversampling to sample the middle of each bit period. The receiver waits for a start bit, samples eight data bits and a stop bit, and asserts a data-ready signal; the transmitter sends a byte with correct timing when a data-ready input is set. The eight output pins double as 7-segment display segments and as the UART transmit data output, while bidirectional pins carry received data and a finished-read flag. Testing requires setting the data bits and data-ready input and observing the transmitted sequence on the tx output.",
+   "summary": "This SystemVerilog design implements a UART transceiver with both transmit and receive functions at 9600 baud, using oversampling to sample the middle of each bit period. The receiver waits for a start bit, samples eight data bits and a stop bit, and asserts a data-ready signal; the transmitter sends a byte with correct timing when a data-ready input is set. The eight output pins double as 7-segment display segments and as the UART transmit data output, while bidirectional pins carry received data and a finished-read flag. Testing requires setting the data bits and data-ready input and observing the transmitted sequence on the tx output.",
+   "summary_changed": false
+  },
+  {
+   "key": "c8f4765437c4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The source cites a PN-sequence multiplier and mentions PRBS but does not state the generator is an LFSR."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Stochastic multiplication is a computation primitive, not clearly a signal-processing application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "No FPGA evidence in source; do not add."
+    }
+   ],
+   "notes": "Removed lfsr as unstated and dsp as unsupported application framing; the add list must stay canonical.",
+   "tags_before": [
+    "stochastic-computing",
+    "multiplier",
+    "prng",
+    "lfsr",
+    "dsp",
+    "wokwi",
+    "7-segment"
+   ],
+   "tags": [
+    "stochastic-computing",
+    "multiplier",
+    "prng",
+    "wokwi",
+    "7-segment",
+    "fpga"
+   ],
+   "summary_before": "This design generates pseudo-random bit streams whose probability of a one equals the product of two 2-bit input vectors, implementing stochastic multiplication based on a published PN-sequence method. It is used by setting inputs A and B, applying a clock, and toggling reset low to start the PRBS generators, with outputs providing the product stream and individual operand streams. No external hardware is strictly required, though some outputs are also mapped to 7-segment segments. The documentation is brief and cites the underlying paper, but does not describe the internal implementation or provide silicon test results.",
+   "summary": "This design generates pseudo-random bit streams whose probability of a one equals the product of two 2-bit input vectors, implementing stochastic multiplication based on a published PN-sequence method. It is used by setting inputs A and B, applying a clock, and toggling reset low to start the PRBS generators, with outputs providing the product stream and individual operand streams. No external hardware is strictly required, and some outputs are also mapped to 7-segment segments. The documentation is brief and cites the underlying paper, but does not describe the internal implementation or provide silicon test results.",
+   "summary_changed": true
+  },
+  {
+   "key": "1b40d9f4942d",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text that does not explain implementation or testing."
+    }
+   ],
+   "notes": "Added insufficient-doc because the supplied documentation is placeholder text.",
+   "tags_before": [
+    "clock-divider",
+    "divider",
+    "counter",
+    "clock-generator",
+    "wokwi"
+   ],
+   "tags": [
+    "clock-divider",
+    "divider",
+    "counter",
+    "clock-generator",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design divides the input clock by successive powers of two, with CLK/2 on output 7 down to CLK/256 on output 0. The documentation is placeholder text and does not describe the internal implementation or how to test it. It requires only a clock input and observation of the divided outputs, with no other external hardware mentioned. Because the documentation is essentially empty, the summary is inferred from the title and pin names.",
+   "summary": "This design divides the input clock by successive powers of two, with CLK/2 on output 7 down to CLK/256 on output 0. The documentation is placeholder text and does not describe the internal implementation or how to test it. It requires only a clock input and observation of the divided outputs, with no other external hardware mentioned. Because the documentation is essentially empty, the summary is inferred from the title and pin names.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6144,
+  "completion_tokens": 1511,
+  "total_tokens": 7655,
+  "cost": 0.0036564,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036564,
+   "upstream_inference_prompt_cost": 0.0018432,
+   "upstream_inference_completions_cost": 0.0018132
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036564,
+ "elapsed_s": 8.3
+}

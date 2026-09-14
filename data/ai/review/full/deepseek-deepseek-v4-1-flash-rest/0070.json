@@ -1,0 +1,328 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "60dff85af027",
+  "f25939f5972f",
+  "6807ff2541d5",
+  "69cb4b62dfec",
+  "29de07e6e9a3",
+  "cb82cda8aca5"
+ ],
+ "results": [
+  {
+   "key": "60dff85af027",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "Source describes a 2-bit counter, not a shift register."
+    },
+    {
+     "tag": "ring-counter",
+     "reason": "No ring counter is described; it is a binary 2-bit counter."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design is explicitly a 2-bit counter."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output is shown on a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Drives a 7-segment display output."
+    }
+   ],
+   "notes": "Removed unsupported shift-register and ring-counter tags; summary invented Verilog and educational intent.",
+   "tags_before": [
+    "shift-register",
+    "ring-counter",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "counter"
+   ],
+   "summary_before": "This project is a shift register and ring counter design that drives a 7-segment display. It uses a shift register to generate patterns and a ring counter to sequence them. The design is implemented in Verilog and is intended for educational purposes. It demonstrates shift register and counter applications.",
+   "summary": "This project is a simple 2-bit counter that displays its current value on a 7-segment display. It is implemented in Wokwi. The counter advances when the clock is toggled. It is a minimal educational counter design.",
+   "summary_changed": true
+  },
+  {
+   "key": "f25939f5972f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter behavior is described; pins are OR/AND logic outputs."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent stated in source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "template",
+     "reason": "Title and one-line description identify it as a test/template file for Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and test/external hardware sections are placeholders."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Pins indicate OR and AND logic outputs."
+    }
+   ],
+   "notes": "Removed unsupported counter and education tags; summary invented counter and STEP button behavior.",
+   "tags_before": [
+    "counter",
+    "wokwi",
+    "template",
+    "education",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "insufficient-doc",
+    "logic-gate"
+   ],
+   "summary_before": "TT-wokwi-template is a design based on the Wokwi template that increments a counter from 0 to 9 on a screen when a STEP button is pressed. The design is implemented in Wokwi and is intended as a template for educational purposes. The documentation is minimal, and the design may be incomplete. The project lacks detailed information about its operation and external hardware requirements.",
+   "summary": "This project is a Wokwi test file with inputs A and B and outputs for OR and AND. It uses a 10 kHz clock and mentions operating a 7-segment display. The documentation is minimal and the test and external hardware sections are placeholders. It appears to be a template or starter design.",
+   "summary_changed": true
+  },
+  {
+   "key": "6807ff2541d5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning training or inference is described; it is an associative memory."
+    },
+    {
+     "tag": "memory",
+     "reason": "The design stores patterns in weights, not a generic memory block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neural-network",
+     "reason": "Implements a 7-node Hopfield recurrent neural network."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Synchronous update each clock cycle with start strobe and convergence output."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Inputs and outputs are 7-segment segment patterns."
+    },
+    {
+     "tag": "display",
+     "reason": "Outputs recalled 7-segment display patterns."
+    }
+   ],
+   "notes": "Removed unsupported machine-learning and memory tags; summary omitted key Hopfield/7-segment details and invented purpose.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "memory",
+    "sequential-logic"
+   ],
+   "tags": [
+    "neural-network",
+    "sequential-logic",
+    "7-segment",
+    "display"
+   ],
+   "summary_before": "This design implements a recurrent neural network without ROM or lookup tables. It is notable for its small gate count of approximately 140 GE. The network is likely used for simple pattern recognition or prediction tasks. The design is compact and efficient.",
+   "summary": "This design implements a 7-node Hopfield associative memory storing two 7-segment patterns, digit 1 and digit 9. It uses Hebbian-computed weights and synchronous updates each clock cycle to recall the nearest stored digit from noisy or partial input. The decimal point output goes high when the network converges. The design is implemented in Verilog and uses about 140 gate equivalents.",
+   "summary_changed": true
+  },
+  {
+   "key": "69cb4b62dfec",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counting behavior is described; it selects letters from 3-bit input."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent stated in source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Displays letters on a 7-segment display."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Converts 3-bit input into segment patterns for letters."
+    }
+   ],
+   "notes": "Removed unsupported counter and education tags; summary described a different event-accumulator design.",
+   "tags_before": [
+    "counter",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "display",
+    "decoder"
+   ],
+   "summary_before": "This design is a simple event accumulator that counts rising edges on an input pin and outputs a 4-bit activity value. It includes a clock and active-low reset, and can be tested in simulation by driving the input with pulses and observing the outputs. The design is minimal and intended to illustrate basic stream processing without complex control logic. The documentation is sparse but sufficient to understand the basic functionality.",
+   "summary": "This design flashes the letters M, a, r, v, i, and n on a 7-segment display. Three input pins select which letter is shown. The logic converts the 3-bit input into the corresponding 7-segment output pattern. It is implemented in Wokwi and uses switches for input and a 7-segment display for output.",
+   "summary_changed": true
+  },
+  {
+   "key": "29de07e6e9a3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; it is an arithmetic processing unit."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No raw gate-level implementation is described."
+    },
+    {
+     "tag": "adder",
+     "reason": "Addition is one of several operations, not the primary design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "Implements an 8-bit arithmetic processing unit with arithmetic, logic, shift, and rotate operations."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Contains accumulator A, register B, and 8-byte internal RAM."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Documentation states an included cocotb test can be run."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed unsupported fsm, logic-gate, and adder tags; summary omitted key APU details and invented test setup.",
+   "tags_before": [
+    "alu",
+    "fsm",
+    "logic-gate",
+    "adder"
+   ],
+   "tags": [
+    "alu",
+    "register-file",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This design implements an 8-bit ALU with a state machine that reads two 8-bit operands via the digital input pins. Operation selection and status output are provided over the bidirectional pins. The ALU supports basic arithmetic and logic operations. It is tested using a standard Tiny Tapeout board or simulator.",
+   "summary": "Spacelizard APU is a tiny 8-bit arithmetic processing unit with an accumulator, register B, flags, 8-byte internal RAM, and arithmetic, logic, shift, and rotate operations. Commands are applied on ui_in with an EXEC strobe, opcode, and argument, while data uses the bidirectional pins. The output uo_out always shows the current value of register A. It is implemented in Verilog and includes a cocotb test.",
+   "summary_changed": true
+  },
+  {
+   "key": "cb82cda8aca5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "popcount",
+     "reason": "The design is a full adder, not a population count circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Implements a 1-bit full adder."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Outputs are purely combinational functions of A, B, and Cin."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Built with XOR, AND, and OR gates."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported popcount tag; summary described a different circuit.",
+   "tags_before": [
+    "popcount",
+    "combinational",
+    "logic-gate"
+   ],
+   "tags": [
+    "combinational",
+    "logic-gate",
+    "adder",
+    "wokwi"
+   ],
+   "summary_before": "This project is a popcount (population count) circuit that counts the number of set bits in a binary input. It is a combinational logic block that can be used in various applications. The design is simple and efficient, likely implemented with logic gates. It is a basic digital circuit.",
+   "summary": "This project is a 1-bit full adder that adds three binary inputs A, B, and Cin to produce Sum and Cout. It is built with XOR, AND, and OR gates implementing Sum = A XOR B XOR Cin and Cout = (A AND B) OR (Cin AND (A XOR B)). The design is combinational and can be cascaded to form multi-bit adders. It is implemented in Wokwi and tested with switches and LEDs.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6789,
+  "completion_tokens": 1806,
+  "total_tokens": 8595,
+  "cost": 0.0042039,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042039,
+   "upstream_inference_prompt_cost": 0.0020367,
+   "upstream_inference_completions_cost": 0.0021672
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042039,
+ "elapsed_s": 12.6
+}

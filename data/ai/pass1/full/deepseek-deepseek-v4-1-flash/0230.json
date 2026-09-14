@@ -1,0 +1,200 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2e17c021986d",
+  "84dada3d2bfe",
+  "8881bfbe9383",
+  "857db247b2c6",
+  "ffee4fd35a61",
+  "5e3211767d3e",
+  "3c7ffd4f7235",
+  "79f079cf206d",
+  "4a6534e087a1",
+  "2678d96955d0"
+ ],
+ "results": [
+  {
+   "key": "2e17c021986d",
+   "tags": [
+    "audio",
+    "dsp",
+    "faust",
+    "fixed-point",
+    "mlir",
+    "dac",
+    "hls",
+    "tanh"
+   ],
+   "summary": "The project compiles a Faust soft-clipper function into a fixed-point hardware datapath using a multi-stage MLIR compilation flow. The resulting 8-bit core processes either an internal ramp or an external 7-bit sample stream, selected by a pin, and outputs an 8-bit result to drive an external R-2R ladder DAC. It is tested with a Cocotb suite that toggles between the internal ramp and external stimulus to verify the Horner pipeline against saved MLIR snapshots. The design is notable for demonstrating the use of the open-source Faust audio circuit compiler for generating silicon-ready RTL.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "84dada3d2bfe",
+   "tags": [
+    "standard-cells",
+    "gf180mcu",
+    "verification",
+    "test",
+    "factory-test",
+    "mux",
+    "io",
+    "digital"
+   ],
+   "summary": "This design instantiates one copy of each standard cell from the GF180mcu 7-track library and multiplexes their outputs to the chip pins for functional verification. A 5-bit page select input chooses which group of 8 cell outputs is routed to the output pins, and the cell inputs are controlled via the remaining input pins. The design requires no external hardware and is tested by selecting pages and observing the corresponding cell outputs on the chip's output pins. It serves as a silicon test vehicle to characterise all available standard cells.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8881bfbe9383",
+   "tags": [
+    "fpga",
+    "reconfigurable",
+    "logic",
+    "tile",
+    "scan-chain",
+    "nand",
+    "flip-flop",
+    "lut"
+   ],
+   "summary": "A reconfigurable logic circuit built from an 8×8 array of identical tiles, each containing a NAND gate, a D flip-flop, and a buffer. Tiles can be rotated or mirrored, and configuration is loaded via a scan chain; the design also includes a loop breaker. It is tested with two configurations that exercise upload, download, single-step, propagation, and loop-breaking functions. This is a port of the original ROTFPGA from Caravel, shrunk to fit Tiny Tapeout through hand-optimised gate-level tiles and latch-based configuration.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "857db247b2c6",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "spi",
+    "timing",
+    "test",
+    "experiment",
+    "register"
+   ],
+   "summary": "This design allows experimentation with VGA timing parameters through a set of registers written over an SPI interface. It generates standard VGA sync and RGB signals to drive a TinyVGA PMOD, with the example configuration targeting 640x480 @ 60 Hz. The design is tested by setting the pixel clock to 25 MHz and configuring the registers via SPI, after which a test pattern appears on a connected VGA monitor. It is a reconfigurable tool for exploring video modes rather than a fixed-function display controller.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ffee4fd35a61",
+   "tags": [
+    "uart",
+    "serial",
+    "ws2812",
+    "led",
+    "ascii",
+    "communication"
+   ],
+   "summary": "A UART receiver that listens for the ASCII string 'MARCO' and replies with '\\n\\rPOLO!\\n\\r', while driving a WS2812B LED from red to green. It operates at 9600 baud, 8 data bits, no parity, and one stop bit, and provides exposed debug signals for baud ticks and transmit status. The design requires a USB-to-UART adapter and a WS2812B LED, and it was tested on an FPGA. A silicon test report indicates that the UART reply works but the LED behaviour was not observed, possibly due to LED type mismatch.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5e3211767d3e",
+   "tags": [
+    "risc-v",
+    "linux",
+    "soc",
+    "cpu",
+    "spi",
+    "uart",
+    "qspi",
+    "psram",
+    "flash"
+   ],
+   "summary": "This is a 32-bit RISC-V IMA system-on-chip capable of booting uLinux, with external SPI flash and PSRAM, a UART, and a SPI peripheral. It is intended to run at 16 MHz and is tested by loading a bootloader, device tree, and Linux kernel image into the external flash. External hardware consists of a QSPI Pmod for flash and PSRAM, and a UART connection. Silicon tests report successful boot at over 30 MHz, with full 16 MiB SPI RAM access and GPIO output verified on a 7-segment display.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3c7ffd4f7235",
+   "tags": [
+    "microcontroller",
+    "soc",
+    "8-bit",
+    "spi",
+    "i2c",
+    "uart",
+    "sram",
+    "dffram",
+    "compiler"
+   ],
+   "summary": "An 8-bit microcontroller system-on-chip with 128 bytes of DFFRAM, featuring UART, SPI, and I2C interfaces. It is supported by a custom assembler, linker, a partially functional C compiler, and a Python debugger that can program external flash and SRAM. The design targets external SPI Pmods and UART adapters for testing, and the toolchain is still under development. The project is notable for its integrated software toolchain and the use of DFFRAM for on-chip memory.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "79f079cf206d",
+   "tags": [
+    "state-machine",
+    "fsm",
+    "education",
+    "calculator",
+    "memory",
+    "pipelining",
+    "systemverilog"
+   ],
+   "summary": "This is an example final project for a digital integrated circuits course, implementing a 'memory calculator' finite state machine that performs various operations on inputs a and b using the previous result. The design is pipelined and includes 11 states, each with feedback loops and return edges to satisfy course requirements. It is tested with an included SystemVerilog testbench and requires no external hardware beyond the Tiny Tapeout LED. The project serves as a reference for students learning robust FSM design and SystemVerilog coding techniques.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4a6534e087a1",
+   "tags": [
+    "game",
+    "puzzle",
+    "pipelining",
+    "education",
+    "systemverilog",
+    "lockpick",
+    "input-output"
+   ],
+   "summary": "This is a SystemVerilog example of a lockpick game for classroom use on Tiny Tapeout, featuring pipelined input/output of two 256-bit values through the 8-bit pins using an enable signal. A testbench is included to verify the design, and the output can be observed on the conventional 8-bit LED and an output_valid signal. The project is intended as a teaching example for future Tiny Tapeout classroom projects. No external hardware beyond the on-board LED is required.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2678d96955d0",
+   "tags": [
+    "puf",
+    "security",
+    "random-number-generator",
+    "register",
+    "address",
+    "hardware-security"
+   ],
+   "summary": "This is a physical unclonable function (PUF) based on the difference between two registers, comprising an array of one-bit PUF cells addressed by a 4-bit input. The PUF outputs 8 bits at a time, selected by the address, and the output is 0 in the reset condition. No external hardware is required. The design is notable for its use of register mismatch as a source of entropy, but documentation is very limited.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7692,
+  "completion_tokens": 1944,
+  "total_tokens": 9636,
+  "cost": 0.0046404,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0046404,
+   "upstream_inference_prompt_cost": 0.0023076,
+   "upstream_inference_completions_cost": 0.0023328
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0046404,
+ "elapsed_s": 15.6
+}

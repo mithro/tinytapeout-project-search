@@ -1,0 +1,444 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e36cccac896e",
+  "1ddb0a857834",
+  "24e73ffbf219",
+  "24a13448d214",
+  "20fa52adb42c",
+  "bd4380329c93"
+ ],
+ "results": [
+  {
+   "key": "e36cccac896e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synchronizer",
+     "reason": "No synchronizer is described; the design multiplexes VGA projects and samples a ring oscillator for randomness."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The source does not describe process/device characterization."
+    },
+    {
+     "tag": "delay-line",
+     "reason": "No delay line is mentioned in the documentation."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Pins match the Tiny VGA pinout and the design multiplexes VGA projects."
+    },
+    {
+     "tag": "trng",
+     "reason": "Text states TRNG from sampling a ring oscillator is used for random selection."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "The TRNG is explicitly based on sampling a ring oscillator."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "The core function is selecting between four VGA projects."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It outputs VGA graphics signals."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Proposed tags described a characterization/delay-measurement circuit that does not match the VGA multiplexer source.",
+   "tags_before": [
+    "synchronizer",
+    "characterization",
+    "delay-line",
+    "counter"
+   ],
+   "tags": [
+    "vga",
+    "trng",
+    "ring-oscillator",
+    "multiplexer",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "This design includes a synchronizer, a delay line, and a counter for characterization purposes. It is used to measure delay and synchronization properties. The counter counts events or pulses. This is a test structure for evaluating timing characteristics.",
+   "summary": "This design multiplexes between four VGA projects, selectable via the ui pins. It can use a true random number generator based on sampling a ring oscillator to randomly select among them. Speed and direction controls are also provided on the input pins. It requires a VGA PMOD compatible with the Tiny VGA pinout.",
+   "summary_changed": true
+  },
+  {
+   "key": "1ddb0a857834",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mac-unit",
+     "reason": "No multiply-accumulate unit is described."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier is described."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "gate-level",
+     "reason": "The source does not state a gate-level implementation."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "The design is a metastability characterization circuit, unrelated to machine learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "It is explicitly a metastability characterization circuit."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "It samples an asynchronous data signal and studies metastability in the sampling element."
+    },
+    {
+     "tag": "delay-line",
+     "reason": "A tunable delay adjusts the metastability resolution window."
+    },
+    {
+     "tag": "counter",
+     "reason": "The selected detector output is counted to indicate metastability activity."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary described a MAC unit, contradicting the metastability characterization source.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "alu",
+    "gate-level",
+    "machine-learning"
+   ],
+   "tags": [
+    "characterization",
+    "synchronizer",
+    "delay-line",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This design wraps a structurally-optimized gate-level multiply-accumulate (MAC) unit in a TinyTapeout-compatible clocked interface. The MAC unit performs multiply-accumulate operations. It is implemented at gate level for optimization. The interface allows integration with TinyTapeout projects.",
+   "summary": "This design is a metastability characterization circuit that generates metastability by sampling a locally generated asynchronous data signal. A metastability detector observes the sampled signals and identifies events, with two selectable detector implementations. A tunable delay adjusts the effective metastability resolution window so events persisting beyond that window can be detected. The selected detector output is counted to provide a measurable indication of metastability activity.",
+   "summary_changed": true
+  },
+  {
+   "key": "24e73ffbf219",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "No game is described; it is a secret-code lock."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "No puzzle logic is documented."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching intent is stated."
+    },
+    {
+     "tag": "template",
+     "reason": "Not described as a template or starter project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "led",
+     "reason": "Eight output pins drive LEDs."
+    },
+    {
+     "tag": "button",
+     "reason": "Input pins are used to enter the code, implying switch/button input."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the one-line description is just 'Secret'."
+    }
+   ],
+   "notes": "Removed unsupported game/puzzle/education/template tags and added wokwi, led, button and insufficient-doc.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "led",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "button",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a secret code lock where entering a 4-digit code turns on all LEDs. It uses four input pins for the code and eight output pins to drive LEDs. The documentation is sparse, with the one-line description 'Secret' and minimal explanation, so the exact code and behavior are not fully documented.",
+   "summary": "This design implements a secret code lock where entering a secret 4-digit code turns on all the LEDs. It uses input pins for the code and eight output pins to drive LEDs. The documentation is very thin, with the one-line description 'Secret' and minimal explanation. The exact code and detailed behavior are therefore not fully documented.",
+   "summary_changed": true
+  },
+  {
+   "key": "24a13448d214",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "floating-point",
+     "reason": "No floating-point arithmetic is described; the design is a VGA plasma effect."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "No multiply-accumulate unit is described."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier is described."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing is described."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "No compute acceleration hardware is described."
+    },
+    {
+     "tag": "fpga",
+     "reason": "The design targets Tiny Tapeout silicon, not an FPGA."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Pins match the Tiny VGA pinout and it renders VGA output."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It renders a full-screen animated plasma effect."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "It is a visual plasma effect showcase in the demoscene style."
+    },
+    {
+     "tag": "video",
+     "reason": "It produces a VGA video signal."
+    },
+    {
+     "tag": "button",
+     "reason": "Up to 8 push-buttons or DIP switches on ui_in provide interactive control."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "DIP switches are listed as an optional control input."
+    }
+   ],
+   "notes": "Proposed tags and summary described a floating-point MAC accelerator, which is entirely unsupported by the plasma-effect source.",
+   "tags_before": [
+    "floating-point",
+    "mac-unit",
+    "multiplier",
+    "dsp",
+    "accelerator",
+    "fpga"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "demoscene",
+    "video",
+    "button",
+    "dip-switch"
+   ],
+   "summary_before": "This project implements a floating-point multiply-accumulate (MAC) unit. It is designed for digital signal processing applications and can be used as an accelerator. The design is implemented in FPGA and includes a multiplier and an adder. The exact precision and performance characteristics are not described in the documentation.",
+   "summary": "This project renders a full-screen animated XOR plasma effect on a VGA display at 640x480 resolution and 60 Hz, using a 25 MHz pixel clock. It is authored in Spade HDL and compiled to SystemVerilog before synthesis. Eight input pins provide real-time controls for pause, pattern select, speed, colour inversion and colour rotation. A VGA monitor is connected through the Tiny Tapeout VGA PMOD on the uo output port, with optional push-buttons or DIP switches on ui_in.",
+   "summary_changed": true
+  },
+  {
+   "key": "20fa52adb42c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is detailed and describes the datapath and expected outputs."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The pins are a data/result interface, not general purpose IO."
+    },
+    {
+     "tag": "led",
+     "reason": "No LED output is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "It computes a dot product, a core signal-processing primitive."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "GF16 is a 16-bit floating-point-like format; the design performs fixed-format arithmetic on it."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "It contains four parallel GF16 multipliers."
+    },
+    {
+     "tag": "adder",
+     "reason": "It uses three GF16 adders in a tree reduction."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is a dedicated dot-product compute accelerator."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "Dot products are a core machine-learning inference primitive."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary wrongly described a sparse, undocumented simple circuit; the source documents a GF16 dot-product accelerator.",
+   "tags_before": [
+    "insufficient-doc",
+    "gpio",
+    "led"
+   ],
+   "tags": [
+    "dsp",
+    "fixed-point",
+    "multiplier",
+    "adder",
+    "accelerator",
+    "machine-learning",
+    "verilog"
+   ],
+   "summary_before": "This project is a simple design that outputs a signal on the output pins. It does not require any external hardware and the result is directly observable on uo_out and uio_out. The documentation is sparse and does not provide details on the functionality or purpose of the design. The design is likely a simple test or demonstration circuit.",
+   "summary": "This design computes a 4-element dot product in GF16 format, using four parallel combinational GF16 multipliers and three GF16 adders in a tree reduction. The GF16 format has 1 sign bit, 6 exponent bits with bias 31, and 9 mantissa bits. By default it computes dot4([1,2,3,4],[1,2,3,4]) = 30.0 = 0x47C0, observable as uo_out = 0xC0 and uio_out = 0x47. No external hardware is required, and the result is directly observable on the output pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "bd4380329c93",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No general arithmetic logic unit is described."
+    },
+    {
+     "tag": "adder",
+     "reason": "Addition is part of the MAC datapath, but no standalone adder block is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systolic-array",
+     "reason": "It wraps a fixed signed 2x2 systolic array."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "The array is a 2x2 bank of multiply-accumulate processing elements."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "The processing elements perform signed 5-bit multiplication."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "It is a primitive engine for transformer layers, a machine-learning workload."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "Transformer layers are neural-network computation."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is a dedicated compute engine for transformer primitives."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans 1x2 tiles."
+    }
+   ],
+   "notes": "Removed unsupported alu/adder tags and added systolic-array, mac-unit, multiplier, machine-learning, neural-network, accelerator, systemverilog and multi-tile.",
+   "tags_before": [
+    "accelerator",
+    "machine-learning",
+    "neural-network",
+    "systolic-array",
+    "mac-unit",
+    "alu",
+    "multiplier",
+    "adder"
+   ],
+   "tags": [
+    "accelerator",
+    "machine-learning",
+    "neural-network",
+    "systolic-array",
+    "mac-unit",
+    "multiplier",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "summary_before": "This design implements a host-driven primitive engine for transformer layers, featuring a 2x2 systolic array of multiply-accumulate processing elements with signed 5-bit operands and 11-bit results. The interface allows a host to write operands and commands, and read results one word at a time. No external hardware is required beyond a standard Tiny Tapeout board or simulator, and the design is notable for its compact implementation of a systolic schedule.",
+   "summary": "This design is a host-driven primitive engine for transformer layers, built around a fixed signed 2x2 systolic array of multiply-accumulate processing elements. The A and B banks store signed 5-bit operands, while the C bank stores signed 11-bit results wide enough for the exact sum of two signed 5-bit products. A host writes operands and commands through the interface and reads one stored word at a time via a small addressable read mux. No external hardware is required beyond a normal Tiny Tapeout board or simulator host.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7184,
+  "completion_tokens": 2351,
+  "total_tokens": 9535,
+  "cost": 0.003436788,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003436788,
+   "upstream_inference_prompt_cost": 0.001038768,
+   "upstream_inference_completions_cost": 0.00239802
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003436788,
+ "elapsed_s": 55.6
+}

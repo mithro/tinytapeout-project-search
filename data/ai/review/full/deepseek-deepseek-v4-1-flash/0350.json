@@ -1,0 +1,211 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f06d6343dcc6",
+  "3bb2aac7e9fe",
+  "a9f13ef157a9",
+  "6fd648a99de7",
+  "7dccb4e818c6",
+  "bb72f9495ced"
+ ],
+ "results": [
+  {
+   "key": "f06d6343dcc6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The outputs drive 7-segment segments, not discrete LEDs; the display tag covers this."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "The design is controlled by a push button input."
+    }
+   ],
+   "notes": "Removed led (segments are 7-segment, not discrete LEDs) and added button for the push-button input.",
+   "tags_before": [
+    "led",
+    "7-segment",
+    "shift-register",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "shift-register",
+    "display",
+    "wokwi",
+    "button"
+   ],
+   "summary_before": "This design implements an LED chaser on a 7-segment display. A shift register is used to sequentially light up segments, with the input controlled by a push button. When the button is pressed, the illuminated segment shifts, creating a chasing effect. The design is implemented in Wokwi and requires no external hardware.",
+   "summary": "This design implements an LED chaser on a 7-segment display. A shift register is used to sequentially light up segments, with the input controlled by a push button. When the button is pressed, the illuminated segment shifts, creating a chasing effect. The design is implemented in Wokwi and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "3bb2aac7e9fe",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "clock-divider",
+    "display",
+    "wokwi",
+    "sequential-logic"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "clock-divider",
+    "display",
+    "wokwi",
+    "sequential-logic"
+   ],
+   "summary_before": "This design is a counter that displays its count on a 7-segment display or allows manual entry of a number in binary. It includes a clock divider to slow down the counting speed, and the counter can be enabled or disabled. The design is implemented in Wokwi and can be tested by enabling the counter and clock divider to observe counting, or by disabling the counter and setting the inputs to display a specific number. No external hardware is needed.",
+   "summary": "This design is a counter that displays its count on a 7-segment display or allows manual entry of a number in binary. It includes a clock divider to slow down the counting speed, and the counter can be enabled or disabled. The design is implemented in Wokwi and can be tested by enabling the counter and clock divider to observe counting, or by disabling the counter and setting the inputs to display a specific number. No external hardware is needed.",
+   "summary_changed": false
+  },
+  {
+   "key": "a9f13ef157a9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "security",
+    "shift-register",
+    "edge-detector",
+    "wokwi",
+    "debouncer"
+   ],
+   "tags": [
+    "security",
+    "shift-register",
+    "edge-detector",
+    "wokwi",
+    "debouncer"
+   ],
+   "summary_before": "This design implements a 4-digit electronic padlock that checks a sequence of button presses against a stored code. Each button press is detected by a rising edge detector and the resulting binary code is stored in a shift register, which is continuously compared to a reference value. The design outputs signals indicating button press detection and code validity. It requires external push buttons with debounce circuitry and a clock source.",
+   "summary": "This design implements a 4-digit electronic padlock that checks a sequence of button presses against a stored code. Each button press is detected by a rising edge detector and the resulting binary code is stored in a shift register, which is continuously compared to a reference value. The design outputs signals indicating button press detection and code validity. It requires external push buttons with debounce circuitry and a clock source.",
+   "summary_changed": false
+  },
+  {
+   "key": "6fd648a99de7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "led",
+    "clock-divider",
+    "counter",
+    "multiplexer",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "led",
+    "clock-divider",
+    "counter",
+    "multiplexer",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This design drives a 7-segment LED display to alternate between the text 'NIC' and 'JAC'. It uses a prescaler with selectable tap points to divide the clock, which then feeds a ripple counter and a chain of multiplexers to control each segment. The decimal point blinks based on the highest counter bit. The design is implemented in Wokwi and requires external switches for prescaler selection and a 7-segment display.",
+   "summary": "This design drives a 7-segment LED display to alternate between the text 'NIC' and 'JAC'. It uses a prescaler with selectable tap points to divide the clock, which then feeds a ripple counter and a chain of multiplexers to control each segment. The decimal point blinks based on the highest counter bit. The design is implemented in Wokwi and requires external switches for prescaler selection and a 7-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "7dccb4e818c6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sram",
+     "reason": "The design is a small 4x4 RAM block, not an SRAM macro or array."
+    },
+    {
+     "tag": "register-file",
+     "reason": "It is addressed as a RAM with read/write enable, not a multi-port register file."
+    }
+   ],
+   "add": [],
+   "notes": "Removed sram and register-file; the source describes a plain 4x4 read/write RAM, covered by memory.",
+   "tags_before": [
+    "memory",
+    "sram",
+    "register-file",
+    "wokwi"
+   ],
+   "tags": [
+    "memory",
+    "wokwi"
+   ],
+   "summary_before": "This design is a 4-word by 4-bit read/write RAM with separate data and address inputs and a write enable signal. Data is written to the addressed location when write enable is asserted, and the stored word is presented on the read data outputs. It is tested by setting the data and address lines, cycling write enable, and then reading the value on the read data outputs. No external hardware is required, and the design serves as a basic memory block.",
+   "summary": "This design is a 4-word by 4-bit read/write RAM with separate data and address inputs and a write enable signal. Data is written to the addressed location when write enable is asserted, and the stored word is presented on the read data outputs. It is tested by setting the data and address lines, cycling write enable, and then reading the value on the read data outputs. No external hardware is required, and the design serves as a basic memory block.",
+   "summary_changed": false
+  },
+  {
+   "key": "bb72f9495ced",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education (no teaching intent stated) and dropped the unsupported educational-purpose sentence.",
+   "tags_before": [
+    "7-segment",
+    "bcd",
+    "counter",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "bcd",
+    "counter",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This design displays a BCD counter on a seven-segment display, with the segment logic simplified using sum-of-products equations. It can run automatically with the clock switch on and all toggle switches in zero position, or individual BCD bits can be toggled with the clock off. The design includes a decimal point toggle and is intended for educational or demonstration purposes. No external hardware is required beyond the standard board and display.",
+   "summary": "This design displays a BCD counter on a seven-segment display, with the segment logic simplified using sum-of-products equations. It can run automatically with the clock switch on and all toggle switches in zero position, or individual BCD bits can be toggled with the clock off. The design includes a decimal point toggle. No external hardware is required beyond the standard board and display.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5665,
+  "completion_tokens": 1050,
+  "total_tokens": 6715,
+  "cost": 0.003699375,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003699375,
+   "upstream_inference_prompt_cost": 0.002124375,
+   "upstream_inference_completions_cost": 0.001575
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003699375,
+ "elapsed_s": 4.0
+}

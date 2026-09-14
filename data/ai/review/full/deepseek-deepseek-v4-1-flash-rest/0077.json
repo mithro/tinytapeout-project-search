@@ -1,0 +1,265 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3c46390f3d06",
+  "49590722eae1",
+  "19f5b1988e94",
+  "405dd8683946",
+  "212618a6a53c",
+  "910a911462b2"
+ ],
+ "results": [
+  {
+   "key": "3c46390f3d06",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag because the source does not state a teaching or learning purpose.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "combinational",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "combinational"
+   ],
+   "summary_before": "This design implements two NAND gates using Wokwi, with the first gate taking inputs from pins 0 and 1, the second from pins 2 and 3, and their outputs combined to drive output pin 1. The documentation incorrectly states that pins 1-7 should be set high for testing. The project appears to be a beginner-level logic gate experiment.",
+   "summary": "This design implements two NAND gates using Wokwi, with the first gate taking inputs from pins 0 and 1, the second from pins 2 and 3, and their outputs combined to drive output pin 1. The documentation says to set pins 1-7 high for testing, which does not match the described pin usage. The project appears to be a beginner-level logic gate experiment.",
+   "summary_changed": true
+  },
+  {
+   "key": "49590722eae1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The pin names and title clearly identify a 4-1 multiplexer, so the documentation is sufficient to describe the design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed insufficient-doc because the multiplexer function is clear from the title and pin names.",
+   "tags_before": [
+    "multiplexer",
+    "wokwi",
+    "combinational",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "multiplexer",
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This design is a multiplexer built in Wokwi, but the documentation is insufficient to fully describe its functionality. The project appears to be incomplete or a placeholder.",
+   "summary": "This design is a 4-1 multiplexer built in Wokwi, with inputs a, b, c, and d selected by s1 and s2 and the result driven on output out. The documentation is very thin, but the pin names and title make the function clear. The project appears to be a simple combinational logic design.",
+   "summary_changed": true
+  },
+  {
+   "key": "19f5b1988e94",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a multiplier, not an arithmetic logic unit."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "AND gates are used internally, but the design is a multiplier rather than a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The design is explicitly a 4x4 array multiplier."
+    },
+    {
+     "tag": "structural",
+     "reason": "The documentation states it was created using a manual structural design."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The multiplier is purely combinational with no clock or sequential elements."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Corrected tags and summary to describe the multiplier rather than an ALU.",
+   "tags_before": [
+    "alu",
+    "adder",
+    "logic-gate"
+   ],
+   "tags": [
+    "adder",
+    "multiplier",
+    "structural",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit ALU that performs basic arithmetic and logical operations on 4-bit binary numbers. It includes an adder and logic gates for operations such as AND, OR, and XOR. The result is output on an 8-bit output bus, which can be connected to an external display or register. The design is purely combinational and requires no external hardware.",
+   "summary": "This project implements a 4-bit multiplier that takes two 4-bit integers and produces an 8-bit product. It uses a manual structural design with AND gates to form partial products and 1-bit full adders to sum them and handle carries. The result is output on an 8-bit output bus. The design is purely combinational and requires no external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "405dd8683946",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The design is a PWM tone generator, not a digital-to-analog converter."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported DAC tag and corrected summary to match the PWM tone generator description.",
+   "tags_before": [
+    "audio",
+    "pwm",
+    "dac",
+    "sound-generator",
+    "buzzer"
+   ],
+   "tags": [
+    "audio",
+    "pwm",
+    "sound-generator",
+    "buzzer",
+    "verilog"
+   ],
+   "summary_before": "tt-tinytone is a PWM-based tone generator designed to drive a piezo buzzer. It uses a noise-shaping delta-sigma converter to produce a high-quality digital audio signal. The design is controlled via a simple interface and can generate various tones. It is notable for its compact implementation of audio synthesis.",
+   "summary": "tt-tinytone is a PWM-based tone generator designed to drive a piezo buzzer. It produces a PWM signal on output pin sound_o. The design is controlled through the Tiny Tapeout interface and can generate tones. It is a compact implementation of audio synthesis.",
+   "summary_changed": true
+  },
+  {
+   "key": "212618a6a53c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": "The design checks switch pairs and drives a display, but does not implement a value comparison circuit."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Gates are used internally, but the design is a switch-pair checker rather than a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The design takes eight switch inputs arranged in pairs."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The design drives a seven-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "The design outputs to a seven-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The design is built in Wokwi."
+    }
+   ],
+   "notes": "Removed comparator and logic-gate tags and added interface/output tags supported by the pins and text.",
+   "tags_before": [
+    "7-segment",
+    "dip-switch",
+    "comparator",
+    "logic-gate",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "dip-switch",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This design checks eight switches arranged in pairs and lights a seven-segment display with a zero only when exactly one pair is on. Testing is done by manually flipping switches in the Wokwi online project, and the seven-segment display from the template is the only external hardware.",
+   "summary": "This design checks eight switches arranged in pairs and lights a seven-segment display with a zero only when exactly one pair is on. Testing is done by manually flipping switches in the Wokwi online project, and the seven-segment display from the template is the only external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "910a911462b2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a signal sorter for error reporting, not a basic logic gate implementation."
+    },
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The design is built in Wokwi."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The design is purely combinational logic with no clock or sequential elements."
+    }
+   ],
+   "notes": "Replaced incorrect summary and tags with ones supported by the SignalSorter documentation.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This design implements a simple logic gate test with eight inputs and eight outputs. The documentation is minimal and does not describe the specific gate connections or intended function beyond listing the inputs. The project was created in Wokwi and has no external hardware requirements. It is intended as a basic logic gate test and includes a truth table for verification.",
+   "summary": "This design detects and sorts signals from two systems with two units each, for error reporting. It receives four inputs divided into groups A and B, and outputs four values indicating whether one or both units in each group are sending a signal. The circuit is purely combinational. Testing is done by simulating in Wokwi and toggling DIP switches 1 through 4.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "3c46390f3d06: 3 sentences after review",
+  "49590722eae1: 3 sentences after review",
+  "212618a6a53c: 2 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 5399,
+  "completion_tokens": 1397,
+  "total_tokens": 6796,
+  "cost": 0.004120125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004120125,
+   "upstream_inference_prompt_cost": 0.002024625,
+   "upstream_inference_completions_cost": 0.0020955
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004120125,
+ "elapsed_s": 5.7
+}

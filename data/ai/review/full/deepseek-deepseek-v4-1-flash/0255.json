@@ -1,0 +1,201 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b323bb8e23f2",
+  "28209356c14e",
+  "9e229c83b832",
+  "77984d17a36e",
+  "2b5d28a85c4f",
+  "40aeaf98f587"
+ ],
+ "results": [
+  {
+   "key": "b323bb8e23f2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a flip-flop built from NAND gates, not a basic logic gate implementation itself."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sequential-logic",
+     "reason": "A flip-flop is a sequential storage element, supported by the title and description."
+    }
+   ],
+   "notes": "Removed logic-gate (design is a flip-flop, not a gate) and added sequential-logic.",
+   "tags_before": [
+    "flip-flop",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "flip-flop",
+    "wokwi",
+    "education",
+    "sequential-logic"
+   ],
+   "summary_before": "This design is a single flip-flop built from four NAND gates. It can be tested by toggling the input switches and observing the outputs, which are intended to drive two external LEDs. The documentation is very brief, stating only that it works and to try the switches. It is a minimal educational logic circuit created in Wokwi.",
+   "summary": "This design is a single flip-flop built from four NAND gates. It can be tested by toggling the input switches and observing the outputs, which are intended to drive two external LEDs. The documentation is very brief, stating only that it works and to try the switches. It is a minimal educational logic circuit created in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "28209356c14e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A single full adder is not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu; a 1-bit full adder is not an ALU.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This project implements a full adder that takes two 1-bit inputs X and Y plus a carry-in, and produces a sum and carry-out. It is tested by checking that the sum of X and Y equals the output sum. No external hardware is mentioned. The documentation is brief and does not include silicon test results.",
+   "summary": "This project implements a full adder that takes two 1-bit inputs X and Y plus a carry-in, and produces a sum and carry-out. It is tested by checking that the sum of X and Y equals the output sum. No external hardware is mentioned. The documentation is brief and does not include silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "9e229c83b832",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A 4-bit multiplier is not an arithmetic logic unit."
+    },
+    {
+     "tag": "structural",
+     "reason": "The source does not state the multiplier is implemented structurally; that is only claimed for project 6."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu and structural, which are unsupported by the source.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "combinational",
+    "education",
+    "structural"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "education"
+   ],
+   "summary_before": "This is a 4-bit array multiplier that takes two 4-bit inputs and produces an 8-bit product. The documentation is very brief, stating only that it splits an 8-bit input into two 4-bit arrays and multiplies them. Testing is described as using various numbers to check multiplicative values, but no detailed methodology or expected results are given. No external hardware is required, and the design appears to be a simple educational arithmetic block.",
+   "summary": "This is a 4-bit array multiplier that takes two 4-bit inputs and produces an 8-bit product. The documentation is very brief, stating only that it splits an 8-bit input into two 4-bit arrays and multiplies them. Testing is described as using various numbers to check multiplicative values, but no detailed methodology or expected results are given. No external hardware is required, and the design appears to be a simple educational arithmetic block.",
+   "summary_changed": false
+  },
+  {
+   "key": "77984d17a36e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "bit-serial",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "bit-serial",
+    "verilog"
+   ],
+   "summary_before": "This design implements a nibble-serial version of the LED block cipher, which encrypts a 64-bit plaintext block using a 128-bit key. Data is loaded and unloaded serially through the 8 input and 8 output pins, with control signals for loading key and plaintext, starting encryption, and reading ciphertext. The design is intended to be controlled by external hardware such as a Raspberry Pi, and test vectors are provided for verification. Notable features include a compact implementation that reuses datapath logic across nibbles, at the cost of higher latency (2045 cycles for encryption).",
+   "summary": "This design implements a nibble-serial version of the LED block cipher, which encrypts a 64-bit plaintext block using a 128-bit key. Data is loaded and unloaded serially through the 8 input and 8 output pins, with control signals for loading key and plaintext, starting encryption, and reading ciphertext. The design is intended to be controlled by external hardware such as a Raspberry Pi, and test vectors are provided for verification. Notable features include a compact implementation that reuses datapath logic across nibbles, at the cost of higher latency (2045 cycles for encryption).",
+   "summary_changed": false
+  },
+  {
+   "key": "2b5d28a85c4f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The outputs are generic pins that blink; no discrete LED hardware is specified."
+    }
+   ],
+   "add": [],
+   "notes": "Removed led; the source only says outputs blink, not that LEDs are driven.",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "chisel",
+    "rom",
+    "led"
+   ],
+   "tags": [
+    "cpu",
+    "esoteric",
+    "chisel",
+    "rom"
+   ],
+   "summary_before": "Tappu is an 8-bit CPU inspired by the esoteric language BF, implemented in Chisel. It includes a ROM that causes all outputs to blink, and the design is intended to be observed by watching the output blink. The documentation is minimal, providing only a brief description and no detailed usage or testing instructions. No external hardware is required beyond power and observation of the outputs.",
+   "summary": "Tappu is an 8-bit CPU inspired by the esoteric language BF, implemented in Chisel. It includes a ROM that causes all outputs to blink, and the design is intended to be observed by watching the output blink. The documentation is minimal, providing only a brief description and no detailed usage or testing instructions. No external hardware is required beyond power and observation of the outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "40aeaf98f587",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "adder",
+    "combinational"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "combinational"
+   ],
+   "summary_before": "This design implements a 4x4 array multiplier using structural logic, taking two 4-bit inputs and producing an 8-bit product. It uses full adders to sum partial products along diagonals. The design is purely combinational and requires no external hardware. The documentation includes diagrams and a GitHub link, but the testing procedure is simply to apply inputs and observe the output.",
+   "summary": "This design implements a 4x4 array multiplier using structural logic, taking two 4-bit inputs and producing an 8-bit product. It uses full adders to sum partial products along diagonals. The design is purely combinational and requires no external hardware. The documentation includes diagrams and a GitHub link, but the testing procedure is simply to apply inputs and observe the output.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6898,
+  "completion_tokens": 1007,
+  "total_tokens": 7905,
+  "cost": 0.001992978,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001992978,
+   "upstream_inference_prompt_cost": 0.000965838,
+   "upstream_inference_completions_cost": 0.00102714
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001992978,
+ "elapsed_s": 25.2
+}

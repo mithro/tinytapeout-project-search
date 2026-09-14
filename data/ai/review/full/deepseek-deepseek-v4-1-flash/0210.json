@@ -1,0 +1,205 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "513d41c3dc28",
+  "97f108deaacc",
+  "67420c1d906b",
+  "c7da9e591463",
+  "c87640f708b3",
+  "ca9cb77713a3"
+ ],
+ "results": [
+  {
+   "key": "513d41c3dc28",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes a standalone 8-bit adder, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag; the source documents only an adder, not an ALU.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This 8-bit hybrid adder combines a 4-bit Kogge-Stone adder with a 4-bit carry-lookahead adder to balance gate efficiency and latency. It takes two 8-bit operands on ui_in and uio_in and produces the sum on uo_out. Testing requires only applying 3.3V logic levels to the inputs and reading the outputs. The design is notable for being faster than an 8-bit Kogge-Stone adder and more gate-efficient than an 8-bit carry-lookahead adder.",
+   "summary": "This 8-bit hybrid adder combines a 4-bit Kogge-Stone adder with a 4-bit carry-lookahead adder to balance gate efficiency and latency. It takes two 8-bit operands on ui_in and uio_in and produces the sum on uo_out. Testing requires only applying 3.3V logic levels to the inputs and reading the outputs. The design is described as faster than an 8-bit Kogge-Stone adder and more gate-efficient than an 8-bit carry-lookahead adder.",
+   "summary_changed": true
+  },
+  {
+   "key": "97f108deaacc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes a standalone 8-bit carry-skip adder, not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag; the source documents only an adder, not an ALU.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This 8-bit carry-skip adder uses two 4-bit sections with skip logic to reduce carry propagation delay compared to a ripple-carry adder. It takes two 8-bit operands on ui_in and uio_in and outputs the registered sum on uo_out after each rising clock edge. Testing can be done by applying input values and verifying the output against expected sums, either manually or with a testbench. No external hardware is required.",
+   "summary": "This 8-bit carry-skip adder uses two 4-bit sections with skip logic to reduce carry propagation delay compared to a ripple-carry adder. It takes two 8-bit operands on ui_in and uio_in and outputs the registered sum on uo_out after each rising clock edge. Testing can be done by applying input values and verifying the output against expected sums, either manually or with a testbench. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "67420c1d906b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator circuit is described; the design is a network of LIF neurons."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "No clock-domain-crossing synchronizer is described; 'synchronous' refers to firing patterns, not CDC logic."
+    }
+   ],
+   "add": [],
+   "notes": "Removed oscillator and synchronizer tags unsupported by the source; dropped unsupported 'notable' claim.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog",
+    "oscillator",
+    "synchronizer"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This project implements eight leaky integrate-and-fire neurons connected in a ring topology, with configurable base current, coupling strength, and one of five firing patterns (independent, wave, synchronous, clustered, burst). Inputs are split across ui_in for pattern select and base current scaling, and uio_in for coupling strength, while spike outputs appear on uo_out and the first neuron's membrane potential on uio_out. Testing involves applying reset and enable, selecting a pattern and current, and monitoring the spike outputs for the expected propagation or synchronization behavior. No external hardware is needed, and the design is notable for demonstrating emergent network dynamics on a single Tiny Tapeout tile.",
+   "summary": "This project implements eight leaky integrate-and-fire neurons connected in a ring topology, with configurable base current, coupling strength, and one of five firing patterns (independent, wave, synchronous, clustered, burst). Inputs are split across ui_in for pattern select and base current scaling, and uio_in for coupling strength, while spike outputs appear on uo_out and the first neuron's membrane potential on uio_out. Testing involves applying reset and enable, selecting a pattern and current, and monitoring the spike outputs for the expected propagation or synchronization behavior. No external hardware is needed.",
+   "summary_changed": true
+  },
+  {
+   "key": "c7da9e591463",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "Redundant with spiking-neural-network and not separately supported; the design is a single LSNN neuron."
+    }
+   ],
+   "add": [],
+   "notes": "Removed redundant neural-network tag and unsupported 'notable' claim.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "verilog",
+    "counter"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog",
+    "counter"
+   ],
+   "summary_before": "This project implements a leaky spiking neural network (LSNN) neuron with a 12-bit membrane potential, configurable decay, adaptive threshold with optional learning, a three-cycle refractory period, and a 7-bit spike counter. Input current is applied on ui_in, the membrane potential and refractory indicator are output on uo_out, and the spike plus spike counter appear on uio_out, with learning enabled via uio_in[0]. Testing covers reset behavior, basic spiking, learning mode, and spike-count verification entirely through digital I/O. No external hardware is required, and the design is notable for combining adaptive threshold and refractory dynamics in a single Tiny Tapeout tile.",
+   "summary": "This project implements a leaky spiking neural network (LSNN) neuron with a 12-bit membrane potential, configurable decay, adaptive threshold with optional learning, a three-cycle refractory period, and a 7-bit spike counter. Input current is applied on ui_in, the membrane potential and refractory indicator are output on uo_out, and the spike plus spike counter appear on uio_out, with learning enabled via uio_in[0]. Testing covers reset behavior, basic spiking, learning mode, and spike-count verification entirely through digital I/O. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "c87640f708b3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "demoscene"
+   ],
+   "summary_before": "This design generates a 640x480 VGA signal displaying a bouncing DVD-style logo with an animated color gradient. Two inputs control the behavior: ui_in[0] tiles the logo across the screen, and ui_in[1] switches to a solid color instead of the gradient. It is tested by connecting a VGA monitor via a TinyVGA Pmod and observing the animation. The design is notable for being a compact VGA screensaver implementation that fits on a single tile and requires the TinyVGA Pmod as external hardware.",
+   "summary": "This design generates a 640x480 VGA signal displaying a bouncing DVD-style logo with an animated color gradient. Two inputs control the behavior: ui_in[0] tiles the logo across the screen, and ui_in[1] switches to a solid color instead of the gradient. It is tested by connecting a VGA monitor via a TinyVGA Pmod and observing the animation. The design is notable for being a compact VGA screensaver implementation that fits on a single tile and requires the TinyVGA Pmod as external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "ca9cb77713a3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fixed-point",
+     "reason": "Source describes packed reduced-precision weights and INT8 activations, not fixed-point arithmetic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rp2040",
+     "reason": "Source explicitly names an RP2040 as the external processor needed to feed data and fetch results."
+    }
+   ],
+   "notes": "Removed fixed-point tag unsupported by source; added rp2040 since the source names it as required external hardware.",
+   "tags_before": [
+    "systolic-array",
+    "accelerator",
+    "neural-network",
+    "machine-learning",
+    "fixed-point"
+   ],
+   "tags": [
+    "systolic-array",
+    "accelerator",
+    "neural-network",
+    "machine-learning",
+    "rp2040"
+   ],
+   "summary_before": "This design implements a systolic array for matrix multiplication using reduced-precision packed weights of 2.6 bits per parameter (septenary and quinary formats) and INT8 activations. It accepts packed weights on the input pins and activations on the bidirectional pins, and outputs the multiplication results on the output pins, with a strobe enable pin to start receiving results. Testing requires an external processor such as an RP2040 to feed weights and activations and to fetch the results. The design is notable for its use of compressed weights to reduce memory footprint in neural network acceleration, but it requires external hardware for operation.",
+   "summary": "This design implements a systolic array for matrix multiplication using reduced-precision packed weights of 2.6 bits per parameter (septenary and quinary formats) and INT8 activations. It accepts packed weights on the input pins and activations on the bidirectional pins, and outputs the multiplication results on the output pins, with a strobe enable pin to start receiving results. Testing requires an external processor such as an RP2040 to feed weights and activations and to fetch the results. The design is notable for its use of compressed weights to reduce memory footprint in neural network acceleration, but it requires external hardware for operation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7557,
+  "completion_tokens": 1252,
+  "total_tokens": 8809,
+  "cost": 0.002410923,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002410923,
+   "upstream_inference_prompt_cost": 0.001133883,
+   "upstream_inference_completions_cost": 0.00127704
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002410923,
+ "elapsed_s": 57.7
+}

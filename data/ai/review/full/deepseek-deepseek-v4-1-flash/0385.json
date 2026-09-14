@@ -1,0 +1,241 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "206b812886db",
+  "b13ec4ed57ac",
+  "283cc916a207",
+  "0135b8e2e4f1",
+  "9d5600aec5c1",
+  "77c9498ad90d"
+ ],
+ "results": [
+  {
+   "key": "206b812886db",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "automotive",
+     "reason": "Source mentions machinery interlocks and safety chains, not automotive applications."
+    }
+   ],
+   "add": [],
+   "notes": "Removed automotive tag; source only describes machinery safety interlock, not automotive use.",
+   "tags_before": [
+    "industrial",
+    "puzzle",
+    "combinational",
+    "wokwi",
+    "automotive"
+   ],
+   "tags": [
+    "industrial",
+    "puzzle",
+    "combinational",
+    "wokwi"
+   ],
+   "summary_before": "This digital cipher and interlock system implements a hardware-based safety chain that requires a specific 8-bit input pattern to unlock an output. It uses combinational logic to verify that all subsystems are in the correct state, mimicking a standalone safety relay. The design provides feedback signals from internal gates and can be used as a puzzle demo or as an interlock for machinery. No external hardware is required, and testing involves applying the correct input pattern to activate the output.",
+   "summary": "This digital cipher and interlock system implements a hardware-based safety chain that requires a specific 8-bit input pattern to unlock an output. It uses combinational logic to verify that all subsystems are in the correct state, mimicking a standalone safety relay. The design provides feedback signals from internal gates and can be used as a puzzle demo or as an interlock for machinery. No external hardware is required, and testing involves applying the correct input pattern to activate the output.",
+   "summary_changed": false
+  },
+  {
+   "key": "b13ec4ed57ac",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "No measurement or instrumentation application is described; it is a motor controller."
+    }
+   ],
+   "add": [],
+   "notes": "Removed instrumentation tag; source describes motor control, not measurement instrumentation.",
+   "tags_before": [
+    "motor-control",
+    "industrial",
+    "i2c",
+    "instrumentation",
+    "pwm"
+   ],
+   "tags": [
+    "motor-control",
+    "industrial",
+    "i2c",
+    "pwm"
+   ],
+   "summary_before": "This design is a universal motor and actuator controller for BLDC motors with encoders, implementing PID control and Nichols-Ziegler auto-tuning. It is configured and monitored through an I2C interface at address 0x72, with subaddresses for setting PID constants, manual override, and reading motor period. External hardware includes a motor driver to convert PWM signals to power, a BLDC motor with at least two encoders, and I2C pull-up resistors. The design is notable for its auto-tuning capability and universal applicability to different motor setups.",
+   "summary": "This design is a universal motor and actuator controller for BLDC motors with encoders, implementing PID control and Nichols-Ziegler auto-tuning. It is configured and monitored through an I2C interface at address 0x72, with subaddresses for setting PID constants, manual override, and reading motor period. External hardware includes a motor driver to convert PWM signals to power, a BLDC motor with at least two encoders, and I2C pull-up resistors. The design is notable for its auto-tuning capability and universal applicability to different motor setups.",
+   "summary_changed": false
+  },
+  {
+   "key": "283cc916a207",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": "Comparator is a type tag for a value comparison circuit; this is an ADC that uses a comparator internally, not a standalone comparator design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "Design combines analog capacitor array and comparator with custom asynchronous digital logic."
+    }
+   ],
+   "notes": "Removed comparator type tag; added mixed-signal because the ADC integrates analog and digital circuitry.",
+   "tags_before": [
+    "adc",
+    "sar-adc",
+    "analog",
+    "comparator",
+    "asynchronous",
+    "silicon-tested"
+   ],
+   "tags": [
+    "adc",
+    "sar-adc",
+    "analog",
+    "asynchronous",
+    "silicon-tested",
+    "mixed-signal"
+   ],
+   "summary_before": "This is an 8-bit successive-approximation-register analog-to-digital converter that samples a differential input onto a capacitor array and uses a strong-arm comparator and asynchronous binary-search logic to produce a two's-complement digital output. It requires a 4 MHz clock, an enable signal, and differential analog inputs with a common mode around VDD/2; the conversion-done signal indicates when the output is valid. Silicon test reports indicate it works, but both inputs must be above about 0.6 V for reliable operation, and a common mode of 0 V will cause the comparator to fail. The design is notable for being a transistor-level analog block with detailed documentation and measured silicon results.",
+   "summary": "This is an 8-bit successive-approximation-register analog-to-digital converter that samples a differential input onto a capacitor array and uses a strong-arm comparator and asynchronous binary-search logic to produce a two's-complement digital output. It requires a 4 MHz clock, an enable signal, and differential analog inputs with a common mode around VDD/2; the conversion-done signal indicates when the output is valid. Silicon test reports indicate it works, but both inputs must be above about 0.6 V for reliable operation, and a common mode of 0 V will cause the comparator to fail. The design is notable for being a transistor-level analog block with detailed documentation and measured silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "0135b8e2e4f1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "standard-cell",
+     "reason": "Source says sky130 HA/FA cells, which are full-custom library cells, not standard-cell library cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "full-custom",
+     "reason": "Design uses sky130 high-availability and full-adder cells, indicating full-custom layout."
+    }
+   ],
+   "notes": "Removed standard-cell tag; added full-custom because sky130 HA/FA cells are full-custom library cells.",
+   "tags_before": [
+    "multiplier",
+    "divider",
+    "combinational",
+    "spinalhdl",
+    "standard-cell",
+    "rp2040"
+   ],
+   "tags": [
+    "multiplier",
+    "divider",
+    "combinational",
+    "spinalhdl",
+    "rp2040",
+    "full-custom"
+   ],
+   "summary_before": "This project is an 8-bit combinational multiply and divide unit similar to the previous one, but implemented with sky130 high-availability and full-adder standard cells. It supports signed and unsigned operations and provides immediate or registered output modes with error flags. The design is in SpinalHDL and expects an RP2040 for testing. Documentation is sparse, with testing instructions to be provided later.",
+   "summary": "This project is an 8-bit combinational multiply and divide unit implemented with sky130 high-availability and full-adder cells. It supports signed and unsigned operations and provides immediate or registered output modes with error flags. The design is in SpinalHDL and expects an RP2040 for testing. Documentation is sparse, with testing instructions to be provided later.",
+   "summary_changed": true
+  },
+  {
+   "key": "9d5600aec5c1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "Source describes a floating-point unit, not a general-purpose processor core."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described; it is a floating-point unit."
+    },
+    {
+     "tag": "coprocessor",
+     "reason": "No auxiliary processor offloading is described; it is a standalone FPU."
+    }
+   ],
+   "add": [],
+   "notes": "Removed cpu, alu, and coprocessor tags; source describes a floating-point unit, not a processor or ALU.",
+   "tags_before": [
+    "floating-point",
+    "uart",
+    "calculator",
+    "cpu",
+    "alu",
+    "coprocessor"
+   ],
+   "tags": [
+    "floating-point",
+    "uart",
+    "calculator"
+   ],
+   "summary_before": "Tiny Zuse is a minimal floating-point unit inspired by the Zuse Z3, supporting addition, subtraction, multiplication, division, and square root. It communicates over a 9600 baud UART, where commands are sent as bytes to load registers and perform operations; results are read back in a 3-byte format. The design was tested with basic addition and a subset of the provided testbench, and silicon tests confirmed correct operation. It requires only the on-board UART connection to a host for control.",
+   "summary": "Tiny Zuse is a minimal floating-point unit inspired by the Zuse Z3, supporting addition, subtraction, multiplication, division, and square root. It communicates over a 9600 baud UART, where commands are sent as bytes to load registers and perform operations; results are read back in a 3-byte format. The design was tested with basic addition and a subset of the provided testbench, and silicon tests confirmed correct operation. It requires only the on-board UART connection to a host for control.",
+   "summary_changed": false
+  },
+  {
+   "key": "77c9498ad90d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated in the source."
+    },
+    {
+     "tag": "led",
+     "reason": "Output is a 7-segment display, not discrete LEDs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports indicate the design works as intended."
+    }
+   ],
+   "notes": "Removed education and led tags; added silicon-tested based on working silicon report.",
+   "tags_before": [
+    "cpu",
+    "7-segment",
+    "chisel",
+    "education",
+    "led"
+   ],
+   "tags": [
+    "cpu",
+    "7-segment",
+    "chisel",
+    "silicon-tested"
+   ],
+   "summary_before": "Lipsi is a tiny 8-bit accumulator-based processor implemented in Chisel that executes a hardcoded counting program. The count is displayed on a 7-segment display, and the decimal point blinks in hardware. It is tested with ChiselTest for waveform generation, though the cocotb test is currently disabled. The author reports that the silicon works as intended.",
+   "summary": "Lipsi is a tiny 8-bit accumulator-based processor implemented in Chisel that executes a hardcoded counting program. The count is displayed on a 7-segment display, and the decimal point blinks in hardware. It is tested with ChiselTest for waveform generation, though the cocotb test is currently disabled. The author reports that the silicon works as intended.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7563,
+  "completion_tokens": 1404,
+  "total_tokens": 8967,
+  "cost": 0.0030129,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0030129,
+   "upstream_inference_prompt_cost": 0.0013281,
+   "upstream_inference_completions_cost": 0.0016848
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0030129,
+ "elapsed_s": 81.2
+}

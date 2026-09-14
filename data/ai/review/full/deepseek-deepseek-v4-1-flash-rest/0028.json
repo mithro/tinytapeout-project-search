@@ -1,0 +1,447 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f2bc6a3adc17",
+  "03c5d5b41b41",
+  "005391968662",
+  "ccf8f6db1f08",
+  "e648787e0bac",
+  "4449f2bca5c7"
+ ],
+ "results": [
+  {
+   "key": "f2bc6a3adc17",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "Source describes an 8-bit CPU, not a game."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR mentioned in the source."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator mentioned."
+    },
+    {
+     "tag": "scoreboard",
+     "reason": "No scoreboard or score display in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Title and description state this is an 8-bit CPU."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "fsm",
+     "reason": "CPU instruction sequencing is described as a state-machine style design."
+    },
+    {
+     "tag": "education",
+     "reason": "Described as a term project with a test script for learning/experimenting with custom assembly."
+    }
+   ],
+   "notes": "Proposed tags and summary described a Blackjack game that does not match the 8-bit CPU source.",
+   "tags_before": [
+    "game",
+    "fsm",
+    "lfsr",
+    "prng",
+    "scoreboard"
+   ],
+   "tags": [
+    "fsm",
+    "cpu",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "Tiny Blackjack is a simplified Blackjack game implemented entirely in digital hardware, with game logic as a finite-state machine and a 16-bit LFSR for pseudo-random card generation. The design fits into a single TinyTapeout tile and includes features like doubling down and real-time hand total calculation. It is tested by playing the game using buttons and observing the output. It is notable for implementing a complete game in a small footprint.",
+   "summary": "This project is an 8-bit CPU implemented in Verilog on a single Tiny Tapeout tile. It performs instructions such as arithmetic and load operations and outputs the result of each instruction on the eight output pins. A test script simulates the instruction register, allowing custom assembly programs to be loaded and tested. The design is a work in progress with features to be added as time and complexity allow.",
+   "summary_changed": true
+  },
+  {
+   "key": "03c5d5b41b41",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "No analog circuitry described; design is a digital programmable IO block."
+    },
+    {
+     "tag": "biomedical",
+     "reason": "No biomedical application mentioned."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "No transistor-level implementation described."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface in the pins or text."
+    },
+    {
+     "tag": "opamp",
+     "reason": "No opamp mentioned in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pio",
+     "reason": "Title and description state it is modelled after the RP2350 PIO."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Pins are labelled GPIO in and GPIO out."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation says more explanation and testing details are still to come."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with 'TODO'-style placeholders."
+    }
+   ],
+   "notes": "Proposed tags and summary described a biomedical analog front-end that does not match the Tiny PIO source.",
+   "tags_before": [
+    "analog",
+    "biomedical",
+    "transistor-level",
+    "sensor-interface",
+    "opamp"
+   ],
+   "tags": [
+    "pio",
+    "gpio",
+    "systemverilog",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a specialized analog front-end for biomedical signal acquisition. It is implemented at the transistor level and includes an opamp and sensor interface. The design requires external analog sensors and test equipment. It is intended for biomedical monitoring applications.",
+   "summary": "This project is a programmable IO block modelled after, but not compatible with, the RP2350's PIO. It is written in SystemVerilog and occupies a 3x2 tile area. The design exposes GPIO inputs and outputs along with load, external address and IO pins on the bidirectional lines. Documentation is very thin, with further explanation and testing details still to come.",
+   "summary_changed": true
+  },
+  {
+   "key": "005391968662",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pll",
+     "reason": "No phase-locked loop in the source."
+    },
+    {
+     "tag": "analog",
+     "reason": "Design is a digital VGA graphics demo."
+    },
+    {
+     "tag": "frequency-synthesizer",
+     "reason": "No frequency synthesis described."
+    },
+    {
+     "tag": "vco",
+     "reason": "No voltage controlled oscillator mentioned."
+    },
+    {
+     "tag": "bandgap",
+     "reason": "No bandgap reference in the source."
+    },
+    {
+     "tag": "charge-pump",
+     "reason": "No charge pump mentioned."
+    },
+    {
+     "tag": "rf",
+     "reason": "No radio frequency functionality described."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "No transistor-level implementation described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Pins match the Tiny VGA pinout and the design outputs VGA signals."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Design renders metaball graphics to a VGA display."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "Described as an entry for the demo competition."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary described an RF PLL that does not match the metaballs VGA demo.",
+   "tags_before": [
+    "pll",
+    "analog",
+    "frequency-synthesizer",
+    "vco",
+    "bandgap",
+    "charge-pump",
+    "rf",
+    "transistor-level"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "demoscene",
+    "verilog"
+   ],
+   "summary_before": "This is an analog phase-locked loop targeting a 2.4 GHz output, including a bandgap reference for the charge pump. The design uses a VCO and charge pump to generate a high-frequency clock signal. It is implemented at the transistor level and is intended for RF applications. The design is notable for its analog implementation of a frequency synthesizer.",
+   "summary": "This project is a VGA metaballs graphics demo written in Verilog on a single Tiny Tapeout tile. It follows a failed attempt at metaballs in the first demo competition and aims to reset the ball positions correctly this time. It works like other VGA projects and produces no sound. It requires a VGA PMOD connected to the output pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "ccf8f6db1f08",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator described."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR mentioned in the source."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "Described as an intro/demo with chiptune music and a scroller."
+    },
+    {
+     "tag": "vga",
+     "reason": "Pins match Tiny VGA and output 640x480 VGA."
+    },
+    {
+     "tag": "audio",
+     "reason": "1-bit sigma-delta audio output on uio[7]."
+    },
+    {
+     "tag": "chiptune",
+     "reason": "Description states chiptune music."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Renders a visual scene with tunnels, a cat and a scrolling text overlay."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "music",
+     "reason": "Includes chiptune music generation."
+    }
+   ],
+   "notes": "Proposed tags and summary described an LFSR PRNG that does not match the Journey demo.",
+   "tags_before": [
+    "prng",
+    "lfsr",
+    "shift-register"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "audio",
+    "chiptune",
+    "graphics",
+    "systemverilog",
+    "music"
+   ],
+   "summary_before": "This project is a digital circuit that implements a pseudo-random number generator using a linear feedback shift register (LFSR). It produces a sequence of pseudo-random bits based on a seed value. The design is intended for use in games or other applications requiring random numbers. It is notable for its simple and efficient LFSR-based implementation.",
+   "summary": "Journey is a two-tile intro featuring dark tunnels and a cat on a red balloon casting spells, with chiptune music and a scrolling text overlay. It is written in SystemVerilog and outputs 640x480 VGA at 60 Hz plus 1-bit sigma-delta audio on uio[7]. The demo starts automatically after reset when a 25 MHz clock is applied. It requires a Tiny VGA Pmod and a TT Audio Pmod.",
+   "summary_changed": true
+  },
+  {
+   "key": "e648787e0bac",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "No compute accelerator described."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "No systolic array in the source."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "No multiply-accumulate unit described."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier mentioned."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Described as a scaled-down Spacewar game."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "States it adheres to old demoscene specifications."
+    },
+    {
+     "tag": "vga",
+     "reason": "Pins match Tiny VGA and output VGA signals."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "Pins match the Gamepad pinout and use an SNES controller PMOD."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "retro",
+     "reason": "Recreates the classic Spacewar arcade game."
+    }
+   ],
+   "notes": "Proposed tags and summary described a systolic-array MAC accelerator that does not match the Spacewar game source.",
+   "tags_before": [
+    "accelerator",
+    "systolic-array",
+    "mac-unit",
+    "multiplier",
+    "adder"
+   ],
+   "tags": [
+    "game",
+    "demoscene",
+    "vga",
+    "gamepad",
+    "verilog",
+    "retro"
+   ],
+   "summary_before": "This project implements a 4x4 systolic array matrix multiply-accumulate (MAC) accelerator in SystemVerilog. It performs matrix multiplication with accumulation. The design is intended for digital signal processing or machine learning applications. It is verified using a standard testbench.",
+   "summary": "This project is a scaled-down Spacewar game written in Verilog on a 1x2 tile area. It adheres to old demoscene specifications for VGA and audio and uses an SNES controller PMOD for input. The design outputs VGA video through the Tiny VGA pinout. Testing with CocoTB is planned but not yet available.",
+   "summary_changed": true
+  },
+  {
+   "key": "4449f2bca5c7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "No CPU described; this is a demo."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file mentioned."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine described."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU mentioned."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory block described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "Title states it is a demo competition entry."
+    },
+    {
+     "tag": "vga",
+     "reason": "Pins match Tiny VGA and output VGA signals."
+    },
+    {
+     "tag": "audio",
+     "reason": "Audio output on uio[7] with TT Audio Pmod."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Demo produces visual output over VGA."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "How-it-works section is only 'TODO'."
+    }
+   ],
+   "notes": "Proposed tags and summary described an 8-bit CPU that does not match the Orion Iron Ion demo.",
+   "tags_before": [
+    "cpu",
+    "register-file",
+    "fsm",
+    "alu",
+    "memory"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "audio",
+    "verilog",
+    "graphics",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is an 8-bit CPU with a simple instruction set. It includes a register file and a bus interface. The CPU is intended for educational purposes. It is tested using a standard Tiny Tapeout board.",
+   "summary": "Orion Iron Ion is a two-tile demo originally created for the TT10 demo competition. It is written in Verilog and outputs VGA video plus audio on uio[7], with two advance inputs on ui[6] and ui[7]. The demo starts directly after reset, and setting all inputs to zero gives the default behavior. It requires a TinyVGA Pmod and Mike's audio Pmod.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6124,
+  "completion_tokens": 1891,
+  "total_tokens": 8015,
+  "cost": 0.002697288,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002697288,
+   "upstream_inference_prompt_cost": 0.000768468,
+   "upstream_inference_completions_cost": 0.00192882
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002697288,
+ "elapsed_s": 64.4
+}

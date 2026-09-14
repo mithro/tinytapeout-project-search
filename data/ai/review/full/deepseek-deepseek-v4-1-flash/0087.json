@@ -1,0 +1,233 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1d46b7bc6c56",
+  "af338af63563",
+  "a6fc92221d7c",
+  "7f683bcaf5ff",
+  "658aa3622629",
+  "d5311705c4c9"
+ ],
+ "results": [
+  {
+   "key": "1d46b7bc6c56",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The text mentions a 7-segment display for debug, but no 7-segment pins are present in the pinout and the design's outputs are decod_reg bits; the tag is not supported by the interface evidence."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the design was tested and working on fabricated silicon."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The documentation states RP2040 SPI1 is used to communicate with the device."
+    },
+    {
+     "tag": "register-file",
+     "reason": "The design implements eight configurable read/write registers and eight read-only status registers."
+    }
+   ],
+   "notes": "Removed 7-segment because no 7-segment interface pins exist; added silicon-tested and rp2040 from the source.",
+   "tags_before": [
+    "alu",
+    "spi",
+    "7-segment",
+    "register-file",
+    "systemverilog"
+   ],
+   "tags": [
+    "alu",
+    "spi",
+    "register-file",
+    "systemverilog",
+    "silicon-tested",
+    "rp2040"
+   ],
+   "summary_before": "This design replicates the 74181 4-bit slice ALU twice to form an 8-bit ALU that performs arithmetic and logical operations on 8-bit words. It includes an SPI slave peripheral supporting all four SPI modes with eight configurable read/write registers and eight read-only status registers, and a multiplexer maps internal signals to a 7-segment display for debug. It is controlled from an RP2040 SPI1 master on GPIOs 24 to 27, and no external hardware is required. Silicon tests by the author confirmed read and write operations of all registers across all four SPI modes.",
+   "summary": "This design replicates the 74181 4-bit slice ALU twice to form an 8-bit ALU that performs arithmetic and logical operations on 8-bit words. It includes an SPI slave peripheral supporting all four SPI modes with eight configurable read/write registers and eight read-only status registers, and a multiplexer maps internal signals to a 7-segment display for debug. It is controlled from an RP2040 SPI1 master on GPIOs 24 to 27, and no external hardware is required. Silicon tests by the author confirmed read and write operations of all registers across all four SPI modes.",
+   "summary_changed": false
+  },
+  {
+   "key": "af338af63563",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source indicates the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting only of 'I2C and SPI protocol' and a one-line test instruction."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added insufficient-doc given the very thin documentation.",
+   "tags_before": [
+    "i2c",
+    "spi",
+    "communication",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "i2c",
+    "spi",
+    "communication",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements I2C and SPI communication protocols in Verilog. It provides pins for I2C data and clock, SPI MISO, MOSI, and SCK, along with output enables. The documentation is minimal, stating only that it is a design of I2C and SPI protocols and that testing involves sending data with an enable clock. No external hardware is required, but the lack of detailed documentation limits understanding of the implementation.",
+   "summary": "This project implements I2C and SPI communication protocols in Verilog. It provides pins for I2C data and clock, SPI MISO, MOSI, and SCK, along with output enables. The documentation is minimal, stating only that it is a design of I2C and SPI protocols and that testing involves sending data with an enable clock. No external hardware is required, but the lack of detailed documentation limits understanding of the implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "a6fc92221d7c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "low-power",
+     "reason": "The source only says reversible gates are explored for energy efficiency; there is no evidence of low-power optimization in the implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed low-power because the source only mentions exploring reversible gates for energy efficiency, not a low-power implementation.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "low-power",
+    "verilog"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "verilog"
+   ],
+   "summary_before": "This design implements an 8-bit multiply-accumulate (MAC) unit for unsigned integers using Vedic multipliers and reversible gates. Inputs are registered on half a clock cycle, and the MAC operation is performed with the multiplier and adder each taking half a clock cycle. The result is output on dedicated and bidirectional pins. The project explores reversible gates for energy efficiency and requires no external hardware.",
+   "summary": "This design implements an 8-bit multiply-accumulate (MAC) unit for unsigned integers using Vedic multipliers and reversible gates. Inputs are registered on half a clock cycle, and the MAC operation is performed with the multiplier and adder each taking half a clock cycle. The result is output on dedicated and bidirectional pins. The project explores reversible gates for energy efficiency and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "7f683bcaf5ff",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source indicates the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; the register-file and cpu tags are supported by the source.",
+   "tags_before": [
+    "register-file",
+    "cpu",
+    "education"
+   ],
+   "tags": [
+    "register-file",
+    "cpu"
+   ],
+   "summary_before": "This design provides three types of registers for a basic 8-bit CPU: a general-purpose register, a memory address register, and an instruction register. The registers are selected using two control pins (uio[6] and uio[7]), and data can be written to or read from the selected register via the input and output pins. Testing involves selecting a register and verifying that data is stored and retrieved correctly. The design is notable for being a simple building block for CPU designs, but it has minimal documentation and requires external control logic to be useful.",
+   "summary": "This design provides three types of registers for a basic 8-bit CPU: a general-purpose register, a memory address register, and an instruction register. The registers are selected using two control pins (uio[6] and uio[7]), and data can be written to or read from the selected register via the input and output pins. Testing involves selecting a register and verifying that data is stored and retrieved correctly. The design is notable for being a simple building block for CPU designs, but it has minimal documentation and requires external control logic to be useful.",
+   "summary_changed": false
+  },
+  {
+   "key": "658aa3622629",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source indicates the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; the adder, combinational and wokwi tags are supported.",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a 4-bit adder that takes two 4-bit operands on the input pins and produces the sum on the output pins. It is tested by applying binary values to the inputs and reading the resulting addition on the outputs. No external hardware is needed. The documentation is very brief and does not state how the carry is handled or whether the output is 4 bits wide, so the exact bit width of the result is unclear.",
+   "summary": "This project implements a 4-bit adder that takes two 4-bit operands on the input pins and produces the sum on the output pins. It is tested by applying binary values to the inputs and reading the resulting addition on the outputs. No external hardware is needed. The documentation is very brief and does not state how the carry is handled or whether the output is 4 bits wide, so the exact bit width of the result is unclear.",
+   "summary_changed": false
+  },
+  {
+   "key": "d5311705c4c9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dip-switch",
+     "reason": "The source mentions switches and LEDs as external hardware, not a DIP switch interface on the design."
+    },
+    {
+     "tag": "led",
+     "reason": "LEDs are listed only as external test hardware, not as a design output interface."
+    },
+    {
+     "tag": "education",
+     "reason": "Nothing in the source indicates the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dip-switch, led and education tags that are not supported by the source; the design has no output pins and is described as broken.",
+   "tags_before": [
+    "adder",
+    "logic-gate",
+    "combinational",
+    "incomplete",
+    "led",
+    "dip-switch",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "logic-gate",
+    "combinational",
+    "incomplete",
+    "wokwi"
+   ],
+   "summary_before": "This project attempts to add two 2-bit numbers using logic gates, with the first number on IN0 and IN1 and the second on IN2 and IN3. It is tested by setting the four input switches and observing the result on LEDs. The title indicates the design is broken, and the documentation does not describe the expected outputs or the nature of the fault. External hardware consists of switches and LEDs.",
+   "summary": "This project attempts to add two 2-bit numbers using logic gates, with the first number on IN0 and IN1 and the second on IN2 and IN3. It is tested by setting the four input switches and observing the result on LEDs. The title indicates the design is broken, and the documentation does not describe the expected outputs or the nature of the fault. External hardware consists of switches and LEDs.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6419,
+  "completion_tokens": 1358,
+  "total_tokens": 7777,
+  "cost": 0.002228853,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002228853,
+   "upstream_inference_prompt_cost": 0.000843693,
+   "upstream_inference_completions_cost": 0.00138516
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002228853,
+ "elapsed_s": 50.5
+}

@@ -1,0 +1,387 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3816b483cd43",
+  "2b4d8f99ffc6",
+  "7afafb214b4a",
+  "f9dcdf3fd311",
+  "d5dd063b8177",
+  "06a713093630"
+ ],
+ "results": [
+  {
+   "key": "3816b483cd43",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "music",
+     "reason": "The design is a sound generator chip; music generation is not stated as its purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "SPI control interface is documented and present in pins."
+    },
+    {
+     "tag": "i2s",
+     "reason": "I2S output is documented and present in pins."
+    },
+    {
+     "tag": "audio",
+     "reason": "Audio output via I2S DAC is the design's function."
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "Explicitly a wavetable/PSG sound generator."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "PSG-style tone generation matches synthesizer."
+    }
+   ],
+   "notes": "Removed music tag; sound generator is not a music composition design.",
+   "tags_before": [
+    "synthesizer",
+    "sound-generator",
+    "music",
+    "audio",
+    "i2s",
+    "spi"
+   ],
+   "tags": [
+    "synthesizer",
+    "sound-generator",
+    "audio",
+    "i2s",
+    "spi"
+   ],
+   "summary_before": "This is a four-channel wavetable and PSG-style sound generator with an I2S output and an SPI control interface. It supports eight selectable waveforms, 16-bit frequency control, 8-bit volume in PSG mode, and a 32-entry 4-bit wavetable, with a sampling rate of about 48.8 kHz from a 50 MHz clock. The design is controlled over SPI mode 0 with 24-bit transactions, and the I2S output is 16-bit mono. It requires an external I2S DAC such as a PCM5102A to produce audible sound.",
+   "summary": "This is a four-channel wavetable and PSG-style sound generator with an I2S output and an SPI control interface. It supports eight selectable waveforms, 16-bit frequency control, 8-bit volume in PSG mode, and a 32-entry 4-bit wavetable, with a sampling rate of about 48.8 kHz from a 50 MHz clock. The design is controlled over SPI mode 0 with 24-bit transactions, and the I2S output is 16-bit mono. It requires an external I2S DAC such as a PCM5102A to produce audible sound.",
+   "summary_changed": false
+  },
+  {
+   "key": "2b4d8f99ffc6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "No factory self-test structure is described; it is a simple voltage divider test."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "Built from resistors, not discrete transistors."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Analog resistive divider circuit."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states working."
+    }
+   ],
+   "notes": "Removed unsupported factory-test and transistor-level tags; added silicon-tested.",
+   "tags_before": [
+    "analog",
+    "factory-test",
+    "transistor-level"
+   ],
+   "tags": [
+    "analog",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog test project implements a resistive voltage divider using three resistors connected between power and ground, with output taps on three pins. It is tested by enabling the block and checking that only the highest tap output is high. Silicon results show the divider worked, and a large capacitor increased the falling-edge delay from 20 ns to 31 ns and the rising-edge delay from 24 ns to 51 ns. The design is a simple analog test structure with no digital logic.",
+   "summary": "This analog test project implements a resistive voltage divider using three resistors connected between power and ground, with output taps on three pins. It is tested by enabling the block and checking that only the highest tap output is high. Silicon results show the divider worked, and a large capacitor increased the falling-edge delay from 20 ns to 31 ns and the rising-edge delay from 24 ns to 51 ns. The design is a simple analog test structure with no digital logic.",
+   "summary_changed": false
+  },
+  {
+   "key": "7afafb214b4a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "It divides the clock but does not generate a clock signal."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit educational intent stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Drives a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Displays letters on a 7-segment display."
+    },
+    {
+     "tag": "counter",
+     "reason": "Implements a counter."
+    },
+    {
+     "tag": "timer",
+     "reason": "Counts seconds using a compare register."
+    },
+    {
+     "tag": "bcd",
+     "reason": "Binary to decimal conversion for display."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Combinational logic decodes counts to segments."
+    }
+   ],
+   "notes": "Removed clock-generator and education tags not supported by source.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "counter",
+    "timer",
+    "bcd",
+    "decoder",
+    "clock-generator",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "timer",
+    "bcd",
+    "decoder"
+   ],
+   "summary_before": "This design displays the text 'UABC-ELECTRONICA' on a 7-segment display by showing each letter sequentially. It uses a clock divider and combinational logic to convert binary counts to decimal for the display, with the lower 8 bits of the counter available on bidirectional pins. The counting speed can be adjusted via input pins that set a comparison value, defaulting to one second per increment with a 10 MHz clock. It is intended as a demonstration or educational project, and no silicon test results are provided.",
+   "summary": "This design displays the text 'UABC-ELECTRONICA' on a 7-segment display by showing each letter sequentially. It uses a clock divider and combinational logic to convert binary counts to decimal for the display, with the lower 8 bits of the counter available on bidirectional pins. The counting speed can be adjusted via input pins that set a comparison value, defaulting to one second per increment with a 10 MHz clock. It is intended as a demonstration or educational project, and no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "f9dcdf3fd311",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "It divides the clock but does not generate a clock signal."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit educational intent stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Drives a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Displays counts on a 7-segment display."
+    },
+    {
+     "tag": "counter",
+     "reason": "Implements a counter."
+    },
+    {
+     "tag": "timer",
+     "reason": "Counts seconds using a compare register."
+    },
+    {
+     "tag": "bcd",
+     "reason": "Binary to decimal conversion for display."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Combinational logic decodes counts to segments."
+    },
+    {
+     "tag": "vhdl",
+     "reason": "Written in VHDL."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states working."
+    }
+   ],
+   "notes": "Removed clock-generator and education tags; added vhdl and silicon-tested.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "counter",
+    "timer",
+    "bcd",
+    "decoder",
+    "clock-generator",
+    "education",
+    "vhdl"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "timer",
+    "bcd",
+    "decoder",
+    "vhdl",
+    "silicon-tested"
+   ],
+   "summary_before": "This VHDL demo counts from 0 to 9 on a 7-segment display, incrementing once per second with a 10 MHz clock. It uses a clock divider and combinational logic to convert binary to decimal, and the lower 8 bits of the counter are available on bidirectional pins. The counting speed can be adjusted by setting input pins that program a comparison value. Silicon testing confirmed it counts from 0 to 9 once per second.",
+   "summary": "This VHDL demo counts from 0 to 9 on a 7-segment display, incrementing once per second with a 10 MHz clock. It uses a clock divider and combinational logic to convert binary to decimal, and the lower 8 bits of the counter are available on bidirectional pins. The counting speed can be adjusted by setting input pins that program a comparison value. Silicon testing confirmed it counts from 0 to 9 once per second.",
+   "summary_changed": false
+  },
+  {
+   "key": "d5dd063b8177",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "It is for camping vans, not industrial control."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "Inputs are tap switches and a pressure switch, not generic sensors."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "timer",
+     "reason": "Main feature is a configurable timer."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "Controls a water pump motor."
+    },
+    {
+     "tag": "buzzer",
+     "reason": "Drives a buzzer for warnings."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs status LEDs."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Created using the Wokwi simulator."
+    }
+   ],
+   "notes": "Removed industrial, sensor-interface, and fsm tags not supported by source.",
+   "tags_before": [
+    "timer",
+    "motor-control",
+    "industrial",
+    "sensor-interface",
+    "buzzer",
+    "led",
+    "wokwi",
+    "fsm"
+   ],
+   "tags": [
+    "timer",
+    "motor-control",
+    "buzzer",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This project is a water pump controller designed for camping vans, with inputs for multiple tap switches, a high-pressure switch, and a timer enable. It includes a timer that warns via a buzzer when water runs too long and automatically shuts off the pump after a timeout, with configurable settings. The controller outputs signals for the pump, status LEDs, and buzzer, and can be tested with LEDs or a 7-segment display and DIP switches. It requires a 32.768 kHz clock and external hardware such as tap switches and a pump for full operation.",
+   "summary": "This project is a water pump controller designed for camping vans, with inputs for multiple tap switches, a high-pressure switch, and a timer enable. It includes a timer that warns via a buzzer when water runs too long and automatically shuts off the pump after a timeout, with configurable settings. The controller outputs signals for the pump, status LEDs, and buzzer, and can be tested with LEDs or a 7-segment display and DIP switches. It requires a 32.768 kHz clock and external hardware such as tap switches and a pump for full operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "06a713093630",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "It generates WS2812B protocol pulses, not a general signal generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ws2812",
+     "reason": "Drives a WS2812B LED strip."
+    },
+    {
+     "tag": "led",
+     "reason": "Controls RGB LEDs."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Uses a 16-bit linear-feedback shift register."
+    },
+    {
+     "tag": "prng",
+     "reason": "Generates pseudo-random bits for colors."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Created using the Wokwi simulator."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Includes a shift register."
+    },
+    {
+     "tag": "counter",
+     "reason": "Uses counters for pulse and refresh timing."
+    }
+   ],
+   "notes": "Removed signal-generator tag; design is a WS2812B driver, not a general signal generator.",
+   "tags_before": [
+    "ws2812",
+    "led",
+    "lfsr",
+    "prng",
+    "signal-generator",
+    "wokwi",
+    "shift-register",
+    "counter"
+   ],
+   "tags": [
+    "ws2812",
+    "led",
+    "lfsr",
+    "prng",
+    "wokwi",
+    "shift-register",
+    "counter"
+   ],
+   "summary_before": "This project drives a WS2812B LED strip with random colors that update periodically. It uses a 16-bit linear-feedback shift register to generate pseudo-random bits, a 5-bit counter to create the 1.25 µs pulses required by the WS2812B protocol, and a 16-bit ripple counter to control the refresh rate. The design requires a 20 MHz clock and a WS2812B LED strip connected to the output, with optional feedback from the strip's data output. Testing involves setting the clock, connecting the strip, and observing random colors with adjustable refresh frequency.",
+   "summary": "This project drives a WS2812B LED strip with random colors that update periodically. It uses a 16-bit linear-feedback shift register to generate pseudo-random bits, a 5-bit counter to create the 1.25 µs pulses required by the WS2812B protocol, and a 16-bit ripple counter to control the refresh rate. The design requires a 20 MHz clock and a WS2812B LED strip connected to the output, with optional feedback from the strip's data output. Testing involves setting the clock, connecting the strip, and observing random colors with adjustable refresh frequency.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8036,
+  "completion_tokens": 1955,
+  "total_tokens": 9991,
+  "cost": 0.002338706,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002338706,
+   "upstream_inference_prompt_cost": 0.001048406,
+   "upstream_inference_completions_cost": 0.0012903
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002338706,
+ "elapsed_s": 20.9
+}

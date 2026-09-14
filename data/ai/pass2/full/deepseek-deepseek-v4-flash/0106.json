@@ -1,0 +1,177 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "cc5c57e7117c",
+  "0a771a4d4d99",
+  "541374b0f8ab",
+  "33f0470ec78c",
+  "9530f3bccff9",
+  "07aa865dd981",
+  "8771a8386891",
+  "1a59a591a6ba",
+  "23488ce01012",
+  "29894ca24420"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "cc5c57e7117c",
+   "summary": "This design combines a ring-oscillator-based true random number generator with an ASCON S-box cryptographic substitution block. Sixteen ring oscillators are split into two banks controlled by ui_in bits 0 and 1, and a 64-bit shift register captures their outputs, with bits 2-4 selecting which 8-bit slice is presented. The S-box is enabled by ui_in bit 7 and takes bits 2-6 as its 5-bit input, and the final uo_out is the bitwise XOR of the TRNG and S-box results. It was verified only in simulation with a testbench driving various input values, and no external hardware is required.",
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "crypto",
+    "cipher",
+    "shift-register",
+    "prng"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "0a771a4d4d99",
+   "summary": "This is a configurable PWM generator with a 12-bit period register and a duty-cycle register whose low 7 bits set a 1-99% duty. The sel pin chooses whether the duty or period register is written, wr_en latches the value from the 12 input pins, and out_en gates the pwm_out signal. Testing is done by connecting pwm_out to an oscilloscope and checking that the observed frequency and duty cycle match the programmed values. External hardware consists of a wire for pwm_out plus about 15 input signals from a microcontroller or pattern generator to drive the data and control pins.",
+   "tags": [
+    "pwm",
+    "timer",
+    "register-file",
+    "counter"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "541374b0f8ab",
+   "summary": "This is a custom high-density shift register implemented as an analog/transistor-level block, with 8 serial inputs, 8 serial outputs, and two clock phases. The documentation is essentially a placeholder, with the how-it-works, how-to-test, and external-hardware sections all left as FIXME. Silicon test reports from the author and an independent tester indicate that shift-register behavior was observed for both the internal-clock and dual-phase-clock variants, with data emerging roughly 36 cycles later, though the micropython-driven timings are described as unreliable. The notable point is that the custom cell works in silicon despite the minimal documentation.",
+   "tags": [
+    "shift-register",
+    "analog",
+    "transistor-level",
+    "silicon-tested"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "33f0470ec78c",
+   "summary": "This project implements a basic calculator supporting addition, subtraction, multiplication, and division on positive integers. It scans a 4x4 matrix keypad through the ROW and COL pins and drives a 3-digit seven-segment display via the sseg outputs, with E_1 through E_3 likely acting as digit enables. Testing is done by entering operands through the keypad and checking that the display shows the expected result. External hardware required is a 4x4 matrix keypad and a 3-digit seven-segment display.",
+   "tags": [
+    "calculator",
+    "7-segment",
+    "keypad",
+    "alu",
+    "decoder"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "9530f3bccff9",
+   "summary": "This is a 4-bit signed adder-subtractor built from multiplexers, half adders, and full adders. Two 4-bit operands a and b are supplied on ui_in, and the two sign bits on uio select one of four operations: A+B, -A+B, A-B, or -A-B, with the 4-bit result on uo and sign outputs on uio. The design was verified in QuestaSim using an extensive testbench covering the operation modes. No external hardware is needed.",
+   "tags": [
+    "adder",
+    "subtractor",
+    "alu",
+    "multiplexer"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "07aa865dd981",
+   "summary": "Warp is a demoscene-style graphics and audio demo written in the Silice HDL, outputting VGA color and sync signals plus an audio pin. It is intended to be run with a VGA PMOD and an audio PMOD attached to the Tiny Tapeout board, and the same design was simulated on an ECPIX5 with those PMODs and on an ULX3S using its DAC for audio only. Silicon test reports from two independent testers confirm that both graphics and audio work as expected, and the author notes the design was updated in January 2026 to confirm ASIC operation. It is notable as a demonstration of the Silice HDL and as an entry in the Tiny Tapeout demoscene competition.",
+   "tags": [
+    "demoscene",
+    "vga",
+    "audio",
+    "video",
+    "graphics",
+    "i2s"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "8771a8386891",
+   "summary": "This is a bit-serial implementation of the SIMON-128 lightweight block cipher, trading throughput for a compact area dominated by flip-flops and multiplexers. A 2-bit control word on ui[7:6] selects idle, plaintext load, key load, or encrypt, with serial data entering on ui[0] and ciphertext emerging on uo[0] over 128 consecutive clock cycles, flagged by a valid bit on uo[7]. The design is verified through a testbench containing example test vectors, and no external hardware is required. The documentation notes a limitation in the key-loading process and includes a debug bit to verify key register loading.",
+   "tags": [
+    "crypto",
+    "cipher",
+    "bit-serial",
+    "shift-register"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "1a59a591a6ba",
+   "summary": "This analog project contains three circuits: two two-stage operational amplifiers and one power-on-reset circuit, all designed by participants in an analog IC design training program run by the Saudi Semiconductor Program. The opamp inputs and outputs are exposed on the analog pins, with INP, INN, and separate outputs for each amplifier plus a POR output. Testing is done with a Digilent Analog Discovery, using its waveform generator for stimulus and its oscilloscope for frequency response, transient, and voltage-level measurements. The design is notable as a training-program artifact rather than a production circuit.",
+   "tags": [
+    "opamp",
+    "analog",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "23488ce01012",
+   "summary": "This design implements a stochastic-computing multiplier, adder, and self-multiplier that operate on serial bitstreams. Two 9-bit repeating input streams enter on ui[0] and ui[1], and the multiplier, adder, and self-multiplier results appear as serial outputs on uo[0], uo[1], and uo[2], with uo[3] resetting the clock counter; the self-multiplier uses only the first stream. Testing involves feeding the repeating streams and reading the resulting 9-bit serial outputs. The documentation consists mainly of images with little explanatory text, and an ADALM2000 is listed as external hardware.",
+   "tags": [
+    "stochastic-computing",
+    "multiplier",
+    "adder",
+    "dsp"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "29894ca24420",
+   "summary": "This is a simple five-transistor operational transconductance amplifier with an externally supplied bias current. It operates from a 1.8V supply with VSS ground, takes a 1uA bias current on the BIAS pin, and compares the PLUS and MINUS inputs, with the differential output on DIFFOUT. Testing is done by sweeping PLUS from 0 to 1.8V in 10mV steps while MINUS is held at 0.9V and observing that DIFFOUT swings to 1.8V when PLUS exceeds MINUS by 10mV. External hardware needed is a power supply, a sourcemeter for the bias current, and a multimeter to measure voltages.",
+   "tags": [
+    "opamp",
+    "analog",
+    "comparator"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8761,
+  "completion_tokens": 1950,
+  "total_tokens": 10711,
+  "cost": 0.00108302194,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00108302194,
+   "upstream_inference_prompt_cost": 0.00074941594,
+   "upstream_inference_completions_cost": 0.000333606
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00108302194,
+ "elapsed_s": 55.4
+}

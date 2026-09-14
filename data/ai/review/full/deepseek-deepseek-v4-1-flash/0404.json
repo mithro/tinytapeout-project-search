@@ -1,0 +1,235 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b59cfdba32d7",
+  "945660f3bc91",
+  "ec5ca96a0f9b",
+  "956db98f0465",
+  "50d917ec1399",
+  "5dfc4620dfe3"
+ ],
+ "results": [
+  {
+   "key": "b59cfdba32d7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design drives a VGA monitor via HSYNC/VSYNC/RGB; 'video' and 'vga' already cover this and 'display' is a generic output tag not specifically evidenced."
+    }
+   ],
+   "add": [
+    {
+     "tag": "education",
+     "reason": "Source states it is a demo project for the Hacker Fab club at Case Western Reserve University, i.e. a teaching/learning context."
+    }
+   ],
+   "notes": "Removed generic 'display' tag; added 'education' since the source explicitly frames it as a club demo/learning project.",
+   "tags_before": [
+    "pong",
+    "game",
+    "vga",
+    "display",
+    "video",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "pong",
+    "game",
+    "vga",
+    "video",
+    "button",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "Tiny Pong is a VGA display driver for a single-player Pong game, designed to output 640x480 video with 2-bit color per channel. It uses two buttons for paddle up and down control, and generates VGA HSYNC, VSYNC, and RGB signals. The chip is intended as a demo project for the Hacker Fab club at Case Western Reserve University, requiring a VGA monitor and a way to program the chip. The design is a fun and educational example of a simple game on an ASIC.",
+   "summary": "Tiny Pong is a VGA display driver for a single-player Pong game, designed to output 640x480 video with 2-bit color per channel. It uses two buttons for paddle up and down control, and generates VGA HSYNC, VSYNC, and RGB signals. The chip is intended as a demo project for the Hacker Fab club at Case Western Reserve University, requiring a VGA monitor and a way to program the chip. The design is a fun and educational example of a simple game on an ASIC.",
+   "summary_changed": false
+  },
+  {
+   "key": "945660f3bc91",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "education",
+    "puzzle",
+    "7-segment",
+    "dip-switch",
+    "timer",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "education",
+    "puzzle",
+    "7-segment",
+    "dip-switch",
+    "timer",
+    "verilog"
+   ],
+   "summary_before": "This is a logic game where the player must convert a decimal number shown on a seven-segment display into its binary equivalent using eight DIP switches before a timer expires. The design uses a 1 kHz clock and provides seven-segment display outputs for the decimal number and game status. Input is via the eight DIP switches, and the game logic includes a timer to create pressure. No external hardware beyond the DIP switches and a seven-segment display is required.",
+   "summary": "This is a logic game where the player must convert a decimal number shown on a seven-segment display into its binary equivalent using eight DIP switches before a timer expires. The design uses a 1 kHz clock and provides seven-segment display outputs for the decimal number and game status. Input is via the eight DIP switches, and the game logic includes a timer to create pressure. No external hardware beyond the DIP switches and a seven-segment display is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "ec5ca96a0f9b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The source describes a Turing machine with an external transition table, not a finite state machine design; no FSM is claimed."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rp2040",
+     "reason": "Source states the ROM can be emulated by the on-board RP2040."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Detected pinout matches the SPI Pmod connector."
+    }
+   ],
+   "notes": "Removed unsupported 'fsm' tag; added 'rp2040' and 'pmod' from the documented external hardware and detected pinout.",
+   "tags_before": [
+    "esoteric",
+    "spi",
+    "rom",
+    "memory",
+    "fsm",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "esoteric",
+    "spi",
+    "rom",
+    "memory",
+    "gpio",
+    "verilog",
+    "rp2040",
+    "pmod"
+   ],
+   "summary_before": "This design implements a Turing machine in Turing's original mathematical construction, using external SPI ROM and RAM for the transition table and tape. It supports 128 states and an alphabet size of 256, with separate SPI interfaces for state and tape memory. The design is difficult to test because it requires preloading the external memory devices with data before execution. It requires one 512Kbit ROM and one 512Kbit RAM, and the ROM can be emulated by the on-board RP2040.",
+   "summary": "This design implements a Turing machine in Turing's original mathematical construction, using external SPI ROM and RAM for the transition table and tape. It supports 128 states and an alphabet size of 256, with separate SPI interfaces for state and tape memory. The design is difficult to test because it requires preloading the external memory devices with data before execution. It requires one 512Kbit ROM and one 512Kbit RAM, and the ROM can be emulated by the on-board RP2040.",
+   "summary_changed": false
+  },
+  {
+   "key": "956db98f0465",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "The design is described as a femtoRV implementation, a core originally targeted at FPGAs; however this is weakly supported, so it is added only as a ported-core note."
+    }
+   ],
+   "notes": "Source is sparse and contains typos; 'fpga' added cautiously as the femtoRV core is an FPGA-origin design, but the documentation does not explicitly state an FPGA port.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "spi",
+    "memory",
+    "uart",
+    "led"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "spi",
+    "memory",
+    "uart",
+    "led",
+    "fpga"
+   ],
+   "summary_before": "This is a femtoRV RISC-V implementation that uses external SPI flash and SPI RAM for program and data storage. It provides UART communication for debug messages and an LED output. To use it, an external flash memory must be programmed with the desired application, and a USB-serial dongle is needed for communication. The design is notable for being a compact RISC-V core on a tiny tapeout tile.",
+   "summary": "This is a femtoRV RISC-V implementation that uses external SPI flash and SPI RAM for program and data storage. It provides UART communication for debug messages and an LED output. To use it, an external flash memory must be programmed with the desired application, and a USB-serial dongle is needed for communication. The design is notable for being a compact RISC-V core on a tiny tapeout tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "50d917ec1399",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "education",
+    "7-segment",
+    "alu",
+    "bcd",
+    "fsm"
+   ],
+   "tags": [
+    "cpu",
+    "education",
+    "7-segment",
+    "alu",
+    "bcd",
+    "fsm"
+   ],
+   "summary_before": "ASAP CPU v1 is a minimal SAP-1 inspired CPU with an 8-bit data path and 4-bit address space, running a built-in Fibonacci program. It outputs the current value in BCD to a multiplexed 7-segment display and provides a heartbeat signal. The design requires three common-cathode 7-segment displays and current-limiting resistors. It is an educational project influenced by Ben Eater and others, with clear documentation.",
+   "summary": "ASAP CPU v1 is a minimal SAP-1 inspired CPU with an 8-bit data path and 4-bit address space, running a built-in Fibonacci program. It outputs the current value in BCD to a multiplexed 7-segment display and provides a heartbeat signal. The design requires three common-cathode 7-segment displays and current-limiting resistors. It is an educational project influenced by Ben Eater and others, with clear documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "5dfc4620dfe3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "accelerator",
+    "graphics",
+    "vga",
+    "qspi",
+    "gamepad",
+    "framebuffer",
+    "silicon-tested"
+   ],
+   "tags": [
+    "accelerator",
+    "graphics",
+    "vga",
+    "qspi",
+    "gamepad",
+    "framebuffer",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a standalone GPU that performs transformation, lighting, and rasterization to render 3D models from QSPI flash memory. It outputs VGA signals with 4-bit color and supports double buffering and z-buffering, achieving 6.5 fps for 1K triangles at 320x240 resolution. It interfaces with a gamepad for interactive control and uses QSPI RAM for frame buffers. Silicon testing confirmed it works as expected, making it a notable compact 3D graphics accelerator.",
+   "summary": "This design is a standalone GPU that performs transformation, lighting, and rasterization to render 3D models from QSPI flash memory. It outputs VGA signals with 4-bit color and supports double buffering and z-buffering, achieving 6.5 fps for 1K triangles at 320x240 resolution. It interfaces with a gamepad for interactive control and uses QSPI RAM for frame buffers. Silicon testing confirmed it works as expected, making it a notable compact 3D graphics accelerator.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7326,
+  "completion_tokens": 1180,
+  "total_tokens": 8506,
+  "cost": 0.001671006,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001671006,
+   "upstream_inference_prompt_cost": 0.000892206,
+   "upstream_inference_completions_cost": 0.0007788
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001671006,
+ "elapsed_s": 11.1
+}

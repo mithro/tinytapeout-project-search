@@ -1,0 +1,230 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "20ac8f630950",
+  "d3f7da8c363c",
+  "3117404c7a58",
+  "ef9ab10b3887",
+  "8bb34803211b",
+  "93f0aa208c57"
+ ],
+ "results": [
+  {
+   "key": "20ac8f630950",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "error-correction",
+    "encoder",
+    "decoder",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "error-correction",
+    "encoder",
+    "decoder",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "This project implements a (7,4) Hamming encoder and decoder with a shared input bus, where the mode is selected by the most significant input bit. In encode mode, it takes a 4-bit input and produces a 7-bit encoded output; in decode mode, it takes a 7-bit input and outputs the corrected 7-bit codeword. Testing involves applying known data and verifying the encoded output, then flipping one bit in the encoded input to confirm error correction. No external hardware is specified, and the design is a straightforward implementation of a classic error-correcting code.",
+   "summary": "This project implements a (7,4) Hamming encoder and decoder with a shared input bus, where the mode is selected by the most significant input bit. In encode mode, it takes a 4-bit input and produces a 7-bit encoded output; in decode mode, it takes a 7-bit input and outputs the corrected 7-bit codeword. Testing involves applying known data and verifying the encoded output, then flipping one bit in the encoded input to confirm error correction. No external hardware is specified, and the design is a straightforward implementation of a classic error-correcting code.",
+   "summary_changed": false
+  },
+  {
+   "key": "d3f7da8c363c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "demoscene"
+   ],
+   "summary_before": "This project displays a running sushi animation on a VGA screen. It outputs VGA signals and requires a TinyVGA PMOD for connection. The design is a simple demo with minimal documentation, and no silicon test results are provided. It is intended for visual demonstration.",
+   "summary": "This project displays a running sushi animation on a VGA screen. It outputs VGA signals and requires a TinyVGA PMOD for connection. The design is a simple demo with minimal documentation, and no silicon test results are provided. It is intended for visual demonstration.",
+   "summary_changed": false
+  },
+  {
+   "key": "3117404c7a58",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes an external 31.5 MHz clock and does not generate a clock."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports confirm the design works on fabricated silicon."
+    },
+    {
+     "tag": "button",
+     "reason": "Hour and minute advance pushbuttons are used as inputs."
+    }
+   ],
+   "notes": "Removed clock-generator because the design only consumes an external clock; added silicon-tested and button based on the test reports and pinout.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "clock-generator",
+    "rtc",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "rtc",
+    "display",
+    "verilog",
+    "silicon-tested",
+    "button"
+   ],
+   "summary_before": "This design is a 12-hour clock rendered on a 640x480 VGA display using a race-the-beam triangle renderer, where three triangle hands indicate the time and twelve dots aid readability. It uses the Tiny VGA pinout and requires a 31.5 MHz clock, reset, and hour and minute advance buttons. Silicon test reports confirm it works out of the box with a Tiny VGA Pmod, with testers noting the hands move correctly and the time can be set by holding the buttons. The design is notable for its triangle-based rendering approach and includes a Rust software model for reference.",
+   "summary": "This design is a 12-hour clock rendered on a 640x480 VGA display using a race-the-beam triangle renderer, where three triangle hands indicate the time and twelve dots aid readability. It uses the Tiny VGA pinout and requires a 31.5 MHz clock, reset, and hour and minute advance buttons. Silicon test reports confirm it works out of the box with a Tiny VGA Pmod, with testers noting the hands move correctly and the time can be set by holding the buttons. The design is notable for its triangle-based rendering approach and includes a Rust software model for reference.",
+   "summary_changed": false
+  },
+  {
+   "key": "ef9ab10b3887",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports confirm the design works on fabricated silicon."
+    },
+    {
+     "tag": "speaker",
+     "reason": "The PWM output drives an external audio PMOD speaker."
+    }
+   ],
+   "notes": "Added silicon-tested and speaker tags to reflect the confirmed silicon status and audio output hardware.",
+   "tags_before": [
+    "vga",
+    "demoscene",
+    "graphics",
+    "music",
+    "pwm",
+    "audio",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "demoscene",
+    "graphics",
+    "music",
+    "pwm",
+    "audio",
+    "verilog",
+    "silicon-tested",
+    "speaker"
+   ],
+   "summary_before": "This design plays the Nyan Cat animation and music on infinite repeat. It outputs VGA video signals and a PWM audio signal, requiring a TinyVGA PMOD and Mike's audio PMOD for full functionality. The design runs at 25 MHz and has been tested successfully on silicon, with testers reporting that it delighted children. It is a simple, self-contained demo with no inputs.",
+   "summary": "This design plays the Nyan Cat animation and music on infinite repeat. It outputs VGA video signals and a PWM audio signal, requiring a TinyVGA PMOD and Mike's audio PMOD for full functionality. The design runs at 25 MHz and has been tested successfully on silicon, with testers reporting that it delighted children. It is a simple, self-contained demo with no inputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "8bb34803211b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "frequency-counter",
+    "7-segment",
+    "counter",
+    "instrumentation",
+    "fsm",
+    "pmod",
+    "debouncer",
+    "verilog"
+   ],
+   "tags": [
+    "frequency-counter",
+    "7-segment",
+    "counter",
+    "instrumentation",
+    "fsm",
+    "pmod",
+    "debouncer",
+    "verilog"
+   ],
+   "summary_before": "This design measures the frequency of an input signal and displays the result on a dual seven-segment display. It debounces the input, counts transitions over a configurable period, and divides the count by ten for display. The period can be set via input pins to match the clock frequency for accurate measurements. It requires a dual seven-segment PMOD and a frequency source, and includes a debug mode for monitoring internal state.",
+   "summary": "This design measures the frequency of an input signal and displays the result on a dual seven-segment display. It debounces the input, counts transitions over a configurable period, and divides the count by ten for display. The period can be set via input pins to match the clock frequency for accurate measurements. It requires a dual seven-segment PMOD and a frequency source, and includes a debug mode for monitoring internal state.",
+   "summary_changed": false
+  },
+  {
+   "key": "93f0aa208c57",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education because the source does not describe an educational purpose.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "education",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This project implements a simple RISC-V processor that fetches 16-bit instructions, decodes them, performs ALU operations, and writes back to a register file. The design is a basic educational core that supports a subset of instructions and can be expanded with memory operations and additional control logic. It is intended to be tested with cocotb by applying various instruction sequences and checking the results. The documentation notes that it is not a complete processor and lacks memory operations.",
+   "summary": "This project implements a simple RISC-V processor that fetches 16-bit instructions, decodes them, performs ALU operations, and writes back to a register file. The design is a basic core that supports a subset of instructions and can be expanded with memory operations and additional control logic. It is intended to be tested with cocotb by applying various instruction sequences and checking the results. The documentation notes that it is not a complete processor and lacks memory operations.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6931,
+  "completion_tokens": 1133,
+  "total_tokens": 8064,
+  "cost": 0.0034389,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034389,
+   "upstream_inference_prompt_cost": 0.0020793,
+   "upstream_inference_completions_cost": 0.0013596
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034389,
+ "elapsed_s": 8.1
+}

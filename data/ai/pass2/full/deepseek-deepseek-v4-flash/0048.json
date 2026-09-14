@@ -1,0 +1,180 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "4cf6ea6a5965",
+  "92b392bfdec2",
+  "d575a599caea",
+  "11bb1ee62e98",
+  "5b06c000efa3",
+  "2133bf8f36ac",
+  "94ca44b2ed1d",
+  "f96f42e8917d",
+  "2b4d8f99ffc6",
+  "b4791ff24b67"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "4cf6ea6a5965",
+   "tags": [
+    "calculator",
+    "divider",
+    "multiplier",
+    "alu",
+    "button",
+    "dip-switch",
+    "verilog"
+   ],
+   "summary": "This design computes continued fraction convergents of the square root of a 14-bit natural number entered via switches. Pressing one button advances to the next convergent pair P and Q, and another button cycles through the 16-bit P and Q values on the 8 status LEDs in four bytes. It is intended to be used alongside a phone calculator or paper to find fundamental solutions to Pell's equation x^2 - Dy^2 = 1. The design fits in roughly 1000 cells by avoiding comparisons and floor operations except on the first step, and it outputs binary rather than 7-segment values due to area constraints.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "92b392bfdec2",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary": "This project implements a current-based leaky integrate-and-fire neuron in Verilog. It accepts an 8-bit slice of input current on the switches, integrates it into a membrane potential that leaks over time, and emits a spike when the potential crosses a threshold. The membrane potential is shown on the 8 output pins and the spike on a bidirectional pin, with a 7-segment display mentioned for spike detection in the test description. The documentation is thin and the test instructions refer to hardware not fully described in the pin list, so external setup details are unclear.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "d575a599caea",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary": "This design implements a leaky integrate-and-fire neuron in 130 nm CMOS using Verilog. An input current is added to a membrane potential that decays by a factor beta, and a spike is triggered when the potential exceeds a threshold. The membrane potential is output on eight pins and the spike on a bidirectional pin. Testing involves resetting the circuit, varying the input current, and observing that higher current produces a higher spike rate; no external hardware beyond input switches and observation is described.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "11bb1ee62e98",
+   "tags": [
+    "factory-test",
+    "gpio",
+    "verilog"
+   ],
+   "summary": "This is a simple loopback test module where input 0 is mirrored to outputs 0 through 6, and output 7 is the logical AND of inputs 4 through 7. It is used to measure signal delay by toggling input 0 and timing the response on output 0. Silicon tests measured a 20 ns falling-edge delay and 24 ns rising-edge delay, and the design was shown to work up to 90 MHz during bringup, with degraded behavior past 100 MHz. No external hardware is required beyond the chip itself.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "5b06c000efa3",
+   "tags": [
+    "counter",
+    "timer",
+    "7-segment",
+    "delay-line",
+    "instrumentation",
+    "verilog"
+   ],
+   "summary": "This project is a loopback tile with input skew measurement, described as counting up to 10 one second at a time. It has an 8-bit compare input, an 8-bit second counter on bidirectional pins, and 7-segment display outputs. The documentation is essentially empty, with 'Need to write this' for both the how-it-works and how-to-test sections, so the exact function cannot be determined from the provided text. External hardware mentioned is programmable delay lines on the inputs.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "2133bf8f36ac",
+   "tags": [
+    "timer",
+    "counter",
+    "bcd",
+    "7-segment",
+    "verilog"
+   ],
+   "summary": "This is a two-digit seconds timer that counts from 00 to 99, with the target value loaded from 8 input switches as two BCD digits. A Load signal latches the target, and a Start signal begins counting at one second per tick from a 10 MHz clock. When the count reaches the target, the Time_Out output goes high, and the current ones or tens digit is displayed on a 7-segment display depending on a select input. Testing involves resetting, activating Load and Start, and observing the count and timeout.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "94ca44b2ed1d",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "education",
+    "verilog"
+   ],
+   "summary": "This project emulates a two-layer neural network of integrate-and-fire neurons in Verilog. The first layer accepts two 16-bit stimulus inputs, and its spikes feed into a second layer whose two neurons produce the final spiking outputs. Testing involves applying different input stimuli and observing the spiking states of the output layer. The design was created as part of ECE 183, indicating it is a class project, and it uses a reset signal to clear neuron states.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "f96f42e8917d",
+   "tags": [
+    "accelerator",
+    "multiplier",
+    "alu",
+    "error-correction",
+    "cocotb",
+    "verilog"
+   ],
+   "summary": "This module multiplies two 2x2 matrices where each element is an unsigned 2-bit number, with inputs provided on 8-bit wires and outputs on uo_out and uio_out. It performs error checking to ensure each element is in the range [0,2], outputting zero if any element is out of range. The design includes a Verilog testbench and a cocotb Python test script that verify the multiplication against expected results. Testing can also be done on an FPGA or in simulation with waveform viewing.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "2b4d8f99ffc6",
+   "tags": [
+    "analog",
+    "factory-test",
+    "transistor-level"
+   ],
+   "summary": "This analog test project implements a resistive voltage divider using three resistors connected between power and ground, with output taps on three pins. It is tested by enabling the block and checking that only the highest tap output is high. Silicon results show the divider worked, and a large capacitor increased the falling-edge delay from 20 ns to 31 ns and the rising-edge delay from 24 ns to 51 ns. The design is a simple analog test structure with no digital logic.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "b4791ff24b67",
+   "tags": [
+    "floating-point",
+    "adder",
+    "alu",
+    "combinational",
+    "verilog"
+   ],
+   "summary": "This design is an 8-bit floating-point adder following the FP8 E5M2 standard. It combinationally computes the sum of two 8-bit floating-point numbers provided on the input and bidirectional pins, with the result appearing on the output pins. Testing is done by holding two 8-bit inputs and reading the sum from the outputs. No external hardware is required beyond the chip's pins.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8593,
+  "completion_tokens": 1717,
+  "total_tokens": 10310,
+  "cost": 0.0009240623,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0009240623,
+   "upstream_inference_prompt_cost": 0.0005935398,
+   "upstream_inference_completions_cost": 0.0003305225
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0009240623,
+ "elapsed_s": 41.8
+}

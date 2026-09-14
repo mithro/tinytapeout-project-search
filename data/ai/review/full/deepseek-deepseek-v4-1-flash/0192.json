@@ -1,0 +1,261 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4030f3f6796e",
+  "bf47d45ec71d",
+  "0a2e7d248012",
+  "2c1416e82be6",
+  "c91f714a6679",
+  "3c21675c42cd"
+ ],
+ "results": [
+  {
+   "key": "4030f3f6796e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "No ML inference or training hardware; it is a threshold/EMA classifier for economic regime detection."
+    },
+    {
+     "tag": "dsp",
+     "reason": "An EMA smoothing filter is arguably DSP, but the source frames it as a macro regime classifier, not a DSP design; the tag is not clearly supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "Source states the design is verified with a cocotb testbench against a Python reference model."
+    },
+    {
+     "tag": "filter-analog",
+     "reason": "Not applicable — analog filter; remove this suggestion."
+    }
+   ],
+   "notes": "Removed machine-learning and dsp tags not supported by the source; cocotb already present in proposed tags but listed here for clarity.",
+   "tags_before": [
+    "machine-learning",
+    "dsp",
+    "counter",
+    "verilog",
+    "cocotb"
+   ],
+   "tags": [
+    "counter",
+    "verilog",
+    "cocotb",
+    "filter-analog"
+   ],
+   "summary_before": "This chip classifies an 8-bit input stream into a binary regime using a shift-only exponential moving average compared against a programmable threshold with hysteresis. It includes a persistence counter to require N consecutive qualifying samples before changing the output. The design is configurable via strobe pins for threshold, hysteresis, and persistence, and exposes the running average on outputs. It is tested with a cocotb testbench against a Python reference model and requires no external hardware.",
+   "summary": "This chip classifies an 8-bit input stream into a binary regime using a shift-only exponential moving average compared against a programmable threshold with hysteresis. It includes a persistence counter to require N consecutive qualifying samples before changing the output. The design is configurable via strobe pins for threshold, hysteresis, and persistence, and exposes the running average on outputs. It is tested with a cocotb testbench against a Python reference model and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "bf47d45ec71d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sequence-detector",
+     "reason": "The design matches stored CAM entries against a search word, not a bit/symbol sequence on an input stream."
+    },
+    {
+     "tag": "arbiter",
+     "reason": "Priority resolution among matches is not bus/resource arbitration."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The CAM includes clocked write logic and registered storage, so it is not purely combinational."
+    },
+    {
+     "tag": "priority-encoder",
+     "reason": "Priority resolution is over CAM match lines, not a standard priority encoder of input bits."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "Source states the design is verified with a Cocotb testbench."
+    },
+    {
+     "tag": "lookup-table",
+     "reason": "CAM performs content-based lookup, which is a lookup-table style function."
+    }
+   ],
+   "notes": "Removed tags not supported by the CAM functionality; added cocotb and lookup-table.",
+   "tags_before": [
+    "memory",
+    "sequence-detector",
+    "arbiter",
+    "combinational",
+    "priority-encoder",
+    "comparator",
+    "verilog"
+   ],
+   "tags": [
+    "memory",
+    "comparator",
+    "verilog",
+    "cocotb",
+    "lookup-table"
+   ],
+   "summary_before": "This design implements an 8-entry, 8-bit content-addressable memory (CAM) that supports exact matching, masked pattern matching, and priority-based resolution. It can be configured via control pins to write data, load masks, and search, returning the address of the highest-priority match within one clock cycle. The CAM is intended for compact pattern-matching and lookup tasks, such as network routing or data filtering. The project includes thorough documentation and is verified with Cocotb and gate-level tests.",
+   "summary": "This design implements an 8-entry, 8-bit content-addressable memory (CAM) that supports exact matching, masked pattern matching, and priority-based resolution. It can be configured via control pins to write data, load masks, and search, returning the address of the highest-priority match within one clock cycle. The CAM is intended for compact pattern-matching and lookup tasks, such as network routing or data filtering. The project includes thorough documentation and is verified with Cocotb and gate-level tests.",
+   "summary_changed": false
+  },
+  {
+   "key": "0a2e7d248012",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ws2812",
+    "led",
+    "pwm",
+    "rgb-led",
+    "driver"
+   ],
+   "tags": [
+    "ws2812",
+    "led",
+    "pwm",
+    "rgb-led",
+    "driver"
+   ],
+   "summary_before": "This design is a fully digital RGB LED driver that accepts WS2812 protocol data and controls three LEDs with 8-bit PWM per channel. It includes a dithering scheme for flicker-free dimming at low clock rates and can forward additional data to another driver. The design requires external LEDs connected to the outputs and a microcontroller to generate the slowed-down WS2812 input. It is notable for its robust clocked implementation and testbench.",
+   "summary": "This design is a fully digital RGB LED driver that accepts WS2812 protocol data and controls three LEDs with 8-bit PWM per channel. It includes a dithering scheme for flicker-free dimming at low clock rates and can forward additional data to another driver. The design requires external LEDs connected to the outputs and a microcontroller to generate the slowed-down WS2812 input. It is notable for its robust clocked implementation and testbench.",
+   "summary_changed": false
+  },
+  {
+   "key": "2c1416e82be6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "text",
+    "display",
+    "pmod",
+    "art",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "text",
+    "display",
+    "pmod",
+    "art",
+    "demoscene"
+   ],
+   "summary_before": "This design displays a static image of a plane flying into the sunset with a text overlay that types out character by character. It also includes demos for oscilloscope XY display PMODs, which can be selected via input pins. The design requires a Tiny VGA Pmod for the main demo and additional PMODs for the XY demos. The text animation may complete before the VGA monitor recognizes the signal, so viewing in a VGA playground is recommended.",
+   "summary": "This design displays a static image of a plane flying into the sunset with a text overlay that types out character by character. It also includes demos for oscilloscope XY display PMODs, which can be selected via input pins. The design requires a Tiny VGA Pmod for the main demo and additional PMODs for the XY demos. The text animation may complete before the VGA monitor recognizes the signal, so viewing in a VGA playground is recommended.",
+   "summary_changed": false
+  },
+  {
+   "key": "c91f714a6679",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adc",
+     "reason": "No analog-to-digital conversion is present; the design is a digital ALU."
+    },
+    {
+     "tag": "cpu",
+     "reason": "It is an ALU slice, not a complete processor core."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "The design is explicitly a 4-bit ALU section."
+    },
+    {
+     "tag": "retro",
+     "reason": "Intended for mini/microcomputer CPUs, recreating retro computing style hardware."
+    },
+    {
+     "tag": "fpga",
+     "reason": "Source states it was tested using an Altera FPGA."
+    }
+   ],
+   "notes": "Removed adc, cpu, and education tags not supported by the source; added alu, retro, and fpga.",
+   "tags_before": [
+    "adc",
+    "alu",
+    "retro",
+    "cpu",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "alu",
+    "retro",
+    "verilog",
+    "fpga"
+   ],
+   "summary_before": "This design is a 4-bit ALU slice intended for use in minicomputer or microcomputer CPUs. It takes two 4-bit operands and a 3-bit function code, and produces a 4-bit result along with carry, equal, and zero flags. The design was tested using an Altera FPGA. It provides basic arithmetic and logic functions.",
+   "summary": "This design is a 4-bit ALU slice intended for use in minicomputer or microcomputer CPUs. It takes two 4-bit operands and a 3-bit function code, and produces a 4-bit result along with carry, equal, and zero flags. The design was tested using an Altera FPGA. It provides basic arithmetic and logic functions.",
+   "summary_changed": false
+  },
+  {
+   "key": "3c21675c42cd",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "music",
+    "chiptune",
+    "audio",
+    "buzzer",
+    "pwm",
+    "verilog"
+   ],
+   "tags": [
+    "music",
+    "chiptune",
+    "audio",
+    "buzzer",
+    "pwm",
+    "verilog"
+   ],
+   "summary_before": "This design plays the Super Mario theme tune through a piezo speaker connected to the bidirectional pins in a differential PWM configuration. It requires an external piezo speaker or the Tiny Tapeout Audio Pmod. The design also copies the input pins to the output pins for testing purposes. It operates with a 100 kHz clock and is intended for audio output.",
+   "summary": "This design plays the Super Mario theme tune through a piezo speaker connected to the bidirectional pins in a differential PWM configuration. It requires an external piezo speaker or the Tiny Tapeout Audio Pmod. The design also copies the input pins to the output pins for testing purposes. It operates with a 100 kHz clock and is intended for audio output.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8410,
+  "completion_tokens": 1315,
+  "total_tokens": 9725,
+  "cost": 0.001998586,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001998586,
+   "upstream_inference_prompt_cost": 0.001130686,
+   "upstream_inference_completions_cost": 0.0008679
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001998586,
+ "elapsed_s": 16.1
+}

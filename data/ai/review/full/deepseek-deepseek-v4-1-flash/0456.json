@@ -1,0 +1,329 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "66e0ff793d58",
+  "72abbad3bb2b",
+  "e374803509fb",
+  "03d1aad6660b",
+  "89c59013b9cd",
+  "50ee7e079b70"
+ ],
+ "results": [
+  {
+   "key": "66e0ff793d58",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Source never states an educational intent; it is a minimal CPU, not documented as teaching material."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source; the design is an accumulator CPU with ROM program."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rom",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "led",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "alu",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "cpu",
+     "reason": "Already present; keep."
+    }
+   ],
+   "notes": "Removed education and fsm tags not supported by the source; summary sentence about educational purpose was unsupported.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "rom",
+    "education",
+    "led",
+    "fsm"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "rom",
+    "led"
+   ],
+   "summary_before": "This project implements a SAP-1 (Simple As Possible) accumulator-based CPU in Verilog. The CPU runs a fixed program stored in internal ROM, so the program cannot be changed, and it lacks input pins because the designer ran out of time to add them. It is tested by enabling the project and resetting it, after which eight LEDs connected to the output pins should display the binary pattern 00001110. The design is notable as a minimal educational CPU implementation that fits in a single Tiny Tapeout tile.",
+   "summary": "This project implements a SAP-1 (Simple As Possible) accumulator-based CPU in Verilog. The CPU runs a fixed program stored in internal ROM, so the program cannot be changed, and it lacks input pins because the designer ran out of time to add them. It is tested by enabling the project and resetting it, after which eight LEDs connected to the output pins should display the binary pattern 00001110. The design is a minimal CPU implementation that fits in a single Tiny Tapeout tile.",
+   "summary_changed": true
+  },
+  {
+   "key": "72abbad3bb2b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is purely digital (FSM plus DAC drive logic); no analog circuitry is on-chip."
+    },
+    {
+     "tag": "adc",
+     "reason": "It is only the SAR FSM control block, not a complete ADC; the source calls it a building block for a SAR ADC."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sar-adc",
+     "reason": "Already present; keep as the core function."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "dac",
+     "reason": "Already present; keep as it drives a 4-bit DAC."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Already present; keep as it consumes a comparator output."
+    }
+   ],
+   "notes": "Removed mixed-signal and adc tags; the block is digital control logic, not a complete or mixed-signal ADC.",
+   "tags_before": [
+    "sar-adc",
+    "adc",
+    "fsm",
+    "dac",
+    "comparator",
+    "mixed-signal"
+   ],
+   "tags": [
+    "sar-adc",
+    "fsm",
+    "dac",
+    "comparator"
+   ],
+   "summary_before": "This project implements a parameterizable successive approximation register (SAR) finite state machine for use in a SAR ADC. It accepts a comparator output on an input pin and drives a 4-bit DAC through bidirectional pins, producing a 4-bit conversion result and an end-of-conversion flag. The design can be tested with the Tiny Tapeout DevKit by applying a serial bit sequence and observing the parallel output after five clock cycles, or with an external 4-bit DAC and comparator. It is notable for including a loopback debug output and for being a reusable building block for analog-to-digital conversion.",
+   "summary": "This project implements a parameterizable successive approximation register (SAR) finite state machine for use in a SAR ADC. It accepts a comparator output on an input pin and drives a 4-bit DAC through bidirectional pins, producing a 4-bit conversion result and an end-of-conversion flag. The design can be tested with the Tiny Tapeout DevKit by applying a serial bit sequence and observing the parallel output after five clock cycles, or with an external 4-bit DAC and comparator. It is a reusable digital building block for analog-to-digital conversion.",
+   "summary_changed": true
+  },
+  {
+   "key": "e374803509fb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Workshop origin does not by itself imply educational intent; the source gives no teaching purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "One-line description states it is from a TT Workshop at FOSSi Down Underflow 2026."
+    },
+    {
+     "tag": "vga",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "video",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "display",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Already present; keep."
+    }
+   ],
+   "notes": "Replaced education with workshop; the source only documents workshop origin, not educational intent.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "education"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "workshop"
+   ],
+   "summary_before": "This project is a modified version of the Tiny Tapeout Stripes example that expands and contracts horizontal lines on a VGA display. It outputs RGB video signals along with HSync and VSync on the standard Tiny VGA pinout. The design requires an external VGA display and connector to view the output. It originated from a Tiny Tapeout workshop at FOSSi Down Underflow 2026 and is intended as a simple demonstration rather than a complex application.",
+   "summary": "This project is a modified version of the Tiny Tapeout Stripes example that expands and contracts horizontal lines on a VGA display. It outputs RGB video signals along with HSync and VSync on the standard Tiny VGA pinout. The design requires an external VGA display and connector to view the output. It originated from a Tiny Tapeout workshop at FOSSi Down Underflow 2026 and is a simple visual demonstration.",
+   "summary_changed": true
+  },
+  {
+   "key": "03d1aad6660b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "Redundant with vga/video; the source describes VGA output, not a generic display interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "vga",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "video",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "sprite",
+     "reason": "The source describes procedurally generated sprite rendering via counters."
+    }
+   ],
+   "notes": "Removed redundant display tag and added sprite; summary otherwise supported.",
+   "tags_before": [
+    "game",
+    "vga",
+    "video",
+    "display",
+    "gamepad",
+    "graphics"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "gamepad",
+    "graphics",
+    "sprite"
+   ],
+   "summary_before": "This project implements a minimalist Space Invaders-style game in Verilog for a single Tiny Tapeout tile. It uses procedural vector and collision-box rendering instead of internal RAM to save logic, drawing enemies and projectiles by combining horizontal and vertical counters. The game outputs 640x480 VGA video and reads input from a gamepad via LATCH, CLK, and DATA pins. It requires a VGA display and a compatible gamepad, and is notable for fitting a playable game into very limited hardware resources.",
+   "summary": "This project implements a minimalist Space Invaders-style game in Verilog for a single Tiny Tapeout tile. It uses procedural vector and collision-box rendering instead of internal RAM to save logic, drawing enemies and projectiles by combining horizontal and vertical counters. The game outputs 640x480 VGA video and reads input from a gamepad via LATCH, CLK, and DATA pins. It requires a VGA display and a compatible gamepad, and fits a playable game into very limited hardware resources.",
+   "summary_changed": true
+  },
+  {
+   "key": "89c59013b9cd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rf",
+     "reason": "Ground penetrating radar is not radio-frequency transmission/reception design; no RF circuitry is described."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "No demodulation is described; the pipeline is FIR filter, envelope detector, and peak detector."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "Inputs are raw radar sample bits, not a generic sensor interface protocol."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "Already present; keep as the core signal processing function."
+    },
+    {
+     "tag": "fir-filter",
+     "reason": "Already present; keep as the source explicitly uses an FIR filter."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Ground penetrating radar signal processing is a measurement/instrumentation application."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "The source describes a digital signal processing pipeline."
+    }
+   ],
+   "notes": "Removed rf, demodulator, and sensor-interface tags not supported by the source; added instrumentation and pipeline.",
+   "tags_before": [
+    "dsp",
+    "fir-filter",
+    "rf",
+    "demodulator",
+    "sensor-interface"
+   ],
+   "tags": [
+    "dsp",
+    "fir-filter",
+    "instrumentation",
+    "pipeline"
+   ],
+   "summary_before": "This project implements a Ground Penetrating Radar digital signal processor in Verilog for the Tiny Tapeout platform. It processes 8-bit radar echo samples through an FIR filter, envelope detector, and peak detector to identify strong reflections that may indicate buried objects. The design outputs a processed signal and an object detection flag, and can be tested via simulation or the Tiny Tapeout test infrastructure without external hardware. It is notable for demonstrating a simplified DSP pipeline for radar signal processing in a small ASIC design.",
+   "summary": "This project implements a Ground Penetrating Radar digital signal processor in Verilog for the Tiny Tapeout platform. It processes 8-bit radar echo samples through an FIR filter, envelope detector, and peak detector to identify strong reflections that may indicate buried objects. The design outputs a processed signal and an object detection flag, and can be tested via simulation or the Tiny Tapeout test infrastructure without external hardware. It demonstrates a simplified DSP pipeline for radar signal processing in a small ASIC design.",
+   "summary_changed": true
+  },
+  {
+   "key": "50ee7e079b70",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "video",
+    "audio",
+    "chiptune",
+    "pwm",
+    "graphics",
+    "music"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "video",
+    "audio",
+    "chiptune",
+    "pwm",
+    "graphics",
+    "music"
+   ],
+   "summary_before": "This project is a demoscene entry that displays a bouncing Siliconimist logo over rasterbars on a VGA monitor while playing a chiptune rendition of Korobeiniki. It uses a 128x128 bitmap ROM for the sprite, cycles colors on each bounce, and generates 1-bit square-wave audio through a PWM output. The design requires a TinyVGA Pmod and a TT Audio Pmod, and includes controls for muting, color cycling, and tiling the sprite. It is notable for combining VGA graphics and audio in a single tile and for being previewable on the VGA Playground.",
+   "summary": "This project is a demoscene entry that displays a bouncing Siliconimist logo over rasterbars on a VGA monitor while playing a chiptune rendition of Korobeiniki. It uses a 128x128 bitmap ROM for the sprite, cycles colors on each bounce, and generates 1-bit square-wave audio through a PWM output. The design requires a TinyVGA Pmod and a TT Audio Pmod, and includes controls for muting, color cycling, and tiling the sprite. It is notable for combining VGA graphics and audio in a single tile and for being previewable on the VGA Playground.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7722,
+  "completion_tokens": 1728,
+  "total_tokens": 9450,
+  "cost": 0.00211938,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3380,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00211938,
+   "upstream_inference_prompt_cost": 0.0009789,
+   "upstream_inference_completions_cost": 0.00114048
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00211938,
+ "elapsed_s": 17.0
+}

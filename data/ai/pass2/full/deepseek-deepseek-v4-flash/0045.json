@@ -1,0 +1,190 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "aef3df1be629",
+  "5315e8cd5c7e",
+  "0a5ce81cdf1b",
+  "2334e67bc350",
+  "da39420676f9",
+  "cc8fbf7b4dfb",
+  "f22d116eef31",
+  "ca4117216279",
+  "217375c34187",
+  "d93c974951b8"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "aef3df1be629",
+   "tags": [
+    "alu",
+    "education",
+    "verilog",
+    "combinational"
+   ],
+   "summary": "This project implements a 4-bit arithmetic logic unit with 13 selectable operations, including addition, subtraction, multiplication, division, bitwise logic, shifts, and modulo. The two 4-bit operands are provided on the eight input pins, while three bidirectional pins select the operation and the eight output pins present the 8-bit result. The design is intended for educational use and requires external digital logic such as buttons or sensors to provide inputs and observe outputs. The documentation is clear but contains a contradictory testing note about a counter, which appears to be a copy-paste error.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "5315e8cd5c7e",
+   "tags": [
+    "timer",
+    "7-segment",
+    "counter",
+    "education",
+    "systemverilog"
+   ],
+   "summary": "This design implements a stopwatch with start, stop, soft reset, and increment/decrement controls, displaying minutes and seconds on a multiplexed 7-segment display. It was originally developed and verified on a Basys 3 FPGA board and later ported to Tiny Tapeout. The design requires external hardware: a common-anode 7-segment display and several buttons and switches for control. Silicon testing by the author confirmed full functionality with a breadboarded display, though the provided test report is truncated.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "0a5ce81cdf1b",
+   "tags": [
+    "bcd",
+    "7-segment",
+    "shift-register",
+    "memory",
+    "spinalhdl",
+    "education"
+   ],
+   "summary": "This project implements a bounded spigot algorithm to compute 31 digits of Euler's number (e) in BCD format. The digits are output on the bidirectional and output pins, requiring external BCD-to-7-segment decoders (such as 7447) to display them. The design uses a ring of gated shift registers for storage and shares calculation hardware across iterations to fit within a single tile. It is notable for its low memory footprint and the use of SpinalHDL, but it only produces a fixed number of digits and requires a slow clock (below 500 Hz) to observe the output.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "2334e67bc350",
+   "tags": [
+    "clock-generator",
+    "rtc",
+    "7-segment",
+    "shift-register",
+    "timer",
+    "education",
+    "verilog"
+   ],
+   "summary": "This project is a digital desk clock that displays hours, minutes, and seconds in 24-hour format on six 7-segment displays. Because of limited output pins, the time data is shifted out serially to external 74xx596 shift registers that drive the displays. The time can be set using buttons, with fast and slow increment modes, and pressing both set buttons clears the seconds. Silicon testing by the author using a logic analyzer confirmed correct operation of the serial output.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "da39420676f9",
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "graphics",
+    "systemverilog",
+    "silicon-tested"
+   ],
+   "summary": "This project implements an endless-runner game similar to the Chrome Dino game, rendered on a VGA monitor. The game uses four input buttons for jump, halt, debug, and mode control, and outputs VGA signals compatible with the Tiny VGA PMOD. Multiple silicon test reports confirm that the design works well and is playable, though some testers noted occasional screen tearing at higher speeds. The documentation is minimal, consisting mainly of a brief description and pinout, but the test reports provide evidence of functionality.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "cc8fbf7b4dfb",
+   "tags": [
+    "i2c",
+    "alu",
+    "7-segment",
+    "error-correction",
+    "spinalhdl"
+   ],
+   "summary": "This design is an I2C peripheral that implements an 8-bit ALU to perform pattern testing and accumulate results, functioning as a bit error rate tester (BERT). It connects to an I2C controller (such as an RP2040) via the bidirectional pins and can be configured for different clocking modes and bus types through input pins. The design outputs results on a 7-segment display and includes power-on-reset configuration options. The documentation is somewhat technical and notes that further updates are planned, but it provides sufficient detail for operation.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "f22d116eef31",
+   "tags": [
+    "factory-test",
+    "counter",
+    "scan-chain",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary": "This is a factory test module designed to verify the Tiny Tapeout chip infrastructure. When the select pin is high, it outputs an 8-bit counter on both the output and bidirectional pins; when low, it mirrors the bidirectional inputs to the outputs. The design is used to test the chip's I/O and clock performance, with silicon results showing correct counting up to 154 MHz with 4 mA drive and 202 MHz with 8 mA drive. It is a simple, high-speed utility block with no external hardware requirements beyond basic connectivity.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "ca4117216279",
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "graphics",
+    "button",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary": "This project is a clone of the Flappy Bird game, rendered on a 640x480 VGA display with a single button input for flapping. The game state is updated each frame, and the score is output in binary on the bidirectional pins. It requires a 25 MHz clock, a debounced active-low button, and a VGA adapter compatible with the Tiny VGA PMOD. Multiple silicon test reports confirm that the design works and is playable, though several testers found it challenging.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "217375c34187",
+   "tags": [
+    "encoder",
+    "decoder",
+    "pll",
+    "timer",
+    "7-segment",
+    "verilog"
+   ],
+   "summary": "This design encodes input data into frequency variations and then decodes it back to the original data, using a phase-locked loop (PLL) for clock generation. It interfaces with switches for input and 7-segment displays for output, and includes a second counter whose lower bits are available on bidirectional pins. The documentation describes the general operation but lacks specific implementation details and test results, making it difficult to assess its practical use. It appears to be an experimental design for frequency-based encoding and decoding.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "d93c974951b8",
+   "tags": [
+    "frequency-counter",
+    "7-segment",
+    "counter",
+    "timer",
+    "verilog"
+   ],
+   "summary": "This design measures the frequency of an input signal by counting transitions over a configurable period and displays the result on a 7-segment display. It includes a debug mode that outputs internal signals on the bidirectional pins and allows the user to load a new count period via an input. The frequency is computed by repeatedly subtracting ten from the count and displaying the tens and units digits. The design requires a 10 MHz clock and external hardware such as a signal source and a 7-segment display.",
+   "changed": true,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9684,
+  "completion_tokens": 1690,
+  "total_tokens": 11374,
+  "cost": 0.0026825,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0026825,
+   "upstream_inference_prompt_cost": 0.001838274201477862,
+   "upstream_inference_completions_cost": 0.0008442257985221382
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0026825,
+ "elapsed_s": 37.7
+}

@@ -1,0 +1,204 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f3a47338f80b",
+  "96908af63c5c",
+  "39213c862485",
+  "3a1a58fd9bd8",
+  "f241842c341e",
+  "693299319a65"
+ ],
+ "results": [
+  {
+   "key": "f3a47338f80b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "shift-register",
+    "puzzle",
+    "game"
+   ],
+   "tags": [
+    "shift-register",
+    "puzzle",
+    "game"
+   ],
+   "summary_before": "This design is a 40-bit shift register with a hardcoded secret number, forming a challenge where the output goes high only when the correct 40-bit sequence is shifted in. The user shifts bits in serially, one per clock cycle, and after 40 bits the output indicates whether the sequence matches. The register acts as a sliding window, so every new bit checks a new candidate. No external hardware is required beyond the clock, reset, and two input pins.",
+   "summary": "This design is a 40-bit shift register with a hardcoded secret number, forming a challenge where the output goes high only when the correct 40-bit sequence is shifted in. The user shifts bits in serially, one per clock cycle, and after 40 bits the output indicates whether the sequence matches. The register acts as a sliding window, so every new bit checks a new candidate. No external hardware is required beyond the clock, reset, and two input pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "96908af63c5c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spi",
+    "led",
+    "pwm",
+    "register-file",
+    "driver",
+    "pmod",
+    "systemverilog"
+   ],
+   "tags": [
+    "spi",
+    "led",
+    "pwm",
+    "register-file",
+    "driver",
+    "pmod",
+    "systemverilog"
+   ],
+   "summary_before": "This chip is an SPI-controlled 8-channel LED driver with a 16-register file, where eight BRIGHT registers set the PWM brightness of eight LED outputs. Each SPI transaction is 16 bits, with the first byte selecting a register address and direction and the second byte carrying data, and the PWM uses a shared 8-bit counter with a prescaler for flicker-free refresh. It is tested through a recommended bring-up sequence that verifies SPI communication, address decoding, read/write loopback, read-only protection, enable control, and LED output. The design requires a Pmod 8LD with eight discrete LEDs connected to the output Pmod header, and is notable for its robust SPI interface with synchronizers and a clear register map.",
+   "summary": "This chip is an SPI-controlled 8-channel LED driver with a 16-register file, where eight BRIGHT registers set the PWM brightness of eight LED outputs. Each SPI transaction is 16 bits, with the first byte selecting a register address and direction and the second byte carrying data, and the PWM uses a shared 8-bit counter with a prescaler for flicker-free refresh. It is tested through a recommended bring-up sequence that verifies SPI communication, address decoding, read/write loopback, read-only protection, enable control, and LED output. The design requires a Pmod 8LD with eight discrete LEDs connected to the output Pmod header, and is notable for its robust SPI interface with synchronizers and a clear register map.",
+   "summary_changed": false
+  },
+  {
+   "key": "39213c862485",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fpga",
+     "reason": "The design is a Verilog VGA game for Tiny Tapeout silicon; the FPGA mention is only about the author's testing setup, not the design target."
+    }
+   ],
+   "add": [],
+   "notes": "Removed fpga tag because the source only mentions FPGA as the author's test platform, not the design target.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "vga",
+    "graphics",
+    "fpga",
+    "verilog",
+    "button",
+    "video"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "vga",
+    "graphics",
+    "verilog",
+    "button",
+    "video"
+   ],
+   "summary_before": "This design implements a colorful version of the 2048 sliding tile puzzle game. It outputs a VGA video signal and accepts directional inputs from a keyboard or game controller to move the tiles. The design is intended to be run on an FPGA, such as the Tiny Tapeout FPGA, and requires a VGA display and input device. It was successfully tested on the TT FPGA with a game pmod, and a VGA playground link is provided for simulation.",
+   "summary": "This design implements a colorful version of the 2048 sliding tile puzzle game. It outputs a VGA video signal and accepts directional inputs from a keyboard or game controller to move the tiles. The design requires a VGA display and an input device, and a VGA playground link is provided for simulation. The author reports uploading it successfully to the TT FPGA with a game pmod.",
+   "summary_changed": true
+  },
+  {
+   "key": "3a1a58fd9bd8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "bandgap",
+    "voltage-reference",
+    "analog"
+   ],
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "analog"
+   ],
+   "summary_before": "This project implements a simple bandgap reference that outputs a stable voltage over a temperature range of -40°C to 125°C, with about 1% variation in simulation. It lacks supply noise rejection and trimming, making it a basic design for providing a stable reference. Testing requires applying 3.3V to the analog supply and measuring the output voltage over temperature using a bench power supply, multimeter, thermocouple, and temperature chamber. The documentation includes a simulation graph showing the typical output voltage range.",
+   "summary": "This project implements a simple bandgap reference that outputs a stable voltage over a temperature range of -40°C to 125°C, with about 1% variation in simulation. It lacks supply noise rejection and trimming, making it a basic design for providing a stable reference. Testing requires applying 3.3V to the analog supply and measuring the output voltage over temperature using a bench power supply, multimeter, thermocouple, and temperature chamber. The documentation includes a simulation graph showing the typical output voltage range.",
+   "summary_changed": false
+  },
+  {
+   "key": "f241842c341e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "The design is a statistical median/MAD event classifier, not machine learning inference or training hardware."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "It is a measurement/classification co-processor for sensor event detection."
+    }
+   ],
+   "notes": "Removed machine-learning because the source describes statistical event classification, not ML hardware; added instrumentation for the sensor measurement/classification role.",
+   "tags_before": [
+    "dsp",
+    "machine-learning",
+    "sensor-interface",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "sensor-interface",
+    "verilog",
+    "instrumentation"
+   ],
+   "summary_before": "This Verilog design is a zero-RAM streaming statistical co-processor that tracks a median and median absolute deviation baseline from an 8-bit input stream and classifies events using a temporal persistence engine. It outputs the tracked baseline on the eight outputs and an event code on three bidirectional pins, with a wake interrupt and debug and configuration pins. It is tested by applying an 8-bit signal and configuration pins, then injecting a one-cycle spike, a permanent baseline jump, a slow ramp, or a held value to obtain the corresponding glitch, shift, drift or stuck-sensor codes. The design is notable for distinguishing transient outliers from persistent baseline shifts without any memory buffers.",
+   "summary": "This Verilog design is a zero-RAM streaming statistical co-processor that tracks a median and median absolute deviation baseline from an 8-bit input stream and classifies events using a temporal persistence engine. It outputs the tracked baseline on the eight outputs and an event code on three bidirectional pins, with a wake interrupt and debug and configuration pins. It is tested by applying an 8-bit signal and configuration pins, then injecting a one-cycle spike, a permanent baseline jump, a slow ramp, or a held value to obtain the corresponding glitch, shift, drift or stuck-sensor codes. The design is notable for distinguishing transient outliers from persistent baseline shifts without any memory buffers.",
+   "summary_changed": false
+  },
+  {
+   "key": "693299319a65",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "neural-network",
+    "mac-unit",
+    "accelerator",
+    "fixed-point",
+    "dsp",
+    "bist",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "mac-unit",
+    "accelerator",
+    "fixed-point",
+    "dsp",
+    "bist",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This is a pipelined 50 MHz byte-stream int8 multiply-accumulate engine with a single int32 accumulator, a streaming vector-MAC primitive, a wide-input mode, and a SPILL opcode for reading raw accumulator values. It also includes a MISR self-test and a serial debug interface, and is intended as a hardware target for a compiler/MLIR backend. The design is verified with a cocotb testbench that includes directed tests, randomized differential testing against a Python model, and an exhaustive test of the Booth multiplier. No external hardware is required; the host microcontroller drives the pins to feed instructions and operands and read results.",
+   "summary": "This is a pipelined 50 MHz byte-stream int8 multiply-accumulate engine with a single int32 accumulator, a streaming vector-MAC primitive, a wide-input mode, and a SPILL opcode for reading raw accumulator values. It also includes a MISR self-test and a serial debug interface, and is intended as a hardware target for a compiler/MLIR backend. The design is verified with a cocotb testbench that includes directed tests, randomized differential testing against a Python model, and an exhaustive test of the Booth multiplier. No external hardware is required; the host microcontroller drives the pins to feed instructions and operands and read results.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7902,
+  "completion_tokens": 1193,
+  "total_tokens": 9095,
+  "cost": 0.0028614,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0028614,
+   "upstream_inference_prompt_cost": 0.0014298,
+   "upstream_inference_completions_cost": 0.0014316
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0028614,
+ "elapsed_s": 9.7
+}

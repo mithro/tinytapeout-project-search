@@ -1,0 +1,211 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7263f908064a",
+  "5b444f702399",
+  "9d69acd2b19f",
+  "46eb4108690d",
+  "4781f3bd9119",
+  "cc0f3326d585",
+  "1c5ac9cefb77",
+  "a4550cd56766",
+  "ae43d32a2345",
+  "369aad47b0c0"
+ ],
+ "results": [
+  {
+   "key": "7263f908064a",
+   "tags": [
+    "bpsk",
+    "modulator",
+    "prbs",
+    "lfsr",
+    "rrc-filter",
+    "pulse-shaper",
+    "polyphase",
+    "baseband",
+    "communication",
+    "dsp"
+   ],
+   "summary": "This design is a transmit-only BPSK baseband modulator that generates a PRBS-7 data stream, maps bits to +/-1 symbols, and shapes them with a polyphase root-raised-cosine filter. It outputs 8-bit signed samples on uo[7:0] with sample_valid and symbol_tick strobes, and echoes the raw PRBS bit for BER alignment. The design can be exercised directly from the demo board, but a full transmit chain uses an RP2040 for burst capture, GNU Radio on a host, and a bladeRF for RF upconversion. Verification is a bit-exact cocotb comparison against a Python reference model at both RTL and gate level, and the polyphase structure avoids multipliers and saturation logic by construction.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5b444f702399",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "cpu",
+    "soc",
+    "rom",
+    "inference",
+    "7-segment",
+    "education"
+   ],
+   "summary": "TinyMind SoC is a processor-controlled inference accelerator that classifies eight binary feature inputs into three classes using a custom CPU, program ROM, and a clocked TinyMind core with confidence logic. Results are shown on a seven-segment display, with a decimal point indicating a close prediction, and a CPU run-enable input on uio[0]. The documentation describes the conceptual physical demonstration with feature switches and a seven-segment display but does not give a detailed test procedure or silicon results. No external hardware is required for RTL or gate-level simulation, and the exact demo-board procedure depends on the controller being used.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9d69acd2b19f",
+   "tags": [
+    "neuron",
+    "snn",
+    "lif",
+    "synapse",
+    "neuromorphic",
+    "analog",
+    "markovian",
+    "fixed-point"
+   ],
+   "summary": "This design implements a discrete-time first-order kinetic synapse driving a leaky integrate-and-fire membrane, with receptor state and membrane potential in fixed-point Q0.16 and Q0.8 formats. It accepts a pre-spike input, configuration bits for shifting in coefficients, and a voltage-clamp select, and outputs a spike plus current and voltage buses. The test suite covers impulse response, steady-state drive, rest condition, firing, and configuration load, with plots written to test/output. The design uses closed-form exponential updates and power-of-two rescaling with saturation, and no external hardware is needed.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "46eb4108690d",
+   "tags": [
+    "tpu",
+    "neural-network",
+    "systolic-array",
+    "int4",
+    "mac",
+    "spi",
+    "dma",
+    "machine-learning",
+    "accelerator",
+    "requantization"
+   ],
+   "summary": "Sky TPU 3x3 is an int4 systolic-array band engine with dual weight planes, an eight-deep accumulator bank, requantize and ReLU readout, and an autonomous SPI-RAM DMA engine. It is driven by an 8-bit beat bus on ui[7:0], supports GPIO and SPI modes, and can chain layers on-chip by streaming results back to SPI RAM in the activation input format. Output frames appear on {uio[7:4], uo[7:0]} at count-deterministic offsets, and the design is verified in simulation with a two-layer chained network against a Python golden model. An optional 64 KiB SPI RAM on uio[3:0] is recommended for autonomous operation, and the routed netlist was verified pin-exact against the RTL.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4781f3bd9119",
+   "tags": [
+    "ipv4",
+    "networking",
+    "checksum",
+    "protocol",
+    "filter",
+    "packet",
+    "tcp",
+    "udp",
+    "icmp"
+   ],
+   "summary": "This design streams in a 20-byte IPv4 header one byte per clock cycle and validates its checksum and length while identifying the protocol as TCP, UDP, or ICMP. It outputs allow, drop, done, malformed, checksum-valid, and protocol flags, and the blocked protocol is configurable via a configuration load pulse with the protocol number on ui_in. A full cocotb testbench is provided in test/test.py, and no external hardware is required. The design is a compact header filter rather than a full packet processor, and the documentation does not report silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cc0f3326d585",
+   "tags": [
+    "snn",
+    "lif",
+    "neuron",
+    "heart-monitor",
+    "classifier",
+    "adc",
+    "medical",
+    "spiking-neural-network",
+    "alarm"
+   ],
+   "summary": "This design is a compact spiking neural network heart-beat classifier that segments R-peaks from a 12-bit ADC stream, encodes slope events, and classifies beats into five AAMI-style classes using five parallel LIF neurons. It outputs the winning class, a diagnostic-valid pulse, and an alarm that asserts after three consecutive anomaly classifications. The cocotb suite checks synthetic gentle and steep slopes, zigzag patterns, alarm behavior, and an MIT-BIH excerpt stream, with optional annotation agreement logged informationally. External hardware is optional and includes an external ADC or microcontroller streaming samples into the pin-mapped bus, and a companion Tiny Tapeout SAR ADC is suggested for integration.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1c5ac9cefb77",
+   "tags": [
+    "spdif",
+    "i2s",
+    "audio",
+    "receiver",
+    "clock-recovery",
+    "pwm",
+    "dac",
+    "comparator",
+    "analog",
+    "bmc"
+   ],
+   "summary": "This design is an S/PDIF (AES3 consumer) receiver that recovers the audio clock from the incoming biphase-mark-coded stream and regenerates a standard I2S master output from a single free-running 50 MHz clock. It also provides a mute signal for amplifier standby, a block-start pulse, an analog comparator input and output, and a 1-bit PWM mono downmix output. A self-checking testbench with a behavioural S/PDIF encoder and I2S decoder verifies 32 consecutive L/R samples and the control signals under Icarus Verilog. External hardware includes an optical or coax S/PDIF front-end on ui[0] and an I2S DAC or codec on the output, and the receiver supports consumer sample rates up to 48 kHz at the 50 MHz clock.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a4550cd56766",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "alu",
+    "register-file",
+    "spi",
+    "education",
+    "8-bit",
+    "processor"
+   ],
+   "summary": "This project is an 8-bit modified RISC-V-inspired processor with four registers, four instructions in instruction memory, and one data-memory register, using a single 8-bit instruction encoding. It exposes an SPI interface on uio[3:0], debug program-counter bits, a CPU-done signal, and the data-memory byte on uo[7:0]. The documentation describes the instruction encoding and ALU operations but does not provide a test procedure or silicon results. It originated as a club's first tapeout project, and no external hardware is listed.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ae43d32a2345",
+   "tags": [
+    "lif",
+    "neuron",
+    "snn",
+    "neuromorphic",
+    "7-segment",
+    "education",
+    "spiking-neural-network"
+   ],
+   "summary": "This design implements a single leaky integrate-and-fire neuron with an 8-bit membrane potential, settable weight, leak, and threshold on the dip switches, and the top nibble of the membrane potential shown on a seven-segment display. A rising edge on the spike input adds the weight, a selectable leak subtracts each tick, and crossing the threshold emits a spike and resets the membrane potential with a four-cycle refractory period. The design is intended to be run slowly on the demo board so the charging and firing behavior is visible, and the full membrane potential is also available on uio[7:0] for a logic analyzer. No external hardware is required beyond the demo board's seven-segment display and switches.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "369aad47b0c0",
+   "tags": [
+    "tempo",
+    "bpm",
+    "audio",
+    "onset-detection",
+    "divider",
+    "dsp",
+    "music",
+    "beat-detection"
+   ],
+   "summary": "This design detects the tempo of a live audio stream entirely in hardware by tracking an envelope, flagging onsets, measuring intervals, and converting the average interval to BPM with a bit-serial divider. It accepts 8-bit unsigned audio samples with a sample-valid strobe and outputs a latched BPM estimate, beat pulses, a tempo-locked flag, confidence bits, and overflow and onset debug signals. The implementation avoids multipliers and uses a 13-cycle restoring divider, with all outputs registered for glitch-free pin values. The documentation describes the algorithm in detail but does not report a testbench or silicon results, and no external hardware is specified.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 11264,
+  "completion_tokens": 2098,
+  "total_tokens": 13362,
+  "cost": 0.003686396,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003686396,
+   "upstream_inference_prompt_cost": 0.002301716,
+   "upstream_inference_completions_cost": 0.00138468
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003686396,
+ "elapsed_s": 24.3
+}

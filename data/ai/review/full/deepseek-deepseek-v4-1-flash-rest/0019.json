@@ -1,0 +1,438 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a05448c06ea3",
+  "4f19f626da3a",
+  "d24418d01941",
+  "89d3b6d2796c",
+  "14385abdfe69",
+  "33aeffebfaf8"
+ ],
+ "results": [
+  {
+   "key": "a05448c06ea3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rotary-encoder",
+     "reason": "No rotary encoder in pins or documentation; input is a single trigger button."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface described or present in pins."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Documentation describes a dice toy, not an industrial application."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "No motor control output or mention in the source."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "No waveform/signal generation circuit described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Electronic dice is a game/random-number toy."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output pins SEGA-SEGG and COMMON drive a 7-segment display."
+    },
+    {
+     "tag": "led",
+     "reason": "Two discrete LEDs (Pulsecount, Finish) are driven on uio pins."
+    },
+    {
+     "tag": "button",
+     "reason": "Trigger input is a pushbutton."
+    },
+    {
+     "tag": "counter",
+     "reason": "Core is a counter that counts up and slows to simulate a roll."
+    },
+    {
+     "tag": "debouncer",
+     "reason": "Not supported by source; omit."
+    }
+   ],
+   "notes": "Proposed tags were entirely unsupported; replaced with dice, 7-segment, LED, button and counter tags.",
+   "tags_before": [
+    "rotary-encoder",
+    "spi",
+    "industrial",
+    "motor-control",
+    "signal-generator",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "game",
+    "7-segment",
+    "led",
+    "button",
+    "counter",
+    "debouncer"
+   ],
+   "summary_before": "This design is a rotary encoder interface with SPI communication and motor control output. The design includes a signal generator and is intended for industrial applications. The documentation describes the interface and control capabilities but does not provide detailed implementation specifics. The design is implemented in Verilog.",
+   "summary": "This design is a six-sided electronic dice that shows a random number from 1 to 6 on a 7-segment display. A trigger button starts a rapidly counting counter that slows down to simulate a dice roll-off. Two LEDs indicate the pulse count during counting and signal when the result is ready. The design is implemented in Verilog and uses a 7-segment display plus two LEDs as external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "4f19f626da3a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game-of-life",
+     "reason": "No Conway's Game of Life in the source."
+    },
+    {
+     "tag": "cellular-automaton",
+     "reason": "No cellular automaton described."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA interface in pins or text."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output; output is a 7-segment digit and binary digit pins."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "Implements an MNIST digit classifier neural network."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "Ternary-weight MLP 64->32->10 with binary activations."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "Self-contained embedded inference classifier on-chip."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Digit is displayed on the on-board 7-segment display (uo[6:0])."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "Operation is explicitly bit-serial, one pixel bit per cycle."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Verified with a cocotb testbench (test/test.py)."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Demo drives inputs from the TT demo board's RP2040."
+    }
+   ],
+   "notes": "Tags and summary described an unrelated Game of Life/VGA design; corrected to the actual MNIST MLP classifier.",
+   "tags_before": [
+    "game-of-life",
+    "cellular-automaton",
+    "vga",
+    "video",
+    "graphics"
+   ],
+   "tags": [
+    "machine-learning",
+    "neural-network",
+    "edge-ai",
+    "7-segment",
+    "bit-serial",
+    "cocotb",
+    "verilog",
+    "rp2040"
+   ],
+   "summary_before": "This project implements Conway's Game of Life as a cellular automaton. It outputs a VGA video signal and renders graphics on a display. The design is notable for its real-time simulation and visual output. It is intended for educational or recreational purposes.",
+   "summary": "This project is a fully self-contained MNIST handwritten-digit classifier implemented as a ternary-weight MLP with all weights baked into the netlist as Verilog constants. It accepts 64 binarized 8x8 pixel bits serially and computes a digit prediction in about 172 clock cycles at 10 MHz. The predicted digit is output on uio[3:0] and shown on the on-board 7-segment display, with DONE and BUSY status pins. The design is written in Verilog and was verified with a cocotb testbench against 200 MNIST images.",
+   "summary_changed": true
+  },
+  {
+   "key": "d24418d01941",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adc",
+     "reason": "No analog-to-digital converter in the source."
+    },
+    {
+     "tag": "analog",
+     "reason": "Design is purely digital structural logic."
+    },
+    {
+     "tag": "comparator-analog",
+     "reason": "No analog comparator described."
+    },
+    {
+     "tag": "encoder",
+     "reason": "No encoder circuit described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Implements a 4x4 array multiplier producing an 8-bit product."
+    },
+    {
+     "tag": "structural",
+     "reason": "Described as a structural array multiplier built from full adders."
+    },
+    {
+     "tag": "adder",
+     "reason": "Uses full adders to combine partial products."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "workshop",
+     "reason": "Titled 'Lab B Group 1', indicating a class/lab activity."
+    }
+   ],
+   "notes": "Proposed tags described an unrelated flash ADC; corrected to the actual array multiplier.",
+   "tags_before": [
+    "adc",
+    "analog",
+    "comparator-analog",
+    "encoder"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "verilog",
+    "workshop"
+   ],
+   "summary_before": "This project is a 2-bit flash analog-to-digital converter that converts an analog input voltage between 0 and 1.8 V into a 2-bit encoded digital output. The design uses comparators to compare the input against reference voltages and encodes the results. It is implemented in analog and is a simple example of a flash ADC. The output is provided on two dedicated digital pins.",
+   "summary": "This project is a 4x4 structural array multiplier implemented in Verilog. It takes two 4-bit binary inputs and produces an 8-bit product by combining partial products with full adders. The design is purely digital and requires no external hardware. Testing involves applying two 4-bit values and reading the resulting product on the eight output pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "89d3b6d2796c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "No multi-register file described; it is a shift register."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface in pins or documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin ('This just works2') and does not describe the design."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Design is created using the Wokwi simulator."
+    }
+   ],
+   "notes": "Removed unsupported UART and register-file tags; added insufficient-doc and kept wokwi.",
+   "tags_before": [
+    "shift-register",
+    "register-file",
+    "uart",
+    "wokwi"
+   ],
+   "tags": [
+    "shift-register",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a shift register with a UART interface, allowing serial data to be shifted in and out. The shift register is built using flip-flops and can be used for serial-to-parallel conversion. The UART interface enables communication with external devices.",
+   "summary": "This project is an 8-bit shift register implemented in Wokwi. It has an input and set pin and eight output pins. The documentation is very thin and does not describe the internal implementation or operation. No external hardware or detailed test procedure is provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "14385abdfe69",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "floating-point",
+     "reason": "No floating-point arithmetic described."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface in pins or documentation."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder circuit described; it is a LIF neuron."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neuromorphic",
+     "reason": "Implements a digital leaky integrate-and-fire neuron."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "LIF neuron with spike input and spike output."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and lacks implementation detail."
+    }
+   ],
+   "notes": "Proposed tags described an unrelated floating-point SPI adder; corrected to the LIF neuron.",
+   "tags_before": [
+    "floating-point",
+    "spi",
+    "adder"
+   ],
+   "tags": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a 32-bit floating point adder accessible over SPI. It uses a simple command-based SPI protocol and requires an external SPI master, such as an Arduino, for testing. The design has four internal registers that can be read and written via SPI. The exact floating-point format and rounding behavior are not described.",
+   "summary": "This project implements a digital leaky integrate-and-fire (LIF) neuron in Verilog. It takes four weight inputs and a spike input, and produces a spike output. The neuron uses reset-by-subtraction and has configurable leakage and threshold settings. No external hardware is required, and testing consists of applying weights and a spike input and observing whether the neuron spikes.",
+   "summary_changed": true
+  },
+  {
+   "key": "33aeffebfaf8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "No RISC-V processor in the source."
+    },
+    {
+     "tag": "cpu",
+     "reason": "No CPU core described."
+    },
+    {
+     "tag": "soc",
+     "reason": "Not a system-on-chip; it is an SDR pipeline."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface in pins or documentation."
+    },
+    {
+     "tag": "qspi",
+     "reason": "No QSPI interface; SPI is used for configuration."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory block described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "radio",
+     "reason": "AM radio reception application."
+    },
+    {
+     "tag": "rf",
+     "reason": "RF frontend with comparator and RF amplifier."
+    },
+    {
+     "tag": "spi",
+     "reason": "SPI interface for setting demodulation frequency and gain."
+    },
+    {
+     "tag": "audio",
+     "reason": "PWM audio output of demodulated signal."
+    },
+    {
+     "tag": "nco",
+     "reason": "Uses an NCO phase increment for tuning."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "Implements AM demodulation pipeline."
+    },
+    {
+     "tag": "adc",
+     "reason": "External comparator used as a 1-bit ADC frontend."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "pwm",
+     "reason": "PWM output pin for audio."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated KianV RISC-V SoC; corrected to the AM SDR design.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "uart",
+    "spi",
+    "qspi",
+    "memory",
+    "audio"
+   ],
+   "tags": [
+    "spi",
+    "audio",
+    "radio",
+    "rf",
+    "nco",
+    "demodulator",
+    "adc",
+    "verilog",
+    "pwm"
+   ],
+   "summary_before": "KianV RISC-V RV32E Baremetal SoC is a bare-metal RV32E RISC-V system-on-chip with a UART, a QSPI memory controller for PSRAM and flash, a generic SPI interface, a sigma-delta audio emulator and PWM output. It is designed for embedded applications and can be programmed via the UART or SPI. The SoC includes a memory controller for external PSRAM and flash. It is notable for its small footprint and bare-metal operation.",
+   "summary": "This project is a software-defined radio pipeline for AM radio reception written in Verilog. It uses an external comparator as a 1-bit ADC frontend that is oversampled and decimated 4096 times to gain about 6 bits of precision. A SPI interface with a single 32-bit shift register sets the NCO phase increment for tuning and the gain, and the demodulated signal is output as PWM audio. External hardware includes a comparator, resistor bias network, RC network, RF amplifier and an SPI microcontroller.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7861,
+  "completion_tokens": 2232,
+  "total_tokens": 10093,
+  "cost": 0.002483026,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002483026,
+   "upstream_inference_prompt_cost": 0.001009906,
+   "upstream_inference_completions_cost": 0.00147312
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002483026,
+ "elapsed_s": 44.0
+}

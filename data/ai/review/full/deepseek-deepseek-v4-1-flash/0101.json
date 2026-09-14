@@ -1,0 +1,212 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d3a80ffb927a",
+  "e64be2d6a310",
+  "1b2d81ee7c7e",
+  "d7820c666483",
+  "7d96a10db479",
+  "ed1d34f55631"
+ ],
+ "results": [
+  {
+   "key": "d3a80ffb927a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The ALU is described as part of a CPU, but the submitted design is only the ALU, not a processor core."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ternary",
+     "reason": "not in vocabulary"
+    }
+   ],
+   "notes": "Removed cpu tag: the project is an ALU component, not a processor core; 'ternary' is not in the canonical vocabulary.",
+   "tags_before": [
+    "alu",
+    "esoteric",
+    "cpu",
+    "incomplete"
+   ],
+   "tags": [
+    "alu",
+    "esoteric",
+    "incomplete"
+   ],
+   "summary_before": "This is a 2-trit balanced ternary ALU that is part of the REBEL-2 balanced ternary logic CPU. It supports operations such as MIN, MAX, ADD, SUB, MUL, CMP, and SHFT, which can be performed trit-wise or word-wise. The design is generated and verified using the Mixed Radix Circuit Synthesizer (MRCS), and while automated tests exist for MRCS, a Verilog testbench and FPGA constraint file are still work in progress. The documentation is limited and the project appears to be a work in progress.",
+   "summary": "This is a 2-trit balanced ternary ALU that is part of the REBEL-2 balanced ternary logic CPU. It supports operations such as MIN, MAX, ADD, SUB, MUL, CMP, and SHFT, which can be performed trit-wise or word-wise. The design is generated and verified using the Mixed Radix Circuit Synthesizer (MRCS), and while automated tests exist for MRCS, a Verilog testbench and FPGA constraint file are still work in progress. The documentation is limited and the project appears to be a work in progress.",
+   "summary_changed": false
+  },
+  {
+   "key": "e64be2d6a310",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is a digital ROM array with wordline/bitline control; 'analog' language label does not make it an analog circuit design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working status from both author and an independent tester."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation sections are marked FIXME and the design is described as a quick and dirty test."
+    }
+   ],
+   "notes": "Removed analog tag (digital ROM test structure) and added silicon-tested and incomplete based on the test reports and FIXME documentation.",
+   "tags_before": [
+    "rom",
+    "memory",
+    "analog"
+   ],
+   "tags": [
+    "rom",
+    "memory",
+    "silicon-tested",
+    "incomplete"
+   ],
+   "summary_before": "This is a quick test of a SKY130 ROM compiler, implementing a small ROM array with wordline and bitline controls. It supports two read methods: pullup and precharge, as described in the silicon test reports. The design has minimal documentation, with sections marked as FIXME, so its intended usage and requirements are unclear. Silicon tests indicate it works: the author successfully read the test array using both methods, though the precharge data decays in about 2 ms and always decays to 0x11 on that chip.",
+   "summary": "This is a quick test of a SKY130 ROM compiler, implementing a small ROM array with wordline and bitline controls. It supports two read methods: pullup and precharge, as described in the silicon test reports. The design has minimal documentation, with sections marked as FIXME, so its intended usage and requirements are unclear. Silicon tests indicate it works: the author successfully read the test array using both methods, though the precharge data decays in about 2 ms and always decays to 0x11 on that chip.",
+   "summary_changed": false
+  },
+  {
+   "key": "1b2d81ee7c7e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "perceptron",
+    "neural-network",
+    "machine-learning",
+    "verilog"
+   ],
+   "tags": [
+    "perceptron",
+    "neural-network",
+    "machine-learning",
+    "verilog"
+   ],
+   "summary_before": "This design simulates a single perceptron that takes three inputs, multiplies them by weights, sums the products, and compares the sum to a threshold to produce a binary output. It also accepts a desired output and performs a weight update when the actual output differs, implementing a simple learning rule. The design can be tested by verifying clock and reset operation, but the documentation does not provide detailed test procedures or expected behavior. No external hardware is required.",
+   "summary": "This design simulates a single perceptron that takes three inputs, multiplies them by weights, sums the products, and compares the sum to a threshold to produce a binary output. It also accepts a desired output and performs a weight update when the actual output differs, implementing a simple learning rule. The design can be tested by verifying clock and reset operation, but the documentation does not provide detailed test procedures or expected behavior. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "d7820c666483",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the description is minimal, indicating an unfinished or sparsely documented submission."
+    }
+   ],
+   "notes": "Removed alu tag (design is a multiplier only) and added incomplete for the very thin documentation.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "alu"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a 4-bit multiplier that takes two 4-bit inputs and produces an 8-bit product using full adders. The inputs are split into two 4-bit portions, and the multiplication is performed through adder logic. Testing is done using a testbench with idle cases. No external hardware is needed, but the documentation is very sparse and lacks detail on the exact implementation and test procedure.",
+   "summary": "This project implements a 4-bit multiplier that takes two 4-bit inputs and produces an 8-bit product using full adders. The inputs are split into two 4-bit portions, and the multiplication is performed through adder logic. Testing is done using a testbench with idle cases. No external hardware is needed, but the documentation is very sparse and lacks detail on the exact implementation and test procedure.",
+   "summary_changed": false
+  },
+  {
+   "key": "7d96a10db479",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "The design is a spiking Hopfield network with Hebbian learning; it is neuromorphic rather than a conventional ML inference/training accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is sparse and the design is described only as a leaky integrated neuron with minimal test detail."
+    }
+   ],
+   "notes": "Removed machine-learning tag (neuromorphic spiking design) and added incomplete for the sparse documentation.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "machine-learning"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a Hopfield neural network on-chip using Izhikevich-type regular spiking and fast spiking neurons with on-chip Hebbian learning for pattern storage and retrieval. It accepts a learning enable signal and a 4-bit pattern input, and outputs spikes from seven neurons via bidirectional pins. The design is a leaky integrate-and-fire neuron model and is intended to be tested, though the documentation provides little detail on the test procedure. No external hardware is required, but the documentation is sparse and lacks specifics on operation and verification.",
+   "summary": "This project implements a Hopfield neural network on-chip using Izhikevich-type regular spiking and fast spiking neurons with on-chip Hebbian learning for pattern storage and retrieval. It accepts a learning enable signal and a 4-bit pattern input, and outputs spikes from seven neurons via bidirectional pins. The design is a leaky integrate-and-fire neuron model and is intended to be tested, though the documentation provides little detail on the test procedure. No external hardware is required, but the documentation is sparse and lacks specifics on operation and verification.",
+   "summary_changed": false
+  },
+  {
+   "key": "ed1d34f55631",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "neuromorphic",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This design implements a linear feedback shift register with synaptic neuron-inspired behavior, where bit transitions generate excitatory or inhibitory signals that modify the feedback path. It accepts an 8-bit seed on the input pins and produces an 8-bit pseudo-random output sequence on uo_out. Testing involves providing a clock and reset, setting the seed, and observing the output sequence over multiple cycles. No external hardware is required, and the design allows customizable seed values to vary the output sequence.",
+   "summary": "This design implements a linear feedback shift register with synaptic neuron-inspired behavior, where bit transitions generate excitatory or inhibitory signals that modify the feedback path. It accepts an 8-bit seed on the input pins and produces an 8-bit pseudo-random output sequence on uo_out. Testing involves providing a clock and reset, setting the seed, and observing the output sequence over multiple cycles. No external hardware is required, and the design allows customizable seed values to vary the output sequence.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6736,
+  "completion_tokens": 1164,
+  "total_tokens": 7900,
+  "cost": 0.002111808,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002111808,
+   "upstream_inference_prompt_cost": 0.000924528,
+   "upstream_inference_completions_cost": 0.00118728
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002111808,
+ "elapsed_s": 29.1
+}

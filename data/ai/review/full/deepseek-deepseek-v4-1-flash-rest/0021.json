@@ -1,0 +1,378 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4335f1dac98b",
+  "2d6ae1763239",
+  "e96ca06c7195",
+  "32b35033b782",
+  "cafc1205d48f",
+  "b5bb434ddfd6"
+ ],
+ "results": [
+  {
+   "key": "4335f1dac98b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "No random number generation in the source; it is a deterministic shift-register LED pattern generator."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "The source describes a shift register with feedback taps, not an LFSR as such, and no LFSR is mentioned."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No signal processing is described."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptography is described."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a shift-register LED pattern generator, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "Eight LED outputs are explicitly named LED1-LED8."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The core is a shift register fed by the described feedback inputs."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "Input 8 is explicitly a clock divider enable."
+    },
+    {
+     "tag": "education",
+     "reason": "The design is a simple teaching-style LED pattern demonstration."
+    }
+   ],
+   "notes": "Proposed tags and summary described a photodiode optical computation that does not exist in the source; replaced with shift-register LED pattern generator tags.",
+   "tags_before": [
+    "prng",
+    "lfsr",
+    "dsp",
+    "crypto",
+    "logic-gate",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "led",
+    "shift-register",
+    "clock-divider",
+    "education"
+   ],
+   "summary_before": "This design is a silicon implementation of a simple optical computation. It uses a photodiode interface to sense light and performs a logic operation based on the input. The design is built with Wokwi and is intended for educational purposes. The documentation is minimal but sufficient to understand the configuration options.",
+   "summary": "This design is a shift-register based LED pattern generator built for Wokwi. Its eight inputs select feedback taps, direction, direction toggling, and a clock divider enable, while the eight outputs drive individual LEDs. The documentation explains how each input changes the resulting LED pattern, such as every-other, every-third, or a scanning light. It is a simple educational demonstration of shift-register behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "2d6ae1763239",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate implementation is described; the source is essentially empty."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock divider is described in the source."
+    },
+    {
+     "tag": "education",
+     "reason": "Nothing in the source states an educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is placeholder text ('i di it later', 'later') with no real description."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The source is too sparse to determine the design's behavior."
+    }
+   ],
+   "notes": "Summary invented seven-segment display and basic-gate details not present in the source; replaced with an accurate description of the placeholder documentation.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a simple test of basic gates and clock division, likely a first Wokwi exercise. It is explicitly a simple test of basic gates and clock division, likely a first Wokwi exercise. The documentation is very thin, with a one-line description in German and no real explanation of the mapping between inputs and segments. It requires an external seven-segment display, and testing is described only as using it for a seven-segment display.",
+   "summary": "This project is a Wokwi submission with a one-line description of 'abc' and placeholder documentation. The how-it-works, how-to-test, and external-hardware sections all say only 'later' or 'i di it later'. The pin names suggest eight inputs and eight outputs, but no mapping or function is explained. There is insufficient documentation to determine what the design actually does.",
+   "summary_changed": true
+  },
+  {
+   "key": "e96ca06c7195",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described; the design is a scan chain."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file is described."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is mentioned or implied by the pins."
+    },
+    {
+     "tag": "button",
+     "reason": "No button input is described."
+    },
+    {
+     "tag": "education",
+     "reason": "Nothing in the source states an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "scan-chain",
+     "reason": "The design is explicitly a low-footprint scan chain for the iHP PDK."
+    },
+    {
+     "tag": "counter",
+     "reason": "An internal free-running counter is described and read via the scan chain."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The scan chain is built from shift-register cells."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "factory-test",
+     "reason": "The scan chain is a test structure for chip factory testing."
+    }
+   ],
+   "notes": "Proposed tags and summary described an ALU with registers and a 7-segment display, none of which appear in the source; corrected to scan-chain test structure tags.",
+   "tags_before": [
+    "alu",
+    "register-file",
+    "counter",
+    "7-segment",
+    "button",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "scan-chain",
+    "shift-register",
+    "verilog",
+    "factory-test"
+   ],
+   "summary_before": "This project is a simple ALU with embedded registers, but the documentation is inconsistent, mentioning a 4-bit counter and 7-segment display. It likely performs arithmetic or logic operations on register values and may output results to a display. The design is intended for educational purposes, demonstrating basic ALU and register functionality. The exact behavior is unclear due to incomplete documentation.",
+   "summary": "This project is a low-footprint scan chain for the iHP PDK / SG13CMOS5L, written in Verilog. It uses a single chain with one bit per byte, built from RS flip-flops made from sg13g2_a21o_1 cells, and includes an internal free-running counter. Control pins SC_RESET, SC_CLK, SC_GET, SC_SET, SC_DIN, and SC_DOUT manage the chain, while DO0-DO8 and DI0-DI7 provide parallel data access. It is intended to be driven by a microcontroller or CPU, likely a Raspberry Pi.",
+   "summary_changed": true
+  },
+  {
+   "key": "32b35033b782",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is described; outputs are accumulator bits."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No decoder is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a neural network accelerator, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "The design accelerates Binary Neural Networks."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "It implements a 1-bit vector-matrix multiplier for neural network inference."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is explicitly a coprocessor/accelerator for BNN computation."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "It performs XNOR-based multiply and popcount accumulation."
+    },
+    {
+     "tag": "popcount",
+     "reason": "Accumulation is done via a Popcount adder tree."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "It is an embedded inference accelerator for a host microcontroller."
+    }
+   ],
+   "notes": "Proposed tags and summary described a HEX-to-7-segment decoder, which is entirely unrelated to the BNN accelerator in the source; replaced with machine-learning accelerator tags.",
+   "tags_before": [
+    "7-segment",
+    "decoder",
+    "display",
+    "combinational",
+    "logic-gate"
+   ],
+   "tags": [
+    "combinational",
+    "machine-learning",
+    "neural-network",
+    "accelerator",
+    "mac-unit",
+    "popcount",
+    "verilog",
+    "edge-ai"
+   ],
+   "summary_before": "This project is a HEX-to-7-segment decoder that supports digits 0-9 and letters A, b, C, d, E, F. It includes blank, lamp-test, decimal-point, and active-low mode support. The design is intended for driving seven-segment displays and is likely used in educational or prototyping contexts. It is a simple combinational logic block.",
+   "summary": "This project is a 1-bit vector-matrix multiplier coprocessor for accelerating Binary Neural Networks on a 1x1 tile. It contains eight physical neurons, each with an 8-bit weight shift register and a 10-bit accumulator, using XNOR multiplication and a popcount adder tree. There is no internal state machine; a host processor handles looping, routing, and layer management. The chip is driven by a host microcontroller that loads weights, streams binarized pixels, pulses compute, and reads the accumulator output.",
+   "summary_changed": true
+  },
+  {
+   "key": "cafc1205d48f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The LFSR is used to search for empty tiles, not as a random number generator output."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described; the design uses an occupancy register and FSM."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is described."
+    },
+    {
+     "tag": "led",
+     "reason": "No discrete LED output is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "It is a 4x4 strategy game played against an internal logic engine."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "The game is described as a TinyTapeout puzzle of balance and chaos."
+    },
+    {
+     "tag": "fsm",
+     "reason": "A finite state machine coordinates turns and error states."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "An LFSR is used to search for empty tiles."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary described an electronic dice with a 7-segment display, which does not match the Elemental Harmony strategy game in the source.",
+   "tags_before": [
+    "game",
+    "prng",
+    "counter",
+    "7-segment",
+    "led",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "verilog",
+    "puzzle",
+    "fsm",
+    "lfsr"
+   ],
+   "summary_before": "This design recreates an electronic six-sided dice that produces a random number from 1 to 6 on a 7-segment display after a button press. The design uses a pseudo-random number generator and a counter to generate the dice value. The output is displayed on a 7-segment LED display. The design is implemented in Verilog and is intended for educational purposes.",
+   "summary": "Elemental Harmony is a silicon-native 4x4 strategy game implemented as a TinyTapeout module in Verilog. It uses a 16-bit occupancy register and a finite state machine to coordinate turns between a human player and an internal logic engine. The engine uses an LFSR to find empty tiles and scores adjacent elemental pattern matches with a combinational adder tree. Error states stream the board occupancy and fill count back to the interface so a move can be retried without a full reset.",
+   "summary_changed": true
+  },
+  {
+   "key": "b5bb434ddfd6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "template",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "template",
+    "incomplete"
+   ],
+   "summary_before": "The documentation is placeholder text, so the exact implementation, testing procedure, and any external hardware requirements are not described. It appears to be an educational project with insufficient documentation to determine its specific behavior.",
+   "summary": "The documentation is placeholder text, so the exact implementation, testing procedure, and any external hardware requirements are not described. It appears to be an educational project with insufficient documentation to determine its specific behavior.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "b5bb434ddfd6: 2 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 7352,
+  "completion_tokens": 2039,
+  "total_tokens": 9391,
+  "cost": 0.002243666,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002243666,
+   "upstream_inference_prompt_cost": 0.000897926,
+   "upstream_inference_completions_cost": 0.00134574
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002243666,
+ "elapsed_s": 31.2
+}

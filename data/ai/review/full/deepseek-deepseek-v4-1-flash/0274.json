@@ -1,0 +1,230 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b9fcfd665329",
+  "df49f54148cd",
+  "28d07a1f72c5",
+  "e943a939d2ac",
+  "f928c2b695f5",
+  "921db93594f8"
+ ],
+ "results": [
+  {
+   "key": "b9fcfd665329",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design selects between analog circuits like inverters and MOSFET switches; it is not a basic logic gate implementation."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The oscilloscope is external test equipment, not part of the design's purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "Already present; UART is the primary control and data interface."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Already present; combines Verilog digital control with xschem analog circuits."
+    },
+    {
+     "tag": "analog",
+     "reason": "Already present; analog circuits are selectable and analog pins are used."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "Already present; the analog portion uses MOSFETs as switches and inverters at the device level."
+    }
+   ],
+   "notes": "Removed logic-gate and instrumentation tags that were not supported by the source.",
+   "tags_before": [
+    "uart",
+    "mixed-signal",
+    "analog",
+    "logic-gate",
+    "transistor-level",
+    "instrumentation"
+   ],
+   "tags": [
+    "uart",
+    "mixed-signal",
+    "analog",
+    "transistor-level"
+   ],
+   "summary_before": "This is a mixed-signal design that implements a UART-programmable controller capable of selecting between different analog circuits such as inverters or MOSFET switches. It uses a UART interface for configuration and data transmission, with baud rate selection via input pins, and provides analog outputs on four pins. External hardware includes a voltage supply and an oscilloscope for observing the analog outputs. The project is notable for combining digital UART control with analog circuit selection on a Tiny Tapeout tile.",
+   "summary": "This is a mixed-signal design that implements a UART-programmable controller capable of selecting between different analog circuits such as inverters or MOSFET switches. It uses a UART interface for configuration and data transmission, with baud rate selection via input pins, and provides analog outputs on four pins. External hardware includes a voltage supply and an oscilloscope for observing the analog outputs. The project combines digital UART control with analog circuit selection on a Tiny Tapeout tile.",
+   "summary_changed": true
+  },
+  {
+   "key": "df49f54148cd",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "biomedical",
+    "analog",
+    "opamp"
+   ],
+   "tags": [
+    "biomedical",
+    "analog",
+    "opamp"
+   ],
+   "summary_before": "This is an AC-coupled low noise amplifier designed to amplify EEG signals for brain-computer interface applications. It takes differential inputs (EEG_IN and EEG_REF) and produces an amplified output for low-frequency signals (1-100 Hz). The design is analog and requires external electrodes for actual EEG measurement, though testing can be done with a signal generator. The documentation is brief and lacks detailed specifications such as gain, noise figure, or power consumption.",
+   "summary": "This is an AC-coupled low noise amplifier designed to amplify EEG signals for brain-computer interface applications. It takes differential inputs (EEG_IN and EEG_REF) and produces an amplified output for low-frequency signals (1-100 Hz). The design is analog and requires external electrodes for actual EEG measurement, though testing can be done with a signal generator. The documentation is brief and lacks detailed specifications such as gain, noise figure, or power consumption.",
+   "summary_changed": false
+  },
+  {
+   "key": "28d07a1f72c5",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "image-processing",
+    "edge-detector",
+    "cocotb",
+    "asic"
+   ],
+   "tags": [
+    "image-processing",
+    "edge-detector",
+    "cocotb",
+    "asic"
+   ],
+   "summary_before": "This design is a streaming Sobel edge detection accelerator for grayscale images, using line buffers and a 3x3 sliding window to compute horizontal and vertical gradients in real time. Pixels are streamed in one per clock cycle, and the edge strength is output as an 8-bit value. The design is verified using cocotb with a Python golden reference model across several test patterns. No external hardware is required for simulation, and physical testing can use a standard Tiny Tapeout demo PCB.",
+   "summary": "This design is a streaming Sobel edge detection accelerator for grayscale images, using line buffers and a 3x3 sliding window to compute horizontal and vertical gradients in real time. Pixels are streamed in one per clock cycle, and the edge strength is output as an 8-bit value. The design is verified using cocotb with a Python golden reference model across several test patterns. No external hardware is required for simulation, and physical testing can use a standard Tiny Tapeout demo PCB.",
+   "summary_changed": false
+  },
+  {
+   "key": "e943a939d2ac",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "graphics",
+    "vga",
+    "pipeline",
+    "systemverilog"
+   ],
+   "tags": [
+    "graphics",
+    "vga",
+    "pipeline",
+    "systemverilog"
+   ],
+   "summary_before": "Tiny3D is a hardware 3D graphics pipeline that renders the vertices of a rotating cube to a VGA display. Six input pins select rotation directions for the cube around its axes, and a reset returns it to its initial orientation. It requires a Tiny Tapeout VGA Pmod and six buttons with pull-down resistors to drive the directional inputs. The design is notable for claiming to be the smallest 3D graphics engine, fitting a vertex pipeline into a 1x2 tile footprint.",
+   "summary": "Tiny3D is a hardware 3D graphics pipeline that renders the vertices of a rotating cube to a VGA display. Six input pins select rotation directions for the cube around its axes, and a reset returns it to its initial orientation. It requires a Tiny Tapeout VGA Pmod and six buttons with pull-down resistors to drive the directional inputs. The design is notable for claiming to be the smallest 3D graphics engine, fitting a vertex pipeline into a 1x2 tile footprint.",
+   "summary_changed": false
+  },
+  {
+   "key": "f928c2b695f5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning digital design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag not supported by the source.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This is a small game where the player controls a child searching for a ball in a haunted house. Four directional buttons move the character, and an 'Eat' button plus a window action provide additional choices, with LED indicators showing life and ball status. The design is implemented in Wokwi and requires two external LEDs for output. Testing involves following the game rules: turning on the life and ball lights, activating only one LED in each of six columns, and avoiding the cake.",
+   "summary": "This is a small game where the player controls a child searching for a ball in a haunted house. Four directional buttons move the character, and an 'Eat' button plus a window action provide additional choices, with LED indicators showing life and ball status. The design is implemented in Wokwi and requires two external LEDs for output. Testing involves following the game rules: turning on the life and ball lights, activating only one LED in each of six columns, and avoiding the cake.",
+   "summary_changed": false
+  },
+  {
+   "key": "921db93594f8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The documentation is too vague to confirm a 16-bit counter; the title says 16b counter but the description mentions clock dividers and random stuff."
+    },
+    {
+     "tag": "prng",
+     "reason": "The random seed generation is mentioned but not clearly implemented as a pseudo-random number generator."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "The mux is mentioned but the design's primary function is unclear."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "Clock dividers are mentioned but the overall design is not clearly a clock divider."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is minimal and the design appears unfinished or unclear."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is too sparse to describe the design accurately."
+    }
+   ],
+   "notes": "Replaced specific tags with incomplete and insufficient-doc due to vague documentation.",
+   "tags_before": [
+    "counter",
+    "prng",
+    "multiplexer",
+    "wokwi",
+    "clock-divider"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a 16-bit counter that also includes a pseudo-random number generator, according to the brief description. It takes inputs that select a multiplexer source and change the random seed, and produces a 4-bit counter output and a 6-bit random seed output. Testing requires a clock input and manipulation of the input pins to observe the outputs. The documentation is minimal and somewhat unclear, but the core functionality involves counting and random number generation.",
+   "summary": "This design is described as a 16-bit counter but the documentation is minimal and unclear. It mentions clock dividers connected together and random elements, with inputs that select a multiplexer source and change a random seed. Outputs include a 4-bit counter output and a 6-bit random seed output. Testing requires a clock input and manipulation of the input pins to observe the outputs.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5909,
+  "completion_tokens": 1321,
+  "total_tokens": 7230,
+  "cost": 0.0033579,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033579,
+   "upstream_inference_prompt_cost": 0.0017727,
+   "upstream_inference_completions_cost": 0.0015852
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033579,
+ "elapsed_s": 21.5
+}

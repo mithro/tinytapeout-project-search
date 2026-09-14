@@ -1,0 +1,321 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b36bb5577f5b",
+  "f8d18a1ec6a7",
+  "b7525a2f291e",
+  "90cdec634e83",
+  "8c43f220faa4",
+  "3da9bdf7b4a1"
+ ],
+ "results": [
+  {
+   "key": "b36bb5577f5b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is described only as gates that add things; no ALU control or operations beyond addition are documented."
+    },
+    {
+     "tag": "display",
+     "reason": "The outputs are named as 7-segment segments; generic display tag is redundant and not directly evidenced."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Already present in proposed tags."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Documentation describes the project as implemented from basic logic gates."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Addition reflected on outputs with no clock or sequential logic mentioned."
+    },
+    {
+     "tag": "education",
+     "reason": "Created as a Supercon 2023 tapeout test/demo of basic adding logic."
+    }
+   ],
+   "notes": "Removed unsupported ALU/display tags and added logic-gate/combinational/education based on the gates and Supercon description.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "adder",
+    "7-segment",
+    "wokwi",
+    "logic-gate",
+    "combinational",
+    "education"
+   ],
+   "summary_before": "This project adds two 4-bit numbers entered on the eight inputs and shows the 5-bit sum on the outputs, which are wired to a 7-segment display. It was created for Supercon 2023 as a tapeout test of basic logic gates that add things. The documentation does not explain how to test it beyond a placeholder, and the internal implementation is not described. It appears to be a simple educational adder demonstration rather than a complex design.",
+   "summary": "This project adds two 4-bit numbers entered on the eight inputs and shows the 5-bit sum on the outputs, which are wired to a 7-segment display. It was created for Supercon 2023 as a tapeout test of basic logic gates that add things. The documentation does not explain how to test it beyond a placeholder, and the internal implementation is not described. It appears to be a simple educational adder demonstration rather than a complex design.",
+   "summary_changed": false
+  },
+  {
+   "key": "f8d18a1ec6a7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "No decoding circuit is described; the ROM stores 7-segment-encoded bytes but there is no address decode function."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Generic GPIO tag is not supported; pins are dedicated address and data buses for ROM access."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "Documentation and pins describe ROM memory addressed by ui and read on uo."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "First 16 bytes are 7-segment encoded for display."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language field indicates Verilog."
+    }
+   ],
+   "notes": "Removed unsupported decoder/gpio tags; added memory/7-segment/verilog already implied by source.",
+   "tags_before": [
+    "rom",
+    "memory",
+    "7-segment",
+    "decoder",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "rom",
+    "memory",
+    "7-segment",
+    "verilog"
+   ],
+   "summary_before": "This is a 128-byte, 8-bit-wide ROM that stores information about the Tiny Tapeout chip, addressed by eight input pins and read out on eight output pins. The first sixteen bytes are 7-segment encoded and contain the shuttle name and commit hash, which can be displayed on an on-board 7-segment display by toggling the first four DIP switches. It is a simple read-only memory with no clock or control logic, and it requires no external hardware beyond the address switches and display. The documentation is brief but sufficient to understand the function.",
+   "summary": "This is a 128-byte, 8-bit-wide ROM that stores information about the Tiny Tapeout chip, addressed by eight input pins and read out on eight output pins. The first sixteen bytes are 7-segment encoded and contain the shuttle name and commit hash, which can be displayed on an on-board 7-segment display by toggling the first four DIP switches. It is a simple read-only memory with no clock or control logic, and it requires no external hardware beyond the address switches and display. The documentation is brief but sufficient to understand the function.",
+   "summary_changed": false
+  },
+  {
+   "key": "b7525a2f291e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source only names the project and function; no teaching or learning intent is explicitly stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language field indicates Wokwi."
+    }
+   ],
+   "notes": "Removed education tag not stated in source; keep 7-segment/display/text/wokwi.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "text"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "text"
+   ],
+   "summary_before": "This project drives a seven-segment display to spell the letters J, O and N depending on which of three input pins is asserted. Pin 1 outputs J, pin 2 outputs O and pin 3 outputs N according to the documentation. A seven-segment display is the only external hardware required. The design is a beginner exercise with minimal documentation and no reported silicon results.",
+   "summary": "This project drives a seven-segment display to spell the letters J, O and N depending on which of three input pins is asserted. Pin 1 outputs J, pin 2 outputs O and pin 3 outputs N according to the documentation. A seven-segment display is the only external hardware required. The design has minimal documentation and no reported silicon results.",
+   "summary_changed": true
+  },
+  {
+   "key": "90cdec634e83",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No explicit teaching or learning purpose is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language field indicates Wokwi."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Documentation explicitly states it is built from XOR, AND and OR gates."
+    },
+    {
+     "tag": "combinational",
+     "reason": "A full adder is purely combinational logic."
+    },
+    {
+     "tag": "led",
+     "reason": "External hardware includes two LEDs to display outputs."
+    }
+   ],
+   "notes": "Removed education tag not supported by source; adder/logic-gate/combinational/led/wokwi are appropriate.",
+   "tags_before": [
+    "adder",
+    "logic-gate",
+    "combinational",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "logic-gate",
+    "combinational",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This project builds a one-bit full adder from two XOR gates, two AND gates and one OR gate, taking two operand bits plus a carry-in and producing sum and carry-out. It is tested by applying the three input bits and observing the two output bits, with two LEDs used to display the results. The design uses the bidirectional pins as additional I/O but the documentation does not explain their role. The description is short but consistent with a standard gate-level full adder.",
+   "summary": "This project builds a one-bit full adder from two XOR gates, two AND gates and one OR gate, taking two operand bits plus a carry-in and producing sum and carry-out. It is tested by applying the three input bits and observing the two output bits, with two LEDs used to display the results. The design uses the bidirectional pins as additional I/O but the documentation does not explain their role. The description is short but consistent with a standard gate-level full adder.",
+   "summary_changed": false
+  },
+  {
+   "key": "8c43f220faa4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No teaching or learning purpose is stated; the project is a technical demonstration."
+    }
+   ],
+   "add": [
+    {
+     "tag": "floating-point",
+     "reason": "Implements an 8-bit floating-point multiplier in E4M3 format."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "The design computes y = a * b."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "Output has a latency of six clocks, indicating pipelined operation."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output y can be observed on the seven-segment display."
+    }
+   ],
+   "notes": "Removed unsupported education tag; retained floating-point, multiplier, pipeline, 7-segment supported by detailed documentation.",
+   "tags_before": [
+    "floating-point",
+    "multiplier",
+    "pipeline",
+    "education",
+    "7-segment"
+   ],
+   "tags": [
+    "floating-point",
+    "multiplier",
+    "pipeline",
+    "7-segment"
+   ],
+   "summary_before": "This design implements an 8-bit floating-point multiplier in the E4M3 format, computing y = a * b with a latency of six clock cycles. It takes two 8-bit inputs from the UI and UIO pins and outputs the 8-bit result, which can be observed on a seven-segment display, though the display is not easily interpretable. The design is a demonstration of synthesizing the VHDL-2008 IEEE.float_pkg for a multiplier that truncates toward zero and saturates on overflow. It runs at a default clock of 50 MHz and requires no external hardware beyond the Tiny Tapeout demo board and optionally a PMOD or TT Commander for input.",
+   "summary": "This design implements an 8-bit floating-point multiplier in the E4M3 format, computing y = a * b with a latency of six clock cycles. It takes two 8-bit inputs from the UI and UIO pins and outputs the 8-bit result, which can be observed on a seven-segment display, though the display is not easily interpretable. The design is a demonstration of synthesizing the VHDL-2008 IEEE.float_pkg for a multiplier that truncates toward zero and saturates on overflow. It has a default clock of 50 MHz and requires no external hardware beyond the Tiny Tapeout demo board and optionally a PMOD or TT Commander for input.",
+   "summary_changed": true
+  },
+  {
+   "key": "3da9bdf7b4a1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "Multiplication is one instruction, not the core function; a CPU tag covers it."
+    },
+    {
+     "tag": "barrel-shifter",
+     "reason": "No barrel shifter is described; only left and right shifts are mentioned."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register circuit is described."
+    },
+    {
+     "tag": "combinational",
+     "reason": "A CPU with program counter and clock/reset is sequential, not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Title and documentation explicitly describe a 4-bit CPU with an ISA."
+    },
+    {
+     "tag": "alu",
+     "reason": "ISA includes add, subtract, multiply, shifts, and logical operations typical of an ALU."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language field indicates SystemVerilog."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "CPU decodes instruction bits to control operations."
+    }
+   ],
+   "notes": "Replaced over-specific datapath tags with cpu/alu/instruction-decoder appropriate to the 4-bit CPU description.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "multiplier",
+    "barrel-shifter",
+    "systemverilog",
+    "shift-register",
+    "combinational"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "systemverilog",
+    "instruction-decoder"
+   ],
+   "summary_before": "This project implements a basic 4-bit CPU with a reduced instruction set that supports addition, subtraction, multiplication, shifts, conditional jumps, and logical operations. It uses a 4-bit bus for program and data input/output, along with two instruction bits, clock, and reset. The CPU is intended to be tested by writing programs for its ISA, requiring an external test pattern generator and output reader, such as an Arduino. The design is notable for fitting a functional CPU into a single Tiny Tapeout tile.",
+   "summary": "This project implements a basic 4-bit CPU with a reduced instruction set that supports addition, subtraction, multiplication, shifts, conditional jumps, and logical operations. It uses a 4-bit bus for program and data input/output, along with two instruction bits, clock, and reset. The CPU is intended to be tested by writing programs for its ISA, requiring an external test pattern generator and output reader, such as an Arduino. The design is notable for fitting a functional CPU into a single Tiny Tapeout tile.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7083,
+  "completion_tokens": 1944,
+  "total_tokens": 9027,
+  "cost": 0.0044577,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044577,
+   "upstream_inference_prompt_cost": 0.0021249,
+   "upstream_inference_completions_cost": 0.0023328
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044577,
+ "elapsed_s": 12.1
+}

@@ -1,0 +1,304 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e1a40b254f97",
+  "8b0c3c823ed1",
+  "9489bc7675e3",
+  "6dc646485e4b",
+  "6be11cee575f",
+  "bbdadbe64996"
+ ],
+ "results": [
+  {
+   "key": "e1a40b254f97",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The seven segment pins are documented but the design's purpose is serial conversion; the segment outputs are just the display mapping, and the summary's claim that outputs 'drive a seven-segment display to show the converted data' is unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rom",
+     "reason": "Source explicitly states two conversion ROMs are used."
+    }
+   ],
+   "notes": "Removed 7-segment because the source does not state the segments display converted data; kept rom which was already proposed.",
+   "tags_before": [
+    "communication",
+    "ascii",
+    "uart",
+    "rom",
+    "7-segment"
+   ],
+   "tags": [
+    "communication",
+    "ascii",
+    "uart",
+    "rom"
+   ],
+   "summary_before": "This design converts between ASCII serial data and Baudot serial data using UARTs and two conversion ROMs. It accepts an ASCII clock at eight times the desired baud rate and a Baudot clock at one hundred times the desired baud rate, with a Baudot input that should be held high when idle. The outputs drive a seven-segment display to show the converted data. External hardware includes a USB-serial adapter for ASCII and a 60 mA current loop interface for Baudot, which requires a hefty driver.",
+   "summary": "This design converts between ASCII serial data and Baudot serial data using UARTs and two conversion ROMs. It accepts an ASCII clock at eight times the desired baud rate and a Baudot clock at one hundred times the desired baud rate, with a Baudot input that should be held high when idle. The outputs are mapped to seven-segment display segment pins. External hardware includes a USB-serial adapter for ASCII and a 60 mA current loop interface for Baudot, which requires a hefty driver.",
+   "summary_changed": true
+  },
+  {
+   "key": "8b0c3c823ed1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design uses a single accumulator register, not a multi-register file."
+    },
+    {
+     "tag": "calculator",
+     "reason": "No keypad or numeric display calculator interface is described; it is a switch/LED arithmetic demo."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "Implements add, subtract, XOR and shift operations on an input value."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Source explicitly describes a simple state machine gating the enable signal."
+    },
+    {
+     "tag": "led",
+     "reason": "Eight LED outputs carry the result."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    }
+   ],
+   "notes": "Removed register-file and calculator; added alu, fsm, led, systemverilog which are directly supported.",
+   "tags_before": [
+    "alu",
+    "calculator",
+    "fsm",
+    "led",
+    "register-file",
+    "systemverilog"
+   ],
+   "tags": [
+    "alu",
+    "fsm",
+    "led",
+    "systemverilog"
+   ],
+   "summary_before": "This design implements a small accumulator that applies one of four operations (add, subtract, XOR, or left shift) to an input value and stores the result in a register. The operation is selected by two arithOp input bits, and a state machine requires the enable signal to be released before another operation can be triggered. The eight-bit result is shown on the LED outputs, and the design is tested by toggling switches on the demo board. It is a simple arithmetic demonstration with no external hardware beyond the board switches and LEDs.",
+   "summary": "This design implements a small accumulator that applies one of four operations (add, subtract, XOR, or left shift) to an input value and stores the result in a register. The operation is selected by two arithOp input bits, and a state machine requires the enable signal to be released before another operation can be triggered. The eight-bit result is shown on the LED outputs, and the design is tested by toggling switches on the demo board. It is a simple arithmetic demonstration with no external hardware beyond the board switches and LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "9489bc7675e3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dac",
+    "pwm",
+    "sigma-delta",
+    "dsp",
+    "myhdl"
+   ],
+   "tags": [
+    "dac",
+    "pwm",
+    "sigma-delta",
+    "dsp",
+    "myhdl"
+   ],
+   "summary_before": "This project implements three pulse-density modulator architectures: PWM, DDPM, and Sigma-Delta, for digital-to-analog conversion. It includes both a 6-bit DC input section and an 8-bit sine wave section to evaluate spectral performance. The outputs are intended to be low-pass filtered to recover the analog signal, and the design is implemented using myHDL and Python. It serves as a comparison of different PDM techniques for DAC applications.",
+   "summary": "This project implements three pulse-density modulator architectures: PWM, DDPM, and Sigma-Delta, for digital-to-analog conversion. It includes both a 6-bit DC input section and an 8-bit sine wave section to evaluate spectral performance. The outputs are intended to be low-pass filtered to recover the analog signal, and the design is implemented using myHDL and Python. It serves as a comparison of different PDM techniques for DAC applications.",
+   "summary_changed": false
+  },
+  {
+   "key": "6dc646485e4b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sensor-interface",
+     "reason": "The hall input is a synchronization input, not a generic sensor interface; the source does not describe a sensor interface block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "Image data is loaded over an SPI bus (cs_n, sck, mosi)."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs drive a line of eight LEDs."
+    },
+    {
+     "tag": "display",
+     "reason": "It is a persistence-of-vision display controller."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It stores and renders an 8x32 image."
+    },
+    {
+     "tag": "amaranth",
+     "reason": "Language is Amaranth."
+    }
+   ],
+   "notes": "Removed sensor-interface; added spi, led, display, graphics, amaranth which are directly supported by pins and text.",
+   "tags_before": [
+    "display",
+    "led",
+    "spi",
+    "sensor-interface",
+    "graphics",
+    "amaranth"
+   ],
+   "tags": [
+    "display",
+    "led",
+    "spi",
+    "graphics",
+    "amaranth"
+   ],
+   "summary_before": "This is a small persistence-of-vision display controller. It stores an 8x32 image in memory, which can be updated over SPI, and uses a hall effect sensor to synchronize the display with rotation. It outputs to a line of eight LEDs and requires external hardware including LEDs, an MCU for image loading, and a means of timing. The design generates 48-128 pulses per hall cycle and handles blanking.",
+   "summary": "This is a small persistence-of-vision display controller. It stores an 8x32 image in memory, which can be updated over SPI, and uses a hall effect sensor to synchronize the display with rotation. It outputs to a line of eight LEDs and requires external hardware including LEDs, an MCU for image loading, and a means of timing. The design generates 48-128 pulses per hall cycle and handles blanking.",
+   "summary_changed": false
+  },
+  {
+   "key": "6be11cee575f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source presents it as an AI-generated processor design, not explicitly as a teaching or learning project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "It is an 8-bit accumulator-based microprocessor."
+    },
+    {
+     "tag": "alu",
+     "reason": "The ISA includes arithmetic and logic operations on the accumulator."
+    },
+    {
+     "tag": "spi",
+     "reason": "Programs are loaded and execution controlled via an SPI peripheral."
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "All registers are connected via one large scan chain."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed education because the source does not state an educational intent; added cpu, alu, spi, scan-chain, verilog which are directly supported.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "spi",
+    "scan-chain",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "spi",
+    "scan-chain",
+    "verilog"
+   ],
+   "summary_before": "QTCore-A1 is an 8-bit accumulator-based microprocessor with a Von Neumann architecture, designed through GPT-4 conversations. It uses an SPI interface for loading programs and controlling execution via a scan chain, allowing an external microcontroller to read and write processor state. The design includes a small instruction set and an assembler, and it can be synthesized to FPGAs. Notable for being entirely generated by GPT-4, it serves as an educational example of AI-assisted hardware design.",
+   "summary": "QTCore-A1 is an 8-bit accumulator-based microprocessor with a Von Neumann architecture, designed through GPT-4 conversations. It uses an SPI interface for loading programs and controlling execution via a scan chain, allowing an external microcontroller to read and write processor state. The design includes a small instruction set and an assembler, and it can be synthesized to FPGAs. Notable for being entirely generated by GPT-4, it serves as an educational example of AI-assisted hardware design.",
+   "summary_changed": false
+  },
+  {
+   "key": "bbdadbe64996",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "demoscene",
+     "reason": "The source describes a ringtone playback project, not a demoscene-style visual/audio showcase."
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "It plays back a converted RTTL ringtone rather than implementing a programmable sound generator chip replica."
+    }
+   ],
+   "add": [
+    {
+     "tag": "music",
+     "reason": "It plays a song (Bad Apple) through a piezo speaker."
+    },
+    {
+     "tag": "audio",
+     "reason": "It produces a differential sound wave output."
+    },
+    {
+     "tag": "buzzer",
+     "reason": "Output drives a piezo speaker/buzzer."
+    },
+    {
+     "tag": "pwm",
+     "reason": "It uses differential PWM modulation to produce the sound."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed demoscene and sound-generator; added music, audio, buzzer, pwm, verilog which are directly supported.",
+   "tags_before": [
+    "music",
+    "audio",
+    "buzzer",
+    "pwm",
+    "demoscene",
+    "sound-generator"
+   ],
+   "tags": [
+    "music",
+    "audio",
+    "buzzer",
+    "pwm",
+    "verilog"
+   ],
+   "summary_before": "This project plays the song 'Bad Apple' through a piezo speaker connected across two output pins using differential PWM modulation. It converts an RTTL ringtone into Verilog and plays it back when a 12 kHz clock is provided and a reset pulse is applied. The design requires an external piezo speaker connected between io_out[0] and io_out[1]. It is notable for being a simple music player based on a previous Tiny Tapeout project.",
+   "summary": "This project plays the song 'Bad Apple' through a piezo speaker connected across two output pins using differential PWM modulation. It converts an RTTL ringtone into Verilog and plays it back when a 12 kHz clock is provided and a reset pulse is applied. The design requires an external piezo speaker connected between io_out[0] and io_out[1]. It is notable for being a simple music player based on a previous Tiny Tapeout project.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10478,
+  "completion_tokens": 1673,
+  "total_tokens": 12151,
+  "cost": 0.003585198,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003585198,
+   "upstream_inference_prompt_cost": 0.001878738,
+   "upstream_inference_completions_cost": 0.00170646
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003585198,
+ "elapsed_s": 46.4
+}

@@ -1,0 +1,210 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2ed555ba5dc9",
+  "a6e5b71dad58",
+  "1e057aabfa02",
+  "1c9686dbe97c",
+  "736bf4d49be3",
+  "46ebe6a79738"
+ ],
+ "results": [
+  {
+   "key": "2ed555ba5dc9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "The design serially shifts in operands, but the source does not describe a shift register as a design element; the serial input is an interface, not a shift-register block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The source states the design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported shift-register tag and added verilog tag based on stated language.",
+   "tags_before": [
+    "alu",
+    "shift-register",
+    "bit-serial"
+   ],
+   "tags": [
+    "alu",
+    "bit-serial",
+    "verilog"
+   ],
+   "summary_before": "This 8-bit serial-in ALU processes two operands shifted in LSB-first and supports eight operations including ADD, SUB, AND, OR, XOR, and NOT. It provides a parallel result and status flags (carry, zero, negative, overflow, done) after 16 clock cycles. Testing involves shifting in operands and reading the result and flags, and it can be interfaced with a microcontroller or manual switches. The design is notable for its serial interface, which reduces pin count while maintaining full ALU functionality.",
+   "summary": "This 8-bit serial-in ALU processes two operands shifted in LSB-first and supports eight operations including ADD, SUB, AND, OR, XOR, and NOT. It provides a parallel result and status flags (carry, zero, negative, overflow, done) after 16 clock cycles. Testing involves shifting in operands and reading the result and flags, and it can be interfaced with a microcontroller or manual switches. The design is notable for its serial interface, which reduces pin count while maintaining full ALU functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "a6e5b71dad58",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bootloader",
+     "reason": "The source describes SPI program loading, but not a bootloader; bootloader implies bootstrap loading logic for a processor, which is not clearly stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The source states the design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported bootloader tag and added verilog tag based on stated language.",
+   "tags_before": [
+    "cpu",
+    "spi",
+    "bootloader",
+    "memory"
+   ],
+   "tags": [
+    "cpu",
+    "spi",
+    "memory",
+    "verilog"
+   ],
+   "summary_before": "This is an 8-bit CPU that loads 16-bit instructions over SPI into internal program memory and then executes them autonomously. A RUN input starts execution, while PROGRAM_LOADED, HALTED and RUN_ECHO pins report status, and the eight outputs expose the CPU result byte. The final stable version uses ten instruction slots and an enriched ISA, though the documentation does not list the instruction set. No external hardware beyond an SPI host is described.",
+   "summary": "This is an 8-bit CPU that loads 16-bit instructions over SPI into internal program memory and then executes them autonomously. A RUN input starts execution, while PROGRAM_LOADED, HALTED and RUN_ECHO pins report status, and the eight outputs expose the CPU result byte. The final stable version uses ten instruction slots and an enriched ISA, though the documentation does not list the instruction set. No external hardware beyond an SPI host is described.",
+   "summary_changed": false
+  },
+  {
+   "key": "1e057aabfa02",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-neuron spiking neural network using the Leaky Integrate-and-Fire model. Each neuron integrates input current, leaks a fraction of its membrane potential, and fires a spike when the threshold is reached. The weight matrix is programmed serially via a shift register, and spike outputs are provided for each neuron. The design is tested by programming weights and observing spike outputs; no external hardware is required.",
+   "summary": "This project implements a 4-neuron spiking neural network using the Leaky Integrate-and-Fire model. Each neuron integrates input current, leaks a fraction of its membrane potential, and fires a spike when the threshold is reached. The weight matrix is programmed serially via a shift register, and spike outputs are provided for each neuron. The design is tested by programming weights and observing spike outputs; no external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "1c9686dbe97c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The source mentions an optional digitally generated sine waveform generator, but the design itself is an R2R DAC, not a signal generator."
+    }
+   ],
+   "add": [],
+   "notes": "Removed signal-generator tag because the design is a DAC, not a signal generator.",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "signal-generator"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "analog"
+   ],
+   "summary_before": "This is an 8-bit R-2R digital-to-analog converter implemented in analog circuitry. It can be driven externally by digital inputs or by an on-chip digitally generated sine waveform generator. The analog output is available on a single analog pin, and an oscilloscope is required to measure the output voltage. The documentation is minimal, providing only a brief description and no detailed testing procedure.",
+   "summary": "This is an 8-bit R-2R digital-to-analog converter implemented in analog circuitry. It can be driven externally by digital inputs or by an on-chip digitally generated sine waveform generator. The analog output is available on a single analog pin, and an oscilloscope is required to measure the output voltage. The documentation is minimal, providing only a brief description and no detailed testing procedure.",
+   "summary_changed": false
+  },
+  {
+   "key": "736bf4d49be3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design outputs VGA video, not a generic display interface; the display tag is redundant and less specific than vga."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The source states the design is written in Verilog."
+    }
+   ],
+   "notes": "Removed redundant display tag and added verilog tag based on stated language.",
+   "tags_before": [
+    "uart",
+    "vga",
+    "text",
+    "display"
+   ],
+   "tags": [
+    "uart",
+    "vga",
+    "text",
+    "verilog"
+   ],
+   "summary_before": "This design receives text messages over UART and scrolls them across a 640x480 VGA display. It provides inputs for scroll speed, pause control, and text/background color selection. The design is intended to be used with a Tiny VGA Pmod and a UART source. The documentation is minimal, consisting only of the title, description, and pin names, with no detailed explanation of operation or testing.",
+   "summary": "This design receives text messages over UART and scrolls them across a 640x480 VGA display. It provides inputs for scroll speed, pause control, and text/background color selection. The design is intended to be used with a Tiny VGA Pmod and a UART source. The documentation is minimal, consisting only of the title, description, and pin names, with no detailed explanation of operation or testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "46ebe6a79738",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "timer",
+    "spi",
+    "7-segment",
+    "max7219",
+    "display",
+    "counter",
+    "clock-divider"
+   ],
+   "tags": [
+    "timer",
+    "spi",
+    "7-segment",
+    "max7219",
+    "display",
+    "counter",
+    "clock-divider"
+   ],
+   "summary_before": "This is a simple stopwatch that counts in hundredths of a second and displays the time on an 8-digit 7-segment display via SPI using a MAX7219 chip. It includes start/stop, lap time, and reset inputs, with outputs for SPI MOSI, CS, and CLK, as well as status signals. The design divides a 1 MHz clock to 100 Hz to drive the counters. External hardware needed includes buttons for control and a MAX7219-compatible display.",
+   "summary": "This is a simple stopwatch that counts in hundredths of a second and displays the time on an 8-digit 7-segment display via SPI using a MAX7219 chip. It includes start/stop, lap time, and reset inputs, with outputs for SPI MOSI, CS, and CLK, as well as status signals. The design divides a 1 MHz clock to 100 Hz to drive the counters. External hardware needed includes buttons for control and a MAX7219-compatible display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6238,
+  "completion_tokens": 1229,
+  "total_tokens": 7467,
+  "cost": 0.0033462,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033462,
+   "upstream_inference_prompt_cost": 0.0018714,
+   "upstream_inference_completions_cost": 0.0014748
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033462,
+ "elapsed_s": 19.2
+}

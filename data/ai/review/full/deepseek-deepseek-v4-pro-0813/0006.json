@@ -1,0 +1,405 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "358e41e56fa1",
+  "7695b61d995a",
+  "70b011842d54",
+  "ccc4fe849d71",
+  "bdbe2bb3a126",
+  "3dfd60f3fb83"
+ ],
+ "results": [
+  {
+   "key": "358e41e56fa1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter is described; the design is a TRNG based on ring oscillators."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is mentioned."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART or serial protocol is described."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "trng",
+     "reason": "Title and description state it generates random bits."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "Uses seven 7-stage ring oscillators."
+    },
+    {
+     "tag": "analog",
+     "reason": "Design includes analog bias/vDAC and is described as analog simulation."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Combines analog ring oscillator/bias with digital flip-flops and gating."
+    },
+    {
+     "tag": "dac",
+     "reason": "Uses Harald Pretl's vDAC system to bias the inverter stages."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the TRNG/ring-oscillator design.",
+   "tags_before": [
+    "counter",
+    "sensor-interface",
+    "uart",
+    "fsm",
+    "shift-register"
+   ],
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "analog",
+    "mixed-signal",
+    "dac"
+   ],
+   "summary_before": "This design counts the number of digital pulses occurring within a time interval across four input channels. The counts are periodically output using a serial output. It is intended for low-power wake-up sensor interfaces, acoustic event detection, non-destructive testing, and particle counting. The design is a generic pulse-counting digital building block.",
+   "summary": "This design is a variable duty-cycle true random number generator based on seven 7-stage ring oscillators. The oscillators are enabled by an 'ena' signal and their outputs are combined at a common node. An inverter-bias system using a vDAC selects a voltage from the first four input pins. The resulting signal passes through two D flip-flops and an AND gate to produce the final random output.",
+   "summary_changed": true
+  },
+  {
+   "key": "7695b61d995a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "time-to-digital-converter",
+     "reason": "No time-to-digital converter is described."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is described."
+    },
+    {
+     "tag": "rs232",
+     "reason": "No RS232 interface is described."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "Title and description state it is an LFSR."
+    },
+    {
+     "tag": "asynchronous",
+     "reason": "Self-timed logic is explicitly described."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation says '... to be filled in' and silicon test is partial."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report exists, though partial."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the NCL LFSR self-timed logic design.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "sensor-interface",
+    "rs232",
+    "uart",
+    "counter",
+    "fsm"
+   ],
+   "tags": [
+    "lfsr",
+    "asynchronous",
+    "incomplete",
+    "silicon-tested"
+   ],
+   "summary_before": "Convertidor de Tiempo a Digital (TDC) is a time-to-digital converter that measures the width of an input pulse and transmits the digital value via RS232. It includes a counter, a state machine, and an RS232 transmitter operating at 9600 baud with odd parity. The design is intended for interfacing with time-output sensors and was tested in simulation and on an FPGA development board.",
+   "summary": "This project is a small example of self-timed logic using dual redundant encoding to distinguish data and null states. It implements an LFSR in NCL logic. The documentation is incomplete and notes that the design is a trivial example. Silicon testing showed the C-gate works but the oscillator does not behave as expected.",
+   "summary_changed": true
+  },
+  {
+   "key": "70b011842d54",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The 7-segment display is listed as external hardware, not an output tag supported by the design description."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "Title and description state it is a UART."
+    },
+    {
+     "tag": "communication",
+     "reason": "UART is a data communication protocol design."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Generic digital inputs and outputs are used."
+    }
+   ],
+   "notes": "Added UART/communication/gpio tags; removed 7-segment as an output tag.",
+   "tags_before": [
+    "insufficient-doc",
+    "wokwi",
+    "7-segment"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "wokwi",
+    "uart",
+    "communication",
+    "gpio"
+   ],
+   "summary_before": "This project is described as a UART for connecting two digital devices, using switches to select an ASCII character and a 7-segment display to show the result. The documentation is very thin, consisting of only a few sentences that do not explain the baud rate, framing, or register interface. The pin names are generic (in1 through in8, out1 through out3) and do not clearly map to UART signals. External hardware listed includes an Arduino, a 7-segment display, and eight switches, but the design's actual behavior cannot be fully determined from the provided text.",
+   "summary": "This project is described as a UART for connecting two digital devices, using switches to select an ASCII character and a 7-segment display to show the result. The documentation is very thin, consisting of only a few sentences that do not explain the baud rate, framing, or register interface. The pin names are generic (in1 through in8, out1 through out3) and do not clearly map to UART signals. External hardware listed includes an Arduino, a 7-segment display, and eight switches, but the design's actual behavior cannot be fully determined from the provided text.",
+   "summary_changed": false
+  },
+  {
+   "key": "ccc4fe849d71",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is described in the source."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Verilog, not Wokwi."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate implementation is described."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Generic pins are present but no GPIO interface is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neuromorphic",
+     "reason": "LIF neuron is a brain-inspired neuromorphic design."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "LIF neuron is a spiking neural network component."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not describe the design."
+    },
+    {
+     "tag": "low-power",
+     "reason": "One-line description states low power LIF neuron."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the LIF neuron description.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "logic-gate",
+    "education",
+    "gpio"
+   ],
+   "tags": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "insufficient-doc",
+    "low-power"
+   ],
+   "summary_before": "This project is titled 'Tiny Tapeout Chip' and has eight inputs and eight outputs with generic names. The documentation is minimal: the one-line description is empty, the how-it-works section says 'Don't know', and the how-to-test section says 'For decoration'. The external hardware listed is a seven-segment display, but the exact behavior is unclear. The design likely drives a seven-segment display based on logic gate outputs, but the documentation is too sparse to confirm.",
+   "summary": "This project is a low power LIF neuron. The documentation is minimal and does not explain the implementation details. The pin names are generic and do not clarify the neuron's interface. The design is intended as a spiking neural network component, but the exact behavior cannot be determined from the provided text.",
+   "summary_changed": true
+  },
+  {
+   "key": "bdbe2bb3a126",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "No DAC is described; the design is a register file validation macro."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "No sigma-delta modulator is described."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio application is described."
+    },
+    {
+     "tag": "pwm",
+     "reason": "No PWM output is described."
+    },
+    {
+     "tag": "filter-analog",
+     "reason": "No analog filter is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "register-file",
+     "reason": "Title and description state it is a register file validation design."
+    },
+    {
+     "tag": "memory",
+     "reason": "Register file is a memory storage block."
+    },
+    {
+     "tag": "characterization",
+     "reason": "Validation design for register file macro, including timing measurements."
+    },
+    {
+     "tag": "analog",
+     "reason": "Language is Analog."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the register file validation design.",
+   "tags_before": [
+    "dac",
+    "sigma-delta",
+    "audio",
+    "pwm",
+    "filter-analog"
+   ],
+   "tags": [
+    "register-file",
+    "memory",
+    "characterization",
+    "analog"
+   ],
+   "summary_before": "This project implements a 16-bit noise-shaping delta-sigma DAC that outputs a single-bit digital signal via pulse-width modulation. The design uses a delta-sigma modulator to shape quantization noise and a PWM stage to generate the analog output. It is intended for audio applications and can be interfaced with external analog filters. The project is notable for its high-resolution digital-to-analog conversion using a simple one-bit output.",
+   "summary": "This project is a validation design for a register file macro. It includes control signals for capture, compare, and feedback selection to test the register file. The documentation describes functional testing with a demo board and advanced timing measurements using a scope and FPGA. No test procedure has been written yet.",
+   "summary_changed": true
+  },
+  {
+   "key": "3dfd60f3fb83",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "scan-chain",
+     "reason": "No scan chain is described."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "No standard cell implementation is described."
+    },
+    {
+     "tag": "low-power",
+     "reason": "No low-power operation is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Title and pins indicate VGA output."
+    },
+    {
+     "tag": "video",
+     "reason": "VGA video output is described."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Shifting around a VGA image implies graphics output."
+    },
+    {
+     "tag": "display",
+     "reason": "VGA display output is used."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the VGA image shifting design.",
+   "tags_before": [
+    "scan-chain",
+    "shift-register",
+    "spi",
+    "counter",
+    "standard-cell",
+    "low-power"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "display"
+   ],
+   "summary_before": "This project implements a scan chain for testing and debug, with a granularity of 4 steps per bit. It is controlled by a microcontroller or CPU via an SPI interface. The design uses standard cells to minimize area and is notable for its low-power operation. It integrates test and debug features into the chip.",
+   "summary": "This project is a simple Verilog design that shifts around a VGA image. It outputs VGA signals including RGB, VSync, and HSync. The documentation refers to the source file for implementation details. The design is intended for VGA display output.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6025,
+  "completion_tokens": 2066,
+  "total_tokens": 8091,
+  "cost": 0.010557127,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2048,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.010557127,
+   "upstream_inference_prompt_cost": 0.004251695,
+   "upstream_inference_completions_cost": 0.006305432
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.010557127,
+ "elapsed_s": 50.4
+}

@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "027c1c4296b2",
+  "5fdf82dbbe96",
+  "0031951cbcc3",
+  "81a803eb0031",
+  "0d78c2d9db56",
+  "f6f79b63418d"
+ ],
+ "results": [
+  {
+   "key": "027c1c4296b2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag because the source describes only a multiplier, not a general ALU.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This design is a 4x4 array multiplier that takes two 4-bit binary numbers and produces an 8-bit product using AND gates and full adders. It is a combinational circuit with no external hardware requirements. Testing involves applying two 4-bit numbers to the inputs and verifying the 8-bit output. The documentation is brief but includes a diagram and a basic explanation of the multiplication process.",
+   "summary": "This design is a 4x4 array multiplier that takes two 4-bit binary numbers and produces an 8-bit product using AND gates and full adders. It is a combinational circuit with no external hardware requirements. Testing involves applying two 4-bit numbers to the inputs and verifying the 8-bit output. The documentation is brief but includes a diagram and a basic explanation of the multiplication process.",
+   "summary_changed": false
+  },
+  {
+   "key": "5fdf82dbbe96",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The documentation explicitly says a Python script is used for unit tests using cocotb."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added cocotb because the source explicitly mentions cocotb unit tests.",
+   "tags_before": [
+    "clock-generator",
+    "signal-generator",
+    "divider",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "clock-generator",
+    "signal-generator",
+    "divider",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This project implements a frequency sweeper in Verilog that generates an output clock whose frequency is divided by 2 every 15 clock cycles, cycling from 1/2 to 1/16 of the input clock frequency. It has an active-high enable input and a single clock output. The design includes a testbench and Python script for simulation, and for hardware testing, an oscilloscope is needed to observe the output. It is a simple clock generation experiment.",
+   "summary": "This project implements a frequency sweeper in Verilog that generates an output clock whose frequency is divided by 2 every 15 clock cycles, cycling from 1/2 to 1/16 of the input clock frequency. It has an active-high enable input and a single clock output. The design includes a testbench and a cocotb Python script for simulation, and for hardware testing, an oscilloscope is needed to observe the output. It is a simple clock generation experiment.",
+   "summary_changed": true
+  },
+  {
+   "key": "0031951cbcc3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning purpose."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; the source does not describe an educational purpose.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This design is a 4x4 combinational multiplier that takes two 4-bit inputs and produces an 8-bit product using layers of full adders. It is tested by placing inputs in a Python test script and comparing the output to the expected multiplication result. No external hardware is required. The documentation describes the structural approach and test method clearly, though it is a straightforward arithmetic block.",
+   "summary": "This design is a 4x4 combinational multiplier that takes two 4-bit inputs and produces an 8-bit product using layers of full adders. It is tested by placing inputs in a Python test script and comparing the output to the expected multiplication result. No external hardware is required. The documentation describes the structural approach and test method clearly, though it is a straightforward arithmetic block.",
+   "summary_changed": false
+  },
+  {
+   "key": "81a803eb0031",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning purpose."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; the source does not explicitly state an educational purpose.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This design implements a 4x4 array multiplier in Verilog, taking two 4-bit inputs and producing an 8-bit product using partial products and full adders. The documentation explains the column-wise addition of partial products and suggests testing by applying binary values and comparing against known products. Testing can be done via a Python test script or by modifying the Verilog to expose internal signals such as partial products and carries. No external hardware is required, and the project appears to be an educational exercise in digital arithmetic.",
+   "summary": "This design implements a 4x4 array multiplier in Verilog, taking two 4-bit inputs and producing an 8-bit product using partial products and full adders. The documentation explains the column-wise addition of partial products and suggests testing by applying binary values and comparing against known products. Testing can be done via a Python test script or by modifying the Verilog to expose internal signals such as partial products and carries. No external hardware is required, and the project appears to be an educational exercise in digital arithmetic.",
+   "summary_changed": false
+  },
+  {
+   "key": "0d78c2d9db56",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "The rings are built from C-gates and are not described as oscillators; the source says to look for transitions, not oscillation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed ring-oscillator because the source describes C-gate rings and transitions, not oscillator circuits.",
+   "tags_before": [
+    "logic-gate",
+    "asynchronous",
+    "latch",
+    "combinational",
+    "ring-oscillator"
+   ],
+   "tags": [
+    "logic-gate",
+    "asynchronous",
+    "latch",
+    "combinational"
+   ],
+   "summary_before": "Cgates tests two different implementations of Muller's C-gate: one using a latch and one using combinatorial logic, and also builds rings of various lengths from these gates. The design allows observation of the C-gate outputs and ring oscillations, with testing requiring an oscilloscope for the ring outputs. It is a variant of a previous design and serves as an experiment in asynchronous logic elements. The documentation provides clear instructions for basic testing.",
+   "summary": "Cgates tests two different implementations of Muller's C-gate: one using a latch and one using combinatorial logic, and also builds rings of various lengths from these gates. The design allows observation of the C-gate outputs and ring transitions, with testing requiring an oscilloscope for the ring outputs. It is a variant of a previous design and serves as an experiment in asynchronous logic elements. The documentation provides clear instructions for basic testing.",
+   "summary_changed": true
+  },
+  {
+   "key": "f6f79b63418d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning purpose."
+    },
+    {
+     "tag": "template",
+     "reason": "The source describes a simple OR-gate test, not a boilerplate or starter template project."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education and template tags; the source only describes a simple OR-gate test.",
+   "tags_before": [
+    "logic-gate",
+    "combinational",
+    "education",
+    "template",
+    "verilog"
+   ],
+   "tags": [
+    "logic-gate",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This is a single two-input OR gate implemented in Verilog on a one-tile design. Inputs A and B are on ui[0] and ui[1], and the OR result appears on uo[0]. It is tested by applying all four input combinations and observing the output. The documentation describes it as a simple test of the Verilog chip creation flow, so it is essentially a beginner template with no external hardware required.",
+   "summary": "This is a single two-input OR gate implemented in Verilog on a one-tile design. Inputs A and B are on ui[0] and ui[1], and the OR result appears on uo[0]. It is tested by applying all four input combinations and observing the output. The documentation describes it as a simple test of the Verilog chip creation flow, with no external hardware required.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6460,
+  "completion_tokens": 1208,
+  "total_tokens": 7668,
+  "cost": 0.0024468,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0024468,
+   "upstream_inference_prompt_cost": 0.0009972,
+   "upstream_inference_completions_cost": 0.0014496
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0024468,
+ "elapsed_s": 6.6
+}

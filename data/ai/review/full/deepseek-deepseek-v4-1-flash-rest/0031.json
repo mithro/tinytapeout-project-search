@@ -1,0 +1,494 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "32ccaa366204",
+  "f332ccd378c2",
+  "f2004c94653a",
+  "5f33032cc6f7",
+  "0aa016eaadc8",
+  "60b24ecfda2a"
+ ],
+ "results": [
+  {
+   "key": "32ccaa366204",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "No audio function; the design is an analog op-amp buffer for low-frequency signals."
+    },
+    {
+     "tag": "music",
+     "reason": "No music generation or playback in the source."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "No synthesizer or tone generation described."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "It is an amplifier/buffer, not a waveform or signal generator."
+    },
+    {
+     "tag": "pwm",
+     "reason": "No PWM output or modulation is described."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator circuit is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Analog language and analog pins; the design is an analog op-amp."
+    },
+    {
+     "tag": "opamp",
+     "reason": "The source explicitly describes a two-stage single-ended operational amplifier."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Digital enable pins select among analog op-amp submissions."
+    }
+   ],
+   "notes": "Proposed tags and summary described an audio synthesizer, which is not supported by the analog op-amp source.",
+   "tags_before": [
+    "audio",
+    "music",
+    "synthesizer",
+    "signal-generator",
+    "pwm",
+    "oscillator"
+   ],
+   "tags": [
+    "analog",
+    "opamp",
+    "mixed-signal"
+   ],
+   "summary_before": "This project is an audio synthesizer that generates music and sound effects using PWM and oscillator circuits. It produces audio output through a PWM signal, which can be filtered externally to create analog sound. The design includes a signal generator and oscillator for tone generation. It is notable for its music and audio synthesis capabilities.",
+   "summary": "This project is a low-power single-ended two-stage operational amplifier implemented in the SKY130 PDK. It is intended to function as a non-inverting unity-gain buffer for low-frequency analog signals from 1 to 10 kHz. Three digital input pins enable one of three different op-amp submissions on the chip. The design uses two analog inputs for a differential signal and one analog output for the single-ended result.",
+   "summary_changed": true
+  },
+  {
+   "key": "f332ccd378c2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design is an ALU, not a clock or timing generator."
+    },
+    {
+     "tag": "rtc",
+     "reason": "No real-time clock functionality is described."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display output or interface is present."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counting circuit is described."
+    },
+    {
+     "tag": "timer",
+     "reason": "No programmable timer block is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "The source explicitly describes a 6-bit signed ALU with 16 operations."
+    },
+    {
+     "tag": "vhdl",
+     "reason": "The design is written in VHDL."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Inputs are sampled on a clock edge and outputs are registered."
+    },
+    {
+     "tag": "adder",
+     "reason": "ADD and SUB operations are implemented in the ALU."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "MUL operation is implemented in the ALU."
+    },
+    {
+     "tag": "divider",
+     "reason": "DIV operation is implemented in the ALU."
+    },
+    {
+     "tag": "comparator",
+     "reason": "SLT signed compare operation is implemented."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "SUB operation is implemented in the ALU."
+    }
+   ],
+   "notes": "Proposed tags and summary described a clock/display circuit, but the source is a 6-bit VHDL ALU.",
+   "tags_before": [
+    "clock-generator",
+    "rtc",
+    "7-segment",
+    "display",
+    "counter",
+    "timer"
+   ],
+   "tags": [
+    "alu",
+    "vhdl",
+    "sequential-logic",
+    "adder",
+    "multiplier",
+    "divider",
+    "comparator",
+    "subtractor"
+   ],
+   "summary_before": "This project is a clock generator and timer circuit that drives a 7-segment display. It uses counters and a clock divider to produce timing signals. The design is implemented in Verilog and is intended for educational purposes. It demonstrates counter and display interfacing.",
+   "summary": "This project is a 6-bit signed two's-complement ALU implemented in VHDL. It samples inputs A, B, and a 4-bit opcode on a rising clock edge and registers the result, ZERO, and OVF flags with one cycle of latency. The ALU supports 16 operations including arithmetic, logic, shifts, and signed comparison. It requires an external clock source and a reset button for the active-low rst_n signal.",
+   "summary_changed": true
+  },
+  {
+   "key": "f2004c94653a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": "No comparator function is described."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The design includes a flip-flop and ring oscillator, so it is not purely combinational."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "No multiplexer is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The project language is Wokwi."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The one-line description says random gates were placed during a workshop."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "Pins include FF_in, FF_q, and FF_qb, indicating a flip-flop."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "Pins include ring_enable and ring_out, indicating a ring oscillator."
+    },
+    {
+     "tag": "workshop",
+     "reason": "The one-line description says the gates were placed during a workshop."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The documentation states it does not do anything useful yet."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not describe the design in detail."
+    }
+   ],
+   "notes": "Proposed summary was not four sentences and the tags did not match the random-gate workshop design.",
+   "tags_before": [
+    "logic-gate",
+    "comparator",
+    "combinational",
+    "wokwi",
+    "education",
+    "multiplexer"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "flip-flop",
+    "ring-oscillator",
+    "workshop",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "The documentation is very brief and does not describe the decoding logic in detail.",
+   "summary": "This project is a Wokwi design containing random gates placed during a workshop. It includes a flip-flop with input FF_in and outputs FF_q and FF_qb, as well as a ring oscillator with ring_enable and ring_out pins. The documentation states that it does not do anything useful yet. Testing is described as powering on and hoping for the best, with a microswitch for input and an oscilloscope for output.",
+   "summary_changed": true
+  },
+  {
+   "key": "5f33032cc6f7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "No adder is described."
+    },
+    {
+     "tag": "popcount",
+     "reason": "No population count or input counting is described."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The source does not describe purely combinational logic."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The project language is Wokwi."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output pins are labeled for SEVSEG1 segments A through G and DP."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "External hardware includes a dip-switch-8 for inputs."
+    },
+    {
+     "tag": "display",
+     "reason": "The design drives a seven-segment display."
+    }
+   ],
+   "notes": "Proposed tags and summary described an input popcount circuit, which is not supported by the source.",
+   "tags_before": [
+    "adder",
+    "popcount",
+    "alu",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "dip-switch",
+    "display"
+   ],
+   "summary_before": "This design outputs the number of inputs that are high, represented as a 3-bit binary number. It is a combinational circuit that counts the number of high inputs. The design is implemented in Wokwi and serves as an educational example of combinational logic. The documentation is minimal but the functionality is clear.",
+   "summary": "This project is a Wokwi design described as an analog clock with switches. Flipping the switches turns the lights on the analog clock off or on. The outputs drive a seven-segment display, with pins labeled for segments A through G and DP. External hardware includes a dip-switch-8, a seven-segment display, and a NAND gate.",
+   "summary_changed": true
+  },
+  {
+   "key": "0aa016eaadc8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synthesizer",
+     "reason": "No audio synthesizer is described."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio output or function is described."
+    },
+    {
+     "tag": "pwm",
+     "reason": "No PWM output is described."
+    },
+    {
+     "tag": "music",
+     "reason": "No music generation or playback is described."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator circuit is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "The source explicitly describes a KianV RV32IMA RISC-V processor."
+    },
+    {
+     "tag": "cpu",
+     "reason": "The design integrates a general-purpose RISC-V processor core."
+    },
+    {
+     "tag": "soc",
+     "reason": "The source describes a Linux-capable SoC with processor, MMU, caches, and peripherals."
+    },
+    {
+     "tag": "uart",
+     "reason": "Pins include UART RX and UART TX."
+    },
+    {
+     "tag": "spi",
+     "reason": "Pins include SPI MISO, MOSI, SCLK, and chip selects."
+    },
+    {
+     "tag": "qspi",
+     "reason": "The design uses external QSPI PSRAM and QSPI memory pins."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Pins include GPIO IN and GPIO0 OUT."
+    },
+    {
+     "tag": "pmod",
+     "reason": "External hardware includes QSPI Pmod, SPI NOR flash Pmod, SD Card Pmod, and Ethernet Pmod."
+    },
+    {
+     "tag": "ethernet",
+     "reason": "An Ethernet Pmod is listed as optional external hardware."
+    },
+    {
+     "tag": "cache",
+     "reason": "The source describes a 512-set direct-mapped icache and dcache."
+    },
+    {
+     "tag": "memory",
+     "reason": "The SoC includes external QSPI PSRAM and SPI NOR flash memory."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans 8x4 tiles."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary described an audio synthesizer, which is not supported by the RISC-V Linux SoC source.",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "pwm",
+    "music",
+    "oscillator"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "uart",
+    "spi",
+    "qspi",
+    "gpio",
+    "pmod",
+    "ethernet",
+    "cache",
+    "memory",
+    "multi-tile",
+    "verilog"
+   ],
+   "summary_before": "This design is a tiny digital synthesizer that accepts a 7-bit MIDI note number and a gate signal to control note on/off. It outputs audio via PWM. The synthesizer generates tones based on the input note. It is intended for audio experimentation and can be connected to a speaker or audio jack.",
+   "summary": "This project integrates a KianV RV32IMA RISC-V processor with an SV32 MMU and hardware caches into a Linux-capable SoC. The processor supports virtual memory through two-level page table translation and separate instruction and data TLBs. The SoC includes external QSPI PSRAM, SPI NOR flash, and memory-mapped UART, SPI, and GPIO peripherals. It is intended to boot Linux, uClinux, and xv6, and uses Pmod boards for external memory and optional Ethernet.",
+   "summary_changed": true
+  },
+  {
+   "key": "60b24ecfda2a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "No cryptography is described."
+    },
+    {
+     "tag": "cipher",
+     "reason": "No cipher implementation is described."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is described."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "No compute acceleration hardware is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "synthesizer",
+     "reason": "The source explicitly describes a monophonic synthesizer."
+    },
+    {
+     "tag": "audio",
+     "reason": "The design outputs audio via AudioPWM."
+    },
+    {
+     "tag": "pwm",
+     "reason": "The audio output pin is AudioPWM."
+    },
+    {
+     "tag": "music",
+     "reason": "The design generates musical notes from MIDI note numbers."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "The synthesizer uses three oscillators."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary described a cryptographic SPI accelerator, which is not supported by the Mini Synth source.",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "spi",
+    "accelerator"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "pwm",
+    "music",
+    "oscillator",
+    "verilog"
+   ],
+   "summary_before": "This design implements a cryptographic accelerator with a cipher core. It uses a SPI interface for configuration and data transfer. The accelerator offloads encryption operations from a host processor. It is suitable for secure communication applications.",
+   "summary": "This project is a monophonic digital synthesizer implemented in Verilog. It uses three oscillators and an ADSR envelope to generate tones from a 7-bit MIDI note number and a gate signal. The audio output is provided as a PWM signal on uo[7]. Testing uses the Tiny Tapeout Audio Pmod connected to the output header, with a Verilator simulation included.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7461,
+  "completion_tokens": 2708,
+  "total_tokens": 10169,
+  "cost": 0.0054879,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0054879,
+   "upstream_inference_prompt_cost": 0.0022383,
+   "upstream_inference_completions_cost": 0.0032496
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0054879,
+ "elapsed_s": 76.1
+}

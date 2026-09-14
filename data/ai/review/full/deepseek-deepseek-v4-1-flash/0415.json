@@ -1,0 +1,362 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ed9bddb7e521",
+  "5e0a379e843f",
+  "5a873be08a98",
+  "6249f10cf9a9",
+  "75eb44e69633",
+  "8f18b8a756ef"
+ ],
+ "results": [
+  {
+   "key": "ed9bddb7e521",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "transistor-level",
+    "logic-gate",
+    "education",
+    "graphics",
+    "pwm",
+    "audio",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "transistor-level",
+    "logic-gate",
+    "education",
+    "graphics",
+    "pwm",
+    "audio",
+    "demoscene"
+   ],
+   "summary_before": "The Reactive Plasma CMOS Inverter is an educational hardware visualizer that generates a 640x480 VGA signal to illustrate the operation of a CMOS NOT gate. It displays a transistor-level schematic, a live oscilloscope waveform, and an active truth table, all driven by an internal frame counter. The design also produces a PWM audio tone that changes pitch with the input state. It requires a 25.175 MHz clock and a VGA monitor, with optional audio output, and is notable for being a demoscene entry that visualizes fundamental CMOS behavior entirely in logic gates.",
+   "summary": "The Reactive Plasma CMOS Inverter is an educational hardware visualizer that generates a 640x480 VGA signal to illustrate the operation of a CMOS NOT gate. It displays a transistor-level schematic, a live oscilloscope waveform, and an active truth table, all driven by an internal frame counter. The design also produces a PWM audio tone that changes pitch with the input state. It requires a 25.175 MHz clock and a VGA monitor, with optional audio output, and is notable for being a demoscene entry that visualizes fundamental CMOS behavior entirely in logic gates.",
+   "summary_changed": false
+  },
+  {
+   "key": "5e0a379e843f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Smart tag mapped 'arithmetic execution' but the design is a multiplier, not an ALU."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing function is described; the LIF neuron is a spiking neuron, not a DSP filter/transform."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "The hardware is a single leaky integrate-and-fire neuron, not a general artificial neural network."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The design contains a conventional 4x4 unsigned multiplier."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Two independent 8-bit LFSRs generate the random thresholds."
+    },
+    {
+     "tag": "prng",
+     "reason": "The LFSRs provide pseudo-random bit streams."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The LIF neuron is a spiking neural model."
+    },
+    {
+     "tag": "stochastic-computing",
+     "reason": "The Bernoulli stochastic multiplier uses stochastic bitstreams."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The source language is SystemVerilog."
+    }
+   ],
+   "notes": "Removed alu, dsp, and neural-network; added multiplier, lfsr, prng, spiking-neural-network, stochastic-computing, and systemverilog to match the source.",
+   "tags_before": [
+    "stochastic-computing",
+    "spiking-neural-network",
+    "neural-network",
+    "multiplier",
+    "lfsr",
+    "prng",
+    "dsp",
+    "alu",
+    "systemverilog"
+   ],
+   "tags": [
+    "stochastic-computing",
+    "spiking-neural-network",
+    "multiplier",
+    "lfsr",
+    "prng",
+    "systemverilog"
+   ],
+   "summary_before": "This design combines a Bernoulli stochastic multiplier, a conventional 4x4 unsigned multiplier, and a leaky integrate-and-fire (LIF) neuron on a single tile. The stochastic multiplier uses two LFSRs to generate random thresholds and estimates the product of two 4-bit probabilities over a window of cycles, while the conventional multiplier provides an exact product for comparison. The LIF neuron is a signed 8-bit integer model with configurable threshold, reset, and decay, and outputs a spike and membrane potential. The design is selected via two project select pins and requires no external hardware.",
+   "summary": "This design combines a Bernoulli stochastic multiplier, a conventional 4x4 unsigned multiplier, and a leaky integrate-and-fire (LIF) neuron on a single tile. The stochastic multiplier uses two LFSRs to generate random thresholds and estimates the product of two 4-bit probabilities over a window of cycles, while the conventional multiplier provides an exact product for comparison. The LIF neuron is a signed 8-bit integer model with configurable threshold, reset, and decay, and outputs a spike and membrane potential. The design is selected via two project select pins and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "5a873be08a98",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "No dedicated multiplier circuit; the source describes a custom shift-and-add sequential multiplier as a supporting block."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The design is controlled by a state machine but the source does not emphasize FSM as a primary function."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No generic sensor interface is present; the ADC is connected via SPI."
+    }
+   ],
+   "add": [
+    {
+     "tag": "power-management",
+     "reason": "The controller optimizes an energy harvesting system."
+    },
+    {
+     "tag": "adc",
+     "reason": "It uses an external LTC2450 SPI ADC to measure capacitor voltage."
+    },
+    {
+     "tag": "spi",
+     "reason": "It communicates with the ADC over SPI."
+    },
+    {
+     "tag": "uart",
+     "reason": "It transmits CSV results over UART."
+    },
+    {
+     "tag": "low-power",
+     "reason": "Clocked at 32.768 kHz and optimized to minimize dynamic power and leakage."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The testbench is written using cocotb."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "spi",
+     "reason": "The design uses SPI to read the external ADC and outputs SPI control pins."
+    },
+    {
+     "tag": "uart",
+     "reason": "It outputs UART serial data for logging."
+    },
+    {
+     "tag": "power-management",
+     "reason": "It manages energy harvesting topology selection."
+    },
+    {
+     "tag": "adc",
+     "reason": "It interfaces with an external analog-to-digital converter."
+    },
+    {
+     "tag": "low-power",
+     "reason": "Low clock rate and area/power optimizations are described."
+    }
+   ],
+   "notes": "Removed unsupported multiplier/fsm/sensor-interface tags and added cocotb, verilog, and the actual interface and power-related tags.",
+   "tags_before": [
+    "power-management",
+    "adc",
+    "spi",
+    "uart",
+    "low-power",
+    "multiplier",
+    "fsm",
+    "sensor-interface"
+   ],
+   "tags": [
+    "power-management",
+    "adc",
+    "spi",
+    "uart",
+    "low-power",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This Verilog project is an ultra-low-power controller for an energy harvesting system that evaluates two proprietary harvesting topologies (P and S) and switches to the one yielding more energy. It uses an external LTC2450 SPI ADC to measure capacitor voltages, outputs pulses to control external switches, and logs results over UART at 1200 baud. To fit within a Tiny Tapeout tile, it replaces hardware multipliers with a custom 17-cycle shift-and-add sequential multiplier and runs at 32.768 kHz to minimize power. The design requires external harvesting circuitry, a USB-to-UART adapter, and an RTC oscillator for standalone operation, and is intended for academic research.",
+   "summary": "This Verilog project is an ultra-low-power controller for an energy harvesting system that evaluates two proprietary harvesting topologies (P and S) and switches to the one yielding more energy. It uses an external LTC2450 SPI ADC to measure capacitor voltages, outputs pulses to control external switches, and logs results over UART at 1200 baud. To fit within a Tiny Tapeout tile, it replaces hardware multipliers with a custom 17-cycle shift-and-add sequential multiplier and runs at 32.768 kHz to minimize power. The design requires external harvesting circuitry, a USB-to-UART adapter, and an RTC oscillator for standalone operation, and is intended for academic research.",
+   "summary_changed": false
+  },
+  {
+   "key": "6249f10cf9a9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "The score uses BCD display logic, but the design is not primarily BCD arithmetic; tag is not a core feature."
+    }
+   ],
+   "add": [
+    {
+     "tag": "snake-game",
+     "reason": "The design implements the Snake game."
+    },
+    {
+     "tag": "game",
+     "reason": "It is an interactive game."
+    },
+    {
+     "tag": "vga",
+     "reason": "It outputs VGA video."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It renders game graphics."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The snake body is stored in a 20-tile shift register."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The design is written in SystemVerilog."
+    },
+    {
+     "tag": "led",
+     "reason": "LED outputs show button presses."
+    },
+    {
+     "tag": "button",
+     "reason": "Game controls are buttons."
+    }
+   ],
+   "notes": "Adjusted tags: removed bcd and added button, but summary is unchanged and accurate.",
+   "tags_before": [
+    "snake-game",
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "shift-register",
+    "bcd",
+    "led",
+    "systemverilog"
+   ],
+   "tags": [
+    "snake-game",
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "shift-register",
+    "led",
+    "systemverilog",
+    "button"
+   ],
+   "summary_before": "This is a SystemVerilog implementation of the Snake game rendered over a 640x480 VGA interface, with an 8x8 tile gameboard and a rainbow-colored snake. The snake is stored in a 20-tile shift register, which caps its maximum length at 20 and the score at 99 due to limited BCD digit space. Five buttons control start and direction, and optional LEDs show current button presses. It requires a TinyVGA Pmod, a VGA monitor, and buttons or a joystick.",
+   "summary": "This is a SystemVerilog implementation of the Snake game rendered over a 640x480 VGA interface, with an 8x8 tile gameboard and a rainbow-colored snake. The snake is stored in a 20-tile shift register, which caps its maximum length at 20 and the score at 99 due to limited BCD digit space. Five buttons control start and direction, and optional LEDs show current button presses. It requires a TinyVGA Pmod, a VGA monitor, and buttons or a joystick.",
+   "summary_changed": false
+  },
+  {
+   "key": "75eb44e69633",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "audio",
+    "music",
+    "synthesizer",
+    "graphics",
+    "sigma-delta",
+    "dac",
+    "verilog"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "audio",
+    "music",
+    "synthesizer",
+    "graphics",
+    "sigma-delta",
+    "dac",
+    "verilog"
+   ],
+   "summary_before": "DOTTEE is a demoscene demo that generates VGA graphics and audio, racing the beam to produce a 640x480 60fps output with music synthesized via a 1-bit sigma-delta DAC. It renders an array of colored circles using distance calculations and constructs a 'DOTTEE' logo with a Tiny Tapeout-inspired 'TT'. The demo loops after 4096 frames and includes a noise generator for percussive sounds. It requires a Tiny VGA PMOD and a TT Audio PMOD for output, and is notable for its efficient 1-tile implementation and participation in the Tiny Tapeout Demoscene Competition.",
+   "summary": "DOTTEE is a demoscene demo that generates VGA graphics and audio, racing the beam to produce a 640x480 60fps output with music synthesized via a 1-bit sigma-delta DAC. It renders an array of colored circles using distance calculations and constructs a 'DOTTEE' logo with a Tiny Tapeout-inspired 'TT'. The demo loops after 4096 frames and includes a noise generator for percussive sounds. It requires a Tiny VGA PMOD and a TT Audio PMOD for output, and is notable for its efficient 1-tile implementation and participation in the Tiny Tapeout Demoscene Competition.",
+   "summary_changed": false
+  },
+  {
+   "key": "8f18b8a756ef",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "spi",
+    "physics",
+    "cocotb",
+    "pmod",
+    "game",
+    "graphics",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "spi",
+    "physics",
+    "cocotb",
+    "pmod",
+    "game",
+    "graphics",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This project displays a bouncing ball on a 640x480 VGA screen, with position and velocity controlled via SPI commands. The SPI receiver decodes one-byte commands where the upper two bits select the parameter and the lower six bits provide the value, with velocity clamped to -10 to 10 and position updated every six video frames. It is tested using a cocotb testbench that sends SPI commands and checks movement, clamping, reset, and edge rebound behavior. The design requires a TinyVGA-style PMOD for output and an SPI master for command input, and it is notable for its simple physics engine and live pixel rendering without a framebuffer.",
+   "summary": "This project displays a bouncing ball on a 640x480 VGA screen, with position and velocity controlled via SPI commands. The SPI receiver decodes one-byte commands where the upper two bits select the parameter and the lower six bits provide the value, with velocity clamped to -10 to 10 and position updated every six video frames. It is tested using a cocotb testbench that sends SPI commands and checks movement, clamping, reset, and edge rebound behavior. The design requires a TinyVGA-style PMOD for output and an SPI master for command input, and it is notable for its simple physics engine and live pixel rendering without a framebuffer.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9280,
+  "completion_tokens": 2013,
+  "total_tokens": 11293,
+  "cost": 0.0051996,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0051996,
+   "upstream_inference_prompt_cost": 0.002784,
+   "upstream_inference_completions_cost": 0.0024156
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0051996,
+ "elapsed_s": 12.6
+}

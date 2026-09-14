@@ -1,0 +1,313 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "94a4ad0653bd",
+  "2e17c021986d",
+  "43f65ac4b8c1",
+  "b28e2bb3e79d",
+  "ea3f70b9ea8c",
+  "75e26c8ef850"
+ ],
+ "results": [
+  {
+   "key": "94a4ad0653bd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The source mentions AND/OR gates only as external hardware, not as the design's logic-gate implementation."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is too sparse to describe the design's exact functionality."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and education tags; added insufficient-doc because the source is too sparse to describe the design.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "display",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design uses logic gates to control segments of a 7-segment display based on input values. The documentation is incomplete, so the exact functionality cannot be determined. The design is intended for educational purposes and is simulated in Wokwi. The design is notable for its use of logic gates to drive a display.",
+   "summary": "This design uses a seven-segment display to show the author's initials. The documentation is incomplete, so the exact functionality cannot be determined. The design is simulated in Wokwi. It uses input switches and external AND/OR gates to control the display.",
+   "summary_changed": true
+  },
+  {
+   "key": "2e17c021986d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "The source describes a cocotb regression, not a factory self-test structure."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The pins are a DAC output and an external sample bus, not general-purpose digital IO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dac",
+     "reason": "The 8-bit output is explicitly intended to drive an R-2R ladder DAC."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "The design compiles the Faust function into a uniform piecewise fixed-point datapath."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "The external hardware section specifies an R-2R ladder DAC for the output."
+    }
+   ],
+   "notes": "Removed unsupported factory-test and gpio tags; added dac, fixed-point, and r2r-dac based on the documented output path.",
+   "tags_before": [
+    "dsp",
+    "audio",
+    "standard-cell",
+    "cocotb",
+    "factory-test",
+    "gpio"
+   ],
+   "tags": [
+    "dsp",
+    "audio",
+    "standard-cell",
+    "cocotb",
+    "dac",
+    "fixed-point",
+    "r2r-dac"
+   ],
+   "summary_before": "The project compiles a Faust soft-clipper function into a fixed-point hardware datapath using a multi-stage MLIR compilation flow. The design is notable for demonstrating the use of the open-source Faust audio circuit compiler for generating silicon-ready RTL. The output is an 8-bit digital signal intended for a DAC or R-2R ladder for line-level audio. The design is verified with a cocotb testbench and includes a factory-test structure.",
+   "summary": "The project compiles a Faust soft-clipper function into a fixed-point hardware datapath using a multi-stage MLIR compilation flow. The design demonstrates the use of the open-source Faust audio circuit compiler for generating silicon-ready RTL. The output is an 8-bit digital signal intended for a DAC or R-2R ladder for line-level audio. The design is verified with a cocotb testbench.",
+   "summary_changed": true
+  },
+  {
+   "key": "43f65ac4b8c1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "perceptron",
+     "reason": "The design is a matrix-multiply TPU, not a perceptron classifier."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The source does not describe an esoteric programming language or novelty computation."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "The datapath is time-multiplexed but not bit-serial; it processes multi-bit operands."
+    }
+   ],
+   "add": [
+    {
+     "tag": "tpu",
+     "reason": "The title and documentation explicitly describe a mini TPU."
+    },
+    {
+     "tag": "spi",
+     "reason": "The design is driven by an SPI host interface on ui[0:2]."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "The single PE performs multiply-accumulate operations for C = A x W."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The testbench is explicitly a cocotb suite."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "The design targets embedded AI inference with INT8 activations and E2M1 weights."
+    }
+   ],
+   "notes": "Replaced unsupported perceptron, esoteric, and bit-serial tags with tpu, spi, mac-unit, cocotb, and edge-ai.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "perceptron",
+    "esoteric",
+    "bit-serial"
+   ],
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "tpu",
+    "spi",
+    "mac-unit",
+    "cocotb",
+    "edge-ai"
+   ],
+   "summary_before": "This project implements a perceptron-based neural network classifier with an esoteric twist. It uses bit-serial processing and is designed for machine learning inference. The design is notable for its unconventional implementation approach. It is intended for educational or experimental purposes.",
+   "summary": "This project implements a mini TPU that computes C = A x W with INT8 activations and 1:2 structurally sparse E2M1 weights. It uses one time-multiplexed processing element and avoids a hardware multiplier by replacing products with conditional adds, shifts, and negates. The design is driven over SPI and is verified with a cocotb testbench against an independent golden model. It is intended for machine learning inference.",
+   "summary_changed": true
+  },
+  {
+   "key": "b28e2bb3e79d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The source does not describe a measurement or instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The module counts clock cycles while the PWM signal is low."
+    }
+   ],
+   "notes": "Removed unsupported instrumentation tag; added counter and corrected the summary to match the documented PWM-to-UART behavior.",
+   "tags_before": [
+    "temperature-sensor",
+    "pwm",
+    "uart",
+    "counter",
+    "instrumentation"
+   ],
+   "tags": [
+    "temperature-sensor",
+    "pwm",
+    "uart",
+    "counter"
+   ],
+   "summary_before": "The PWM signal is generated by the temperature sensor, and this module is designed to count the number of clock cycles during which the PWM signal remains LOW. The design operates at 50 MHz and is notable for its simple PWM-to-UART conversion for temperature sensing. It measures the duty cycle of the PWM signal to determine temperature. The result is sent over a UART interface for external monitoring.",
+   "summary": "The PWM signal is generated by the temperature sensor, and this module counts the number of clock cycles during which the PWM signal remains LOW. The design operates at 50 MHz and converts the PWM low time into a value transmitted over UART. The result is sent over a UART interface at 115200 baud for external monitoring. The transmitted value is displayed in hexadecimal on a serial terminal.",
+   "summary_changed": true
+  },
+  {
+   "key": "ea3f70b9ea8c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes a weighted-sum mixer, not an arithmetic logic unit."
+    },
+    {
+     "tag": "fpga",
+     "reason": "FPGA use is mentioned only for testing, not as the design target."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "The design computes a weighted sum of the form A1 * Gain1 + B1 * Gain2."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "The weighted-sum relationship requires multiplication by gain coefficients."
+    }
+   ],
+   "notes": "Removed unsupported alu and fpga tags; added mac-unit and multiplier based on the documented weighted-sum operation.",
+   "tags_before": [
+    "alu",
+    "multiplier",
+    "mac-unit",
+    "fpga",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "multiplier",
+    "mac-unit",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a simple arithmetic demo with limited detail. It includes an ALU, multiplier, and MAC unit. The design is implemented on an FPGA and is likely used for educational purposes. The lack of documentation makes it difficult to determine the exact functionality.",
+   "summary": "This design mixes 4-bit values using 3-bit weighted coefficients according to the relationship Result = A1 * Gain1 + B1 * Gain2. It is implemented in Verilog and requires an FPGA to input and examine the output. The documentation is sparse, so the exact functionality cannot be fully determined. It appears to be a simple arithmetic demo.",
+   "summary_changed": true
+  },
+  {
+   "key": "75e26c8ef850",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "wokwi",
+     "reason": "The source does not mention Wokwi; the language is Verilog."
+    },
+    {
+     "tag": "decoder",
+     "reason": "The source does not describe a decoder circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "The design is a wall clock using a mains AC signal as the timebase."
+    },
+    {
+     "tag": "counter",
+     "reason": "The clock counts mains cycles to keep time."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The outputs drive a seven-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "The design drives a display for the clock digits."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is very thin and does not describe the full implementation."
+    }
+   ],
+   "notes": "Removed unsupported wokwi and decoder tags; added rtc, counter, 7-segment, display, and insufficient-doc based on the documented wall-clock design.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi",
+    "decoder"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "display",
+    "rtc",
+    "insufficient-doc"
+   ],
+   "summary_before": "This Wokwi project is described as a counter driving a 7-segment display, with four input pins and seven output pins. It is a simple 2-bit counter that shows its current value on a 7-segment display. The design uses a counter and decoder to display the count. It is an educational example of counter and display logic.",
+   "summary": "This design is a simple wall clock that uses the mains AC signal as its timebase. It counts the 50 Hz or 60 Hz input and drives a seven-segment display for the time. The design includes inputs for setting the time and selecting 12-hour or 24-hour display. The documentation is very thin, so the exact implementation cannot be fully determined.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7190,
+  "completion_tokens": 1787,
+  "total_tokens": 8977,
+  "cost": 0.0025102,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0025102,
+   "upstream_inference_prompt_cost": 0.001438,
+   "upstream_inference_completions_cost": 0.0010722
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0025102,
+ "elapsed_s": 114.6
+}

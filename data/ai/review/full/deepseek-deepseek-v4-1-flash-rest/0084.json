@@ -1,0 +1,262 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "80ef856649e5",
+  "80dc689c4595",
+  "b42c9d56699f",
+  "1189e93bf8f3",
+  "56fbf7563ba5",
+  "9391c26afde6"
+ ],
+ "results": [
+  {
+   "key": "80ef856649e5",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit binary multiplier using a combinational array structure. It multiplies two 4-bit numbers by generating partial products and summing them with full adders. The design is purely digital and produces an 8-bit product. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary": "This project implements a 4-bit binary multiplier using a combinational array structure. It multiplies two 4-bit numbers by generating partial products and summing them with full adders. The design is purely digital and produces an 8-bit product. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary_changed": false
+  },
+  {
+   "key": "80dc689c4595",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit binary multiplier using a combinational array structure. It multiplies two 4-bit numbers by generating partial products and summing them with full adders. The design is purely digital and produces an 8-bit product. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary": "This project implements a 4-bit binary multiplier using a combinational array structure. It multiplies two 4-bit numbers by generating partial products and summing them with full adders. The design is purely digital and produces an 8-bit product. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary_changed": false
+  },
+  {
+   "key": "b42c9d56699f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The source describes an oscillator, not a clock generation circuit; no clock output is documented."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "The source does not state the design is built from discrete transistors; analog language alone is not evidence."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting only of a one-line description and minimal test instructions."
+    }
+   ],
+   "notes": "Removed undocumented clock-generator and transistor-level tags; added insufficient-doc given the very thin documentation.",
+   "tags_before": [
+    "oscillator",
+    "analog",
+    "clock-generator",
+    "ring-oscillator",
+    "transistor-level"
+   ],
+   "tags": [
+    "oscillator",
+    "analog",
+    "ring-oscillator",
+    "insufficient-doc"
+   ],
+   "summary_before": "This analog block implements a very slow ring oscillator whose output is brought out on two analog pins. It is used by powering the board at 1.8 V and observing the signal on analog pins 0 and 1. The documentation is extremely thin, giving only a one-line description and no schematic, frequency measurement, or test results, so the exact topology and performance are unclear. The design is notable for its extremely low oscillation frequency and its use of the analog I/O pins.",
+   "summary": "This analog block implements a very slow ring oscillator whose output is brought out on two analog pins. It is used by powering the board at 1.8 V and observing the signal on analog pins 0 and 1. The documentation is extremely thin, giving only a one-line description and no schematic, frequency measurement, or test results, so the exact topology and performance are unclear. The design is notable for its extremely low oscillation frequency and its use of the analog I/O pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "1189e93bf8f3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "systolic-array",
+     "reason": "The design is a 1D cellular automaton with a shift register, not a systolic array structure."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "No dedicated compute acceleration hardware is described; it is a display-oriented cellular automaton."
+    },
+    {
+     "tag": "prng",
+     "reason": "The design implements Rule 30 for display, not a pseudo-random number generator; the text only notes historical use of Rule 30 as an RNG."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "No demoscene style showcase is claimed; it is a faithful cellular automaton visualization."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game-of-life",
+     "reason": "Implements a 1D cellular automaton (Rule 30), matching the cellular automaton domain tag."
+    },
+    {
+     "tag": "cellular-automaton",
+     "reason": "The design explicitly implements a cellular automaton."
+    }
+   ],
+   "notes": "Replaced unrelated accelerator/prng/demoscene tags with cellular-automaton and game-of-life; summary corrected to match the documented Rule 30 VGA implementation.",
+   "tags_before": [
+    "systolic-array",
+    "accelerator",
+    "vga",
+    "display",
+    "graphics",
+    "prng",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "graphics",
+    "game-of-life",
+    "cellular-automaton"
+   ],
+   "summary_before": "This is a systolic array accelerator that drives a VGA display to show visual patterns. It includes a graphics output and uses a PRNG for pattern generation. The design is implemented in Verilog and targets the Tiny Tapeout platform. It is intended for demoscene-style visual showcases.",
+   "summary": "This project implements Wolfram Rule 30, a 1D cellular automaton, in hardware. It updates a 320-bit generation register each row and displays 480 generations on a VGA monitor using the Tiny VGA pinout. Two input pins select among four colour palettes. It produces the characteristic asymmetric triangular chaos pattern expanding from a centre seed.",
+   "summary_changed": true
+  },
+  {
+   "key": "56fbf7563ba5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design is a clock/clock display, not a clock signal generator."
+    },
+    {
+     "tag": "rtc",
+     "reason": "No real-time clock calendar features are described; it counts hours/minutes and seconds for display."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "Drives a 7-segment display."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is partial (author tested on hardware)."
+    }
+   ],
+   "notes": "Removed inaccurate clock-generator/rtc tags; added display and silicon-tested (partial status).",
+   "tags_before": [
+    "clock-generator",
+    "7-segment",
+    "timer",
+    "button",
+    "rtc"
+   ],
+   "tags": [
+    "7-segment",
+    "timer",
+    "button",
+    "display",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a clock generator and display driver. It uses a 7-segment display and includes timer and button inputs. The design also includes a real-time clock (RTC) functionality.",
+   "summary": "This design is a multiplexed digital clock that counts hours in 24-hour format and minutes, with dots indicating 15/30/45/60 seconds. It drives a 4-digit 7-segment display via multiplexing, using uo_out for segments and uio_out[3:0] for digit selection. Two pull-up button inputs increase hours or minutes, and inputs configure anode/cathode and output negation. It has been partially tested on silicon.",
+   "summary_changed": true
+  },
+  {
+   "key": "9391c26afde6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "No memory or storage array is described; it uses flip-flops as a shift register."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No decoding logic is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "The D flip-flops are explicitly used to shift segments like a shift register."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The design is based on D flip-flops with reset and sequencing logic."
+    },
+    {
+     "tag": "education",
+     "reason": "The project demonstrates 7-segment sequencing and flip-flop logic, commonly educational."
+    }
+   ],
+   "notes": "Removed invented memory/8-bit data/RW details; tags corrected to shift-register/sequential-logic and summary re-aligned to the documented flip-flop segment spinner.",
+   "tags_before": [
+    "memory",
+    "7-segment",
+    "decoder",
+    "multiplexer",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "multiplexer",
+    "wokwi",
+    "shift-register",
+    "sequential-logic",
+    "education"
+   ],
+   "summary_before": "This project is a memory design with SRAM, 7-segment display, decoder, and multiplexer, created with Wokwi. It has three address bits, eight bidirectional data pins, and a read/write control, with outputs also driving a 7-segment display. To test, users connect address and data pins, set R/W high and clock to write, or set R/W low to read without clocking. The design is intended for educational purposes.",
+   "summary": "This project uses D flip-flops with reset to sequence the outer six segments of a 7-segment display in a spin pattern. A multiplexer, controlled by input IN0, allows the sequence to stop after six shifts, and further multiplexers reverse the direction and clear the display on reset. It targets a 2 Hz clock and is intended to run on the Wokwi simulator. Test it by setting the clock and observing the display while pressing reset or toggling IN0.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6859,
+  "completion_tokens": 1561,
+  "total_tokens": 8420,
+  "cost": 0.0039309,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039309,
+   "upstream_inference_prompt_cost": 0.0020577,
+   "upstream_inference_completions_cost": 0.0018732
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039309,
+ "elapsed_s": 40.8
+}

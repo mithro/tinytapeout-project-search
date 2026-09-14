@@ -1,0 +1,243 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5ee573725504",
+  "c31fc13302f5",
+  "f51f86a12e12",
+  "fca626aadb50",
+  "2340a3a82666",
+  "6dd4bde902ae"
+ ],
+ "results": [
+  {
+   "key": "5ee573725504",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate implementation is described in the source."
+    },
+    {
+     "tag": "led",
+     "reason": "The output is a 7-segment display, not discrete LEDs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Description is 'To be determine' and the design function is undocumented."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the actual logic is not described."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and led tags; added incomplete and insufficient-doc since the design function is undocumented.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "logic-gate",
+    "led"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design uses seven input pins and provides seven output pins to drive a seven-segment display. The specific logic implemented is not described, so its exact function is unclear. It can be tested by connecting the outputs to a seven-segment display. External hardware required is a seven-segment display.",
+   "summary": "This design uses seven input pins and provides seven output pins to drive a seven-segment display. The specific logic implemented is not described, so its exact function is unclear. It can be tested by connecting the outputs to a seven-segment display. External hardware required is a seven-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "c31fc13302f5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counting circuit is described; the source only says it produces numbers 1-3."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the internal logic cannot be determined."
+    }
+   ],
+   "notes": "Removed unsupported counter and education tags; added insufficient-doc for the sparse documentation.",
+   "tags_before": [
+    "decoder",
+    "display",
+    "led",
+    "wokwi",
+    "education",
+    "counter"
+   ],
+   "tags": [
+    "decoder",
+    "display",
+    "led",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design produces the numbers 1 through 3 and drives eight LED outputs. It is used by turning on a switch associated with a number and observing the LED display and output. No external hardware is required. The documentation is very thin, with only a one-line description and a brief testing note, so the internal logic cannot be determined.",
+   "summary": "This design produces the numbers 1 through 3 and drives eight LED outputs. It is used by turning on a switch associated with a number and observing the LED display and output. No external hardware is required. The documentation is very thin, with only a one-line description and a brief testing note, so the internal logic cannot be determined.",
+   "summary_changed": false
+  },
+  {
+   "key": "f51f86a12e12",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "FIFO is already tagged; generic memory tag is redundant and less specific."
+    }
+   ],
+   "add": [
+    {
+     "tag": "debouncer",
+     "reason": "The documentation states the design is based on a debouncing mechanism."
+    }
+   ],
+   "notes": "Removed redundant memory tag and added debouncer, which is explicitly mentioned in the documentation.",
+   "tags_before": [
+    "fifo",
+    "sequential-logic",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "fifo",
+    "sequential-logic",
+    "verilog",
+    "debouncer"
+   ],
+   "summary_before": "This project implements a synchronous FIFO with a 4-bit data width. It has inputs for write and read control, 4-bit data input, and outputs for full, empty, and 4-bit data output. The documentation mentions that it is based on a debouncing mechanism, but the testing procedure is listed as 'TBA' and no external hardware is required. The design is a basic first-in-first-out memory buffer.",
+   "summary": "This project implements a synchronous FIFO with a 4-bit data width. It has inputs for write and read control, 4-bit data input, and outputs for full, empty, and 4-bit data output. The documentation mentions that it is based on a debouncing mechanism, but the testing procedure is listed as 'TBA' and no external hardware is required. The design is a basic first-in-first-out memory buffer.",
+   "summary_changed": false
+  },
+  {
+   "key": "fca626aadb50",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "verilog"
+   ],
+   "summary_before": "This project implements a mixed-precision leaky integrate-and-fire (LIF) neuron that can compute either one neuron with a 24-bit membrane value and 8-bit weights or two neurons with 12-bit membrane values and 4-bit weights. It has 4 input pins for weights, a ready output, and two spike outputs for upper and lower neurons. The documentation is minimal, with testing instructions stating to apply weights and observe spikes, and no external hardware is required. The design is notable for its mixed-precision approach, but further details are lacking.",
+   "summary": "This project implements a mixed-precision leaky integrate-and-fire (LIF) neuron that can compute either one neuron with a 24-bit membrane value and 8-bit weights or two neurons with 12-bit membrane values and 4-bit weights. It has 4 input pins for weights, a ready output, and two spike outputs for upper and lower neurons. The documentation is minimal, with testing instructions stating to apply weights and observe spikes, and no external hardware is required. The design is notable for its mixed-precision approach, but further details are lacking.",
+   "summary_changed": false
+  },
+  {
+   "key": "2340a3a82666",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The title says 8x3 encoder but the documentation describes LED letter-A logic, indicating an unfinished or inconsistent submission."
+    }
+   ],
+   "notes": "Title and documentation contradict each other; escalated for a second opinion while removing unsupported education tag and adding incomplete.",
+   "tags_before": [
+    "encoder",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "encoder",
+    "led",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project is described as an 8x3 encoder but the documentation focuses on lighting LEDs to form the letter 'A' using NOT, MUX, and AND gates. It is tested by turning switches on and off to control the LEDs. No external hardware is listed. The documentation is inconsistent with the title and lacks detail about the encoder functionality.",
+   "summary": "This project is described as an 8x3 encoder but the documentation focuses on lighting LEDs to form the letter 'A' using NOT, MUX, and AND gates. It is tested by turning switches on and off to control the LEDs. No external hardware is listed. The documentation is inconsistent with the title and lacks detail about the encoder functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "6dd4bde902ae",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "The design includes flip-flop logic, so it is not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the exact function is not described."
+    }
+   ],
+   "notes": "Removed combinational since flip-flops make it sequential; added insufficient-doc for the sparse documentation.",
+   "tags_before": [
+    "logic-gate",
+    "flip-flop",
+    "led",
+    "wokwi",
+    "combinational",
+    "sequential-logic"
+   ],
+   "tags": [
+    "logic-gate",
+    "flip-flop",
+    "led",
+    "wokwi",
+    "sequential-logic",
+    "insufficient-doc"
+   ],
+   "summary_before": "This Wokwi design combines AND, NOT, and flip-flop logic gates to connect inputs IN0-IN3 to outputs OUT0-OUT2. The exact function is not precisely described beyond 'AND and NOT and FlipFlop logic gates', and the test method is simply observing LEDs. The project uses four inputs and three outputs; no external hardware other than LED indicators is mentioned. The documentation is very thin, making detailed assessment difficult.",
+   "summary": "This Wokwi design combines AND, NOT, and flip-flop logic gates to connect inputs IN0-IN3 to outputs OUT0-OUT2. The exact function is not precisely described beyond 'AND and NOT and FlipFlop logic gates', and the test method is simply observing LEDs. The project uses four inputs and three outputs; no external hardware other than LED indicators is mentioned. The documentation is very thin, making detailed assessment difficult.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5576,
+  "completion_tokens": 1205,
+  "total_tokens": 6781,
+  "cost": 0.001857828,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001857828,
+   "upstream_inference_prompt_cost": 0.000628728,
+   "upstream_inference_completions_cost": 0.0012291
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001857828,
+ "elapsed_s": 30.7
+}

@@ -1,0 +1,179 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "67265de102c3",
+  "fd5d452585a9",
+  "290d6db6e1e7",
+  "847f54511814",
+  "2088472351ad",
+  "98f2d4f81df7",
+  "94d140caf29a",
+  "12d00cb0b612",
+  "6eb2c3c700a4",
+  "b0505b32d64b"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "67265de102c3",
+   "summary": "This design generates Linear Timecode (LTC) for audio and video synchronisation, using counters to track time and frame count and serialising 80-bit biphase mark coded frames. It is driven by a 12 MHz clock and starts counting from 00:00:00:00 after reset, with the frame rate selected by two input pins for 24, 25, or 30 fps. The LTC output appears on a bidirectional pin and can be fed to an audio PMOD for levels usable by audio equipment, or connected directly to a logic analyser. The 29.97 fps mode is documented as not implemented, and the project is a small single-tile Verilog design.",
+   "tags": [
+    "audio",
+    "synchronizer",
+    "counter",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "fd5d452585a9",
+   "summary": "This is a 4-bit by 4-bit unsigned multiplier that produces an 8-bit product, built as a manual structural design from AND gates and 1-bit full adders. Two 4-bit operands are applied on the eight input pins and the eight product bits appear on the output pins. It was created for Lab 4 of NYU's digital logic course and requires no external hardware. Testing is done by editing a Python test file to add custom test cases, and the documentation is otherwise limited to a block diagram and a brief description.",
+   "tags": [
+    "multiplier",
+    "adder",
+    "structural",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "290d6db6e1e7",
+   "summary": "This project reads input from a Gamepad PMOD and displays the pressed buttons as green symbols on a VGA monitor. It uses the Tiny VGA PMOD pinout and a 25.175 MHz clock, and is intended to be run on the Tiny Tapeout demo board with both PMODs attached. After reset, pressing a gamepad button causes its corresponding symbol to appear on screen. It is a demonstration of combining the Gamepad and Tiny VGA PMODs, derived from the VGA Playground, and needs both external PMOD boards to operate.",
+   "tags": [
+    "gamepad",
+    "vga",
+    "pmod",
+    "video",
+    "display"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "847f54511814",
+   "summary": "This module computes the greatest common divisor of two 15-bit integers, taking the operands across the eight ui and eight uio input pins and returning a 7-bit result on the output pins. A request signal on uio[7] indicates when operands have been presented, and an acknowledge signal on uo[7] indicates when the first operand has been received and when the GCD is ready. The documented test procedure is to hold the first operand, raise request, wait for acknowledge, then present the second operand and read the result. It is a small single-tile Verilog design that expects buttons and LEDs as external hardware, and the documentation gives no details of the internal algorithm.",
+   "tags": [
+    "alu",
+    "education",
+    "synchronizer"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "2088472351ad",
+   "summary": "This is a toy neural network accelerator aimed at convolutional neural networks, containing 16-bit floating point add and multiply units using an approximation of the BF16 encoding. It supports a 4x2 convolution operation with streamed image pixels and an accumulate operation with optional bias and ReLU, all controlled by operation codes sent over a 16-bit input formed from ui_in and uio_in. Results are emitted as 16-bit values split over two clock cycles on the 8-bit output, so the user must know which cycles carry valid data. The Verilog is generated from a separate SystemVerilog repository that holds the full verification environment and software, both described as work in progress at tapeout time, and no specific external hardware is required beyond something to drive the sequences, such as the demo board's RP2040.",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "image-processing",
+    "floating-point",
+    "dsp"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 6,
+   "key": "fd5d452585a9",
+   "summary": "This project is a 16-bit experimental CPU called GUS16 with a serial port, PWM output, general purpose I/O and an external memory interface, with memory provided off-chip. It includes a bootloader that loads programs over the serial port, and the documented basic test is to connect at 115200 baud, 8N1, and send an 'L', which should be echoed back. More complete testing requires an external board with SRAM and address latches attached to the user PMOD connectors, and that memory board is noted as still pending design. The design is documented in an accompanying PDF and occupies a 1x2 tile area.",
+   "tags": [
+    "cpu",
+    "uart",
+    "bootloader",
+    "soc"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "94d140caf29a",
+   "summary": "This is a small SPI slave that receives 6-bit messages and drives the 7-segment display on the Tiny Tapeout carrier board. The first two bits of each message form a command that turns the decimal point on or off, and the remaining four bits select the digit to display; malformed commands turn the decimal point on with the rest of the display blank. The SPI signals SCLK, SS and MOSI are mapped to the clock and two input pins, and the seven segments plus decimal point appear on the eight outputs. It requires the carrier board's seven-segment display and a microcontroller to act as SPI master.",
+   "tags": [
+    "spi",
+    "7-segment",
+    "display"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "12d00cb0b612",
+   "summary": "This design is a 115200 baud UART transceiver that stores received characters in a 16-byte buffer and asynchronously drives four HPDL-1414 alphanumeric LED display modules. When the buffer fills, existing characters shift left to make room, a blinking cursor shows the input position, and Ctrl-H performs a backspace for editing. Testing is done by connecting a computer or microcontroller at 115200 baud, sending ASCII characters, and observing them on the HPDL-1414 modules. It requires the external HPDL-1414 PMOD module and uses a 12 MHz clock.",
+   "tags": [
+    "uart",
+    "display",
+    "pmod"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "6eb2c3c700a4",
+   "summary": "This project recreates the classic Checkers demo from VGA Playground, with each of its five layers generated by a different Python-based HDL: Amaranth, MyHDL, PyCDE, PyRTL and PyMTL3. It outputs VGA signals on the Tiny VGA PMOD pinout at a 25.175 MHz clock, and the eight input pins can be toggled to change the main, sub, foreground and background colours. The only external hardware needed is the TinyVGA PMOD and a screen, and the design is notable for demonstrating several Python HDLs in a single chip. It is essentially a visual demonstration rather than a functional application.",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "amaranth",
+    "myhdl"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "b0505b32d64b",
+   "summary": "This ASIC compresses ASCII characters into Huffman codes using a lookup table, taking a 7-bit ASCII character on the input pins with a load strobe on ui[7]. After loading, a valid output signal indicates when the Huffman code and its bit length are available on the uo and uio pins. Communication requires an RP2040 or external microcontroller to send ASCII input and read the compressed output. The documentation is brief and does not describe the code table or the internal implementation beyond the lookup table.",
+   "tags": [
+    "compression",
+    "encoder",
+    "lookup-table",
+    "ascii",
+    "verilog"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "98f2d4f81df7: key echoed as 'fd5d452585a9', matched by index"
+ ],
+ "usage": {
+  "prompt_tokens": 9487,
+  "completion_tokens": 1942,
+  "total_tokens": 11429,
+  "cost": 0.001310358,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001310358,
+   "upstream_inference_prompt_cost": 0.000929726,
+   "upstream_inference_completions_cost": 0.000380632
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001310358,
+ "elapsed_s": 93.4
+}

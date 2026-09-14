@@ -1,0 +1,326 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "0d7a50b7f908",
+  "5bbe959cd1d7",
+  "8bdcbb9bc024",
+  "849e2228cb34",
+  "a3461488c361",
+  "cce9e41d50a3"
+ ],
+ "results": [
+  {
+   "key": "0d7a50b7f908",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design performs step detection and magnitude computation, not digital signal processing as a primary domain."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "The SPI interface to the accelerometer is already captured by the spi tag; sensor-interface is redundant and not clearly evidenced as a generic sensor interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "biomedical",
+     "reason": "A pedometer is a health/activity monitoring application, fitting the biomedical domain."
+    },
+    {
+     "tag": "low-power",
+     "reason": "The title and description explicitly state ultra-low-power operation at 656 nW."
+    }
+   ],
+   "notes": "Removed dsp and sensor-interface as unsupported; added biomedical and low-power tags.",
+   "tags_before": [
+    "spi",
+    "accelerometer",
+    "sensor-interface",
+    "low-power",
+    "counter",
+    "dsp",
+    "asic",
+    "verilog"
+   ],
+   "tags": [
+    "spi",
+    "accelerometer",
+    "low-power",
+    "counter",
+    "asic",
+    "verilog",
+    "biomedical"
+   ],
+   "summary_before": "This ASIC implements a low-power pedometer that processes 48-bit SPI frames from an ADXL345 or MPU6050 MEMS accelerometer. It computes the magnitude of the 3-axis acceleration using the Alpha-Max Beta-Min algorithm and detects steps via threshold crossing with hysteresis and a gait regularity filter. The step count is output on eight pins, and a byte select pin allows reading the count in bytes. The design operates at 32.768 kHz and consumes only 656 nW, making it suitable for ultra-low-power applications.",
+   "summary": "This ASIC implements a low-power pedometer that processes 48-bit SPI frames from an ADXL345 or MPU6050 MEMS accelerometer. It computes the magnitude of the 3-axis acceleration using the Alpha-Max Beta-Min algorithm and detects steps via threshold crossing with hysteresis and a gait regularity filter. The step count is output on eight pins, and a byte select pin allows reading the count in bytes. The design operates at 32.768 kHz and consumes only 656 nW, making it suitable for ultra-low-power applications.",
+   "summary_changed": false
+  },
+  {
+   "key": "5bbe959cd1d7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design is a neural network accelerator, not a digital signal processing design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "audio",
+     "reason": "The design processes audio features for wake word detection."
+    },
+    {
+     "tag": "microphone",
+     "reason": "The system requires an external microphone for audio input."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The design pairs with an RP2040 for MFCC preprocessing."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The documentation states cocotb regression testing is used."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed dsp; added audio, microphone, rp2040, cocotb, and verilog tags.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "edge-ai",
+    "audio",
+    "fixed-point",
+    "dsp",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "edge-ai",
+    "audio",
+    "fixed-point",
+    "cocotb",
+    "verilog",
+    "microphone",
+    "rp2040"
+   ],
+   "summary_before": "This project is an 8-bit quantized LSTM neural network accelerator for real-time wake word detection, specifically the word 'NYALA'. It accepts 7-bit signed audio features and a valid strobe, and outputs a trigger signal, confidence level, and busy flag. The design includes RTL and gate-level verification with cocotb, and it requires an external microphone and an RP2040 preprocessor for MFCC extraction. Notable features include a privacy-first smart home application and a fully digital inference pipeline.",
+   "summary": "This project is an 8-bit quantized LSTM neural network accelerator for real-time wake word detection, specifically the word 'NYALA'. It accepts 7-bit signed audio features and a valid strobe, and outputs a trigger signal, confidence level, and busy flag. The design includes RTL and gate-level verification with cocotb, and it requires an external microphone and an RP2040 preprocessor for MFCC extraction. Notable features include a privacy-first smart home application and a fully digital inference pipeline.",
+   "summary_changed": false
+  },
+  {
+   "key": "8bdcbb9bc024",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The design is not explicitly intended for teaching or learning digital design."
+    },
+    {
+     "tag": "communication",
+     "reason": "Morse code translation is not a data communication protocol design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The design outputs to seven-segment displays."
+    },
+    {
+     "tag": "button",
+     "reason": "Input is via a push button."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The translation module uses a shift register to store characters."
+    },
+    {
+     "tag": "pmod",
+     "reason": "The design uses a Digilent Pmod SSD."
+    },
+    {
+     "tag": "led",
+     "reason": "An external LED blinks to help keep time."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The design is written in SystemVerilog."
+    }
+   ],
+   "notes": "Removed education and communication; added 7-segment, button, shift-register, pmod, led, and systemverilog tags.",
+   "tags_before": [
+    "education",
+    "communication",
+    "7-segment",
+    "button",
+    "shift-register",
+    "pmod",
+    "led"
+   ],
+   "tags": [
+    "7-segment",
+    "button",
+    "shift-register",
+    "pmod",
+    "led",
+    "systemverilog"
+   ],
+   "summary_before": "This SystemVerilog design translates Morse code entered via a push button into characters A-Z and displays the most recent two characters on seven-segment displays through a Digilent Pmod SSD. Timing rules distinguish dits (1 s hold), dahs (3 s hold), letter ends (3 s release), and word ends (7 s release), with an external LED blinking at 1 Hz to help the user keep time. It requires a tactile switch, an LED, and the Pmod SSD, and includes testbenches for the counting and translation modules. This project appears to be a duplicate of another Morse code translator entry with identical documentation and no silicon test results.",
+   "summary": "This SystemVerilog design translates Morse code entered via a push button into characters A-Z and displays the most recent two characters on seven-segment displays through a Digilent Pmod SSD. Timing rules distinguish dits (1 s hold), dahs (3 s hold), letter ends (3 s release), and word ends (7 s release), with an external LED blinking at 1 Hz to help the user keep time. It requires a tactile switch, an LED, and the Pmod SSD, and includes testbenches for the counting and translation modules. This project appears to be a duplicate of another Morse code translator entry with identical documentation and no silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "849e2228cb34",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "7-segment",
+    "lfsr",
+    "fsm",
+    "scoreboard",
+    "button",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "7-segment",
+    "lfsr",
+    "fsm",
+    "scoreboard",
+    "button",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "Dino-7 is a minimalist endless runner game inspired by the Chrome Dinosaur game, rendered on a single 7-segment display. It uses a finite state machine with idle, run, jump, hit, and score-display states, pseudo-random obstacle generation via a 32-bit LFSR, a hardware difficulty selector, and a retained high score. The game is controlled by a jump button on ui[0] and a reset button on ui[1], with optional switches for difficulty and LFSR seed selection. It requires a common-cathode 7-segment display and push buttons, and is notable for fitting a complete game into a single tile with a high-score memory.",
+   "summary": "Dino-7 is a minimalist endless runner game inspired by the Chrome Dinosaur game, rendered on a single 7-segment display. It uses a finite state machine with idle, run, jump, hit, and score-display states, pseudo-random obstacle generation via a 32-bit LFSR, a hardware difficulty selector, and a retained high score. The game is controlled by a jump button on ui[0] and a reset button on ui[1], with optional switches for difficulty and LFSR seed selection. It requires a common-cathode 7-segment display and push buttons, and is notable for fitting a complete game into a single tile with a high-score memory.",
+   "summary_changed": false
+  },
+  {
+   "key": "a3461488c361",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "gamepad",
+    "display",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "gamepad",
+    "display",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "This project is a simple implementation of the classic video game Pong. It generates a VGA video signal through the Tiny VGA Pmod and accepts input from a Gamepad Pmod, allowing two players to control paddles. The design was developed and verified on the Analogue Pocket and in the VGA Playground, with testing done visually rather than with an automated testbench. External hardware required includes a Gamepad Pmod and a Tiny VGA Pmod.",
+   "summary": "This project is a simple implementation of the classic video game Pong. It generates a VGA video signal through the Tiny VGA Pmod and accepts input from a Gamepad Pmod, allowing two players to control paddles. The design was developed and verified on the Analogue Pocket and in the VGA Playground, with testing done visually rather than with an automated testbench. External hardware required includes a Gamepad Pmod and a Tiny VGA Pmod.",
+   "summary_changed": false
+  },
+  {
+   "key": "cce9e41d50a3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "snake-game",
+     "reason": "The game is a worm growth game, not a snake-style arcade game."
+    },
+    {
+     "tag": "education",
+     "reason": "The design is not explicitly intended for teaching or learning digital design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led-matrix",
+     "reason": "The display is a 4x4 grid of LEDs driven by multiplexing."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "A multiplexer is used to drive the LED grid."
+    },
+    {
+     "tag": "debouncer",
+     "reason": "Button inputs are debounced."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "Button inputs are synchronized to prevent metastability."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed snake-game and education; added led-matrix, multiplexer, debouncer, synchronizer, and verilog tags.",
+   "tags_before": [
+    "snake-game",
+    "game",
+    "led",
+    "display",
+    "multiplexer",
+    "debouncer",
+    "synchronizer",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "led",
+    "display",
+    "multiplexer",
+    "debouncer",
+    "synchronizer",
+    "verilog",
+    "led-matrix"
+   ],
+   "summary_before": "Wormy is a simple snake-like game where a worm grows by eating and must avoid colliding with itself. It is played using four buttons that are debounced and synchronized to prevent metastability. The game state is displayed on a 4x4 grid of LEDs driven by a multiplexing scheme using eight outputs. The design is educational, explaining concepts such as multiplexing and button filtering, and is tested by observing a moving and growing pixel after reset.",
+   "summary": "Wormy is a simple snake-like game where a worm grows by eating and must avoid colliding with itself. It is played using four buttons that are debounced and synchronized to prevent metastability. The game state is displayed on a 4x4 grid of LEDs driven by a multiplexing scheme using eight outputs. The design is educational, explaining concepts such as multiplexing and button filtering, and is tested by observing a moving and growing pixel after reset.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8881,
+  "completion_tokens": 1761,
+  "total_tokens": 10642,
+  "cost": 0.0038367,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0038367,
+   "upstream_inference_prompt_cost": 0.0017235,
+   "upstream_inference_completions_cost": 0.0021132
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0038367,
+ "elapsed_s": 10.0
+}

@@ -1,0 +1,194 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "af4cbb7ace35",
+  "6debe1974dca",
+  "36eeae1033e5",
+  "3cc8adac9ef0",
+  "6e7f4956a2f6",
+  "2b44e0a93415",
+  "e709744c4d80",
+  "32ccaa366204",
+  "92c73a46a5cf",
+  "a151966cfa23"
+ ],
+ "results": [
+  {
+   "key": "af4cbb7ace35",
+   "tags": [
+    "vga",
+    "svga",
+    "video",
+    "display",
+    "playground",
+    "experiment"
+   ],
+   "summary": "This project is a playground for (S)VGA experiments implemented in Verilog. It drives a VGA or SVGA monitor through the standard Tiny VGA pinout, with the eight outputs carrying the two-bit RGB colour signals plus horizontal and vertical sync. Testing simply means running it with a VGA PMOD and a monitor attached. The documentation is very thin, giving no detail on what the experiments actually display or how they are configured.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6debe1974dca",
+   "tags": [
+    "audio",
+    "synthesizer",
+    "music",
+    "fm-synthesis",
+    "ym2413",
+    "opl",
+    "dac",
+    "pwm",
+    "sound"
+   ],
+   "summary": "This design is a Verilog implementation of the YM2413, the OPL-series FM synthesis audio chip, based on the IKA OPLL core. It accepts an 8-bit data bus plus register latch, chip select and write strobes, and produces audio either as an 8-bit parallel DAC output or as a PWM signal on a bidirectional pin. It can be used with an Audio PMOD on the bidirectional pins or an R2D DAC on the output pins. The documentation is largely a placeholder pointing to the upstream IKAOPLL README, so the on-chip details are not described here.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "36eeae1033e5",
+   "tags": [
+    "analog",
+    "oscillator",
+    "relaxation-oscillator",
+    "transistor-level",
+    "capacitor",
+    "enable"
+   ],
+   "summary": "This is an analog relaxation oscillator whose frequency is set by external capacitor values on its two analog pins. It has two digital enable inputs and complementary Q and Qn outputs. It is tested by observing the output waveform on an oscilloscope and requires no external hardware beyond the capacitors. The documentation is minimal, consisting of a few short lines, so details such as the intended frequency range are not given.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3cc8adac9ef0",
+   "tags": [
+    "neural-network",
+    "reservoir-computing",
+    "machine-learning",
+    "linear",
+    "8-bit",
+    "asic"
+   ],
+   "summary": "This design implements a lightweight linear reservoir computing network in Verilog, with a 4x4 grid of neurons each connected to its four neighbours. Eight inputs feed the reservoir, and the even and odd neuron outputs are exposed on the bidirectional and output pins respectively, updated alternately in a checkerboard pattern. It was verified in simulation against reference inputs and outputs generated in Julia, and needs only a PCB to use. The design uses 8-bit values throughout and omits a nonlinear activation such as tanh, which the author notes may degrade performance relative to a true reservoir computer.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6e7f4956a2f6",
+   "tags": [
+    "cpu",
+    "brainfuck",
+    "interpreter",
+    "uart",
+    "rom",
+    "serial",
+    "debug"
+   ],
+   "summary": "TinyBF is a complete hardware Brainfuck interpreter built as a small CPU that fits in a single Tiny Tapeout tile. It communicates over UART at 38400 8N1 and runs a hardcoded demonstration program stored in ROM, with debug pins exposing the program counter, data pointer and cell values. A UART adapter is required, and a logic analyser or push button is optional for monitoring and manual start/halt control. Because the program is fixed in ROM, it serves as a demonstration platform rather than a general-purpose Brainfuck machine.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2b44e0a93415",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "counter",
+    "enable",
+    "taps",
+    "clock"
+   ],
+   "summary": "This Verilog design is a multistage ring oscillator with an externally selectable length, an enable input and a counter. Three input pins select the oscillator tap and eight output pins provide the counter outputs. The project has no documentation beyond its title and pin names, so the exact tap selection scheme and counter behaviour cannot be confirmed from the provided text. It appears intended as a clock or oscillator experiment, but this is inferred rather than documented.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "e709744c4d80",
+   "tags": [
+    "audio",
+    "synthesizer",
+    "midi",
+    "music",
+    "square-wave",
+    "pwm",
+    "oscillator",
+    "polyphonic"
+   ],
+   "summary": "This SystemVerilog design decodes MIDI input and generates up to four simultaneous square-wave voices, each routed to its own output pin for external mixing. Each oscillator responds to a different MIDI channel, and a separate PWM output encodes the number of active voices for use as a gain control after low-pass filtering. A MIDI source such as a controller or DAW is needed, along with optional mixing circuitry and a speaker with a driver to hear the result. The voice count is limited by the available area and can be changed via a parameter if space permits.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "32ccaa366204",
+   "tags": [
+    "analog",
+    "opamp",
+    "transistor-level",
+    "sky130",
+    "buffer",
+    "low-power",
+    "education"
+   ],
+   "summary": "This analog project contains three low-power single-ended two-stage operational amplifiers designed in the SKY130 process, intended as non-inverting unity-gain buffers for 1-10 kHz signals. Three digital enable pins select which of the three student submissions is active, and the analog pins provide a reference current, differential inputs and a single-ended output. Testing is planned with an AD03 board to measure linearity, gain-bandwidth product, offset voltage and current, and power consumption. An external current source is required for biasing, and the design originates from an AICD course tapeout.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "92c73a46a5cf",
+   "tags": [
+    "spi",
+    "slave",
+    "gpio",
+    "lfsr",
+    "pwm",
+    "timer",
+    "capture",
+    "register-map",
+    "vhdl"
+   ],
+   "summary": "This VHDL design is an SPI slave component with an 8-bit address and data interface, a 21-register map, GPIO, an LFSR with serial output, and a timer with PWM and edge capture. It is intended as a demo component for the Cynergy4MIE project and the author's master's thesis. A PMOD SPI master or any USB-to-SPI master can drive it, and LEDs and buttons can be attached to the GPIO pins. The SPI protocol requires a pause of at least three system clock cycles between address and data transactions.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a151966cfa23",
+   "tags": [
+    "7-segment",
+    "display",
+    "animation",
+    "counter",
+    "buttons",
+    "education"
+   ],
+   "summary": "This Verilog design drives a 7-segment display with a set of switchable animations and a speed-adjustable counter, defaulting to showing digits 0 to 9 changing once per second. Four input pins connect to buttons that increment or decrement the animation selection and raise or lower the speed. It needs a 7-segment display plus buttons and a breadboard for the controls. The documentation is brief but sufficient to describe the intended behaviour.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4304,
+  "completion_tokens": 1860,
+  "total_tokens": 6164,
+  "cost": 0.004404,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004404,
+   "upstream_inference_prompt_cost": 0.001614,
+   "upstream_inference_completions_cost": 0.00279
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004404,
+ "elapsed_s": 8.3
+}

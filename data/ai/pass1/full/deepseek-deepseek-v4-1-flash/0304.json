@@ -1,0 +1,199 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "dda4e7ddbe56",
+  "877ef51e4e49",
+  "edddd140760d",
+  "490c031863d1",
+  "24c14c6ae672",
+  "e5d32c807846",
+  "aa2f8d6ed94e",
+  "1189e93bf8f3",
+  "7465dd457290",
+  "9ab31cbecda3"
+ ],
+ "results": [
+  {
+   "key": "dda4e7ddbe56",
+   "tags": [
+    "adc",
+    "analog",
+    "comparator",
+    "sample-and-hold",
+    "ramp-adc",
+    "analog-frontend",
+    "transistor-level",
+    "mux"
+   ],
+   "summary": "This is a two-channel 8-bit single-slope ramp ADC built from analog blocks including a bias generator, linear ramp, 2:1 transmission-gate MUX, sample-and-hold, and a two-stage comparator, with a LibreLane-synthesized digital counter and output register. The selected input is compared against an on-chip ramp, and the 8-bit count at the first crossing is latched and presented on uo_out, with a sample-valid pulse on uio_out[0]. It needs an external clock around 4 MHz, a 0 to 1 V analog signal on ua[0] or ua[1], logic inputs for channel select and sample-and-hold bypass, and a logic analyzer or read-back on the digital outputs. One conversion takes 256 clock cycles, giving roughly 16 kSPS, and the documentation notes that two-point calibration corrects gain and offset errors.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "877ef51e4e49",
+   "tags": [
+    "bandgap",
+    "analog",
+    "voltage-reference",
+    "ptat",
+    "temperature-sensor",
+    "transistor-level",
+    "bjt"
+   ],
+   "summary": "This is a Brokaw bandgap voltage reference built with SKY130 PNP BJTs, using a PTAT current generator and a summing amplifier with OTA feedback to produce a stable reference near 1.2 V. It is tested by applying 1.8 V VDD and measuring the VRef output, then sweeping temperature from -40 to 125 degrees Celsius to characterize stability. No external hardware is required beyond the supply. The documentation is brief and does not report measured silicon results, so the actual reference value and temperature behavior are only expected rather than confirmed.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "edddd140760d",
+   "tags": [
+    "game",
+    "reaction-time",
+    "7-segment",
+    "led",
+    "buzzer",
+    "button",
+    "timer",
+    "education"
+   ],
+   "summary": "This is a reaction-time game for the Simon Says board in which the player presses a yellow button to start, waits through a random 2 to 5 second delay, and then presses a blue button as quickly as possible when the green LED and buzzer signal GO. The measured reaction time is shown on a two-digit seven-segment display, and pressing early triggers an error state. It uses the board's buttons, LEDs, buzzer, and two seven-segment digits, so no additional external hardware is needed. The documentation is short and does not describe the internal timing or random-delay implementation in detail.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "490c031863d1",
+   "tags": [
+    "alu",
+    "risc-v",
+    "rv32i",
+    "barrel-shifter",
+    "comparator",
+    "cpu",
+    "education",
+    "ieee"
+   ],
+   "summary": "This is a combinational 32-bit RISC-V rv32i ALU that implements ADD, SUB, AND, OR, XOR, SLL, SRL, SRA, SLT, and SLTU, with a barrel shifter for shifts and signed and unsigned comparison logic. In this tile the operands are reduced to 4 bits each on ui_in, the operation is selected through uio_in using the standard RISC-V ALU opcode encoding, and the 8-bit result appears on uo_out. It is tested by applying operand and opcode values and checking the documented expected results, requiring no external hardware beyond the Tiny Tapeout board. The design was extracted from a complete rv32imsu SoC implemented in Synopsys DC Shell and ICC2 on sky130A at the University of Central Florida for a class, and the tile exposes only a reduced-width version of the full 32-bit datapath.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "24c14c6ae672",
+   "tags": [
+    "risc-v",
+    "rv32i",
+    "branch",
+    "comparator",
+    "cpu",
+    "education",
+    "ieee",
+    "state-machine"
+   ],
+   "summary": "This is a purely combinational RISC-V rv32i branch condition unit that evaluates two 4-bit operands against the six branch conditions BEQ, BNE, BLT, BGE, BLTU, and BGEU, with signed comparisons using two's complement arithmetic. Operand A is on ui_in[7:4], operand B on ui_in[3:0], the function is selected by uio_in[2:0] using the RISC-V funct3 encoding, and the branch-taken result appears on uo_out[0]. It is tested by applying the documented operand and function values and checking the expected branch-taken bit, with no external hardware required. The unit is a companion to the rv32i ALU tile and was part of a complete rv32imsu SoC designed in Synopsys DC Shell and ICC2 on sky130A at UCF for a class.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e5d32c807846",
+   "tags": [
+    "spi",
+    "matrix-multiply",
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "ternary",
+    "multiplier",
+    "dsp"
+   ],
+   "summary": "This is a 4x4 matrix multiply accelerator for BitNet b1.58-style ternary weights, multiplying unsigned 8-bit activations by 2-bit ternary weights using add, subtract, or skip instead of a hardware multiplier, with two parallel processing lanes. It is controlled over SPI with command bytes that select writing matrix A, writing matrix B, starting and polling control/status, or reading the signed 20-bit result matrix C, and it exposes busy and done flags. An SPI master such as the RP2040 on the Tiny Tapeout demo board or an external microcontroller is required. A full 4x4 result takes 32 compute cycles excluding SPI transfer overhead, and the accumulator range for ternary weights is documented as -1020 to +1020 per element.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "aa2f8d6ed94e",
+   "tags": [
+    "matrix-multiply",
+    "systolic-array",
+    "multiplier",
+    "dsp",
+    "accumulator",
+    "overflow",
+    "manual-step"
+   ],
+   "summary": "This is a 2x2 systolic array matrix multiplier that operates on signed 4-bit inputs with 9-bit accumulators and includes overflow detection, sign reconstruction, and a manual step mode. Data is loaded as bytes on ui_in, control signals such as write enable, start, manual clock, and step mode are on uio_in, and the 8-bit result appears on uo_out with status flags including busy, output valid, overflow, and accumulator sign. The documentation provided is limited to the title, pin names, and one-line description, so the exact loading sequence and result readout protocol are not fully specified. No external hardware beyond the Tiny Tapeout board is indicated.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "1189e93bf8f3",
+   "tags": [
+    "vga",
+    "cellular-automaton",
+    "rule-30",
+    "display",
+    "animation",
+    "random-number-generator",
+    "graphics"
+   ],
+   "summary": "This design implements Wolfram's Rule 30 one-dimensional cellular automaton in hardware, updating a 320-bit register in parallel each row and rendering 480 generations as a 640x480 VGA image. It starts each frame from a single seed cell at the center and displays the characteristic asymmetric triangular chaos pattern, with four selectable color palettes chosen by ui_in[1:0]. It requires a VGA monitor connected through the Tiny VGA Pmod and a 25 MHz clock, with reset asserted and released to begin. The documentation notes that Rule 30 was used as Mathematica's random number generator, and the design is presented as a direct silicon implementation of the rule.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7465dd457290",
+   "tags": [
+    "vga",
+    "systolic-array",
+    "matrix-multiply",
+    "ternary",
+    "display",
+    "heatmap",
+    "graphics",
+    "demo"
+   ],
+   "summary": "This is a graphics demo built around a 4x4 ternary systolic array of multiply-accumulate processing elements, with a control path feeding hardcoded matrix rows and columns and a 640x480 VGA timing generator. The 16 output values are rendered directly as a fullscreen 4x4 heatmap, with positive values green, negative values red, and zero blue, and the demo is selected by ui_in[1:0]. It requires only a VGA monitor through the Tiny VGA Pmod, and all uio pins are unused. The documentation describes reduced RTL checks and cocotb tests for VGA sync timing, mode 0 output values, and mode-switch recomputation, but does not report measured silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9ab31cbecda3",
+   "tags": [
+    "vga",
+    "display",
+    "checkered-pattern",
+    "animation",
+    "graphics",
+    "education"
+   ],
+   "summary": "This design displays a moving checkered pattern on a VGA monitor, with the code described as pulled from a VGA playground. It uses the standard Tiny VGA pin mapping on uo_out and is tested simply by connecting a VGA display and letting it run. The only external hardware required is a VGA display, and the clock is set to 25.175 MHz. The documentation is very thin, providing no detail on the pattern generation, resolution, or any configurable inputs.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5959,
+  "completion_tokens": 2156,
+  "total_tokens": 8115,
+  "cost": 0.00273394,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00273394,
+   "upstream_inference_prompt_cost": 0.00131098,
+   "upstream_inference_completions_cost": 0.00142296
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00273394,
+ "elapsed_s": 34.5
+}

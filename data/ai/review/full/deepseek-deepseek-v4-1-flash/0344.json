@@ -1,0 +1,236 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "85cd29f032d7",
+  "bec3f14243ea",
+  "7f616bf0fe39",
+  "594a01608cba",
+  "48b66b7e3983",
+  "d5689f913a5f"
+ ],
+ "results": [
+  {
+   "key": "85cd29f032d7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synchronizer",
+     "reason": "The two-flop synchronizer on the load input is an implementation detail, not the main function of the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "buzzer",
+     "reason": "The documentation explicitly describes driving a piezo buzzer on the key line as an external hardware option."
+    }
+   ],
+   "notes": "Removed synchronizer; its two-flop load synchronizer is incidental, and added buzzer because the documentation mentions a piezo buzzer output option.",
+   "tags_before": [
+    "communication",
+    "ascii",
+    "audio",
+    "pwm",
+    "7-segment",
+    "synchronizer"
+   ],
+   "tags": [
+    "communication",
+    "ascii",
+    "audio",
+    "pwm",
+    "7-segment",
+    "buzzer"
+   ],
+   "summary_before": "This design converts ASCII characters to ITU Morse code, streaming the elements on a key line and generating a PWM sidetone for the TT Audio Pmod. It also displays status bits on the 7-segment display, with options for speed selection, tone selection, and auto-repeat. The chip handles all Morse timing and provides a handshake protocol so a host can stream text without dropping characters. It is tested with a cocotb testbench and can be driven from a microcontroller using the ttboard SDK.",
+   "summary": "This design converts ASCII characters to ITU Morse code, streaming the elements on a key line and generating a PWM sidetone for the TT Audio Pmod. It also displays status bits on the 7-segment display, with options for speed selection, tone selection, and auto-repeat. The chip handles all Morse timing and provides a handshake protocol so a host can stream text without dropping characters. It is tested with a cocotb testbench and can be driven from a microcontroller using the ttboard SDK.",
+   "summary_changed": false
+  },
+  {
+   "key": "bec3f14243ea",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplexer",
+     "reason": "The output multiplexer is not described as the primary function and the design is an analog opamp tile; 'multiplexer' implies a standalone digital selection circuit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed multiplexer; the design is an analog opamp with a simple output mux, not a multiplexer circuit.",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "multiplexer"
+   ],
+   "tags": [
+    "opamp",
+    "analog"
+   ],
+   "summary_before": "This tile contains four instances of a 1.8 V rail-to-rail input and output operational amplifier whose inputs are shared and whose outputs are multiplexed onto a single analog pin. An instance is selected with two digital select pins and enabled with a separate enable pin. The documentation notes that compensation is not very good, so the amplifier may not be unity-gain stable in practice, and it is optimized for roughly 10 pF of load capacitance. Testing requires external analog signal sources and a load on the selected output, and the documentation is otherwise brief.",
+   "summary": "This tile contains four instances of a 1.8 V rail-to-rail input and output operational amplifier whose inputs are shared and whose outputs are multiplexed onto a single analog pin. An instance is selected with two digital select pins and enabled with a separate enable pin. The documentation notes that compensation is not very good, so the amplifier may not be unity-gain stable in practice, and it is optimized for roughly 10 pF of load capacitance. Testing requires external analog signal sources and a load on the selected output, and the documentation is otherwise brief.",
+   "summary_changed": false
+  },
+  {
+   "key": "7f616bf0fe39",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pattern-generator",
+     "reason": "The design is a PRNG, not a test pattern generator; the vocabulary definition is for digital test pattern generation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed pattern-generator; the design is a PRNG, not a digital test pattern generator.",
+   "tags_before": [
+    "prng",
+    "lfsr",
+    "pattern-generator"
+   ],
+   "tags": [
+    "prng",
+    "lfsr"
+   ],
+   "summary_before": "This design implements a compact 16-bit Galois LFSR-based pseudo-random number generator with deterministic self-seeding, automatic polynomial switching, repetition detection, and cooldown control. It uses three internally selectable polynomials and generates an 8-bit output from the lower bits of the LFSR state. The PRNG is enabled via an input pin and seeded externally through 7 bits, with an 8-bit repetition monitor that triggers polynomial switching and reseeding when consecutive outputs repeat. The design is verified with a cocotb testbench covering reset, seeding, LFSR operation, and adaptive behavior.",
+   "summary": "This design implements a compact 16-bit Galois LFSR-based pseudo-random number generator with deterministic self-seeding, automatic polynomial switching, repetition detection, and cooldown control. It uses three internally selectable polynomials and generates an 8-bit output from the lower bits of the LFSR state. The PRNG is enabled via an input pin and seeded externally through 7 bits, with an 8-bit repetition monitor that triggers polynomial switching and reseeding when consecutive outputs repeat. The design is verified with a cocotb testbench covering reset, seeding, LFSR operation, and adaptive behavior.",
+   "summary_changed": false
+  },
+  {
+   "key": "594a01608cba",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "calculator",
+     "reason": "The design has opcode selection and no keypad or switch-based decimal input and numeric display interface; it is an ALU with a hex display, not a standalone calculator."
+    },
+    {
+     "tag": "education",
+     "reason": "The documentation does not state that the design is intended for teaching or learning; it is a physical-design experiment/demo."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed calculator and education; the project is an ALU demo with a hex display and a physical-design experiment, not a keypad calculator or explicitly educational design.",
+   "tags_before": [
+    "alu",
+    "7-segment",
+    "display",
+    "calculator",
+    "education",
+    "combinational"
+   ],
+   "tags": [
+    "alu",
+    "7-segment",
+    "display",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This design is a 4-bit ALU that displays its result on a hexadecimal 7-segment display, supporting operations such as addition, subtraction, logic, shifts, and equality. It is a combinational circuit with no clock, and it provides both the segment outputs and a binary result with a zero flag on the bidirectional pins. The design is intended for use with the Tiny Tapeout demo board and includes a Python demo script for testing all input combinations. Notable aspects include physical-design experiments and the integration of a 7-segment decoder.",
+   "summary": "This design is a 4-bit ALU that displays its result on a hexadecimal 7-segment display, supporting operations such as addition, subtraction, logic, shifts, and equality. It is a combinational circuit with no clock, and it provides both the segment outputs and a binary result with a zero flag on the bidirectional pins. The design is intended for use with the Tiny Tapeout demo board and includes a Python demo script for testing all input combinations. Notable aspects include physical-design experiments and the integration of a 7-segment decoder.",
+   "summary_changed": false
+  },
+  {
+   "key": "48b66b7e3983",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The documentation does not describe the project as teaching or learning material; it is an AI-generation benchmark experiment."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed education; the project is an AI-generated benchmark experiment, not explicitly for teaching, and added verilog since the source is Verilog.",
+   "tags_before": [
+    "education",
+    "fsm",
+    "lfsr",
+    "bcd",
+    "shift-register",
+    "sequence-detector",
+    "prng",
+    "verilog"
+   ],
+   "tags": [
+    "fsm",
+    "lfsr",
+    "bcd",
+    "shift-register",
+    "sequence-detector",
+    "prng",
+    "verilog"
+   ],
+   "summary_before": "QTChallenges implements eight different benchmark circuits, all generated by ChatGPT-4, selectable via three input pins. The benchmarks include a shift register, sequence generator, sequence detector, ABRO state machine, binary-to-BCD converter, LFSR, traffic light controller, and dice roller. While all designs passed their ChatGPT-created testbenches, several are functionally incorrect due to inadequate testbenches, such as the dice roller which has a constant output. The project serves as an experiment in AI-generated hardware design and includes full transcripts of the ChatGPT conversations.",
+   "summary": "QTChallenges implements eight different benchmark circuits, all generated by ChatGPT-4, selectable via three input pins. The benchmarks include a shift register, sequence generator, sequence detector, ABRO state machine, binary-to-BCD converter, LFSR, traffic light controller, and dice roller. While all designs passed their ChatGPT-created testbenches, several are functionally incorrect due to inadequate testbenches, such as the dice roller which has a constant output. The project serves as an experiment in AI-generated hardware design and includes full transcripts of the ChatGPT conversations.",
+   "summary_changed": false
+  },
+  {
+   "key": "d5689f913a5f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "The clock generation is a minor support function; the design is primarily a LED pattern sequencer, and the tag overemphasizes an auxiliary block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed clock-divider; it is a secondary support block and the design is primarily a LED pattern sequencer.",
+   "tags_before": [
+    "led",
+    "pattern-generator",
+    "lfsr",
+    "prng",
+    "sequencer",
+    "clock-divider",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "led",
+    "pattern-generator",
+    "lfsr",
+    "prng",
+    "sequencer",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This project is a multi-pattern LED sequencer that drives eight LEDs with thirty-one selectable patterns plus a demo mode that cycles through all of them. Pattern selection is set by five input pins, and two further pins choose between 1 Hz, 2 Hz, 5 Hz and 50 Hz clock rates derived from the 10 MHz input by an internal divider. Patterns are generated using counters, feedback loops and an LFSR for pseudo-random sequences, and the design is split into a PLL/divider module and the main MPLS module. Testing is done through Icarus Verilog testbenches, with a full-pattern simulation and a longer PLL simulation that can produce very large VCD files.",
+   "summary": "This project is a multi-pattern LED sequencer that drives eight LEDs with thirty-one selectable patterns plus a demo mode that cycles through all of them. Pattern selection is set by five input pins, and two further pins choose between 1 Hz, 2 Hz, 5 Hz and 50 Hz clock rates derived from the 10 MHz input by an internal divider. Patterns are generated using counters, feedback loops and an LFSR for pseudo-random sequences, and the design is split into a PLL/divider module and the main MPLS module. Testing is done through Icarus Verilog testbenches, with a full-pattern simulation and a longer PLL simulation that can produce very large VCD files.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 13788,
+  "completion_tokens": 1609,
+  "total_tokens": 15397,
+  "cost": 0.0060672,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0060672,
+   "upstream_inference_prompt_cost": 0.0041364,
+   "upstream_inference_completions_cost": 0.0019308
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0060672,
+ "elapsed_s": 9.8
+}

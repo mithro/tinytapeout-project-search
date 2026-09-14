@@ -1,0 +1,261 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7b51068570be",
+  "6938ec4ffbf4",
+  "bfdf746cde50",
+  "da39420676f9",
+  "73efa1ae3e03",
+  "822df97e088d"
+ ],
+ "results": [
+  {
+   "key": "7b51068570be",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The source mentions DSP applications as motivation but the design itself is a MAC unit, not a DSP algorithm implementation; the mac-unit tag already covers it."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Not supported — actually the facts say no reports, so this must not be added; no add needed."
+    }
+   ],
+   "notes": "Removed dsp tag since the design is a MAC building block rather than a DSP algorithm; no silicon-tested claim since there are no test reports.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "pipeline",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "pipeline",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a Multiply-Accumulate (MAC) unit using a Dadda multiplier and a Kogge-Stone adder. It is designed for digital signal processing tasks such as filtering and convolution. The design includes pipeline registers and an accumulator, and is verified with a provided testbench. The clock is specified as 100 Hz, which is unusually low and may be a documentation error.",
+   "summary": "This project implements a Multiply-Accumulate (MAC) unit using a Dadda multiplier and a Kogge-Stone adder. The design includes pipeline registers and an accumulator, and is intended for digital signal processing tasks such as filtering and convolution. A testbench is provided to simulate input scenarios and observe the output behavior. The clock is specified as 100 Hz, which is unusually low and may be a documentation error.",
+   "summary_changed": true
+  },
+  {
+   "key": "6938ec4ffbf4",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "audio",
+    "graphics",
+    "synthesizer",
+    "music",
+    "sequencer",
+    "demoscene",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "graphics",
+    "synthesizer",
+    "music",
+    "sequencer",
+    "demoscene",
+    "pmod",
+    "verilog"
+   ],
+   "summary_before": "Sequential Shadows is a demoscene demo that combines a ray caster, synthesizer, music sequencer, and audio visualizer to produce a real-time audiovisual experience. It requires a TinyVGA PMOD for video and Mike's audio PMOD for sound, and it includes controls for pausing, stepping frames, and disabling bass or drums. The design was developed for the TT08 demo competition and was tested on hardware by both the author and an independent tester, who confirmed it works as simulated. The demo is best viewed with the monitor rotated 90 degrees and includes flashing lights by default.",
+   "summary": "Sequential Shadows is a demoscene demo that combines a ray caster, synthesizer, music sequencer, and audio visualizer to produce a real-time audiovisual experience. It requires a TinyVGA PMOD for video and Mike's audio PMOD for sound, and it includes controls for pausing, stepping frames, and disabling bass or drums. The design was developed for the TT08 demo competition and was tested on hardware by both the author and an independent tester, who confirmed it works as simulated. The demo is best viewed with the monitor rotated 90 degrees and includes flashing lights by default.",
+   "summary_changed": false
+  },
+  {
+   "key": "bfdf746cde50",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "audio",
+    "graphics",
+    "synthesizer",
+    "music",
+    "sequencer",
+    "demoscene",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "graphics",
+    "synthesizer",
+    "music",
+    "sequencer",
+    "demoscene",
+    "pmod",
+    "verilog"
+   ],
+   "summary_before": "Sequential Shadows Deluxe is an extended version of the TT08 demo competition entry, adding a shadow beneath the logo and credits, with support for both TinyVGA and Digilent Pmod VGA pinouts. It requires a VGA PMOD and an audio PMOD, and it includes the same controls as the original for pausing, stepping frames, and disabling bass or drums. The design was tested on hardware by the author and confirmed to work similarly to the simulation. Documentation refers to the original version for details, and the deluxe version offers additional visual tweaks.",
+   "summary": "Sequential Shadows Deluxe is an extended version of the TT08 demo competition entry, adding a shadow beneath the logo and credits, with support for both TinyVGA and Digilent Pmod VGA pinouts. It requires a VGA PMOD and an audio PMOD, and it includes the same controls as the original for pausing, stepping frames, and disabling bass or drums. The design was tested on hardware by the author and confirmed to work similarly to the simulation. Documentation refers to the original version for details, and the deluxe version offers additional visual tweaks.",
+   "summary_changed": false
+  },
+  {
+   "key": "da39420676f9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "video",
+     "reason": "Redundant with vga and graphics; the pins are VGA signals, not a generic video interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "Four pushbutton inputs (jump, halt, debug, mode) are documented in the pins."
+    },
+    {
+     "tag": "retro",
+     "reason": "The game is an endless-runner in the style of the Chrome Dino game, a retro-style arcade game."
+    }
+   ],
+   "notes": "Removed redundant video tag; added button and retro tags supported by the pin names and game description.",
+   "tags_before": [
+    "game",
+    "vga",
+    "video",
+    "graphics",
+    "systemverilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "graphics",
+    "systemverilog",
+    "silicon-tested",
+    "button",
+    "retro"
+   ],
+   "summary_before": "This project implements an endless-runner game similar to the Chrome Dino game, rendered on a VGA monitor. The game uses four input buttons for jump, halt, debug, and mode control, and outputs VGA signals compatible with the Tiny VGA PMOD. Multiple silicon test reports confirm that the design works well and is playable, though some testers noted occasional screen tearing at higher speeds. The documentation is minimal, consisting mainly of a brief description and pinout, but the test reports provide evidence of functionality.",
+   "summary": "This project implements an endless-runner game similar to the Chrome Dino game, rendered on a VGA monitor. The game uses four input buttons for jump, halt, debug, and mode control, and outputs VGA signals compatible with the Tiny VGA PMOD. Multiple silicon test reports confirm that the design works well and is playable, though some testers noted occasional screen tearing at higher speeds. The documentation is minimal, consisting mainly of a brief description and pinout, but the test reports provide evidence of functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "73efa1ae3e03",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sigma-delta",
+     "reason": "The design is a mismatch-shaping segmented R2R DAC encoder, not a sigma-delta modulator/converter."
+    },
+    {
+     "tag": "encoder",
+     "reason": "The encoder tag is a generic type tag; the design is better described by dac/r2r-dac, and the source does not describe a signal-to-code encoder."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The digital encoder is intended to drive an external resistor ladder to produce an analog output voltage."
+    }
+   ],
+   "notes": "Removed unsupported sigma-delta and generic encoder tags; added mixed-signal since the encoder drives an external analog resistor ladder.",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "sigma-delta",
+    "encoder",
+    "verilog"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "verilog",
+    "mixed-signal"
+   ],
+   "summary_before": "This is an 8-bit segmented mismatch-shaping R2R DAC encoder implemented in Verilog. It accepts 8-bit digital input and produces a segmented output that must be summed by an external resistor ladder to create the analog voltage, with optional buffering and retiming recommended for best performance. The output swing is 0.25 to 0.75 of the IO supply, and resistor mismatch appears as first-order shaped noise removable by lowpass filtering. The design is notable for using mismatch-shaping and dithering techniques to achieve 8-bit linearity without precise resistor matching.",
+   "summary": "This is an 8-bit segmented mismatch-shaping R2R DAC encoder implemented in Verilog. It accepts 8-bit digital input and produces a segmented output that must be summed by an external resistor ladder to create the analog voltage, with optional buffering and retiming recommended for best performance. The output swing is 0.25 to 0.75 of the IO supply, and resistor mismatch appears as first-order shaped noise removable by lowpass filtering. The design is notable for using mismatch-shaping and dithering techniques to achieve 8-bit linearity without precise resistor matching.",
+   "summary_changed": false
+  },
+  {
+   "key": "822df97e088d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source describes pass gates and latches in a matrix, not a design built from discrete transistors."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports confirm the R2R DAC mode works after cutting a pulldown resistor."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The design combines digital configuration latches with an analog resistor network and analog output pin."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level tag; added silicon-tested and mixed-signal based on test reports and analog/digital nature.",
+   "tags_before": [
+    "analog",
+    "r2r-dac",
+    "dac",
+    "transistor-level",
+    "latch",
+    "reconfigurable"
+   ],
+   "tags": [
+    "analog",
+    "r2r-dac",
+    "dac",
+    "latch",
+    "reconfigurable",
+    "silicon-tested",
+    "mixed-signal"
+   ],
+   "summary_before": "The Field Programmable Resistor Network is an analog design consisting of resistors and pass-gate switches arranged in a matrix, with latches that hold the configuration. Cells are selected via H_GATE and V_GATE inputs, and the network can be configured as a makeshift DAC by controlling the bitstream. The output voltage is measured externally at the analog pin, requiring a multimeter or microcontroller ADC. Silicon tests confirmed the R2R DAC mode works after cutting a 10k pulldown resistor on the demoboard, and the design is notable for its transistor-level analog configurability.",
+   "summary": "The Field Programmable Resistor Network is an analog design consisting of resistors and pass-gate switches arranged in a matrix, with latches that hold the configuration. Cells are selected via H_GATE and V_GATE inputs, and the network can be configured as a makeshift DAC by controlling the bitstream. The output voltage is measured externally at the analog pin, requiring a multimeter or microcontroller ADC. Silicon tests confirmed the R2R DAC mode works after cutting a 10k pulldown resistor on the demoboard, and the design is notable for its configurable analog resistor network.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9238,
+  "completion_tokens": 1419,
+  "total_tokens": 10657,
+  "cost": 0.003009918,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003009918,
+   "upstream_inference_prompt_cost": 0.001562538,
+   "upstream_inference_completions_cost": 0.00144738
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003009918,
+ "elapsed_s": 66.2
+}

@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cacaebbc05c8",
+  "6459b3b15f25",
+  "1ffd5d6a1768",
+  "3b5c8aee0515",
+  "147ce234d27f",
+  "38f0850bb47d"
+ ],
+ "results": [
+  {
+   "key": "cacaebbc05c8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dac",
+    "modulator",
+    "pwm",
+    "spi",
+    "amaranth"
+   ],
+   "tags": [
+    "dac",
+    "modulator",
+    "pwm",
+    "spi",
+    "amaranth"
+   ],
+   "summary_before": "This design is a digital-to-analog converter front end that outputs PDM, PWM, and two forms of PFM waveforms representing an 8-bit digital input level. The input can be loaded either in parallel through eight input pins or over an SPI interface, selected by a bidirectional pin, and the output rate can be divided down from the 50 MHz clock by up to 15. To obtain an analog signal, an external RC filter must be connected to the chosen modulation output pin. The author notes that the intended analog output path was not completed due to time constraints and that the SPI path is less validated than the parallel path.",
+   "summary": "This design is a digital-to-analog converter front end that outputs PDM, PWM, and two forms of PFM waveforms representing an 8-bit digital input level. The input can be loaded either in parallel through eight input pins or over an SPI interface, selected by a bidirectional pin, and the output rate can be divided down from the 50 MHz clock by up to 15. To obtain an analog signal, an external RC filter must be connected to the chosen modulation output pin. The author notes that the intended analog output path was not completed due to time constraints and that the SPI path is less validated than the parallel path.",
+   "summary_changed": false
+  },
+  {
+   "key": "6459b3b15f25",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "education",
+    "7-segment",
+    "dip-switch",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "education",
+    "7-segment",
+    "dip-switch",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a game where the player tries to guess a pseudo-random 8-bit number by successive approximation, similar to the algorithm used in SAR ADCs. The player inputs an 8-bit guess via DIP switches, and a 7-segment LED indicates whether the guess is above, below, or equal to the secret number. The secret number is generated upon reset, and the player can keep guessing until they find it. Silicon testing confirmed it works on the demo board using its DIP switches and 7-segment LED.",
+   "summary": "This is a game where the player tries to guess a pseudo-random 8-bit number by successive approximation, similar to the algorithm used in SAR ADCs. The player inputs an 8-bit guess via DIP switches, and a 7-segment LED indicates whether the guess is above, below, or equal to the secret number. The secret number is generated upon reset, and the player can keep guessing until they find it. Silicon testing confirmed it works on the demo board using its DIP switches and 7-segment LED.",
+   "summary_changed": false
+  },
+  {
+   "key": "1ffd5d6a1768",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "floating-point",
+     "reason": "The design uses 16-bit posit (16,1) arithmetic, not standard floating-point; the source never describes it as floating-point."
+    }
+   ],
+   "add": [
+    {
+     "tag": "physics",
+     "reason": "Explicitly a numerical solver for the van der Pol oscillator, a physics simulation model."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Posit arithmetic is a fixed-length numeric representation in the same family as fixed-point arithmetic, used for the solver data path."
+    }
+   ],
+   "notes": "Replaced the unsupported floating-point tag with physics and fixed-point; also removed an unsupported claim about posit novelty from the summary.",
+   "tags_before": [
+    "dsp",
+    "oscillator",
+    "floating-point",
+    "spi",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "oscillator",
+    "spi",
+    "pmod",
+    "verilog",
+    "physics",
+    "fixed-point"
+   ],
+   "summary_before": "This Verilog project implements a digital differential analyzer solver for the van der Pol oscillator using 16-bit posit (16,1) arithmetic. It communicates over SPI, receiving the oscillator parameter and returning the X and Y state variables as 32-bit words for each time step, with simulation stopped by ending SPI communication. Testing requires an SPI master, and a controller using an FTDI FT232H is available on GitHub, with the top row of a PMOD used for SPI signals. The design is notable for applying posit arithmetic to a numerical differential equation solver.",
+   "summary": "This Verilog project implements a digital differential analyzer solver for the van der Pol oscillator using 16-bit posit (16,1) arithmetic. It communicates over SPI, receiving the oscillator parameter and returning the X and Y state variables as 32-bit words for each time step, with simulation stopped by ending SPI communication. Testing requires an SPI master, and a controller using an FTDI FT232H is available on GitHub, with the top row of a PMOD used for SPI signals. The core solver is implemented in Verilog.",
+   "summary_changed": true
+  },
+  {
+   "key": "3b5c8aee0515",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fifo",
+    "clock-domain-crossing",
+    "synchronizer",
+    "gray-code",
+    "asynchronous",
+    "systemverilog"
+   ],
+   "tags": [
+    "fifo",
+    "clock-domain-crossing",
+    "synchronizer",
+    "gray-code",
+    "asynchronous",
+    "systemverilog"
+   ],
+   "summary_before": "This SystemVerilog design implements a 4-bit asynchronous FIFO that buffers data between independent write and read clock domains. It uses a dual-port RAM for storage, with binary-to-gray and gray-to-binary converters plus synchronizers to safely pass pointers across domains. Write and read operations are controlled by increment pulses, with full and empty flags indicating status, and resets are held low during initialization. No external hardware is required, and the design is a standard clock-domain-crossing building block with clear usage instructions.",
+   "summary": "This SystemVerilog design implements a 4-bit asynchronous FIFO that buffers data between independent write and read clock domains. It uses a dual-port RAM for storage, with binary-to-gray and gray-to-binary converters plus synchronizers to safely pass pointers across domains. Write and read operations are controlled by increment pulses, with full and empty flags indicating status, and resets are held low during initialization. No external hardware is required, and the design is a standard clock-domain-crossing building block with clear usage instructions.",
+   "summary_changed": false
+  },
+  {
+   "key": "147ce234d27f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "nco",
+     "reason": "The design is a DDS with accumulator and sine lookup table; the documentation does not describe a numerically controlled oscillator block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed the unsupported nco tag; the design is described only as a DDS with resistive DAC.",
+   "tags_before": [
+    "nco",
+    "dac",
+    "analog",
+    "signal-generator",
+    "frequency-synthesizer",
+    "dip-switch"
+   ],
+   "tags": [
+    "dac",
+    "analog",
+    "signal-generator",
+    "frequency-synthesizer",
+    "dip-switch"
+   ],
+   "summary_before": "This design implements a direct digital synthesizer (DDS) with a resistive digital-to-analog converter to produce an analog sine wave output. The output frequency is controlled by the 8 input switches, and with a 40 MHz clock, a rail-to-rail sine wave can be observed on the analog pin ua[0]. The DAC output has an impedance of about 10 kOhm, and an external capacitor to ground can be added to smooth or filter the waveform. The documentation is brief but sufficient to understand the basic operation and testing.",
+   "summary": "This design implements a direct digital synthesizer (DDS) with a resistive digital-to-analog converter to produce an analog sine wave output. The output frequency is controlled by the 8 input switches, and with a 40 MHz clock, a rail-to-rail sine wave can be observed on the analog pin ua[0]. The DAC output has an impedance of about 10 kOhm, and an external capacitor to ground can be added to smooth or filter the waveform. The documentation is brief but sufficient to understand the basic operation and testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "38f0850bb47d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mac-unit",
+     "reason": "The source describes dot-product accumulation of 4-bit w,x pairs, not a dedicated multiply-accumulate unit; the bit-serial tag already covers the accumulation style."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "The documentation says it gives an answer after at least 16 clock cycles and is a 4-bit system; it does not state a one-bit-per-clock serial datapath."
+    }
+   ],
+   "add": [],
+   "notes": "Removed mac-unit and bit-serial tags because the source only documents 4-bit load/run operation and 16-cycle latency, not a MAC unit or one-bit serial path.",
+   "tags_before": [
+    "mac-unit",
+    "accelerator",
+    "coprocessor",
+    "dsp",
+    "rp2040",
+    "verilog",
+    "bit-serial"
+   ],
+   "tags": [
+    "accelerator",
+    "coprocessor",
+    "dsp",
+    "rp2040",
+    "verilog"
+   ],
+   "summary_before": "This is a multi-use dot product accelerator that can compute vector dot products, minimums, and maximums of data lists. It is a 4-bit system that loads data via index and data pins and produces a 12-bit result after at least 16 clock cycles. It is intended to be used as a coprocessor driven by an RP2040 for vector calculations. The design was tested using Verilator simulation, focusing on numerical stability.",
+   "summary": "This is a multi-use dot product accelerator that can compute vector dot products, minimums, and maximums of data lists. It is a 4-bit system that loads data via index and data pins and produces a 12-bit result after at least 16 clock cycles. It is intended to be used as a coprocessor driven by an RP2040 for vector calculations. The design was tested using Verilator simulation, focusing on numerical stability.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7434,
+  "completion_tokens": 1337,
+  "total_tokens": 8771,
+  "cost": 0.0038346,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0038346,
+   "upstream_inference_prompt_cost": 0.0022302,
+   "upstream_inference_completions_cost": 0.0016044
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0038346,
+ "elapsed_s": 8.8
+}

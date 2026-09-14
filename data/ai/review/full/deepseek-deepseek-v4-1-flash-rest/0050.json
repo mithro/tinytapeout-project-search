@@ -1,0 +1,424 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ee99c6e87568",
+  "9ad538f02d7c",
+  "61450b2c0efe",
+  "1b11de88f8ec",
+  "fd30a646a00e",
+  "9862892f699a"
+ ],
+ "results": [
+  {
+   "key": "ee99c6e87568",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design is an LFSR, not a memory block; no memory storage is described."
+    },
+    {
+     "tag": "charge-pump",
+     "reason": "No charge pump or voltage boosting circuitry is mentioned anywhere in the source."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design is purely digital (LFSR with dynamic DFFs); no analog circuitry is described."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "The source describes standard-cell SCL usage (sky130_as_sc_hs), not discrete transistor-level design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "The design is explicitly an LFSR that updates every clock cycle and drives all outputs."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The LFSR is clocked sequential logic using DFFs."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "It tests the sky130_as_sc_hs standard cell library."
+    },
+    {
+     "tag": "factory-test",
+     "reason": "It is a test structure for validating a standard cell library's dynamic DFFs."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "External hardware lists RP2040 for observing output state."
+    }
+   ],
+   "notes": "Proposed tags were entirely unsupported; replaced with LFSR, standard-cell and factory-test tags matching the source.",
+   "tags_before": [
+    "memory",
+    "charge-pump",
+    "analog",
+    "transistor-level"
+   ],
+   "tags": [
+    "lfsr",
+    "verilog",
+    "sequential-logic",
+    "standard-cell",
+    "factory-test",
+    "rp2040"
+   ],
+   "summary_before": "This project is a memory block with an analog charge pump. It is implemented at the transistor level. The design is intended for memory applications. The documentation is sparse, but the design appears to be a custom memory circuit.",
+   "summary": "This project is a test of the sky130_as_sc_hs standard cell library using dynamic D flip-flops. It contains an LFSR that updates on every clock cycle and outputs its state on all output pins. The dynamic DFFs will lose their state if the clock speed gets too low. It can be tested by releasing reset with all ui_in pins zero and observing the outputs with an RP2040 or LEDs.",
+   "summary_changed": true
+  },
+  {
+   "key": "9ad538f02d7c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "No analog circuitry is described; the design is a digital CPU."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator is mentioned in the source."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No decoder is described; the design is a CPU with ROM."
+    },
+    {
+     "tag": "driver",
+     "reason": "No driver stage is described."
+    },
+    {
+     "tag": "robotics",
+     "reason": "No robotics application is mentioned; the proposed summary invented microrobotics and PTAT content."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The design is explicitly an 8-bit CPU."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The CPU is inspired by the esoteric language BF."
+    },
+    {
+     "tag": "chisel",
+     "reason": "The language is Chisel."
+    },
+    {
+     "tag": "rom",
+     "reason": "The design includes a ROM memory that drives the outputs."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "A CPU with ROM is clocked sequential logic."
+    }
+   ],
+   "notes": "Proposed summary invented PTAT, microrobotics and other content not present in the source; tags replaced with CPU, esoteric, Chisel and ROM.",
+   "tags_before": [
+    "analog",
+    "oscillator",
+    "decoder",
+    "driver",
+    "robotics"
+   ],
+   "tags": [
+    "cpu",
+    "esoteric",
+    "chisel",
+    "rom",
+    "sequential-logic"
+   ],
+   "summary_before": "This project is a first test for basic IP blocks such as a PTAT (proportional to absolute temperature) sensor, oscillator, decoder, command checker, and driver, intended for microrobotics applications. The design includes analog and digital components. The documentation is sparse, but the design appears to be a test chip for various IP blocks. The capabilities and usage cannot be fully determined from the provided documentation.",
+   "summary": "This project implements the Tappu CPU, an 8-bit processor inspired by the esoteric language BF. It includes a ROM memory that turns the outputs on and off. The design is written in Chisel. It can be tested by watching the outputs blink.",
+   "summary_changed": true
+  },
+  {
+   "key": "61450b2c0efe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The design is a Mod-6 counter, not a processor."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file is described."
+    },
+    {
+     "tag": "calculator",
+     "reason": "No calculator application or keypad/display interface is present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design is explicitly a 3-bit Mod-6 synchronous counter."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The counter is clocked sequential logic with asynchronous reset."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The documentation describes a provided cocotb testbench (test_project.py)."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated 8-bit processor; corrected to the Mod-6 counter actually documented.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "calculator",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "counter",
+    "sequential-logic",
+    "cocotb"
+   ],
+   "summary_before": "This project is an 8-bit custom processor with a program counter, control unit, ALU, and register file. It is designed to be used in a calculator application, performing arithmetic operations. The processor is implemented in Verilog and can be tested using a testbench. The design is notable for its simplicity and educational value.",
+   "summary": "This project implements a 3-bit Mod-6 synchronous counter. The counter increments on every rising edge of the clock and wraps from 5 back to 0, with the value output on uo_out[2:0] and higher bits tied to 0. An active-low asynchronous reset clears the counter to 0. It can be tested with the provided cocotb or Verilog testbenches.",
+   "summary_changed": true
+  },
+  {
+   "key": "1b11de88f8ec",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the design is an MCU with SPI RAM, UART and PWM."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "microcontroller",
+     "reason": "The design is described as an original, scratch-built 8-bit MCU."
+    },
+    {
+     "tag": "spi",
+     "reason": "Pins and text describe an SPI RAM interface (CS, COPI, CIPO, SCK)."
+    },
+    {
+     "tag": "uart",
+     "reason": "Pins and text describe a UART with optional hardware flow control."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Two PWM outputs are listed on uo[4] and uo[5]."
+    },
+    {
+     "tag": "prng",
+     "reason": "A PSRNG output is listed on uo[6]."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "External hardware requires an RP2040 in SPI RAM emulation mode."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Recommended pinouts match SPI Pmod and UART Pmod."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "An MCU is clocked sequential logic."
+    }
+   ],
+   "notes": "Proposed tags and summary were generic and did not reflect the documented MCU, SPI RAM, UART and PWM features.",
+   "tags_before": [
+    "fsm",
+    "sequential-logic",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "sequential-logic",
+    "verilog",
+    "microcontroller",
+    "spi",
+    "uart",
+    "pwm",
+    "prng",
+    "rp2040",
+    "pmod"
+   ],
+   "summary_before": "This project is a digital design that uses a finite state machine to control its operation. It is intended for educational purposes, demonstrating how sequential circuits can be used to implement complex logic. The design is implemented in Verilog and can be tested using a testbench. The documentation is clear and describes the architecture and testing approach.",
+   "summary": "This project is RISCY Jr., an original scratch-built 8-bit MCU design. It provides SPI RAM access, a UART with optional hardware flow control, general purpose I/O, PWM outputs, a PSRNG and a CPU activity indicator. It is implemented in Verilog and uses the SPI Pmod and UART Pmod pinouts. Testing requires an RP2040 running SPI RAM emulation and a UART connection.",
+   "summary_changed": true
+  },
+  {
+   "key": "fd30a646a00e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the design converts 7-segment input to VGA output."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The design outputs VGA (640x480 @ 60 FPS) via the Tiny VGA pinout."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "The one-line description states it is a submission for VGA Demoscene."
+    },
+    {
+     "tag": "retro",
+     "reason": "The documentation describes adding retro graphics to existing projects."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The inputs are 7-segment segment signals (Segment A-H) used as a source."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The design renders graphics to a VGA display."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working status from the author and a tester."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Requires the TinyVGA PMOD external hardware."
+    }
+   ],
+   "notes": "Proposed tags and summary were generic and missed the VGA demoscene purpose and silicon-tested status.",
+   "tags_before": [
+    "fsm",
+    "sequential-logic",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "sequential-logic",
+    "verilog",
+    "vga",
+    "demoscene",
+    "retro",
+    "7-segment",
+    "graphics",
+    "silicon-tested",
+    "pmod"
+   ],
+   "summary_before": "This project is a digital design that uses a finite state machine to control its operation. It is intended for educational purposes, demonstrating how sequential circuits can be used to implement complex logic. The design is implemented in Verilog and can be tested using a testbench. The documentation is clear and describes the architecture and testing approach.",
+   "summary": "This project adds retro graphics to existing Tiny Tapeout projects by using their 7-segment display outputs as input and rendering them to a VGA display. It outputs a 640x480 @ 60 FPS VGA signal through the Tiny VGA pinout. The design is implemented in Verilog and requires the TinyVGA PMOD. Silicon tests report it working, showing a default \"HELLO 3OrLd\" message and responding to other ui_in inputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "9862892f699a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the design is an FPGA fabric."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "The design is a 2x2 OpenFPGA fabric with CLBs, I/O blocks, switch boxes and connection boxes."
+    },
+    {
+     "tag": "reconfigurable",
+     "reason": "The fabric is configured by a bitstream to implement user-defined logic."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans a 3x2 tile area."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The configurable fabric implements clocked digital circuits."
+    }
+   ],
+   "notes": "Proposed tags and summary were generic and did not describe the OpenFPGA fabric documented in the source.",
+   "tags_before": [
+    "fsm",
+    "sequential-logic",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "sequential-logic",
+    "verilog",
+    "fpga",
+    "reconfigurable",
+    "multi-tile"
+   ],
+   "summary_before": "This project is a digital design that uses a finite state machine to control its operation. It is intended for educational purposes, demonstrating how sequential circuits can be used to implement complex logic. The design is implemented in Verilog and can be tested using a testbench. The documentation is clear and describes the architecture and testing approach.",
+   "summary": "This project is a small 2x2 OpenFPGA fabric containing 4 configurable logic blocks, 8 I/O blocks, 9 switch boxes and 12 connection boxes. A Verilog design is compiled into a bitstream that configures the routing and logic resources to implement the intended circuit. It is implemented in Verilog and spans a 3x2 tile area. Testing involves loading the bitstream, driving inputs through the I/O blocks and observing outputs in simulation or with lab equipment.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6686,
+  "completion_tokens": 2465,
+  "total_tokens": 9151,
+  "cost": 0.0049638,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0049638,
+   "upstream_inference_prompt_cost": 0.0020058,
+   "upstream_inference_completions_cost": 0.002958
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0049638,
+ "elapsed_s": 62.8
+}

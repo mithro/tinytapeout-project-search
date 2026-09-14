@@ -1,0 +1,228 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2334e67bc350",
+  "5d7cc6c46e7e",
+  "a112618c9f2c",
+  "033678228d09",
+  "a07a61535848",
+  "545b7fffda9e"
+ ],
+ "results": [
+  {
+   "key": "2334e67bc350",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rtc",
+     "reason": "No real-time clock/calendar functionality described; it is a settable clock, not an RTC with date/calendar registers."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The clock counts seconds/minutes/hours, a counting circuit."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states working, confirmed by the author."
+    }
+   ],
+   "notes": "Removed unsupported rtc/education tags; added counter and silicon-tested based on source and test report.",
+   "tags_before": [
+    "clock-generator",
+    "rtc",
+    "7-segment",
+    "shift-register",
+    "timer",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "clock-generator",
+    "7-segment",
+    "shift-register",
+    "timer",
+    "verilog",
+    "counter",
+    "silicon-tested"
+   ],
+   "summary_before": "This project is a digital desk clock that displays hours, minutes, and seconds in 24-hour format on six 7-segment displays. Because of limited output pins, the time data is shifted out serially to external 74xx596 shift registers that drive the displays. The time can be set using buttons, with fast and slow increment modes, and pressing both set buttons clears the seconds. Silicon testing by the author using a logic analyzer confirmed correct operation of the serial output.",
+   "summary": "This project is a digital desk clock that displays hours, minutes, and seconds in 24-hour format on six 7-segment displays. Because of limited output pins, the time data is shifted out serially to external 74xx596 shift registers that drive the displays. The time can be set using the hours_set and minutes_set inputs, with fast and slow increment modes, and pressing both set inputs clears the seconds. Silicon testing by the author using a logic analyzer confirmed correct operation of the serial output.",
+   "summary_changed": true
+  },
+  {
+   "key": "5d7cc6c46e7e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "memory",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "memory",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a 4-bit RAM with 4 address bits and 4 data input bits, providing 4 data output bits. It includes a write enable input and is clocked. Testing requires setting the address and data inputs, and the write enable, then reading the output. External hardware such as a microcontroller or switches is needed to provide inputs and addresses. The documentation is very brief and does not provide detailed implementation or test information.",
+   "summary": "This project is a 4-bit RAM with 4 address bits and 4 data input bits, providing 4 data output bits. It includes a write enable input and is clocked. Testing requires setting the address and data inputs, and the write enable, then reading the output. External hardware such as a microcontroller or switches is needed to provide inputs and addresses. The documentation is very brief and does not provide detailed implementation or test information.",
+   "summary_changed": false
+  },
+  {
+   "key": "a112618c9f2c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is an implementation of the Izhikevich neuron model in Verilog. It accepts an 8-bit input current and outputs an 8-bit state variable. The documentation is essentially placeholder text, providing no meaningful explanation of how the design works, how to test it, or what external hardware is required. As a result, little can be said about its functionality or usage.",
+   "summary": "This project is an implementation of the Izhikevich neuron model in Verilog. It accepts an 8-bit input current and outputs an 8-bit state variable. The documentation is essentially placeholder text, providing no meaningful explanation of how the design works, how to test it, or what external hardware is required. As a result, little can be said about its functionality or usage.",
+   "summary_changed": false
+  },
+  {
+   "key": "033678228d09",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning; it is a bare example."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no functional description."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added insufficient-doc given placeholder documentation.",
+   "tags_before": [
+    "template",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "template",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is an example Verilog design intended as a template for Tiny Tapeout projects. It has two input pins and one output pin, but the documentation does not describe any specific functionality. The testing instructions are vague, and the external hardware section is left as a placeholder. The design serves as a starting point for new users.",
+   "summary": "This is an example Verilog design intended as a template for Tiny Tapeout projects. It has two input pins and one output pin, but the documentation does not describe any specific functionality. The testing instructions are vague, and the external hardware section is left as a placeholder. The design serves as a starting point for new users.",
+   "summary_changed": false
+  },
+  {
+   "key": "a07a61535848",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "The one-line description mentions a century clock divider, but the body text only describes mode selection; the divider is not described in the documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, describing only mode selection and switch priority."
+    }
+   ],
+   "notes": "Removed clock-divider tag not supported by body text; added insufficient-doc.",
+   "tags_before": [
+    "game",
+    "button",
+    "clock-divider"
+   ],
+   "tags": [
+    "game",
+    "button",
+    "insufficient-doc"
+   ],
+   "summary_before": "This Verilog design provides eight different modes selected by the on-board switches, with the most significant switch taking priority, and includes a century clock divider. Four buttons are used as inputs, and one mode implements a Simon Says game that requires an external four-button module. The documentation is very thin, giving only a one-line description and a brief note on switch priority, so the exact behavior of the other seven modes is not described. The design is a small interactive demo rather than a complete application.",
+   "summary": "This Verilog design provides eight different modes selected by the on-board switches, with the most significant switch taking priority, and includes a century clock divider. Four buttons are used as inputs, and one mode implements a Simon Says game that requires an external four-button module. The documentation is very thin, giving only a one-line description and a brief note on switch priority, so the exact behavior of the other seven modes is not described. The design is a small interactive demo rather than a complete application.",
+   "summary_changed": false
+  },
+  {
+   "key": "545b7fffda9e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "No evidence it is a boilerplate/starter template; it is a placeholder submission."
+    },
+    {
+     "tag": "workshop",
+     "reason": "Title is 'Workshop' but there is no evidence it was created as part of a workshop or class activity."
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "Documentation is entirely placeholder text with no design content."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation too sparse to describe the design."
+    }
+   ],
+   "notes": "Replaced unsupported template/workshop tags with placeholder and insufficient-doc.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "workshop"
+   ],
+   "tags": [
+    "wokwi",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "summary_before": "This Wokwi project is titled 'Workshop' with a one-line description of 'Testing'. The documentation consists only of placeholder text, providing no information about the design's function or how to test it. The pins are labeled generically as ui0-ui7 and uo0-uo7. There is essentially no documentation, so the design's purpose cannot be determined.",
+   "summary": "This Wokwi project is titled 'Workshop' with a one-line description of 'Testing'. The documentation consists only of placeholder text, providing no information about the design's function or how to test it. The pins are labeled generically as ui0-ui7 and uo0-uo7. There is essentially no documentation, so the design's purpose cannot be determined.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "5d7cc6c46e7e: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 5931,
+  "completion_tokens": 1080,
+  "total_tokens": 7011,
+  "cost": 0.001820853,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001820853,
+   "upstream_inference_prompt_cost": 0.000719253,
+   "upstream_inference_completions_cost": 0.0011016
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001820853,
+ "elapsed_s": 56.4
+}

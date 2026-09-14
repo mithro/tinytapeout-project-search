@@ -1,0 +1,296 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9b1966d58f3b",
+  "2c1c6f38515b",
+  "ff3da7a27585",
+  "6e72391c771e",
+  "8f48d88275be",
+  "cdefbf85f6d3"
+ ],
+ "results": [
+  {
+   "key": "9b1966d58f3b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "No clock division is described; the design counts seconds and rolls over minutes/hours."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display interface or driver is present; the docs only mention an optional LED display."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output interface is implemented; the outputs are raw hour/minute bits."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "Implements a time-of-day clock with hours, minutes and AM/PM."
+    },
+    {
+     "tag": "counter",
+     "reason": "Counts seconds and rolls over minutes and hours."
+    },
+    {
+     "tag": "timer",
+     "reason": "Timekeeping block driven by a one-second enable."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Written in Verilog."
+    }
+   ],
+   "notes": "Removed display-related tags not supported by the pins or documentation.",
+   "tags_before": [
+    "rtc",
+    "counter",
+    "timer",
+    "clock-divider",
+    "verilog",
+    "7-segment",
+    "display"
+   ],
+   "tags": [
+    "rtc",
+    "counter",
+    "timer",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 12-hour clock with an AM/PM indicator, counting seconds internally and rolling over minutes and hours. The enable, reset and clock signals are taken from ui[5], ui[6] and ui[7], the seven minute bits are on uio[0] to uio[6], and the hour bits plus AM/PM flag are on uo[0] to uo[7]. It is tested by supplying a clock, a reset and a one-second enable pulse, and an LED display can optionally be attached to view the time. The documentation is brief and no silicon results are reported.",
+   "summary": "This project implements a 12-hour clock with an AM/PM indicator, counting seconds internally and rolling over minutes and hours. The enable, reset and clock signals are taken from ui[5], ui[6] and ui[7], the seven minute bits are on uio[0] to uio[6], and the hour bits plus AM/PM flag are on uo[0] to uo[7]. It is tested by supplying a clock, a reset and a one-second enable pulse, and an LED display can optionally be attached to view the time. The documentation is brief and no silicon results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "2c1c6f38515b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "shift-register",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "shift-register",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a serializer implemented as a shift register, with a clock, reset, and 6-bit parallel data input, and a single serial output Q plus an end-of-sequence output eos. The documentation is essentially empty, containing only placeholder text for how it works and how to test. No external hardware or silicon test results are mentioned. The functionality is inferred from the pin names and title.",
+   "summary": "This project is a serializer implemented as a shift register, with a clock, reset, and 6-bit parallel data input, and a single serial output Q plus an end-of-sequence output eos. The documentation is essentially empty, containing only placeholder text for how it works and how to test. No external hardware or silicon test results are mentioned. The functionality is inferred from the pin names and title.",
+   "summary_changed": false
+  },
+  {
+   "key": "ff3da7a27585",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "No instruction decoding is described; the op input selects an operation, not an instruction."
+    },
+    {
+     "tag": "gate-level",
+     "reason": "No evidence of gate-level design; the source is VHDL at RTL level."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "A processing element taking two 4-bit operands and an operation selector to produce a result."
+    },
+    {
+     "tag": "combinational",
+     "reason": "No clock or state is present; the result depends only on current inputs."
+    },
+    {
+     "tag": "vhdl",
+     "reason": "Written in VHDL."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, only 'Simple processing element' and 'Send in data'."
+    }
+   ],
+   "notes": "Removed unsupported instruction-decoder and gate-level tags; added alu, combinational, vhdl and insufficient-doc.",
+   "tags_before": [
+    "alu",
+    "vhdl",
+    "instruction-decoder",
+    "combinational",
+    "insufficient-doc",
+    "gate-level"
+   ],
+   "tags": [
+    "alu",
+    "vhdl",
+    "combinational",
+    "insufficient-doc"
+   ],
+   "summary_before": "A simple processing element (PE) implemented in VHDL that takes two 4-bit inputs and a 3-bit operation selector to produce a 4-bit result. The documentation is minimal, only stating to 'send in data' for testing. The exact operations or architecture are not described, so its capabilities are unclear. The design occupies one tile and uses the standard 8-input, 8-output pin configuration.",
+   "summary": "A simple processing element (PE) implemented in VHDL that takes two 4-bit inputs and a 3-bit operation selector to produce a 4-bit result. The documentation is minimal, only stating to 'send in data' for testing. The exact operations or architecture are not described, so its capabilities are unclear. The design occupies one tile and uses the standard 8-input, 8-output pin configuration.",
+   "summary_changed": false
+  },
+  {
+   "key": "6e72391c771e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The external hardware mentions a 'seven digit display-thingy', not a seven-segment display, and no display interface is implemented."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Generic GPIO is not a meaningful tag here; the pins are unlabeled IN0-7/OUT0-7 with no described function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "Created as part of the Tiny Tapeout Workshop @ ETH."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Created using the Wokwi simulator."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is too vague to determine the actual function."
+    }
+   ],
+   "notes": "Removed 7-segment and gpio tags not supported by the source; kept workshop, wokwi and insufficient-doc.",
+   "tags_before": [
+    "workshop",
+    "wokwi",
+    "insufficient-doc",
+    "7-segment",
+    "gpio"
+   ],
+   "tags": [
+    "workshop",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a Tiny Tapeout Workshop project by Nick Figner, created at ETH, whose description says the author is unsure whether it even works. It uses the standard eight inputs and eight outputs and is intended to drive a seven-segment display. Testing is described only as adding cables, and the external hardware listed is a seven-digit display and cables. The documentation is too vague to determine the actual function or verify correct operation.",
+   "summary": "This is a Tiny Tapeout Workshop project by Nick Figner, created at ETH, whose description says the author is unsure whether it even works. It uses the standard eight inputs and eight outputs and is intended to drive a seven-segment display. Testing is described only as adding cables, and the external hardware listed is a seven-digit display and cables. The documentation is too vague to determine the actual function or verify correct operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "8f48d88275be",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is mentioned; the description only says it shows the letter E."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Generic GPIO is not a meaningful tag; the pins are unlabeled IN0-7/OUT0-7 with no described function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "The description says it turns on a light."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Created using the Wokwi simulator."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very sparse and does not explain the internal logic."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment and gpio tags; added led, wokwi and insufficient-doc.",
+   "tags_before": [
+    "led",
+    "7-segment",
+    "wokwi",
+    "insufficient-doc",
+    "gpio"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project, titled tinytapeoutchip, is described as turning on a light and showing the letter E when the correct switches are set. It uses the standard eight input and eight output pins and is expected to need no external hardware. Testing consists of switching on the correct switches. The documentation is very sparse and does not explain the internal logic or which switches produce the described output.",
+   "summary": "This project, titled tinytapeoutchip, is described as turning on a light and showing the letter E when the correct switches are set. It uses the standard eight input and eight output pins and is expected to need no external hardware. Testing consists of switching on the correct switches. The documentation is very sparse and does not explain the internal logic or which switches produce the described output.",
+   "summary_changed": false
+  },
+  {
+   "key": "cdefbf85f6d3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is mentioned; the description only says it shows the first letter of the author's name."
+    },
+    {
+     "tag": "display",
+     "reason": "No display interface is described or implemented."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of an educational purpose; the project is a personal name display."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Created using the Wokwi simulator."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation fields are unedited template placeholders."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment, display and education tags; kept wokwi and insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "The project is described as showing the first letter of the author's name, which suggests a 7-segment or similar display pattern. The documentation fields are the unedited template placeholders, so the actual implementation and pin usage are not described. A 10 kHz clock is specified, but no test procedure or external hardware is documented. There is not enough information to say more about how the design works.",
+   "summary": "The project is described as showing the first letter of the author's name, which suggests a 7-segment or similar display pattern. The documentation fields are the unedited template placeholders, so the actual implementation and pin usage are not described. A 10 kHz clock is specified, but no test procedure or external hardware is documented. There is not enough information to say more about how the design works.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5389,
+  "completion_tokens": 1779,
+  "total_tokens": 7168,
+  "cost": 0.0037515,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0037515,
+   "upstream_inference_prompt_cost": 0.0016167,
+   "upstream_inference_completions_cost": 0.0021348
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0037515,
+ "elapsed_s": 14.3
+}

@@ -1,0 +1,203 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cd5c9421d192",
+  "1d975d0e24d9",
+  "8a560eb690dd",
+  "1eff168bc386",
+  "5eaf3d9cd5f7",
+  "452cd802d2a8"
+ ],
+ "results": [
+  {
+   "key": "cd5c9421d192",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The source mentions a single general register, not a multi-register storage block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "prng",
+     "reason": "Already present; retained as the core function."
+    }
+   ],
+   "notes": "Removed register-file because the design uses a single general register, not a register file.",
+   "tags_before": [
+    "prng",
+    "fsm",
+    "register-file"
+   ],
+   "tags": [
+    "prng",
+    "fsm"
+   ],
+   "summary_before": "PSRANDOM is a pseudo-random number generator built around a general register and a state machine, with load-seed, load-data and rand control inputs and an 8-bit output bus. After reset, asserting load changes the output bus once, while asserting rand causes the output to change continuously. The documentation is very brief and does not describe the generator algorithm or the seed width in detail, and the author's own tags are 'test' and 'timer'. No external hardware is mentioned.",
+   "summary": "PSRANDOM is a pseudo-random number generator built around a general register and a state machine, with load-seed, load-data and rand control inputs and an 8-bit output bus. After reset, asserting load changes the output bus once, while asserting rand causes the output to change continuously. The documentation is very brief and does not describe the generator algorithm or the seed width in detail. No external hardware is mentioned.",
+   "summary_changed": true
+  },
+  {
+   "key": "1d975d0e24d9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements Ascon's 5-bit S-box, a cryptographic substitution box used in the Ascon cipher. It takes five input bits and produces five output bits according to the S-box definition. The documentation references external papers for details but provides no local explanation. It is implemented in Wokwi and lacks any silicon test results.",
+   "summary": "This project implements Ascon's 5-bit S-box, a cryptographic substitution box used in the Ascon cipher. It takes five input bits and produces five output bits according to the S-box definition. The documentation references external papers for details but provides no local explanation. It is implemented in Wokwi and lacks any silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "8a560eb690dd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "soc",
+     "reason": "The source describes a network-on-chip for connecting microcontroller clusters, not a system-on-chip integrating multiple subsystems."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with only an external video reference and no local explanation or test instructions."
+    }
+   ],
+   "notes": "Removed soc as the design is a network-on-chip, not a system-on-chip; added insufficient-doc due to very thin documentation.",
+   "tags_before": [
+    "communication",
+    "spi",
+    "soc"
+   ],
+   "tags": [
+    "communication",
+    "spi",
+    "insufficient-doc"
+   ],
+   "summary_before": "SPINet is a network-on-chip designed to connect microcontroller clusters via SPI. It provides SPI interfaces for up to four nodes, with handshake signals for data flow control. The design is documented with a reference to an external video for background, but the on-chip documentation is minimal. Testing instructions are not provided, so users must infer operation from pin names and the external reference.",
+   "summary": "SPINet is a network-on-chip designed to connect microcontroller clusters via SPI. It provides SPI interfaces for up to four nodes, with handshake signals for data flow control. The design is documented with a reference to an external video for background, but the on-chip documentation is minimal. Testing instructions are not provided, so users must infer operation from pin names and the external reference.",
+   "summary_changed": false
+  },
+  {
+   "key": "1eff168bc386",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The source describes a reservation station write decodifier, not a general-purpose or custom processor core."
+    }
+   ],
+   "add": [],
+   "notes": "Removed cpu because the design is a decodifier block, not a processor core.",
+   "tags_before": [
+    "decoder",
+    "cpu",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "decoder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project is a 12-bit write decodifier for a reservation station, likely part of a CPU design. It takes a 12-bit input on the ui and uio pins and produces a 12-bit output on the uo and uio pins, selecting the appropriate reservation station based on the input. The documentation is minimal, stating only that it works by selecting the corresponding RS needed and that testing involves manipulating input switches to observe outputs. No external hardware or silicon test results are mentioned.",
+   "summary": "This project is a 12-bit write decodifier for a reservation station, likely part of a CPU design. It takes a 12-bit input on the ui and uio pins and produces a 12-bit output on the uo and uio pins, selecting the appropriate reservation station based on the input. The documentation is minimal, stating only that it works by selecting the corresponding RS needed and that testing involves manipulating input switches to observe outputs. No external hardware or silicon test results are mentioned.",
+   "summary_changed": false
+  },
+  {
+   "key": "5eaf3d9cd5f7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is a digital Verilog implementation; no analog circuitry is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "education",
+     "reason": "The title explicitly calls it a 'Verilog Demo' and the documentation describes a simple demonstration."
+    }
+   ],
+   "notes": "Removed analog as the design is digital Verilog; added education based on the 'Verilog Demo' title and demonstration nature.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "analog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "education"
+   ],
+   "summary_before": "This project implements an integrate-and-fire neuron model in Verilog. It accepts an 8-bit input current via the ui pins and produces a spike on uio[0] and the membrane potential on the uo pins. The neuron fires a spike when the membrane potential exceeds a threshold, without leakage or time-dependent dynamics. It is a simple demonstration intended for educational purposes, tested by applying different input currents and observing the firing rate.",
+   "summary": "This project implements an integrate-and-fire neuron model in Verilog. It accepts an 8-bit input current via the ui pins and produces a spike on uio[0] and the membrane potential on the uo pins. The neuron fires a spike when the membrane potential exceeds a threshold, without leakage or time-dependent dynamics. It is a simple demonstration intended for educational purposes, tested by applying different input currents and observing the firing rate.",
+   "summary_changed": false
+  },
+  {
+   "key": "452cd802d2a8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation describes the ReLU and sigmoid functions and external hardware, which is sufficient for a basic description."
+    }
+   ],
+   "add": [],
+   "notes": "Removed insufficient-doc because the documentation adequately describes the functions and external hardware.",
+   "tags_before": [
+    "analog",
+    "neural-network",
+    "neuromorphic",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "analog",
+    "neural-network",
+    "neuromorphic"
+   ],
+   "summary_before": "This analog design implements ReLU and sigmoid activation functions for neuromorphic computing. It provides two analog input-output pairs, with the ReLU output equal to the input when positive and zero otherwise, and the sigmoid output representing a probability for binary classification. External hardware includes a voltage source connected to the analog inputs, typically from an artificial neural network. The documentation is very brief and provides no test results or detailed circuit information.",
+   "summary": "This analog design implements ReLU and sigmoid activation functions for neuromorphic computing. It provides two analog input-output pairs, with the ReLU output equal to the input when positive and zero otherwise, and the sigmoid output representing a probability for binary classification. External hardware includes a voltage source connected to the analog inputs, typically from an artificial neural network. The documentation is brief and provides no test results or detailed circuit information.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6004,
+  "completion_tokens": 1226,
+  "total_tokens": 7230,
+  "cost": 0.0013156,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0013156,
+   "upstream_inference_prompt_cost": 0.00058,
+   "upstream_inference_completions_cost": 0.0007356
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0013156,
+ "elapsed_s": 36.5
+}

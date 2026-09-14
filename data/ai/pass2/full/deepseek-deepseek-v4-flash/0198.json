@@ -1,0 +1,183 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "f1e2d654e269",
+  "1848a7e73335",
+  "3a496f4f160a",
+  "5ab60443e231",
+  "b2ca3395e129",
+  "c803b81dda33",
+  "4c5ba3ae92ba",
+  "28d34948eefc",
+  "d4306f835180",
+  "b0c2f360a18d"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "f1e2d654e269",
+   "tags": [
+    "uart",
+    "spi",
+    "communication",
+    "systemverilog"
+   ],
+   "summary": "This design integrates a UART and an SPI communication block into a single Tiny Tapeout tile, with pins arranged so both can operate simultaneously. A loopback input connects the input register directly to the output register, so serial output echoes serial input when loopback is asserted, which simplifies testing without external devices. The UART exposes start, valid, and ready signals, while the SPI exposes chip select, start, sclk, and separate slave receive and transmit starts. The documentation describes the top-level wrapper and submodules but gives no silicon test results or measured behavior.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "1848a7e73335",
+   "tags": [
+    "analog",
+    "current-mirror",
+    "transistor-level",
+    "education",
+    "mixed-signal"
+   ],
+   "summary": "This is a simple NMOS current mirror implemented as an analog block occupying a 1x2 tile area with a single analog pin. The stated purpose is to exercise the full custom analog flow, including xschem schematic entry, ngspice simulation, SKY130 PDK usage, Magic layout, DRC/LVS, and GitHub submission, as preparation for future tapeouts. Testing consists of applying a voltage to the output pin and sweeping it while measuring current to plot an IV curve. The documentation is brief and reports no measured silicon results.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "3a496f4f160a",
+   "tags": [
+    "counter",
+    "up-down-counter",
+    "verilog",
+    "education"
+   ],
+   "summary": "This project implements an 8-bit up/down counter in Verilog that increments or decrements between 0 and 255 depending on the up_down control input. Counting only occurs on the rising edge of the clock when the enable input is high, and an active-low reset clears the counter to zero. The current value is presented on the eight output pins, which can optionally drive LEDs, a logic analyzer, or a display module. The documentation is straightforward and includes simulation instructions, but no silicon test results are reported.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "5ab60443e231",
+   "tags": [
+    "multiplier",
+    "alu",
+    "verilog",
+    "cocotb",
+    "education"
+   ],
+   "summary": "This design implements a 4x4 Vedic multiplier based on the Urdhva Tiryagbhyam sutra, hierarchically composing four 2x2 Vedic multipliers to produce an 8-bit product from two 4-bit inputs. The eight input pins carry the two operands and the eight output pins carry the product. Testing is done with a cocotb testbench run through make in the test directory, which sets inputs and checks outputs with assertions. The documentation is short and gives no silicon test results or hardware requirements beyond simulation.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "b2ca3395e129",
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "lfsr",
+    "verilog"
+   ],
+   "summary": "Despite its title and one-line description referring to a Jabulani ball VGA demo, the documentation describes a PRBS31 generator built from a 31-bit Fibonacci LFSR with feedback from registers 30 and 27, whose output is taken off-chip and fed back for analysis. The pin list matches the Tiny VGA pinout, and the design is clocked at 25.175 MHz, but the described PRBS behavior does not match the VGA pin functions. A silicon test report from a tester states that it is a bouncing ball demo that appears to work as intended while the documentation seems unrelated. The mismatch between the documentation and the observed silicon behavior makes the design's actual function unclear.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "c803b81dda33",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "text",
+    "verilog"
+   ],
+   "summary": "This is a standalone VGA demo that renders a Matrix-style digital rain animation using glyphs, with four selectable VGA timing modes and two palette selection pins. It requires the TinyVGA PMOD and a pixel clock near 25.175 MHz for the default mode, with higher resolutions requiring correspondingly higher clocks and mode pin settings. Silicon test reports from both the author and an independent tester confirm that the video modes, color palettes, mode inputs, and reset all work, including 1024x768 at 60 to 70 Hz. The design is notable for being verified across multiple resolutions on real hardware.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "4c5ba3ae92ba",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "text",
+    "audio"
+   ],
+   "summary": "This project drives a VGA monitor to display a Hello World message with synchronized audio and changing colors. It uses the standard Tiny VGA pinout and is clocked at 25.175 MHz, requiring the TinyVGA PMOD as external hardware. The documentation is very thin, consisting only of the one-line description, a brief note about the display and audio, and a testing instruction to connect a VGA monitor. No implementation details, audio interface description, or silicon test results are provided.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "28d34948eefc",
+   "tags": [
+    "fsm",
+    "counter",
+    "verilog",
+    "education"
+   ],
+   "summary": "This design implements a 4-bit digital voting machine that records votes for up to four candidates, counts them, and displays the winner in one-hot form along with debug vote totals. Voters select a candidate with a one-hot button and confirm, and a two-bit mode input selects voting, counting, reset, or test behavior. The outputs provide the one-hot winner, a voting-complete flag, and a three-bit debug value equal to the total vote count modulo eight. The documentation is clear about the mode table and testing procedure but reports no silicon test results.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "d4306f835180",
+   "tags": [
+    "debouncer",
+    "verilog",
+    "cocotb",
+    "sequential-logic"
+   ],
+   "summary": "This project implements a weighted majority voter and trend detector that observes a stream of binary input bits over a configurable sliding window, weighting more recent bits more heavily. The weighted sum is compared against upper and lower thresholds with hysteresis, so the output holds its state between thresholds and only changes on sustained input trends, acting as a debouncer and noise filter. It is fully digital and synchronous, requiring no external hardware beyond an optional LED or logic analyzer on the output, and can be simulated with the provided Verilog testbench or cocotb test. The documentation is detailed but reports no silicon test results.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "b0c2f360a18d",
+   "tags": [
+    "game",
+    "puzzle",
+    "fsm",
+    "verilog",
+    "education"
+   ],
+   "summary": "This design simulates a peg solitaire board using English rules, accepting the x and y coordinates of a peg to move plus a two-bit direction, and outputting the remaining piece count and a game-over flag. Invalid moves, such as coordinates outside the grid or positions without a peg, leave the board state unchanged. The game is clocked at 1000 Hz and the goal is to reduce the board to a single remaining piece. The documentation describes the starting board layout and testing approach but reports no silicon test results.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "f1e2d654e269: dropped non-canonical tag 'loopback'"
+ ],
+ "usage": {
+  "prompt_tokens": 8919,
+  "completion_tokens": 1737,
+  "total_tokens": 10656,
+  "cost": 0.000894186,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000894186,
+   "upstream_inference_prompt_cost": 0.000581526,
+   "upstream_inference_completions_cost": 0.00031266
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.000894186,
+ "elapsed_s": 38.5
+}

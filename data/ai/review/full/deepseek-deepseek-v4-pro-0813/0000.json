@@ -1,0 +1,405 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "a64586ce12d4",
+  "7f6f00f648b9",
+  "7695b61d995a",
+  "70b011842d54",
+  "d0b54a71efc3",
+  "9160af270657"
+ ],
+ "results": [
+  {
+   "key": "a64586ce12d4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "branch-predictor",
+     "reason": "The source describes a 16-bit simple processor with UART pins, not a branch predictor."
+    },
+    {
+     "tag": "perceptron",
+     "reason": "No perceptron or machine-learning content is mentioned in the source."
+    },
+    {
+     "tag": "risc-v",
+     "reason": "The source does not state the processor is RISC-V."
+    },
+    {
+     "tag": "spi",
+     "reason": "The pins and text indicate UART, not SPI."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine-learning inference or training hardware is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The title and one-line description identify a 16-bit simple processor."
+    },
+    {
+     "tag": "uart",
+     "reason": "Pin names include rx_data_bit and tx_data_bit, and the text mentions UART communication."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is listed as Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is very thin and lacks details about the processor architecture."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the thin UART processor documentation.",
+   "tags_before": [
+    "branch-predictor",
+    "perceptron",
+    "risc-v",
+    "spi",
+    "machine-learning",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "cpu",
+    "uart",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a minimal perceptron-based branch predictor that reads branch instruction addresses and ground truth directions via SPI and outputs predictions. It is based on a research paper and uses latch-based memory, with a functional simulation in C++ and CocoTB tests. It requires external hardware to drive inputs and read outputs, and is notable for its use of a perceptron model and detailed debugging features.",
+   "summary": "This is a 16-bit simple processor with UART receive and transmit data pins and baud-rate selection inputs. The documentation is very thin and does not describe the instruction set, architecture, or internal blocks. UART communication is emulated within the testbench, and no external hardware is required. The design has been resubmitted on multiple shuttle runs but has no silicon test reports.",
+   "summary_changed": true
+  },
+  {
+   "key": "7f6f00f648b9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "buzzer",
+     "reason": "No buzzer or audio output is described; the outputs are up and down phase signals."
+    },
+    {
+     "tag": "audio",
+     "reason": "The design is a phase/frequency detector, not an audio output design."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is mentioned."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The design detects phase differences; it does not divide a clock."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "The source does not mention flip-flops or a D flip-flop chain."
+    },
+    {
+     "tag": "pattern-generator",
+     "reason": "No pattern generation is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "phase-detector",
+     "reason": "The title and description identify a phase/frequency detector block."
+    },
+    {
+     "tag": "pll",
+     "reason": "The source states this is one of the blocks of a phase locked loop."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project language is listed as wokwi."
+    }
+   ],
+   "notes": "Replaced unrelated audio/display tags with phase-detector and PLL tags.",
+   "tags_before": [
+    "buzzer",
+    "audio",
+    "7-segment",
+    "display",
+    "clock-divider",
+    "flip-flop",
+    "pattern-generator",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "phase-detector",
+    "pll"
+   ],
+   "summary_before": "This design produces siren-like tones and light patterns reminiscent of 1970s effects, using a chain of D flip-flops to divide the clock into various frequencies. Higher frequencies generate tones for audio output, while lower frequencies control the patterns on a seven-segment display and modulate the tones. A pattern select input chooses between two groups of patterns. External hardware such as a speaker with a series resistor or an audio amplifier is required for sound output.",
+   "summary": "This is a phase/frequency detector that compares a reference clock and a feedback clock and outputs the phase difference on up and inverted down pins. It is described as one of the blocks of a phase locked loop. If the feedback clock leads the reference, the up signal shows the phase difference; if it lags, the down signal shows the difference. External signal generators are required for the square wave inputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "7695b61d995a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "time-to-digital-converter",
+     "reason": "The source describes a self-timed LFSR example, not a time-to-digital converter."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is mentioned."
+    },
+    {
+     "tag": "rs232",
+     "reason": "No RS232 interface is described."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "The source does not describe a counter."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "The title and description identify an LFSR example."
+    },
+    {
+     "tag": "asynchronous",
+     "reason": "The design is described as self-timed logic using dual redundant encoding to distinguish data and null."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is listed as Verilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "A partial silicon test report is provided, confirming the single C-gate works but the oscillator does not."
+    }
+   ],
+   "notes": "Corrected tags and summary to reflect the self-timed LFSR design and partial silicon results.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "sensor-interface",
+    "rs232",
+    "uart",
+    "counter",
+    "fsm"
+   ],
+   "tags": [
+    "lfsr",
+    "asynchronous",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "Convertidor de Tiempo a Digital (TDC) is a time-to-digital converter that measures the width of an input pulse and transmits the digital value via RS232. It includes a counter, a state machine, and an RS232 transmitter operating at 9600 baud with odd parity. The design is intended for interfacing with time-output sensors and was tested in simulation and on an FPGA development board.",
+   "summary": "This is a trivial self-timed logic example implementing an LFSR using dual redundant encoding to distinguish data and null states. The documentation is incomplete and notes that testing requires a scope and a way to drive inputs. A partial silicon test report states that the single C-gate works as expected, but the oscillator goes to a constant value when init is asserted. The author expected more randomness from the oscillator.",
+   "summary_changed": true
+  },
+  {
+   "key": "70b011842d54",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The source mentions a 7-segment display as external hardware, but the design's output pins are generic and do not clearly drive a 7-segment display."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "The title is UART and the description says it connects two digital devices."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project language is listed as Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is very thin and does not explain the UART behavior or pin mapping."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment output tag and added UART and insufficient-doc tags.",
+   "tags_before": [
+    "insufficient-doc",
+    "wokwi",
+    "7-segment"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "wokwi",
+    "uart"
+   ],
+   "summary_before": "This project is described as a UART for connecting two digital devices, using switches to select an ASCII character and a 7-segment display to show the result. The documentation is very thin, consisting of only a few sentences that do not explain the baud rate, framing, or register interface. The pin names are generic (in1 through in8, out1 through out3) and do not clearly map to UART signals. External hardware listed includes an Arduino, a 7-segment display, and eight switches, but the design's actual behavior cannot be fully determined from the provided text.",
+   "summary": "This project is described as a UART for connecting two digital devices, using switches to select an ASCII character and a 7-segment display to show the result. The documentation is very thin, consisting of only a few sentences that do not explain the baud rate, framing, or register interface. The pin names are generic (in1 through in8, out1 through out3) and do not clearly map to UART signals. External hardware listed includes an Arduino, a 7-segment display, and eight switches, but the design's actual behavior cannot be fully determined from the provided text.",
+   "summary_changed": false
+  },
+  {
+   "key": "d0b54a71efc3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design is a ring oscillator visualization on VGA, not a register file."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is described."
+    },
+    {
+     "tag": "i2c",
+     "reason": "No I2C interface is described."
+    },
+    {
+     "tag": "communication",
+     "reason": "The design is not a data communication protocol design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "The design is built around a configurable ring oscillator."
+    },
+    {
+     "tag": "vga",
+     "reason": "The design generates VGA video output and uses a Tiny VGA PMOD."
+    },
+    {
+     "tag": "video",
+     "reason": "The design outputs a VGA video signal."
+    },
+    {
+     "tag": "counter",
+     "reason": "A worker counter counts up to 3000 and drives the pixel color."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is listed as Verilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "A tester reported working VGA output and a ring oscillator frequency of about 78 MHz."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the ring oscillator VGA visualization design.",
+   "tags_before": [
+    "register-file",
+    "spi",
+    "i2c",
+    "communication"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "vga",
+    "video",
+    "counter",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements a register bank that can be accessed through either an SPI or an I2C serial interface, with a digital input selecting which interface is active. It is used by writing and reading registers over the selected bus, and the first register is documented as controlling LEDs on the demo board. External hardware may include 2k2 pull-up resistors on the I2C SDA and SCL lines, and testers have used a Bus Pirate and a Pico with internal pull-ups to exercise both interfaces. Silicon tests confirmed read and write access over SPI and I2C, including multi-byte transfers and cross-interface access to the same registers.",
+   "summary": "This design uses manually instantiated inverter cells to form a configurable ring oscillator with selectable chain lengths, expected to oscillate from about 15 MHz up to 350 MHz. The selected clock drives a worker counter that counts up to 3000, and a VGA sync generator takes pixel color from the upper six bits of the counter. The counter is reset during the horizontal blanking interval of each VGA line, producing vertical colored bars with some jitter. A silicon test report confirmed working VGA output and a ring oscillator frequency of about 78 MHz.",
+   "summary_changed": true
+  },
+  {
+   "key": "9160af270657",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "The design uses Ethernet, not VGA."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output is described."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is mentioned."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "The design is not a visual/audio demoscene showcase."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ethernet",
+     "reason": "The design communicates over 100Mbps Ethernet using a Teapot Ethernet accelerator wrapper."
+    },
+    {
+     "tag": "counter",
+     "reason": "The design counts until the heat death of the universe and broadcasts the counter value."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is listed as Verilog."
+    },
+    {
+     "tag": "communication",
+     "reason": "The design implements Ethernet data communication."
+    }
+   ],
+   "notes": "Corrected tags and summary to reflect the Ethernet counter design.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "7-segment",
+    "demoscene"
+   ],
+   "tags": [
+    "ethernet",
+    "counter",
+    "verilog",
+    "communication"
+   ],
+   "summary_before": "This design generates a VGA video signal showing a waving Philippine flag in a DVD-like screensaver style, with the text 'PILIPINAS' in a 7-segment style at the bottom. It requires a VGA display to view the output. The documentation is minimal, providing only the title and a brief description, with no details on implementation or testing beyond the visual output. It is a simple visual demo.",
+   "summary": "This design counts until the heat death of the universe and broadcasts the counter value every second over 100Mbps Ethernet. It reuses the Teapot Ethernet accelerator wrapper for full-duplex communication over a CAT-3/5 cable. The ASIC autonomously sends an application packet with ethertype 0x88b5 every second. External hardware includes an Ethernet 100BASE-T PMOD connector with a LAN8720A PHY and a 50 MHz oscillator.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6987,
+  "completion_tokens": 2582,
+  "total_tokens": 9569,
+  "cost": 0.01937769,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.01937769,
+   "upstream_inference_prompt_cost": 0.00915297,
+   "upstream_inference_completions_cost": 0.01022472
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.01937769,
+ "elapsed_s": 14.1
+}

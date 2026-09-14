@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "30ce1908b084",
+  "0e191c65771e",
+  "fbd23d81ea51",
+  "641a2765d3c3",
+  "4cbf18f0feab",
+  "01049a170439",
+  "6a0a5615dc17",
+  "c8e3180d56f2",
+  "67fc437656d6",
+  "df43fc0c4f5d"
+ ],
+ "results": [
+  {
+   "key": "30ce1908b084",
+   "tags": [
+    "pwm",
+    "led",
+    "duty-cycle",
+    "triangle-wave",
+    "controller",
+    "manual-mode",
+    "breathe"
+   ],
+   "summary": "This design is a basic PWM controller that generates a pulse-width modulated output on uo[7] when enabled by ui[7]. The six-bit input ui[5:0] sets the duty cycle in manual mode, or the frequency of an internally generated triangular reference when ui[6] is high, producing a breathing effect. It is tested by enabling the output and observing the PWM signal on uo[7] while flipping the input switches. No external hardware is required, though an LED and resistor are suggested for visual feedback.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0e191c65771e",
+   "tags": [
+    "vga",
+    "fractal",
+    "ram-emulator",
+    "frame-buffer",
+    "uart",
+    "pio",
+    "rp2040",
+    "julia",
+    "graphics",
+    "example"
+   ],
+   "summary": "This project demonstrates the use of a PIO-based RAM emulator on the RP2040 to store a 320x480 2-bit-per-pixel frame buffer and continuously output a 640x480 VGA signal. The logic computes a Julia fractal and writes it to the frame buffer, with user input via buttons to adjust parameters. It requires a TinyVGA Pmod for VGA output and the RAM emulator running on the RP2040, and includes helper modules and a simulation model for testing. The design serves as an example for using the RAM emulator and includes test infrastructure.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fbd23d81ea51",
+   "tags": [
+    "c-gate",
+    "asynchronous",
+    "ring-oscillator",
+    "latch",
+    "combinatorial",
+    "delay",
+    "muller-c-element",
+    "test"
+   ],
+   "summary": "This design implements two different C-gate (Muller C-element) circuits—one using a latch and one using combinatorial logic—and uses them to build 4-, 16-, and 64-stage rings. The C-gate outputs are directly observable, and the ring outputs toggle at frequencies related to the stage delays. Testing involves verifying the C-gate behavior and measuring ring frequencies, which requires an oscilloscope for the faster rings. Silicon tests show the C-gates work, but the fastest ring output was too fast to observe reliably.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "641a2765d3c3",
+   "tags": [
+    "uart",
+    "pdm",
+    "demo",
+    "workshop",
+    "template",
+    "education"
+   ],
+   "summary": "This is a workshop demo design with a UART receiver on ui[0], a UART transmitter on uo[0], and a PDM output on uo[1]. The documentation is minimal, stating only that it is magic and suggesting connecting the TX pin to a terminal. No external hardware is listed, and the design appears to be a template or educational example. Due to the lack of detail, its exact functionality cannot be determined.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "4cbf18f0feab",
+   "tags": [
+    "multiplier",
+    "array-multiplier",
+    "structural",
+    "full-adder",
+    "arithmetic",
+    "4x4",
+    "combinational"
+   ],
+   "summary": "This design implements a 4x4 array multiplier using structural logic, taking two 4-bit inputs m and q and producing an 8-bit product p. It uses a grid of AND gates and full adders to sum the partial products along diagonals. The design is purely combinational and is tested by applying an 8-bit input where the lower four bits are m and the upper four bits are q, then observing the product on the outputs. No external hardware is required.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "01049a170439",
+   "tags": [
+    "neural-network",
+    "spiking-neural-network",
+    "lif",
+    "stdp",
+    "plasticity",
+    "fixed-point",
+    "synapse",
+    "neuron"
+   ],
+   "summary": "This design implements two Leaky Integrate-and-Fire (LIF) neurons connected by a synapse with Spike-Timing-Dependent Plasticity (STDP). It uses 8-bit fixed-point arithmetic for neuron states and synaptic weights, with the first neuron receiving an 8-bit input current and the second neuron receiving weighted input from the first. The synapse weight and neuron states are output for monitoring, and spike outputs are available on bidirectional pins. Testing can be done with a logic analyzer or signal generator, but no external hardware is required for basic operation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6a0a5615dc17",
+   "tags": [
+    "matrix-multiply",
+    "uart",
+    "axi-stream",
+    "matvec",
+    "dsp",
+    "serial",
+    "communication"
+   ],
+   "summary": "This design performs matrix-vector multiplication, receiving the matrix and vector via UART and outputting the result via UART. Internally, it uses AXI-Stream to pass data between the UART modules and the multiplication core. The design is tested with a provided testbench using iverilog. No external hardware is required.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c8e3180d56f2",
+   "tags": [
+    "neural-network",
+    "perceptron",
+    "relu",
+    "multiply-accumulate",
+    "mac",
+    "fixed-point",
+    "signed"
+   ],
+   "summary": "This design implements a basic perceptron with a ReLU activation layer, using a single-cycle multiply-accumulation unit. It takes four signed 4-bit weights and four signed 4-bit inputs, and outputs a 16-bit ReLU result. The design is tested by providing weight-input pairs cycle-by-cycle and sampling the output, then resetting for a new invocation. No external hardware is required.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "67fc437656d6",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "spi",
+    "flash",
+    "xip",
+    "gpio",
+    "soc",
+    "microcontroller"
+   ],
+   "summary": "This design is a RISC-V based system that boots from an SPI flash memory in XIP mode and executes instructions from there. It provides GPIO pins that can be used for various purposes, such as bitbanged UART. The design is tested with a testbench that includes a model of an SPI flash, and it can be run using FuseSoC. External hardware requires a compatible SPI flash memory.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "df43fc0c4f5d",
+   "tags": [
+    "charge-pump",
+    "dickson",
+    "analog",
+    "voltage-booster",
+    "clock",
+    "power"
+   ],
+   "summary": "This is a 3-stage Dickson charge pump that boosts the input voltage to approximately 9.6 V, with the output divided by two and available on the analog pin ua[0]. It requires a 2 MHz clock signal to operate. In the TT09 shuttle, the analog pin voltage is limited to VDDIO/VDDA, so the output is divided by three instead. The design is tested by applying a clock and measuring the divided output voltage.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5469,
+  "completion_tokens": 1705,
+  "total_tokens": 7174,
+  "cost": 0.0036867,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036867,
+   "upstream_inference_prompt_cost": 0.0016407,
+   "upstream_inference_completions_cost": 0.002046
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036867,
+ "elapsed_s": 26.9
+}

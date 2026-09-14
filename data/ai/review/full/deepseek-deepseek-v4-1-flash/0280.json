@@ -1,0 +1,223 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "44b42b465382",
+  "9848a8eaaff5",
+  "401044a89cc9",
+  "fa8a70fc4aa6",
+  "4a017a798cd5",
+  "c635d43ffc96"
+ ],
+ "results": [
+  {
+   "key": "44b42b465382",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "The design is written in XLS and the source language is xls, not Verilog; Verilog is only a generated artifact."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dac",
+     "reason": "The design outputs 8-bit PCM samples intended for an external DAC, and the source explicitly mentions feeding the sample bus to a DAC."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon status is working and the author reports successful operation on fabricated silicon."
+    }
+   ],
+   "notes": "Removed verilog because the source language is XLS; added dac and silicon-tested based on the documented external DAC and working silicon report.",
+   "tags_before": [
+    "audio",
+    "music",
+    "synthesizer",
+    "dac",
+    "verilog"
+   ],
+   "tags": [
+    "audio",
+    "music",
+    "synthesizer",
+    "dac",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a bytebeat formula in hardware using the XLS toolkit, generating 8-bit PCM samples from four 4-bit parameters according to the formula ((t*a)&(t>>b))|((t*c)&(t>>d)). It requires an 8-bit PCM DAC and rotary encoders to tweak the parameter pins, and the design can be modified by editing the formula and regenerating the Verilog. A silicon test report from the author confirms it worked as expected after configuring the bidirectional mode correctly. The design is notable for being generated from a high-level synthesis tool and for bringing algorithmic music synthesis to Tiny Tapeout.",
+   "summary": "This project implements a bytebeat formula in hardware using the XLS toolkit, generating 8-bit PCM samples from four 4-bit parameters according to the formula ((t*a)&(t>>b))|((t*c)&(t>>d)). It requires an 8-bit PCM DAC and rotary encoders to tweak the parameter pins, and the design can be modified by editing the formula and regenerating the Verilog. A silicon test report from the author confirms it worked as expected after configuring the bidirectional mode correctly. The design is notable for being generated from a high-level synthesis tool and for bringing algorithmic music synthesis to Tiny Tapeout.",
+   "summary_changed": false
+  },
+  {
+   "key": "9848a8eaaff5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The source describes a cellular automaton grid update, not a finite state machine design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed fsm because the design is a cellular automaton grid, not a finite state machine.",
+   "tags_before": [
+    "game-of-life",
+    "cellular-automaton",
+    "game",
+    "fsm"
+   ],
+   "tags": [
+    "game-of-life",
+    "cellular-automaton",
+    "game"
+   ],
+   "summary_before": "This design is a silicon implementation of Conway's Game of Life on an 8x8 grid. The grid can be loaded row by row using row select, cell input and write enable signals, and the game advances one step per clock cycle when enabled. The current state of any row can be read via the cell output pins. It is a compact, interactive implementation of the classic cellular automaton, with no external hardware required beyond the chip's pins.",
+   "summary": "This design is a silicon implementation of Conway's Game of Life on an 8x8 grid. The grid can be loaded row by row using row select, cell input and write enable signals, and the game advances one step per clock cycle when enabled. The current state of any row can be read via the cell output pins. It is a compact, interactive implementation of the classic cellular automaton, with no external hardware required beyond the chip's pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "401044a89cc9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design outputs VGA signals, not a generic display interface; vga and video already cover this."
+    }
+   ],
+   "add": [],
+   "notes": "Removed display because the output is specifically VGA, already covered by vga and video.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "verilog"
+   ],
+   "summary_before": "This design generates a VGA signal that displays a white pixel on a blue background, reusing VGA Flappy Bird code from Cutout1. It correctly times the sync and color signals for VGA output on the eight pins, which match the Tiny VGA pinout. It requires an external VGA adaptor and a digital-to-analog converter to connect to a monitor. The project was submitted for Supercon 2023 and is notable for being a minimal VGA demonstration on a Tiny Tapeout tile.",
+   "summary": "This design generates a VGA signal that displays a white pixel on a blue background, reusing VGA Flappy Bird code from Cutout1. It correctly times the sync and color signals for VGA output on the eight pins, which match the Tiny VGA pinout. It requires an external VGA adaptor and a digital-to-analog converter to connect to a monitor. The project was submitted for Supercon 2023 and is notable for being a minimal VGA demonstration on a Tiny Tapeout tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "fa8a70fc4aa6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design uses external memory but does not implement a memory block on-chip."
+    },
+    {
+     "tag": "microcontroller",
+     "reason": "The design is a CPU core, not a microcontroller or SoC; a microcontroller is only suggested as external test equipment."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The source does not describe an esoteric programming language or novelty computation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The design is an 8-bit Turing complete computer with fetch-decode-execute operation."
+    }
+   ],
+   "notes": "Removed memory, microcontroller and esoteric because they are not supported by the source; cpu was already present and is correct.",
+   "tags_before": [
+    "cpu",
+    "memory",
+    "microcontroller",
+    "verilog",
+    "esoteric"
+   ],
+   "tags": [
+    "cpu",
+    "verilog"
+   ],
+   "summary_before": "Byte Computer is an 8-bit Turing complete computer implemented in Verilog, featuring an in-order, non-pipelined architecture with no register file, cache, or branch predictor. It fetches instructions from external memory, decodes and executes them, and repeats until a halt instruction is encountered. Testing requires external memory and control logic, typically provided by a microcontroller, which must be preloaded with a program. The design is notable for its simplicity and small size, making it suitable for Tiny Tapeout.",
+   "summary": "Byte Computer is an 8-bit Turing complete computer implemented in Verilog, featuring an in-order, non-pipelined architecture with no register file, cache, or branch predictor. It fetches instructions from external memory, decodes and executes them, and repeats until a halt instruction is encountered. Testing requires external memory and control logic, typically provided by a microcontroller, which must be preloaded with a program. The design is notable for its simplicity and small size, making it suitable for Tiny Tapeout.",
+   "summary_changed": false
+  },
+  {
+   "key": "4a017a798cd5",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Multiple silicon test reports confirm the oscillator works on fabricated silicon."
+    }
+   ],
+   "notes": "Added silicon-tested because the source includes multiple working silicon test reports.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "analog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "analog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a simple analog ring oscillator that outputs a nominal 5 MHz clock signal on a single analog pin. It requires no external hardware and is automatically enabled when selected on the evaluation board. Silicon tests show it oscillates at around 4.5-4.6 MHz with an amplitude of about 0.6-1.6 V, depending on the setup. The design is notable for its simplicity and use of analog circuitry.",
+   "summary": "This is a simple analog ring oscillator that outputs a nominal 5 MHz clock signal on a single analog pin. It requires no external hardware and is automatically enabled when selected on the evaluation board. Silicon tests show it oscillates at around 4.5-4.6 MHz with an amplitude of about 0.6-1.6 V, depending on the setup. The design is notable for its simplicity and use of analog circuitry.",
+   "summary_changed": false
+  },
+  {
+   "key": "c635d43ffc96",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "The design is a voltage reference characterized over temperature, not a temperature sensing interface or circuit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed temperature-sensor because the design is a voltage reference, not a temperature sensing circuit.",
+   "tags_before": [
+    "bandgap",
+    "voltage-reference",
+    "analog",
+    "temperature-sensor"
+   ],
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "analog"
+   ],
+   "summary_before": "This project is a bandgap voltage reference designed in Skywater 130nm CMOS to provide a stable 1.17V output over a 0-80°C temperature range. It includes a startup circuit and operates from a 1.8V supply, consuming 0.35 mW. Testing requires a temperature chamber, power supply, and measurement equipment to verify temperature stability, line and load regulation, and power consumption. Silicon tests show it can be unstable depending on load, sometimes latching to 0.46V instead of 1.17V.",
+   "summary": "This project is a bandgap voltage reference designed in Skywater 130nm CMOS to provide a stable 1.17V output over a 0-80°C temperature range. It includes a startup circuit and operates from a 1.8V supply, consuming 0.35 mW. Testing requires a temperature chamber, power supply, and measurement equipment to verify temperature stability, line and load regulation, and power consumption. Silicon tests show it can be unstable depending on load, sometimes latching to 0.46V instead of 1.17V.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6975,
+  "completion_tokens": 1445,
+  "total_tokens": 8420,
+  "cost": 0.0038265,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0038265,
+   "upstream_inference_prompt_cost": 0.0020925,
+   "upstream_inference_completions_cost": 0.001734
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0038265,
+ "elapsed_s": 7.6
+}

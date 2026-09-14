@@ -1,0 +1,202 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "33d9436f6071",
+  "5612719aac73",
+  "8a107c959957",
+  "5215b538ba45",
+  "f0c031d6c3b6",
+  "1d47befb1e7e",
+  "7f0506103452",
+  "779ab868d502",
+  "2d1d587e4596",
+  "25f93fcbc229"
+ ],
+ "results": [
+  {
+   "key": "33d9436f6071",
+   "tags": [
+    "dot-product",
+    "mac",
+    "fsm",
+    "datapath",
+    "memory",
+    "debug",
+    "education"
+   ],
+   "summary": "This design is an FSM-driven dot product engine that reads input data on ui_in, controls a small register/memory bank, and performs multiply-accumulate operations. Control bits select idle, work, or debug modes, and status flags plus a debug selector expose internal state and results on the bidirectional and output pins. It is verified with a cocotb testbench that checks reset, state transitions, status changes, output values, and debug readback. No external hardware is required, and the project is presented as a learning-oriented Tiny Tapeout implementation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5612719aac73",
+   "tags": [
+    "crypto",
+    "authentication",
+    "challenge-response",
+    "music",
+    "synthesizer",
+    "audio",
+    "uart",
+    "education"
+   ],
+   "summary": "Montenegro SecureKey combines a 64-bit challenge-response authentication engine with a melody player that renders phrases from a national anthem as square waves. The authentication engine loads eight challenge bytes over uio handshakes, runs a keyed nonlinear transform for 128 clocks, and streams back eight response bytes, while the music engine uses a 40-entry note ROM and programmable divider to drive an audio pin. A published known-answer vector and a cocotb suite cover reset, I/O directions, invalid frames, byte handshaking, and music start/stop. Audible playback needs a piezo element with a transistor driver stage, and the design is explicitly an educational proof of concept rather than a production secure element.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8a107c959957",
+   "tags": [
+    "audio",
+    "pdm",
+    "cordic",
+    "phase",
+    "direction-of-arrival",
+    "led",
+    "uart",
+    "sensor",
+    "analog-frontend"
+   ],
+   "summary": "The Acoustic Interferometer samples two PDM microphones, mixes the 1-bit streams with a 20 kHz complex tone, averages over 2^16 samples, and uses a CORDIC in vectoring mode to compute the phase difference between channels. The resulting 7-bit signed angle is shown as a one-hot value on an LED bar and also transmitted over UART for debugging. It is intended to run with a dedicated PMOD PCB carrying the microphones and LEDs, and a phone speaker playing a 20 kHz tone is used to verify that the LED bar tracks the direction of arrival. The design is written in Chisel and is notable for combining PDM capture, complex mixing, and CORDIC phase detection on a 1x2 tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5215b538ba45",
+   "tags": [
+    "compute-in-rom",
+    "ternary",
+    "analog",
+    "sense-amplifier",
+    "strongarm",
+    "memory",
+    "transistor-level",
+    "neural-network",
+    "matrix-multiply"
+   ],
+   "summary": "Azara CiROM is a mask-programmed ternary compute-in-ROM demonstrator that bakes +1/-1/0 weights into a 64x32 1T NOR array and senses a full row in a single strobe. A digital controller precharges bitlines, asserts a one-hot wordline, and pulses a shared strobe so single-ended StrongARM sense amplifiers compare each column's BLP/BLN lines against an external VREF, latching all 32 hits at once and streaming them out as bytes. Reading requires a mid-rail voltage source on ua[0], and ua[1]/ua[2] can be scoped to observe column-0 bitline discharge, which is slower because of probe capacitance. The analog front end is a hardened custom GDS while the read controller is standard digital logic, making this a transistor-level analog/mixed-signal experiment.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f0c031d6c3b6",
+   "tags": [
+    "neural-network",
+    "transformer",
+    "language-model",
+    "rom",
+    "ternary",
+    "machine-learning",
+    "serial",
+    "dsp"
+   ],
+   "summary": "This chip is a character-level transformer language model whose ternary weights and normalization scales are baked into on-chip ROM, so it has no weight-loading interface. It streams int16 residual vectors in and int8 residuals out over a byte handshake, using RMSNorm, a minGRU mixer, and an MLP with squared ReLU, with a 5-lane arithmetic unit that consumes five ternary weights per ROM byte. The reference host is the RP2350B on the Tiny Tapeout demo board, which supplies character and position tables and samples the output logits; a logic analyser can verify the sequencer by watching dbg_rx, dbg_busy, and dbg_tx. No external hardware beyond the demo board is required, and the design is notable for fitting a complete transformer body into 4x4 tiles of ROM.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1d47befb1e7e",
+   "tags": [
+    "gpu",
+    "simt",
+    "spi",
+    "int8",
+    "divergence",
+    "processor",
+    "dsp"
+   ],
+   "summary": "Clementine is a 4-lane int8 SIMT GPU that is programmed and controlled over an SPI interface using the standard SPI Pmod pinout. Status outputs report when the sequencer has halted, whether any lane is active, instruction commit, and replay state, which together expose hardware divergence handling. The documentation is limited to the title, pin names, and a short description, so the instruction set, memory model, and test procedure are not described. It is notable for implementing SIMT execution with hardware divergence on a 2x2 tile area.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7f0506103452",
+   "tags": [
+    "fir",
+    "filter",
+    "dsp",
+    "uart",
+    "audio",
+    "fixed-point"
+   ],
+   "summary": "Fir_Filter is an 11-coefficient fixed-point FIR filter that accepts an 8-bit digital audio signal on ui_in with a 4 kHz bandwidth and sends the filtered result out through a UART transmitter. Two select pins choose among four coefficient sets corresponding to high-pass, low-pass, band-pass, and all-pass responses. The documentation describes the filter types and selection pins but is thin on coefficient values, scaling, and the exact UART format. No external hardware is required, and the design is a straightforward DSP exercise on a 1x2 tile.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "779ab868d502",
+   "tags": [
+    "synthesizer",
+    "dds",
+    "audio",
+    "spi",
+    "sigma-delta",
+    "music",
+    "pwm",
+    "oscillator"
+   ],
+   "summary": "Poly Synth v1.0 is a three-voice polyphonic DDS synthesizer whose voices are configured over SPI with 35-bit frames carrying tuning words and waveform settings. Each voice has a 32-bit phase accumulator and a shaper that produces sawtooth, square with selectable PWM duty, or triangle, and the summed voices are converted to a 1-bit sigma-delta stream on the audio output pin. Hearing the output requires an external RC reconstruction filter and a DC-blocking capacitor, and an SPI controller such as the demo board's RP2040 drives the configuration. The design has no ADSR or other envelope shaping, so the author notes artifacts and plans to refine it in a future version.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2d1d587e4596",
+   "tags": [
+    "gps",
+    "rtc",
+    "timer",
+    "uart",
+    "pps",
+    "trigger",
+    "nmea",
+    "protocol"
+   ],
+   "summary": "GPS Daily Trigger generates a 50 ms pulse once per day at a UTC hour, minute, and second configured through a small parallel write interface. It receives 9600-baud NMEA data on UART_RX, parses and checksum-validates $GPRMC sentences, associates the decoded UTC timestamp with the next GPS_PPS rising edge, and asserts TRIG_OUT when the associated time matches the target. Status outputs report sentence validity, fix validity, configuration errors, PPS output, UTC/PPS lock, and whether a target is configured, and a cocotb testbench exercises the same protocol with faster simulation parameters. A 3.3 V GPS receiver providing $GPRMC sentences and a PPS signal is required, and the relationship between the receiver's RMC timestamp and PPS edge should be confirmed before fabrication.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "25f93fcbc229",
+   "tags": [
+    "cpu",
+    "alu",
+    "uart",
+    "gpio",
+    "ram",
+    "8-bit",
+    "education",
+    "state-machine"
+   ],
+   "summary": "CPU8 is a small 8-bit accumulator-based processor with a custom 8-bit instruction set, an ALU supporting arithmetic and logic operations, 8-bit RAM, conditional branches, HALT, and memory-mapped GPIO. Programs are uploaded through a UART interface using a simple protocol that writes instructions into instruction memory and then starts execution from address zero. The included cocotb testbench programs the CPU over the same UART interface and verifies reset, arithmetic, RAM access, GPIO, jumps, branches, and HALT. Basic operation needs no external hardware, though a USB-to-UART adapter or microcontroller is useful for physical programming.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10778,
+  "completion_tokens": 2081,
+  "total_tokens": 12859,
+  "cost": 0.004665378,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 896,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004665378,
+   "upstream_inference_prompt_cost": 0.002542758,
+   "upstream_inference_completions_cost": 0.00212262
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004665378,
+ "elapsed_s": 65.0
+}

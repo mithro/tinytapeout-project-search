@@ -1,0 +1,181 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "64e128d12fa9",
+  "85cd29f032d7",
+  "f829bd2cd8fc",
+  "67f28e402537",
+  "de6b90cb9298",
+  "f80722606a1b",
+  "a4d9eeca0e20",
+  "fea526259cad",
+  "736bf4d49be3",
+  "f16acd6ec1ff"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "64e128d12fa9",
+   "tags": [
+    "cpu",
+    "pipeline",
+    "vga",
+    "qspi",
+    "memory",
+    "rom",
+    "uart",
+    "risc-v"
+   ],
+   "summary": "This design implements a 16-bit five-stage ARM pipeline with forwarding and hazard detection, executing a subset of the 32-bit ARM instruction encoding. It streams its program from a QSPI flash Pmod and uses PSRAM for data, while an internal demo ROM provides a standalone counting demo. Output is rendered as four large hexadecimal digits on a TinyVGA Pmod, with a second view showing the fetch address. The design is notable for being the first ARM core on Tiny Tapeout and includes a switch to disable forwarding for comparison, but the UART from the original specification was dropped for area.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "85cd29f032d7",
+   "tags": [
+    "communication",
+    "ascii",
+    "audio",
+    "pwm",
+    "7-segment",
+    "synchronizer"
+   ],
+   "summary": "This design converts ASCII characters to ITU Morse code, streaming the elements on a key line and generating a PWM sidetone for the TT Audio Pmod. It also displays status bits on the 7-segment display, with options for speed selection, tone selection, and auto-repeat. The chip handles all Morse timing and provides a handshake protocol so a host can stream text without dropping characters. It is tested with a cocotb testbench and can be driven from a microcontroller using the ttboard SDK.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "f829bd2cd8fc",
+   "tags": [
+    "multiplier",
+    "alu",
+    "cocotb",
+    "verilog"
+   ],
+   "summary": "This design is a variable-precision multiplier that supports 2-bit, 4-bit, and 8-bit multiplication modes, selected via mode pins. It accepts an 8-bit data input and produces an 8-bit product output. The design is intended to be tested with an automated Cocotb testbench, and no external hardware is required. The documentation is minimal, providing only the pinout and a brief description.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "67f28e402537",
+   "tags": [
+    "popcount",
+    "shift-register",
+    "counter"
+   ],
+   "summary": "This design implements a 17-bit population counter using a Wallace-tree structure. It can be loaded with 16 bits in parallel and one serial input bit, and outputs a 5-bit count of the number of set bits. The design is documented only by its title and pin names, with no detailed explanation of operation or testing. It is likely intended for applications requiring efficient bit counting.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "de6b90cb9298",
+   "tags": [
+    "game",
+    "pong",
+    "neural-network",
+    "vga",
+    "machine-learning",
+    "shift-register"
+   ],
+   "summary": "This design implements a Pong game where a player can compete against an AI opponent or a second player, displayed on a VGA screen via the Tiny VGA Pmod. The AI uses a neural network whose weights are stored in a shift register, allowing retraining after fabrication by clocking in new weights. The game includes paddle control, ball physics with angle variation based on hit position, and score rendering. It requires external buttons for paddle movement and game reset, and a toggle switch for player mode selection.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "f80722606a1b",
+   "tags": [
+    "image-processing",
+    "cocotb",
+    "verilog"
+   ],
+   "summary": "This design performs streaming pixel-based face detection by classifying skin tone and counting dark pixels in eye, nose, and mouth zones. Pixels are input serially one channel at a time, along with channel select, pixel valid, frame done, and zone metadata. At the end of a frame, it evaluates conditions and outputs detection flags. Testing requires a MATLAB preprocessing script to convert images into a pixel stream, and the design is intended to be driven by a microcontroller or cocotb testbench.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "a4d9eeca0e20",
+   "tags": [
+    "spiking-neural-network",
+    "lookup-table",
+    "reconfigurable",
+    "cocotb",
+    "systemverilog"
+   ],
+   "summary": "This design implements a reconfigurable look-up-table spiking neural network that classifies the orientation of a line in a 3x3 binary grid as vertical or horizontal. It uses latency ordering without membrane potentials or time stepping, and the weights can be rewritten at runtime via a shift register interface. The design achieves 100% accuracy on clean patterns and 80.99% under 10% flip noise, with a fixed 2-cycle latency. It is tested exhaustively with a cocotb suite that covers all 512 possible inputs.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "fea526259cad",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "education"
+   ],
+   "summary": "This design is a single-cycle RISC-V processor core implementing a subset of the RV32I base integer instruction set. It exposes the internal 32-bit program counter through a byte-select multiplexer on the output pins, allowing external observation of execution. The core is tested by cycling through byte selects to reconstruct the program counter and verifying that it advances correctly. Known limitations include incomplete support for non-addi I-type instructions and blt-style branches.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "736bf4d49be3",
+   "tags": [
+    "uart",
+    "vga",
+    "text",
+    "display"
+   ],
+   "summary": "This design receives text messages over UART and scrolls them across a 640x480 VGA display. It provides inputs for scroll speed, pause control, and text/background color selection. The design is intended to be used with a Tiny VGA Pmod and a UART source. The documentation is minimal, consisting only of the title, description, and pin names, with no detailed explanation of operation or testing.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "f16acd6ec1ff",
+   "tags": [
+    "game",
+    "pong",
+    "vga",
+    "retro",
+    "graphics"
+   ],
+   "summary": "This design is a Pong game with retro visuals and an AI opponent, forked from an earlier version. It supports both two-player and AI modes, selectable via a DIP switch, and uses a VGA display and Pmod game controllers for input. The game includes serve and paddle controls for each player. Testing involves pressing the select button to serve and flipping the DIP switch to change modes.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 12226,
+  "completion_tokens": 1548,
+  "total_tokens": 13774,
+  "cost": 0.001176228,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2816,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001176228,
+   "upstream_inference_prompt_cost": 0.000897588,
+   "upstream_inference_completions_cost": 0.00027864
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001176228,
+ "elapsed_s": 27.9
+}

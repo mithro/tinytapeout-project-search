@@ -1,0 +1,189 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6f8d2c02b279",
+  "d6001df29392",
+  "cdc0a32d00df",
+  "356f73c8375c",
+  "e3abaff6249a",
+  "956344830ef6"
+ ],
+ "results": [
+  {
+   "key": "6f8d2c02b279",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bit-serial",
+     "reason": "The design shifts in operands serially but the datapath is a parallel 8x8 multiplier, not a bit-serial datapath processing one bit per clock."
+    }
+   ],
+   "add": [],
+   "notes": "Removed bit-serial: the multiplier datapath is parallel, only the operand loading is serial.",
+   "tags_before": [
+    "multiplier",
+    "shift-register",
+    "wokwi",
+    "bit-serial"
+   ],
+   "tags": [
+    "multiplier",
+    "shift-register",
+    "wokwi"
+   ],
+   "summary_before": "This design is an 8x8-bit multiplier that shifts two bytes in serially, MSB first, and presents the result as parallel data on the output pins. It is tested by supplying a clock and data signal to shift in the two operands, with the documentation giving a worked example of 53 times 77 equalling 4081. As of the documentation date only the least significant byte of the result appears on the outputs, and the author plans to add an output buffer and shift register. The project is a Wokwi-based arithmetic block with a clear but currently limited output interface.",
+   "summary": "This design is an 8x8-bit multiplier that shifts two bytes in serially, MSB first, and presents the result as parallel data on the output pins. It is tested by supplying a clock and data signal to shift in the two operands, with the documentation giving a worked example of 53 times 77 equalling 4081. As of the documentation date only the least significant byte of the result appears on the outputs, and the author plans to add an output buffer and shift register. The project is a Wokwi-based arithmetic block with a clear but currently limited output interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "d6001df29392",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "trng",
+    "ring-oscillator",
+    "uart",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "uart",
+    "7-segment",
+    "verilog"
+   ],
+   "summary_before": "This design is a true random number generator based on three ring oscillators of different lengths, XORed together and debiased with a Von Neumann corrector. It is used by connecting a UART-to-USB adapter to read the 32-bit random numbers, and a dual-digit 7-segment display shows status; DIP switches control the oscillator speed. External hardware includes a UART adapter, a 7-segment display, and switches. The design outputs random numbers via UART and is notable for its ring-oscillator-based entropy source.",
+   "summary": "This design is a true random number generator based on three ring oscillators of different lengths, XORed together and debiased with a Von Neumann corrector. It is used by connecting a UART-to-USB adapter to read the 32-bit random numbers, and a dual-digit 7-segment display shows status; DIP switches control the oscillator speed. External hardware includes a UART adapter, a 7-segment display, and switches. The design outputs random numbers via UART and is notable for its ring-oscillator-based entropy source.",
+   "summary_changed": false
+  },
+  {
+   "key": "cdc0a32d00df",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "communication",
+    "error-correction",
+    "pipeline",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "error-correction",
+    "pipeline",
+    "verilog"
+   ],
+   "summary_before": "This design implements a 16-bit scrambler, framer, and error detector for safer transmissions, using gPEAC and Hammer18 circuits in a pipelined datapath. It supports bypass, encode, decode, and loopback modes selected by two control pins, with 18-bit words transmitted as two 9-bit half-words and an overall latency of five cycles. The design is intended for chaining multiple chips together, and custom boards or adapters are planned for verification. Decoding errors and zero flags are signalled but not acted upon, and the documentation notes several usage constraints such as not changing mode while data is in the pipeline.",
+   "summary": "This design implements a 16-bit scrambler, framer, and error detector for safer transmissions, using gPEAC and Hammer18 circuits in a pipelined datapath. It supports bypass, encode, decode, and loopback modes selected by two control pins, with 18-bit words transmitted as two 9-bit half-words and an overall latency of five cycles. The design is intended for chaining multiple chips together, and custom boards or adapters are planned for verification. Decoding errors and zero flags are signalled but not acted upon, and the documentation notes several usage constraints such as not changing mode while data is in the pipeline.",
+   "summary_changed": false
+  },
+  {
+   "key": "356f73c8375c",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "The pinout includes spi_miso, spi_cs_n, spi_clk and spi_mosi, so the SPI interface tag is supported."
+    }
+   ],
+   "notes": "Added spi: the pinout exposes spi_miso, spi_cs_n, spi_clk and spi_mosi.",
+   "tags_before": [
+    "fsm",
+    "uart",
+    "spi",
+    "reconfigurable"
+   ],
+   "tags": [
+    "fsm",
+    "uart",
+    "spi",
+    "reconfigurable"
+   ],
+   "summary_before": "This design is a programmable finite state machine (FSM) that can be configured via a bitstream called a 'chroma' generated by a custom Yosys fork. The FSM has 7 inputs, 8 outputs, and a UART interface, along with an SPI interface for loading the configuration. To use it, the user defines an FSM in Verilog, generates a chroma bitstream using the provided tools, and loads it into the device via UART or SPI. The project is notable for its use of a custom open-source toolchain and for enabling rapid prototyping of custom FSM-based controllers.",
+   "summary": "This design is a programmable finite state machine (FSM) that can be configured via a bitstream called a 'chroma' generated by a custom Yosys fork. The FSM has 7 inputs, 8 outputs, and a UART interface, along with an SPI interface for loading the configuration. To use it, the user defines an FSM in Verilog, generates a chroma bitstream using the provided tools, and loads it into the device via UART or SPI. The project is notable for its use of a custom open-source toolchain and for enabling rapid prototyping of custom FSM-based controllers.",
+   "summary_changed": false
+  },
+  {
+   "key": "e3abaff6249a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "A 4-bit universal shift register is not a multi-register storage block addressed like a register file."
+    }
+   ],
+   "add": [],
+   "notes": "Removed register-file: the design is a single 4-bit shift register, not an addressed multi-register file.",
+   "tags_before": [
+    "shift-register",
+    "register-file",
+    "verilog"
+   ],
+   "tags": [
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This design implements a 4-bit bidirectional universal shift register compatible with the SN74LS194A. It supports hold, shift right, shift left, and parallel load modes, with asynchronous active-low clear. The design is clocked on the rising edge and uses mode select pins S1 and S0 to choose the operation. No external hardware is required, though switches and LEDs on a demo board can be used for testing.",
+   "summary": "This design implements a 4-bit bidirectional universal shift register compatible with the SN74LS194A. It supports hold, shift right, shift left, and parallel load modes, with asynchronous active-low clear. The design is clocked on the rising edge and uses mode select pins S1 and S0 to choose the operation. No external hardware is required, though switches and LEDs on a demo board can be used for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "956344830ef6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "The serial input is a custom LSB-first bit stream on a single pin, not a UART protocol."
+    }
+   ],
+   "add": [],
+   "notes": "Removed uart: the serial input is a custom bit-serial protocol, not UART framing.",
+   "tags_before": [
+    "alu",
+    "uart",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This is a 7-bit ALU that accepts two operands serially, LSB first, on a single input pin and produces an 8-bit parallel result. The opcode is a stable 3-bit parallel input selecting ADD, AND, OR, XOR or SUB, and a Done pin pulses high for one clock cycle when the result is valid. It needs no external hardware for simulation; on a devkit, LEDs, buttons or a logic analyser can be used to observe results and protocol timing. The design is a straightforward IEEE-style student exercise with clear pin documentation but no reported silicon measurements.",
+   "summary": "This is a 7-bit ALU that accepts two operands serially, LSB first, on a single input pin and produces an 8-bit parallel result. The opcode is a stable 3-bit parallel input selecting ADD, AND, OR, XOR or SUB, and a Done pin pulses high for one clock cycle when the result is valid. It needs no external hardware for simulation; on a devkit, LEDs, buttons or a logic analyser can be used to observe results and protocol timing. The design is a straightforward IEEE-style student exercise with clear pin documentation but no reported silicon measurements.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8007,
+  "completion_tokens": 1283,
+  "total_tokens": 9290,
+  "cost": 0.0039417,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039417,
+   "upstream_inference_prompt_cost": 0.0024021,
+   "upstream_inference_completions_cost": 0.0015396
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039417,
+ "elapsed_s": 18.1
+}

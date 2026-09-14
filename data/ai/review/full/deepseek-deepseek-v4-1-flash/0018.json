@@ -1,0 +1,228 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9c5bbffceef7",
+  "7f2e4af8d643",
+  "9eff259577e3",
+  "6d13cea8b06c",
+  "d6aa70e42c94",
+  "8b6e4b3063f0"
+ ],
+ "results": [
+  {
+   "key": "9c5bbffceef7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The source never states it is a game; only button labels suggest a gamepad, and the description says it renders output to a screen."
+    }
+   ],
+   "add": [
+    {
+     "tag": "gamepad",
+     "reason": "Input pins are explicitly labeled Up/Down/Left/Right/A/B/Select/Start, a game controller layout."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with no explanation of how the design works beyond rendering to a screen."
+    }
+   ],
+   "notes": "Removed unsupported 'game' tag, added gamepad and insufficient-doc; summary rewritten to drop the unsupported 'custom AI' claim and the invented audio Pmod.",
+   "tags_before": [
+    "vga",
+    "video",
+    "game",
+    "audio",
+    "pwm",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "verilog",
+    "gamepad",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a Verilog-based game that renders output to a VGA screen and includes PWM audio output. It uses custom AI implemented in HDL, as indicated by the description. The design is controlled by eight input pins labeled as gamepad buttons (Up, Down, Left, Right, A, B, Select, Start). It requires a VGA display and optionally an audio Pmod, similar to the VGA Playground setup.",
+   "summary": "This is a Verilog project that renders output to a screen using a Tiny VGA pinout. It also provides PWM audio output on uio[7]. The design is controlled by eight input pins labeled as gamepad buttons (Up, Down, Left, Right, A, B, Select, Start). It requires a VGA display similar to the VGA Playground setup.",
+   "summary_changed": true
+  },
+  {
+   "key": "7f2e4af8d643",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source indicates a teaching or learning purpose."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; summary kept to four sentences and limited to what the source supports.",
+   "tags_before": [
+    "wokwi",
+    "7-segment",
+    "education",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project appears to be a traffic light controller intended for a Wokwi simulation, as indicated by its title and seven-segment display pins. However, the documentation is essentially empty: the 'How it works' and 'How to test' sections contain only placeholder text, and no description of functionality or usage is provided. Consequently, it is impossible to determine the design's behavior, external hardware requirements, or testing procedure from the available information. The tags are inferred solely from the title and pin names, and the lack of documentation makes it impossible to provide a meaningful summary.",
+   "summary": "This project is titled Traffic Light and is intended for the Wokwi simulator. Its pins drive a seven-segment display, with outputs for segments a through g and the dot. The documentation is essentially empty: the 'How it works' and 'How to test' sections contain only placeholder text. No description of functionality, external hardware, or testing procedure is provided, so the design's behavior cannot be determined.",
+   "summary_changed": true
+  },
+  {
+   "key": "9eff259577e3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state a teaching or learning purpose."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; workshop retained as the OSU RET training context supports it.",
+   "tags_before": [
+    "wokwi",
+    "7-segment",
+    "education",
+    "insufficient-doc",
+    "workshop"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "insufficient-doc",
+    "workshop"
+   ],
+   "summary_before": "This project is another traffic light controller, likely created as part of OSU RET training, with a seven-segment display output. However, the documentation is missing: both 'How it works' and 'How to test' sections have placeholder text, providing no details about the design's operation or testing. Without further information, it is impossible to describe the design's functionality, external hardware needs, or notable features. The tags are guessed from the title and training context, but the absence of documentation makes it impossible to provide a substantive summary.",
+   "summary": "This project is titled Traffic light and its one-line description notes OSU RET training. It is intended for the Wokwi simulator and spans a 1x2 tile area. Its pins drive a seven-segment display, with outputs for segments a through g and the dot. The documentation is missing: both 'How it works' and 'How to test' sections contain only placeholder text, so the design's operation cannot be described.",
+   "summary_changed": true
+  },
+  {
+   "key": "6d13cea8b06c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The one-line description clearly states the displayed string, so the design is describable despite thin docs."
+    }
+   ],
+   "add": [],
+   "notes": "Removed insufficient-doc since the display function is clearly stated; summary trimmed to four supported sentences.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This design displays the string 'dEFAULt123' on a 7-segment LED display. The documentation is extremely sparse, with no explanation of how the design works or how to test it beyond powering it on. It appears to be a simple display driver with no external hardware requirements beyond the 7-segment display itself. The project lacks sufficient documentation to determine its purpose or functionality.",
+   "summary": "This Verilog design displays the string 'dEFAULt123' on a 7-segment LED display. Its outputs drive segments a through g and the dot. The documentation is extremely sparse, with no explanation of how the design works or how to test it beyond powering it on. No external hardware requirements are stated beyond the 7-segment display itself.",
+   "summary_changed": true
+  },
+  {
+   "key": "d6aa70e42c94",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "qif",
+     "reason": "'qif' is not in the canonical vocabulary; the QIF nature is already covered by spiking-neural-network."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with no explanation of threshold setting or output encoding."
+    }
+   ],
+   "notes": "Removed non-canonical 'qif' tag and added insufficient-doc; summary kept as-is since it is supported.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "qif",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is an 8-bit digital QIF (quadratic integrate-and-fire) circuit that produces spikes when the input is positive and resets when the signal exceeds a predetermined value. It accepts an 8-bit two's complement positive number on the inputs and outputs spike signals on the outputs. The documentation is very thin, consisting only of a brief description and a note about external hardware. It is unclear from the provided text how the threshold is set or what the output encoding represents.",
+   "summary": "This is an 8-bit digital QIF (quadratic integrate-and-fire) circuit that spikes when the input is positive and resets when the signal exceeds a predetermined value. It accepts an 8-bit two's complement positive number on inputs B0 through B7 and outputs spike signals on AS0 and S1 through S7. The documentation is very thin, consisting only of a brief description and a note about external hardware. It is unclear from the provided text how the threshold is set or what the output encoding represents.",
+   "summary_changed": true
+  },
+  {
+   "key": "8b6e4b3063f0",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "placeholder",
+     "reason": "The one-line description says 'Not yet decided', but the documentation describes an LCD text echo function, so the placeholder status is ambiguous."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lcd",
+     "reason": "Documentation states it echoes predefined text onto a 16x2 character LCD."
+    },
+    {
+     "tag": "text",
+     "reason": "The design outputs predefined text to the LCD."
+    }
+   ],
+   "notes": "Source is contradictory: description says undecided while docs describe an LCD text echo, and pins do not match an LCD interface; needs a second opinion.",
+   "tags_before": [
+    "placeholder",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "verilog",
+    "insufficient-doc",
+    "lcd",
+    "text"
+   ],
+   "summary_before": "This project shares the title and description of another LCD text design but has a different pinout with eight generic inputs and one output, and its one-line description says the design is not yet decided. The documentation claims it echoes predefined text onto a 16x2 character LCD, but the pin names do not match that function. It would be tested by connecting an LCD1602 and setting the clock, yet the pin mapping makes this unclear. The documentation is contradictory and too thin to determine the actual behavior.",
+   "summary": "This project is titled Hero on Tape and its one-line description says the design is not yet decided. The documentation claims it echoes predefined text onto a 16x2 character LCD, tested by connecting an LCD1602 and setting the clock. However, the pinout provides eight generic inputs and a single output, which does not match a character LCD interface. The documentation is contradictory and too thin to determine the actual behavior.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5582,
+  "completion_tokens": 1172,
+  "total_tokens": 6754,
+  "cost": 0.00261885,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00261885,
+   "upstream_inference_prompt_cost": 0.00142341,
+   "upstream_inference_completions_cost": 0.00119544
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00261885,
+ "elapsed_s": 35.5
+}

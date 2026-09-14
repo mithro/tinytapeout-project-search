@@ -1,0 +1,193 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e32c90edf056",
+  "a4986a022662",
+  "929d304b78e4",
+  "2848d73318ad",
+  "e8475779d39e",
+  "97b9705ef119",
+  "be8611307820",
+  "150de226cc85",
+  "cda7ed890a6e",
+  "46f9a97756f9"
+ ],
+ "results": [
+  {
+   "key": "e32c90edf056",
+   "tags": [
+    "fsk",
+    "modem",
+    "hdlc",
+    "uart",
+    "packet-radio",
+    "spinalhdl",
+    "dac",
+    "proof-of-concept",
+    "communication"
+   ],
+   "summary": "This is a proof-of-concept digital design for an FSK modem with HDLC framing and a UART interface, intended as a stepping stone toward a full terminal node controller for amateur radio packet systems. The design uses a lookup-table-based approach to generate and receive 2FSK signals, with a master clock running at 64 times the data rate to support baud rates from 4800 to 76800. It is meant to be tested with external RP2040 or FPGA boards to validate the electrical interface architecture, and the author notes that limited development time may prevent good results in this initial version. The project is notable for its homage to the classic G3RUH modem design and its plan to eventually pair with an 8-bit CPU for a complete TNC solution.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a4986a022662",
+   "tags": [
+    "clock",
+    "7-segment",
+    "timer",
+    "display",
+    "counter",
+    "desktop"
+   ],
+   "summary": "This design implements a digital clock that generates a one-second pulse to increment seconds, minutes, and hours, which are then decoded and displayed on a 7-segment display. It requires an external 7-segment display and allows the user to select from several input clock frequencies (10, 12, 14, or 20 MHz) via switches. The clock also provides inputs to show minutes or hours, likely for setting or testing purposes. The project is a straightforward ASIC desktop clock with minimal external hardware needs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "929d304b78e4",
+   "tags": [
+    "adder",
+    "subtractor",
+    "alu",
+    "neuron",
+    "test",
+    "arithmetic"
+   ],
+   "summary": "This design takes two 8-bit values and performs addition or subtraction, serving as a digital neuron component test. It is intended to be tested by supplying two 8-bit numbers and observing the sum or difference on the outputs. The documentation is minimal and does not specify how the operation is selected or provide details on the neuron aspect. The project appears to be a simple arithmetic unit with limited documentation.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2848d73318ad",
+   "tags": [
+    "game",
+    "arcade",
+    "8x8-display",
+    "drops",
+    "buttons",
+    "verilog"
+   ],
+   "summary": "This project implements an arcade-style game called Drops, where the player moves a horizontal bar to catch falling droplets on an 8x8 pixel display. The game uses two mechanical buttons for left and right movement, and the player loses a life each time a drop is missed, with the game ending when all lives are lost. It requires an external 8x8 display and two buttons, and the documentation notes potential issues with drop direction and bar movement that may need pin adjustments. The design is a simple interactive game with basic hardware requirements.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e8475779d39e",
+   "tags": [
+    "opamp",
+    "analog",
+    "sky130",
+    "transistor-level",
+    "comparator",
+    "amplifier"
+   ],
+   "summary": "This is a simple FET operational amplifier designed in Sky130, intended to function as a high-impedance, high-gain amplifier block that can act as a comparator or, with feedback, as an inverting or non-inverting amplifier. It includes two testbenches for non-inverting and inverting amplifier configurations, and testing requires a power source, resistors, signal generator, and oscilloscope. The design has specific requirements: the input signal ground must connect to the ZREF pin, not the chip power ground, and the output will have a DC offset due to an internal virtual ground. Silicon test reports indicate partial success, with the author suggesting that easier connections for analog pins would facilitate testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "97b9705ef119",
+   "tags": [
+    "neuron",
+    "lif",
+    "analog",
+    "integrate-and-fire",
+    "rate-encoding",
+    "spiking"
+   ],
+   "summary": "This is an analog implementation of a leaky integrate-and-fire neuron, which produces a rate-encoded output signal based on a time-varying input and a threshold voltage. It is tested by applying a time-varying input to the Vin terminal, connecting a threshold voltage to Vth, and observing the rate-encoded output at the Out terminal. External hardware required includes a function generator, oscilloscope, and multimeter. The design is a single-node neuron component with minimal documentation beyond its basic function.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "be8611307820",
+   "tags": [
+    "cpu",
+    "8-bit",
+    "vhdl",
+    "flash",
+    "ram",
+    "synthesizer",
+    "music",
+    "demo",
+    "register-file"
+   ],
+   "summary": "The DJ8 is an 8-bit CPU implemented in VHDL, featuring an 8x8-bit register file, a 15-bit address bus, and an 8-bit data bus, with a built-in 256-byte demo ROM containing two demos. It can be tested using the internal demos by setting DIP switches at reset, and external hardware such as a speaker or parallel Flash ROM may be used for other applications. Silicon test reports confirm that both built-in demos work, including a bytebeat synthesizer and a 7-segment display demo. The design is notable for its compact instruction set and successful silicon validation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "150de226cc85",
+   "tags": [
+    "dac",
+    "r2r",
+    "mismatch-shaping",
+    "segmented",
+    "encoder",
+    "analog",
+    "digital"
+   ],
+   "summary": "This design is an 8-bit segmented mismatch-shaping R2R DAC encoder that takes digital input and produces a set of output bits that can be summed with specific weights to reconstruct the analog value. It operates in four modes: first-order mismatch shaping with dither, randomization, first-order shaping without dither, and static encoding, selectable via input pins. Testing requires an external resistor ladder and capacitor to create the analog output voltage, and the design is free-running off the project clock. The encoder is notable for its mismatch-shaping techniques aimed at improving DAC linearity, though it requires careful external component selection for optimal performance.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cda7ed890a6e",
+   "tags": [
+    "idac",
+    "dac",
+    "current-steering",
+    "analog",
+    "current-mirror",
+    "transistor-level"
+   ],
+   "summary": "This is an 8-bit current-steering digital-to-analog converter (IDAC) based on a chain of cells that divide current by two, with each cell optionally sourcing current to the output. It is tested by setting the digital inputs to control the output current, with a reference voltage applied to set the full-scale current, and observing the current through an external resistor. External hardware includes a multimeter, potentiometer, and switches for setting inputs. Silicon test reports indicate the design is broken due to missing via2 connections, resulting in no current output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "46f9a97756f9",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "uart",
+    "programmable",
+    "rv32i",
+    "register-file",
+    "serial",
+    "education"
+   ],
+   "summary": "This project implements a simplified RISC-V core that adheres to a subset of the RV32I ISA, with instruction and data memory implemented as small register files that are programmed via a UART interface. The core operates in two modes: PROGRAM mode, where the user sends a sync packet followed by up to 64 bytes of binary instructions, and DATA READ mode, where the user can read the contents of data memory. It requires external hardware such as a USBUART Pmod, and optionally a BTN Pmod and 8LD Pmod for reset and status indication. The design is notable for its UART-based programming and its use of TL-Verilog, with a template provided for custom processor designs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6947,
+  "completion_tokens": 2006,
+  "total_tokens": 8953,
+  "cost": 0.0044913,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044913,
+   "upstream_inference_prompt_cost": 0.0020841,
+   "upstream_inference_completions_cost": 0.0024072
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044913,
+ "elapsed_s": 53.9
+}

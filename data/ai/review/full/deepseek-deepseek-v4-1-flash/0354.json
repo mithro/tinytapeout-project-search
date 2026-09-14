@@ -1,0 +1,261 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "74d4480f248b",
+  "a916d1ee1a73",
+  "42e27f17c7d1",
+  "292c3dca8291",
+  "cbdeae662ab1",
+  "c579b74d6e8f"
+ ],
+ "results": [
+  {
+   "key": "74d4480f248b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "The design converts plain 4-bit binary input; nothing in the source mentions binary-coded decimal."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the design was validated on fabricated silicon (working for 0-9)."
+    }
+   ],
+   "notes": "Removed unsupported bcd and education tags; added silicon-tested per the working test report.",
+   "tags_before": [
+    "7-segment",
+    "decoder",
+    "bcd",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "decoder",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This design converts a 4-bit binary input into a 7-segment display pattern using a simple combinational circuit of OR and AND gates. It is tested by setting the first four switches to a binary value from 0 to 15 and observing the display. No external hardware beyond the switches and a 7-segment display is required. Silicon testing confirmed correct operation for digits 0 through 9, but values 10 to 15 do not display, which the testers note may be intentional but would be nicer as hexadecimal.",
+   "summary": "This design converts a 4-bit binary input into a 7-segment display pattern using a simple combinational circuit of OR and AND gates. It is tested by setting the first four switches to a binary value from 0 to 15 and observing the display. No external hardware beyond the switches and a 7-segment display is required. Silicon testing confirmed correct operation for digits 0 through 9, but values 10 to 15 do not display, which the testers note may be intentional but would be nicer as hexadecimal.",
+   "summary_changed": false
+  },
+  {
+   "key": "a916d1ee1a73",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is a digital ring oscillator and clock switch built in Wokwi; no analog circuitry is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "The glitchless clock switch selects between two asynchronous clock inputs, which is a clock domain crossing function."
+    }
+   ],
+   "notes": "Removed analog (digital Wokwi design) and added clock-domain-crossing for the glitchless clock switch.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "wokwi",
+    "analog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "wokwi",
+    "clock-domain-crossing"
+   ],
+   "summary_before": "This design combines a tapped ring oscillator with a glitchless clock source switch, allowing selection between two external clocks. To test the oscillator, one of the three inverted taps is fed back to input 0, while the clock switch is tested by using input 1 to select between clock0 and clock1, with the selected clock appearing on output 3. No external hardware beyond clock sources and feedback wiring is required. The documentation is concise but describes both functional blocks and their test procedure clearly.",
+   "summary": "This design combines a tapped ring oscillator with a glitchless clock source switch, allowing selection between two external clocks. To test the oscillator, one of the three inverted taps is fed back to input 0, while the clock switch is tested by using input 1 to select between clock0 and clock1, with the selected clock appearing on output 3. No external hardware beyond clock sources and feedback wiring is required. The documentation is concise but describes both functional blocks and their test procedure clearly.",
+   "summary_changed": false
+  },
+  {
+   "key": "42e27f17c7d1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "The output is PDM (pulse density modulation), not PWM; the source never mentions pulse width modulation."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "It is a sawtooth waveform generator, not an audio tone synthesizer design."
+    },
+    {
+     "tag": "dac",
+     "reason": "No digital-to-analog converter is implemented; the PDM output requires an external low-pass filter."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "It generates a sawtooth waveform signal."
+    },
+    {
+     "tag": "audio",
+     "reason": "The sawtooth wave is intended for use as audio."
+    }
+   ],
+   "notes": "Removed pwm/synthesizer/dac which are unsupported; kept signal-generator and audio.",
+   "tags_before": [
+    "audio",
+    "signal-generator",
+    "pwm",
+    "synthesizer",
+    "dac",
+    "verilog"
+   ],
+   "tags": [
+    "audio",
+    "signal-generator",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design generates a sawtooth waveform for audio by incrementing a counter from 0 to 25,000,000 and feeding the value into a PDM modulator, with the frequency set by a 4-bit left-shift amount. It is tested by adding an RC low-pass filter with a cutoff around 30 kHz to output pin 7, which can be probed with an oscilloscope or connected to an audio amplifier to listen to the result. The design outputs both PCM bits and a PDM stream, and follows the Tiny Tapeout audio pinout recommendation. It is notable for being a straightforward audio waveform generator that requires external filtering and amplification to be useful.",
+   "summary": "This Verilog design generates a sawtooth waveform for audio by incrementing a counter from 0 to 25,000,000 and feeding the value into a PDM modulator, with the frequency set by a 4-bit left-shift amount. It is tested by adding an RC low-pass filter with a cutoff around 30 kHz to output pin 7, which can be probed with an oscilloscope or connected to an audio amplifier to listen to the result. The design outputs both PCM bits and a PDM stream, and follows the Tiny Tapeout audio pinout recommendation. It is notable for being a straightforward audio waveform generator that requires external filtering and amplification to be useful.",
+   "summary_changed": false
+  },
+  {
+   "key": "292c3dca8291",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplexer",
+     "reason": "The MUX is only mentioned as the modified internal detail; the design's function is a 7-segment counter, not a multiplexer circuit."
+    },
+    {
+     "tag": "retro",
+     "reason": "No evidence of recreating retro computing or gaming hardware."
+    }
+   ],
+   "add": [],
+   "notes": "Removed multiplexer and retro tags not supported by the design's purpose.",
+   "tags_before": [
+    "7-segment",
+    "counter",
+    "wokwi",
+    "display",
+    "multiplexer",
+    "retro"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This is a remake of Matt Venn's original TT02 7-segment Wokwi project, with the multiplexer select lines inverted at reset so that transitions occur on the opposite clock edge. It functions as a counter that drives a 7-segment display. Testing involves manually clocking the design to see the incrementing output on the display. The project is a minor variation of an existing design and includes links to the original Wokwi project.",
+   "summary": "This is a remake of Matt Venn's original TT02 7-segment Wokwi project, with the multiplexer select lines inverted at reset so that transitions occur on the opposite clock edge. It functions as a counter that drives a 7-segment display. Testing involves manually clocking the design to see the incrementing output on the display. The project is a minor variation of an existing design and includes links to the original Wokwi project.",
+   "summary_changed": false
+  },
+  {
+   "key": "cbdeae662ab1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source describes an analog relaxation oscillator with R and C and an inverter, not a design built from discrete transistors."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports confirm the oscillator was validated on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level tag; added silicon-tested per the working test report.",
+   "tags_before": [
+    "oscillator",
+    "analog",
+    "signal-generator",
+    "transistor-level"
+   ],
+   "tags": [
+    "oscillator",
+    "analog",
+    "signal-generator",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an analog relaxation oscillator designed to produce a ~2 MHz signal, with an inverter providing a full-swing square wave output. The analog output is on one pin and the digital square wave on another. Silicon tests show it oscillates at around 1 MHz, but the frequency is highly sensitive to loading on the analog pin, and a 10k pulldown must be removed for oscillation. The author notes that loading the analog output can stop oscillation due to the lack of a buffer.",
+   "summary": "This is an analog relaxation oscillator designed to produce a ~2 MHz signal, with an inverter providing a full-swing square wave output. The analog output is on one pin and the digital square wave on another. Silicon tests show it oscillates at around 1 MHz, but the frequency is highly sensitive to loading on the analog pin, and a 10k pulldown must be removed for oscillation. The author notes that loading the analog output can stop oscillation due to the lack of a buffer.",
+   "summary_changed": false
+  },
+  {
+   "key": "c579b74d6e8f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the design uses an arbitration network and receivers."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rp2040",
+     "reason": "The design is intended to be driven by the RP2040 microprocessor on the dev board."
+    },
+    {
+     "tag": "arbiter",
+     "reason": "The design includes an arbitration network that chooses the most promising square."
+    }
+   ],
+   "notes": "Removed fsm (not described) and added rp2040 and arbiter which are supported by the source.",
+   "tags_before": [
+    "game",
+    "arbiter",
+    "systemverilog",
+    "fsm"
+   ],
+   "tags": [
+    "game",
+    "arbiter",
+    "systemverilog",
+    "rp2040"
+   ],
+   "summary_before": "This is a chess move generator implemented in SystemVerilog. It uses a 256-bit chessboard and a 64-bit square-enable mask to compute attacks and arbitrate the most promising move. The design is intended to be driven by an external RP2040 microprocessor, as the chip lacks the space to run the full game logic. It is tested using a provided test suite.",
+   "summary": "This is a chess move generator implemented in SystemVerilog. It uses a 256-bit chessboard and a 64-bit square-enable mask to compute attacks and arbitrate the most promising move. The design is intended to be driven by an external RP2040 microprocessor, as the chip lacks the space to run the full game logic. It is tested using a provided test suite.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6638,
+  "completion_tokens": 1520,
+  "total_tokens": 8158,
+  "cost": 0.001744046,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001744046,
+   "upstream_inference_prompt_cost": 0.000740846,
+   "upstream_inference_completions_cost": 0.0010032
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001744046,
+ "elapsed_s": 17.4
+}

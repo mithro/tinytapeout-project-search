@@ -1,0 +1,299 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "990861dc1d34",
+  "bb6c7facf005",
+  "2f7efc3a3cb8",
+  "bbd72f780476",
+  "08af568e7244",
+  "42bda1499d77"
+ ],
+ "results": [
+  {
+   "key": "990861dc1d34",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not state this is a template or boilerplate; it is a test design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported template tag; the design is a test, not a starter template.",
+   "tags_before": [
+    "template",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled test001 and is described only as a test Tiny Tapeout design. The documentation consists of placeholder text asking how the project works and how to test it, with no actual explanation. The pin names map the eight outputs to the segments and dot of a 7-segment display, but nothing states what is driven onto them. There is not enough information to determine the design's function or how it should be used.",
+   "summary": "This project is titled test001 and is described only as a test Tiny Tapeout design. The documentation consists of placeholder text asking how the project works and how to test it, with no actual explanation. The pin names map the eight outputs to the segments and dot of a 7-segment display, but nothing states what is driven onto them. There is not enough information to determine the design's function or how it should be used.",
+   "summary_changed": false
+  },
+  {
+   "key": "bb6c7facf005",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The source describes a compute-in-memory array core, not a processor core."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described in the source."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file is described in the source."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "The design is a digital compute-in-memory array core."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is a dedicated compute-in-memory acceleration core."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is marked 'Documentation in progress' and the design is very thinly described."
+    }
+   ],
+   "notes": "Replaced unsupported CPU/ALU/register-file/education tags with memory, accelerator, and incomplete.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "education",
+    "memory"
+   ],
+   "tags": [
+    "memory",
+    "accelerator",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a programmable array processor that can be written to and executed. It provides an array that can be written to and executed, with results read out via dedicated pins. The design is intended for educational purposes and demonstrates a simple processing architecture. It is tested by writing data to the array and reading the results.",
+   "summary": "This project implements a 16x16 digital compute-in-memory (DCIM) array core. It provides an array that can be written to and executed, with results read out via dedicated pins. The design is implemented in Verilog and targets an experimental IHP SG13G2 CMOS5L shuttle. Documentation is in progress, so the full testing procedure and external hardware requirements are not described.",
+   "summary_changed": true
+  },
+  {
+   "key": "2f7efc3a3cb8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "The source does not describe a clock divider."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "The source does not describe flip-flops."
+    },
+    {
+     "tag": "counter",
+     "reason": "The source does not describe a counter."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation consists only of placeholder text."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The one-line description is 'Function TBD' and no design details are provided."
+    }
+   ],
+   "notes": "Removed invented clock-divider/flip-flop/counter tags; added wokwi, insufficient-doc, and incomplete.",
+   "tags_before": [
+    "wokwi",
+    "clock-divider",
+    "flip-flop",
+    "counter"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This design is a clock divider demo that uses flip-flops to divide the input clock by factors of two. It is implemented in Wokwi and provides a simple demonstration of sequential logic. The exact number of output divisions and the testing method are not described in the documentation. No external hardware is specified.",
+   "summary": "This project is titled Mann-teardown-project and its one-line description is 'Function TBD'. The documentation consists only of placeholder text asking how the project works and how to test it. It is implemented in Wokwi, but no design details, pin functions, or external hardware are described. There is not enough information to determine the design's function or how it should be used.",
+   "summary_changed": true
+  },
+  {
+   "key": "bbd72f780476",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "The serial interface is a custom shift-register interface, not UART."
+    },
+    {
+     "tag": "security",
+     "reason": "The design is for a CTF challenge, but it is not a hardware security design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "stack-machine",
+     "reason": "The source explicitly describes a stack-based programming language and stack machine architecture."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working status from the author and a tester."
+    }
+   ],
+   "notes": "Removed unsupported uart and security tags; added stack-machine and silicon-tested; corrected summary to match silicon status and remove invented external hardware claim.",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "security",
+    "shift-register",
+    "uart",
+    "7-segment"
+   ],
+   "tags": [
+    "cpu",
+    "esoteric",
+    "shift-register",
+    "7-segment",
+    "stack-machine",
+    "silicon-tested"
+   ],
+   "summary_before": "SPELL is a hardware implementation of a minimal stack-based programming language created for The Skull CTF. It executes a cryptic program stored in EEPROM, using a stack machine architecture with a shift register for serial output. The design is intended as a security challenge, requiring external hardware to load and run the program. No silicon test report is provided, so its hardware behavior is not confirmed.",
+   "summary": "SPELL is a hardware implementation of a minimal stack-based programming language created for The Skull CTF. It executes a cryptic program stored in volatile program memory, using a stack machine architecture with a shift register for serial access. The design provides 256 bytes of program memory, 32 bytes of stack memory, and 32 bytes of data memory, with 8 bidirectional pins and up to 8 output-only pins. Silicon test reports confirm the design works, with successful communication and demo program execution at 10 MHz and overclocking tests up to 156 MHz.",
+   "summary_changed": true
+  },
+  {
+   "key": "08af568e7244",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The source does not mention a 7-segment display."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    },
+    {
+     "tag": "template",
+     "reason": "The source does not describe a template or boilerplate project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is described as basic logic that converts one binary value to another."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is described as 'broken' and documentation is very thin."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment, education, and template tags; added wokwi, logic-gate, and incomplete; corrected summary to remove invented DIP switch and 7-segment display.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "7-segment",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi project implements a simple combinational logic circuit that converts the ASCII binary representation of the letter 'A' (0x37) to the letter 'V' (0x56). The design is described as 'basic (broken) logic', suggesting it may not function correctly. The documentation is minimal, providing only a brief description and a test procedure. External hardware includes a DIP switch for inputs and a 7-segment display for outputs.",
+   "summary": "This Wokwi project implements a simple combinational logic circuit that converts the ASCII binary representation of the letter 'A' (0x37) to the letter 'V' (0x56). The design is described as 'basic (broken) logic', suggesting it may not function correctly. The documentation is minimal, providing only a brief description and a test procedure. No external hardware is specified.",
+   "summary_changed": true
+  },
+  {
+   "key": "42bda1499d77",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not describe a template or boilerplate project."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    },
+    {
+     "tag": "led",
+     "reason": "The external hardware section says to hook up to LEDs."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is very thin and the design is described only as using flops and muxes."
+    }
+   ],
+   "notes": "Removed unsupported template and education tags; added wokwi, led, and incomplete; corrected summary to remove invented placeholder text and template claims.",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "education",
+    "led",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "led",
+    "incomplete"
+   ],
+   "summary_before": "This project is an unmodified Tiny Tapeout Wokwi template with placeholder text such as 'testing 1 2 3' and instructions to explain how the project works. It is a boilerplate template intended for educational use. The design is incomplete and serves as a starting point for new projects. It includes basic LED output.",
+   "summary": "This project is titled Tiny Tapeout 9 and described as testing logic. The documentation states that the design uses several flip-flops and multiplexers. It is implemented in Wokwi and the external hardware section says to hook up to LEDs. The documentation is very thin, providing only a brief description and a test instruction to 'test carefully'.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6929,
+  "completion_tokens": 1756,
+  "total_tokens": 8685,
+  "cost": 0.0041859,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041859,
+   "upstream_inference_prompt_cost": 0.0020787,
+   "upstream_inference_completions_cost": 0.0021072
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041859,
+ "elapsed_s": 10.6
+}

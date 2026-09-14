@@ -1,0 +1,272 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f6f789ebeeb1",
+  "491731e004af",
+  "977cfd17d42d",
+  "ad0ae4c0e1ef",
+  "9aa545e2426a",
+  "273e9fdf98ba"
+ ],
+ "results": [
+  {
+   "key": "f6f789ebeeb1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The source describes a UART shift register and flip-flop RNN, not a counter."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generator is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "The design sends 'Hello\\n' over a UART transmitter output."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The UART transmitter is described as a shift register."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "The RNN module is built from flip-flops feeding into each other."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "The source labels the module an RNN and discusses inputs/outputs tied to it."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The RNN is described as trained on random Wokwi wiring with incomprehensible behavior, a novelty computation."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status reports show a tester confirmed it prints Hello on fabricated silicon."
+    }
+   ],
+   "notes": "Replaced counter/clock-generator tags with tags supported by the UART shift-register and flip-flop RNN documentation, and corrected the summary which described unrelated counter and display behavior.",
+   "tags_before": [
+    "counter",
+    "flip-flop",
+    "clock-generator",
+    "education",
+    "wokwi",
+    "workshop"
+   ],
+   "tags": [
+    "flip-flop",
+    "education",
+    "wokwi",
+    "workshop",
+    "uart",
+    "shift-register",
+    "neural-network",
+    "esoteric",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is an 8-bit binary counter built from eight chained D flip-flops that increment on the clock input and present the count on the eight outputs. It is created as part of a workshop and uses the Wokwi simulator. The design is intended for educational purposes, demonstrating sequential logic. The pin names map the outputs to 7-segment display segments, but no function is described.",
+   "summary": "This design sends the string 'Hello\\n' over UART using a shift register with hardcoded initial values loaded into a looped feedback path. It also fills remaining die space with an 'RNN' module made from flip-flops feeding into each other, driven by inputs 0-3 and producing outputs 0-3. To test UART, connect the UART output to a microcontroller or scope, set load/enable low then high, set output enable high, and observe the string. The design has been silicon-tested and reported working by a tester who connected it to a serial port and saw it print Hello.",
+   "summary_changed": true
+  },
+  {
+   "key": "491731e004af",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "Although documentation uses placeholder wording, the title and one-line description specify actual test gates and a clock divider; 'template' would mislabel the intended function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is placeholder text only and does not describe how the design works or how to test it."
+    }
+   ],
+   "notes": "Removed overreaching template tag and added insufficient-doc, and removed the unsupported claim that it appears to be an educational template.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is intended to test logic gates and a clock divider, with eight input and eight output pins. The documentation consists only of placeholder text, providing no details on how the design works or how to test it. The project appears to be a simple educational template for testing basic digital components.",
+   "summary": "This project is intended to test logic gates and a clock divider, with eight input and eight output pins. The documentation consists only of placeholder text, providing no details on how the design works or how to test it. The title and one-line description are the only substantive information about the intended function. Because of this, the design details cannot be verified from the provided source.",
+   "summary_changed": true
+  },
+  {
+   "key": "977cfd17d42d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "The source describes a neural network using perceptrons and does not describe a dedicated compute accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "perceptron",
+     "reason": "The one-line description says the neural network is built out of perceptrons."
+    }
+   ],
+   "notes": "Added perceptron tag from the one-line description and removed accelerator, which was not supported by the source.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "accelerator"
+   ],
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "perceptron"
+   ],
+   "summary_before": "This design implements a neural network on chip. Drive inputs to [7:0] ui_in and the result of the computation can be observed on [7:0] uo_out. The design is a neural network accelerator.",
+   "summary": "This design implements a neural network on chip. The network calculates an output based on user-provided input and predefined weight parameters of the neural network. Drive inputs to [7:0] ui_in, and the result of the computation can be observed on [7:0] uo_out. The design is built out of perceptrons according to the author's description.",
+   "summary_changed": true
+  },
+  {
+   "key": "ad0ae4c0e1ef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "Tag is not wrong, but the canonical impl tag is verilog and it is supported; keeping it is acceptable. No removal needed here, so removing none."
+    }
+   ],
+   "add": [
+    {
+     "tag": "structural",
+     "reason": "The multiplier is described as an array of full adders arranged systematically, a structural HDL description."
+    }
+   ],
+   "notes": "Added structural tag because the source describes an array of full adders; corrected the summary wording from 4-bit multiplier to 4x4 array multiplier.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "structural"
+   ],
+   "summary_before": "This project implements a 4-bit binary multiplier using a combinational array structure. It multiplies two 4-bit numbers by generating partial products and summing them with full adders. The design is purely digital and produces an 8-bit product. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary": "This project implements a 4x4 array multiplier, a combinational digital circuit for multiplying two binary numbers. It generates partial products and adds them using full adders arranged in a systematic array to produce the final product. The design is purely digital and produces an 8-bit product. The source includes a structural description and a diagram of the 4x4 array multiplier.",
+   "summary_changed": true
+  },
+  {
+   "key": "9aa545e2426a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design is described as an eight-bit buffer taking 4-bit inputs, not a multi-register storage block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "The source says the loaded value is displayed, implying a display or LED output."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "The source says switches 7/8 are used to load upper and lower 4 bits, and testing uses switches."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is very thin and does not fully specify the input/output behavior or display type."
+    }
+   ],
+   "notes": "Removed register-file, added dip-switch and insufficient-doc, and rewrote summary to match the sparse source without the unsupported seven-segment digit mapping.",
+   "tags_before": [
+    "register-file",
+    "wokwi",
+    "education",
+    "workshop"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "workshop",
+    "led",
+    "dip-switch",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is an eight-bit buffer that takes four-bit inputs and displays the loaded value. No external hardware is required, and the documentation describes it as a test workshop exercise. Flip switch N, where N is switch 1-8, and the corresponding digit will appear on the display.",
+   "summary": "This design is an eight-bit buffer that takes four-bit inputs, loads them, and displays the loaded value. Switches 7 and 8 are used to load the upper four bits and then the lower four bits. The external hardware requirement is listed as none. The documentation is thin, describing testing only as playing with switches.",
+   "summary_changed": true
+  },
+  {
+   "key": "273e9fdf98ba",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The design outputs to a 7-segment display as stated in the title and external hardware list."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "The external hardware is an 8-switch array used as input."
+    }
+   ],
+   "notes": "Added 7-segment and dip-switch tags supported by the external hardware list, and corrected the summary's false claim that no external hardware is required.",
+   "tags_before": [
+    "decoder",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "decoder",
+    "wokwi",
+    "education",
+    "7-segment",
+    "dip-switch"
+   ],
+   "summary_before": "This design lights the digit corresponding to whichever of the eight input switches is active, mapping switch one to digit one through switch eight to digit eight. It is tested by flipping individual switches and checking that the matching digit appears on the seven-segment display. The documentation is sparse but the intended behavior is clear. No external hardware is required beyond the display.",
+   "summary": "This design lights the digit corresponding to whichever of the eight input switches is active, mapping switch one to digit one through switch eight to digit eight. It is tested by flipping individual switches and checking that the matching digit appears on the seven-segment display. The intended behavior is clearly described in the documentation. External hardware includes an 8-switch array and a common-cathode 7-segment display.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5780,
+  "completion_tokens": 1672,
+  "total_tokens": 7452,
+  "cost": 0.0037404,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0037404,
+   "upstream_inference_prompt_cost": 0.001734,
+   "upstream_inference_completions_cost": 0.0020064
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0037404,
+ "elapsed_s": 12.7
+}

@@ -1,0 +1,298 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7d17067b7400",
+  "e20f73db843c",
+  "84f467ec64b9",
+  "38cb9113134b",
+  "c8effb2a7949",
+  "dc8b149aa863"
+ ],
+ "results": [
+  {
+   "key": "7d17067b7400",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spi",
+    "ws2812",
+    "rgb-led",
+    "led",
+    "driver",
+    "verilog"
+   ],
+   "tags": [
+    "spi",
+    "ws2812",
+    "rgb-led",
+    "led",
+    "driver",
+    "verilog"
+   ],
+   "summary_before": "This design decodes SPI input to drive a string of WS2812B RGB LEDs. It shifts 240 bits from SPI into an internal register and generates the precise pulse-width modulated output required by WS2812B LEDs. The output pin connects directly to the LED data line, and a reset pulse is generated after each full transmission. It requires an SPI master and a string of up to 10 WS2812B LEDs.",
+   "summary": "This design decodes SPI input to drive a string of WS2812B RGB LEDs. It shifts 240 bits from SPI into an internal register and generates the precise pulse-width modulated output required by WS2812B LEDs. The output pin connects directly to the LED data line, and a reset pulse is generated after each full transmission. It requires an SPI master and a string of up to 10 WS2812B LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "e20f73db843c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "The pins are a custom serial memory interface, not a UART; the doc never calls it UART, only the recommended pinout label mentions demo board USB."
+    },
+    {
+     "tag": "memory",
+     "reason": "The design has no on-chip memory block; external RAM is emulated by an RP2040, so the memory tag is unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "bit-serial",
+     "reason": "Already present, no change needed."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "The design explicitly includes a decoder that decodes instructions into control signals."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "The scheduler divides instructions into stages and runs them in order, a staged datapath."
+    }
+   ],
+   "notes": "Removed uart and memory tags as unsupported; added instruction-decoder and pipeline based on the documented architecture.",
+   "tags_before": [
+    "cpu",
+    "bit-serial",
+    "uart",
+    "alu",
+    "register-file",
+    "memory",
+    "rp2040",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "bit-serial",
+    "alu",
+    "register-file",
+    "rp2040",
+    "verilog",
+    "instruction-decoder",
+    "pipeline"
+   ],
+   "summary_before": "Basilisc-2816 is a small 2-bit serial CPU that executes 8/16-bit instructions and communicates with external memory over a serial interface. It includes a memory interface, arbiter, prefetcher, decoder, scheduler, ALU, and register file, and uses UART pins for memory transactions and debug signals. The design requires an external RP2040 microcontroller, such as on the Tiny Tapeout 7 demo board, to act as a RAM emulator. The documentation describes the architecture in detail but provides no test procedure, and no silicon results are reported.",
+   "summary": "Basilisc-2816 is a small 2-bit serial CPU that executes 8/16-bit instructions and communicates with external memory over a serial interface. It includes a memory interface, arbiter, prefetcher, decoder, scheduler, ALU, and register file, and uses the demo board USB pins for memory transactions and debug signals. The design requires an external RP2040 microcontroller, such as on the Tiny Tapeout 7 demo board, to act as a RAM emulator. The documentation describes the architecture in detail but provides no test procedure, and no silicon results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "84f467ec64b9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bit-serial",
+     "reason": "The design uses a byte-serial protocol over 8 pins, not a one-bit-per-clock bit-serial datapath."
+    }
+   ],
+   "add": [
+    {
+     "tag": "floating-point",
+     "reason": "Already present, no change needed."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "Already present, no change needed."
+    }
+   ],
+   "notes": "Removed bit-serial tag; the interface is byte-serial, not one bit per clock.",
+   "tags_before": [
+    "floating-point",
+    "alu",
+    "adder",
+    "subtractor",
+    "fsm",
+    "bit-serial",
+    "verilog"
+   ],
+   "tags": [
+    "floating-point",
+    "alu",
+    "adder",
+    "subtractor",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This is a 32-bit IEEE 754 floating-point ALU that supports addition and subtraction, using a byte-serial protocol over the 8 input and 8 output pins. A start signal on uio[2] begins loading two operands in little-endian order over eight clock cycles, a 1-bit opcode on uio[0] selects add or subtract, and the result is streamed out over four cycles with a done flag on uio[3]. It runs at 20 MHz and can be driven by any microcontroller, with block and timing diagrams linked in the documentation. The design handles special values but always returns quiet NaNs, and no silicon test results are reported.",
+   "summary": "This is a 32-bit IEEE 754 floating-point ALU that supports addition and subtraction, using a byte-serial protocol over the 8 input and 8 output pins. A start signal on uio[2] begins loading two operands in little-endian order over eight clock cycles, a 1-bit opcode on uio[0] selects add or subtract, and the result is streamed out over four cycles with a done flag on uio[3]. It runs at 20 MHz and can be driven by any microcontroller, with block and timing diagrams linked in the documentation. The design handles special values but always returns quiet NaNs, and no silicon test results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "38cb9113134b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design implements a true random number generator from ring-oscillator jitter, not a pseudo-random generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "Already present, no change needed."
+    },
+    {
+     "tag": "trng",
+     "reason": "Already present, no change needed."
+    },
+    {
+     "tag": "puf",
+     "reason": "Already present, no change needed."
+    }
+   ],
+   "notes": "Removed prng tag as the design is a TRNG, not a pseudo-random generator.",
+   "tags_before": [
+    "security",
+    "trng",
+    "puf",
+    "ring-oscillator",
+    "verilog",
+    "prng"
+   ],
+   "tags": [
+    "security",
+    "trng",
+    "puf",
+    "ring-oscillator",
+    "verilog"
+   ],
+   "summary_before": "This design implements two physical security primitives, a ring-oscillator physical unclonable function (RO-PUF) and a true random number generator (TRNG), using a bank of eight ring oscillators. It is controlled through a parallel interface with write, read, start, mode select, and address clear signals, and provides an 8-bit data output along with busy and done status signals. The security properties emerge from manufacturing process variation, making each chip unique without requiring a cryptographic algorithm. No external hardware is needed, and the design is notable for leveraging intrinsic silicon variation for hardware security.",
+   "summary": "This design implements two physical security primitives, a ring-oscillator physical unclonable function (RO-PUF) and a true random number generator (TRNG), using a bank of eight ring oscillators. It is controlled through a parallel interface with write, read, start, mode select, and address clear signals, and provides an 8-bit data output along with busy and done status signals. The security properties emerge from manufacturing process variation, making each chip unique without requiring a cryptographic algorithm. No external hardware is needed, and the design is notable for leveraging intrinsic silicon variation for hardware security.",
+   "summary_changed": false
+  },
+  {
+   "key": "c8effb2a7949",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes an external pixel clock and does not generate clocks; it only selects display timing modes."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Already present, no change needed."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Already present, no change needed."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "Already present, no change needed."
+    }
+   ],
+   "notes": "Removed clock-generator tag; the design is clocked externally and does not generate clocks.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "demoscene",
+    "verilog",
+    "clock-generator"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "demoscene",
+    "verilog"
+   ],
+   "summary_before": "Glyph Mode HD renders a Matrix-style digital rain animation to a VGA display, with glyphs falling from the top and intermittently changing. Eight input pins select one of eight palettes, palette mixing, pause, an alternative pattern, and one of four display timing modes. It requires the TinyVGA PMOD and a clock matched to the selected mode, with 25.175 MHz for standard VGA and 74.25 MHz for 720p or 1080p30. The design was tested on a Basys 3 with a 4K monitor through a VGA-to-HDMI converter, and 1080p60 was not achievable so FHD at 30 FPS was chosen.",
+   "summary": "Glyph Mode HD renders a Matrix-style digital rain animation to a VGA display, with glyphs falling from the top and intermittently changing. Eight input pins select one of eight palettes, palette mixing, pause, an alternative pattern, and one of four display timing modes. It requires the TinyVGA PMOD and a clock matched to the selected mode, with 25.175 MHz for standard VGA and 74.25 MHz for 720p or 1080p30. The design was tested on a Basys 3 with a 4K monitor through a VGA-to-HDMI converter, and 1080p60 was not achievable so FHD at 30 FPS was chosen.",
+   "summary_changed": false
+  },
+  {
+   "key": "dc8b149aa863",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design outputs pulse trains and DAC codes for crossbar operation, not a general waveform/signal generator."
+    },
+    {
+     "tag": "asic",
+     "reason": "The tag is redundant and unsupported; the design is a Verilog peripheral controller, not described as an ASIC implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The documentation states a cocotb suite of 30 tests was run and passes in RTL and gate-level simulation."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The design explicitly uses an FSM (IDLE → SETUP → PULSE → SENSE → GAP → REPORT) to sequence operations."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "The documentation mentions driving a simple direct R-2R or resistor-string DAC from the exposed DAC code bits."
+    }
+   ],
+   "notes": "Removed signal-generator and asic tags; added cocotb, fsm, and r2r-dac based on documented evidence.",
+   "tags_before": [
+    "memristor",
+    "spi",
+    "dac",
+    "adc",
+    "signal-generator",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "memristor",
+    "spi",
+    "dac",
+    "adc",
+    "verilog",
+    "cocotb",
+    "fsm",
+    "r2r-dac"
+   ],
+   "summary_before": "This project is a peripheral controller for 8x8 memristive crossbar arrays, supporting READ, SET, RESET, FORMING, and SWEEP modes with configurable pulse widths, pulse trains, and compliance current limits. It interfaces with external DACs and ADCs via SPI and provides row/column addressing and V/2 half-select biasing. Testing requires an SPI master, external DAC/ADC, and a crossbar array. The design is notable for its device-agnostic approach and comprehensive control features.",
+   "summary": "This project is a peripheral controller for 8x8 memristive crossbar arrays, supporting READ, SET, RESET, FORMING, and SWEEP modes with configurable pulse widths, pulse trains, and compliance current limits. It interfaces with external DACs and ADCs via SPI and provides row/column addressing and V/2 half-select biasing. Testing requires an SPI master, external DAC/ADC, and a crossbar array. The design is notable for its device-agnostic approach and comprehensive control features.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9787,
+  "completion_tokens": 1560,
+  "total_tokens": 11347,
+  "cost": 0.003293733,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003293733,
+   "upstream_inference_prompt_cost": 0.001702533,
+   "upstream_inference_completions_cost": 0.0015912
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003293733,
+ "elapsed_s": 58.9
+}

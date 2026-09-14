@@ -1,0 +1,197 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "162d9c919b5e",
+  "15ac5489e4f1",
+  "326ea6dba0a7",
+  "d2b95cff04da",
+  "6325afbbad45",
+  "66ae4aefc0f4",
+  "d9d3b4670d33",
+  "295b7172ab3d",
+  "07ae8fbb3f41",
+  "94d4ead1003f"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "162d9c919b5e",
+   "tags": [
+    "synthesizer",
+    "audio",
+    "music",
+    "oscillator",
+    "waveform-generator",
+    "pwm",
+    "verilog"
+   ],
+   "summary": "This design is a basic sound synthesizer that generates a waveform and shapes it with an ADSR envelope. The waveform is selected between triangle and sawtooth, and the note frequency is chosen with four input bits while a separate clock sets the sampling rate. The envelope attack, decay, sustain and release stages are configured through the bidirectional pins, and the resulting sound is emitted on one output pin. Documentation is very thin, consisting only of a one-line description and a short test note, so the exact envelope resolution and output encoding are not specified.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "15ac5489e4f1",
+   "tags": [
+    "temperature-sensor",
+    "spi",
+    "sensor-interface",
+    "industrial",
+    "adc",
+    "verilog"
+   ],
+   "summary": "This block converts digitized thermocouple ADC counts into a temperature value using piecewise linear approximation and interpolation. It communicates over a 16-bit SPI interface, supports type-J and type-K thermocouples, and can optionally pass the SPI master straight through to the ADC for configuration. The output is a 16-bit centi-Celsius value pre-divided by four, giving 0.4 C granularity, and the thermocouple type and passthrough mode are set through configuration writes. It requires an external thermocouple analog front-end with compatible ranging, and the documentation gives worked numeric examples for the transfer function.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "326ea6dba0a7",
+   "tags": [
+    "game-of-life",
+    "cellular-automaton",
+    "game",
+    "shift-register",
+    "verilog"
+   ],
+   "summary": "This design simulates Conway's Game of Life on an 8x8 grid using two shift registers, one holding the current state and one holding the updated state. The user loads cells one at a time in row-major order through a single input pin, then asserts a start pin to begin the simulation, after which the circuit alternates between updating and outputting indefinitely. During output, one pin carries the cell value and seven pins carry the cell index from 1 to 64, so an external display or host must reconstruct the grid. The documentation is detailed about the protocol but notes that the design should simply be prayed over, and no silicon test results are given.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "d2b95cff04da",
+   "tags": [
+    "biomedical",
+    "7-segment",
+    "counter",
+    "timer",
+    "verilog"
+   ],
+   "summary": "This design applies threshold-based filtering to an input data stream and then performs peak detection over three consecutive clock cycles. A clock divider halves the input clock, and a counter driven by that clock is exposed on the bidirectional pins while the compare threshold is loaded in two four-bit halves through the input pins. The outputs drive a seven-segment display with a decimal point, presumably to show the counter or detected peaks. The documentation describes the loading sequence but does not explain the intended signal source or what the display actually shows, and no silicon results are provided.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "6325afbbad45",
+   "tags": [
+    "synthesizer",
+    "audio",
+    "music",
+    "pwm",
+    "oscillator",
+    "filter-analog",
+    "dsp",
+    "verilog"
+   ],
+   "summary": "This design is a monophonic synth voice with two oscillators, a second-order low-pass filter, and programmable sweep rates that act as simple envelopes. It is controlled through a register interface written over eight data pins, four address pins and a write strobe, and it outputs audio both as a PWM signal and as an 8-bit sample for reconstruction with a resistor ladder. The oscillators use a floating-point-style period format to emulate the exponential volt-per-octave response of analog synths, and the filter uses a shared barrel shifter instead of multipliers. Silicon tests report that the registers can be written and that a demo tune plays back correctly, and it needs an external audio connection with a voltage divider to protect the audio device.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "66ae4aefc0f4",
+   "tags": [
+    "vga",
+    "game",
+    "pong",
+    "video",
+    "display",
+    "gamepad",
+    "verilog"
+   ],
+   "summary": "This design implements a simple VGA pong-style game with paddles controlled by four input pins. It outputs VGA signals on the bidirectional and output pins and supports two different VGA PMOD pinouts selected by an input, with the recommended Tiny VGA pinout. The game has no scoring and the ball only moves horizontally, so it is a minimal demonstration rather than a complete game. Silicon tests report that pong works, though one tester had to adjust monitor centering and another could not get a proper display on a CRT.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "d9d3b4670d33",
+   "tags": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "neural-network",
+    "oscillator",
+    "7-segment",
+    "counter",
+    "verilog"
+   ],
+   "summary": "This design connects two neuron modules through a synapse module to produce rhythmic oscillations, according to its one-line description. The pin names match those of a threshold comparator and counter design, with compare bits on the inputs, a second counter on the bidirectional pins and seven-segment display segments on the outputs. The how-it-works and how-to-test sections are both literally marked as to be filled in later, so no usable description of the internal behaviour or test procedure exists. The design is effectively undocumented beyond its title and pin list.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "295b7172ab3d",
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary": "This design implements leaky-integrate-and-fire neurons and time-multiplexes them to realize multiple neurons from shared hardware. An input current is applied through the input pins, accumulates in a membrane potential that decays over time, and triggers a spike when the potential crosses a threshold. The membrane potential is exposed on the eight output pins and spike outputs appear on the bidirectional pins, so a higher input current should produce a higher firing rate. The documentation is brief and does not specify the number of neurons, the time-multiplexing scheme, or any silicon test results.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "07ae8fbb3f41",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "sprite",
+    "graphics",
+    "spi",
+    "systemverilog"
+   ],
+   "summary": "This design produces an 800x600 60 Hz SVGA output with a background and a single 12x12 sprite, rendered internally at 100x75 so each sprite pixel is 8x8 screen pixels. The sprite is initialized with a pixelated Tiny Tapeout logo that moves around the screen, and an SPI receiver accepts commands to replace sprite data, change colors, set the background and control the sprite position. It can run at either a 40 MHz or 10 MHz pixel clock selected by a configuration bit, and it needs an external Tiny VGA PMOD for display. Silicon tests report that the logo bounces around and the SPI interface works, with some glitching when moving the sprite.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "94d4ead1003f",
+   "tags": [
+    "analog",
+    "ring-oscillator",
+    "dac",
+    "r2r-dac",
+    "oscillator",
+    "mixed-signal",
+    "process-experiment"
+   ],
+   "summary": "This analog test macro contains a roughly 500 kHz ring oscillator producing a square wave and a 3-bit R-2R DAC producing a programmable DC voltage, with transmission gates to route or short the two outputs. The blocks are enabled and routed to the two analog output pins through digital control inputs, and the DAC voltage is set by three input bits. It was placed and routed with an experimental automatic analog place-and-route tool, making it a test of the analog flow rather than a functional product. Silicon tests report that the DAC works accurately with about 8 mV to 1.57 V output range and roughly 400 ns rise and fall times, while the ring oscillator measured around 400-409 kHz, about 100 kHz slower than intended.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10704,
+  "completion_tokens": 1934,
+  "total_tokens": 12638,
+  "cost": 0.0011697574,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0011697574,
+   "upstream_inference_prompt_cost": 0.0007974624,
+   "upstream_inference_completions_cost": 0.000372295
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0011697574,
+ "elapsed_s": 39.9
+}

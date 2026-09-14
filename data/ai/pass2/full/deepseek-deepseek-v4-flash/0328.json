@@ -1,0 +1,205 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "012f548e1e18",
+  "d57da3759e45",
+  "ce8279d93fd5",
+  "0f9d7a4e2ea8",
+  "bed5fb479397",
+  "2e14e815d903",
+  "b65c6e582fd9",
+  "96bfdb78ca5a",
+  "36d4618667c0",
+  "a79fd87c3e50"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "012f548e1e18",
+   "tags": [
+    "can-bus",
+    "spi",
+    "robotics",
+    "motor-control",
+    "automotive",
+    "industrial",
+    "fsm",
+    "verilog"
+   ],
+   "summary": "This design is the decision and relay core of a robot-arm reflex system that forwards normal joint commands to a CAN bus via an external MCP2515 controller and, upon a danger trigger, blocks the normal stream and injects a reflex pose. It includes two SPI ports: a slave for host configuration and frame relay, and a master for driving the MCP2515. The reflex behavior is programmable through a rule table with priority and debounce, supporting actions such as freeze, home, and flinch. It requires external hardware including an MCP2515, a CAN transceiver, a DIP switch, and an FSR sensor connected to an FPGA XADC.",
+   "changed": true,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "d57da3759e45",
+   "tags": [
+    "puf",
+    "ring-oscillator",
+    "security",
+    "oscillator",
+    "verilog"
+   ],
+   "summary": "This project implements a programmable-length ring oscillator designed as a physical unclonable function (PUF) for hardware security. The oscillator's delay path is dynamically configurable via digital selection signals, allowing different feedback loops and inverter stages to produce unique frequencies based on process variations. It includes a control path for sampling and telemetry, with a gated input to prevent excessive power consumption. Testing involves configuring the challenge, enabling the oscillator, and observing frequency signatures on output pins, optionally with external measurement equipment.",
+   "changed": true,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "d57da3759e45",
+   "tags": [
+    "lfsr",
+    "prng",
+    "sequential-logic",
+    "shift-register",
+    "verilog"
+   ],
+   "summary": "This is an 8-bit linear-feedback shift register (LFSR) circuit implemented in Verilog, serving as a sequential pseudo-random number generator. The design has no documented inputs or control signals; it only provides eight output bits from the LFSR state. There is no documentation on how to use or test the design, and no external hardware is specified. The project appears to be a minimal demonstration of an LFSR, but the lack of documentation limits its practical application.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "0f9d7a4e2ea8",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "spi",
+    "fifo",
+    "synchronizer",
+    "communication",
+    "verilog"
+   ],
+   "summary": "This design is a 4-input, 4-output asynchronous address-event-representation (AER) spike router implemented in GF180mcuD digital logic. It uses a 4-phase bundled-data REQ/ACK handshake, double-flop synchronised into a single clock domain, and routes events through a 16-entry routing table or bypasses them unchanged. Incoming events are queued in a 4-deep FIFO and emitted with another handshake. It requires external AER-compliant sources and sinks, and is programmable via SPI.",
+   "changed": true,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "bed5fb479397",
+   "tags": [
+    "accelerator",
+    "bist",
+    "factory-test",
+    "spi",
+    "mac-unit",
+    "memory",
+    "neural-network",
+    "verilog"
+   ],
+   "summary": "This design is a compute-in-memory (CIM) peripheral featuring an 8x8 1-bit cell array with built-in self-test (BIST) and a 64-bit sticky fault map. It performs a 16-bit dot-product accumulation over user-programmable row activations, configurable via SPI. The BIST supports march, checkerboard, and diagonal patterns, and an external trigger can start the test. It requires an SPI master for programming and reading results, and provides status outputs such as busy, done, and fault flags.",
+   "changed": true,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "2e14e815d903",
+   "tags": [
+    "puf",
+    "lfsr",
+    "memristor",
+    "security",
+    "spi",
+    "prng",
+    "verilog"
+   ],
+   "summary": "This design is a digital physical unclonable function (PUF) that uses eight distinct-tap maximal-length 10-bit LFSRs as virtual ring oscillators. A 6-bit challenge selects a pair of LFSRs, and an arbiter compares their popcounts over a programmable window to produce a response bit. 64 challenges accumulate into a 64-bit response, which can be XORed with a host-loaded memristor vector for dual-entropy mode. It is SPI-programmable and requires no external hardware, though an SPI master is needed for configuration.",
+   "changed": true,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "b65c6e582fd9",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "spi",
+    "machine-learning",
+    "verilog"
+   ],
+   "summary": "This design is a 4-neuron digital spiking neural network (SNN) inference engine with hard winner-take-all lateral inhibition. Each neuron accumulates a MAC of its bias, input currents, and synaptic weights, with programmable threshold, leak, and refractory parameters. It is SPI-configurable and provides spike outputs, winner ID, and status flags. It requires an SPI master for programming and an input pattern generator, with optional oscilloscope for spike capture.",
+   "changed": true,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "96bfdb78ca5a",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "encoder",
+    "decoder",
+    "lfsr",
+    "sigma-delta",
+    "spi",
+    "communication",
+    "verilog"
+   ],
+   "summary": "This design is a neuromorphic spike codec that combines three encoders (rate, latency, delta) and three symmetric decoders (rate, latency, delta) in a single SPI-programmable block. The encoders convert values to spike trains using methods such as LFSR-based rate coding, time-to-first-spike, and delta modulation, while the decoders reconstruct values from spike trains. It operates on a shared window counter and provides status flags and an IRQ output. It requires an SPI master for configuration and a spike source for decoding, and can be paired with an SNN inference core.",
+   "changed": true,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "36d4618667c0",
+   "tags": [
+    "aes",
+    "cipher",
+    "crypto",
+    "lookup-table",
+    "combinational",
+    "security",
+    "verilog"
+   ],
+   "summary": "This project implements an AES S-Box accelerator in Verilog, providing a combinational lookup table that maps an 8-bit input to its AES substitution value. The design uses the 8-bit input pins and 8-bit output pins, with no clocked logic required. It is fully self-contained and requires no external hardware, making it easy to test by applying input values and observing the corresponding outputs. The design demonstrates a hardware implementation of a cryptographic primitive widely used in secure communication systems.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "a79fd87c3e50",
+   "tags": [
+    "graphics",
+    "fixed-point",
+    "bit-serial",
+    "multiplier",
+    "video",
+    "fpga",
+    "verilog"
+   ],
+   "summary": "This design is an interactive fixed-point Mandelbrot renderer that iterates z = z² + c in Q4.28 format and outputs the iteration count for each pixel. It uses a single sequential bit-serial shift-add multiplier shared across three products per iteration to reduce area. The host sends view packets containing the top-left corner, step size, and maximum iterations, and the chip outputs a pixel stream with valid, frame start, and line end strobes. It requires an RP2040 or similar microcontroller to bridge the parallel bus to USB for display, and a host viewer to compute view packets.",
+   "changed": true,
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "ce8279d93fd5: key echoed as 'd57da3759e45', matched by index"
+ ],
+ "usage": {
+  "prompt_tokens": 13322,
+  "completion_tokens": 1909,
+  "total_tokens": 15231,
+  "cost": 0.0014375557,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2816,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0014375557,
+   "upstream_inference_prompt_cost": 0.0010700732,
+   "upstream_inference_completions_cost": 0.0003674825
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0014375557,
+ "elapsed_s": 40.5
+}

@@ -1,0 +1,202 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "29c44e8cf50e",
+  "e66a8e2a640e",
+  "f660977b084a",
+  "93ba009cab58",
+  "ff31096d8a98",
+  "983233092fa7",
+  "6ed4cc0f34bf",
+  "4335f1dac98b",
+  "671faa7c4023",
+  "ad6b3fc256a6"
+ ],
+ "results": [
+  {
+   "key": "29c44e8cf50e",
+   "tags": [
+    "puzzle",
+    "game",
+    "7-segment",
+    "wokwi",
+    "logic",
+    "education",
+    "state-machine"
+   ],
+   "summary": "This design implements the wolf, goat and cabbage river crossing puzzle as a combinational logic block. Four input pins represent the positions of the farmer, wolf, goat and cabbage, and the outputs drive the segments of a 7-segment display to indicate a win, a loss, or which river bank has an unattended situation. It is used by sliding the input switches and observing the display, and it requires external switches and a 7-segment display. The documentation is brief but includes a truth table and mentions a hidden easter egg on two of the pins.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e66a8e2a640e",
+   "tags": [
+    "crypto",
+    "xoodoo",
+    "chi-function",
+    "dom",
+    "side-channel",
+    "masking",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary": "This project implements the Chi function of the Xoodoo permutation protected at first order by the DOM masking scheme. It takes a clock and reset on its inputs and drives the seven segments of a display on its outputs, presumably to show internal state or a result. The documentation consists of only a single sentence, so the exact interface and test procedure are not described beyond setting the inputs. It is notable as a masked cryptographic primitive, but the lack of detail makes its operation hard to verify from the provided text.",
+   "confidence": "low",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f660977b084a",
+   "tags": [
+    "memory",
+    "shift-register",
+    "8x8",
+    "pattern-player",
+    "addressable",
+    "wokwi",
+    "led",
+    "serial"
+   ],
+   "summary": "This design is a 64-bit shift register organized as an 8x8 bit memory that can be serially programmed, directly addressed, or played back under a clock-driven counter. A mode pin selects between direct addressing via three address lines and a player mode that advances through memory slots on each clock. The eight outputs present the bits of the selected memory slot, and the design can be exercised with a breadboard, clock buttons, dip switches and LEDs. It is a straightforward educational memory and pattern player with clear pin-level documentation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "93ba009cab58",
+   "tags": [
+    "ring-oscillator",
+    "trng",
+    "random-number-generator",
+    "oscillator",
+    "clock-divider",
+    "shift-register",
+    "test",
+    "experiment"
+   ],
+   "summary": "This design contains free-running oscillators built from combinational loops with dividers, intended to compare simulation against silicon and to provide a true random number source. Input pins select one of several clock sources, and the outputs provide the selected clock divided by powers of two plus a shift register bit that exposes the random signal. Testing requires selecting an oscillator and measuring the output frequency, ideally with an averaging frequency counter, while observing random bits on the last pin. It is a process and simulation-verification experiment rather than a functional application.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ff31096d8a98",
+   "tags": [
+    "uart",
+    "serial",
+    "transmitter",
+    "shift-register",
+    "8n1",
+    "wokwi",
+    "communication",
+    "protocol"
+   ],
+   "summary": "This project is a low-baudrate UART transmitter that sends 8N1 frames from a limited character set covering ASCII 0x40 to 0x5F. A 13-bit shift register holds the start bit, five data bits and stop bits, and it repeatedly retransmits the loaded word until a new character is loaded or the output is disabled. Several output pins provide the serial stream in direct, gated, and inverted-polarity variants, and the design is tested by attaching a UART receiver, oscilloscope or logic analyzer. The documentation is detailed about the shift register behavior and pin functions.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "983233092fa7",
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "state-machine",
+    "wokwi",
+    "education",
+    "clock"
+   ],
+   "summary": "This design cycles through the characters of the string LAB11 on a 7-segment display, advancing one character per clock cycle. It uses gates and flip-flops to change the segment states, and it is tested by setting a suitable clock speed, with the lowest speed giving the most readable output. No external hardware is required beyond the display. The documentation is minimal and does not describe the internal state encoding or the exact character sequence timing.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6ed4cc0f34bf",
+   "tags": [
+    "7-segment",
+    "logic-gate",
+    "and-gate",
+    "button",
+    "wokwi",
+    "education",
+    "display"
+   ],
+   "summary": "This project lights an L shape on a 7-segment display when two buttons are pressed simultaneously. The implementation is described as just an AND gate, with the two button inputs controlling the relevant segments. It is tested by pressing buttons 1 and 2 and observing the display. The documentation is extremely thin, giving only the basic behavior and no further detail about the circuit.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4335f1dac98b",
+   "tags": [
+    "led",
+    "shift-register",
+    "pattern-generator",
+    "clock-divider",
+    "wokwi",
+    "animation",
+    "counter"
+   ],
+   "summary": "This design is an eight-LED flasher that generates several selectable patterns using a shift register. Input pins choose patterns such as every other LED, every third LED, every fourth LED, a single scanning light, and control the shift direction, direction toggling, and a clock divider. It is tested by applying a clock and setting the pattern and direction inputs while observing the eight LED outputs. The documentation is limited to a list of input functions and requires an LED on each output pin.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "671faa7c4023",
+   "tags": [
+    "prng",
+    "random-number-generator",
+    "lfsr",
+    "stream-integrator",
+    "crypto",
+    "logic",
+    "wokwi",
+    "test"
+   ],
+   "summary": "This design is an electrical implementation of an optomechanical paper-tape pseudorandom bit sequence generator, computing the expression (C ? A : B) ^ D ^ E. Four input pins carry the tape values and a fifth provides an extra XOR term, with a single output producing the generated bit. It is tested by cycling through all 32 input combinations and checking the output against a specified 32-bit pattern. The project is notable for translating a physical punched-tape mechanism into combinational logic and includes a precise expected test vector.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ad6b3fc256a6",
+   "tags": [
+    "flip-flop",
+    "sr-flip-flop",
+    "d-flip-flop",
+    "configurable-gates",
+    "mux",
+    "xor",
+    "wokwi",
+    "education"
+   ],
+   "summary": "This design provides two configurable logic gates that drive SR and D flip-flops, with selection and inversion controls on each gate. The outputs expose the multiplexer and XOR results as well as the true and complemented flip-flop outputs. It is tested by setting the SEL and INV pins low so that the 0 inputs directly drive the flip-flops, and A-0 can be used as a clock for the D flip-flop. No external hardware is needed, and the documentation is brief but sufficient to understand the configuration options.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "671faa7c4023: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 4460,
+  "completion_tokens": 1692,
+  "total_tokens": 6152,
+  "cost": 0.001921556,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001921556,
+   "upstream_inference_prompt_cost": 0.000804836,
+   "upstream_inference_completions_cost": 0.00111672
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001921556,
+ "elapsed_s": 20.6
+}

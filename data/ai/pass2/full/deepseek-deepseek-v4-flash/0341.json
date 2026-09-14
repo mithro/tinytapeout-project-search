@@ -1,0 +1,181 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "7cdbe288a405",
+  "174a5b93569c",
+  "7ae35f265886",
+  "aa9cc0090f80",
+  "8cf382a0f0ef",
+  "933fc8fcf8aa",
+  "4d570db9d0a3",
+  "3502a990324b",
+  "bec3f14243ea",
+  "caf6df42b939"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "7cdbe288a405",
+   "summary": "This design implements a 16-bit arbiter physical unclonable function that maps a challenge to a response, aiming to reduce linearity within a small area. A 16-bit challenge is driven on the input pins, and each response is emitted as four hexadecimal characters over a 115200 8N1 UART transmitter. A new measurement starts when the challenge bus changes, or the same challenge can be re-measured by pulsing reset. It requires an external 3.3 V host such as an RP2040 or FPGA to drive the challenge inputs and read the UART output, and the documentation is otherwise complete.",
+   "tags": [
+    "puf",
+    "trng",
+    "security",
+    "crypto",
+    "uart"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "174a5b93569c",
+   "summary": "This chip implements a three-state finite state machine for obstacle avoidance, reading two sensor inputs and driving three mutually exclusive motor outputs. It transitions between FORWARD, TURNING and STOPPED states based on whether an obstacle is in range or dangerously close, with state held in a 2-bit register updated on each clock edge. Testing is done by applying a clock and toggling the two sensor inputs while monitoring which of the three output pins is high. It is described as a beginner project and needs no external hardware beyond the clock and input stimulus.",
+   "tags": [
+    "fsm",
+    "robotics",
+    "motor-control",
+    "education",
+    "sensor-interface"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "7ae35f265886",
+   "summary": "This is a fully analog 1.5 V capless low-dropout regulator built from a two-stage Miller-compensated OTA driving a super-source-follower buffer and a large PMOS pass device, with an on-chip feedback divider and internal compensation. It regulates from the 1.8 V analog supply and includes an on-chip switched 2.8 mA demo load so transient response can be observed without external load hardware. Testing requires a 0.9 V reference on ua[0], roughly 10 uA of bias current into ua[1] via a 110 kOhm resistor, and a scope or DMM on the ua[2] output; no output capacitor is needed. The design is notable for being transistor-level in SKY130A with no ideal sources or digital gates, and it reports a measured ~0.33 V droop with full recovery when the demo load is engaged.",
+   "tags": [
+    "ldo",
+    "analog",
+    "transistor-level",
+    "power-management"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "aa9cc0090f80",
+   "summary": "OLAF-8 is a fully digital fuzzy inference engine with an eight-rule bounded rule memory and online rule admission and replacement. It accepts two 4-bit inputs, computes LOW/MID/HIGH membership degrees, evaluates the stored rules with MIN firing strength, accumulates a weighted output and defuzzifies it with an iterative divider. When the maximum firing strength falls below a threshold, the least-utility rule is replaced by one derived from the current input, allowing adaptation without an external processor. It is a research demonstrator that needs no external hardware and uses the standard Tiny Tapeout clock, reset and pin interface.",
+   "tags": [
+    "machine-learning",
+    "divider",
+    "fsm"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "8cf382a0f0ef",
+   "summary": "ORCA is a self-optimizing and self-healing evolvable logic engine built around a 4x4 feed-forward CGP fabric of 4-bit LUT cells defined by a 132-bit genome. An on-chip (1+1) evolution strategy with a xorshift32 PRNG mutates the genome and scores circuits against a 16-row target truth table, with an optional annealing mode and a settle-time sensor that measures per-die speed. It can run host-free, evolving parity plus AND-OR at reset and lighting LEDs as fitness converges, while a bit-banged serial interface exposes control registers for targets, genome access, fault injection and annealing. A host-free HEAL demo injects stuck-at faults and shows evolution routing around dead cells, and no external hardware is required beyond optional scope probes and LEDs.",
+   "tags": [
+    "reconfigurable",
+    "lookup-table",
+    "prng",
+    "error-correction",
+    "systemverilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "7ae35f265886",
+   "summary": "This is a ring oscillator built from a chain of 21 SkullFET inverters running from the analog supply, with a buffer feeding both a level-shifted digital divider chain and an analog pad tap. The digital outputs provide the oscillator signal and divide-by-2, 4 and 8 versions, while the analog pin is a small-signal tap rather than a full-swing square wave. Silicon measurements on ttsky25b show the ring running at about 178-180 MHz, so only the divide-by-8 output at roughly 22 MHz is reliably observable through the GPIOs. Testing requires a scope or logic analyzer on the divide-by-8 output, and the analog tap is only a qualitative oscillation indicator.",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "clock-divider",
+    "analog",
+    "transistor-level"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "4d570db9d0a3",
+   "summary": "This Verilog controller generates selectable 8-bit digital control patterns for a programmable 4x4 metasurface array used in beam steering. Two input bits select one of four beam-control modes, each producing a different pattern on the eight outputs. It is intended as a demonstration of the digital control principles used when configuring programmable antenna and metasurface elements. Physical testing needs two switches on the mode inputs and eight current-limited LEDs on the outputs, while simulation uses a cocotb testbench that checks all four mode selections.",
+   "tags": [
+    "pattern-generator",
+    "lookup-table",
+    "rf",
+    "communication"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "3502a990324b",
+   "summary": "Poket Animal is a tamagotchi-style virtual pet that lives on a 7-segment display, tracking hunger, joy, sickness and death with distinct display moods and animations. Two debounced buttons feed and pet the creature, while status pins report alive, heartbeat, cause of death, sickness, hunger level and wiggle, and a two-bit speed selector sets the metabolic tick rate from about 1.9 hours down to simulation speed. Overfeeding causes indigestion and eventually death, starvation kills after two ticks, and death is sticky until reset. It needs a common-cathode 7-segment display with decimal point, two push buttons and optionally an LED for the heartbeat, and the cocotb testbench exercises the full lifecycle in turbo mode.",
+   "tags": [
+    "game",
+    "7-segment",
+    "counter",
+    "timer",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "bec3f14243ea",
+   "summary": "This tile contains four instances of a 1.8 V rail-to-rail input and output operational amplifier whose inputs are shared and whose outputs are multiplexed onto a single analog pin. An instance is selected with two digital select pins and enabled with a separate enable pin. The documentation notes that compensation is not very good, so the amplifier may not be unity-gain stable in practice, and it is optimized for roughly 10 pF of load capacitance. Testing requires external analog signal sources and a load on the selected output, and the documentation is otherwise brief.",
+   "tags": [
+    "opamp",
+    "analog",
+    "multiplexer"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "caf6df42b939",
+   "summary": "This design is a two-channel reciprocal frequency counter that measures two asynchronous digital oscillator signals against the 7.2 MHz system clock. Each channel synchronizes its input, counts reference-clock cycles over a programmed number of input cycles, and stores the result in a COUNT register with a measurement counter, all configured through an SPI register interface. Channels are armed by writing a non-zero GATE_CYCLES value and include timeout and overflow detection with sticky status bits. The cocotb testbench covers reset, SPI readback, single and simultaneous channel operation, disabling, timeout and overflow behavior, and the documentation recommends exercising the SPI path on an FPGA before final submission.",
+   "tags": [
+    "frequency-counter",
+    "counter",
+    "spi",
+    "register-file",
+    "instrumentation"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "933fc8fcf8aa: key echoed as '7ae35f265886', matched by index"
+ ],
+ "usage": {
+  "prompt_tokens": 11634,
+  "completion_tokens": 2029,
+  "total_tokens": 13663,
+  "cost": 0.0013170416,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2816,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0013170416,
+   "upstream_inference_prompt_cost": 0.0009193576,
+   "upstream_inference_completions_cost": 0.000397684
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0013170416,
+ "elapsed_s": 289.9
+}

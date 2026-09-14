@@ -1,0 +1,169 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "e1a40b254f97",
+  "f7255699d9c0",
+  "0ec1d8308b19",
+  "e20145f11c55",
+  "1dc136faba5d",
+  "83a2c1141a19",
+  "5e2ae63d9c0d",
+  "d89025eb22f0",
+  "3af1899b914d",
+  "5283953e8b50"
+ ],
+ "results": [
+  {
+   "key": "e1a40b254f97",
+   "tags": [
+    "communication",
+    "ascii",
+    "uart",
+    "rom",
+    "7-segment"
+   ],
+   "summary": "This design converts between ASCII serial data and Baudot serial data using UARTs and two conversion ROMs. It accepts an ASCII clock at eight times the desired baud rate and a Baudot clock at one hundred times the desired baud rate, with a Baudot input that should be held high when idle. The outputs drive a seven-segment display to show the converted data. External hardware includes a USB-serial adapter for ASCII and a 60 mA current loop interface for Baudot, which requires a hefty driver.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "key": "f7255699d9c0",
+   "tags": [
+    "lfsr",
+    "prng",
+    "7-segment",
+    "counter"
+   ],
+   "summary": "This is a 5-bit Galois linear-feedback shift register with configurable taps and initial state, outputting a new value every second. The user sets the taps and initial state via input pins, asserts and deasserts reset signals, and observes the output on a seven-segment display. Values from 0x00 to 0x0F are shown as hex digits, while 0x10 to 0x1F are shown as hex digits with a dot. The documentation mentions a secret CPU inside, but no further details are provided.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "key": "0ec1d8308b19",
+   "tags": [
+    "music",
+    "audio",
+    "buzzer",
+    "pwm"
+   ],
+   "summary": "This design plays the Super Mario theme tune on a piezo speaker connected across two output pins. It converts an RTTL ringtone into Verilog and uses differential PWM modulation to generate the sound wave. To operate, a 3 kHz clock is provided on the clock input, and a brief reset pulse starts playback. The only external hardware needed is a piezo speaker connected across the two outputs.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "key": "e20145f11c55",
+   "tags": [
+    "pwm",
+    "debouncer",
+    "signal-generator",
+    "instrumentation"
+   ],
+   "summary": "This design increases or decreases the duty cycle of a square wave in 10% steps using increase and decrease inputs. It includes an internal debouncer for the control inputs, which can be disabled. The output is a PWM signal at one-tenth of the input clock frequency, with both normal and inverted outputs available. External hardware includes a 12.5 kHz clock source, two buttons for control, and an oscilloscope to observe the 1.2 kHz PWM output.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "key": "1dc136faba5d",
+   "tags": [
+    "led-matrix",
+    "rgb-led",
+    "spi",
+    "display",
+    "graphics",
+    "driver"
+   ],
+   "summary": "This design drives an animation on a SparkFun RGB LED 8x8 matrix backpack using an SPI master interface. The animation features overlapping green and blue waves with a moving white diagonal, and some seven-segment wires are repurposed for a sanity check animation. It requires an external RGB LED matrix backpack and operates with a clock up to 12.5 kHz. The design includes an asynchronous reset synchronized to the clock.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "key": "83a2c1141a19",
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "sram",
+    "latch"
+   ],
+   "summary": "This is a simple 4-bit CPU with a 4-bit accumulator, a 7-bit program counter, two 7-bit index registers, and a carry bit. It has 25 instructions and is designed to run with external SRAM and a 7-bit address latch, with code loaded externally. The CPU includes an on-chip SRAM block for data access and a 4-deep hardware call stack. Testing requires a 7-bit external address latch and SRAM.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "key": "5e2ae63d9c0d",
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "sram",
+    "latch"
+   ],
+   "summary": "This is an 8-bit version of the MoonBase 4-bit CPU, featuring an 8-bit accumulator, a 12-bit program counter, two 13-bit index registers, and a carry bit. It has 33 instructions and is designed to run with external SRAM and a 12-bit address latch, with code loaded externally. The CPU includes an on-chip SRAM block for data access and a 3-deep hardware call stack. An assembler is available online, and testing requires a 7-bit external address latch and SRAM.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "key": "d89025eb22f0",
+   "tags": [
+    "cpu",
+    "esoteric",
+    "spi",
+    "uart",
+    "bit-serial"
+   ],
+   "summary": "The M0 is a 16-bit bit-serial microprocessor based on the SUBLEQ architecture, requiring only a SPI RAM, SPI ROM, and clock source for operation. It includes a transmit UART for serial output and interoperates with Oleg Mazonka's HSQ C-compiler. Testing can be done without RAM/ROM by observing SPI clock patterns and UART output, or with external SPI ROM and RAM for running code. The design is notable for fitting a capable microprocessor into a very tight space.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "key": "3af1899b914d",
+   "tags": [
+    "7-segment",
+    "display",
+    "pattern-generator"
+   ],
+   "summary": "SevSegFX generates hexadecimal digits and 16 dynamic patterns on a seven-segment display. Input pins select between digit display and effects, enable blinking for digits, and choose the specific digit or effect pattern. The design is purely for visual effects and requires no external hardware beyond the seven-segment display. It operates from a 12.5 kHz clock and includes a reset input.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "key": "5283953e8b50",
+   "tags": [
+    "divider",
+    "alu",
+    "7-segment",
+    "dsp"
+   ],
+   "summary": "This design computes the integer square root of a 7-bit unsigned input using a non-restoring algorithm, producing a 4-bit result. The result is displayed on a seven-segment display, showing values from 0x0 to 0xB. It is intended for use in RMS calculations. The design requires only the input pins and a seven-segment display for output.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8586,
+  "completion_tokens": 1457,
+  "total_tokens": 10043,
+  "cost": 0.0011098801,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0011098801,
+   "upstream_inference_prompt_cost": 0.0008294076,
+   "upstream_inference_completions_cost": 0.0002804725
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0011098801,
+ "elapsed_s": 35.8
+}

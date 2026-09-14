@@ -1,0 +1,189 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cfa695738553",
+  "14d666adf178",
+  "bbb76bbfb563",
+  "3555a7f51a73",
+  "6807ff2541d5",
+  "2d55eb653dd9",
+  "64a58061ad03",
+  "f1d307538283",
+  "e691ead94786",
+  "ea3f70b9ea8c"
+ ],
+ "results": [
+  {
+   "key": "cfa695738553",
+   "tags": [
+    "vga",
+    "display",
+    "checkers",
+    "animation",
+    "game",
+    "counter",
+    "wokwi"
+   ],
+   "summary": "This design is a remix of the VGA Playground Checkers template that adds a non-linear offset counter to make the checkers bounce. It outputs VGA signals (R1, G1, B1, VSync, R0, G0, B0, HSync) on the uo pins and takes five colour-adjustment buttons on ui[4:0]. It requires an external VGA display and is tested by observing the bouncing checkers and adjusting colours with the buttons. The design is notable for its simple bouncing animation and its origin as a remix of an existing template.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "14d666adf178",
+   "tags": [
+    "dsp",
+    "core",
+    "processor",
+    "command",
+    "data",
+    "serial"
+   ],
+   "summary": "Herald is a simple DSP core for TinyTapeout with an 8-bit command/data input and an 8-bit data output. The documentation is essentially absent: there is no description of the instruction set, internal architecture, or how to use the core. The pin names suggest a command/data interface, but no protocol or timing is given. Without further documentation, the design's capabilities and usage cannot be determined.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "bbb76bbfb563",
+   "tags": [
+    "counter",
+    "7-segment",
+    "bcd",
+    "hexadecimal",
+    "display",
+    "clock-divider"
+   ],
+   "summary": "This design is a counter that displays its value on a 7-segment display in either hexadecimal or decimal base, selected by an input. It uses D flip-flops to slow down the clock and counts up or down based on another input. The outputs drive the seven segments and a decimal point that indicates hex mode. It is tested by observing the display to verify correct counting in the selected base.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3555a7f51a73",
+   "tags": [
+    "led",
+    "rgb",
+    "pwm",
+    "decoder",
+    "audio",
+    "protocol",
+    "low-pass-filter"
+   ],
+   "summary": "This design is described as a digital LED circuit, but the documentation is very thin and does not explain its function beyond that. The pins suggest interfaces for an encoder, decoder, PWM, low-pass filter, and RGB LED control, matching the TT Audio pinout. It requires external hardware including a reset source, clock source, and RGB LEDs. The project appears to be a learning exercise, and without more documentation its exact behaviour is unclear.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "6807ff2541d5",
+   "tags": [
+    "neural-network",
+    "hopfield",
+    "associative-memory",
+    "7-segment",
+    "display",
+    "majority-vote",
+    "hebbian"
+   ],
+   "summary": "This design implements a 7-node Hopfield associative memory that stores two 7-segment patterns (digit 1 and digit 9) and recalls the nearest stored digit from a noisy or partial input. The network uses synchronous updates with majority and logic gates, and a decimal point output indicates convergence. It is tested by setting the input switches to a pattern, pulsing the start signal, and observing the recalled segments on the display. The design is notable for its small gate count (~140 GE) and its use of a recurrent neural network without ROM or lookup tables.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2d55eb653dd9",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "pwm",
+    "clock-divider",
+    "test",
+    "experiment"
+   ],
+   "summary": "This design contains multiple ring oscillators with lengths of 125, 251, 501, and 1001 inverters, plus divided-down versions of two of them. The outputs are brought out to pins for probing with an oscilloscope, and the input can be set to disable the PWM experiments. It is tested by probing each output to observe the frequencies, which should double as the ring length halves. The design is notable for providing a simple way to experiment with ring oscillators on a TinyTapeout chip.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "64a58061ad03",
+   "tags": [
+    "kalman-filter",
+    "imu",
+    "sensor-fusion",
+    "spi",
+    "uart",
+    "cordic",
+    "accelerometer",
+    "gyroscope"
+   ],
+   "summary": "This design implements a 1D Kalman filter (complementary filter) to fuse accelerometer and gyroscope data from an MPU-6500 IMU, calculating roll and pitch angles. It includes an SPI master to read the sensor, a CORDIC core for atan2, and a UART transmitter that outputs the angles as a binary stream at 9600 baud. It requires an external MPU-6500 sensor and a UART receiver, and can be tested on an FPGA breakout with the specified wiring. The design is notable for integrating sensor fusion and CORDIC on a small FPGA/ASIC block.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f1d307538283",
+   "tags": [
+    "adder",
+    "brent-kung",
+    "test",
+    "arithmetic",
+    "mux",
+    "iverilog"
+   ],
+   "summary": "This design is a tester for a Brent-Kung adder, with 4-bit inputs A and B, a carry-in, and a 5-bit output. It includes multiplexer inputs and optional outputs, but the documentation is minimal and does not explain the full functionality. It is tested using iverilog simulation with a provided testbench. The design appears to be a simple arithmetic test block, but further details are lacking.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e691ead94786",
+   "tags": [
+    "clock-divider",
+    "demo",
+    "education",
+    "fpga",
+    "test",
+    "counter"
+   ],
+   "summary": "This design is a simple demo that creates divide-by-2 clock signals and allows the user to select which signals are output. It takes 8 inputs and produces 8 outputs, with the outputs being appropriately divided clock signals. It is tested by applying various input signals and observing the outputs, and requires an FPGA to drive and read the signals. The design is notable as a basic educational demo from the Zero to ASIC course.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ea3f70b9ea8c",
+   "tags": [
+    "mixer",
+    "weighted-sum",
+    "arithmetic",
+    "multiplier",
+    "fpga",
+    "demo"
+   ],
+   "summary": "This design implements a weighted sum mixer that computes Result = A1 * Gain1 + B1 * Gain2 using 4-bit values and 3-bit gain coefficients. It has 8 inputs and 8 outputs, and requires an FPGA to provide inputs and examine outputs. The documentation is brief and does not specify the exact bit widths or output format. It is a simple arithmetic demo with limited detail.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5224,
+  "completion_tokens": 1586,
+  "total_tokens": 6810,
+  "cost": 0.00201925,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 830,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00201925,
+   "upstream_inference_prompt_cost": 0.00097249,
+   "upstream_inference_completions_cost": 0.00104676
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00201925,
+ "elapsed_s": 37.2
+}

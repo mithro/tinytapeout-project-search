@@ -1,0 +1,266 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ae3ad56dd51d",
+  "2310a3a074c5",
+  "097e473689cd",
+  "85b6b245126a",
+  "d5e8c49e8d7c",
+  "b8a742c757c1"
+ ],
+ "results": [
+  {
+   "key": "ae3ad56dd51d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "The source describes a charlieplexed matrix driver with serial data input, not a shift register circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "charlieplexing",
+     "reason": "Not in vocabulary; no canonical tag for charlieplexing, so no add."
+    }
+   ],
+   "notes": "Removed unsupported shift-register tag; no canonical charlieplexing tag exists.",
+   "tags_before": [
+    "wokwi",
+    "led-matrix",
+    "display",
+    "driver",
+    "shift-register",
+    "led"
+   ],
+   "tags": [
+    "wokwi",
+    "led-matrix",
+    "display",
+    "driver",
+    "led"
+   ],
+   "summary_before": "This design is a driver for a hexagonal charlieplexed LED matrix with columns of 3-4-5-4-3 pixels. It accepts serial data on ui[0] while ui[1] is low, loading the pattern column-wise, and then drives the matrix through five bidirectional pins when ui[1] is high. Testing requires an external charlieplexed LED display (or individual LEDs) connected to the uio pins, with the clock pulsed at 100 Hz or more. The project is notable for targeting a non-rectangular charlieplexed matrix and is implemented in Wokwi.",
+   "summary": "This design is a driver for a hexagonal charlieplexed LED matrix with columns of 3-4-5-4-3 pixels. It accepts serial data on ui[0] while ui[1] is low, loading the pattern column-wise, and then drives the matrix through five bidirectional pins when ui[1] is high. Testing requires an external charlieplexed LED display (or individual LEDs) connected to the uio pins, with the clock pulsed at 100 Hz or more. The project is implemented in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "2310a3a074c5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "The design measures servo pulse width and drives LEDs; it does not generate PWM."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "No motor is driven; outputs are LEDs only."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "It is a servo signal tester/measurement application."
+    }
+   ],
+   "notes": "Removed PWM and motor-control tags not supported by the LED-only output; added instrumentation.",
+   "tags_before": [
+    "wokwi",
+    "servo",
+    "led",
+    "pwm",
+    "motor-control",
+    "flip-flop"
+   ],
+   "tags": [
+    "wokwi",
+    "servo",
+    "led",
+    "flip-flop",
+    "instrumentation"
+   ],
+   "summary_before": "This design tests servo signals by lighting up eight LEDs according to the pulse width of the input signal. A 1 ms pulse (0 degrees) lights no LEDs, while a 2 ms pulse (180 degrees) lights all eight. It requires an external 4 kHz clock, eight LEDs with resistors, and a servo signal on input 0. The design uses flip-flops to process the servo signal and is implemented in Wokwi.",
+   "summary": "This design tests servo signals by lighting up eight LEDs according to the pulse width of the input signal. A 1 ms pulse (0 degrees) lights no LEDs, while a 2 ms pulse (180 degrees) lights all eight. It requires an external 4 kHz clock, eight LEDs with resistors, and a servo signal on input 0. The design uses flip-flops to process the servo signal and is implemented in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "097e473689cd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source mentions an EFAB webinar but does not state the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The D flip-flop ring acts as a ring counter sequencing the letters."
+    }
+   ],
+   "notes": "Removed education tag not supported by source; added counter for the ring counter.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "fsm",
+    "flip-flop",
+    "wokwi",
+    "education",
+    "silicon-tested"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "fsm",
+    "flip-flop",
+    "wokwi",
+    "silicon-tested",
+    "counter"
+   ],
+   "summary_before": "This design displays the letters 'E', 'F', 'A', and 'b' on a 7-segment display using a D flip-flop ring counter. It is controlled by input switches for run, reset, initial state selection, and blink control, and works best with a slow clock or manual stepping. The project is intended as a demonstration for the EFAB webinar and has been tested on silicon, with multiple reports confirming that it works as described. External hardware includes a 7-segment display and switches for input.",
+   "summary": "This design displays the letters 'E', 'F', 'A', and 'b' on a 7-segment display using a D flip-flop ring counter. It is controlled by input switches for run, reset, initial state selection, and blink control, and works best with a slow clock or manual stepping. The project is a demonstration for the EFAB webinar and has been tested on silicon, with multiple reports confirming that it works as described. External hardware includes a 7-segment display and switches for input.",
+   "summary_changed": true
+  },
+  {
+   "key": "85b6b245126a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The design is explicitly a non-linear feedback shift register (NLFSR), not a linear feedback shift register."
+    },
+    {
+     "tag": "prng",
+     "reason": "The source does not claim pseudo-random number generation; it is a stream cipher/NLFSR implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "It is a feedback shift register implementation."
+    }
+   ],
+   "notes": "Removed incorrect LFSR and PRNG tags; added shift-register and corrected summary wording.",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "lfsr",
+    "prng",
+    "wokwi",
+    "shift-register"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "wokwi",
+    "shift-register"
+   ],
+   "summary_before": "This design is a hardware implementation of the Bivium-B stream cipher used as a non-linear feedback shift register (NLFSR). It includes a 177-bit NLFSR with feedback taps and an output function, and it provides eight outputs that expose internal register values for self-testing. The circuit can be initialized to all zeros and then run, with outputs compared against a Python simulation. External hardware such as a logic analyzer is needed to observe the outputs, and the design is notable for its use of a stream cipher as a PRNG.",
+   "summary": "This design is a hardware implementation of the Bivium-B stream cipher used as a non-linear feedback shift register (NLFSR). It includes a 177-bit NLFSR with feedback taps and an output function, and it provides eight outputs that expose internal register values for self-testing. The circuit can be initialized to all zeros and then run, with outputs compared against a Python simulation. External hardware such as a logic analyzer is needed to observe the outputs, and the design is implemented in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "d5e8c49e8d7c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The design is explicitly a non-linear feedback shift register (NLFSR), not a linear feedback shift register."
+    },
+    {
+     "tag": "prng",
+     "reason": "The source does not claim pseudo-random number generation; it is a stream cipher/NLFSR implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "It is a feedback shift register implementation."
+    }
+   ],
+   "notes": "Removed incorrect LFSR and PRNG tags; added shift-register and corrected summary wording.",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "lfsr",
+    "prng",
+    "wokwi",
+    "shift-register"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "wokwi",
+    "shift-register"
+   ],
+   "summary_before": "This design is a hardware implementation of the Trivium stream cipher used as a non-linear feedback shift register (NLFSR). It contains a 288-bit NLFSR with three feedback taps and an output function, and it provides eight outputs that expose internal register values for self-testing. The circuit can be initialized to all zeros and then run, with outputs compared against a Python simulation. External hardware such as a logic analyzer is needed to observe the outputs, and the design is notable for its use of a stream cipher as a PRNG.",
+   "summary": "This design is a hardware implementation of the Trivium stream cipher used as a non-linear feedback shift register (NLFSR). It contains a 288-bit NLFSR with three feedback taps and an output function, and it provides eight outputs that expose internal register values for self-testing. The circuit can be initialized to all zeros and then run, with outputs compared against a Python simulation. External hardware such as a logic analyzer is needed to observe the outputs, and the design is implemented in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "b8a742c757c1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design is an audio codec decoder, not a general digital signal processing block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rp2040",
+     "reason": "The source states it is intended to pair with an RP2040 microcontroller."
+    }
+   ],
+   "notes": "Removed unsupported dsp tag; added rp2040 and corrected summary wording.",
+   "tags_before": [
+    "audio",
+    "decoder",
+    "spi",
+    "dsp",
+    "verilog",
+    "coprocessor",
+    "compression"
+   ],
+   "tags": [
+    "audio",
+    "decoder",
+    "spi",
+    "verilog",
+    "coprocessor",
+    "compression",
+    "rp2040"
+   ],
+   "summary_before": "This chip decodes the QOA audio format, a simple lossy compression for 16-bit PCM audio, via an SPI slave interface. It acts as a co-processor, requiring an external microcontroller to handle file I/O and streaming. The design has been tested in silicon and works, achieving up to 176,056 samples per second. Notable for its compact implementation and potential for real-time audio streaming.",
+   "summary": "This chip decodes the QOA audio format, a simple format for 16-bit PCM audio, via an SPI slave interface. It acts as a co-processor, requiring an external microcontroller to handle file I/O and streaming. The design has been tested in silicon and works, achieving up to 176,056 samples per second. It is notable for its compact implementation and potential for real-time audio streaming.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8623,
+  "completion_tokens": 1499,
+  "total_tokens": 10122,
+  "cost": 0.005482125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.005482125,
+   "upstream_inference_prompt_cost": 0.003233625,
+   "upstream_inference_completions_cost": 0.0022485
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.005482125,
+ "elapsed_s": 6.4
+}

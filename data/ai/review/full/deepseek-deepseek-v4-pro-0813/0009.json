@@ -1,0 +1,421 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "b52c92a8c3dc",
+  "9160af270657",
+  "3652fd4bd863",
+  "08778e566bbf",
+  "63c904d190cc",
+  "48ba5113a79c"
+ ],
+ "results": [
+  {
+   "key": "b52c92a8c3dc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is mentioned or evidenced by the pins."
+    },
+    {
+     "tag": "communication",
+     "reason": "The design is an oscillator/DAC, not a communication protocol design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The design is an analog ring oscillator with DAC and analog input."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "The title and description state it is a voltage controlled ring oscillator."
+    },
+    {
+     "tag": "dac",
+     "reason": "It includes an 8-bit DAC to control the oscillator frequency."
+    },
+    {
+     "tag": "vco",
+     "reason": "The design is a voltage controlled oscillator."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "It combines analog oscillator/DAC with digital DAC control inputs."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "OSC_OUT_DIV is OSC_OUT divided by 64."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the analog ring oscillator/DAC design.",
+   "tags_before": [
+    "fsm",
+    "uart",
+    "communication"
+   ],
+   "tags": [
+    "analog",
+    "ring-oscillator",
+    "dac",
+    "vco",
+    "mixed-signal",
+    "clock-divider"
+   ],
+   "summary_before": "This design implements a robust finite state machine that handles a custom UART protocol for real-time configuration and data reporting. It uses a UART interface for communication and includes a protocol FSM for handling data. The design is notable for its robust protocol handling and real-time capabilities.",
+   "summary": "This design implements a voltage controlled ring oscillator whose frequency can be adjusted by an external control voltage or by an internal 8-bit DAC. The DAC is enabled by holding the DAC_enable pin high. An additional output provides the oscillator signal divided by 64 for easier measurement. The design is intended to be tested by varying the control voltage or DAC bits and observing the output frequency.",
+   "summary_changed": true
+  },
+  {
+   "key": "9160af270657",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output is described."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output is described."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is mentioned."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "The design is not a visual/audio demoscene showcase."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ethernet",
+     "reason": "The design communicates over 100Mbps Ethernet using a PHY."
+    },
+    {
+     "tag": "communication",
+     "reason": "It is a data communication design broadcasting packets over Ethernet."
+    },
+    {
+     "tag": "counter",
+     "reason": "The design counts until the heat death of the universe and broadcasts the counter value."
+    },
+    {
+     "tag": "timer",
+     "reason": "It sends an application packet every 1 second."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the Ethernet counter design.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "7-segment",
+    "demoscene"
+   ],
+   "tags": [
+    "ethernet",
+    "communication",
+    "counter",
+    "timer",
+    "verilog"
+   ],
+   "summary_before": "This design generates a VGA video signal showing a waving Philippine flag in a DVD-like screensaver style, with the text 'PILIPINAS' in a 7-segment style at the bottom. It requires a VGA display to view the output. The documentation is minimal, providing only the title and a brief description, with no details on implementation or testing beyond the visual output. It is a simple visual demo.",
+   "summary": "This design counts upward and broadcasts the counter value over 100Mbps Ethernet once per second. It reuses the Teapot Ethernet accelerator wrapper for full-duplex communication over a CAT-3/5 cable. The design sends an application packet with ethertype 0x88b5 autonomously every second. Testing requires an Ethernet 100BASE-T Pmod connector with a LAN8720A PHY and 50MHz oscillator.",
+   "summary_changed": true
+  },
+  {
+   "key": "3652fd4bd863",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "No accelerator or neural network hardware is described."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network is mentioned in the source."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "No spiking neural network is mentioned."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "No fixed-point arithmetic is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design is a clock divider and second counter."
+    },
+    {
+     "tag": "timer",
+     "reason": "It counts seconds with a programmable compare register."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The outputs drive seven-segment display segments a through g and dot."
+    },
+    {
+     "tag": "display",
+     "reason": "It drives a seven-segment display."
+    },
+    {
+     "tag": "decoder",
+     "reason": "It converts binary counter values to decimal for the display."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the timer/counter and seven-segment display design.",
+   "tags_before": [
+    "accelerator",
+    "neural-network",
+    "spiking-neural-network",
+    "fixed-point"
+   ],
+   "tags": [
+    "counter",
+    "timer",
+    "7-segment",
+    "display",
+    "decoder",
+    "verilog"
+   ],
+   "summary_before": "This design is an accelerator for neural networks, specifically a spiking neural network. It uses fixed-point arithmetic. The documentation provides a detailed protocol for testing but does not include silicon results.",
+   "summary": "This design divides a 10MHz clock and increments a counter once per second when the internal compare value is set to 10,000,000. The bottom eight bits of the counter are exposed on the bidirectional outputs. Combinational logic converts the binary counter value to decimal for a seven-segment display. The compare value can be partially programmed through the input pins to change the counting speed.",
+   "summary_changed": true
+  },
+  {
+   "key": "08778e566bbf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "No spiking neural network is described."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network is described."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is mentioned or evidenced by the pins."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rom",
+     "reason": "The design tests prototype ROM macros."
+    },
+    {
+     "tag": "memory",
+     "reason": "It is a ROM memory test structure."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The design is intended for timing characterization of ROM macros."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "It tests a modified ROM bitcell without LVT implant."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The author reports working silicon test results."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design is listed as analog and is a custom ROM test structure."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the ROM test structure.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi"
+   ],
+   "tags": [
+    "rom",
+    "memory",
+    "characterization",
+    "process-experiment",
+    "silicon-tested",
+    "analog"
+   ],
+   "summary_before": "This project implements a spiking neural network with 18 programmable digital LIF neurons and 144 synapses arranged in three fully connected layers. The design is notable for being generated by ChatGPT and for its use of programmable delays, but it lacks silicon test results.",
+   "summary": "This project is a test structure for prototype ROM macros modified to remove the LVT implant from the bitcell. Registers are placed in front of the ROM macros to send addresses and capture data at controlled intervals. The design supports multiple testing modes selected by clock and reset signals. The author reports successful silicon testing with 10 ns propagation time and notes that an FPGA would be needed for more precise timing characterization.",
+   "summary_changed": true
+  },
+  {
+   "key": "63c904d190cc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "No spiking neural network is described."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network is described."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is mentioned or evidenced by the pins."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rom",
+     "reason": "The design tests prototype ROM macros."
+    },
+    {
+     "tag": "memory",
+     "reason": "It is a ROM memory test structure."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The design is intended for timing characterization of ROM macros."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "It tests prototype ROM macros."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The author reports working silicon test results."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design is listed as analog and is a custom ROM test structure."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the ROM test structure.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi"
+   ],
+   "tags": [
+    "rom",
+    "memory",
+    "characterization",
+    "process-experiment",
+    "silicon-tested",
+    "analog"
+   ],
+   "summary_before": "This project implements a spiking neural network with 18 programmable digital LIF neurons and 144 synapses arranged in three fully connected layers. The design is notable for being generated by ChatGPT and for its use of programmable delays, but it lacks silicon test results.",
+   "summary": "This project is a test structure for prototype ROM macros. Registers are placed in front of the ROM macros to send addresses and capture data at controlled intervals. The design supports multiple testing modes selected by clock and reset signals. The author reports successful silicon testing with 10 ns propagation time and notes that an FPGA would be needed for more precise timing characterization.",
+   "summary_changed": true
+  },
+  {
+   "key": "48ba5113a79c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The source does not clearly describe a seven-segment display; it mentions testing an LED digit and LED number."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No decoder logic is described in the source."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not explicitly state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The design is created in Wokwi."
+    },
+    {
+     "tag": "led",
+     "reason": "The design involves LED outputs."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "The design uses input switches."
+    },
+    {
+     "tag": "template",
+     "reason": "The title indicates it is the Tiny Tapeout 9 template."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is very thin and does not fully describe the design."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the thin Wokwi switch/LED template documentation.",
+   "tags_before": [
+    "7-segment",
+    "led",
+    "decoder",
+    "wokwi",
+    "education",
+    "display",
+    "dip-switch"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "display",
+    "dip-switch",
+    "template",
+    "insufficient-doc"
+   ],
+   "summary_before": "This Wokwi design outputs a number on a seven-segment display corresponding to which input switch is high, so switch 0 shows 1, switch 2 shows 2, and so on. It is controlled by dip switches and uses a decoder to map the switch input to the display. The project is described as the author's first Wokwi design and is a simple educational switch-to-display exercise.",
+   "summary": "This Wokwi design maps input switches to LED outputs. The documentation is very thin and does not clearly describe the intended behavior beyond flipping switches. It appears to be a simple template-based switch-to-LED exercise. The project is described as testing an LED digit.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7011,
+  "completion_tokens": 2403,
+  "total_tokens": 9414,
+  "cost": 0.01373276,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2048,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.01373276,
+   "upstream_inference_prompt_cost": 0.005644262,
+   "upstream_inference_completions_cost": 0.008088498
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.01373276,
+ "elapsed_s": 60.2
+}

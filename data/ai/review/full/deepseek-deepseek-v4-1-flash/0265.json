@@ -1,0 +1,308 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "da280dccf02e",
+  "96f37c0799f7",
+  "81be3dde6a72",
+  "5b1f8520258f",
+  "e5313db3b78d",
+  "2af8c20a52b4"
+ ],
+ "results": [
+  {
+   "key": "da280dccf02e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "No clock or timing signal generation is described; the design is combinational inverters."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is built from inverters, which are basic logic gates."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs drive corresponding lights/LEDs."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator and education tags; added logic-gate, led and wokwi.",
+   "tags_before": [
+    "led",
+    "logic-gate",
+    "clock-generator",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "led",
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This project connects each of the eight inputs to an inverter that drives a corresponding light on a clock. The intended test is to set an input and check that the inverted output appears, as shown in the single-row truth table. An external clock is required as the display. The documentation is minimal and largely duplicates the pin names.",
+   "summary": "This project connects each of the eight inputs to an inverter that drives a corresponding light. The intended test is to set an input and check that the inverted output appears, as shown in the single-row truth table. The documentation is minimal and largely duplicates the pin names. No external hardware is listed.",
+   "summary_changed": true
+  },
+  {
+   "key": "96f37c0799f7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "The source describes binary-to-7-segment decoding, not binary-coded decimal logic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "decoder",
+     "reason": "The design decodes binary input into 7-segment display signals."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The output is intended for a 7-segment display."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design uses AND and OR gates."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "display",
+     "reason": "The output drives a 7-segment display."
+    }
+   ],
+   "notes": "Removed unsupported bcd tag; added decoder, 7-segment, logic-gate, wokwi and display.",
+   "tags_before": [
+    "decoder",
+    "7-segment",
+    "bcd",
+    "wokwi",
+    "logic-gate",
+    "display"
+   ],
+   "tags": [
+    "decoder",
+    "7-segment",
+    "wokwi",
+    "logic-gate",
+    "display"
+   ],
+   "summary_before": "This design implements a binary-to-decimal decoder that converts an 8-bit binary value into signals for a 7-segment display. It uses simple AND and OR gates to produce the segment outputs, but the provided documentation only shows partial truth tables for a few inputs and outputs, making the full mapping unclear. The project is intended to drive a 7-segment display directly, with no external hardware required. Testing is described through truth tables, but the incomplete documentation limits verification of the complete design.",
+   "summary": "This design implements a binary-to-decimal decoder that converts an 8-bit binary value into signals for a 7-segment display. It uses simple AND and OR gates to produce the segment outputs, but the provided documentation only shows partial truth tables for a few inputs and outputs, making the full mapping unclear. The project is intended to drive a 7-segment display directly, with no external hardware required. Testing is described through truth tables, but the incomplete documentation limits verification of the complete design.",
+   "summary_changed": false
+  },
+  {
+   "key": "81be3dde6a72",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The design drives segment patterns for a seven-segment display."
+    },
+    {
+     "tag": "decoder",
+     "reason": "It decodes dip switch settings into segment patterns."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "It uses and/or combinational logic gates."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "The inputs are dip switches."
+    },
+    {
+     "tag": "display",
+     "reason": "It requires an external LED display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added 7-segment, decoder, logic-gate, dip-switch, display and wokwi.",
+   "tags_before": [
+    "7-segment",
+    "decoder",
+    "logic-gate",
+    "dip-switch",
+    "display",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "decoder",
+    "logic-gate",
+    "dip-switch",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This design uses combinational logic gates to decode dip switch settings into segment patterns for a seven-segment display. It is configured by setting the eight DIP switches, which select which segments to illuminate. The project requires an external LED display to show the segments. The documentation is minimal and does not provide a clear mapping of switch settings to segments, so the exact behavior is not fully specified.",
+   "summary": "This design uses combinational logic gates to decode dip switch settings into segment patterns for a seven-segment display. It is configured by setting the eight DIP switches, which select which segments to illuminate. The project requires an external LED display to show the segments. The documentation is minimal and does not provide a clear mapping of switch settings to segments, so the exact behavior is not fully specified.",
+   "summary_changed": false
+  },
+  {
+   "key": "5b1f8520258f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "puzzle",
+    "game",
+    "dip-switch",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "puzzle",
+    "game",
+    "dip-switch",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This design is a puzzle in which the user flips combinations of eight DIP switches to discover hidden numbers from 0 to 9, which are then shown on a 7-segment display. A valid combination lights the corresponding digit, while an invalid one shows nothing or lights the red decimal point, and combinations may be one to eight switches long. The documentation gives no testing procedure beyond saying there is no clue, and it expects the design to be used with the Tiny Tapeout PCB that carries the DIP switches and 7-segment display. The project is a small interactive fidget puzzle whose exact logic is intentionally undocumented.",
+   "summary": "This design is a puzzle in which the user flips combinations of eight DIP switches to discover hidden numbers from 0 to 9, which are then shown on a 7-segment display. A valid combination lights the corresponding digit, while an invalid one shows nothing or lights the red decimal point, and combinations may be one to eight switches long. The documentation gives no testing procedure beyond saying there is no clue, and it expects the design to be used with the Tiny Tapeout PCB that carries the DIP switches and 7-segment display. The project is a small interactive fidget puzzle whose exact logic is intentionally undocumented.",
+   "summary_changed": false
+  },
+  {
+   "key": "e5313db3b78d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "No data communication protocol is described; it is a loopback/skew measurement tile."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the project is intended for teaching or learning."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design does not generate a clock; it is clocked externally."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "It measures input skew and flip-flop capture reliability across timing."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "It drives segment a-g and dot outputs."
+    },
+    {
+     "tag": "counter",
+     "reason": "It counts seconds and exposes counter bits."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed unsupported communication, education and clock-generator tags; added clock-domain-crossing, 7-segment, counter and verilog.",
+   "tags_before": [
+    "communication",
+    "clock-domain-crossing",
+    "7-segment",
+    "counter",
+    "education",
+    "clock-generator"
+   ],
+   "tags": [
+    "clock-domain-crossing",
+    "7-segment",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This is a GF180 loopback tile with input skew measurement that counts seconds and displays a value on a 7-segment output while exposing counter bits and compare bits on the pins. It is used by clocking the project and varying the timing between clock and data to examine flip-flop capture reliability. External hardware is a skewable clock and data source, and the design is based on an earlier TT05 loopback-with-skew project ported to GF180MCU. The documentation is minimal and no silicon test report is provided, so the measured behaviour is not documented.",
+   "summary": "This is a GF180 loopback tile with input skew measurement that counts seconds and displays a value on a 7-segment output while exposing counter bits and compare bits on the pins. It is used by clocking the project and varying the timing between clock and data to examine flip-flop capture reliability. External hardware is a skewable clock and data source, and the design is based on an earlier TT05 loopback-with-skew project ported to GF180MCU. The documentation is minimal and no silicon test report is provided, so the measured behaviour is not documented.",
+   "summary_changed": false
+  },
+  {
+   "key": "2af8c20a52b4",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "The design integrates UART RX/TX pins."
+    },
+    {
+     "tag": "spi",
+     "reason": "The design integrates SPI MISO/SCL/CS/MOSI pins."
+    },
+    {
+     "tag": "communication",
+     "reason": "It is a data communication protocol integration design."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    }
+   ],
+   "notes": "Added systemverilog tag; uart, spi and communication were already supported.",
+   "tags_before": [
+    "uart",
+    "spi",
+    "communication"
+   ],
+   "tags": [
+    "uart",
+    "spi",
+    "communication",
+    "systemverilog"
+   ],
+   "summary_before": "Zedulo TestChip1 integrates UART and SPI IP blocks to convert UART data into SPI transfers and echo the SPI response back over UART. Bytes sent to the UART RX pin are transmitted out via SPI, and data received from SPI MISO is echoed on the UART TX pin. Testing requires a TTL-232 to UART interface and observing SPI activity on the SPI pins. The documentation is minimal, referring to a README that is not included.",
+   "summary": "Zedulo TestChip1 integrates UART and SPI IP blocks to convert UART data into SPI transfers and echo the SPI response back over UART. Bytes sent to the UART RX pin are transmitted out via SPI, and data received from SPI MISO is echoed on the UART TX pin. Testing requires a TTL-232 to UART interface and observing SPI activity on the SPI pins. The documentation is minimal, referring to a README that is not included.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6016,
+  "completion_tokens": 1736,
+  "total_tokens": 7752,
+  "cost": 0.003888,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003888,
+   "upstream_inference_prompt_cost": 0.0018048,
+   "upstream_inference_completions_cost": 0.0020832
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003888,
+ "elapsed_s": 20.7
+}

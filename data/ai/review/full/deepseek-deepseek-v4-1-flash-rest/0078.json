@@ -1,0 +1,355 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f1d307538283",
+  "25b89bf8de70",
+  "b2f64483aa5e",
+  "fe5a774d3c48",
+  "e5d32c807846",
+  "9747d68c3d9e"
+ ],
+ "results": [
+  {
+   "key": "f1d307538283",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes a 4-bit adder with carry-in, not an ALU."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplication is described anywhere in the source."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "No multiplexer is described; ui[6]/ui[7] are mux pins but no mux function is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Source explicitly describes a 4-bit + 4-bit + carry-in adder producing a 5-bit sum."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Pure combinational adder with no clocked elements described."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the title/description mismatch the adder content."
+    }
+   ],
+   "notes": "Removed unsupported ALU/multiplier/multiplexer tags; source only documents a 4-bit adder.",
+   "tags_before": [
+    "alu",
+    "adder",
+    "multiplier",
+    "multiplexer",
+    "verilog"
+   ],
+   "tags": [
+    "adder",
+    "verilog",
+    "combinational",
+    "incomplete"
+   ],
+   "summary_before": "This design is an arithmetic logic unit (ALU) with adder and multiplier capabilities. It also includes a multiplexer for selecting operations. The design is written in Verilog and is likely used for educational purposes. It demonstrates basic arithmetic operations.",
+   "summary": "This design is a 4-bit adder that takes two 4-bit inputs and a carry-in and produces a 5-bit sum. The documentation is very thin and the title and one-line description do not match the described adder functionality. It is written in Verilog and tested with an iverilog testbench and gtkwave. The design demonstrates basic binary addition.",
+   "summary_changed": true
+  },
+  {
+   "key": "25b89bf8de70",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "Counts from 0 to 9 continuously when enabled."
+    },
+    {
+     "tag": "bcd",
+     "reason": "Decimal 0-9 counting with seven-segment outputs implies BCD-style encoding."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs are intended for a seven-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Author states it is 'not as special as planned' due to medical reasons and finals."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added incomplete based on author's own statement.",
+   "tags_before": [
+    "counter",
+    "bcd",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "bcd",
+    "7-segment",
+    "display",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project is a decimal counter that counts from 0 to 9 continuously when enabled, with outputs intended for a seven-segment display. The counter uses BCD encoding and is designed for educational purposes. It is implemented in Wokwi and can be tested by observing the display output. The design is notable for its simple counting functionality.",
+   "summary": "This project is a decimal counter that counts from 0 to 9 continuously when enabled, with outputs intended for a seven-segment display. The counter uses BCD encoding and is implemented in Wokwi. It can be tested by toggling the enable input and observing the display, with a second input enabling the decimal point. The author notes the design is less complete than planned due to medical reasons and finals.",
+   "summary_changed": true
+  },
+  {
+   "key": "b2f64483aa5e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Source describes an 8-bit adder."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Adder is purely combinational."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported education tag; corrected summary to match the documented 8-bit adder rather than a full adder.",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi"
+   ],
+   "summary_before": "This project is a full adder circuit with three inputs and two outputs, implementing binary addition. The documentation provides a truth table for verification. No external hardware is required beyond the standard Tiny Tapeout setup. The design is notable as a fundamental arithmetic building block.",
+   "summary": "This project is an 8-bit adder that adds corresponding input bits to produce a binary sum. The documentation provides a truth table for verification. It is implemented in Wokwi and can be tested by applying input voltages and observing the outputs. LEDs or other output indicators are recommended for testing the output pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "fe5a774d3c48",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "dma",
+     "reason": "Design is explicitly a Direct Memory Access controller."
+    },
+    {
+     "tag": "memory",
+     "reason": "Includes per-channel memory locations for source and destination data."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Documentation states simulations are run with Cocotb."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Describes an FSM with IDLE, TRANSFER and DONE states."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Added missing canonical tags for FSM and Verilog; corrected summary to match documented memory-to-memory operation rather than peripheral transfers.",
+   "tags_before": [
+    "dma",
+    "memory",
+    "cocotb"
+   ],
+   "tags": [
+    "dma",
+    "memory",
+    "cocotb",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "The design is a Direct Memory Access (DMA) controller that supports multiple channels for data transfer. It can move data between memory and peripherals without CPU intervention. The controller is configured via a register interface and can be tested with a cocotb testbench. External hardware may include a memory and peripheral devices.",
+   "summary": "This design is a Direct Memory Access (DMA) controller with two independent channels for memory-to-memory data transfers. It supports single-word and burst transfers, programmable word widths, and error detection for boundary and address mismatch conditions. The controller is configured through input pins and reports completion and error flags on its outputs. Simulations are run with Cocotb to verify transfers in different modes and on both channels.",
+   "summary_changed": true
+  },
+  {
+   "key": "e5d32c807846",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "systolic-array",
+     "reason": "Source describes two parallel compute lanes, not a systolic array."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Datapath explicitly removes multiplication and uses add/sub/skip only."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing application is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "BitNet b1.58 matrix multiply accelerator for neural network inference."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Dedicated matrix multiply accelerator."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "Targets embedded AI inference with ternary weights and uint8 activations."
+    },
+    {
+     "tag": "spi",
+     "reason": "Controlled via SPI with sclk, cs_n, mosi and miso pins."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Implements multiplier-free multiply-accumulate datapath."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "Uses 1x2 tiles."
+    }
+   ],
+   "notes": "Removed unsupported systolic-array, multiplier and DSP tags; added SPI, MAC, multi-tile and edge-AI tags supported by the source.",
+   "tags_before": [
+    "machine-learning",
+    "accelerator",
+    "systolic-array",
+    "multiplier",
+    "dsp",
+    "edge-ai",
+    "verilog"
+   ],
+   "tags": [
+    "machine-learning",
+    "accelerator",
+    "edge-ai",
+    "verilog",
+    "spi",
+    "mac-unit",
+    "multi-tile"
+   ],
+   "summary_before": "This is a machine learning accelerator that uses a systolic array for neural network inference. It includes a multiplier and DSP blocks to perform matrix operations. The design is implemented in Verilog and targets the Tiny Tapeout platform. It is intended for edge AI applications, though the documentation is sparse.",
+   "summary": "This is a 4x4 BitNet b1.58 matrix multiply accelerator controlled over SPI. It multiplies unsigned 8-bit activations by ternary {-1,0,+1} weights using a multiplier-free add/sub/skip datapath with two parallel compute lanes. The design is implemented in Verilog and uses 1x2 tiles. It is intended for edge AI inference, and the documentation describes the SPI command format and a 32-cycle compute latency.",
+   "summary_changed": true
+  },
+  {
+   "key": "9747d68c3d9e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file is described."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No basic logic gate implementation is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Roulette-style guessing game with user guesses and win indication."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Uses a seven-segment display for the wheel and result."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Pseudo-random number generated using a linear feedback shift register."
+    },
+    {
+     "tag": "prng",
+     "reason": "LFSR provides pseudo-random stopping position."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "Prescaler generates slow ticks for visible rotation."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed unsupported ALU/register-file/logic-gate tags; added game, 7-segment, LFSR, PRNG and clock-divider tags supported by the source.",
+   "tags_before": [
+    "alu",
+    "register-file",
+    "logic-gate",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "game",
+    "7-segment",
+    "lfsr",
+    "prng",
+    "clock-divider"
+   ],
+   "summary_before": "This project is a digital logic design that includes an ALU, register file, and logic gates. It is implemented in Verilog and demonstrates basic arithmetic and logic operations. The design is suitable for educational purposes. External hardware includes switches for input and LEDs for output.",
+   "summary": "This project is a roulette-style LED spinner on a seven-segment display with variable speeds. The wheel spins continuously and its speed is set by four input bits, while a stop input triggers a pseudo-random LFSR-chosen stopping position. Users make guesses on the bidirectional pins, and a correct guess lights the decimal point on the display. The design is implemented in Verilog and tested with per-module testbenches and gtkwave.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7847,
+  "completion_tokens": 1980,
+  "total_tokens": 9827,
+  "cost": 0.0047301,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0047301,
+   "upstream_inference_prompt_cost": 0.0023541,
+   "upstream_inference_completions_cost": 0.002376
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0047301,
+ "elapsed_s": 19.8
+}

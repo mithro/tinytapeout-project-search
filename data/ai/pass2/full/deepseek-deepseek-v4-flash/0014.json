@@ -1,0 +1,183 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "d39641efe4e6",
+  "a9571a2a4d96",
+  "c04fcb529f50",
+  "53e9f8a93f6b",
+  "6a65482ff4b3",
+  "3d297fc5d528",
+  "abe6e741ed18",
+  "946e6421205b",
+  "239089015f67",
+  "90d8e71f38f3"
+ ],
+ "results": [
+  {
+   "changed": true,
+   "index": 1,
+   "key": "d39641efe4e6",
+   "summary": "This design implements a minimal neuron-like influence field calculation with open neurons, taking a clock and reset as inputs and driving a 7-segment display. It is intended to be tested by clocking in a reference vector with some inversions, presenting the device under test, and reading the output. The documentation is very thin and does not explain the neuron model, the vector width, or how the influence field is computed. No external hardware beyond the 7-segment display is described.",
+   "tags": [
+    "neural-network",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "a9571a2a4d96",
+   "summary": "This project implements a state machine whose transition table is stored in an external SPI flash device, with inputs and current state shifted out to look up the next state and outputs. It uses a clock, reset, data in, and four general inputs, and drives chip select, data out, and five general outputs. Testing requires connecting a SPI flash device that supports the 0x03 read command with 24-bit addressing and is preloaded with state machine values. The design is notable for offloading state machine storage to external flash, but the documentation gives no details on the state encoding or flash contents.",
+   "tags": [
+    "fsm",
+    "spi",
+    "memory",
+    "wokwi",
+    "communication"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 3,
+   "key": "c04fcb529f50",
+   "summary": "This design is a binary coded ternary test block that takes eight differential-style inputs labeled C+, C-, N+, N-, O+, O-, P+, and P- and drives a 7-segment display plus a dot output. It is described as a ternary selector, and testing consists of setting the inputs and reading the outputs. The documentation is extremely sparse and does not explain the ternary encoding, the meaning of the input pairs, or what the display shows. No external hardware is mentioned beyond the 7-segment display.",
+   "tags": [
+    "esoteric",
+    "decoder",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "53e9f8a93f6b",
+   "summary": "This project converts a binary input into a hexadecimal seven-segment display output, using a clock and reset as inputs and driving the seven segment lines. Testing is simply described as inputting binary and observing the seven-segment hex output. The design requires an external seven-segment display to be useful. The documentation is minimal and does not specify the input width or the exact encoding, so the design is best treated as a simple educational decoder.",
+   "tags": [
+    "decoder",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "6a65482ff4b3",
+   "summary": "This design is a BCD to 7-segment decoder that accepts four binary-coded decimal inputs, a decimal dot passthrough, and an output invert control, and drives seven segment lines plus a dot output. It is tested by connecting the segment outputs to a 7-segment display and configuring the inputs as weights 1, 2, 4, and 8 so the input value appears on the display. The only external hardware needed is a 7-segment display. The documentation is brief but sufficient to understand the function, and the design is a straightforward educational decoder.",
+   "tags": [
+    "bcd",
+    "decoder",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "3d297fc5d528",
+   "summary": "This project implements a (7, 1/2) convolutional encoder following the CCSDS 131.0-B-4 standard, adding error-correction bits to a data stream for space applications. It uses a clock, a write_not_shift control, and six shift inputs, and displays each encoded output bit on an 8-segment display with the decimal point indicating the clock. Testing involves writing a 6-bit input with write_not_shift high, then shifting for 24 clock cycles and reading the encoded bits, with the first six bits discarded. The documentation is detailed and includes a worked example, making the design well specified for its intended error-correction use.",
+   "tags": [
+    "error-correction",
+    "shift-register",
+    "7-segment",
+    "wokwi"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "abe6e741ed18",
+   "summary": "This design is an 8-bit shift register with an optional latch and hex decode that displays alternating high and low nibbles on a 7-segment display. It provides controls for display clock, shift in, shift clock, latch, cycle display, nibble selection, latch usage, and MSB/LSB order, and outputs the seven segments plus a high/low nibble indicator. Testing involves clocking in 8 bits, optionally latching them, and observing the alternating nibbles, with switches and a 7-segment display as external hardware. The documentation is clear about the control signals and behavior, making it a useful educational shift-register demonstration.",
+   "tags": [
+    "shift-register",
+    "latch",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 8,
+   "key": "946e6421205b",
+   "summary": "This project is a 3-bit adder that adds two 3-bit numbers using one half-adder and two full-adders, with the result shown on a 7-segment display. Inputs are the three bits of each operand, and the output drives the seven segment lines to display the binary sum. Testing is described as applying the inputs and reading the added score on the output display. The documentation is minimal and does not mention carry output or external hardware beyond the display.",
+   "tags": [
+    "adder",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "239089015f67",
+   "summary": "This design is a basic 4:2 compressor that takes four main input bits plus a carry-in and produces two compressed outputs and a carry-out. It is intended for use in compressing partial products inside multipliers. Testing is done by following the standard 4:2 compressor truth table with the four inputs and carry-in and observing the two outputs and carry-out. The documentation is short but sufficient to describe the function, and no external hardware is required.",
+   "tags": [
+    "dsp",
+    "multiplier",
+    "adder",
+    "wokwi",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "90d8e71f38f3",
+   "summary": "This project implements two banks of CRC-16/XModem and even parity calculators based on Ben Eater's error detection videos, each with shift data, shift clock, active-low reset, and active-low read controls. The read-back mode disables the feedback XOR so the calculated CRC and parity can be shifted out for inspection. Testing is done by connecting a Pico as shown in Wokwi, sending a string, and comparing the read-back CRC and parity values. The design can also be driven by switches or any microcontroller, and the documentation explains the control scheme clearly.",
+   "tags": [
+    "crc",
+    "parity",
+    "error-correction",
+    "shift-register",
+    "wokwi",
+    "communication"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7290,
+  "completion_tokens": 1787,
+  "total_tokens": 9077,
+  "cost": 0.00171895,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00171895,
+   "upstream_inference_prompt_cost": 0.0010935,
+   "upstream_inference_completions_cost": 0.00062545
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00171895,
+ "elapsed_s": 15.7
+}

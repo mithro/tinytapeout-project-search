@@ -1,0 +1,179 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "292aa3edb6a3",
+  "eb71ec96e771",
+  "71a8020869f9",
+  "22b7aaa31da5",
+  "5e75d2bdda97",
+  "cb9174c33bbf",
+  "50e1679408e7",
+  "1d04963c918f",
+  "7c4aad821cfb",
+  "fb8d72729fbd"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "292aa3edb6a3",
+   "tags": [
+    "lfsr",
+    "prng",
+    "spi",
+    "clock-divider",
+    "register-file",
+    "wokwi"
+   ],
+   "summary": "This design is a configurable pseudo-random binary sequence generator built around a Galois LFSR with XOR taps, supporting polynomial sizes up to 16 bits. It is configured over an SPI mode 0 interface with four registers controlling command/address, clock divider, polynomial enable bits, and tap selection. Outputs include differential PRBS and look-ahead versions of the next bit, and a fail-safe all-zeros check prevents lock-up. It requires an external SPI controller, a clock input, and a logic analyzer to observe the generated sequence.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "eb71ec96e771",
+   "tags": [
+    "sequence-detector",
+    "fsm",
+    "7-segment",
+    "led",
+    "education"
+   ],
+   "summary": "This project implements a finite state machine in Verilog that detects the overlapping bit sequence '1001' and indicates detection by displaying '8.' on a 7-segment LED display, otherwise showing '-'. The design includes a test mode where holding the condition inputs high allows individual segment testing or digit display by varying the bidirectional pins. It needs an external 7-segment LED display wired to the eight outputs and a switch or signal source to drive the serial input. The documentation is clear about operation and testing, though it is a straightforward educational FSM exercise.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "71a8020869f9",
+   "tags": [
+    "cpu",
+    "alu",
+    "fsm",
+    "register-file",
+    "education"
+   ],
+   "summary": "This is a small 4-bit CPU implemented with a finite state machine that performs simple arithmetic and logic operations, along with storing, loading, and shifting values. It is controlled through input pins for storage address, input data, write access, and a 4-bit operation code, with results presented as an 8-bit output. Testing involves supplying values and opcodes in sequence, storing and loading intermediate results as needed for multi-operand operations. The documentation is brief and the design appears to be an educational exercise without external hardware requirements beyond switches and LEDs.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "22b7aaa31da5",
+   "tags": [
+    "7-segment",
+    "display",
+    "pwm",
+    "led"
+   ],
+   "summary": "This design animates a 7-segment display by reading input switches to form a custom character and then illuminating the segments sequentially at roughly 0.12 seconds per segment. Inputs 0 through 6 map directly to the seven segments, input 7 enables the display and starts the animation, and the bidirectional pins optionally control an experimental PWM dimming feature. It requires an external 7-segment display and switches for the inputs, and a silicon test report confirms it is working. The design is a simple visual demonstration with a PWM dimming experiment.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "5e75d2bdda97",
+   "tags": [
+    "alu",
+    "insufficient-doc",
+    "logic-gate"
+   ],
+   "summary": "This project is a simple 8-bit unsigned arithmetic logic unit written in Verilog, with a single input and output pin listed in the pinout. The documentation consists almost entirely of images showing the design and test setup, with no textual explanation of the supported operations or control scheme. Testing is described as using an ADALM2000 instrument, but the images are not accessible in the provided text. The documentation is too thin to determine the exact instruction set or how the single input pin selects operations.",
+   "changed": true,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "cb9174c33bbf",
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "education"
+   ],
+   "summary": "This is an 8-bit single-cycle microprocessor with a register file and ALU, designed to execute a simple instruction set supporting basic ALU operations, load/store, and carry status checks. It is controlled through input pins for register addresses, opcode, and data, with outputs providing register data or processor status. The design was tested with twelve testbenches covering ALU operations, data movement, and load/store, though timing interactions between instructions were not exhaustively verified. It lacks a program counter and external memory, so jump operations are omitted, and it operates entirely in simulation without external hardware.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "50e1679408e7",
+   "tags": [
+    "audio",
+    "compression",
+    "encoder",
+    "microphone",
+    "dsp"
+   ],
+   "summary": "This design accepts a pulse-density-modulated microphone signal and produces a 4-bit ADPCM encoded output at a lower sampling rate, using a CIC decimation filter followed by ADPCM encoding. It requires two synchronized external clocks, with slow_clk running at one-eighth the frequency of clk, and a block enable signal to start compression. The encoded output streams from the encPcm pins with an outValid flag, and can be stored or decoded for playback. The design is notable for implementing audio compression on a small tile budget and requires an external PDM microphone.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "1d04963c918f",
+   "tags": [
+    "alu",
+    "multiplier",
+    "divider",
+    "education"
+   ],
+   "summary": "This is a 3-bit ALU that computes addition, subtraction, multiplication, division, and modulo in parallel, with a 3-bit selector choosing which result appears on the 6-bit output. Inputs A and B are set with switches, and the selector uses three more switches to pick one of the five operations, with the result shown on six LEDs. The documentation explains the selector encoding and provides examples, and the design is purely combinational. It is an educational project requiring external switches and LEDs for input and output.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "7c4aad821cfb",
+   "tags": [
+    "alu",
+    "decoder",
+    "gray-code",
+    "7-segment",
+    "multiplexer",
+    "education"
+   ],
+   "summary": "This combinational design implements a 3-bit ALU supporting subtraction, addition, XOR, and AND, with its output routed to both an octal decoder and a Gray code decoder for display on two 7-segment displays. A selector chooses the ALU operation and another selects whether the octal or Gray decoder drives the displays, with the Gray decoder specially mapped to decimal for the displays. Testing requires setting the two 3-bit numbers and the selectors, then observing the result on the external displays. External hardware includes two common-cathode 7-segment displays, fourteen 330-ohm resistors, and a DC power source.",
+   "changed": true,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "fb8d72729fbd",
+   "tags": [
+    "multiplier",
+    "alu",
+    "education"
+   ],
+   "summary": "This project implements a Booth-4 signed multiplier in Verilog, taking two 4-bit inputs X and Y and producing an 8-bit product Z. The Booth algorithm reduces the number of partial products by using shifting and addition/subtraction based on recoded multiplier bits. Testing is described as applying physical inputs via a testbench and observing the output, though no detailed test procedure or results are provided. The documentation is minimal and the design appears to be an educational exercise.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 11177,
+  "completion_tokens": 1763,
+  "total_tokens": 12940,
+  "cost": 0.00140485,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00140485,
+   "upstream_inference_prompt_cost": 0.0009641,
+   "upstream_inference_completions_cost": 0.00044075
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00140485,
+ "elapsed_s": 16.0
+}

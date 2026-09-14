@@ -1,0 +1,174 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bacaaf8159c6",
+  "2de92aff8063",
+  "5415c79d2c1a",
+  "9d221aa0f4c3",
+  "1a59a591a6ba",
+  "29894ca24420"
+ ],
+ "results": [
+  {
+   "key": "bacaaf8159c6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The pins are specifically 7-segment segments plus dot; the generic display tag is redundant and unsupported as a distinct interface."
+    }
+   ],
+   "add": [],
+   "notes": "Removed generic display tag; 7-segment is the specific supported output interface.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This is a simple binary counter implemented in Wokwi that drives a 7-segment display. The eight outputs map directly to the seven segments and decimal point, and the design counts in binary at a 10 Hz clock. It requires no external hardware and is tested simply by turning it on. The documentation is very thin and the description is informal, so little can be said about its internal structure.",
+   "summary": "This is a simple binary counter implemented in Wokwi that drives a 7-segment display. The eight outputs map directly to the seven segments and decimal point, and the design counts in binary at a 10 Hz clock. It requires no external hardware and is tested simply by turning it on. The documentation is very thin and the description is informal, so little can be said about its internal structure.",
+   "summary_changed": false
+  },
+  {
+   "key": "2de92aff8063",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The source describes a WTA comparator, not a spiking neural network; spike pins are mostly unspecified and no SNN mechanism is documented."
+    }
+   ],
+   "add": [],
+   "notes": "Removed spiking-neural-network tag; source only supports a WTA comparator/neural-network concept.",
+   "tags_before": [
+    "neural-network",
+    "spiking-neural-network",
+    "comparator",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "comparator",
+    "verilog"
+   ],
+   "summary_before": "This project implements a Winner-Take-All (WTA) network that takes an 8-bit current input, splits it into two 4-bit values, and outputs the 4 bits of the higher value, with preference to the most significant bits in case of a tie. It includes outputs for membrane potential and spike bits, though the spike outputs are mostly unspecified. Testing involves resetting the design and observing the comparator and result values. The design is a simple digital implementation of a neural network concept.",
+   "summary": "This project implements a Winner-Take-All (WTA) network that takes an 8-bit current input, splits it into two 4-bit values, and outputs the 4 bits of the higher value, with preference to the most significant bits in case of a tie. It includes outputs for membrane potential and spike bits, though the spike outputs are mostly unspecified. Testing involves resetting the design and observing the comparator and result values. The design is a simple digital implementation of a neural network concept.",
+   "summary_changed": false
+  },
+  {
+   "key": "5415c79d2c1a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "r2r-dac",
+    "dac",
+    "analog"
+   ],
+   "tags": [
+    "r2r-dac",
+    "dac",
+    "analog"
+   ],
+   "summary_before": "This project is an 8-bit R2R digital-to-analog converter that is a duplicate of Matt Venn's design. It accepts eight digital input bits and produces an analog output voltage on one analog pin, with an external data input and a load divider control. Testing involves setting the external data input high, driving the eight inputs, and measuring the analog output with a multimeter. The documentation is minimal and refers to the original project for details, so the design's specifics are not fully described here.",
+   "summary": "This project is an 8-bit R2R digital-to-analog converter that is a duplicate of Matt Venn's design. It accepts eight digital input bits and produces an analog output voltage on one analog pin, with an external data input and a load divider control. Testing involves setting the external data input high, driving the eight inputs, and measuring the analog output with a multimeter. The documentation is minimal and refers to the original project for details, so the design's specifics are not fully described here.",
+   "summary_changed": false
+  },
+  {
+   "key": "9d221aa0f4c3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vco",
+    "oscillator",
+    "analog",
+    "rf"
+   ],
+   "tags": [
+    "vco",
+    "oscillator",
+    "analog",
+    "rf"
+   ],
+   "summary_before": "This is a voltage-controlled LC oscillator designed for 2 GHz operation in Skywater 130nm. It has four analog pins: differential outputs vout_p and vout_n, a control voltage input vctrl, and a bias current input ibias. The documentation is minimal, consisting only of the title and pin names, with no description of how it works or how to test it. External hardware such as a bias current source and control voltage source would be needed to operate it.",
+   "summary": "This is a voltage-controlled LC oscillator designed for 2 GHz operation in Skywater 130nm. It has four analog pins: differential outputs vout_p and vout_n, a control voltage input vctrl, and a bias current input ibias. The documentation is minimal, consisting only of the title and pin names, with no description of how it works or how to test it. External hardware such as a bias current source and control voltage source would be needed to operate it.",
+   "summary_changed": false
+  },
+  {
+   "key": "1a59a591a6ba",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "education"
+   ],
+   "tags": [
+    "opamp",
+    "analog",
+    "education"
+   ],
+   "summary_before": "This analog project contains three circuits: two two-stage operational amplifiers and one power-on-reset circuit, all designed by participants in an analog IC design training program run by the Saudi Semiconductor Program. The opamp inputs and outputs are exposed on the analog pins, with INP, INN, and separate outputs for each amplifier plus a POR output. Testing is done with a Digilent Analog Discovery, using its waveform generator for stimulus and its oscilloscope for frequency response, transient, and voltage-level measurements. The design is notable as a training-program artifact rather than a production circuit.",
+   "summary": "This analog project contains three circuits: two two-stage operational amplifiers and one power-on-reset circuit, all designed by participants in an analog IC design training program run by the Saudi Semiconductor Program. The opamp inputs and outputs are exposed on the analog pins, with INP, INN, and separate outputs for each amplifier plus a POR output. Testing is done with a Digilent Analog Discovery, using its waveform generator for stimulus and its oscilloscope for frequency response, transient, and voltage-level measurements. The design is notable as a training-program artifact rather than a production circuit.",
+   "summary_changed": false
+  },
+  {
+   "key": "29894ca24420",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "comparator"
+   ],
+   "tags": [
+    "opamp",
+    "analog",
+    "comparator"
+   ],
+   "summary_before": "This is a simple five-transistor operational transconductance amplifier with an externally supplied bias current. It operates from a 1.8V supply with VSS ground, takes a 1uA bias current on the BIAS pin, and compares the PLUS and MINUS inputs, with the differential output on DIFFOUT. Testing is done by sweeping PLUS from 0 to 1.8V in 10mV steps while MINUS is held at 0.9V and observing that DIFFOUT swings to 1.8V when PLUS exceeds MINUS by 10mV. External hardware needed is a power supply, a sourcemeter for the bias current, and a multimeter to measure voltages.",
+   "summary": "This is a simple five-transistor operational transconductance amplifier with an externally supplied bias current. It operates from a 1.8V supply with VSS ground, takes a 1uA bias current on the BIAS pin, and compares the PLUS and MINUS inputs, with the differential output on DIFFOUT. Testing is done by sweeping PLUS from 0 to 1.8V in 10mV steps while MINUS is held at 0.9V and observing that DIFFOUT swings to 1.8V when PLUS exceeds MINUS by 10mV. External hardware needed is a power supply, a sourcemeter for the bias current, and a multimeter to measure voltages.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5693,
+  "completion_tokens": 1103,
+  "total_tokens": 6796,
+  "cost": 0.0020907,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0020907,
+   "upstream_inference_prompt_cost": 0.0007671,
+   "upstream_inference_completions_cost": 0.0013236
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0020907,
+ "elapsed_s": 10.8
+}

@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b384551384ac",
+  "99419ea1cab5",
+  "97325c0879eb",
+  "eaa386ce70d8",
+  "6c58f6d0f4c9",
+  "b8912ebe213b"
+ ],
+ "results": [
+  {
+   "key": "b384551384ac",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The bidirectional pins are dedicated NES controller inputs, not general purpose IO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "gamepad",
+     "reason": "The design accepts input from two NES controllers, which are game controllers."
+    }
+   ],
+   "notes": "Removed gpio because the bidirectional pins are dedicated NES controller inputs; added gamepad as the correct interface tag.",
+   "tags_before": [
+    "pong",
+    "game",
+    "vga",
+    "retro",
+    "video",
+    "display",
+    "gpio"
+   ],
+   "tags": [
+    "pong",
+    "game",
+    "vga",
+    "retro",
+    "video",
+    "display",
+    "gamepad"
+   ],
+   "summary_before": "This project implements a two-player Pong game that outputs to a VGA monitor and accepts input from two NES controllers. The NES controllers connect via three wires each to the bidirectional pins, and the VGA signals are output on the dedicated output pins. External hardware needed includes two NES controllers, a VGA breakout board (such as the Tiny Tapeout VGA PMOD), and a VGA-compatible monitor. The design is notable for combining classic gaming with retro controllers and a standard video interface.",
+   "summary": "This project implements a two-player Pong game that outputs to a VGA monitor and accepts input from two NES controllers. The NES controllers connect via three wires each to the bidirectional pins, and the VGA signals are output on the dedicated output pins. External hardware needed includes two NES controllers, a VGA breakout board (such as the Tiny Tapeout VGA PMOD), and a VGA-compatible monitor. The design is notable for combining classic gaming with retro controllers and a standard video interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "99419ea1cab5",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adc",
+    "analog",
+    "comparator",
+    "encoder"
+   ],
+   "tags": [
+    "adc",
+    "analog",
+    "comparator",
+    "encoder"
+   ],
+   "summary_before": "This is a 2-bit flash analog-to-digital converter that converts an analog input voltage between 0 and 1.8V into a 2-bit digital code. The analog input is applied to a dedicated analog pin, and the encoded outputs appear on two digital output pins. No external hardware is required beyond the analog voltage source. The design is notable for being a compact, purely analog implementation of a flash ADC.",
+   "summary": "This is a 2-bit flash analog-to-digital converter that converts an analog input voltage between 0 and 1.8V into a 2-bit digital code. The analog input is applied to a dedicated analog pin, and the encoded outputs appear on two digital output pins. No external hardware is required beyond the analog voltage source. The design is notable for being a compact, purely analog implementation of a flash ADC.",
+   "summary_changed": false
+  },
+  {
+   "key": "97325c0879eb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The project is a hazard resolution unit for a RISC-V pipeline, not a processor core itself."
+    }
+   ],
+   "add": [],
+   "notes": "Removed cpu because the design is a pipeline hazard resolver, not a CPU core.",
+   "tags_before": [
+    "risc-v",
+    "pipeline",
+    "fsm",
+    "combinational",
+    "cpu"
+   ],
+   "tags": [
+    "risc-v",
+    "pipeline",
+    "fsm",
+    "combinational"
+   ],
+   "summary_before": "This project implements a combinational logic-based pipeline hazard resolution unit for a RISC-V processor. It detects control, data, and structural hazards and generates signals to freeze the program counter, flush the pipeline, and indicate hazard-free execution. The design is tested in simulation by applying hazard scenarios and observing state transitions. It is self-contained and requires only a clock and reset, with no external hardware needed.",
+   "summary": "This project implements a combinational logic-based pipeline hazard resolution unit for a RISC-V processor. It detects control, data, and structural hazards and generates signals to freeze the program counter, flush the pipeline, and indicate hazard-free execution. The design is tested in simulation by applying hazard scenarios and observing state transitions. It is self-contained and requires only a clock and reset, with no external hardware needed.",
+   "summary_changed": false
+  },
+  {
+   "key": "eaa386ce70d8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": "The design is an ADC; comparator is a sub-block type, not the primary function."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "The source does not state that the design is built from discrete transistors rather than standard cells."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The source describes an analog ADC with digital outputs but does not explicitly document a combined analog and digital design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed comparator, transistor-level, and mixed-signal because they are not supported by the source documentation.",
+   "tags_before": [
+    "adc",
+    "analog",
+    "comparator",
+    "transistor-level",
+    "mixed-signal"
+   ],
+   "tags": [
+    "adc",
+    "analog"
+   ],
+   "summary_before": "This is a 3-bit flash analog-to-digital converter that samples a 0 V to 1.8 V signal on analog pin 0 and presents the result on three digital outputs. Its threshold voltages are built into inverter stages, so no external reference voltage is needed. Testing consists of applying a known input voltage and reading the three output bits, optionally with a multimeter. The design is a compact analog block whose main notable feature is the reference-free inverter-based comparator scheme.",
+   "summary": "This is a 3-bit flash analog-to-digital converter that samples a 0 V to 1.8 V signal on analog pin 0 and presents the result on three digital outputs. Its threshold voltages are built into inverter stages, so no external reference voltage is needed. Testing consists of applying a known input voltage and reading the three output bits, optionally with a multimeter. The design is a compact analog block whose main notable feature is the reference-free inverter-based comparator scheme.",
+   "summary_changed": false
+  },
+  {
+   "key": "6c58f6d0f4c9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a MAC unit, not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu because the design is a MAC unit rather than an arithmetic logic unit.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "dsp",
+    "alu"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "dsp"
+   ],
+   "summary_before": "This project implements a Multiply-Accumulate (MAC) unit using a Dadda multiplier and a Kogge-Stone adder for high-performance digital signal processing. It performs multiplication and accumulation operations, essential for filtering and convolution. The design is verified through a provided testbench that simulates various input scenarios. No external hardware is required beyond standard clock and reset signals.",
+   "summary": "This project implements a Multiply-Accumulate (MAC) unit using a Dadda multiplier and a Kogge-Stone adder for high-performance digital signal processing. It performs multiplication and accumulation operations, essential for filtering and convolution. The design is verified through a provided testbench that simulates various input scenarios. No external hardware is required beyond standard clock and reset signals.",
+   "summary_changed": false
+  },
+  {
+   "key": "b8912ebe213b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a MAC unit, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The documentation states that Cocotb tests can be used to verify the design."
+    }
+   ],
+   "notes": "Removed alu because the design is a MAC unit; added cocotb because the documentation mentions Cocotb tests.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "low-power",
+    "dsp",
+    "alu"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "low-power",
+    "dsp",
+    "cocotb"
+   ],
+   "summary_before": "This design is an 8-bit Multiply-Accumulate (MAC) unit with a specialized SPST adder for efficient addition. It multiplies two 8-bit inputs to produce a 16-bit product, which is accumulated in an internal register. The lower 8 bits are continuously output, while the upper 8 bits are available on a bidirectional bus that can be externally overridden. It is optimized for Tiny Tapeout's limited IO and minimal area, and can be tested with simulation testbenches or Cocotb.",
+   "summary": "This design is an 8-bit Multiply-Accumulate (MAC) unit with a specialized SPST adder for efficient addition. It multiplies two 8-bit inputs to produce a 16-bit product, which is accumulated in an internal register. The lower 8 bits are continuously output, while the upper 8 bits are available on a bidirectional bus that can be externally overridden. It is optimized for Tiny Tapeout's limited IO and minimal area, and can be tested with simulation testbenches or Cocotb.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6869,
+  "completion_tokens": 1255,
+  "total_tokens": 8124,
+  "cost": 0.0035667,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035667,
+   "upstream_inference_prompt_cost": 0.0020607,
+   "upstream_inference_completions_cost": 0.001506
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035667,
+ "elapsed_s": 13.4
+}

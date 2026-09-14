@@ -1,0 +1,210 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2fc0d0b68998",
+  "5315e8cd5c7e",
+  "12329bfa44ec",
+  "1eefecc3c884",
+  "94ca44b2ed1d",
+  "b4791ff24b67"
+ ],
+ "results": [
+  {
+   "key": "2fc0d0b68998",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "The design is a programmable spiking neural network, not an ML inference/training hardware block; the source never frames it as machine learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neuromorphic",
+     "reason": "The source describes a spiking neural network of LIF neurons, which is brain-inspired neuromorphic computing."
+    }
+   ],
+   "notes": "Removed machine-learning (not an ML accelerator) and added neuromorphic, which the LIF spiking network clearly supports.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi",
+    "machine-learning",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi",
+    "verilog",
+    "neuromorphic"
+   ],
+   "summary_before": "This design implements six programmable digital leaky integrate-and-fire neurons arranged in two layers of three, with 8-bit weights programmable over an SPI interface. Input spikes drive the first layer, whose outputs feed the second layer through nine programmable weights, and the second layer's spikes appear on the output pins as one-clock-cycle pulses. After reset the user programs thresholds, leak rates, refractory periods and weights over SPI, then applies input spikes and observes output spikes synchronously. The design is notable for having been generated with ChatGPT and for requiring an external FPGA for testing.",
+   "summary": "This design implements six programmable digital leaky integrate-and-fire neurons arranged in two layers of three, with 8-bit weights programmable over an SPI interface. Input spikes drive the first layer, whose outputs feed the second layer through nine programmable weights, and the second layer's spikes appear on the output pins as one-clock-cycle pulses. After reset the user programs thresholds, leak rates, refractory periods and weights over SPI, then applies input spikes and observes output spikes synchronously. The design is notable for having been generated with ChatGPT and for requiring an external FPGA for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "5315e8cd5c7e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state the design is intended for teaching or learning; the course tag enel453/uofc is not in the source text."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the author confirmed the design is fully functional on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added silicon-tested to match the working silicon report.",
+   "tags_before": [
+    "timer",
+    "7-segment",
+    "counter",
+    "education",
+    "systemverilog"
+   ],
+   "tags": [
+    "timer",
+    "7-segment",
+    "counter",
+    "systemverilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements a stopwatch with start, stop, soft reset, and increment/decrement controls, displaying minutes and seconds on a multiplexed 7-segment display. It was originally developed and verified on a Basys 3 FPGA board and later ported to Tiny Tapeout. The design requires external hardware: a common-anode 7-segment display and several buttons and switches for control. Silicon testing by the author confirmed full functionality with a breadboarded display, though the provided test report is truncated.",
+   "summary": "This design implements a stopwatch with start, stop, soft reset, and increment/decrement controls, displaying minutes and seconds on a multiplexed 7-segment display. It was originally developed and verified on a Basys 3 FPGA board and later ported to Tiny Tapeout. The design requires external hardware: a common-anode 7-segment display and several buttons and switches for control. Silicon testing by the author confirmed full functionality with a breadboarded display, though the provided test report is truncated.",
+   "summary_changed": false
+  },
+  {
+   "key": "12329bfa44ec",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fifo",
+    "memory",
+    "7-segment",
+    "display"
+   ],
+   "tags": [
+    "fifo",
+    "memory",
+    "7-segment",
+    "display"
+   ],
+   "summary_before": "This design is a 4-bit wide memory that can operate as either a FIFO or LIFO, selected by a mode pin. It can store up to 30 entries, with full, empty, output valid, and overflow flags. A 7-segment display shows the number of stored entries up to nine, and disables with an overflow flag if more than nine entries are stored. The design is tested by loading and reading data, and it preserves stored data when switching modes.",
+   "summary": "This design is a 4-bit wide memory that can operate as either a FIFO or LIFO, selected by a mode pin. It can store up to 30 entries, with full, empty, output valid, and overflow flags. A 7-segment display shows the number of stored entries up to nine, and disables with an overflow flag if more than nine entries are stored. The design is tested by loading and reading data, and it preserves stored data when switching modes.",
+   "summary_changed": false
+  },
+  {
+   "key": "1eefecc3c884",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "communication",
+    "modulator",
+    "demodulator",
+    "signal-generator",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "modulator",
+    "demodulator",
+    "signal-generator",
+    "verilog"
+   ],
+   "summary_before": "This multimode modem performs digital modulation and demodulation using amplitude-shift keying, frequency-shift keying, and phase-shift keying schemes. A 2-bit select input chooses the modulation type, and the modulated signal appears on a 7-bit output while the demodulated bit appears on a separate output. Silicon testing by a tester showed that ASK and FSK worked as documented, but PSK demodulation was stuck high and the output was a plain sine wave. An oscilloscope or signal analyzer is required to observe the analog-like outputs.",
+   "summary": "This multimode modem performs digital modulation and demodulation using amplitude-shift keying, frequency-shift keying, and phase-shift keying schemes. A 2-bit select input chooses the modulation type, and the modulated signal appears on a 7-bit output while the demodulated bit appears on a separate output. Silicon testing by a tester showed that ASK and FSK worked as documented, but PSK demodulation was stuck high and the output was a plain sine wave. An oscilloscope or signal analyzer is required to observe the analog-like outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "94ca44b2ed1d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state the design is intended for teaching or learning; the ECE 183 course context is not in the source text."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; the summary's last sentence was adjusted to avoid asserting a class project not stated in the source.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "verilog"
+   ],
+   "summary_before": "This project emulates a two-layer neural network of integrate-and-fire neurons in Verilog. The first layer accepts two 16-bit stimulus inputs, and its spikes feed into a second layer whose two neurons produce the final spiking outputs. Testing involves applying different input stimuli and observing the spiking states of the output layer. The design was created as part of ECE 183, indicating it is a class project, and it uses a reset signal to clear neuron states.",
+   "summary": "This project emulates a two-layer neural network of integrate-and-fire neurons in Verilog. The first layer accepts two 16-bit stimulus inputs, and its spikes feed into a second layer whose two neurons produce the final spiking outputs. Testing involves applying different input stimuli and observing the spiking states of the output layer. The design uses a reset signal to clear neuron states, and the one-line description mentions counting up to 10 one second at a time.",
+   "summary_changed": true
+  },
+  {
+   "key": "b4791ff24b67",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes a floating-point adder, not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu, which is not supported by the source's floating-point adder description.",
+   "tags_before": [
+    "floating-point",
+    "adder",
+    "alu",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "floating-point",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This design is an 8-bit floating-point adder following the FP8 E5M2 standard. It combinationally computes the sum of two 8-bit floating-point numbers provided on the input and bidirectional pins, with the result appearing on the output pins. Testing is done by holding two 8-bit inputs and reading the sum from the outputs. No external hardware is required beyond the chip's pins.",
+   "summary": "This design is an 8-bit floating-point adder following the FP8 E5M2 standard. It combinationally computes the sum of two 8-bit floating-point numbers provided on the input and bidirectional pins, with the result appearing on the output pins. Testing is done by holding two 8-bit inputs and reading the sum from the outputs. No external hardware is required beyond the chip's pins.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7093,
+  "completion_tokens": 1264,
+  "total_tokens": 8357,
+  "cost": 0.004555875,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004555875,
+   "upstream_inference_prompt_cost": 0.002659875,
+   "upstream_inference_completions_cost": 0.001896
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004555875,
+ "elapsed_s": 5.3
+}

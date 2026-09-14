@@ -1,0 +1,208 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8e079f1eeb31",
+  "c87640f708b3",
+  "53a863c8ce88",
+  "273db8d55e77",
+  "ada7e113dcbe",
+  "34076550fb93",
+  "ca9cb77713a3",
+  "be296842a789",
+  "582101f33b51",
+  "7f683bcaf5ff"
+ ],
+ "results": [
+  {
+   "key": "8e079f1eeb31",
+   "tags": [
+    "rom",
+    "7-segment",
+    "counter",
+    "gds-art",
+    "display",
+    "addressable",
+    "art"
+   ],
+   "summary": "This design drives a seven-segment display from an 8-byte ROM containing the characters '9', blank, 'C', 'I', 'Г', 'П', 'O', blank, which spell out a message as part of a GDS artwork. An octal counter cycles through the ROM addresses automatically, but the counter can be bypassed by setting ui_in[3] high and providing a 3-bit address on ui_in[2:0]. Testing involves pulsing the clock to advance the display or manually selecting addresses to verify the ROM contents. The design is notable for being a carrier for the 'THE STRONGEST' GDS art and requires an external seven-segment display or chip decapping tools to observe the output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c87640f708b3",
+   "tags": [
+    "vga",
+    "video",
+    "screensaver",
+    "animation",
+    "display",
+    "tinyvga",
+    "dvd",
+    "gradient"
+   ],
+   "summary": "This design generates a 640x480 VGA signal displaying a bouncing DVD-style logo with an animated color gradient. Two inputs control the behavior: ui_in[0] tiles the logo across the screen, and ui_in[1] switches to a solid color instead of the gradient. It is tested by connecting a VGA monitor via a TinyVGA Pmod and observing the animation. The design is notable for being a compact VGA screensaver implementation that fits on a single tile and requires the TinyVGA Pmod as external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "53a863c8ce88",
+   "tags": [
+    "vga",
+    "video",
+    "timing",
+    "test-pattern",
+    "display",
+    "tinyvga",
+    "configurable",
+    "experiment"
+   ],
+   "summary": "This design is a configurable VGA signal generator that allows full control over display timings, sync polarities, and test patterns. It can be programmed via a register interface using ui_in and uio pins to set parameters such as visible width, porches, and sync widths, and it includes 32 test patterns like checkerboards, grids, and color bars. Testing involves connecting a VGA monitor through a TinyVGA Pmod and using the inputs to select patterns or modify timing registers. The design is notable for its flexibility and educational value in experimenting with VGA signal generation, requiring only the TinyVGA Pmod as external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "273db8d55e77",
+   "tags": [
+    "atari-2600",
+    "cpu",
+    "soc",
+    "vga",
+    "qspi",
+    "audio",
+    "pwm",
+    "game",
+    "retro",
+    "joystick"
+   ],
+   "summary": "This design is a replica of the Atari 2600 video game console system-on-chip, implemented in Verilog. It accepts joystick inputs, switches, and a reset signal, and outputs VGA video and PWM audio, with QSPI pins for external memory. It is tested by connecting a TinyVGA Pmod, Tiny Audio Pmod, and a VGA display, then playing games. The design is notable for being a complete recreation of a classic console on a Tiny Tapeout tile, requiring external hardware for video, audio, and game storage.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ada7e113dcbe",
+   "tags": [
+    "sound",
+    "synthesizer",
+    "ay-3-8913",
+    "psg",
+    "audio",
+    "pwm",
+    "dac",
+    "lfsr",
+    "envelope",
+    "retro"
+   ],
+   "summary": "This design is a Verilog replica of the AY-3-8913 programmable sound generator, featuring three square wave tone generators, a white noise generator, and an envelope generator with 10 shapes. It is programmed via a multiplexed data/address bus and provides both digital 8-bit audio and PWM audio outputs. Testing involves sending register write commands through the bus and observing the audio output, which can be connected to a DAC, RC filter, or amplifier. The design is notable for its faithful reproduction of the original chip's behavior, thorough test suite, and educational documentation, requiring external hardware such as a microcontroller and audio output circuitry.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "34076550fb93",
+   "tags": [
+    "decoder",
+    "ternary",
+    "quinary",
+    "septenary",
+    "packed-weights",
+    "unpacking",
+    "neural-network",
+    "quantization"
+   ],
+   "summary": "This design unpacks ternary, quinary, and septenary packed weights, converting them from a compressed format of 1.6 to 2.6 bits per parameter into an unpacked representation. It takes 8 bits of packed weight data on the input pins and outputs the unpacked values on both the output and bidirectional pins, with a control input to select between ternary and septenary modes. Testing requires providing packed weights on the input Pmods, and external hardware such as a Raspberry Pi Pico is needed to supply the data. The design is notable for its application in neural network quantization, but the documentation is minimal and lacks detailed usage instructions.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ca9cb77713a3",
+   "tags": [
+    "systolic-array",
+    "matrix-multiply",
+    "neural-network",
+    "quantization",
+    "packed-weights",
+    "accelerator",
+    "int8",
+    "e2m0"
+   ],
+   "summary": "This design implements a systolic array for matrix multiplication using reduced-precision packed weights of 2.6 bits per parameter (septenary and quinary formats) and INT8 activations. It accepts packed weights on the input pins and activations on the bidirectional pins, and outputs the multiplication results on the output pins, with a strobe enable pin to start receiving results. Testing requires an external processor such as an RP2040 to feed weights and activations and to fetch the results. The design is notable for its use of compressed weights to reduce memory footprint in neural network acceleration, but it requires external hardware for operation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "be296842a789",
+   "tags": [
+    "sound",
+    "synthesizer",
+    "sn76489",
+    "psg",
+    "audio",
+    "pwm",
+    "dac",
+    "lfsr",
+    "retro",
+    "attenuation"
+   ],
+   "summary": "This design is a Verilog replica of the SN76489 programmable sound generator, featuring three square wave tone generators and one noise generator with white and periodic noise types. It is programmed via an 8-bit data bus and provides both digital 8-bit audio and PWM audio outputs, with separate channel outputs for external mixing. Testing involves sending register write commands and observing the audio output, which can be connected to a DAC, RC filter, or amplifier. The design is notable for its faithful reproduction of the original chip's behavior, thorough test suite, and educational documentation, requiring external hardware such as a microcontroller and audio output circuitry.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "582101f33b51",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "alu",
+    "register-file",
+    "8-bit",
+    "single-cycle",
+    "education",
+    "compressed-instruction"
+   ],
+   "summary": "This design is a compact 8-bit RISC-V processor core that uses a customized compressed instruction set (RVC) with 16-bit instructions to fit Tiny Tapeout constraints. It includes a control unit, an 8-register file, an ALU, and a single-cycle datapath, and it executes R-Type, I-Type, L-Type, S-Type, and B-Type instructions. Testing is done by setting the instruction on the input pins and clocking once to receive the result on the output pins, with different instruction types producing different outputs. The design is notable for being an educational implementation of a RISC-V core optimized for area, but it lacks detailed documentation on its instruction encoding and limitations.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7f683bcaf5ff",
+   "tags": [
+    "register-file",
+    "cpu",
+    "8-bit",
+    "general-purpose-register",
+    "memory-address-register",
+    "instruction-register",
+    "register"
+   ],
+   "summary": "This design provides three types of registers for a basic 8-bit CPU: a general-purpose register, a memory address register, and an instruction register. The registers are selected using two control pins (uio[6] and uio[7]), and data can be written to or read from the selected register via the input and output pins. Testing involves selecting a register and verifying that data is stored and retrieved correctly. The design is notable for being a simple building block for CPU designs, but it has minimal documentation and requires external control logic to be useful.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 13487,
+  "completion_tokens": 2169,
+  "total_tokens": 15656,
+  "cost": 0.0066489,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0066489,
+   "upstream_inference_prompt_cost": 0.0040461,
+   "upstream_inference_completions_cost": 0.0026028
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0066489,
+ "elapsed_s": 16.7
+}

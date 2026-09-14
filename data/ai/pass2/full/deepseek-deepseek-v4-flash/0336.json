@@ -1,0 +1,196 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "851ac2caf3e9",
+  "aab67d5d58e6",
+  "86ae551ab90e",
+  "f48c23c44b56",
+  "693299319a65",
+  "bd2b9ab6ca0b",
+  "367fc5e56b90",
+  "a956a30ce0ad",
+  "8b66204606b7",
+  "1d1b5335725b"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "851ac2caf3e9",
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "counter",
+    "education",
+    "verilog"
+   ],
+   "summary": "This project is a basic 8-bit CPU based on the SAP-1 architecture, using a 6-stage counter and LUT for control sequencing. It includes a program counter, instruction register, 16-byte memory, MAR, 8-bit ripple-carry adder with flags, accumulator, B register, and output register, all connected via an 8-bit tri-state bus. The design is tested by providing opcode inputs and verifying that the correct output bits are asserted. Notable features include support for conditional operation using carry and zero flags, and the design originates from a simplified educational CPU model.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "aab67d5d58e6",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "pmod"
+   ],
+   "summary": "This project generates a 640x480 VGA display with moving color tiles. It outputs RGB222 video signals along with HSync and VSync, and is intended to be used with a Tiny VGA PMOD connected to a VGA monitor. Testing requires applying power and releasing reset after connecting the PMOD and monitor. The design is a straightforward demonstration of VGA output on the Tiny Tapeout platform, with no additional processing or external interfaces beyond the VGA connection.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "86ae551ab90e",
+   "tags": [
+    "fpga",
+    "lookup-table",
+    "reconfigurable",
+    "multi-tile",
+    "cocotb",
+    "verilog"
+   ],
+   "summary": "This design implements a tiny FABulous FPGA fabric with 128 LUT4+FF logic cells arranged in an 8x4 tile grid, including carry chains and global buffers. The I/O mimics the Tiny Tapeout interface, allowing user designs to be synthesized with Yosys and nextpnr, then loaded via a bitbang interface using ui[0] and ui[1] while reset is held low. The bitstream is uploaded while rst_n is asserted, and after configuration, the user design runs on the fabric. This is a notable open-source FPGA fabric intended for use as a reconfigurable target for small digital designs, with no external hardware required.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "f48c23c44b56",
+   "tags": [
+    "biomedical",
+    "dsp",
+    "i2c",
+    "sensor-interface",
+    "verilog"
+   ],
+   "summary": "This project implements a fatigue monitor that reads IR PPG samples from a MAX30102 sensor over I2C, detects heartbeat peaks, and tracks variability in pulse intervals. It includes a calibration phase to learn a personal baseline, after which it raises an alert when a sustained drop in variability occurs. The design requires a MAX30102 breakout connected to the I2C pins, external pull-ups, and optionally a transistor-driven buzzer or motor for the alert output. Debug pins provide visibility into sensor acquisition and beat detection, and the design has been characterized on real hardware, with bring-up notes emphasizing the importance of checking the I2C path first.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "693299319a65",
+   "tags": [
+    "neural-network",
+    "mac-unit",
+    "accelerator",
+    "fixed-point",
+    "dsp",
+    "bist",
+    "cocotb",
+    "verilog"
+   ],
+   "summary": "This is a pipelined 50 MHz byte-stream int8 multiply-accumulate engine with a single int32 accumulator, a streaming vector-MAC primitive, a wide-input mode, and a SPILL opcode for reading raw accumulator values. It also includes a MISR self-test and a serial debug interface, and is intended as a hardware target for a compiler/MLIR backend. The design is verified with a cocotb testbench that includes directed tests, randomized differential testing against a Python model, and an exhaustive test of the Booth multiplier. No external hardware is required; the host microcontroller drives the pins to feed instructions and operands and read results.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "bd2b9ab6ca0b",
+   "tags": [
+    "neural-network",
+    "mac-unit",
+    "accelerator",
+    "fixed-point",
+    "instruction-decoder",
+    "edge-ai",
+    "verilog"
+   ],
+   "summary": "This project is a 4-bit neural network MAC accelerator with ReLU activation, supporting LOAD_BIAS, MAC, and ACTIVATE operations via a 2-bit opcode. It uses an 11-bit accumulator to prevent overflow and outputs a 4-bit quantized result after applying a right-shift and ReLU, clamped to [0,7]. Testing involves resetting the accumulator, loading a bias, performing MAC operations with 4-bit signed weights and features, and then activating to read the result. No external hardware is required, and the design is intended as a minimal building block for quantized neural network inference.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "367fc5e56b90",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "microcontroller",
+    "spi",
+    "memory",
+    "uart",
+    "gpio",
+    "soc",
+    "verilog"
+   ],
+   "summary": "This project is a small RISC-V microcontroller based on the PicoRV32 core, executing in place from an external SPI flash with 128 bytes of on-chip SRAM, a UART, and an 8-bit GPIO port. It requires an SPI flash (or an RP2040 emulating one) connected to the uio pins and a USB-serial adapter for the UART console. The design boots a program from flash and can run example firmware like a bouncing LED or a self-test that reports over UART. Notable features include the execute-in-place architecture to save area, closed timing at 50 MHz but tested at 25 MHz, and the need for external flash and serial hardware.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "a956a30ce0ad",
+   "tags": [
+    "floating-point",
+    "adder",
+    "7-segment",
+    "calculator",
+    "verilog"
+   ],
+   "summary": "This chip contains a floating-point adder for single-precision operands, along with an HDL counter connected to a seven-segment display. Inputs are provided via switches for test case selection, display nibble selection, reset, and direction control, and the result is shown on the seven-segment display. Testing involves setting the switches to pass different inputs and observing the output on the display. The design is generated entirely with MATLAB HDL Coder and does not use the bidirectional pins.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "8b66204606b7",
+   "tags": [
+    "floating-point",
+    "alu",
+    "divider",
+    "pipeline",
+    "cocotb",
+    "verilog"
+   ],
+   "summary": "This project is an 8-bit floating-point unit in FP8 E4M3 format, implementing 18 operations including add, subtract, multiply, divide, square root, comparisons, and integer conversions, with support for five IEEE rounding modes. The core is a pipelined, elastic datapath with variable-latency divide and sqrt, and it uses a byte-stream interface with independent valid/ready handshakes to multiplex the wide internal datapath onto the limited Tiny Tapeout pins. The design has been exhaustively verified against a reference model for all 1,843,968 input combinations at both RTL and gate level. No external hardware is required; any host that can drive the handshake pins and data bus can operate the FPU.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "1d1b5335725b",
+   "tags": [
+    "mac-unit",
+    "fixed-point",
+    "dsp",
+    "neural-network",
+    "verilog"
+   ],
+   "summary": "This project is a single int8 multiply-accumulate unit that computes the dot product of two signed 8-bit vectors by time-multiplexing operands onto an 8-bit input port. It uses a two-state FSM to alternately capture an operand and then multiply-accumulate, and reads out a 24-bit accumulator over two clock cycles by using both the dedicated and bidirectional output pins. The design is a fundamental building block for neural network accelerators, and its operation is verified by feeding component pairs and reading the accumulated result, with overlapping output windows providing error checking. No external hardware is required, though a host must drive the inputs and read the outputs according to the phase timing.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 12907,
+  "completion_tokens": 1935,
+  "total_tokens": 14842,
+  "cost": 0.0013827597,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0013827597,
+   "upstream_inference_prompt_cost": 0.0010102722,
+   "upstream_inference_completions_cost": 0.0003724875
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0013827597,
+ "elapsed_s": 35.3
+}

@@ -1,0 +1,180 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "571bb0670979",
+  "3414d27b7119",
+  "779804ed13aa",
+  "ff21da96352d",
+  "edcd9180f67d",
+  "6b0657777261"
+ ],
+ "results": [
+  {
+   "key": "571bb0670979",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lcd",
+    "display",
+    "text",
+    "verilog"
+   ],
+   "tags": [
+    "lcd",
+    "display",
+    "text",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design controls a 16x2 HD44780-compatible LCD in 4-bit data mode and displays a hardcoded funny message. It requires a 50 MHz clock and an active-low reset, and its pins are named to match the LCD signals for direct wiring. After reset is released the message should appear on the screen. The only external hardware needed is the 16x2 LCD module itself.",
+   "summary": "This Verilog design controls a 16x2 HD44780-compatible LCD in 4-bit data mode and displays a hardcoded funny message. It requires a 50 MHz clock and an active-low reset, and its pins are named to match the LCD signals for direct wiring. After reset is released the message should appear on the screen. The only external hardware needed is the 16x2 LCD module itself.",
+   "summary_changed": false
+  },
+  {
+   "key": "3414d27b7119",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design implements an 8-bit linear feedback shift register that produces a new pseudo-random value on each read. A seed can be loaded by placing a value on the input pins and pulsing the write-enable pin, or the register can be reset with the chip reset. Testing consists of reading the output pins repeatedly and confirming that each value differs from the last. The design is a simple, self-contained PRNG block requiring no external hardware.",
+   "summary": "This Verilog design implements an 8-bit linear feedback shift register that produces a new pseudo-random value on each read. A seed can be loaded by placing a value on the input pins and pulsing the write-enable pin, or the register can be reset with the chip reset. Testing consists of reading the output pins repeatedly and confirming that each value differs from the last. The design is a simple, self-contained PRNG block requiring no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "779804ed13aa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "scan-chain",
+     "reason": "The source describes a JTAG TAP controller with a boundary scan register, not a design-for-test scan chain."
+    }
+   ],
+   "add": [],
+   "notes": "Removed scan-chain tag because the design is a JTAG TAP controller, not a scan-chain test structure.",
+   "tags_before": [
+    "jtag",
+    "scan-chain",
+    "fsm"
+   ],
+   "tags": [
+    "jtag",
+    "fsm"
+   ],
+   "summary_before": "This project implements a JTAG TAP controller compliant with IEEE 1149.1, supporting bypass, IDCODE, and boundary scan register instructions. It manages shifting, capturing, and updating of instruction and data registers via TDI, TMS, and TCLK. The TDO output reflects the serial data shifted out of the selected register. It is intended for testing and debugging of digital circuits.",
+   "summary": "This project implements a JTAG TAP controller compliant with IEEE 1149.1, supporting bypass, IDCODE, and boundary scan register instructions. It manages shifting, capturing, and updating of instruction and data registers via TDI, TMS, and TCLK. The TDO output reflects the serial data shifted out of the selected register. It is intended for testing and debugging of digital circuits.",
+   "summary_changed": false
+  },
+  {
+   "key": "ff21da96352d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The source mentions TinyQV's register file but does not state that this design is RISC-V based."
+    }
+   ],
+   "add": [],
+   "notes": "Removed risc-v tag because the source only references TinyQV's register file, not a RISC-V processor.",
+   "tags_before": [
+    "register-file",
+    "transistor-level",
+    "risc-v"
+   ],
+   "tags": [
+    "register-file",
+    "transistor-level"
+   ],
+   "summary_before": "This project implements a test of a manually placed circulating register intended for TinyQV's register file. It provides two 32-bit registers that constantly cycle, with a 4-bit wide interface for writing and two read ports for reading. The design is tested by writing data over 8 cycles and reading it over 4 cycles. It is notable for being a manually placed test structure for a register file.",
+   "summary": "This project implements a test of a manually placed circulating register intended for TinyQV's register file. It provides two 32-bit registers that constantly cycle, with a 4-bit wide interface for writing and two read ports for reading. The design is tested by writing data over 8 cycles and reading it over 4 cycles. It is notable for being a manually placed test structure for a register file.",
+   "summary_changed": false
+  },
+  {
+   "key": "edcd9180f67d",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Adjusted summary to avoid unsupported low-power performance claim.",
+   "tags_before": [
+    "spiking-neural-network",
+    "edge-ai",
+    "neural-network",
+    "neuromorphic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "edge-ai",
+    "neural-network",
+    "neuromorphic"
+   ],
+   "summary_before": "This project implements an adaptive leaky integrate-and-fire spiking neuron core for edge AI. It features a 12-bit membrane potential with configurable decay, adaptive threshold, and a 3-cycle refractory period. The design outputs the membrane potential, spike, and spike count. It is intended for low-power neural network applications and includes learning mode control.",
+   "summary": "This project implements an adaptive leaky integrate-and-fire spiking neuron core for edge AI. It features a 12-bit membrane potential with configurable decay, adaptive threshold, and a 3-cycle refractory period. The design outputs the membrane potential, spike, and spike count. It includes learning mode control and is intended for edge AI applications.",
+   "summary_changed": true
+  },
+  {
+   "key": "6b0657777261",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes a 4-bit carry look-ahead adder, not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag because the design is an adder, not an ALU.",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "verilog",
+    "alu"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This is a 4-bit carry look-ahead adder implemented in Verilog. It takes two 4-bit operands and a carry input, and produces a 4-bit sum and a carry output. The design is purely combinational and can be used as a building block for larger adders. It was tested on an FPGA, and no external hardware is required.",
+   "summary": "This is a 4-bit carry look-ahead adder implemented in Verilog. It takes two 4-bit operands and a carry input, and produces a 4-bit sum and a carry output. The design is purely combinational and can be used as a building block for larger adders. It was tested on an FPGA, and no external hardware is required.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6215,
+  "completion_tokens": 995,
+  "total_tokens": 7210,
+  "cost": 0.0021177,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0021177,
+   "upstream_inference_prompt_cost": 0.0009237,
+   "upstream_inference_completions_cost": 0.001194
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0021177,
+ "elapsed_s": 10.2
+}

@@ -1,0 +1,193 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "3da9bdf7b4a1",
+  "1794691c2a01",
+  "1e04aa64a407",
+  "b17e5d387538",
+  "02bac4a92741",
+  "59952fbd94e3",
+  "3a36ad1bbb2c",
+  "bcd4e2896923",
+  "4f35d3948e9a",
+  "e79f2631bc9d"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "3da9bdf7b4a1",
+   "summary": "This project implements a basic 4-bit CPU with a reduced instruction set that supports addition, subtraction, multiplication, shifts, conditional jumps, and logical operations. It uses a 4-bit bus for program and data input/output, along with two instruction bits, clock, and reset. The CPU is intended to be tested by writing programs for its ISA, requiring an external test pattern generator and output reader, such as an Arduino. The design is notable for fitting a functional CPU into a single Tiny Tapeout tile.",
+   "tags": [
+    "cpu",
+    "alu",
+    "multiplier",
+    "barrel-shifter",
+    "systemverilog",
+    "shift-register",
+    "combinational"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "1794691c2a01",
+   "summary": "Option22 is a long shift register that holds 22 bytes (22x8 bits) and rotates them. Data is shifted in on the positive clock edge when the write signal is high, and after every 8 clocks a byte is available at the output. The design is tested by keeping write high to push in 22 bytes, then keeping write low to read out the bytes. It requires external pink LEDs for visual output.",
+   "tags": [
+    "shift-register",
+    "led",
+    "verilog",
+    "counter"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "1e04aa64a407",
+   "summary": "This design provides a character ROM and bitmap shifter intended for persistence-of-vision (POV) displays. It accepts serial input to load ASCII characters or bitmap columns, and outputs columns of the stored characters or bitmaps to drive LEDs. The design is controlled by a clock and a 7-bit data input, with modes selected by the input pattern. It requires external pink LEDs for display.",
+   "tags": [
+    "rom",
+    "framebuffer",
+    "led",
+    "display",
+    "ascii",
+    "verilog",
+    "shift-register"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "b17e5d387538",
+   "summary": "Option23 Serial is a character ROM and bitmap shifter for POV displays, similar to Option23 but with a serial interface. It shifts in 8-bit data LSB first to load ASCII characters or bitmap columns, with additional underline and overline controls. The design outputs columns to drive LEDs, and is tested by shifting in data and setting the mode to clock out characters and graphics. It requires external pink LEDs.",
+   "tags": [
+    "rom",
+    "framebuffer",
+    "led",
+    "display",
+    "ascii",
+    "verilog",
+    "shift-register"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "02bac4a92741",
+   "summary": "Tiny rot13 implements the ROT13 substitution cipher on ASCII characters. It accepts a character as two 4-bit nibbles via control lines, performs the ROT13 transformation using a lookup table, and outputs the result as an 8-bit value. The design is tested by shifting in nibbles and reading the output, and can be used with an MCU or FPGA for full functionality. It is notable for fitting the cipher into a single tile and using control lines instead of a fixed clock cycle protocol.",
+   "tags": [
+    "cipher",
+    "lookup-table",
+    "ascii",
+    "verilog",
+    "combinational"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "59952fbd94e3",
+   "summary": "This PWM generator produces a 100 Hz PWM signal with a duty cycle set by a 6-bit input, where the duty cycle is twice the input value. It is tested by connecting switches to the duty cycle inputs and an LED to the PWM output to observe the brightness. The design is simple and requires minimal external hardware.",
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "led",
+    "verilog",
+    "counter"
+   ],
+   "sentences": 3
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "3a36ad1bbb2c",
+   "summary": "The Melody Generator plays a preloaded melody (Jingle Bells) and is re-programmable. It outputs a melody signal on a single pin, and is controlled by reload and restart inputs, with a programming interface for loading new melodies. To test, a speaker is connected to the output and the reload and restart signals are set. The design is notable for its programmability and compact implementation.",
+   "tags": [
+    "music",
+    "audio",
+    "speaker",
+    "sound-generator",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "bcd4e2896923",
+   "summary": "The Breathing LED design generates a PWM signal that varies the brightness of an LED in a breathing pattern. It uses a triangle wave to modulate the duty cycle, and outputs the current duty cycle for debugging. After reset, the PWM signal is generated automatically. It requires an external clock source and an LED circuit.",
+   "tags": [
+    "pwm",
+    "led",
+    "signal-generator",
+    "verilog",
+    "waveform-generator"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "4f35d3948e9a",
+   "summary": "This PWM generator produces a PWM signal with a selectable duty cycle from 0% to 100% in 10% steps, and includes a clock divider for frequency selection. It uses a 4-bit input to set the duty cycle and 2 bits to select the clock division (1x, 1/2x, 1/4x, 1/8x). The design is tested by connecting switches to the duty and frequency inputs and an LED to the PWM output to observe the intensity. It is a straightforward PWM generator with flexible control.",
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "clock-divider",
+    "led",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "e79f2631bc9d",
+   "summary": "The RC5 decoder decodes infrared remote control signals in the RC5 protocol. It increments or decrements a counter based on the volume up or volume down buttons, and displays the count on a 7-segment display. The design is tested by pointing an IR remote at an IR demodulator connected to the input pin and pressing the volume buttons. It requires an external IR demodulator such as a TSOP1738.",
+   "tags": [
+    "decoder",
+    "counter",
+    "7-segment",
+    "display",
+    "verilog",
+    "demodulator",
+    "sensor-interface"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "59952fbd94e3: 3 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 7148,
+  "completion_tokens": 1587,
+  "total_tokens": 8735,
+  "cost": 0.0006080676,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2816,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0006080676,
+   "upstream_inference_prompt_cost": 0.0003414516,
+   "upstream_inference_completions_cost": 0.000266616
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0006080676,
+ "elapsed_s": 380.4
+}

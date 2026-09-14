@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5504df1a7af0",
+  "3bff2b7133f6",
+  "c43855899103",
+  "b07d5a062541",
+  "2d40fcdfa427",
+  "2a63480f937b"
+ ],
+ "results": [
+  {
+   "key": "5504df1a7af0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "signal-generator",
+    "waveform-generator",
+    "dac",
+    "register-file",
+    "verilog"
+   ],
+   "tags": [
+    "signal-generator",
+    "waveform-generator",
+    "dac",
+    "register-file",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8-bit function generator targeting the AD5330 parallel DAC. It includes a write-only register interface to select a constant signal, a sine wave, or programmable trapezoid/pulse waveforms with adjustable amplitude, offset, phase, and timing. The design is controlled via input pins and provides DAC control signals and 8-bit data outputs. The documentation is minimal, providing only the pin list and a one-line description, so detailed operation and testing are not described.",
+   "summary": "This project implements an 8-bit function generator targeting the AD5330 parallel DAC. It includes a write-only register interface to select a constant signal, a sine wave, or programmable trapezoid/pulse waveforms with adjustable amplitude, offset, phase, and timing. The design is controlled via input pins and provides DAC control signals and 8-bit data outputs. The documentation is minimal, providing only the pin list and a one-line description, so detailed operation and testing are not described.",
+   "summary_changed": false
+  },
+  {
+   "key": "3bff2b7133f6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; source is a test-gate design with no teaching intent stated.",
+   "tags_before": [
+    "flip-flop",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "flip-flop",
+    "logic-gate",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is described as implementing a T flip-flop using AND gates and XOR gates, but the pin names mention AND and NOR functions. It provides a direct LED connection for power checking, with outputs on pins 0 and 1. External hardware such as buttons, LEDs, and resistors is listed. The documentation is disorganized and the exact circuit topology is unclear.",
+   "summary": "This design is described as implementing a T flip-flop using AND gates and XOR gates, but the pin names mention AND and NOR functions. It provides a direct LED connection for power checking, with outputs on pins 0 and 1. External hardware such as buttons, LEDs, and resistors is listed. The documentation is disorganized and the exact circuit topology is unclear.",
+   "summary_changed": false
+  },
+  {
+   "key": "c43855899103",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "hardware-trojan",
+    "security",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "hardware-trojan",
+    "security",
+    "verilog"
+   ],
+   "summary_before": "This project implements the PRESENT block cipher with a hardware trojan that can inject faults. It has an 8-bit data input, 8-bit data output, and command inputs via bidirectional pins. The design is tested with functional tests from OpenCores and additional tests for encryption rounds with fixed key and plaintext to verify fault behavior. The hardware trojan is a deliberate malicious modification, making this a security research project.",
+   "summary": "This project implements the PRESENT block cipher with a hardware trojan that can inject faults. It has an 8-bit data input, 8-bit data output, and command inputs via bidirectional pins. The design is tested with functional tests from OpenCores and additional tests for encryption rounds with fixed key and plaintext to verify fault behavior. The hardware trojan is a deliberate malicious modification, making this a security research project.",
+   "summary_changed": false
+  },
+  {
+   "key": "b07d5a062541",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "wokwi",
+    "education",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "logic-gate",
+    "wokwi",
+    "education",
+    "display"
+   ],
+   "summary_before": "This design uses NOT gates to drive a 7-segment display to show the letter 'A'. It has eight inputs and eight outputs, with outputs mapping to segments. To test, set inputs a-g to 0 and observe outputs turning on. External hardware includes a 7-segment display. The project is educational and created with Wokwi.",
+   "summary": "This design uses NOT gates to drive a 7-segment display to show the letter 'A'. It has eight inputs and eight outputs, with outputs mapping to segments. To test, set inputs a-g to 0 and observe outputs turning on. External hardware includes a 7-segment display. The project is educational and created with Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "2d40fcdfa427",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "No register file is described in the source; the design is a CPU with an external instruction register simulation."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is explicitly described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The design is implemented in Verilog, as stated in the facts."
+    }
+   ],
+   "notes": "Removed unsupported register-file and fsm tags; added verilog tag as the design is implemented in Verilog.",
+   "tags_before": [
+    "cpu",
+    "education",
+    "register-file",
+    "fsm"
+   ],
+   "tags": [
+    "cpu",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project is an 8-bit CPU implemented in Verilog that performs arithmetic and load instructions and outputs the result of each instruction on eight output pins. It exposes an eight-bit input bus, a status pin, reset, clock, instruction enable, and four program counter bits on the bidirectional pins. Testing is done with a script that simulates the instruction register, waiting for the microcontroller to request a program counter value and returning the allocated instruction, allowing custom assembly programs to be swapped quickly. The documentation is a proposal-level description and does not detail the full instruction set or verified behavior.",
+   "summary": "This project is an 8-bit CPU implemented in Verilog that performs arithmetic and load instructions and outputs the result of each instruction on eight output pins. It exposes an eight-bit input bus, a status pin, reset, clock, instruction enable, and four program counter bits on the bidirectional pins. Testing is done with a script that simulates the instruction register, waiting for the microcontroller to request a program counter value and returning the allocated instruction, allowing custom assembly programs to be swapped quickly. The documentation is a proposal-level description and does not detail the full instruction set or verified behavior.",
+   "summary_changed": false
+  },
+  {
+   "key": "2a63480f937b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The source describes an LED pattern generator, not a neural network."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning functionality is described in the source."
+    },
+    {
+     "tag": "popcount",
+     "reason": "No population count operation is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "The design drives eight discrete LEDs as outputs."
+    },
+    {
+     "tag": "pattern-generator",
+     "reason": "The design generates LED patterns such as Knight Rider and waves."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is implemented in Verilog, as stated in the facts."
+    }
+   ],
+   "notes": "Removed tags for neural network, machine learning, and popcount which are unsupported; added led, pattern-generator, and verilog tags based on the source.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "popcount",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "led",
+    "pattern-generator"
+   ],
+   "summary_before": "This project implements a 2-layer binary neural network (BNN) that classifies an 8-bit input into one of four categories (turn left, turn right, stop, U-turn). It uses XNOR-popcount operations instead of multipliers, and supports real-time weight loading via a 4-bit bidirectional interface. The design is intended for educational and demonstrational purposes, showing simple ML on-chip without CPUs or RAM. Testing is done with CocoTB, and accuracy is limited due to the small network size.",
+   "summary": "This project implements an 8-LED choreographer that generates patterns such as Knight Rider, waves, and sparkles. It operates on a 5MHz system clock and uses a built-in clock divider to provide two speed modes: fast mode updates patterns at 4Hz and slow mode at 1Hz. The design has inputs for pattern selection, speed selection, pause, and enable, and outputs to eight LEDs. The documentation describes the clocking and speed modes but does not detail all available patterns or testing.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "b07d5a062541: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6037,
+  "completion_tokens": 1258,
+  "total_tokens": 7295,
+  "cost": 0.0033207,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033207,
+   "upstream_inference_prompt_cost": 0.0018111,
+   "upstream_inference_completions_cost": 0.0015096
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033207,
+ "elapsed_s": 13.3
+}

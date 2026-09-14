@@ -1,0 +1,246 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d2d4e49e5cf9",
+  "0e191c65771e",
+  "7573e499bb44",
+  "ee222a6b2d87",
+  "234cdea31cdf",
+  "4495656bf31c"
+ ],
+ "results": [
+  {
+   "key": "d2d4e49e5cf9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design is a comparator building block for neuron threshold detection, not a neural network implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The design is intentionally unclocked and purely combinational."
+    }
+   ],
+   "notes": "Removed neural-network tag (comparator building block, not a network) and added silicon-tested and combinational tags supported by the source.",
+   "tags_before": [
+    "comparator",
+    "neural-network",
+    "structural",
+    "verilog"
+   ],
+   "tags": [
+    "comparator",
+    "structural",
+    "verilog",
+    "silicon-tested",
+    "combinational"
+   ],
+   "summary_before": "This design is a fast magnitude comparator intended for digital neuron threshold detection. It compares two 8-bit inputs and outputs less-than, equal, and greater-than signals. The design is based on a bit-sliced expandable structure expressed in AND-INV form to leverage ABC9 logic optimization. Silicon testing confirmed correct operation, though documentation on output bit mapping was unclear.",
+   "summary": "This design is a fast magnitude comparator intended for digital neuron threshold detection. It compares two 8-bit inputs and outputs less-than, equal, and greater-than signals. The design is based on a bit-sliced expandable structure expressed in AND-INV form to leverage ABC9 logic optimization. Silicon testing confirmed correct operation, though documentation on output bit mapping was unclear.",
+   "summary_changed": false
+  },
+  {
+   "key": "0e191c65771e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "framebuffer",
+    "vga",
+    "graphics",
+    "pio",
+    "rp2040",
+    "uart",
+    "memory"
+   ],
+   "tags": [
+    "framebuffer",
+    "vga",
+    "graphics",
+    "pio",
+    "rp2040",
+    "uart",
+    "memory"
+   ],
+   "summary_before": "This design demonstrates the use of a PIO-based RAM emulator on the RP2040 to store a 320x480 2-bit-per-pixel frame buffer and continuously output a 640x480 VGA signal. The logic computes a Julia fractal and writes it to the frame buffer, with user input via buttons to adjust parameters. It requires a TinyVGA Pmod for VGA output and the RAM emulator running on the RP2040, and includes helper modules and a simulation model for testing. The design serves as an example for using the RAM emulator and includes test infrastructure.",
+   "summary": "This design demonstrates the use of a PIO-based RAM emulator on the RP2040 to store a 320x480 2-bit-per-pixel frame buffer and continuously output a 640x480 VGA signal. The logic computes a Julia fractal and writes it to the frame buffer, with user input via buttons to adjust parameters. It requires a TinyVGA Pmod for VGA output and the RAM emulator running on the RP2040, and includes helper modules and a simulation model for testing. The design serves as an example for using the RAM emulator and includes test infrastructure.",
+   "summary_changed": false
+  },
+  {
+   "key": "7573e499bb44",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design performs simple feature extraction and classification, not digital signal processing algorithms."
+    }
+   ],
+   "add": [
+    {
+     "tag": "biomedical",
+     "reason": "Water quality classification is a health/environmental monitoring application."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a measurement/classification instrument for sensor data."
+    }
+   ],
+   "notes": "Removed dsp tag (no DSP algorithms) and added biomedical and instrumentation tags for the water-quality monitoring application.",
+   "tags_before": [
+    "sensor-interface",
+    "dsp",
+    "fsm",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "sensor-interface",
+    "fsm",
+    "cocotb",
+    "verilog",
+    "biomedical",
+    "instrumentation"
+   ],
+   "summary_before": "This design classifies water quality from eight digital sensor inputs by extracting peak, average and variation features and mapping them to clean, warning or unsafe states. It is simulated with cocotb and can be exercised in the lab by feeding a function generator through a comparator or ADC into the sensor pins. External hardware for lab testing includes a function generator and optionally a comparator or Arduino ADC interface. The approach uses electrical signal behaviour as a proxy for chemical water quality, and no silicon results are reported.",
+   "summary": "This design classifies water quality from eight digital sensor inputs by extracting peak, average and variation features and mapping them to clean, warning or unsafe states. It is simulated with cocotb and can be exercised in the lab by feeding a function generator through a comparator or ADC into the sensor pins. External hardware for lab testing includes a function generator and optionally a comparator or Arduino ADC interface. The approach uses electrical signal behaviour as a proxy for chemical water quality, and no silicon results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "ee222a6b2d87",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "demoscene",
+    "music",
+    "pwm",
+    "audio",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "demoscene",
+    "music",
+    "pwm",
+    "audio",
+    "verilog"
+   ],
+   "summary_before": "OIIA-goose displays a rotating goose demoscene with four selectable backgrounds and classic OIIA music. Two input pins choose the background and two choose the spin mode, while an audio PWM output carries the music and RGB222 VGA outputs drive a display. It needs the TinyVGA PMOD and a VGA monitor, and the goose sprite data must be generated with the provided Python extraction script. The documentation is brief and does not describe the audio generation or the exact background behavior in detail.",
+   "summary": "OIIA-goose displays a rotating goose demoscene with four selectable backgrounds and classic OIIA music. Two input pins choose the background and two choose the spin mode, while an audio PWM output carries the music and RGB222 VGA outputs drive a display. It needs the TinyVGA PMOD and a VGA monitor, and the goose sprite data must be generated with the provided Python extraction script. The documentation is brief and does not describe the audio generation or the exact background behavior in detail.",
+   "summary_changed": false
+  },
+  {
+   "key": "234cdea31cdf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any educational purpose; it is a university logo/music demo."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "The project is a visual/audio logo and music showcase in demoscene style."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added demoscene tag for the logo/music showcase.",
+   "tags_before": [
+    "vga",
+    "audio",
+    "music",
+    "graphics",
+    "button",
+    "display",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "music",
+    "graphics",
+    "button",
+    "display",
+    "verilog",
+    "demoscene"
+   ],
+   "summary_before": "This project displays a FER logo on a VGA screen and plays music, with the logo bouncing and its direction controllable via four buttons. The VGA output uses the Tiny VGA PMOD pinout, and audio is output on uio[0]. It requires a VGA monitor connected to the VGA PMOD and uses inputs 2-5 for left, right, up, and down control. The documentation is very thin, providing only a one-line description and basic pin information, so details about the music generation and logo animation are limited.",
+   "summary": "This project displays a FER logo on a VGA screen and plays music, with the logo bouncing and its direction controllable via four buttons. The VGA output uses the Tiny VGA PMOD pinout, and audio is output on uio[0]. It requires a VGA monitor connected to the VGA PMOD and uses inputs 2-5 for left, right, up, and down control. The documentation is very thin, providing only a one-line description and basic pin information, so details about the music generation and logo animation are limited.",
+   "summary_changed": false
+  },
+  {
+   "key": "4495656bf31c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "vga",
+    "video",
+    "graphics",
+    "spi",
+    "qspi",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "graphics",
+    "spi",
+    "qspi",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a framebuffer-less VGA ray-casting graphics engine inspired by Wolfenstein 3D, rendering textured walls with flat floor and ceiling by racing the beam. The player point of view is controlled over SPI, and an optional external QSPI ROM can supply textures instead of the internally generated ones. It needs a Tiny VGA PMOD on the dedicated outputs, an SPI host for control, and a clock around 25.175 MHz for standard 640x480 VGA. Silicon reports say it works without the glitches of the earlier TT04 version, including external SPI textures, though a clock hack was needed and the SPI peripherals still need full testing.",
+   "summary": "This is a framebuffer-less VGA ray-casting graphics engine inspired by Wolfenstein 3D, rendering textured walls with flat floor and ceiling by racing the beam. The player point of view is controlled over SPI, and an optional external QSPI ROM can supply textures instead of the internally generated ones. It needs a Tiny VGA PMOD on the dedicated outputs, an SPI host for control, and a clock around 25.175 MHz for standard 640x480 VGA. Silicon reports say it works without the glitches of the earlier TT04 version, including external SPI textures, though a clock hack was needed and the SPI peripherals still need full testing.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8296,
+  "completion_tokens": 1278,
+  "total_tokens": 9574,
+  "cost": 0.0040224,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0040224,
+   "upstream_inference_prompt_cost": 0.0024888,
+   "upstream_inference_completions_cost": 0.0015336
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0040224,
+ "elapsed_s": 5.6
+}

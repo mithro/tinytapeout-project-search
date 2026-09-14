@@ -1,0 +1,253 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6338d83b3b1d",
+  "5a9bbec8eab7",
+  "3cf28c840600",
+  "4cc27b7ecea0",
+  "12d439203ae4",
+  "a6b32d7731fd"
+ ],
+ "results": [
+  {
+   "key": "6338d83b3b1d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "the 7-segment display is virtual, rendered on the VGA output, not a physical 7-segment output interface"
+    },
+    {
+     "tag": "display",
+     "reason": "redundant with vga/graphics; the output is a VGA signal, not a generic display interface"
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon test reports show working status on fabricated silicon"
+    }
+   ],
+   "notes": "Removed 7-segment/display since the seven-segment display is only virtual on VGA; added silicon-tested per test reports.",
+   "tags_before": [
+    "vga",
+    "demoscene",
+    "graphics",
+    "7-segment",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "demoscene",
+    "graphics",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This Verilog design generates a VGA demo that displays a virtual 7-segment LED display with decimal point, controlled by 8-bit input. It also has a demo mode that counts down from 9 to 0 and toggles the decimal bit, but the reset for this mode is flawed. The design requires a TinyVGA PMOD for output and runs at 25.175 MHz. Silicon tests confirm the basic display and user input work, but the demo mode does not reset correctly.",
+   "summary": "This Verilog design generates a VGA demo that displays a virtual 7-segment LED display with decimal point, controlled by 8-bit input. It also has a demo mode that counts down from 9 to 0 and toggles the decimal bit, but the reset for this mode is flawed. The design requires a TinyVGA PMOD for output and runs at 25.175 MHz. Silicon tests confirm the basic display and user input work, but the demo mode does not reset correctly.",
+   "summary_changed": false
+  },
+  {
+   "key": "5a9bbec8eab7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rgb-led",
+     "reason": "outputs are PWM channels for external RGBW LEDs, not an addressable RGB LED interface"
+    }
+   ],
+   "add": [
+    {
+     "tag": "driver",
+     "reason": "acts as a PWM driver stage for external LED hardware"
+    }
+   ],
+   "notes": "rgb-led implies an addressable LED interface; the design only drives external LEDs via PWM, so driver is more accurate.",
+   "tags_before": [
+    "rgb-led",
+    "led",
+    "pwm",
+    "spi",
+    "rp2040",
+    "verilog"
+   ],
+   "tags": [
+    "led",
+    "pwm",
+    "spi",
+    "rp2040",
+    "verilog",
+    "driver"
+   ],
+   "summary_before": "The RGBW Color Processor generates PWM control signals for RGBW LEDs based on color index, intensity, and white level, or acts as a direct SPI-to-four-channel PWM converter in bypass mode. It is an SPI slave in mode 0 that receives an 8-byte command, and it can produce hue, tint, and intensity from a color index when in color wheel mode. Testing is typically done with a MicroPython script on the Tiny Tapeout demoboard, connecting LEDs to the PWM outputs while respecting the 4 mA current limit. No silicon test results are provided, but the design is well documented and supports both RP2040-based and STM32-based test setups.",
+   "summary": "The RGBW Color Processor generates PWM control signals for RGBW LEDs based on color index, intensity, and white level, or acts as a direct SPI-to-four-channel PWM converter in bypass mode. It is an SPI slave in mode 0 that receives an 8-byte command, and it can produce hue, tint, and intensity from a color index when in color wheel mode. Testing is typically done with a MicroPython script on the Tiny Tapeout demoboard, connecting LEDs to the PWM outputs while respecting the 4 mA current limit. No silicon test results are provided, but the design is well documented and supports both RP2040-based and STM32-based test setups.",
+   "summary_changed": false
+  },
+  {
+   "key": "3cf28c840600",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "the design is a digital Verilog PLL/synthesizer; no analog pins or analog circuit blocks are documented"
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-generator",
+     "reason": "produces four clock outputs from the PLL channels"
+    }
+   ],
+   "notes": "Removed analog (digital Verilog design, no analog pins); clock-generator already present in proposed tags, so no add needed beyond confirming it.",
+   "tags_before": [
+    "pll",
+    "frequency-synthesizer",
+    "clock-generator",
+    "adc",
+    "analog",
+    "verilog"
+   ],
+   "tags": [
+    "pll",
+    "frequency-synthesizer",
+    "clock-generator",
+    "adc",
+    "verilog"
+   ],
+   "summary_before": "Tiny PLL is a 4-channel fractional-N frequency synthesizer that generates four independent clock outputs based on control register settings. It is configured through a simple CSR interface using data and address inputs, and it includes an ADC to monitor the tuning voltage of channel 0. Silicon testing showed that the PLL blocks work and produce the expected outputs, but the ADC output was stuck high, indicating a fault. The design is notable for integrating multiple PLL channels and an ADC on a tiny tapeout tile, though the ADC issue limits its usefulness for monitoring.",
+   "summary": "Tiny PLL is a 4-channel fractional-N frequency synthesizer that generates four independent clock outputs based on control register settings. It is configured through a simple CSR interface using data and address inputs, and it includes an ADC to monitor the tuning voltage of channel 0. Silicon testing showed that the PLL blocks work and produce the expected outputs, but the ADC output was stuck high, indicating a fault. The design is notable for integrating multiple PLL channels and an ADC on a tiny tapeout tile, though the ADC issue limits its usefulness for monitoring.",
+   "summary_changed": false
+  },
+  {
+   "key": "4cc27b7ecea0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rgb-led",
+     "reason": "outputs are three generic PWM channels; no addressable RGB LED interface is documented"
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "PWM outputs are intended to drive LEDs"
+    }
+   ],
+   "notes": "rgb-led overstates the interface; the design only provides PWM LED drive outputs.",
+   "tags_before": [
+    "rgb-led",
+    "led",
+    "pwm",
+    "rotary-encoder",
+    "debouncer",
+    "verilog"
+   ],
+   "tags": [
+    "led",
+    "pwm",
+    "rotary-encoder",
+    "debouncer",
+    "verilog"
+   ],
+   "summary_before": "The RGB Mixer reads three digital rotary encoders to control the brightness of three PWM outputs, intended for driving RGB LEDs. It debounces the encoder inputs and includes a debug mode where the internal encoder values are output on the bidirectional pins when the debug input is set to 0, 1, or 2. The design is tested by twisting each encoder and observing the corresponding LED brightness change. External hardware consists of three digital encoders connected to the first six inputs, and the project is noted as the creator's first ASIC design.",
+   "summary": "The RGB Mixer reads three digital rotary encoders to control the brightness of three PWM outputs, intended for driving RGB LEDs. It debounces the encoder inputs and includes a debug mode where the internal encoder values are output on the bidirectional pins when the debug input is set to 0, 1, or 2. The design is tested by twisting each encoder and observing the corresponding LED brightness change. External hardware consists of three digital encoders connected to the first six inputs, and the project is noted as the creator's first ASIC design.",
+   "summary_changed": false
+  },
+  {
+   "key": "12d439203ae4",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon test reports show working status on fabricated silicon"
+    }
+   ],
+   "notes": "Added silicon-tested per working test report; tags otherwise supported.",
+   "tags_before": [
+    "vga",
+    "audio",
+    "pwm",
+    "demoscene",
+    "verilog",
+    "graphics"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "pwm",
+    "demoscene",
+    "verilog",
+    "graphics",
+    "silicon-tested"
+   ],
+   "summary_before": "SQUARE-1 is a VGA and audio demo that displays munching squares on video and generates audio based on the logistic map. It requires a VGA display and audio output hardware, such as the Tiny VGA and TT Audio Pmods. Silicon tests show that the video works, but audio may require a manual reset and was not consistently heard. The design is notable for combining visual and audio demonstrations in a single project.",
+   "summary": "SQUARE-1 is a VGA and audio demo that displays munching squares on video and generates audio based on the logistic map. It requires a VGA display and audio output hardware, such as the Tiny VGA and TT Audio Pmods. Silicon tests show that the video works, but audio may require a manual reset and was not consistently heard. The design is notable for combining visual and audio demonstrations in a single project.",
+   "summary_changed": false
+  },
+  {
+   "key": "a6b32d7731fd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-art",
+     "reason": "silicon-art is for decorative silicon layout; this is a VGA screensaver demo, not a layout artwork"
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "bouncing-logo screensaver with animated gradient is a visual demo showcase"
+    }
+   ],
+   "notes": "silicon-art mislabels a VGA screensaver; demoscene better matches the visual demo intent.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "gamepad",
+    "silicon-art",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "gamepad",
+    "verilog",
+    "demoscene"
+   ],
+   "summary_before": "This design displays a bouncing Zero to ASIC logo on a 640x480 VGA screen with an animated color gradient. It is configured via input pins to tile the logo or use a solid color, and an optional Gamepad Pmod allows pausing and changing direction. It requires a Tiny VGA Pmod and optionally a Gamepad Pmod. The design is notable for its use of the TinyVGA standard and interactive controls.",
+   "summary": "This design displays a bouncing Zero to ASIC logo on a 640x480 VGA screen with an animated color gradient. It is configured via input pins to tile the logo or use a solid color, and an optional Gamepad Pmod allows pausing and changing direction. It requires a Tiny VGA Pmod and optionally a Gamepad Pmod. The design is notable for its use of the TinyVGA standard and interactive controls.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7635,
+  "completion_tokens": 1381,
+  "total_tokens": 9016,
+  "cost": 0.002562393,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002562393,
+   "upstream_inference_prompt_cost": 0.001153773,
+   "upstream_inference_completions_cost": 0.00140862
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002562393,
+ "elapsed_s": 39.0
+}

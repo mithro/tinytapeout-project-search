@@ -1,0 +1,257 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "41d94e021fa6",
+  "6f021e65cbd3",
+  "f63631c769bb",
+  "205043da8dc1",
+  "5612719aac73",
+  "d4ea7ed90320"
+ ],
+ "results": [
+  {
+   "key": "41d94e021fa6",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "xor",
+     "reason": ""
+    }
+   ],
+   "notes": "",
+   "tags_before": [
+    "cipher",
+    "crypto",
+    "prng",
+    "register-file",
+    "verilog"
+   ],
+   "tags": [
+    "cipher",
+    "crypto",
+    "prng",
+    "register-file",
+    "verilog",
+    "logic-gate"
+   ],
+   "summary_before": "This design implements an 8-bit encryption and decryption unit using pseudorandom one-time pads. It accepts plaintext or ciphertext on 8 input pins, uses a control pin to select encryption or decryption, and outputs the result on 8 output pins. For encryption, it generates a random pad, XORs it with the plaintext, and stores the pad in an internal register file, outputting the register index. For decryption, it uses the provided index to retrieve the pad and recover the plaintext. External hardware with basic memory and data display is needed for testing.",
+   "summary": "This design implements an 8-bit encryption and decryption unit using pseudorandom one-time pads. It accepts plaintext or ciphertext on 8 input pins, uses a control pin to select encryption or decryption, and outputs the result on 8 output pins. For encryption, it generates a random pad, XORs it with the plaintext, and stores the pad in an internal register file, outputting the register index. For decryption, it uses the provided index to retrieve the pad and recover the plaintext.",
+   "summary_changed": true
+  },
+  {
+   "key": "6f021e65cbd3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": ""
+    },
+    {
+     "tag": "button",
+     "reason": ""
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": ""
+    }
+   ],
+   "notes": "",
+   "tags_before": [
+    "sensor-interface",
+    "analog",
+    "vhdl",
+    "gpio",
+    "silicon-tested",
+    "button"
+   ],
+   "tags": [
+    "sensor-interface",
+    "analog",
+    "vhdl",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements a capacitive touch sensor that measures changes in the capacitive time constant when a finger is applied to a touch pad. It uses a simple external circuit with a large pull-up resistor and a capacitive pad, and it outputs button signals on uo pins while also providing pass-through buttons. Silicon test reports from the author show that the capacitive touch portion mostly works, but required a stronger pull-up resistor (15k instead of 100k) due to pulldowns in the RP2350, and it was tested at clock frequencies of 1, 10, and 24 MHz. The pass-through buttons also work as expected. The design is notable for being a straightforward capacitive touch interface, but it necessitates an external touch pad PCB or DIY alternative.",
+   "summary": "This design implements a capacitive touch sensor that measures changes in the capacitive time constant when a finger is applied to a touch pad. It uses a simple external circuit with a large pull-up resistor and a capacitive pad, and it outputs button signals on uo pins while also providing pass-through buttons. Silicon test reports from the author show that the capacitive touch portion mostly works, but required a stronger pull-up resistor (15k instead of 100k) due to pulldowns in the RP2350, and it was tested at clock frequencies of 1, 10, and 24 MHz. The pass-through buttons also work as expected.",
+   "summary_changed": true
+  },
+  {
+   "key": "f63631c769bb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": ""
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": ""
+    }
+   ],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "counter",
+    "comparator",
+    "signal-generator",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "counter",
+    "signal-generator",
+    "verilog",
+    "clock-divider"
+   ],
+   "summary_before": "This design is a PWM generator that produces a pulse-width modulated signal with a duty cycle resolution of 12.5%. It uses a 5-bit counter and a comparator, with the duty cycle selected by a 3-bit speed input. The output frequency is the clock frequency divided by 32. It requires external pull-down resistors, switches, and an oscilloscope for testing.",
+   "summary": "This design is a PWM generator that produces a pulse-width modulated signal with a duty cycle resolution of 12.5%. It uses a 5-bit counter and a comparator, with the duty cycle selected by a 3-bit speed input. The output frequency is the clock frequency divided by 32. It requires external pull-down resistors, switches, and an oscilloscope for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "205043da8dc1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": ""
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": ""
+    },
+    {
+     "tag": "cpu",
+     "reason": ""
+    },
+    {
+     "tag": "register-file",
+     "reason": ""
+    },
+    {
+     "tag": "alu",
+     "reason": ""
+    },
+    {
+     "tag": "fsm",
+     "reason": ""
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": ""
+    },
+    {
+     "tag": "memory",
+     "reason": ""
+    }
+   ],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "register-file",
+    "alu",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "register-file",
+    "alu",
+    "verilog",
+    "fsm",
+    "instruction-decoder",
+    "memory"
+   ],
+   "summary_before": "Zenith TX26 is a custom 16-bit CPU written in Verilog with eight registers, sixteen instructions, and a Harvard architecture separating instruction and data memory. It continuously computes the Fibonacci sequence and presents the current value in binary on its eight output pins. The design is tested by connecting eight LEDs to those outputs and watching the sequence 1, 1, 2, 3, 5, 8, and so on. No external hardware beyond the optional LEDs is required, and the documentation is brief but sufficient to describe the architecture and use.",
+   "summary": "Zenith TX26 is a custom 16-bit CPU written in Verilog with eight registers, sixteen instructions, and a Harvard architecture separating instruction and data memory. It continuously computes the Fibonacci sequence and presents the current value in binary on its eight output pins. The design is tested by connecting eight LEDs to those outputs and watching the sequence 1, 1, 2, 3, 5, 8, and so on. No external hardware beyond the optional LEDs is required, and the documentation is brief but sufficient to describe the architecture and use.",
+   "summary_changed": false
+  },
+  {
+   "key": "5612719aac73",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "security",
+    "music",
+    "synthesizer",
+    "audio",
+    "cocotb",
+    "education"
+   ],
+   "tags": [
+    "crypto",
+    "security",
+    "music",
+    "synthesizer",
+    "audio",
+    "cocotb",
+    "education"
+   ],
+   "summary_before": "Montenegro SecureKey combines a 64-bit challenge-response authentication engine with a melody player that renders phrases from a national anthem as square waves. The authentication engine loads eight challenge bytes over uio handshakes, runs a keyed nonlinear transform for 128 clocks, and streams back eight response bytes, while the music engine uses a 40-entry note ROM and programmable divider to drive an audio pin. A published known-answer vector and a cocotb suite cover reset, I/O directions, invalid frames, byte handshaking, and music start/stop. Audible playback needs a piezo element with a transistor driver stage, and the design is explicitly an educational proof of concept rather than a production secure element.",
+   "summary": "Montenegro SecureKey combines a 64-bit challenge-response authentication engine with a melody player that renders phrases from a national anthem as square waves. The authentication engine loads eight challenge bytes over uio handshakes, runs a keyed nonlinear transform for 128 clocks, and streams back eight response bytes, while the music engine uses a 40-entry note ROM and programmable divider to drive an audio pin. A published known-answer vector and a cocotb suite cover reset, I/O directions, invalid frames, byte handshaking, and music start/stop. Audible playback needs a piezo element with a transistor driver stage, and the design is explicitly an educational proof of concept rather than a production secure element.",
+   "summary_changed": false
+  },
+  {
+   "key": "d4ea7ed90320",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "fixed-point",
+    "video",
+    "pmod",
+    "dsp",
+    "pipeline"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "fixed-point",
+    "video",
+    "pmod",
+    "dsp",
+    "pipeline"
+   ],
+   "summary_before": "This design computes and displays the Mandelbrot fractal on a VGA screen using a racing-the-beam technique. It uses 16-bit fixed-point arithmetic and a maximum iteration depth of 14, with configurable position and zoom via input pins. The design requires a Tiny VGA Pmod and a 100 MHz clock. Silicon testing showed it broadly works, though the demo mode can sometimes get stuck zooming into the wrong offset.",
+   "summary": "This design computes and displays the Mandelbrot fractal on a VGA screen using a racing-the-beam technique. It uses 16-bit fixed-point arithmetic and a maximum iteration depth of 14, with configurable position and zoom via input pins. The design requires a Tiny VGA Pmod and a 100 MHz clock. Silicon testing showed it broadly works, though the demo mode can sometimes get stuck zooming into the wrong offset.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8263,
+  "completion_tokens": 1235,
+  "total_tokens": 9498,
+  "cost": 0.0039609,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039609,
+   "upstream_inference_prompt_cost": 0.0024789,
+   "upstream_inference_completions_cost": 0.001482
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039609,
+ "elapsed_s": 6.4
+}

@@ -1,0 +1,323 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "86e37508f276",
+  "66c6aa26a7c1",
+  "6e72391c771e",
+  "8f48d88275be",
+  "cdefbf85f6d3",
+  "6ed4cc0f34bf"
+ ],
+ "results": [
+  {
+   "key": "86e37508f276",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "No clock division is mentioned in the source; the 1 Hz clock is just the project clock setting."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No gate-level logic is described; the source only says a high on an input drives a seven-segment display."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The description and external hardware explicitly mention a seven-segment display."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not explain the input-to-segment mapping."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and clock-divider tags; added 7-segment and insufficient-doc.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a simple test of basic gates and clock division, likely a first Wokwi exercise. It is explicitly a simple test of basic gates and clock division, likely a first Wokwi exercise. The documentation is very thin, with a one-line description in German and no real explanation of the mapping between inputs and segments. It requires an external seven-segment display, and testing is described only as using it for a seven-segment display.",
+   "summary": "This project is a Wokwi design intended to drive a seven-segment display from eight input pins. The documentation is very thin, with a one-line description in German and no real explanation of the mapping between inputs and segments. It requires an external seven-segment display, and testing is described only as using it for a seven-segment display. The design appears to be a simple educational exercise, but the exact logic is not documented.",
+   "summary_changed": true
+  },
+  {
+   "key": "66c6aa26a7c1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "frequency-counter",
+     "reason": "The design is a ring oscillator PUF, not a frequency counter."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "No instrumentation application is described."
+    },
+    {
+     "tag": "industrial",
+     "reason": "No industrial application is described."
+    },
+    {
+     "tag": "i2c",
+     "reason": "The interface is SPI, not I2C."
+    },
+    {
+     "tag": "dac",
+     "reason": "No DAC is mentioned."
+    },
+    {
+     "tag": "adc",
+     "reason": "No ADC is mentioned."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puf",
+     "reason": "The design is explicitly a Physically Unclonable Function."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "It uses 16 ring oscillators for PUF generation."
+    },
+    {
+     "tag": "spi",
+     "reason": "The result is read out over an SPI slave interface."
+    },
+    {
+     "tag": "security",
+     "reason": "PUFs are a hardware security primitive."
+    },
+    {
+     "tag": "fsm",
+     "reason": "An FSM controls the pairwise oscillator comparisons."
+    },
+    {
+     "tag": "counter",
+     "reason": "Counters are used to compare oscillator frequencies."
+    }
+   ],
+   "notes": "Corrected tags to match the PUF/SPI design and replaced the unrelated frequency-counter summary.",
+   "tags_before": [
+    "frequency-counter",
+    "instrumentation",
+    "industrial",
+    "i2c",
+    "spi",
+    "dac",
+    "adc",
+    "oscillator",
+    "sensor-interface"
+   ],
+   "tags": [
+    "spi",
+    "oscillator",
+    "puf",
+    "ring-oscillator",
+    "security",
+    "fsm",
+    "counter"
+   ],
+   "summary_before": "This design is a 9-channel oscillator frequency counter with programmable gate time, controlled over I2C and supplemented by SPI DAC outputs and SPI ADC sampling. It measures the frequency of up to nine external oscillators and provides analog output via a DAC and digital input via an ADC. The design is intended for instrumentation and industrial monitoring applications. It is notable for its multi-channel measurement capability and flexible control interface.",
+   "summary": "This design is a Physically Unclonable Function based on ring oscillator frequency comparisons. It contains 16 ring oscillators and performs 120 pairwise comparisons to generate a 49-bit Lehmer code. The result is read out over a simple SPI slave interface, with busy and done status pins. The design exploits manufacturing variations to create a chip-unique fingerprint.",
+   "summary_changed": true
+  },
+  {
+   "key": "6e72391c771e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "workshop",
+    "wokwi",
+    "insufficient-doc",
+    "7-segment",
+    "gpio"
+   ],
+   "tags": [
+    "workshop",
+    "wokwi",
+    "insufficient-doc",
+    "7-segment",
+    "gpio"
+   ],
+   "summary_before": "This is a Tiny Tapeout Workshop project by Nick Figner, created at ETH, whose description says the author is unsure whether it even works. It uses the standard eight inputs and eight outputs and is intended to drive a seven-segment display. Testing is described only as adding cables, and the external hardware listed is a seven-digit display and cables. The documentation is too vague to determine the actual function or verify correct operation.",
+   "summary": "This is a Tiny Tapeout Workshop project by Nick Figner, created at ETH, whose description says the author is unsure whether it even works. It uses the standard eight inputs and eight outputs and is intended to drive a seven-segment display. Testing is described only as adding cables, and the external hardware listed is a seven-digit display and cables. The documentation is too vague to determine the actual function or verify correct operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "8f48d88275be",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The source does not mention a seven-segment display; it says a light and the letter E."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The design shows the letter E, implying a display output."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment tag; added generic display tag.",
+   "tags_before": [
+    "led",
+    "7-segment",
+    "wokwi",
+    "insufficient-doc",
+    "gpio"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "insufficient-doc",
+    "gpio",
+    "display"
+   ],
+   "summary_before": "This project, titled tinytapeoutchip, is described as turning on a light and showing the letter E when the correct switches are set. It uses the standard eight input and eight output pins and is expected to need no external hardware. Testing consists of switching on the correct switches. The documentation is very sparse and does not explain the internal logic or which switches produce the described output.",
+   "summary": "This project, titled tinytapeoutchip, is described as turning on a light and showing the letter E when the correct switches are set. It uses the standard eight input and eight output pins and is expected to need no external hardware. Testing consists of switching on the correct switches. The documentation is very sparse and does not explain the internal logic or which switches produce the described output.",
+   "summary_changed": false
+  },
+  {
+   "key": "cdefbf85f6d3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The source does not explicitly mention a seven-segment display; it only says it shows the first letter of the name."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The project shows a letter, implying a display output."
+    }
+   ],
+   "notes": "Replaced unsupported 7-segment tag with generic display tag.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "display",
+    "wokwi",
+    "education",
+    "insufficient-doc"
+   ],
+   "summary_before": "The project is described as showing the first letter of the author's name, which suggests a 7-segment or similar display pattern. The documentation fields are the unedited template placeholders, so the actual implementation and pin usage are not described. A 10 kHz clock is specified, but no test procedure or external hardware is documented. There is not enough information to say more about how the design works.",
+   "summary": "The project is described as showing the first letter of the author's name, which suggests a display pattern. The documentation fields are the unedited template placeholders, so the actual implementation and pin usage are not described. A 10 kHz clock is specified, but no test procedure or external hardware is documented. There is not enough information to say more about how the design works.",
+   "summary_changed": true
+  },
+  {
+   "key": "6ed4cc0f34bf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is mentioned; the design is just an AND gate."
+    },
+    {
+     "tag": "pattern-generator",
+     "reason": "No pattern generator is described."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock divider is mentioned."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described; it is a fixed seven-segment pattern."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described."
+    },
+    {
+     "tag": "led",
+     "reason": "The output is a seven-segment display, not discrete LEDs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The design explicitly drives a seven-segment display to show an L."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is described as just an AND gate."
+    },
+    {
+     "tag": "button",
+     "reason": "Two button inputs are used to trigger the display."
+    },
+    {
+     "tag": "education",
+     "reason": "The simple AND-gate-to-seven-segment design is a basic educational example."
+    }
+   ],
+   "notes": "Corrected tags to match the simple AND-gate seven-segment design.",
+   "tags_before": [
+    "led",
+    "shift-register",
+    "pattern-generator",
+    "clock-divider",
+    "wokwi",
+    "graphics",
+    "counter"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "logic-gate",
+    "button",
+    "education"
+   ],
+   "summary_before": "This design generates LED patterns using a shift register and a clock divider, built with Wokwi. It is intended for educational purposes and demonstrates sequential logic. The design uses a clock input and drives LEDs on its outputs. The documentation is minimal but sufficient to understand the configuration options.",
+   "summary": "This design makes an L on a seven-segment display when buttons 1 and 2 are pressed. It is implemented as just an AND gate. The documentation is minimal but clearly describes the intended behavior. The design uses two button inputs and seven segment outputs.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5887,
+  "completion_tokens": 1780,
+  "total_tokens": 7667,
+  "cost": 0.009544185,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2048,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.009544185,
+   "upstream_inference_prompt_cost": 0.004111625,
+   "upstream_inference_completions_cost": 0.00543256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.009544185,
+ "elapsed_s": 59.1
+}

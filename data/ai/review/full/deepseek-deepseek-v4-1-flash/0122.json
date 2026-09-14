@@ -1,0 +1,246 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f51aaf0d5397",
+  "a63807499cf0",
+  "9a3a02ade466",
+  "74ec7e8d2a84",
+  "4ea3978cde7d",
+  "da7a4118d83d"
+ ],
+ "results": [
+  {
+   "key": "f51aaf0d5397",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "qspi",
+     "reason": "Design uses the QSPI Pmod SPI flash RAM as program storage."
+    },
+    {
+     "tag": "risc-v",
+     "reason": "No evidence; do not add."
+    }
+   ],
+   "notes": "Added qspi tag for the QSPI Pmod flash RAM interface; risc-v was not added because the source does not state an ISA.",
+   "tags_before": [
+    "cpu",
+    "spi",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "spi",
+    "memory",
+    "verilog",
+    "qspi",
+    "risc-v"
+   ],
+   "summary_before": "This is a 4-bit CPU that loads and runs programs from the SPI flash RAM on the QSPI PMOD. It takes two 4-bit data inputs, drives SPI chip select, MOSI, MISO and clock on the bidirectional pins, and exposes an 8-bit output register plus a CPU_VALID signal. Programs are loaded using a RAM flasher application, after which the CPU is reset to run. External hardware required is the RAM flasher and the QSPI PMOD, and the documentation is otherwise brief.",
+   "summary": "This is a 4-bit CPU that loads and runs programs from the SPI flash RAM on the QSPI PMOD. It takes two 4-bit data inputs, drives SPI chip select, MOSI, MISO and clock on the bidirectional pins, and exposes an 8-bit output register plus a CPU_VALID signal. Programs are loaded using a RAM flasher application, after which the CPU is reset to run. External hardware required is the RAM flasher and the QSPI PMOD, and the documentation is otherwise brief.",
+   "summary_changed": false
+  },
+  {
+   "key": "a63807499cf0",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working enumeration and UART loopback."
+    }
+   ],
+   "notes": "Added silicon-tested tag because the provided silicon status is working with tester reports.",
+   "tags_before": [
+    "usb",
+    "uart",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "usb",
+    "uart",
+    "communication",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements a USB CDC device that bridges USB to a UART interface at a fixed 115200 baud. It uses usb_p and usb_n for the USB differential pair, dp_pu_o for the 1.5k pull-up, and RX and TX for the UART side, with a configured status output. It is based on tinyfpga_bx_usbserial and enumerates with vendor_id 1209 and product_id 5454. External hardware needed is a USB breakout board and a 1.5k ohm resistor, and silicon test reports confirm successful enumeration, loopback and external UART communication.",
+   "summary": "This design implements a USB CDC device that bridges USB to a UART interface at a fixed 115200 baud. It uses usb_p and usb_n for the USB differential pair, dp_pu_o for the 1.5k pull-up, and RX and TX for the UART side, with a configured status output. It is based on tinyfpga_bx_usbserial and enumerates with vendor_id 1209 and product_id 5454. External hardware needed is a USB breakout board and a 1.5k ohm resistor, and silicon test reports confirm successful enumeration, loopback and external UART communication.",
+   "summary_changed": false
+  },
+  {
+   "key": "9a3a02ade466",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the design is a minimal example."
+    }
+   ],
+   "notes": "Removed education (unsupported) and added incomplete for the very thin documentation.",
+   "tags_before": [
+    "counter",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "template",
+    "incomplete"
+   ],
+   "summary_before": "tinyTapeVerilog_out is a minimal example design that implements a simple 8-bit counter, intended to demonstrate the IHP Tiny Tapeout workflow. It takes a clock, an active-low reset, and an enable on ui[0..2], and outputs the counter value on uo[0]. Testing is done by running the provided testbench in the test folder, and no external hardware is needed. The documentation is essentially a template with almost no detail beyond the counter description.",
+   "summary": "tinyTapeVerilog_out is a minimal example design that implements a simple 8-bit counter, intended to demonstrate the IHP Tiny Tapeout workflow. It takes a clock, an active-low reset, and an enable on ui[0..2], and outputs the counter value on uo[0]. Testing is done by running the provided testbench in the test folder, and no external hardware is needed. The documentation is essentially a template with almost no detail beyond the counter description.",
+   "summary_changed": false
+  },
+  {
+   "key": "74ec7e8d2a84",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "No evidence; do not add."
+    }
+   ],
+   "notes": "No changes needed; risc-v was not added because the source does not state an ISA.",
+   "tags_before": [
+    "cpu",
+    "pipeline",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "pipeline",
+    "alu",
+    "verilog",
+    "risc-v"
+   ],
+   "summary_before": "This project implements a custom 8-bit RISC processor with a three-stage pipeline of fetch, decode, and execute. Program bytes are loaded through the input pins with a load mode and valid signal, and results are read from the output pins, with zero, carry, and negative flags exposed on the bidirectional pins. No external hardware is required, though a microcontroller or logic analyzer can be connected to automate program loading and capture results. The documentation is minimal and does not describe the instruction set or pipeline hazards.",
+   "summary": "This project implements a custom 8-bit RISC processor with a three-stage pipeline of fetch, decode, and execute. Program bytes are loaded through the input pins with a load mode and valid signal, and results are read from the output pins, with zero, carry, and negative flags exposed on the bidirectional pins. No external hardware is required, though a microcontroller or logic analyzer can be connected to automate program loading and capture results. The documentation is minimal and does not describe the instruction set or pipeline hazards.",
+   "summary_changed": false
+  },
+  {
+   "key": "4ea3978cde7d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "puzzle",
+     "reason": "The riddle is not implemented or described; only the title mentions it."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation explicitly defers explanation and testing."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed unsupported puzzle and education tags; added incomplete and insufficient-doc.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "puzzle",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project claims to implement a riddle but provides no explanation of what the riddle is or how the circuit works. The pins expose two inputs, a and b, and two outputs, and and nand, suggesting a simple combinational logic block. The documentation explicitly defers both the explanation and test procedure to a later time. Because the description is essentially empty, the design cannot be evaluated beyond its pin names.",
+   "summary": "This project claims to implement a riddle but provides no explanation of what the riddle is or how the circuit works. The pins expose two inputs, a and b, and two outputs, and and nand, suggesting a simple combinational logic block. The documentation explicitly defers both the explanation and test procedure to a later time. Because the description is essentially empty, the design cannot be evaluated beyond its pin names.",
+   "summary_changed": false
+  },
+  {
+   "key": "da7a4118d83d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence of an educational purpose."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU is described; only an adder is implied by the title."
+    },
+    {
+     "tag": "display",
+     "reason": "The 7-segment tag already covers the display output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation consists only of placeholder letters."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed unsupported education, alu and display tags; added incomplete and insufficient-doc.",
+   "tags_before": [
+    "adder",
+    "7-segment",
+    "wokwi",
+    "education",
+    "alu",
+    "display"
+   ],
+   "tags": [
+    "adder",
+    "7-segment",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled 'title' with the one-line description 'addieren', suggesting a binary adder that drives a 7-segment display. The pins include two inputs, a and b, and seven segment outputs a through g, but the documentation consists only of placeholder letters. There is no usable explanation of the logic or test procedure. The design is effectively undocumented and its behaviour cannot be determined from the provided text.",
+   "summary": "This project is titled 'title' with the one-line description 'addieren', suggesting a binary adder that drives a 7-segment display. The pins include two inputs, a and b, and seven segment outputs a through g, but the documentation consists only of placeholder letters. There is no usable explanation of the logic or test procedure. The design is effectively undocumented and its behaviour cannot be determined from the provided text.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5828,
+  "completion_tokens": 1429,
+  "total_tokens": 7257,
+  "cost": 0.0034632,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034632,
+   "upstream_inference_prompt_cost": 0.0017484,
+   "upstream_inference_completions_cost": 0.0017148
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034632,
+ "elapsed_s": 21.6
+}

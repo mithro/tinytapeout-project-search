@@ -1,0 +1,237 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "43cd0cfbd7d9",
+  "1fb971578602",
+  "bd40eb51a772",
+  "358dccfa6c25",
+  "2c47d8373ac7",
+  "1aea96085d40"
+ ],
+ "results": [
+  {
+   "key": "43cd0cfbd7d9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design has a few named registers (scanline, control, bitmap, attribute), not a multi-register file addressed as a storage block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "text",
+     "reason": "The chip is explicitly a text-mode character glyph styler and text attribute processor."
+    },
+    {
+     "tag": "display",
+     "reason": "It is intended as part of a text-mode video display hardware project."
+    },
+    {
+     "tag": "video",
+     "reason": "The source describes use in a larger text mode video display hardware project."
+    }
+   ],
+   "notes": "Removed register-file because the design is a glyph attribute processor, not a general register file.",
+   "tags_before": [
+    "text",
+    "display",
+    "video",
+    "register-file"
+   ],
+   "tags": [
+    "text",
+    "display",
+    "video"
+   ],
+   "summary_before": "The Styler chip manipulates a 16x16 character glyph bitmap based on text mode attributes such as bold, italic, underline, blink, and cursor display. It contains registers for scanline, control, bitmap, and attributes, and supports operations like double width/height, mirroring, and various text decorations. The chip is intended to be part of a larger text mode video display system, and it is accessed through an address bus and bidirectional data pins. Testing details have not been defined, but the register layout and usage steps are thoroughly documented.",
+   "summary": "The Styler chip transforms a 16x16 character glyph bitmap based on text mode attributes such as bold, italic, underline, blink, and cursor display. It contains a 4-bit scanline register, a 6-bit control register, a 16-bit bitmap register, and a 25-bit attribute register, and supports double width/height, mirroring, and various text decorations. The chip is intended to be used as part of a larger text mode video display hardware project, and it is accessed through an address bus and bidirectional data pins. Test cases are to be determined, but the register layout and usage steps are documented.",
+   "summary_changed": true
+  },
+  {
+   "key": "1fb971578602",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes only an adder, not a full arithmetic logic unit with logic operations."
+    },
+    {
+     "tag": "education",
+     "reason": "The documentation does not state that the project is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu and education because the source only supports a combinational adder and does not claim educational intent.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8-bit carry-lookahead adder in Verilog, designed for fast addition by computing carry bits in parallel using propagate and generate signals. It takes two 8-bit inputs and produces an 8-bit sum, ignoring carry out. The design is fully combinational and was exhaustively tested with all 25536 possible input pairs. No external hardware is needed.",
+   "summary": "This project implements an 8-bit carry-lookahead adder in Verilog, designed for fast addition by computing carry bits in parallel using propagate and generate signals. It takes two 8-bit inputs and produces an 8-bit sum, ignoring carry out. The design is fully combinational and was tested with all possible pairs of integers from 0 to 255, resulting in 25536 test cases. No external hardware is needed.",
+   "summary_changed": true
+  },
+  {
+   "key": "bd40eb51a772",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes only an adder, not a full arithmetic logic unit with logic operations."
+    },
+    {
+     "tag": "education",
+     "reason": "The documentation does not state that the project is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu and education because the source only supports a combinational adder and does not claim educational intent.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8-bit carry-select adder in Verilog, using two ripple carry adders with different carry inputs and a multiplexer to select the correct sum. It takes two 8-bit inputs and produces an 8-bit sum, ignoring carry out. The design was tested with all possible input combinations. No external hardware is required.",
+   "summary": "This project implements an 8-bit carry-select adder in Verilog, using two ripple carry adders with different carry inputs and a multiplexer to select the correct sum. It takes two 8-bit inputs and produces an 8-bit sum, ignoring carry out. The design was tested with all possible input combinations. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "358dccfa6c25",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes an adder and accumulator register, not a full arithmetic logic unit."
+    },
+    {
+     "tag": "register-file",
+     "reason": "The design has a single accumulator register, not a multi-register file."
+    },
+    {
+     "tag": "cpu",
+     "reason": "The source says these are components for a larger CPU project, not a CPU itself."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu, register-file, and cpu because the source describes only an adder and accumulator as components of a larger CPU.",
+   "tags_before": [
+    "alu",
+    "adder",
+    "register-file",
+    "cpu",
+    "verilog"
+   ],
+   "tags": [
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This design implements an 8-bit ripple adder and an accumulator register, intended as components for a basic 8-bit CPU. The adder supports two's complement addition and subtraction, and provides zero and carry flags. The accumulator stores the adder output and can drive the bus via tri-state buffers. The design is part of a larger project and requires no external hardware beyond the Tiny Tapeout pins.",
+   "summary": "This design implements an 8-bit ripple adder and an accumulator register, intended as components for a basic 8-bit CPU. The adder supports two's complement addition and subtraction, and provides zero and carry flags. The accumulator stores the adder output and can drive the bus via tri-state buffers. The design is part of a larger project and requires no external hardware beyond the Tiny Tapeout pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "2c47d8373ac7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The ALU performs bitwise logic operations, but the design is not a basic logic gate implementation."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "The 3-bit opcode selects an ALU operation; there is no instruction decode logic described."
+    },
+    {
+     "tag": "education",
+     "reason": "The documentation does not state that the project is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed logic-gate, instruction-decoder, and education because the source describes an opcode-selected ALU without those specific claims.",
+   "tags_before": [
+    "alu",
+    "logic-gate",
+    "instruction-decoder",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4-bit ALU that performs arithmetic (addition, subtraction, multiplication, division) and logical operations (AND, OR, NOT, XOR) on two 4-bit inputs. The operation is selected by a 3-bit opcode, and the ALU outputs an 8-bit result along with zero and carry flags. Testing is done by applying the appropriate opcode and inputs. The design is educational and requires no external hardware.",
+   "summary": "This project is a 4-bit ALU that performs arithmetic (addition, subtraction, multiplication, division) and logical operations (AND, OR, NOT, XOR) on two 4-bit inputs. The operation is selected by a 3-bit opcode, and the ALU outputs an 8-bit result along with zero and carry flags. Testing is done by applying the appropriate opcode and inputs. The design requires no external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "1aea96085d40",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The documentation does not state that the project is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education because the source only identifies it as Lab 3 and does not state educational intent.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "education",
+    "verilog",
+    "combinational"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "verilog",
+    "combinational"
+   ],
+   "summary_before": "This is a 4x4 bit multiplier designed in Verilog using structural design techniques. It takes two 4-bit inputs and produces an 8-bit product. The design is a lab project (Lab 3) and includes a testbench and Python script for verification. No external hardware is required.",
+   "summary": "This is a 4x4 bit multiplier designed in Verilog using structural design techniques. It takes two 4-bit inputs and produces an 8-bit product. The design is a lab project (Lab 3) and includes a testbench and Python script for verification. No external hardware is required.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8550,
+  "completion_tokens": 1485,
+  "total_tokens": 10035,
+  "cost": 0.00543375,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00543375,
+   "upstream_inference_prompt_cost": 0.00320625,
+   "upstream_inference_completions_cost": 0.0022275
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00543375,
+ "elapsed_s": 5.8
+}

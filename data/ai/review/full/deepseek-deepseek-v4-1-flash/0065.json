@@ -1,0 +1,256 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e97dbda6864e",
+  "970b36776bf3",
+  "680135c1da5b",
+  "2563c0b9939e",
+  "ed6f3e80cd6e",
+  "18698bcb5104"
+ ],
+ "results": [
+  {
+   "key": "e97dbda6864e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "button",
+     "reason": "No button input is described or present in the pin list; the game is controlled by switches/inputs and a submit signal."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs are intended for seven-segment displays, not discrete LEDs."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The source describes a random generator and comparison logic, not a finite state machine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The four 3-bit guesses are entered via input pins, consistent with switch-based input."
+    }
+   ],
+   "notes": "Removed unsupported button/led/fsm tags and added dip-switch for the switch-based guess inputs.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "prng",
+    "fsm",
+    "7-segment",
+    "vhdl",
+    "button",
+    "led",
+    "counter"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "prng",
+    "7-segment",
+    "vhdl",
+    "counter",
+    "dip-switch"
+   ],
+   "summary_before": "This project recreates the classic Mastermind game where players guess a secret combination of colors. It uses a random number generator to set the secret code and compares guesses to provide feedback on correct and half-correct positions. The game supports up to 16 turns and outputs hints via pins intended for seven-segment displays. It is a simple VHDL implementation of a puzzle game, best experienced with external displays.",
+   "summary": "This project recreates the classic Mastermind game where players guess a secret combination of colors. It uses a random number generator to set the secret code and compares guesses to provide feedback on correct and half-correct positions. The game supports up to 16 turns and outputs hints via pins intended for seven-segment displays. It is a VHDL implementation of a puzzle game, best experienced with external displays.",
+   "summary_changed": true
+  },
+  {
+   "key": "970b36776bf3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "flip-flop",
+    "display",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "flip-flop",
+    "display",
+    "education",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a binary counter using flip-flops that increments on a clock signal and displays the count from zero to nine on a 7-segment display. It is designed for educational purposes, likely as a first design. Testing is done by manually stepping the clock to observe the count. External hardware includes a 7-segment display and a step button. The documentation is brief and lacks details on the exact circuit implementation.",
+   "summary": "This project implements a binary counter using flip-flops that increments on a clock signal and displays the count from zero to nine on a 7-segment display. It is designed for educational purposes, likely as a first design. Testing is done by manually stepping the clock to observe the count. External hardware includes a 7-segment display and a step button.",
+   "summary_changed": true
+  },
+  {
+   "key": "680135c1da5b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a clock input; it does not generate a clock."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational intent; it is described as an initial test."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs are described as driving a hex LED display, not discrete LEDs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with only a one-line description and minimal test instructions."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "External hardware lists a DIP switch for inputs."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator/education/led tags and added insufficient-doc and dip-switch.",
+   "tags_before": [
+    "counter",
+    "wokwi",
+    "education",
+    "clock-generator",
+    "sequential-logic",
+    "led",
+    "logic-gate"
+   ],
+   "tags": [
+    "counter",
+    "wokwi",
+    "sequential-logic",
+    "logic-gate",
+    "insufficient-doc",
+    "dip-switch"
+   ],
+   "summary_before": "This design implements a 4-bit ripple counter along with a NAND gate and an AND gate. It uses a clock input, four additional inputs, and six outputs. Testing instructions are minimal, suggesting DIP switches and a hex LED. The project is an initial test of a Wokwi implementation for educational purposes.",
+   "summary": "This design implements a 4-bit ripple counter along with a NAND gate and an AND gate. It uses a clock input, four additional inputs, and six outputs. Testing instructions are minimal, suggesting DIP switches and a hex LED. The project is an initial test of a Wokwi implementation.",
+   "summary_changed": true
+  },
+  {
+   "key": "2563c0b9939e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported alu tag; summary corrected to match the documented full-adder implementation.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4-bit by 4-bit multiplier that outputs an 8-bit product, implemented in Verilog. It uses layers of full adders to compute partial products and then sums them. Testing is done via a provided Python script that sets inputs and compares the output. No external hardware is required. The documentation is sparse, without diagrams or detailed explanation beyond the basic algorithm.",
+   "summary": "This project is a 4-bit by 4-bit multiplier that outputs an 8-bit product, implemented in Verilog. It uses layers of full adders to compute partial products and then sums them. Testing is done via a provided Python script that sets inputs and compares the output. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "ed6f3e80cd6e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present and describes the circuit, even if the title and text are inconsistent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a simple gate network used as a template for testing logic gates."
+    }
+   ],
+   "notes": "Removed insufficient-doc since documentation is present; kept logic-gate and template tags.",
+   "tags_before": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "template"
+   ],
+   "summary_before": "This design inverts each input signal, acting as a set of inverters, and is intended as a template for testing and building more complex digital logic circuits. It is tested by toggling input switches and observing the outputs, with suggestions to replace inverters with other logic functions. No external hardware is used. The documentation is contradictory, mentioning OR gates and a clock divider in the title but describing inverters in the text.",
+   "summary": "This design inverts each input signal, acting as a set of inverters, and is intended as a template for testing and building more complex digital logic circuits. It is tested by toggling input switches and observing the outputs, with suggestions to replace inverters with other logic functions. No external hardware is used. The documentation is contradictory, mentioning OR gates and a clock divider in the title but describing inverters in the text.",
+   "summary_changed": false
+  },
+  {
+   "key": "18698bcb5104",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The source describes a snake game, so the more specific snake-game tag is sufficient; game is redundant."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The design outputs to a 7-segment display, which is a display output."
+    }
+   ],
+   "notes": "Removed redundant game tag and added display for the 7-segment output.",
+   "tags_before": [
+    "snake-game",
+    "game",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "snake-game",
+    "7-segment",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This Wokwi project combines a simple snake game (TinySnake) with a design called PRISM, though the documentation does not describe what PRISM does. The snake game speed is controlled by the eight input pins, with larger values producing slower movement, and the game state is shown on a 7-segment display. The design requires only the on-board 7-segment display and no other external hardware. The documentation is thin and lacks details about the PRISM portion and how the two designs interact.",
+   "summary": "This Wokwi project combines a simple snake game (TinySnake) with a design called PRISM, though the documentation does not describe what PRISM does. The snake game speed is controlled by the eight input pins, with larger values producing slower movement, and the game state is shown on a 7-segment display. The design requires only the on-board 7-segment display and no other external hardware. The documentation is thin and lacks details about the PRISM portion and how the two designs interact.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6195,
+  "completion_tokens": 1322,
+  "total_tokens": 7517,
+  "cost": 0.004306125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004306125,
+   "upstream_inference_prompt_cost": 0.002323125,
+   "upstream_inference_completions_cost": 0.001983
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004306125,
+ "elapsed_s": 4.6
+}

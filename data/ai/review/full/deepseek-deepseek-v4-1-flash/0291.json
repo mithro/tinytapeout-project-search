@@ -1,0 +1,227 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "fc383c337005",
+  "76e187509137",
+  "097f28168f8c",
+  "239089015f67",
+  "3c571eb08854",
+  "b2894a511188"
+ ],
+ "results": [
+  {
+   "key": "fc383c337005",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "The design includes a D flip-flop, so it is not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "Replicates classic 74xx-series TI logic devices."
+    }
+   ],
+   "notes": "Removed combinational because the design contains a flip-flop; added retro for the 74xx logic family replication.",
+   "tags_before": [
+    "reconfigurable",
+    "flip-flop",
+    "logic-gate",
+    "wokwi",
+    "combinational"
+   ],
+   "tags": [
+    "reconfigurable",
+    "flip-flop",
+    "logic-gate",
+    "wokwi",
+    "retro"
+   ],
+   "summary_before": "This design replicates the functionality of TI's 74xx1G97 and 74xx1G98 configurable logic gates, along with a 74xx1G79 D flip-flop. It includes two configurable gates and one D flip-flop, each with complementary outputs. The design is implemented in Wokwi and can be tested by referring to the TI datasheets for the original parts. No external hardware is required beyond the standard Tiny Tapeout setup.",
+   "summary": "This design replicates the functionality of TI's 74xx1G97 and 74xx1G98 configurable logic gates, along with a 74xx1G79 D flip-flop. It includes two configurable gates and one D flip-flop, each with complementary outputs. The design is implemented in Wokwi and can be tested by referring to the TI datasheets for the original parts. No external hardware is required beyond the standard Tiny Tapeout setup.",
+   "summary_changed": false
+  },
+  {
+   "key": "76e187509137",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "shift-register",
+    "puzzle",
+    "side-channel",
+    "security",
+    "wokwi",
+    "sequential-logic"
+   ],
+   "tags": [
+    "shift-register",
+    "puzzle",
+    "side-channel",
+    "security",
+    "wokwi",
+    "sequential-logic"
+   ],
+   "summary_before": "This design is a 40-bit shift register that compares the shifted value against a hardcoded 40-bit number and drives its output high only on a match. It is used by shifting bits in via the data and clock inputs, with each rising clock edge advancing the register. Testing with the known number requires only a DIP switch for data, a button for clock, and an LED on the output; without the number, reverse engineering or side-channel attacks are suggested. The project is notable as a hardware puzzle challenge rather than a functional block, and its documentation is sufficient to describe the intended use.",
+   "summary": "This design is a 40-bit shift register that compares the shifted value against a hardcoded 40-bit number and drives its output high only on a match. It is used by shifting bits in via the data and clock inputs, with each rising clock edge advancing the register. Testing with the known number requires only a DIP switch for data, a button for clock, and an LED on the output; without the number, reverse engineering or side-channel attacks are suggested. The project is notable as a hardware puzzle challenge rather than a functional block, and its documentation is sufficient to describe the intended use.",
+   "summary_changed": false
+  },
+  {
+   "key": "097f28168f8c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "photodiode",
+     "reason": "The photodiodes are external hardware, not an on-chip interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "Measures light intensity and displays the result."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Dip switches are used as test inputs."
+    }
+   ],
+   "notes": "Removed photodiode because it is external hardware; added instrumentation and dip-switch based on the documentation.",
+   "tags_before": [
+    "sensor-interface",
+    "photodiode",
+    "7-segment",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "sensor-interface",
+    "7-segment",
+    "wokwi",
+    "display",
+    "instrumentation",
+    "dip-switch"
+   ],
+   "summary_before": "This design reads inputs from external photodiodes, sums the binary values, and displays the total on a 7-segment display. It includes a clock and reset input, and can be tested using dip switches instead of photodiodes, with a switch to select step or continuous sampling mode. External hardware includes a breadboard, resistors, and photodiodes. The design is notable for interfacing with analog sensors to display light intensity, implemented in Wokwi.",
+   "summary": "This design reads inputs from external photodiodes, sums the binary values, and displays the total on a 7-segment display. It includes a clock and reset input, and can be tested using dip switches instead of photodiodes, with a switch to select step or continuous sampling mode. External hardware includes a breadboard, resistors, and photodiodes. The design is notable for interfacing with analog sensors to display light intensity, implemented in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "239089015f67",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing is described."
+    },
+    {
+     "tag": "adder",
+     "reason": "The design is a compressor, not an adder."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The compressor is purely combinational logic."
+    }
+   ],
+   "notes": "Removed unsupported dsp, adder, and education tags; added combinational as the design is purely combinational.",
+   "tags_before": [
+    "dsp",
+    "multiplier",
+    "adder",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This design is a basic 4:2 compressor that takes four main input bits plus a carry-in and produces two compressed outputs and a carry-out. It is intended for use in compressing partial products inside multipliers. Testing is done by following the standard 4:2 compressor truth table with the four inputs and carry-in and observing the two outputs and carry-out. The documentation is short but sufficient to describe the function, and no external hardware is required.",
+   "summary": "This design is a basic 4:2 compressor that takes four main input bits plus a carry-in and produces two compressed outputs and a carry-out. It is intended for use in compressing partial products inside multipliers. Testing is done by following the standard 4:2 compressor truth table with the four inputs and carry-in and observing the two outputs and carry-out. The documentation is short but sufficient to describe the function, and no external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "3c571eb08854",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "scoreboard",
+    "counter",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "scoreboard",
+    "counter",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This design implements a two-player scoreboard that displays an 8-bit score as a two-digit hexadecimal value on a 7-segment display. It uses two counters to track the scores, which can be updated and selected for display via input pins. The design is intended for the Wokwi simulator and requires no external hardware. It is a test run from CNS Lab, demonstrating a simple scoreboard application.",
+   "summary": "This design implements a two-player scoreboard that displays an 8-bit score as a two-digit hexadecimal value on a 7-segment display. It uses two counters to track the scores, which can be updated and selected for display via input pins. The design is intended for the Wokwi simulator and requires no external hardware. It is a test run from CNS Lab, demonstrating a simple scoreboard application.",
+   "summary_changed": false
+  },
+  {
+   "key": "b2894a511188",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "rotary-encoder",
+    "counter",
+    "7-segment",
+    "verilog",
+    "display"
+   ],
+   "tags": [
+    "rotary-encoder",
+    "counter",
+    "7-segment",
+    "verilog",
+    "display"
+   ],
+   "summary_before": "This design implements a counter that increments or decrements based on rotary encoder input and displays the count on a 7-segment display. It includes a test mode that emulates encoder signals using the clock and an inverted clock. The design requires an external rotary encoder for normal operation. It is a straightforward application of a rotary encoder interface with a display.",
+   "summary": "This design implements a counter that increments or decrements based on rotary encoder input and displays the count on a 7-segment display. It includes a test mode that emulates encoder signals using the clock and an inverted clock. The design requires an external rotary encoder for normal operation. It is a straightforward application of a rotary encoder interface with a display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5786,
+  "completion_tokens": 1204,
+  "total_tokens": 6990,
+  "cost": 0.0031806,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0031806,
+   "upstream_inference_prompt_cost": 0.0017358,
+   "upstream_inference_completions_cost": 0.0014448
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0031806,
+ "elapsed_s": 38.1
+}

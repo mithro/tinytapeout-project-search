@@ -1,0 +1,257 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "069dcfac7d95",
+  "2d1f3b74f5cc",
+  "2cb64517c73b",
+  "533b6fc6e69f",
+  "acc4880eaa85",
+  "9aadad6e09c3"
+ ],
+ "results": [
+  {
+   "key": "069dcfac7d95",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a clock input; it does not generate a clock."
+    },
+    {
+     "tag": "crc",
+     "reason": "No CRC or cyclic redundancy check functionality is described anywhere in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "encoder",
+     "reason": "Already present; kept as the core function is Manchester encoding."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Already present; the source explicitly states the encoding is done via an FSM."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator and crc tags; encoder, communication, fsm and wokwi are supported.",
+   "tags_before": [
+    "encoder",
+    "communication",
+    "fsm",
+    "clock-generator",
+    "wokwi",
+    "crc"
+   ],
+   "tags": [
+    "encoder",
+    "communication",
+    "fsm",
+    "wokwi"
+   ],
+   "summary_before": "This design is a Manchester encoder that converts incoming serial data into Manchester-encoded serial data using a finite state machine. It requires an encoder clock at twice the frequency of the input data. It is tested by applying serial data at frequency f and the design clock at twice that frequency, then checking the encoded output. External hardware mentioned includes logic gates, D flip-flops, and clocks.",
+   "summary": "This design is a Manchester encoder that converts incoming serial data into Manchester-encoded serial data using a finite state machine. It requires an encoder clock at twice the frequency of the input data. It is tested by applying serial data at frequency f and the design clock at twice that frequency, then checking the encoded output. External hardware mentioned includes logic gates, D flip-flops, and clocks.",
+   "summary_changed": false
+  },
+  {
+   "key": "2d1f3b74f5cc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag and trimmed the final sentence to avoid an unsupported quality claim.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "adder",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This design is a 4-bit array multiplier that multiplies two 4-bit binary numbers using AND gates and full adders to produce an 8-bit product. It is tested by applying two 4-bit inputs and checking the 8-bit output against the expected product. No external hardware is required. The documentation explains the structural array approach and includes a diagram, making the design well described.",
+   "summary": "This design is a 4-bit array multiplier that multiplies two 4-bit binary numbers using AND gates and full adders to produce an 8-bit product. It is tested by applying two 4-bit inputs and checking the 8-bit output against the expected product. No external hardware is required. The documentation explains the structural array approach and includes a diagram.",
+   "summary_changed": true
+  },
+  {
+   "key": "2cb64517c73b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "text",
+     "reason": "The output is a 7-segment character display, not generic textual output; 7-segment already covers it."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The source states WPM and paddle setup are selected via demo board dip switches."
+    },
+    {
+     "tag": "pmod",
+     "reason": "The source recommends a companion PCB affixed to the bidirectional PMOD."
+    }
+   ],
+   "notes": "Removed unsupported text tag, added dip-switch and pmod, and replaced the unsupported 'notable' claim with the documented warning.",
+   "tags_before": [
+    "communication",
+    "radio",
+    "7-segment",
+    "buzzer",
+    "text",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "radio",
+    "7-segment",
+    "buzzer",
+    "verilog",
+    "dip-switch",
+    "pmod"
+   ],
+   "summary_before": "The Morse Code Keyer converts a keyed CW input from a straight key or iambic paddle into Morse code tones and a 7-segment character display. It supports iambic modes A and B, adjustable speed from 7 to 110 WPM, and outputs auxiliary dit/dah signals for radio equipment. It requires external paddles and a radio interface, and includes a companion PCB design. The design is notable for its comprehensive feature set and warning against direct radio TX control.",
+   "summary": "The Morse Code Keyer converts a keyed CW input from a straight key or iambic paddle into Morse code tones and a 7-segment character display. It supports iambic modes A and B, adjustable speed from 7 to 110 WPM, and outputs auxiliary dit/dah signals for radio equipment. It requires external paddles and a radio interface, and includes a companion PCB design. The documentation warns against using the auxiliary Morse output directly as a raw radio TX control.",
+   "summary_changed": true
+  },
+  {
+   "key": "533b6fc6e69f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design uses a clock input and shows its pulse; it does not generate a clock."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported clock-generator tag and replaced the unsupported 'notable' sentence with documented animation modes.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "dip-switch",
+    "clock-generator"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "dip-switch"
+   ],
+   "summary_before": "This project creates configurable spinning animations on a 7-segment display. The animation mode and direction are selected via an 8-pin DIP switch, and the decimal point can show the clock pulse. It requires a 7-segment display, DIP switch, reset switch, and clock input for testing. The design is notable for its use of a 4 Hz clock and multiple animation patterns.",
+   "summary": "This project creates configurable spinning animations on a 7-segment display. The animation mode and direction are selected via an 8-pin DIP switch, and the decimal point can show the clock pulse. It requires a 7-segment display, DIP switch, reset switch, and clock input for testing. The design supports multiple animation patterns including large and small circle spinners and a figure-8 spinner.",
+   "summary_changed": true
+  },
+  {
+   "key": "acc4880eaa85",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The source states WPM and paddle setup are selected via demo board dip switches."
+    },
+    {
+     "tag": "pmod",
+     "reason": "The source recommends a companion PCB affixed to the bidirectional PMOD."
+    }
+   ],
+   "notes": "Added dip-switch and pmod tags supported by the documentation.",
+   "tags_before": [
+    "communication",
+    "radio",
+    "7-segment",
+    "buzzer",
+    "timer",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "radio",
+    "7-segment",
+    "buzzer",
+    "timer",
+    "verilog",
+    "dip-switch",
+    "pmod"
+   ],
+   "summary_before": "The Morse Code Keyer converts dit/dah paddle inputs into Morse code outputs, including auxiliary dit/dah signals, a buzzer tone, and a 7-segment display of the last character. It supports straight key or iambic paddles (types A and B) and adjustable speed from 7 to 110 WPM via dip switches. The design emphasizes proper radio keying practices, warning against using the auxiliary output directly for transmitter control, and recommends a companion PCB for interfacing with radio hardware. It operates at 12 MHz and outputs to a seven-segment display.",
+   "summary": "The Morse Code Keyer converts dit/dah paddle inputs into Morse code outputs, including auxiliary dit/dah signals, a buzzer tone, and a 7-segment display of the last character. It supports straight key or iambic paddles (types A and B) and adjustable speed from 7 to 110 WPM via dip switches. The design emphasizes proper radio keying practices, warning against using the auxiliary output directly for transmitter control, and recommends a companion PCB for interfacing with radio hardware. It operates at 12 MHz and outputs to a seven-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "9aadad6e09c3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source does not state the design is built from discrete transistors rather than standard cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Already present; the design is an analog bandgap reference."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Already present; silicon test reports show working results."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level tag; analog, bandgap, voltage-reference, current-mirror and silicon-tested are supported.",
+   "tags_before": [
+    "bandgap",
+    "voltage-reference",
+    "current-mirror",
+    "analog",
+    "transistor-level",
+    "silicon-tested"
+   ],
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "current-mirror",
+    "analog",
+    "silicon-tested"
+   ],
+   "summary_before": "This current-mode bandgap reference provides a stable 1V voltage and 5.6uA current, with an integrated testbuffer for measurement. It is tested by applying external bias and control signals, and requires a multimeter, power supply, and optionally an oven for temperature stability tests. Silicon results show the voltage output at 1.15V and current at 6.9uA, with minor documentation errors noted. The design includes an 8-bit trim for process variations and can be enabled or disabled via a control pin.",
+   "summary": "This current-mode bandgap reference provides a stable 1V voltage and 5.6uA current, with an integrated testbuffer for measurement. It is tested by applying external bias and control signals, and requires a multimeter, power supply, and optionally an oven for temperature stability tests. Silicon results show the voltage output at 1.15V and current at 6.9uA, with minor documentation errors noted. The design includes an 8-bit trim for process variations and can be enabled or disabled via a control pin.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8631,
+  "completion_tokens": 1439,
+  "total_tokens": 10070,
+  "cost": 0.0043161,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043161,
+   "upstream_inference_prompt_cost": 0.0025893,
+   "upstream_inference_completions_cost": 0.0017268
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043161,
+ "elapsed_s": 15.3
+}

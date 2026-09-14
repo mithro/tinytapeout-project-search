@@ -1,0 +1,230 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "95254467bae6",
+  "61a3142e3431",
+  "760aad6a1b9b",
+  "d007594ac8bc",
+  "ee59bb0801dd",
+  "8b553d3672bb"
+ ],
+ "results": [
+  {
+   "key": "95254467bae6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "VGA is already covered by vga/video; no separate display interface evidence"
+    },
+    {
+     "tag": "graphics",
+     "reason": "concentric circles are graphics but the canonical output tags vga/video suffice; not clearly a graphics-rendering block"
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "moving coloured concentric circles is a visual showcase pattern"
+    }
+   ],
+   "notes": "Removed display/graphics as redundant with vga/video; added demoscene for the visual showcase.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "verilog",
+    "demoscene"
+   ],
+   "summary_before": "This design generates a VGA signal displaying moving coloured concentric circles. It uses a standard hvsync generator and outputs 2-bit per channel colour signals. It requires an external Tiny VGA PMOD and a VGA monitor to view the output. The design is a basic demo intended for testing VGA output on Tiny Tapeout.",
+   "summary": "This design generates a VGA signal displaying moving coloured concentric circles. It uses a standard hvsync generator and outputs 2-bit per channel colour signals. It requires an external Tiny VGA PMOD and a VGA monitor to view the output. The design is a basic demo intended for testing VGA output on Tiny Tapeout.",
+   "summary_changed": false
+  },
+  {
+   "key": "61a3142e3431",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "bcd",
+    "7-segment",
+    "fsm",
+    "combinational",
+    "systemverilog"
+   ],
+   "tags": [
+    "bcd",
+    "7-segment",
+    "fsm",
+    "combinational",
+    "systemverilog"
+   ],
+   "summary_before": "This design converts an 8-bit binary number to a decimal number displayed as three BCD digits on a 7-segment display, using the Double Dabble algorithm. The conversion is implemented with combinational logic, while a state machine sequentially displays hundreds, tens, ones, and a decimal point. The design has an 8-bit binary input, an 8-bit output for the 7-segment display, and an 8-bit bidirectional port that outputs the tens and ones. It requires no external hardware and has been tested with several binary values.",
+   "summary": "This design converts an 8-bit binary number to a decimal number displayed as three BCD digits on a 7-segment display, using the Double Dabble algorithm. The conversion is implemented with combinational logic, while a state machine sequentially displays hundreds, tens, ones, and a decimal point. The design has an 8-bit binary input, an 8-bit output for the 7-segment display, and an 8-bit bidirectional port that outputs the tens and ones. It requires no external hardware and has been tested with several binary values.",
+   "summary_changed": false
+  },
+  {
+   "key": "760aad6a1b9b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vco",
+     "reason": "the oscillator is a digitally controlled oscillator (DCO), not a voltage controlled oscillator"
+    },
+    {
+     "tag": "asic",
+     "reason": "no evidence of an ASIC-specific implementation claim beyond being a Tiny Tapeout design"
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-generator",
+     "reason": "the DCO generates the output clock"
+    },
+    {
+     "tag": "fsm",
+     "reason": "the phase-frequency detector uses a state-machine architecture"
+    }
+   ],
+   "notes": "Replaced vco with clock-generator/fsm and removed unsupported asic tag.",
+   "tags_before": [
+    "pll",
+    "vco",
+    "phase-detector",
+    "clock-generator",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "pll",
+    "phase-detector",
+    "clock-generator",
+    "verilog",
+    "fsm"
+   ],
+   "summary_before": "This project implements an all-digital phase-locked loop (ADPLL) with a phase-frequency detector, proportional-integral loop filter, 24-bit phase-accumulator digitally controlled oscillator, and a leaky-bucket lock detector. It uses a reference input on ui_in[0] and outputs the DCO clock and lock status on uo_out[1] and uo_out[0] respectively. Testing involves providing a system clock and a reference square wave, then monitoring the outputs with an oscilloscope or logic analyzer to verify frequency tracking and lock assertion. The design is notable for its fully digital architecture and configurable lock thresholds.",
+   "summary": "This project implements an all-digital phase-locked loop (ADPLL) with a phase-frequency detector, proportional-integral loop filter, 24-bit phase-accumulator digitally controlled oscillator, and a leaky-bucket lock detector. It uses a reference input on ui_in[0] and outputs the DCO clock and lock status on uo_out[1] and uo_out[0] respectively. Testing involves providing a system clock and a reference square wave, then monitoring the outputs with an oscilloscope or logic analyzer to verify frequency tracking and lock assertion. The design is notable for its fully digital architecture and configurable lock thresholds.",
+   "summary_changed": false
+  },
+  {
+   "key": "d007594ac8bc",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "tpu",
+    "systolic-array",
+    "mac-unit",
+    "accelerator",
+    "machine-learning",
+    "dsp",
+    "verilog",
+    "multi-tile"
+   ],
+   "tags": [
+    "tpu",
+    "systolic-array",
+    "mac-unit",
+    "accelerator",
+    "machine-learning",
+    "dsp",
+    "verilog",
+    "multi-tile"
+   ],
+   "summary_before": "This design multiplies two 2x2 matrices of signed 8-bit elements into signed 16-bit results using a systolic array of four multiply-add-accumulate processing elements. It is controlled through eight data inputs plus load, transpose, activation, and done signals, with results presented on eight output pins, and it is intended to be driven by an external microcontroller that supplies the clock and coordinates I/O. It stores two input matrices in registers and includes a control unit and feeder module to schedule data through the array. The documentation claims over 99.8 million operations per second in a streamed processing pattern, though no silicon measurements are reported.",
+   "summary": "This design multiplies two 2x2 matrices of signed 8-bit elements into signed 16-bit results using a systolic array of four multiply-add-accumulate processing elements. It is controlled through eight data inputs plus load, transpose, activation, and done signals, with results presented on eight output pins, and it is intended to be driven by an external microcontroller that supplies the clock and coordinates I/O. It stores two input matrices in registers and includes a control unit and feeder module to schedule data through the array. The documentation claims over 99.8 million operations per second in a streamed processing pattern, though no silicon measurements are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "ee59bb0801dd",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "analog",
+    "multiplexer",
+    "ring-oscillator",
+    "mixed-signal",
+    "characterization"
+   ],
+   "tags": [
+    "analog",
+    "multiplexer",
+    "ring-oscillator",
+    "mixed-signal",
+    "characterization"
+   ],
+   "summary_before": "This project implements an analog-controlled 8-pin multiplexer that selects among eight test circuits based on an input voltage from 0V to 1.8V, with thresholds every 200mV. The test circuits include various ring oscillators (3, 5, 7 inverters), frequency dividers using T flip-flops, and a resistor divider, allowing comprehensive testing of the design. The multiplexer uses only two analog pins: one for control voltage and one for the selected output. Testing requires a laboratory power supply, multimeter, and oscilloscope to measure frequencies and signal characteristics.",
+   "summary": "This project implements an analog-controlled 8-pin multiplexer that selects among eight test circuits based on an input voltage from 0V to 1.8V, with thresholds every 200mV. The test circuits include various ring oscillators (3, 5, 7 inverters), frequency dividers using T flip-flops, and a resistor divider, allowing comprehensive testing of the design. The multiplexer uses only two analog pins: one for control voltage and one for the selected output. Testing requires a laboratory power supply, multimeter, and oscilloscope to measure frequencies and signal characteristics.",
+   "summary_changed": false
+  },
+  {
+   "key": "8b553d3672bb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "the source describes a simple accumulator thread, not a finite state machine"
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "created as a course example for CMU's 18-341 class"
+    }
+   ],
+   "notes": "Removed unsupported fsm tag and added workshop for the course context.",
+   "tags_before": [
+    "education",
+    "adder",
+    "fsm",
+    "systemverilog"
+   ],
+   "tags": [
+    "education",
+    "adder",
+    "systemverilog",
+    "workshop"
+   ],
+   "summary_before": "This project is an instantiation of the SumItUp hardware thread from Don Thomas's textbook and CMU's 18-341 course, which accumulates a series of 8-bit values presented on the input pins. When go_l is asserted the thread begins adding subsequent values until the input equals zero, at which point done is asserted and the 8-bit sum appears on the outputs, with carry beyond eight bits discarded. No external hardware is required, and the author plans to write cocotb testbenches for verification. The design is a simple educational example of a hardware thread with a handshake interface.",
+   "summary": "This project is an instantiation of the SumItUp hardware thread from Don Thomas's textbook and CMU's 18-341 course, which accumulates a series of 8-bit values presented on the input pins. When go_l is asserted the thread begins adding subsequent values until the input equals zero, at which point done is asserted and the 8-bit sum appears on the outputs, with carry beyond eight bits discarded. No external hardware is required, and the author plans to write cocotb testbenches for verification. The design is a simple educational example of a hardware thread with a handshake interface.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8046,
+  "completion_tokens": 1235,
+  "total_tokens": 9281,
+  "cost": 0.002518278,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002518278,
+   "upstream_inference_prompt_cost": 0.001258578,
+   "upstream_inference_completions_cost": 0.0012597
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002518278,
+ "elapsed_s": 53.0
+}

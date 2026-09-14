@@ -1,0 +1,403 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "53b02015e836",
+  "d861b22288bc",
+  "1f2a55d7e54e",
+  "e81e1d1ae330",
+  "f32557c34242",
+  "25a399f2e38c"
+ ],
+ "results": [
+  {
+   "key": "53b02015e836",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "pwm is an output tag in the vocabulary, but the design's PWM is a peripheral feature, not the primary output interface; the pins show GPIO_OUT[4]/PWM[0] and GPIO_OUT[5]/PWM[1] as multiplexed GPIO, and the design is an SoC, not a PWM output block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The design contains a RISC-V processor core, which is a CPU."
+    },
+    {
+     "tag": "memory",
+     "reason": "The pins include FLASH_CS_N and RAM_CS_N, indicating external memory interfaces."
+    },
+    {
+     "tag": "qspi",
+     "reason": "The design uses a QSPI Pmod for program storage, as stated in the testing prerequisites."
+    },
+    {
+     "tag": "i2c",
+     "reason": "The pins include I2C_SDA and I2C_SCL, and the description lists I2C as a peripheral."
+    },
+    {
+     "tag": "uart",
+     "reason": "The pins include UART0_RX and UART0_TX, and the description lists UART as a peripheral."
+    },
+    {
+     "tag": "spi",
+     "reason": "The pins include SPI_MISO, SPI_CS_N, SPI_SCLK, and SPI_MOSI, and the description lists SPI as a peripheral."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The pins include multiple GPIO_IN and GPIO_OUT signals, and the description lists GPIO as a peripheral."
+    },
+    {
+     "tag": "microcontroller",
+     "reason": "The design is a microcontroller-style SoC with a CPU and peripherals."
+    },
+    {
+     "tag": "soc",
+     "reason": "The design is explicitly described as a System-on-Chip (SoC)."
+    },
+    {
+     "tag": "risc-v",
+     "reason": "The design uses a RISC-V core (RV32IC_Zicsr_Zifencei)."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed pwm tag as it is an output tag not matching the SoC's primary interface; added missing interface and type tags supported by pins and text.",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "spi",
+    "i2c",
+    "uart",
+    "pwm",
+    "gpio",
+    "qspi",
+    "microcontroller",
+    "verilog"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "spi",
+    "i2c",
+    "uart",
+    "gpio",
+    "qspi",
+    "microcontroller",
+    "verilog",
+    "cpu",
+    "memory"
+   ],
+   "summary_before": "SotaSoC is a RISC-V 32-bit embedded system-on-chip with an RV32IC core and peripherals including SPI, I2C, UART, PWM, and GPIO. It is used by connecting a QSPI Pmod for program storage and optionally other peripherals like an ST7789 LCD, with software support for FreeRTOS and bare-metal. External hardware includes a QSPI Pmod, LEDs, and an optional SPI LCD. The design is notable for its configurability and support for FPGA prototyping, but no silicon test results are provided.",
+   "summary": "SotaSoC is a RISC-V 32-bit embedded system-on-chip with an RV32IC core and peripherals including SPI, I2C, UART, PWM, and GPIO. It is used by connecting a QSPI Pmod for program storage and optionally other peripherals like an ST7789 LCD, with software support for FreeRTOS and bare-metal. External hardware includes a QSPI Pmod, LEDs, and an optional SPI LCD. The design is notable for its configurability and support for FPGA prototyping, but no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "d861b22288bc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "The design outputs raw X and Y digital signals for a vector display, not a VGA signal; the title 'Dandy VGA' is a pun, but the interface is not VGA."
+    },
+    {
+     "tag": "dac",
+     "reason": "The design does not include a DAC; it requires external DACs for analog output."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "The design does not include an R2R DAC; it suggests using an external R2R ladder for conversion."
+    }
+   ],
+   "add": [
+    {
+     "tag": "graphics",
+     "reason": "The design is a vector graphics adapter that draws primitives."
+    },
+    {
+     "tag": "uart",
+     "reason": "The design receives instructions over UART at 921600 baud."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The design uses a state machine to execute primitive instructions."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "The design is for vector graphics animation and demoscene-style output."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed vga, dac, and r2r-dac tags as the design does not implement these interfaces; added graphics, uart, fsm, demoscene, and verilog tags supported by the source.",
+   "tags_before": [
+    "graphics",
+    "vga",
+    "uart",
+    "fsm",
+    "dac",
+    "demoscene",
+    "verilog",
+    "r2r-dac"
+   ],
+   "tags": [
+    "graphics",
+    "uart",
+    "fsm",
+    "demoscene",
+    "verilog"
+   ],
+   "summary_before": "This is a serial vector graphics adapter that receives primitive drawing instructions over a UART at 921600 baud and drives X and Y outputs for an XY vector display. It has sixteen instruction registers that can be programmed and updated live over serial, with a state machine executing primitives such as lines and squares, and a safe/unsafe mode toggle plus a clock divider input for slow DAC drive speeds. The 8-bit X and Y outputs can be converted to analog with an R2R ladder or similar DAC arrangement, and the author tested it with a Teensy 4.1. External hardware needed includes two DACs, a vector graphics display such as an oscilloscope in XY mode, and a fast UART source.",
+   "summary": "This is a serial vector graphics adapter that receives primitive drawing instructions over a UART at 921600 baud and drives X and Y outputs for an XY vector display. It has sixteen instruction registers that can be programmed and updated live over serial, with a state machine executing primitives such as lines and squares, and a safe/unsafe mode toggle plus a clock divider input for slow DAC drive speeds. The 8-bit X and Y outputs can be converted to analog with an R2R ladder or similar DAC arrangement, and the author tested it with a Teensy 4.1. External hardware needed includes two DACs, a vector graphics display such as an oscilloscope in XY mode, and a fast UART source.",
+   "summary_changed": false
+  },
+  {
+   "key": "1f2a55d7e54e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design does not generate a clock; it requires an external 31.5 MHz clock."
+    },
+    {
+     "tag": "game",
+     "reason": "The design is a clock, not a game."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The design outputs VGA signals (R1, G1, B1, vsync, R0, G0, B0, hsync) and matches the Tiny VGA pinout."
+    },
+    {
+     "tag": "video",
+     "reason": "The design generates a video signal for a VGA monitor."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The design renders graphics (triangles) on a VGA display."
+    },
+    {
+     "tag": "retro",
+     "reason": "The design recreates a retro-style analog clock with triangle rendering."
+    }
+   ],
+   "notes": "Removed clock-generator and game tags as they are not supported; added vga, video, graphics, and retro tags based on pins and description.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "clock-generator",
+    "retro",
+    "game"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "retro"
+   ],
+   "summary_before": "This design displays a 12-hour analog clock rendered with triangles using a race-the-beam technique on a 640x480 VGA output. It requires an external Tiny VGA interface and a 31.5 MHz clock, and accepts buttons to advance the hour and minute hands. The triangle coordinates are stored in a table and the rendering equations are recalculated during the vertical blanking interval by a small state machine. Debug pins allow inspection of internal variables, and a software model in Rust is provided for understanding.",
+   "summary": "This design displays a 12-hour analog clock rendered with triangles using a race-the-beam technique on a 640x480 VGA output. It requires an external Tiny VGA interface and a 31.5 MHz clock, and accepts buttons to advance the hour and minute hands. The triangle coordinates are stored in a table and the rendering equations are recalculated during the vertical blanking interval by a small state machine. Debug pins allow inspection of internal variables, and a software model in Rust is provided for understanding.",
+   "summary_changed": false
+  },
+  {
+   "key": "e81e1d1ae330",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "pwm is an output tag, but the design's primary output is audio; PWM is one of the audio output methods, not the main interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "music",
+     "reason": "The design is a programmable sound generator for music generation."
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "The design is a replica of the SN76489 sound generator chip."
+    },
+    {
+     "tag": "audio",
+     "reason": "The design outputs audio signals (digital and PWM)."
+    },
+    {
+     "tag": "chiptune",
+     "reason": "The design is intended for 8-bit era chiptune music generation."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "The noise generator uses a linear-feedback shift register."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed pwm tag as it is not the primary output; added music, sound-generator, audio, chiptune, lfsr, and verilog tags supported by the source.",
+   "tags_before": [
+    "music",
+    "sound-generator",
+    "audio",
+    "pwm",
+    "chiptune",
+    "lfsr"
+   ],
+   "tags": [
+    "music",
+    "sound-generator",
+    "audio",
+    "chiptune",
+    "lfsr",
+    "verilog"
+   ],
+   "summary_before": "This project is a Verilog replica of the SN76489 programmable sound generator, a classic chip used in many 8-bit systems. It includes three square wave tone generators and a noise generator with programmable attenuation, and is controlled via an 8-bit data bus. It outputs both PWM and digital audio, and requires external hardware such as a DAC or low-pass filter and speaker for playback. The design is parameterized to match various SN76489 family variants and includes a comprehensive test suite.",
+   "summary": "This project is a Verilog replica of the SN76489 programmable sound generator, a classic chip used in many 8-bit systems. It includes three square wave tone generators and a noise generator with programmable attenuation, and is controlled via an 8-bit data bus. It outputs both PWM and digital audio, and requires external hardware such as a DAC or low-pass filter and speaker for playback. The design is parameterized to match various SN76489 family variants and includes a comprehensive test suite.",
+   "summary_changed": false
+  },
+  {
+   "key": "f32557c34242",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design outputs VGA signals, not a generic display interface; display is an output tag but less specific than vga."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "The design is a two-player Pong game."
+    },
+    {
+     "tag": "pong",
+     "reason": "The design is a Pong-style arcade game implementation."
+    },
+    {
+     "tag": "vga",
+     "reason": "The design outputs VGA signals (R0, G0, B0, VSYNC, R1, G1, B1, HSYNC) and matches the Tiny VGA pinout."
+    },
+    {
+     "tag": "video",
+     "reason": "The design generates a video signal for a VGA display."
+    },
+    {
+     "tag": "rotary-encoder",
+     "reason": "The design uses rotary encoders for paddle control."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed display tag as vga is more specific; added game, pong, vga, video, rotary-encoder, and verilog tags supported by the source.",
+   "tags_before": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "display",
+    "rotary-encoder",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "rotary-encoder",
+    "verilog"
+   ],
+   "summary_before": "This is a two-player Pong game implemented in Verilog for a 640x480 VGA display. It uses two rotary encoders for paddle control and outputs VGA signals through a TinyVGA Pmod or similar. The game logic handles ball movement, collision detection, and scoring, and it can be simulated with Verilator and SDL2. The design is a complete game on a single tile and requires external encoders and a VGA interface.",
+   "summary": "This is a two-player Pong game implemented in Verilog for a 640x480 VGA display. It uses two rotary encoders for paddle control and outputs VGA signals through a TinyVGA Pmod or similar. The game logic handles ball movement, collision detection, and scoring, and it can be simulated with Verilator and SDL2. The design is a complete game on a single tile and requires external encoders and a VGA interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "25a399f2e38c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design uses individual registers for operands A and B, not a register file."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The design uses a dedicated 8-bit bidirectional data port, not general-purpose I/O."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The design uses a counter to sequence operations, not a finite state machine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "calculator",
+     "reason": "The design is a 16-bit calculator with ALU operations."
+    },
+    {
+     "tag": "alu",
+     "reason": "The design is built around a 16-bit ALU with twelve operations."
+    },
+    {
+     "tag": "counter",
+     "reason": "The design uses a counter to sequence the load, execute, and readout phases."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed register-file, gpio, and fsm tags as they are not supported; added calculator, alu, counter, and verilog tags based on the source.",
+   "tags_before": [
+    "calculator",
+    "alu",
+    "register-file",
+    "gpio",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "calculator",
+    "alu",
+    "verilog",
+    "counter"
+   ],
+   "summary_before": "This design is a 16-bit calculator built around an ALU with twelve selectable operations, including arithmetic, shifts, rotates, and bitwise logic. An 8-bit bidirectional data port is used to load the two 16-bit operands byte by byte and to read back the 16-bit result, while four input pins select the operation and five output pins report status flags such as zero, sign, carry, and overflow. A small counter sequences the load, execute, and readout phases, and the operation is started by releasing the reset pin. The documentation is detailed with a timing diagram and operation table, but the testing section is marked TBC and no silicon results are given.",
+   "summary": "This design is a 16-bit calculator built around an ALU with twelve selectable operations, including arithmetic, shifts, rotates, and bitwise logic. An 8-bit bidirectional data port is used to load the two 16-bit operands byte by byte and to read back the 16-bit result, while four input pins select the operation and five output pins report status flags such as zero, sign, carry, and overflow. A small counter sequences the load, execute, and readout phases, and the operation is started by releasing the reset pin. The documentation is detailed with a timing diagram and operation table, but the testing section is marked TBC and no silicon results are given.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 11098,
+  "completion_tokens": 2726,
+  "total_tokens": 13824,
+  "cost": 0.0066006,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0066006,
+   "upstream_inference_prompt_cost": 0.0033294,
+   "upstream_inference_completions_cost": 0.0032712
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0066006,
+ "elapsed_s": 14.4
+}

@@ -1,0 +1,223 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5194ab91c81a",
+  "96adca1b3c2c",
+  "4635e78ff7ef",
+  "107f8f71e02a",
+  "234b5e56ac36",
+  "182283e091e1"
+ ],
+ "results": [
+  {
+   "key": "5194ab91c81a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "edge-detector",
+     "reason": "edge-detector means detecting rising/falling signal edges, not image edge detection; the Sobel filter is image-processing"
+    }
+   ],
+   "add": [
+    {
+     "tag": "image-processing",
+     "reason": "already present, no change needed"
+    }
+   ],
+   "notes": "Removed edge-detector: it denotes signal edge detection, not image edge detection.",
+   "tags_before": [
+    "image-processing",
+    "spi",
+    "lfsr",
+    "systemverilog",
+    "edge-detector"
+   ],
+   "tags": [
+    "image-processing",
+    "spi",
+    "lfsr",
+    "systemverilog"
+   ],
+   "summary_before": "This SystemVerilog design performs grayscale conversion, Sobel edge detection, and thresholding on pixel data received over an SPI interface. Processing modes are selected via input pins, and an internal LFSR can optionally supply test pixels instead of external SPI data. The design requires an external SPI master such as a Raspberry Pi to send pixel data, and the processed result appears on a single output pin. The documentation is brief but includes a block diagram and pin-level usage details, though the thresholding and LFSR behavior are only lightly described.",
+   "summary": "This SystemVerilog design performs grayscale conversion, Sobel filtering, and thresholding on pixel data received over an SPI interface. Processing modes are selected via input pins, and an internal LFSR can optionally supply test pixels instead of external SPI data. The design requires an external SPI master such as a Raspberry Pi to send pixel data, and the processed result appears on a single output pin. The documentation is brief but includes a block diagram and pin-level usage details, though the thresholding and LFSR behavior are only lightly described.",
+   "summary_changed": true
+  },
+  {
+   "key": "96adca1b3c2c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "instrumentation",
+    "verilog"
+   ],
+   "tags": [
+    "uart",
+    "instrumentation",
+    "verilog"
+   ],
+   "summary_before": "This project reads eight digital input pins and transmits their states over a UART interface at 1,000,000 baud. It outputs a serial transmit line and a clock output. To use it, an external UART receiver must be connected to the transmit pin. The design is described as a 'useless logic analyzer' and has minimal documentation, but it functions as a simple pin-state monitor.",
+   "summary": "This project reads eight digital input pins and transmits their states over a UART interface at 1,000,000 baud. It outputs a serial transmit line and a clock output. To use it, an external UART receiver must be connected to the transmit pin. The design is described as a 'useless logic analyzer' and has minimal documentation, but it functions as a simple pin-state monitor.",
+   "summary_changed": false
+  },
+  {
+   "key": "4635e78ff7ef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "the source describes LIF cortical columns and a GF16 mesh, not a spiking neural network implementation"
+    },
+    {
+     "tag": "floating-point",
+     "reason": "the GF16 format is a custom pseudo-float used for routing/anchoring, not a floating-point arithmetic unit"
+    }
+   ],
+   "add": [
+    {
+     "tag": "neural-network",
+     "reason": "cortical columns with LIF dynamics and BitNet ternary MLP layers constitute a neural network design"
+    },
+    {
+     "tag": "soc",
+     "reason": "the design integrates cortical columns, a PE mesh, ROMs, Wishbone, and a router into one chip"
+    }
+   ],
+   "notes": "Removed spiking-neural-network and floating-point; added neural-network and soc to match the described architecture.",
+   "tags_before": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "floating-point",
+    "rom",
+    "lfsr",
+    "accelerator",
+    "multi-tile",
+    "verilog"
+   ],
+   "tags": [
+    "neuromorphic",
+    "rom",
+    "lfsr",
+    "accelerator",
+    "multi-tile",
+    "verilog",
+    "neural-network",
+    "soc"
+   ],
+   "summary_before": "TRI-1 Gamma is a 32-tile neuromorphic design combining eight cortical columns with leaky-integrate-and-fire dynamics and ternary MLP layers, a 20-PE GF16 mesh, and 24 supporting modules including ROMs, matrix multipliers, a Blake3 anchor and monitors. It includes a four-port die-to-die router for multi-chip spike propagation, and on reset it drives the canonical constant 0x47C0 onto the output pins. The design uses a custom GF16 floating-point format with shift-and-add mantissa multiplication, and no external hardware is required for single-die testing. The documentation is dense and uses unusual terminology, so the exact function of many blocks is hard to verify from the text alone.",
+   "summary": "TRI-1 Gamma is a 32-tile neuromorphic design combining eight cortical columns with leaky-integrate-and-fire dynamics and ternary MLP layers, a 20-PE GF16 mesh, and 24 supporting modules including ROMs, matrix multipliers, a Blake3 anchor and monitors. It includes a four-port die-to-die router for multi-chip spike propagation, and on reset it drives the canonical constant 0x47C0 onto the output pins. The design uses a custom GF16 format with shift-and-add mantissa multiplication, and no external hardware is required for single-die testing. The documentation is dense and uses unusual terminology, so the exact function of many blocks is hard to verify from the text alone.",
+   "summary_changed": true
+  },
+  {
+   "key": "107f8f71e02a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "education",
+    "vga",
+    "text",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "education",
+    "vga",
+    "text",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This design displays 'PHILIPPINE IC DESIGN BOOTCAMP 2026!' in a Matrix-style display on a VGA monitor. It is based on the VGA Glyph mode by James Ross and includes palette selection and VGA mode bits. The design requires a VGA monitor and a 25 MHz clock. The documentation is minimal and refers to an external GitHub repository for details.",
+   "summary": "This design displays 'PHILIPPINE IC DESIGN BOOTCAMP 2026!' in a Matrix-style display on a VGA monitor. It is based on the VGA Glyph mode by James Ross and includes palette selection and VGA mode bits. The design requires a VGA monitor and a 25 MHz clock. The documentation is minimal and refers to an external GitHub repository for details.",
+   "summary_changed": false
+  },
+  {
+   "key": "234b5e56ac36",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "perceptron",
+     "reason": "the source describes a two-layer network with 4 hidden neurons, not a single perceptron classifier"
+    }
+   ],
+   "add": [
+    {
+     "tag": "edge-ai",
+     "reason": "small embedded neural inference on 7-segment inputs fits embedded AI inference"
+    }
+   ],
+   "notes": "Removed perceptron (multi-layer network, not single perceptron); added edge-ai for embedded inference.",
+   "tags_before": [
+    "neural-network",
+    "7-segment",
+    "machine-learning",
+    "perceptron",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "7-segment",
+    "machine-learning",
+    "verilog",
+    "edge-ai"
+   ],
+   "summary_before": "This design implements a small two-layer neural network with 4 hidden neurons that predicts digits 0-9 from 7-segment display patterns. It takes the 7 segment inputs and outputs a 4-bit prediction. The documentation is minimal, providing only a brief description and no details on training, accuracy, or testing. It likely requires no external hardware beyond input switches and output LEDs for verification.",
+   "summary": "This design implements a small two-layer neural network with 4 hidden neurons that predicts digits 0-9 from 7-segment display patterns. It takes the 7 segment inputs and outputs a 4-bit prediction. The documentation is minimal, providing only a brief description and no details on training, accuracy, or testing. It likely requires no external hardware beyond input switches and output LEDs for verification.",
+   "summary_changed": false
+  },
+  {
+   "key": "182283e091e1",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "logic-gate",
+    "combinational",
+    "wokwi",
+    "education",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "logic-gate",
+    "combinational",
+    "wokwi",
+    "education",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is described as just an AND gate, making it a minimal combinational logic design. The documentation fields are left as the default template text, so the exact input and output pin mapping is not stated. It is presumably tested by applying input combinations and observing the output, but no test procedure is documented. No external hardware is mentioned, and the design appears to be a first Wokwi exercise.",
+   "summary": "This project is described as just an AND gate, making it a minimal combinational logic design. The documentation fields are left as the default template text, so the exact input and output pin mapping is not stated. It is presumably tested by applying input combinations and observing the output, but no test procedure is documented. No external hardware is mentioned, and the design appears to be a first Wokwi exercise.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7330,
+  "completion_tokens": 1158,
+  "total_tokens": 8488,
+  "cost": 0.001657366,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001657366,
+   "upstream_inference_prompt_cost": 0.000893086,
+   "upstream_inference_completions_cost": 0.00076428
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001657366,
+ "elapsed_s": 31.9
+}

@@ -1,0 +1,242 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a7765f732df2",
+  "ef65db1f90c1",
+  "d687edd9c611",
+  "511340cc70b4",
+  "fa0a4a53516d",
+  "7139396a0e41"
+ ],
+ "results": [
+  {
+   "key": "a7765f732df2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "VGA output is already covered by vga/video; no generic display interface is described"
+    },
+    {
+     "tag": "art",
+     "reason": "a bouncing logo demo is a visual showcase, better described as demoscene than art"
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "animated bouncing logo with kaleidoscope background is a visual showcase effect"
+    },
+    {
+     "tag": "silicon-art",
+     "reason": "decorative logo display on silicon"
+    }
+   ],
+   "notes": "Removed generic display/art tags and added demoscene and silicon-art to match the visual showcase nature of the design.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "art",
+    "display",
+    "video"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "demoscene",
+    "silicon-art"
+   ],
+   "summary_before": "This design displays a bouncing ROOTS logo with a kaleidoscope background and an animated colour gradient on a VGA monitor. It is configured through input pins, though the documentation does not specify what each input controls. The design requires a VGA monitor and a Tiny VGA PMOD for connection. It is a visual demo with no other external hardware requirements.",
+   "summary": "This design displays a bouncing ROOTS logo with a kaleidoscope background and an animated colour gradient on a VGA monitor. It is configured through input pins, though the documentation does not specify what each input controls. The design requires a VGA monitor and a Tiny VGA PMOD for connection. It is a visual demo with no other external hardware requirements.",
+   "summary_changed": false
+  },
+  {
+   "key": "ef65db1f90c1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fixed-point",
+     "reason": "the source only says 4-bit quantized results, never fixed-point arithmetic"
+    }
+   ],
+   "add": [
+    {
+     "tag": "edge-ai",
+     "reason": "compact 4-bit MAC NPU targeted at embedded neural network inference"
+    },
+    {
+     "tag": "accelerator",
+     "reason": "dedicated compute acceleration hardware for MAC operations"
+    }
+   ],
+   "notes": "Removed unsupported fixed-point tag and added edge-ai and accelerator tags supported by the NPU description.",
+   "tags_before": [
+    "npu",
+    "neural-network",
+    "mac-unit",
+    "machine-learning",
+    "fixed-point",
+    "verilog"
+   ],
+   "tags": [
+    "npu",
+    "neural-network",
+    "mac-unit",
+    "machine-learning",
+    "verilog",
+    "edge-ai",
+    "accelerator"
+   ],
+   "summary_before": "AtomNPU is a 4-bit neural processing unit designed to perform multiply-accumulate operations for neural network computations. It has 4-bit input and weight inputs and produces a 4-bit output, operating at 100 MHz. The documentation is very thin, with only a one-line description and placeholder text, so the exact MAC architecture and test procedure are not specified. It is a compact implementation of a basic NPU building block.",
+   "summary": "AtomNPU is a 4-bit neural processing unit designed to perform multiply-accumulate operations for neural network computations. It has 4-bit input and weight inputs and produces a 4-bit output, operating at 100 MHz. The documentation is very thin, with only a one-line description and placeholder text, so the exact MAC architecture and test procedure are not specified. It is a compact implementation of a basic NPU building block.",
+   "summary_changed": false
+  },
+  {
+   "key": "d687edd9c611",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "the source does not state the design is built from discrete transistors"
+    }
+   ],
+   "add": [],
+   "notes": "Removed transistor-level tag since the source never claims a discrete-transistor implementation.",
+   "tags_before": [
+    "bandgap",
+    "voltage-reference",
+    "analog",
+    "transistor-level",
+    "characterization"
+   ],
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "analog",
+    "characterization"
+   ],
+   "summary_before": "This analog bandgap reference is designed to provide a constant 1.2V output from a 3.3V supply. It is tested by placing the chip in an oven and measuring the output voltage across different temperatures. No external hardware is required for basic operation, though a multimeter is needed to measure the output. The documentation is minimal, providing only the basic function and test method, with no details on the circuit topology or performance.",
+   "summary": "This analog bandgap reference is designed to provide a constant 1.2V output from a 3.3V supply. It is tested by placing the chip in an oven and measuring the output voltage across different temperatures. No external hardware is required for basic operation, though a multimeter is needed to measure the output. The documentation is minimal, providing only the basic function and test method, with no details on the circuit topology or performance.",
+   "summary_changed": false
+  },
+  {
+   "key": "511340cc70b4",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "alu",
+    "pipeline",
+    "multiplier",
+    "divider",
+    "barrel-shifter",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "pipeline",
+    "multiplier",
+    "divider",
+    "barrel-shifter",
+    "verilog"
+   ],
+   "summary_before": "This is an 8-bit fully pipelined ALU that includes multiply, divide and barrel shifter functions along with flag and pipeline control logic. Operand A arrives on ui[0] to ui[7], operand B and the 3-bit opcode arrive on the bidirectional pins, and the 8-bit result appears on uo[0] to uo[7], with flags and pipeline enable also on the bidirectional pins. The design is self-contained and needs no external hardware beyond the standard demo board, though a logic analyzer or oscilloscope is suggested for detailed inspection. No silicon test results or detailed timing documentation are provided in the text.",
+   "summary": "This is an 8-bit fully pipelined ALU that includes multiply, divide and barrel shifter functions along with flag and pipeline control logic. Operand A arrives on ui[0] to ui[7], operand B and the 3-bit opcode arrive on the bidirectional pins, and the 8-bit result appears on uo[0] to uo[7], with flags and pipeline enable also on the bidirectional pins. The design is self-contained and needs no external hardware beyond the standard demo board, though a logic analyzer or oscilloscope is suggested for detailed inspection. No silicon test results or detailed timing documentation are provided in the text.",
+   "summary_changed": false
+  },
+  {
+   "key": "fa0a4a53516d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "edge-ai",
+     "reason": "no embedded inference target is stated; the design is a general SNN with STDP/reward learning"
+    }
+   ],
+   "add": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "already present, keep"
+    },
+    {
+     "tag": "memory",
+     "reason": "weights are loaded from memory as stated in the documentation"
+    }
+   ],
+   "notes": "Removed edge-ai since no embedded inference target is stated; memory tag is already supported by the weight-loading description.",
+   "tags_before": [
+    "spiking-neural-network",
+    "machine-learning",
+    "neural-network",
+    "edge-ai",
+    "memory",
+    "neuromorphic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "machine-learning",
+    "neural-network",
+    "memory",
+    "neuromorphic"
+   ],
+   "summary_before": "This project implements a spiking neural network with STDP and reward-based learning. It consists of 8 layers, each with 2 neurons, and weights are loaded from memory. The design accepts 32 4-bit weights and 2 input values to execute. The documentation is brief but provides enough to understand the basic operation and testing procedure.",
+   "summary": "This project implements a spiking neural network with STDP and reward-based learning. It consists of 8 layers, each with 2 neurons, and weights are loaded from memory. The design accepts 32 4-bit weights and 2 input values to execute. The documentation is brief but provides enough to understand the basic operation and testing procedure.",
+   "summary_changed": false
+  },
+  {
+   "key": "7139396a0e41",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "alu",
+    "multiplier",
+    "adder",
+    "subtractor",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "multiplier",
+    "adder",
+    "subtractor",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This is a 4-bit ALU implemented in Verilog that performs addition, subtraction, negation, multiplication, and bitwise AND, OR and XOR. Two 4-bit operands are supplied on the eight input pins, and the operation is selected by driving the corresponding bidirectional pin high. The 4-bit result appears on the upper four output pins, while the lower four output pins carry the upper half of the multiplication result. The documentation is brief and does not describe timing, testing or any silicon results.",
+   "summary": "This is a 4-bit ALU implemented in Verilog that performs addition, subtraction, negation, multiplication, and bitwise AND, OR and XOR. Two 4-bit operands are supplied on the eight input pins, and the operation is selected by driving the corresponding bidirectional pin high. The 4-bit result appears on the upper four output pins, while the lower four output pins carry the upper half of the multiplication result. The documentation is brief and does not describe timing, testing or any silicon results.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6212,
+  "completion_tokens": 1082,
+  "total_tokens": 7294,
+  "cost": 0.001894548,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001894548,
+   "upstream_inference_prompt_cost": 0.000790908,
+   "upstream_inference_completions_cost": 0.00110364
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001894548,
+ "elapsed_s": 21.8
+}

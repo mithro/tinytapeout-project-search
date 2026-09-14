@@ -1,0 +1,201 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "dbbdffcabeef",
+  "d53d6ead43e3",
+  "aa49c957d54a",
+  "d70be2337974",
+  "c405c98a2fa8",
+  "46ebe6a79738",
+  "fdd9f196779b",
+  "2f035bb50a50",
+  "c6ebbfadeb29",
+  "f4ed1dbc490e"
+ ],
+ "results": [
+  {
+   "key": "dbbdffcabeef",
+   "tags": [
+    "pwm",
+    "rc-receiver",
+    "demodulator",
+    "7-segment",
+    "uart",
+    "decoder",
+    "counter",
+    "threshold"
+   ],
+   "summary": "This design demodulates eight PWM channels from an RC receiver by using counters and threshold values to decide whether each output should be HIGH or LOW. It outputs the decoded channel states on the bidirectional pins and also displays the number of active channels on a 7-segment display. A UART transmit wire is provided, though its function is not described. The design is tested by applying PWM signals with pulse widths above 1.9 ms or below 1.1 ms to verify the output transitions.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d53d6ead43e3",
+   "tags": [
+    "delay-measurement",
+    "cmos",
+    "vlsi",
+    "load",
+    "test",
+    "education",
+    "counter",
+    "overflow"
+   ],
+   "summary": "This project measures the delay of various CMOS VLSI designs from a textbook problem under varying load conditions. It uses selection inputs to choose among designs, provides an 8-bit input bus, and outputs a count and overflow signal to indicate timing results. The documentation is minimal and refers to an external readme for details, so the exact operation is not fully described here. It appears to be an educational experiment focused on characterizing delay.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "aa49c957d54a",
+   "tags": [
+    "neural-network",
+    "izhikevich",
+    "spiking-neuron",
+    "analog",
+    "configurable",
+    "cocotb",
+    "test",
+    "education"
+   ],
+   "summary": "This design implements the Izhikevich spiking neuron model in digital hardware with configurable A and B parameters and selectable neuron modes. It accepts a 5-bit input current and outputs an 8-bit signed membrane potential, with parameters set via input pins. The design is verified using a cocotb testbench that sweeps modes, parameters, and input currents. External hardware is required to drive the inputs and read the output, making it suitable for neuromorphic computing experiments.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d70be2337974",
+   "tags": [
+    "factory-test",
+    "test",
+    "counter",
+    "bidirectional",
+    "mirror",
+    "silicon-tested"
+   ],
+   "summary": "This is a factory test module that either outputs a counter or mirrors the bidirectional pins to the output pins based on a select input. When select is high, a counter is driven onto both the output and bidirectional pins; when low, the bidirectional pins are passed through to the outputs. Silicon test reports indicate the counter function works as expected. The design is used for validating the Tiny Tapeout manufacturing process.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c405c98a2fa8",
+   "tags": [
+    "game",
+    "logic-gates",
+    "puzzle",
+    "education",
+    "combinational",
+    "truth-table",
+    "switches",
+    "led"
+   ],
+   "summary": "Gate Guesser is a simple game where the user must deduce which logic gate connects each input to each output. The design contains one layer of combinational logic with 16 inputs and 8 outputs, each output being a specific logic function of one or two inputs. To play, the user connects switches to the inputs and LEDs to the outputs, then flips switches to observe the outputs and identify the gates. The solution is provided in the documentation as a spoiler.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "46ebe6a79738",
+   "tags": [
+    "stopwatch",
+    "spi",
+    "7-segment",
+    "max7219",
+    "timer",
+    "display",
+    "counter",
+    "clock"
+   ],
+   "summary": "This is a simple stopwatch that counts in hundredths of a second and displays the time on an 8-digit 7-segment display via SPI using a MAX7219 chip. It includes start/stop, lap time, and reset inputs, with outputs for SPI MOSI, CS, and CLK, as well as status signals. The design divides a 1 MHz clock to 100 Hz to drive the counters. External hardware needed includes buttons for control and a MAX7219-compatible display.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fdd9f196779b",
+   "tags": [
+    "frequency-to-digital",
+    "adc",
+    "synchronous",
+    "asynchronous",
+    "vco",
+    "multiplexer",
+    "silicon-tested",
+    "measurement"
+   ],
+   "summary": "This chip combines asynchronous and synchronous frequency-to-digital converters, selectable via a multiplexer. It takes a reference clock and a VCO signal as inputs and outputs a 5-bit digital value representing the measured frequency. The design was tested using an Analog Discovery 2 and reportedly worked flawlessly across all configurations. External hardware such as a waveform generator and logic analyzer is required for testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2f035bb50a50",
+   "tags": [
+    "game",
+    "flappy-bird",
+    "led-matrix",
+    "8x8",
+    "display",
+    "buttons",
+    "animation"
+   ],
+   "summary": "This design implements a simplified version of Flappy Bird on an 8x8 LED matrix. It uses two buttons for up and down control, with the matrix rows and columns driven by the output and bidirectional pins. The design was tested in simulation and on an FPGA before fabrication. External hardware required includes two buttons and an 8x8 LED matrix.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c6ebbfadeb29",
+   "tags": [
+    "dot-product",
+    "accelerator",
+    "coprocessor",
+    "vector",
+    "min",
+    "max",
+    "4-bit",
+    "rp2040"
+   ],
+   "summary": "multimac is a multi-use accelerator that computes vector dot products, minimums, and maximums on 4-bit data. It operates as a coprocessor, loading data via index and data pins and executing when run is asserted, producing a 12-bit result after at least 16 clock cycles. The design was tested using Verilator simulation with a C++ workbench, focusing on numerical stability. It is intended to be driven by an RP2040 for vector calculations.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f4ed1dbc490e",
+   "tags": [
+    "floating-point",
+    "fpu",
+    "mac",
+    "multiplier",
+    "adder",
+    "ieee754",
+    "neural-network",
+    "dsp"
+   ],
+   "summary": "Dgrid_FPU is a floating-point unit that performs two multiplications followed by an addition on four 32-bit inputs, producing a 32-bit output. It uses an 8-bit interface to load 128 bits of input over 16 clock cycles and read the result over 4 clock cycles, with a total operation taking 24 cycles. The design conforms to IEEE 754 and is intended for AI accelerators and DSP applications. Testing involves resetting, writing data, waiting for computation, and reading the output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6731,
+  "completion_tokens": 1764,
+  "total_tokens": 8495,
+  "cost": 0.003515685,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003515685,
+   "upstream_inference_prompt_cost": 0.001716405,
+   "upstream_inference_completions_cost": 0.00179928
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003515685,
+ "elapsed_s": 71.3
+}

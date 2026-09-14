@@ -1,0 +1,309 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1466ef7db808",
+  "8b5731910f1f",
+  "ed4e27c78849",
+  "0815986dd3d3",
+  "86ae551ab90e",
+  "d885308d07c7"
+ ],
+ "results": [
+  {
+   "key": "1466ef7db808",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The design is a branch predictor used with RISC-V traces; it is not itself a RISC-V processor core."
+    },
+    {
+     "tag": "cpu",
+     "reason": "It is a branch predictor block, not a general purpose or custom processor core."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "Perceptron-based branch prediction is not machine learning inference/training hardware."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "Text states it uses basic SPI to read address and direction data."
+    },
+    {
+     "tag": "memory",
+     "reason": "Uses latch-based memory from tt06-memory for the predictor tables."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The tests directory includes CocoTB tests for the design."
+    }
+   ],
+   "notes": "Removed risc-v/cpu/machine-learning tags since the design is a branch predictor block, not a processor or ML hardware; added spi, memory and cocotb which are explicitly documented.",
+   "tags_before": [
+    "branch-predictor",
+    "perceptron",
+    "risc-v",
+    "machine-learning",
+    "spi",
+    "memory",
+    "cocotb",
+    "cpu"
+   ],
+   "tags": [
+    "branch-predictor",
+    "perceptron",
+    "spi",
+    "memory",
+    "cocotb"
+   ],
+   "summary_before": "This design implements a minimal perceptron-based branch predictor for RISC-V processors, using SPI to receive branch addresses and ground truth directions. It is tested with CocoTB and a functional simulation that parses Spike execution logs, and it requires external hardware to drive and read its pins. Notable features include latch-based memory from a third-party repository and detailed documentation with waveforms. The design is not single-cycle due to memory constraints and includes debug outputs for monitoring internal state.",
+   "summary": "This design implements a minimal perceptron-based branch predictor that reads the lower 8 bits of a branch instruction address and its ground truth direction over basic SPI. It uses latch-based memory from a third-party repository and is not single-cycle due to memory architecture constraints. It is tested with CocoTB and a C++ functional simulation that parses Spike execution logs of a RISC-V reference program. The design exposes debug outputs for monitoring internal state and requires external hardware to drive and read its pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "8b5731910f1f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The 7-segment display is mentioned only as external test hardware, not as a design output interface."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output interface is implemented by the design itself."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the design is built in the Wokwi simulator."
+    },
+    {
+     "tag": "education",
+     "reason": "Simple gate-level demo intended for learning basic logic gates."
+    }
+   ],
+   "notes": "Removed 7-segment/display output tags since the display is external test hardware; added wokwi and education which are supported.",
+   "tags_before": [
+    "adder",
+    "logic-gate",
+    "flip-flop",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "logic-gate",
+    "flip-flop",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This Wokwi design bundles a full adder, XOR, NAND, AND, D flip-flop and inverter into a single block, with each gate's inputs and outputs brought out to dedicated pins. Inputs 0 and 1 feed the full adder with carry-in tied to ground, inputs 2 and 3 feed the XOR, input 4 feeds the D flip-flop, input 5 feeds the inverter, and inputs 6 and 7 feed the NAND and AND gates. Testing is done with DIP switches to set the gate inputs and a 7-segment display to observe the outputs. The documentation is clear about the wiring but the external hardware section is left as an unfilled template.",
+   "summary": "This Wokwi design bundles a full adder, XOR, NAND, AND, D flip-flop and inverter into a single block, with each gate's inputs and outputs brought out to dedicated pins. Inputs 0 and 1 feed the full adder with carry-in tied to ground, inputs 2 and 3 feed the XOR, input 4 feeds the D flip-flop, input 5 feeds the inverter, and inputs 6 and 7 feed the NAND and AND gates. Testing is done with DIP switches to set the gate inputs and a 7-segment display to observe the outputs. The documentation is clear about the wiring but the external hardware section is left as an unfilled template.",
+   "summary_changed": false
+  },
+  {
+   "key": "ed4e27c78849",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "It is a tiny 2x2 binary matrix multiplier, not dedicated compute acceleration hardware."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The design is purely combinational arithmetic with no clocked state."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Implements a 2x2 matrix multiplication."
+    }
+   ],
+   "notes": "Removed accelerator tag as the design is a minimal combinational matrix multiplier, not an accelerator.",
+   "tags_before": [
+    "multiplier",
+    "accelerator",
+    "combinational"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational"
+   ],
+   "summary_before": "This design performs a 2x2 matrix multiplication on binary matrices, producing a 2x2 result. Each matrix element is a single bit, set via input pins, and the output is provided as four 2-bit values. It is a minimal arithmetic unit that humorously claims to slow down AI model training. The design is purely combinational and requires no external hardware beyond switches and LEDs.",
+   "summary": "This design performs a 2x2 matrix multiplication on binary matrices, producing a 2x2 result. Each matrix element is a single bit, set via input pins, and the output is provided as four 2-bit values. It is a minimal combinational arithmetic unit that humorously claims to slow down AI model training. The design requires no external hardware beyond switches and LEDs.",
+   "summary_changed": true
+  },
+  {
+   "key": "0815986dd3d3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "The design converts between formats in both directions; encoder alone is misleading and not clearly supported."
+    },
+    {
+     "tag": "lookup-table",
+     "reason": "No evidence the implementation uses lookup tables."
+    }
+   ],
+   "add": [
+    {
+     "tag": "bcd",
+     "reason": "Explicitly converts to and from binary-coded decimal."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Conversion logic is combinational, with no clocked state described."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Removed encoder and lookup-table tags not supported by the source; added bcd, combinational and verilog.",
+   "tags_before": [
+    "bcd",
+    "encoder",
+    "verilog",
+    "combinational",
+    "lookup-table"
+   ],
+   "tags": [
+    "bcd",
+    "verilog",
+    "combinational"
+   ],
+   "summary_before": "Converts between binary, binary-coded decimal (BCD), and densely packed decimal (DPD) formats for values from 0 to 999. The design supports read and write operations via dedicated control pins and bidirectional data pins. It includes a Python test script that verifies conversions in all directions. External hardware is optional, as the design can be used with any input and output devices.",
+   "summary": "Converts between binary, binary-coded decimal (BCD), and densely packed decimal (DPD) formats for values from 0 to 999. The design supports read and write operations via dedicated control pins and bidirectional data pins. It includes a Python test script that verifies conversions in all directions. External hardware is optional, as the design can be used with any input and output devices.",
+   "summary_changed": false
+  },
+  {
+   "key": "86ae551ab90e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multi-tile",
+     "reason": "The design occupies 8x4 tiles, which is a single Tiny Tapeout tile group, not multiple tiles."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "Implements a tiny FABulous FPGA fabric."
+    },
+    {
+     "tag": "reconfigurable",
+     "reason": "The fabric is runtime reconfigurable via a bitstream."
+    },
+    {
+     "tag": "lookup-table",
+     "reason": "Built from 128 LUT4+FF logic cells."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Top-level cocotb tests are referenced for the configuration interface."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Removed multi-tile tag as the 8x4 tile design is a single tile group; added fpga, reconfigurable, lookup-table, cocotb and verilog.",
+   "tags_before": [
+    "fpga",
+    "lookup-table",
+    "reconfigurable",
+    "multi-tile",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "fpga",
+    "lookup-table",
+    "reconfigurable",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This design implements a tiny FABulous FPGA fabric with 128 LUT4+FF logic cells arranged in an 8x4 tile grid, including carry chains and global buffers. The I/O mimics the Tiny Tapeout interface, allowing user designs to be synthesized with Yosys and nextpnr, then loaded via a bitbang interface using ui[0] and ui[1] while reset is held low. The bitstream is uploaded while rst_n is asserted, and after configuration, the user design runs on the fabric. This is a notable open-source FPGA fabric intended for use as a reconfigurable target for small digital designs, with no external hardware required.",
+   "summary": "This design implements a tiny FABulous FPGA fabric with 128 LUT4+FF logic cells arranged in an 8x4 tile grid, including carry chains and global buffers. The I/O mimics the Tiny Tapeout interface, allowing user designs to be synthesized with Yosys and nextpnr, then loaded via a bitbang interface using ui[0] and ui[1] while reset is held low. The bitstream is uploaded while rst_n is asserted, and after configuration, the user design runs on the fabric. This is a notable open-source FPGA fabric intended for use as a reconfigurable target for small digital designs, with no external hardware required.",
+   "summary_changed": false
+  },
+  {
+   "key": "d885308d07c7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design computes Collatz sequences; no arithmetic logic unit is described."
+    },
+    {
+     "tag": "register-file",
+     "reason": "It uses a single 144-bit register, not a multi-register file."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "The design has IO and COMPUTE states with a documented state machine."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "Collatz conjecture brute-forcing is a novelty computation."
+    }
+   ],
+   "notes": "Removed alu and register-file tags not supported by the source; added fsm, verilog and esoteric.",
+   "tags_before": [
+    "esoteric",
+    "alu",
+    "fsm",
+    "register-file",
+    "verilog"
+   ],
+   "tags": [
+    "esoteric",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This design computes the Collatz sequence for a large integer input, returning the orbit length and an indicator of the maximum value reached. The input number is uploaded byte-by-byte into a 144-bit register via an address bus, and the computation is started with a pin; the busy indicator is polled until completion, after which the results are read back in 16-bit chunks. The design is intended for brute-force searching of path records, and the documentation explains the state machine and I/O protocol in detail. No external hardware is required beyond the chip itself.",
+   "summary": "This design computes the Collatz sequence for a large integer input, returning the orbit length and an indicator of the maximum value reached. The input number is uploaded byte-by-byte into a 144-bit register via an address bus, and the computation is started with a pin; the busy indicator is polled until completion, after which the results are read back in 16-bit chunks. The design is intended for brute-force searching of path records, and the documentation explains the state machine and I/O protocol in detail. No external hardware is required beyond the chip itself.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8921,
+  "completion_tokens": 1838,
+  "total_tokens": 10759,
+  "cost": 0.003356463,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003356463,
+   "upstream_inference_prompt_cost": 0.001481703,
+   "upstream_inference_completions_cost": 0.00187476
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003356463,
+ "elapsed_s": 66.5
+}

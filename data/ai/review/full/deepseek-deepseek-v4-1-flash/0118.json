@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "79522d9ffb65",
+  "495f395093c2",
+  "9ceb80b91371",
+  "39f4c23a3502",
+  "816510672f71",
+  "03cf915936e9"
+ ],
+ "results": [
+  {
+   "key": "79522d9ffb65",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "frequency-counter",
+     "reason": "The design measures duty cycle, not frequency; no frequency measurement is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed frequency-counter: the design measures duty cycle, not frequency.",
+   "tags_before": [
+    "pwm",
+    "instrumentation",
+    "fsm",
+    "counter",
+    "frequency-counter",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "instrumentation",
+    "fsm",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This project measures the duty cycle of an incoming PWM signal on ui[0] and reports a 7-bit value on uo[0] to uo[6], with uo[7] acting as a valid flag. A finite state machine counts how long the input is high within a fixed time window and computes the duty cycle, where 127 corresponds to 100 percent. It runs at 50 MHz and is tested by feeding a PWM signal from a generator and observing the outputs with a logic analyzer. No silicon test results are reported.",
+   "summary": "This project measures the duty cycle of an incoming PWM signal on ui[0] and reports a 7-bit value on uo[0] to uo[6], with uo[7] acting as a valid flag. A finite state machine counts how long the input is high within a fixed time window and computes the duty cycle, where 127 corresponds to 100 percent. It runs at 50 MHz and is tested by feeding a PWM signal from a generator and observing the outputs with a logic analyzer. No silicon test results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "495f395093c2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence the design is built from discrete transistors; language is simply listed as Analog."
+    },
+    {
+     "tag": "driver",
+     "reason": "An LED pin exists but no driver output stage is described in the sparse documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, giving only a one-line function and test note."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The design has analog pins and many digital pins tied to ground, combining analog and digital domains."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level and driver tags; added insufficient-doc and mixed-signal.",
+   "tags_before": [
+    "analog",
+    "comparator",
+    "current-mirror",
+    "transistor-level",
+    "driver"
+   ],
+   "tags": [
+    "analog",
+    "comparator",
+    "current-mirror",
+    "insufficient-doc",
+    "mixed-signal"
+   ],
+   "summary_before": "This analog design compares a threshold voltage and generates a current output. It has six analog pins including LED, voltage sense, and control signals, and many digital pins tied to ground. The documentation is very sparse, stating only that it compares threshold voltage and generates current, and that testing requires a function generator and oscilloscope. The design appears to be a mixed-signal circuit with an LED driver and voltage sensing, but details are lacking.",
+   "summary": "This analog design compares a threshold voltage and generates a current output. It has six analog pins including LED, voltage sense, and control signals, and many digital pins tied to ground. The documentation is very sparse, stating only that it compares threshold voltage and generates current, and that testing requires a function generator and oscilloscope. The design appears to be a mixed-signal circuit with an LED driver and voltage sensing, but details are lacking.",
+   "summary_changed": false
+  },
+  {
+   "key": "9ceb80b91371",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "soc",
+     "reason": "The design is a PLL frequency synthesizer, not a system-on-chip; 'NextGen SOC' is only the intended application context."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, providing only pin descriptions and no operational detail."
+    }
+   ],
+   "notes": "Removed soc (it is a PLL, not an SoC); added insufficient-doc.",
+   "tags_before": [
+    "pll",
+    "frequency-synthesizer",
+    "clock-generator",
+    "soc",
+    "verilog",
+    "adc"
+   ],
+   "tags": [
+    "pll",
+    "frequency-synthesizer",
+    "clock-generator",
+    "verilog",
+    "adc",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a compact 4-channel fractional-N phase-locked loop (PLL) frequency synthesizer intended for next-generation systems-on-chip. It is controlled via a simple CSR interface using input pins for data and address, and outputs four independent clock channels plus an ADC output for control voltage monitoring. The design is implemented in Verilog and targets a 10 MHz reference clock. The documentation is extremely minimal, providing only pin descriptions and no detailed explanation of operation or testing.",
+   "summary": "This project is a compact 4-channel fractional-N phase-locked loop (PLL) frequency synthesizer intended for next-generation systems-on-chip. It is controlled via a simple CSR interface using input pins for data and address, and outputs four independent clock channels plus an ADC output for control voltage monitoring. The design is implemented in Verilog and targets a 10 MHz reference clock. The documentation is extremely minimal, providing only pin descriptions and no detailed explanation of operation or testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "39f4c23a3502",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "art",
+    "silicon-art",
+    "asic"
+   ],
+   "tags": [
+    "art",
+    "silicon-art",
+    "asic"
+   ],
+   "summary_before": "This project is a generative silicon art piece depicting a cross-stitch creature on the met4 layer. It has no functional pins other than a dummy output and requires no external hardware. It is purely decorative and has no test procedure.",
+   "summary": "This project is a generative silicon art piece depicting a cross-stitch creature on the met4 layer. It has no functional pins other than a dummy output and requires no external hardware. It is purely decorative and has no test procedure.",
+   "summary_changed": false
+  },
+  {
+   "key": "816510672f71",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "art",
+    "silicon-art",
+    "asic"
+   ],
+   "tags": [
+    "art",
+    "silicon-art",
+    "asic"
+   ],
+   "summary_before": "This project is a generative silicon art piece depicting a cross-stitch creature on the met4 layer. It has no functional pins other than a dummy output and requires no external hardware. It is purely decorative and has no test procedure.",
+   "summary": "This project is a generative silicon art piece depicting a cross-stitch creature on the met4 layer. It has no functional pins other than a dummy output and requires no external hardware. It is purely decorative and has no test procedure.",
+   "summary_changed": false
+  },
+  {
+   "key": "03cf915936e9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "art",
+    "silicon-art",
+    "asic"
+   ],
+   "tags": [
+    "art",
+    "silicon-art",
+    "asic"
+   ],
+   "summary_before": "This project is a generative silicon art piece depicting a cross-stitch creature on the met4 layer. It has no functional pins other than a dummy output and requires no external hardware. It is purely decorative and has no test procedure.",
+   "summary": "This project is a generative silicon art piece depicting a cross-stitch creature on the met4 layer. It has no functional pins other than a dummy output and requires no external hardware. It is purely decorative and has no test procedure.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "39f4c23a3502: 3 sentences after review",
+  "816510672f71: 3 sentences after review",
+  "03cf915936e9: 3 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 5459,
+  "completion_tokens": 985,
+  "total_tokens": 6444,
+  "cost": 0.001131566,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001131566,
+   "upstream_inference_prompt_cost": 0.000481466,
+   "upstream_inference_completions_cost": 0.0006501
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001131566,
+ "elapsed_s": 12.8
+}

@@ -1,0 +1,191 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f2e1bbbf2d82",
+  "2a92ff9bfb68",
+  "7ec4fef87c54",
+  "e6beb2398a1a",
+  "e89b5cfee3ea",
+  "70b5e8b7fe3a",
+  "2fc0d0b68998",
+  "9dbe9880db27",
+  "3c2c39e1bc42",
+  "452ee43ccb43"
+ ],
+ "results": [
+  {
+   "key": "f2e1bbbf2d82",
+   "tags": [
+    "scan-chain",
+    "test",
+    "7-segment",
+    "timer",
+    "counter",
+    "debug",
+    "python"
+   ],
+   "summary": "This is a test design for tinyscanchain, a scan-chain implementation written in under 80 lines of Python, built on top of the seven-segment-seconds counter design. After reset the counter increments once per second from a 1 kHz clock, and the scan chain allows inspection of the internal state of the design. The seven-segment outputs drive a display, while the scan-chain input, enable and output pins provide the debug interface. It is intended as a demonstration and test vehicle for the tinyscanchain tool rather than a standalone application.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2a92ff9bfb68",
+   "tags": [
+    "asynchronous",
+    "parallel-processor",
+    "processor",
+    "state-machine",
+    "7-segment",
+    "experiment",
+    "education"
+   ],
+   "summary": "This circuit is an early investigation into an asynchronous parallel processor, where each processing node waits for valid data, computes a result from four 4-bit inputs, signals its neighbours, and then makes the result available. Inputs are loaded into buffers via dedicated load pins, and the result is displayed on seven-segment outputs with a data-ready dot. The design is explicitly described as a work in progress that does not do very much yet, with future plans for programmable nodes, a multi-node array, and a clockless version. Testing consists of resetting, loading input values, and observing the outputs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7ec4fef87c54",
+   "tags": [
+    "ring-oscillator",
+    "counter",
+    "test",
+    "timer",
+    "inverter",
+    "standard-cells"
+   ],
+   "summary": "This design instantiates eight inverters whose inputs and outputs are exposed on the input and bidirectional pins, together with a counter whose upper bits are driven to the outputs. The documentation is very thin, describing it only as a blink and suggesting checking reset, enable and counter function. It appears to be a simple test structure for observing inverter behaviour and counter operation on silicon. No external hardware is described beyond observing the pins.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e6beb2398a1a",
+   "tags": [
+    "floating-point",
+    "adder",
+    "alu",
+    "calculator",
+    "arithmetic",
+    "rounding"
+   ],
+   "summary": "This design adds two 8-bit floating point numbers, each with a 1-bit sign, 4-bit exponent and 3-bit mantissa, taking one operand from the input pins and the other from the bidirectional pins. The result, including rounding and infinity handling, appears on the output pins every clock cycle. A silicon test report notes that the adder works well for most values but produces incorrect results for some small values, and a linked script tests all possible input combinations. It is a compact arithmetic building block rather than a complete calculator.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e89b5cfee3ea",
+   "tags": [
+    "chronometer",
+    "timer",
+    "stopwatch",
+    "7-segment",
+    "display",
+    "counter",
+    "clock"
+   ],
+   "summary": "This project implements a 50 MHz chronometer that displays minutes, seconds and hundredths of a second across six seven-segment displays. A start button initialises or pauses the counter, and a reset button restarts it from zero. It requires six common-cathode seven-segment displays plus push buttons for the start and reset inputs, with the cathodes driven by the unidirectional outputs and the anodes by the bidirectional pins. The design is a straightforward digital clock application with no reported silicon test results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "70b5e8b7fe3a",
+   "tags": [
+    "alu",
+    "adder",
+    "multiplier",
+    "comparator",
+    "barrel-shifter",
+    "combinational",
+    "vhdl",
+    "4-bit"
+   ],
+   "summary": "This is a fully combinational 4-bit ALU containing a ripple-carry adder, a carry-lookahead adder, a matrix multiplier, a Wallace-tree multiplier, a comparator and a barrel-shifter, selected by a 3-bit opcode on the bidirectional pins. The two 4-bit operands come from the input pins, and the 8-bit result appears on the outputs, with the barrel-shifter using b[1:0] for shift width and b[2] for direction. No clock is required, and a silicon test report confirms the adder was verified on the bringup stream. It is a compact educational ALU demonstrating several arithmetic architectures in one tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2fc0d0b68998",
+   "tags": [
+    "neural-network",
+    "spiking-neural-network",
+    "spi",
+    "machine-learning",
+    "lif-neuron",
+    "programmable",
+    "chatgpt"
+   ],
+   "summary": "This design implements six programmable digital leaky integrate-and-fire neurons arranged in two layers of three, with 8-bit weights programmable over an SPI interface. Input spikes drive the first layer, whose outputs feed the second layer through nine programmable weights, and the second layer's spikes appear on the output pins as one-clock-cycle pulses. After reset the user programs thresholds, leak rates, refractory periods and weights over SPI, then applies input spikes and observes output spikes synchronously. The design is notable for having been generated with ChatGPT and for requiring an external FPGA for testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9dbe9880db27",
+   "tags": [
+    "music",
+    "sound",
+    "buzzer",
+    "counter",
+    "led",
+    "education",
+    "chip-inventor"
+   ],
+   "summary": "This project combines two diagrams created with the Chip Inventor block-based design platform: a piano tune that drives a buzzer from a button, and a 6-bit counter. The counter's binary value can be observed on four LEDs connected in pull-up mode, and the buzzer plays a note when triggered. The documentation is brief and does not describe the internal implementation in detail. It serves mainly as a demonstration of the Chip Inventor design tool.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3c2c39e1bc42",
+   "tags": [
+    "rom",
+    "memory",
+    "7-segment",
+    "ascii",
+    "metadata",
+    "chip-descriptor"
+   ],
+   "summary": "This design is an 8-bit wide, 128-byte ROM containing information about the Tiny Tapeout chip, including the shuttle name and commit hash in 7-segment encoding and an ASCII chip descriptor string. The contents are read by setting the 8-bit address on the input pins and observing the data on the output pins, with the first bytes viewable on an on-board seven-segment display. The ROM is automatically generated by the tt-support-tools during GDS build. It is a utility design for chip identification rather than a computational block.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "452ee43ccb43",
+   "tags": [
+    "clock",
+    "divider",
+    "random-number-generator",
+    "prng",
+    "counter",
+    "test"
+   ],
+   "summary": "This design uses a set of registers to divide the input clock by a 16-bit value supplied on the input and bidirectional pins, with the divided clock appearing on one output. The remaining seven outputs provide a simple random number generator output. The documentation is sparse, giving only a brief description and suggesting experimentation with different division inputs. It appears to be a basic clock-divider and PRNG test block with no reported silicon results.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5241,
+  "completion_tokens": 1674,
+  "total_tokens": 6915,
+  "cost": 0.003043935,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003043935,
+   "upstream_inference_prompt_cost": 0.001336455,
+   "upstream_inference_completions_cost": 0.00170748
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003043935,
+ "elapsed_s": 40.0
+}

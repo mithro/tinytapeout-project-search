@@ -1,0 +1,190 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "26ca54016d12",
+  "22a2aaee9153",
+  "f76e2d57c18d",
+  "d910494584ff",
+  "6c68fe81f3e5",
+  "216fb91d493c",
+  "1ffd5d6a1768",
+  "0f3a3e41e722",
+  "ada3cdb4c370",
+  "47a6cb6589f1"
+ ],
+ "results": [
+  {
+   "key": "26ca54016d12",
+   "tags": [
+    "comparator",
+    "analog",
+    "transistor-level",
+    "education",
+    "voltage-comparator",
+    "binary-output"
+   ],
+   "summary": "This is an analog comparator built by the MNEL team from USFQ that compares two voltages or currents and outputs a binary signal indicating which input is greater. It is tested by applying known input voltages and verifying that the output transitions at the expected threshold across the full input range. No external hardware is required beyond the analog input, reference, and output pins. A silicon test report notes the design was broken because the supply voltage appeared higher than the 1.8V rating of the transistors.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "22a2aaee9153",
+   "tags": [
+    "cpu",
+    "4-bit",
+    "alu",
+    "register-file",
+    "processor",
+    "digital"
+   ],
+   "summary": "This is a 4-bit CPU implemented in Verilog with 4 input ports and 4 output ports, running from a 10 Hz clock. It is tested by setting the inputs and observing the outputs, with pins exposing data, address, carry flag, and ALU-to-register signals. The documentation does not specify any external hardware, and the description is very brief. The design appears to be a small educational processor, but the limited documentation makes its full instruction set and behavior unclear.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f76e2d57c18d",
+   "tags": [
+    "communication",
+    "serial",
+    "sender-receiver",
+    "lcd",
+    "keypad",
+    "pmod",
+    "protocol"
+   ],
+   "summary": "This Verilog project is a dual-mode sender or receiver that transmits bits between two chips, selected by a mode pin. In sender mode it can read from DIP switches or a 4-button PMOD keypad, and in receiver mode it drives an LCD display value from the received bits. Testing requires two chips connected with a specially crafted crossover cable so that all data pins map correctly between sender outputs and receiver inputs. External hardware includes a PMOD 4-button keypad, and the documentation notes the need for careful wiring.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d910494584ff",
+   "tags": [
+    "dac",
+    "r2r",
+    "analog",
+    "sawtooth",
+    "waveform-generator",
+    "multimeter"
+   ],
+   "summary": "This is a 4-bit R2R digital-to-analog converter with an integrated sawtooth waveform generator, implemented in analog. It can be driven externally by setting the external data pin high and applying 4 input bits, or it can generate a sawtooth internally when external data is low, with frequency set by loading a divider. Testing requires a multimeter on the analog output pin to observe the voltage or sawtooth waveform. A silicon test report confirms it worked at a 10 kHz clock, producing the expected sawtooth wave.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6c68fe81f3e5",
+   "tags": [
+    "analog",
+    "buffer",
+    "inverter",
+    "transistor-level",
+    "education",
+    "amplifier"
+   ],
+   "summary": "This is an analog buffer made from two inverters, one large and one small, connected together, originating from Matt's analog course. The analog input is on ua[1] and the output is on ua[0], and it is tested simply by applying an input signal and observing the buffered output. No external hardware is required. The documentation is minimal and does not provide measured performance or silicon test results.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "216fb91d493c",
+   "tags": [
+    "power-supply",
+    "sequencer",
+    "adiabatic",
+    "clock",
+    "phase-control",
+    "test",
+    "digital-sync"
+   ],
+   "summary": "This Verilog design is a sequencer for a 9-step 4-phase combined power-clock supply intended for adiabatic circuits, running at 32 MHz with each phase at 1/32 of that rate. It generates control signals for phases 0 and 1, with a select pin routing one phase to the output pins, and also provides digital sync signals for latching data into or out of adiabatic gates. The project is free-running: after a reset, the user selects a phase and monitors the outputs. No external hardware is necessary, and the design is explicitly a test of the power supply sequencer concept.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1ffd5d6a1768",
+   "tags": [
+    "dsp",
+    "dda",
+    "oscillator",
+    "posit",
+    "spi",
+    "solver",
+    "numerical",
+    "pmod"
+   ],
+   "summary": "This Verilog project implements a digital differential analyzer solver for the van der Pol oscillator using 16-bit posit (16,1) arithmetic. It communicates over SPI, receiving the oscillator parameter and returning the X and Y state variables as 32-bit words for each time step, with simulation stopped by ending SPI communication. Testing requires an SPI master, and a controller using an FTDI FT232H is available on GitHub, with the top row of a PMOD used for SPI signals. The design is notable for applying posit arithmetic to a numerical differential equation solver.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0f3a3e41e722",
+   "tags": [
+    "posit",
+    "arithmetic",
+    "adder",
+    "converter",
+    "fixed-point",
+    "alu",
+    "floating-point"
+   ],
+   "summary": "This Verilog module converts two 16-bit fixed-point numbers in 0.15 format to 16-bit posit (16,1) format and adds them, producing a posit result. It is tested by providing two fixed-point input values and observing the addition result on the output pins, with handshake signals for data valid and read ready. The design combines a fixed-to-posit converter using a leading zero counter and a posit adder based on a published architecture. No external hardware is mentioned, and the documentation is technical but brief.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ada3cdb4c370",
+   "tags": [
+    "game",
+    "mastermind",
+    "puzzle",
+    "led",
+    "push-button",
+    "pmod",
+    "tl-verilog"
+   ],
+   "summary": "This TL-Verilog project implements the Mastermind game, where the user guesses a hidden four-color combination using eight color inputs and receives feedback on correct colors and positions via eight LEDs. A random answer is chosen by pressing a button, guesses are made with four button presses, and the game indicates a win or loss after ten rounds. External hardware includes two Pmod BTN modules for eight push buttons, a Pmod8LD for eight LEDs, and a splitter cable. The design is a complete interactive game with clear testing instructions.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "47a6cb6589f1",
+   "tags": [
+    "crc",
+    "crc-8",
+    "ccitt",
+    "error-detection",
+    "checksum",
+    "combinational"
+   ],
+   "summary": "This Verilog design is a parallel implementation of CRC-8 following the CCITT specification with a start value of 0x00 and polynomial 1+x^1+x^2+x^8. It accepts two bytes on the input pins when enabled, updates the internal CRC value, and outputs the current CRC on eight output pins, with a reset pin to restart at 0x00. Testing is done by running make in the test directory, and no external hardware is required because the design is combinational with only a small buffer for the CRC value. The documentation is clear and includes a reference to an online CRC calculator.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4791,
+  "completion_tokens": 1686,
+  "total_tokens": 6477,
+  "cost": 0.002735793,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 896,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002735793,
+   "upstream_inference_prompt_cost": 0.001016073,
+   "upstream_inference_completions_cost": 0.00171972
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002735793,
+ "elapsed_s": 98.0
+}

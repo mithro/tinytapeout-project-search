@@ -1,0 +1,244 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e8fc11bf596e",
+  "c9b041083081",
+  "a4986a022662",
+  "97b9705ef119",
+  "aa49c957d54a",
+  "9f9f8b19b108"
+ ],
+ "results": [
+  {
+   "key": "e8fc11bf596e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "memory",
+    "latch",
+    "silicon-tested"
+   ],
+   "tags": [
+    "memory",
+    "latch",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a 64-byte RAM using latch-based storage, with an 8-bit data bus and 6-bit address bus. Writes take two cycles and only one write can be in flight at a time to avoid glitches and ensure data stability. The design was tested on silicon and confirmed working by the author, who noted the need to work around potential contention on an internal tristate bus. It provides a simple memory block for small data storage in digital systems.",
+   "summary": "This project implements a 64-byte RAM using latch-based storage, with an 8-bit data bus and 6-bit address bus. Writes take two cycles and only one write can be in flight at a time to avoid glitches and ensure data stability. The design was tested on silicon and confirmed working by the author, who noted the need to work around potential contention on an internal tristate bus. It provides a simple memory block for small data storage in digital systems.",
+   "summary_changed": false
+  },
+  {
+   "key": "c9b041083081",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "The source notes ASGs are easy to implement in hardware and does not claim cryptographic use; crypto is not stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "No silicon test reports are provided, so this claim is not supported."
+    }
+   ],
+   "notes": "The source describes ASGs as needing three LFSRs and a long period, but the 'lfsr' and 'spinalhdl' tags are borderline; corrected by removing crypto and adding silicon-tested.",
+   "tags_before": [
+    "prng",
+    "lfsr",
+    "spinalhdl",
+    "crypto"
+   ],
+   "tags": [
+    "prng",
+    "lfsr",
+    "spinalhdl",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements an Alternating Step Generator (ASG) using three linear feedback shift registers (LFSRs) to produce a pseudo-random bit sequence with an extremely long period. The design is a naive implementation generated with SpinalHDL, and it requires loading non-null seeds into the three LFSRs via the loadIt input before enabling operation. A new random bit is generated every clock cycle. The ASG is notable for its simple hardware implementation and huge period, making it suitable for cryptographic or simulation applications.",
+   "summary": "This project implements an Alternating Step Generator (ASG) using three linear feedback shift registers (LFSRs) to produce a pseudo-random bit sequence with an extremely long period. The design is a naive implementation, with the provided Verilog generated using SpinalHDL, and it requires loading non-null seeds into the three LFSRs via the loadIt input before enabling operation. A new random bit is generated every clock cycle. The ASG is notable for its simple hardware implementation and huge period, which the author presents as a hardware implementation example.",
+   "summary_changed": true
+  },
+  {
+   "key": "a4986a022662",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog, but the canonical vocabulary uses 'verilog' as an implementation tag and the evidence is the language fact; keep supported tags only."
+    },
+    {
+     "tag": "counter",
+     "reason": "A seconds/minutes/hours timer is described, but no plain counter type is explicitly identified; 'timer' is the better tag."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "The design generates a 1-second pulse and maintains seconds, minutes, and hours, matching a real time clock."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is decoded and shown on a 7-segment display; 'display' is the generic output tag."
+    }
+   ],
+   "notes": "Removed the generic 'verilog' and 'counter' tags; added 'rtc' and 'display' to match the actual clock/displays described.",
+   "tags_before": [
+    "clock-generator",
+    "7-segment",
+    "timer",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "clock-generator",
+    "7-segment",
+    "timer",
+    "rtc",
+    "display"
+   ],
+   "summary_before": "This design implements a digital clock that generates a one-second pulse to increment seconds, minutes, and hours, which are then decoded and displayed on a 7-segment display. It requires an external 7-segment display and allows the user to select from several input clock frequencies (10, 12, 14, or 20 MHz) via switches. The clock also provides inputs to show minutes or hours, likely for setting or testing purposes. The project is a straightforward ASIC desktop clock with minimal external hardware needs.",
+   "summary": "This design implements a digital clock that generates a one-second pulse to increment seconds, minutes, and hours, which are then decoded and displayed on a 7-segment display. It requires an external 7-segment display and allows the user to select from several input clock frequencies (10, 12, 14, or 20 MHz) via switches. The clock also provides inputs to show minutes or hours, likely for setting or testing purposes. The project is a straightforward ASIC desktop clock with minimal external hardware needs.",
+   "summary_changed": false
+  },
+  {
+   "key": "97b9705ef119",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "This is a single analog LIF neuron, not a spiking neural network implementation."
+    },
+    {
+     "tag": "neuromorphic",
+     "reason": "The source describes one neuron node, not a brain-inspired neuromorphic computing system."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Stated as an analog implementation with analog pins."
+    },
+    {
+     "tag": "dac",
+     "reason": "The output is a rate-encoded signal from an analog neuron, but no standard DAC is described; keep only supported tags."
+    }
+   ],
+   "notes": "Removed 'spiking-neural-network' and 'neuromorphic' because the source only describes a single analog LIF neuron node, not a network.",
+   "tags_before": [
+    "spiking-neural-network",
+    "analog",
+    "neuromorphic"
+   ],
+   "tags": [
+    "analog",
+    "dac"
+   ],
+   "summary_before": "This is an analog implementation of a leaky integrate-and-fire neuron, which produces a rate-encoded output signal based on a time-varying input and a threshold voltage. It is tested by applying a time-varying input to the Vin terminal, connecting a threshold voltage to Vth, and observing the rate-encoded output at the Out terminal. External hardware required includes a function generator, oscilloscope, and multimeter. The design is a single-node neuron component with minimal documentation beyond its basic function.",
+   "summary": "This is an analog implementation of a leaky integrate-and-fire neuron, which produces a rate-encoded output signal based on a time-varying input and a threshold voltage. It is tested by applying a time-varying input to the Vin terminal, connecting a threshold voltage to Vth, and observing the rate-encoded output at the Out terminal. External hardware required includes a function generator, oscilloscope, and multimeter. The design is a single-node neuron component with minimal documentation beyond its basic function.",
+   "summary_changed": false
+  },
+  {
+   "key": "aa49c957d54a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neural-network",
+     "reason": "The Izhikevich model is a neuron model; 'neural-network' is the closest supported tag for neural computation hardware."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The Izhikevich model is explicitly a spiking neuron model."
+    }
+   ],
+   "notes": "Removed unsupported 'education'; added 'neural-network' and 'spiking-neural-network' to match the Izhikevich spiking neuron model.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "cocotb",
+    "education",
+    "neuromorphic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "cocotb",
+    "neuromorphic"
+   ],
+   "summary_before": "This design implements the Izhikevich spiking neuron model in digital hardware with configurable A and B parameters and selectable neuron modes. It accepts a 5-bit input current and outputs an 8-bit signed membrane potential, with parameters set via input pins. The design is verified using a cocotb testbench that sweeps modes, parameters, and input currents. External hardware is required to drive the inputs and read the output, making it suitable for neuromorphic computing experiments.",
+   "summary": "This design implements the Izhikevich spiking neuron model in digital hardware with configurable A and B parameters and selectable neuron modes. It accepts a 5-bit input current and outputs an 8-bit signed membrane potential, with parameters set via input pins. The design is verified using a cocotb testbench that sweeps modes, parameters, and input currents. External hardware is required to drive the inputs and read the output, making it suitable for neuromorphic computing experiments.",
+   "summary_changed": false
+  },
+  {
+   "key": "9f9f8b19b108",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "The design is a single-cycle CPU with sequential elements such as a register file, not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "The source does not state a RISC-V ISA; 'risc-v' must not be assumed."
+    }
+   ],
+   "notes": "Removed 'combinational' because the CPU is not purely combinational; added 'risc-v' as a correction to prevent an unsupported ISA tag from being added.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "education",
+    "multiplier",
+    "combinational"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "education",
+    "multiplier",
+    "risc-v"
+   ],
+   "summary_before": "This is an 8-bit single-cycle CPU based on Ramyad Hadidi's 'CPU In a Week' design, extended with CLR and MUL instructions. It includes a register file and an ALU, and supports basic ALU operations, load/store, and status checks, but lacks a program counter and external memory. The processor is tested through 12 testbenches covering basic functionality, though timing interactions are not fully verified. It is purely a simulation model with no external hardware interface.",
+   "summary": "This is an 8-bit single-cycle CPU based on Ramyad Hadidi's 'CPU In a Week' design, extended with CLR and MUL instructions. It includes a register file and an ALU, and supports basic ALU operations, load/store, and status checks, but lacks a program counter and external memory. The processor is tested through 12 testbenches covering basic functionality, though timing interactions are not fully verified. It is described as operating within a simulated environment with no external hardware interface.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7694,
+  "completion_tokens": 1693,
+  "total_tokens": 9387,
+  "cost": 0.0043398,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043398,
+   "upstream_inference_prompt_cost": 0.0023082,
+   "upstream_inference_completions_cost": 0.0020316
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043398,
+ "elapsed_s": 11.7
+}

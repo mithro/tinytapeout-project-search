@@ -1,0 +1,261 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a79fd87c3e50",
+  "30ebdcd9fe60",
+  "3ac3e0dfab94",
+  "2a08098d8de5",
+  "78656de1b858",
+  "b9f8b1dd9646"
+ ],
+ "results": [
+  {
+   "key": "a79fd87c3e50",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "video",
+     "reason": "The chip outputs a pixel value byte stream with strobes, not a video signal; no video interface is present."
+    },
+    {
+     "tag": "fpga",
+     "reason": "FPGA is only mentioned as the test platform (iCEBreaker), not as a target or port; the design is a Tiny Tapeout ASIC."
+    }
+   ],
+   "add": [
+    {
+     "tag": "image-processing",
+     "reason": "The design renders the Mandelbrot set, an image generation algorithm."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The documentation states an included cocotb test verifies the design."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The datapath is a sequential bit-serial iterator with a shared sequential multiplier."
+    }
+   ],
+   "notes": "Removed video and fpga tags not supported by the pins or design target; added image-processing, cocotb and sequential-logic.",
+   "tags_before": [
+    "graphics",
+    "fixed-point",
+    "bit-serial",
+    "multiplier",
+    "video",
+    "fpga",
+    "verilog"
+   ],
+   "tags": [
+    "graphics",
+    "fixed-point",
+    "bit-serial",
+    "multiplier",
+    "verilog",
+    "image-processing",
+    "cocotb",
+    "sequential-logic"
+   ],
+   "summary_before": "This design is an interactive fixed-point Mandelbrot renderer that iterates z = z² + c in Q4.28 format and outputs the iteration count for each pixel. It uses a single sequential bit-serial shift-add multiplier shared across three products per iteration to reduce area. The host sends view packets containing the top-left corner, step size, and maximum iterations, and the chip outputs a pixel stream with valid, frame start, and line end strobes. It requires an RP2040 or similar microcontroller to bridge the parallel bus to USB for display, and a host viewer to compute view packets.",
+   "summary": "This design is an interactive fixed-point Mandelbrot renderer that iterates z = z² + c in Q4.28 format and outputs the iteration count for each pixel. It uses a single sequential bit-serial shift-add multiplier shared across three products per iteration to reduce area. The host sends view packets containing the top-left corner, step size, and maximum iterations, and the chip outputs a pixel stream with valid, frame start, and line end strobes. It requires an RP2040 or similar microcontroller to bridge the parallel bus to USB for display, and a host viewer to compute view packets.",
+   "summary_changed": false
+  },
+  {
+   "key": "30ebdcd9fe60",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "The self-routing banyan switch is internal fabric interconnect, not a data communication protocol design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "accelerator",
+     "reason": "The fabric is a dedicated compute accelerator for neural MAC operations."
+    },
+    {
+     "tag": "soc",
+     "reason": "The design integrates a processor core, memory bus adapter and neural fabric on one die."
+    }
+   ],
+   "notes": "Removed communication tag; added accelerator and soc to reflect the integrated neural fabric plus processor.",
+   "tags_before": [
+    "neural-network",
+    "mac-unit",
+    "bit-serial",
+    "risc-v",
+    "cpu",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "mac-unit",
+    "bit-serial",
+    "risc-v",
+    "cpu",
+    "verilog",
+    "accelerator",
+    "soc"
+   ],
+   "summary_before": "This project is a bit-serial neural dataflow fabric with MAC cells on a self-routing banyan switch, accompanied by a 32-bit RISC-V core. The MAC cells are generated from a Lean model proved correct and then formally verified against their arithmetic specification. The design includes a 14-cycle frame protocol and supports edge input/output for streaming data. It is notable for its formal verification approach, though the sequencer and glue logic are not part of the proofs. No external hardware is required.",
+   "summary": "This project is a bit-serial neural dataflow fabric with MAC cells on a self-routing banyan switch, accompanied by a 32-bit RV32I-subset core. The MAC cells are generated from a Lean model proved correct and then formally verified against their arithmetic specification. The design includes a 14-cycle frame protocol and supports edge input/output for streaming data. It is notable for its formal verification approach, though the sequencer and glue logic are not part of the proofs. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "3ac3e0dfab94",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "Serial transfer over 10 clocks is described, but no shift-register circuit is documented as a design element."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "The design recreates a processor from a retro-style Zachlike assembly game."
+    }
+   ],
+   "notes": "Removed unsupported shift-register tag; added retro for the game-derived processor.",
+   "tags_before": [
+    "vliw",
+    "cpu",
+    "game",
+    "shift-register"
+   ],
+   "tags": [
+    "vliw",
+    "cpu",
+    "game",
+    "retro"
+   ],
+   "summary_before": "This project implements the VLIW processor from the game HOVALAAG, a Zachlike assembly puzzle game. The processor uses 32-bit instructions and 12-bit I/O, which are shifted in and out serially over 10 clocks per processor clock. It can be tested by downloading the game's assembler to generate programs and feeding them through the serial interface. The design is notable for being a hardware implementation of a game CPU, created with permission from the game's author.",
+   "summary": "This project implements the VLIW processor from the game HOVALAAG, a Zachlike assembly puzzle game. The processor uses 32-bit instructions and 12-bit I/O, which are shifted in and out serially over 10 clocks per processor clock. It can be tested by downloading the game's assembler to generate programs and feeding them through the serial interface. The design is notable for being a hardware implementation of a game CPU, created with permission from the game's author.",
+   "summary_changed": false
+  },
+  {
+   "key": "2a08098d8de5",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ring-oscillator",
+    "counter",
+    "gray-code",
+    "7-segment",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "counter",
+    "gray-code",
+    "7-segment",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This design implements a ring oscillator with skew correction using a differential clock ring. It includes grey counters to test the stability and frequency of the oscillator, with results displayed on a 7-segment display. The design is controlled by a select input to choose which counter to read, and it outputs a divided clock ratio. The original extended design did not fit in hardware, so only a subset is implemented.",
+   "summary": "This design implements a ring oscillator with skew correction using a differential clock ring. It includes grey counters to test the stability and frequency of the oscillator, with results displayed on a 7-segment display. The design is controlled by a select input to choose which counter to read, and it outputs a divided clock ratio. The original extended design did not fit in hardware, so only a subset is implemented.",
+   "summary_changed": false
+  },
+  {
+   "key": "78656de1b858",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design is a small 4x4-bit memory array, not a multi-register file with register addressing."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "The storage is explicitly implemented with D flip-flops."
+    }
+   ],
+   "notes": "Removed register-file tag; added flip-flop to match the documented D flip-flop storage.",
+   "tags_before": [
+    "memory",
+    "register-file",
+    "flip-flop",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "memory",
+    "flip-flop",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This project implements a small 4x4-bit memory using D flip-flops, where four data inputs are stored at an address selected by two address bits when write enable is asserted. The stored data is continuously output on four pins corresponding to the selected address. It is designed for the Wokwi simulator and requires external clock, reset, write enable, address, and data switches, with outputs readable via LEDs. The design is a basic educational memory block with no silicon test results reported.",
+   "summary": "This project implements a small 4x4-bit memory using D flip-flops, where four data inputs are stored at an address selected by two address bits when write enable is asserted. The stored data is continuously output on four pins corresponding to the selected address. It is designed for the Wokwi simulator and requires external clock, reset, write enable, address, and data switches, with outputs readable via LEDs. The design is a basic educational memory block with no silicon test results reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "b9f8b1dd9646",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational or teaching purpose; it is a game CPU implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "The design recreates a processor from a retro-style Zachlike assembly game."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added retro for the game-derived processor.",
+   "tags_before": [
+    "cpu",
+    "vliw",
+    "game",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "vliw",
+    "game",
+    "verilog",
+    "retro"
+   ],
+   "summary_before": "This is a hardware implementation of the HOVALAAG VLIW processor, originally from a programming game. It uses 32-bit instructions and 12-bit I/O, with data transferred over 5 clocks per processor clock. The design can be programmed using an external assembler and tested by loading programs and observing outputs. It is notable for being a faithful recreation of a game CPU in hardware.",
+   "summary": "This is a hardware implementation of the HOVALAAG VLIW processor, originally from a programming game. It uses 32-bit instructions and 12-bit I/O, with data transferred over 5 clocks per processor clock. The design can be programmed using an external assembler and tested by loading programs and observing outputs. It is notable for being a faithful recreation of a game CPU in hardware.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "30ebdcd9fe60: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 9240,
+  "completion_tokens": 1467,
+  "total_tokens": 10707,
+  "cost": 0.0035916,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035916,
+   "upstream_inference_prompt_cost": 0.0018312,
+   "upstream_inference_completions_cost": 0.0017604
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035916,
+ "elapsed_s": 61.0
+}

@@ -1,0 +1,194 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9ff9a1dfdf73",
+  "f0caeb71dc64",
+  "1646c5841369",
+  "84f467ec64b9",
+  "cf90e050e0cf",
+  "6f5a97541186",
+  "5e1904f4589d",
+  "511340cc70b4",
+  "79522d9ffb65",
+  "9b1966d58f3b"
+ ],
+ "results": [
+  {
+   "key": "9ff9a1dfdf73",
+   "tags": [
+    "and-gate",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "7-segment",
+    "switches"
+   ],
+   "summary": "This project is a single two-input AND gate implemented in Wokwi, with inputs on ui[0] and ui[1] and the result on uo[0]. It is intended as a first exercise to learn how the chip design flow works. Testing uses the first two switches of the demo board, with the output shown on the 7-segment display. The documentation is minimal and the design is purely educational, with no silicon results reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f0caeb71dc64",
+   "tags": [
+    "neural-network",
+    "neuron",
+    "memristor",
+    "analog-frontend",
+    "dac",
+    "test"
+   ],
+   "summary": "The project is described as a digital leaky integrate-and-fire neuron, with pins labelled IN, OUT, MEM and Dummy. The documentation says it is tested by connecting to a memristor and that external hardware includes a transimpedance amplifier and a DAC. The description is extremely thin and does not explain the neuron's operation, interface protocol or expected behaviour. Because almost no usable documentation is provided, the tags and summary are largely inferred from the title and pin names.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "1646c5841369",
+   "tags": [
+    "key-lock",
+    "combinational-logic",
+    "sequence-detector",
+    "wokwi",
+    "led",
+    "switches",
+    "education"
+   ],
+   "summary": "This design implements a four-input digital key lock using combinational logic, with inputs on ui[0] through ui[3] and a single output on uo[0]. The output goes high only for the specific input combination 1001, and stays low for all other combinations. It is tested with switches on the inputs and an LED on the output. The project is a simple Wokwi-based logic exercise with no reported silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "84f467ec64b9",
+   "tags": [
+    "alu",
+    "floating-point",
+    "adder",
+    "subtractor",
+    "ieee754",
+    "serial",
+    "byte-serial",
+    "state-machine"
+   ],
+   "summary": "This is a 32-bit IEEE 754 floating-point ALU that supports addition and subtraction, using a byte-serial protocol over the 8 input and 8 output pins. A start signal on uio[2] begins loading two operands in little-endian order over eight clock cycles, a 1-bit opcode on uio[0] selects add or subtract, and the result is streamed out over four cycles with a done flag on uio[3]. It runs at 20 MHz and can be driven by any microcontroller, with block and timing diagrams linked in the documentation. The design handles special values but always returns quiet NaNs, and no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cf90e050e0cf",
+   "tags": [
+    "analog",
+    "inverter",
+    "transistor-level",
+    "3v3",
+    "buffer",
+    "standard-cells"
+   ],
+   "summary": "This analog project contains a pair of inverters, a small one followed by a large one, intended to operate at 3.3 V. The input is on ua[1] and the output on ua[0], and it is tested by applying a signal with a generator and observing the polarity on an oscilloscope. It occupies a 1x2 tile area with two analog pins. The documentation is brief and gives no measured silicon results or detailed schematic.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6f5a97541186",
+   "tags": [
+    "cpu",
+    "6502",
+    "microprocessor",
+    "alu",
+    "register-file",
+    "microcode",
+    "8-bit",
+    "state-machine"
+   ],
+   "summary": "This project implements a custom 8-bit microprocessor inspired by the 6502, built around an ALU, registers and a microcoded instruction decoder that executes a subset of the original instruction set. Data is exchanged on the eight bidirectional pins uio[0] to uio[7], while the eight outputs uo[0] to uo[7] carry address bits, and the design runs at 40 MHz. The documentation mentions a block diagram and describes two testing strategies for verifying processor correctness. No silicon test results are reported, and the instruction subset is not fully enumerated in the provided text.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5e1904f4589d",
+   "tags": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "display",
+    "systemverilog",
+    "animation"
+   ],
+   "summary": "ShadyPong is a Pong game implementation in SystemVerilog that outputs VGA signals on uo[0] to uo[7], matching the Tiny VGA PMOD pinout. Four inputs control player up and down movements, a fifth forces a fallback ball speed, and the bidirectional pins expose ball and player speed values. It runs at 25.175 MHz and requires a TinyVGA PMOD or an iCEsugar VGA PMOD with flying wires. The documentation is very sparse, with the how-it-works and how-to-test sections giving no real detail, so behaviour beyond the pinout is largely inferred.",
+   "confidence": "low",
+   "insufficient_docs": false
+  },
+  {
+   "key": "511340cc70b4",
+   "tags": [
+    "alu",
+    "pipelined",
+    "multiplier",
+    "divider",
+    "barrel-shifter",
+    "8-bit",
+    "flags",
+    "arithmetic"
+   ],
+   "summary": "This is an 8-bit fully pipelined ALU that includes multiply, divide and barrel shifter functions along with flag and pipeline control logic. Operand A arrives on ui[0] to ui[7], operand B and the 3-bit opcode arrive on the bidirectional pins, and the 8-bit result appears on uo[0] to uo[7], with flags and pipeline enable also on the bidirectional pins. The design is self-contained and needs no external hardware beyond the standard demo board, though a logic analyzer or oscilloscope is suggested for detailed inspection. No silicon test results or detailed timing documentation are provided in the text.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "79522d9ffb65",
+   "tags": [
+    "pwm",
+    "duty-cycle",
+    "measurement",
+    "state-machine",
+    "counter",
+    "timer",
+    "sensor"
+   ],
+   "summary": "This design measures the duty cycle of an incoming PWM signal on ui[0] and reports a 7-bit value on uo[0] to uo[6], with uo[7] acting as a valid flag. A finite state machine counts how long the input is high within a fixed time window and computes the duty cycle, where 127 corresponds to 100 percent. It runs at 50 MHz and is tested by feeding a PWM signal from a generator and observing the outputs with a logic analyzer. No silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9b1966d58f3b",
+   "tags": [
+    "clock",
+    "rtc",
+    "counter",
+    "timer",
+    "12-hour",
+    "am-pm",
+    "7-segment"
+   ],
+   "summary": "This project implements a 12-hour clock with an AM/PM indicator, counting seconds internally and rolling over minutes and hours. The enable, reset and clock signals are taken from ui[5], ui[6] and ui[7], the seven minute bits are on uio[0] to uio[6], and the hour bits plus AM/PM flag are on uo[0] to uo[7]. It is tested by supplying a clock, a reset and a one-second enable pulse, and an LED display can optionally be attached to view the time. The documentation is brief and no silicon results are reported.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4055,
+  "completion_tokens": 1763,
+  "total_tokens": 5818,
+  "cost": 0.002626653,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 896,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002626653,
+   "upstream_inference_prompt_cost": 0.000828393,
+   "upstream_inference_completions_cost": 0.00179826
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002626653,
+ "elapsed_s": 48.6
+}

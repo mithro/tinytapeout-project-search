@@ -1,0 +1,211 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a2defcda0cc1",
+  "83ff4f79fabb",
+  "591091d8f8fd",
+  "c6140a87513c",
+  "9ff9a1dfdf73",
+  "b24c97d1ee76"
+ ],
+ "results": [
+  {
+   "key": "a2defcda0cc1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "buzzer",
+     "reason": "the external hardware is a piezo speaker, not a buzzer; the source never mentions a buzzer"
+    }
+   ],
+   "add": [
+    {
+     "tag": "sound-generator",
+     "reason": "the design generates a ringtone melody as a sound waveform"
+    }
+   ],
+   "notes": "Removed buzzer (piezo speaker, not buzzer) and added sound-generator.",
+   "tags_before": [
+    "music",
+    "pwm",
+    "buzzer",
+    "audio",
+    "signal-generator"
+   ],
+   "tags": [
+    "music",
+    "pwm",
+    "audio",
+    "signal-generator",
+    "sound-generator"
+   ],
+   "summary_before": "This design plays the Super Mario theme tune through a piezo speaker using differential PWM modulation. It converts an RTTL ringtone into Verilog and outputs the sound wave on two pins. The design requires a piezo speaker connected across the output pins and a 6.25 kHz clock. It is a simple music player for entertainment purposes.",
+   "summary": "This design plays the Super Mario theme tune through a piezo speaker using differential PWM modulation. It converts an RTTL ringtone into Verilog and outputs the sound wave on two pins. The design requires a piezo speaker connected across the output pins and a 6.25 kHz clock. It is a simple music player for entertainment purposes.",
+   "summary_changed": false
+  },
+  {
+   "key": "83ff4f79fabb",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "prng",
+    "lfsr",
+    "7-segment",
+    "multiplexer",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "prng",
+    "lfsr",
+    "7-segment",
+    "multiplexer",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This design implements a pseudo-random number generator using two LFSRs (8-bit and 16-bit) and a 16-to-8 multiplexer. It produces 8-bit pseudo-random numbers that are displayed on two 7-segment displays. The design requires a 50 MHz clock, an enable signal, and an active-low reset. Testing involves connecting the clock and control signals and observing the random numbers on the displays. No silicon test results are provided.",
+   "summary": "This design implements a pseudo-random number generator using two LFSRs (8-bit and 16-bit) and a 16-to-8 multiplexer. It produces 8-bit pseudo-random numbers that are displayed on two 7-segment displays. The design requires a 50 MHz clock, an enable signal, and an active-low reset. Testing involves connecting the clock and control signals and observing the random numbers on the displays. No silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "591091d8f8fd",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "clock-divider",
+    "led",
+    "wokwi",
+    "frequency-counter"
+   ],
+   "tags": [
+    "7-segment",
+    "clock-divider",
+    "led",
+    "wokwi",
+    "frequency-counter"
+   ],
+   "summary_before": "This design animates a seven-segment display with a six-frame LED chaser pattern, using a configurable bank of clock dividers to slow the animation to human-visible speeds for any input clock frequency. It can also be used as a frequency counter. The chip requires an external clock source and a seven-segment display connected to its outputs, with optional DIP switches to select clock division factors. The design is notable for its wide range of supported clock frequencies and its robustness to noisy startup frames.",
+   "summary": "This design animates a seven-segment display with a six-frame LED chaser pattern, using a configurable bank of clock dividers to slow the animation to human-visible speeds for any input clock frequency. It can also be used as a frequency counter. The chip requires an external clock source and a seven-segment display connected to its outputs, with optional DIP switches to select clock division factors. The design is notable for its wide range of supported clock frequencies and its robustness to noisy startup frames.",
+   "summary_changed": false
+  },
+  {
+   "key": "c6140a87513c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "the design is a digital QSPI interface plus pin breakout; the analog R-2R network is external hardware, not part of the design"
+    }
+   ],
+   "add": [],
+   "notes": "Removed analog: the R-2R network is external hardware, the submitted design is digital.",
+   "tags_before": [
+    "dac",
+    "qspi",
+    "r2r-dac",
+    "analog",
+    "wokwi"
+   ],
+   "tags": [
+    "dac",
+    "qspi",
+    "r2r-dac",
+    "wokwi"
+   ],
+   "summary_before": "This design is an 8-bit digital-to-analog converter (DAC) that receives data via a QSPI-like interface and outputs an analog voltage using an external R-2R network. It also breaks out bidirectional pins for external testing of delays and electrical characteristics. To use the DAC, the user must remove the on-board seven-segment display and connect an external R-2R network. The design is intended as an experiment and includes a simple serial protocol for setting the DAC value.",
+   "summary": "This design is an 8-bit digital-to-analog converter (DAC) that receives data via a QSPI-like interface and outputs an analog voltage using an external R-2R network. It also breaks out bidirectional pins for external testing of delays and electrical characteristics. To use the DAC, the user must remove the on-board seven-segment display and connect an external R-2R network. The design is intended as an experiment and includes a simple serial protocol for setting the DAC value.",
+   "summary_changed": false
+  },
+  {
+   "key": "9ff9a1dfdf73",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "combinational",
+    "7-segment",
+    "dip-switch"
+   ],
+   "tags": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "combinational",
+    "7-segment",
+    "dip-switch"
+   ],
+   "summary_before": "This project is a single two-input AND gate implemented in Wokwi, with inputs on ui[0] and ui[1] and the result on uo[0]. It is intended as a first exercise to learn how the chip design flow works. Testing uses the first two switches of the demo board, with the output shown on the 7-segment display. The documentation is minimal and the design is purely educational, with no silicon results reported.",
+   "summary": "This project is a single two-input AND gate implemented in Wokwi, with inputs on ui[0] and ui[1] and the result on uo[0]. It is intended as a first exercise to learn how the chip design flow works. Testing uses the first two switches of the demo board, with the output shown on the 7-segment display. The documentation is minimal and the design is purely educational, with no silicon results reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "b24c97d1ee76",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "voltage-reference",
+     "reason": "the design is a current source (beta multiplier), not a voltage reference"
+    }
+   ],
+   "add": [],
+   "notes": "Removed voltage-reference: the circuit is a current source, not a voltage reference.",
+   "tags_before": [
+    "current-mirror",
+    "analog",
+    "characterization",
+    "transistor-level",
+    "silicon-tested",
+    "voltage-reference"
+   ],
+   "tags": [
+    "current-mirror",
+    "analog",
+    "characterization",
+    "transistor-level",
+    "silicon-tested"
+   ],
+   "summary_before": "A test chip for evaluating mismatch in a simple CMOS beta multiplier current source. It contains 16 identical cells (eight oriented one way and eight rotated 90 degrees) whose outputs are combined into a single analog output. Individual cells can be disabled via digital inputs. Silicon measurements show an output current mean of 0.7uA with a standard deviation of 0.1uA, and no statistical difference due to orientation. External precision current measurement equipment is required.",
+   "summary": "A test chip for evaluating mismatch in a simple CMOS beta multiplier current source. It contains 16 identical cells (eight oriented one way and eight rotated 90 degrees) whose outputs are combined into a single analog output. Individual cells can be disabled via digital inputs. Silicon measurements show an output current mean of 0.7uA with a standard deviation of 0.1uA, and no statistical difference due to orientation. External precision current measurement equipment is required.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "83ff4f79fabb: 5 sentences after review",
+  "b24c97d1ee76: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6937,
+  "completion_tokens": 1072,
+  "total_tokens": 8009,
+  "cost": 0.0033675,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033675,
+   "upstream_inference_prompt_cost": 0.0020811,
+   "upstream_inference_completions_cost": 0.0012864
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033675,
+ "elapsed_s": 4.9
+}

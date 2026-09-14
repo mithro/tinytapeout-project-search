@@ -1,0 +1,232 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "efdab9a8a8fa",
+  "f68bed3922d7",
+  "29967cd5f870",
+  "9cb43610087f",
+  "edda1b5761d5",
+  "5f30fb8ecf68"
+ ],
+ "results": [
+  {
+   "key": "efdab9a8a8fa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sequential-logic",
+     "reason": "The design is a purely combinational mux; the 'synchronous' name refers to the clocked Wokwi simulation, not registered logic, and no sequential elements are described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The mux, parity and popcount logic are all purely combinational functions of the inputs."
+    }
+   ],
+   "notes": "Removed sequential-logic (design is combinational) and added combinational; also dropped 'synchronous' from the summary since no clocked logic is described.",
+   "tags_before": [
+    "multiplexer",
+    "sequential-logic",
+    "parity",
+    "popcount",
+    "wokwi"
+   ],
+   "tags": [
+    "multiplexer",
+    "parity",
+    "popcount",
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This design is a 2-bit synchronous multiplexer with output enable. It selects between two 2-bit inputs based on a select signal and provides both true and complemented outputs, along with parity and population count. The outputs can be tri-stated via an output enable pin. No external hardware is specified, and no silicon test results are provided.",
+   "summary": "This design is a 2-bit multiplexer with output enable. It selects between two 2-bit inputs based on a select signal and provides both true and complemented outputs, along with parity and population count. The outputs can be tri-stated via an output enable pin. No external hardware is specified, and no silicon test results are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "f68bed3922d7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The source never describes a pseudorandom number generator; the dice value is not documented as PRNG-based."
+    }
+   ],
+   "add": [],
+   "notes": "Removed prng tag as the source does not document any pseudorandom generator.",
+   "tags_before": [
+    "wokwi",
+    "game",
+    "7-segment",
+    "display",
+    "prng",
+    "button"
+   ],
+   "tags": [
+    "wokwi",
+    "game",
+    "7-segment",
+    "display",
+    "button"
+   ],
+   "summary_before": "This design simulates rolling a dice, displaying the result on a 7-segment display. Pulling input 0 high causes the dice to roll, and releasing it stops the roll. It requires an external 7-segment display connected to outputs 0-6 and a button connected to input 0. Silicon tests confirm it works, though the author notes that using the microswitch to stop the roll is a bit annoying.",
+   "summary": "This design simulates rolling a dice, displaying the result on a 7-segment display. Pulling input 0 high causes the dice to roll, and releasing it stops the roll. It requires an external 7-segment display connected to outputs 0-6 and a button connected to input 0. Silicon tests confirm it works, though the author notes that using the microswitch to stop the roll is a bit annoying.",
+   "summary_changed": false
+  },
+  {
+   "key": "29967cd5f870",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "wokwi",
+    "workshop",
+    "template",
+    "education",
+    "7-segment",
+    "display"
+   ],
+   "tags": [
+    "wokwi",
+    "workshop",
+    "template",
+    "education",
+    "7-segment",
+    "display"
+   ],
+   "summary_before": "This is the example project from the Wokwi Hackaday Europe workshop, with no modifications. It displays segments on a 7-segment display based on the states of switches 0-7. Testing involves flipping the switches to turn on the corresponding segments. The design serves as a starting point for workshop participants.",
+   "summary": "This is the example project from the Wokwi Hackaday Europe workshop, with no modifications. It displays segments on a 7-segment display based on the states of switches 0-7. Testing involves flipping the switches to turn on the corresponding segments. The design serves as a starting point for workshop participants.",
+   "summary_changed": false
+  },
+  {
+   "key": "9cb43610087f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The PRNG is built from scan flip-flops and XOR gates as described, but the source never states it is an LFSR."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptographic use or algorithm is described; the PRNG is a test vehicle for the trojan."
+    }
+   ],
+   "add": [],
+   "notes": "Removed lfsr (not stated in source) and crypto (no cryptographic function documented).",
+   "tags_before": [
+    "wokwi",
+    "hardware-trojan",
+    "prng",
+    "security",
+    "scan-chain",
+    "lfsr",
+    "crypto"
+   ],
+   "tags": [
+    "wokwi",
+    "hardware-trojan",
+    "prng",
+    "security",
+    "scan-chain"
+   ],
+   "summary_before": "This design implements two pseudorandom number generators (PRNGs) using scan flip-flops and XOR gates, one with and one without a hardware trojan. It includes scan chain inputs for setting the PRNG state and an external trigger for the trojan, with outputs for both PRNGs and test points for inverters. Testing involves providing a clock, setting the scan inputs, toggling scan enable, and using a pattern generator and logic analyzer. The project is notable for demonstrating a hardware trojan in a PRNG context.",
+   "summary": "This design implements two pseudorandom number generators (PRNGs) using scan flip-flops and XOR gates, one with and one without a hardware trojan. It includes scan chain inputs for setting the PRNG state and an external trigger for the trojan, with outputs for both PRNGs and test points for inverters. Testing involves providing a clock, setting the scan inputs, toggling scan enable, and using a pattern generator and logic analyzer. The project is notable for demonstrating a hardware trojan in a PRNG context.",
+   "summary_changed": false
+  },
+  {
+   "key": "edda1b5761d5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a comparator built from comparison logic, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The comparator is purely combinational, with outputs depending only on the two input bits."
+    }
+   ],
+   "notes": "Removed logic-gate (it is a comparator, not a gate) and added combinational.",
+   "tags_before": [
+    "comparator",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "comparator",
+    "wokwi",
+    "education",
+    "combinational"
+   ],
+   "summary_before": "This project is a simple 1-bit comparator that compares two input bits and indicates whether they are equal or which one is greater. It has two inputs (A and B) and three outputs: one for equality, one for A greater than B, and one for B greater than A. The design is purely combinational and can be tested by applying all four input combinations and observing the outputs, with LEDs recommended for visual indication. It is a basic educational logic circuit with no external hardware required beyond input switches and output LEDs.",
+   "summary": "This project is a simple 1-bit comparator that compares two input bits and indicates whether they are equal or which one is greater. It has two inputs (A and B) and three outputs: one for equality, one for A greater than B, and one for B greater than A. The design is purely combinational and can be tested by applying all four input combinations and observing the outputs, with LEDs recommended for visual indication. It is a basic educational logic circuit with no external hardware required beyond input switches and output LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "5f30fb8ecf68",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "retro",
+     "reason": "The design recreates a vintage HP display decoder, which is a retro-style recreation, so this tag is actually supported; no removal needed."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The design targets an LED dot-matrix display driven by decoded BCD outputs."
+    }
+   ],
+   "notes": "Removed the erroneous retro removal note; display tag was already present, so no tag changes were needed.",
+   "tags_before": [
+    "decoder",
+    "display",
+    "bcd",
+    "wokwi",
+    "incomplete",
+    "retro"
+   ],
+   "tags": [
+    "decoder",
+    "display",
+    "bcd",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project attempts to recreate the decoding logic of the vintage HP 5082-7500 display, a custom ASIC from the 1970s, on modern silicon. The design is incomplete and currently does not work, as indicated by the title. It would require a 4-bit BCD input and an LED dot-matrix display for testing, but no functional behavior is documented. The project is notable only as an unfinished attempt to reproduce historical logic.",
+   "summary": "This project attempts to recreate the decoding logic of the vintage HP 5082-7500 display, a custom ASIC from the 1970s, on modern silicon. The design is incomplete and currently does not work, as indicated by the title. It would require a 4-bit BCD input and an LED dot-matrix display for testing, but no functional behavior is documented. The project is notable only as an unfinished attempt to reproduce historical logic.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5603,
+  "completion_tokens": 1339,
+  "total_tokens": 6942,
+  "cost": 0.004109625,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004109625,
+   "upstream_inference_prompt_cost": 0.002101125,
+   "upstream_inference_completions_cost": 0.0020085
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004109625,
+ "elapsed_s": 6.5
+}

@@ -1,0 +1,336 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9a040a5bb94a",
+  "2a7f666e064e",
+  "b2de69e36095",
+  "d94496a2897f",
+  "bf47d9ed1862",
+  "1670520d1119"
+ ],
+ "results": [
+  {
+   "key": "9a040a5bb94a",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "framebuffer",
+     "reason": "The source describes a bitmap ROM bouncing on screen, not a pixel framebuffer architecture."
+    },
+    {
+     "tag": "rom",
+     "reason": "The ROM is incidental to the VGA animation; the canonical type tags should reflect the actual function, and the source does not emphasize a memory block design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "art",
+     "reason": "The documented function is a decorative bouncing mascot logo animation."
+    },
+    {
+     "tag": "silicon-art",
+     "reason": "The design is an artistic silicon layout/showcase rather than a functional computation."
+    },
+    {
+     "tag": "retro",
+     "reason": "The bouncing-logo VGA demo is a retro-style visual showcase."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The title and one-line description describe a Hardcaml coprocessor while the documentation describes a VGA animation, indicating a mismatched or unfinished submission."
+    }
+   ],
+   "notes": "Title/description describe a Hardcaml coprocessor while the documentation describes a VGA mascot animation; source is contradictory.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "framebuffer",
+    "rom",
+    "display"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "art",
+    "silicon-art",
+    "retro",
+    "incomplete"
+   ],
+   "summary_before": "This project is described as an Advent of Code day-1 style position coprocessor implemented in Hardcaml with a byte-serial Tiny Tapeout wrapper, but the provided documentation instead describes a 640x480 VGA animation of a bouncing backpack mascot bitmap. The VGA output drives a TinyVGA PMOD, and input pins toggle tiling and palette rotation effects. The design requires a TinyVGA PMOD or equivalent VGA DAC and a VGA monitor, and needs a ~25.175 MHz clock. There is a clear mismatch between the title and the documentation, so the actual function of the submitted design is ambiguous.",
+   "summary": "The title and one-line description say this is an Advent of Code day-1 style position coprocessor implemented in Hardcaml with a byte-serial Tiny Tapeout wrapper, but the provided documentation instead describes a 640x480 VGA animation of a bouncing backpack mascot bitmap. The VGA output drives a TinyVGA PMOD, and input pins toggle tiling and palette rotation effects. The design requires a TinyVGA PMOD or equivalent VGA DAC and a VGA monitor, and needs a ~25.175 MHz clock. There is a clear mismatch between the title and the documentation, so the actual function of the submitted design is ambiguous.",
+   "summary_changed": true
+  },
+  {
+   "key": "2a7f666e064e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vco",
+     "reason": "No VCO or voltage-controlled oscillator is described; the design is a RISC-V SoC."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "No ring oscillator is mentioned in the source."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "The design is a Verilog SoC, not a discrete transistor-level implementation."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock divider is described; the 1 MHz clock is an input for timekeeping."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter block is described in the source."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or output is present in the pins or documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "The source explicitly states it implements the RV32EC instruction set."
+    },
+    {
+     "tag": "soc",
+     "reason": "The design is described as a small RISC-V SoC integrating multiple peripherals."
+    },
+    {
+     "tag": "cpu",
+     "reason": "It contains a general-purpose RISC-V processor core."
+    },
+    {
+     "tag": "qspi",
+     "reason": "QSPI flash and PSRAM are used for instruction and data memory."
+    },
+    {
+     "tag": "uart",
+     "reason": "UART RX/TX and debug UART pins are present."
+    },
+    {
+     "tag": "spi",
+     "reason": "SPI MISO/MOSI/SCK/CS pins are present."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "Game controller latch/clock/data pins are present."
+    },
+    {
+     "tag": "dac",
+     "reason": "The source states it includes Matt Venn's R2R DAC as a peripheral."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "The included DAC is specifically an R2R resistor ladder DAC."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design includes an analog DAC output on ua[0]."
+    },
+    {
+     "tag": "pwm",
+     "reason": "PWM is provided on uio[7]/uo[7]."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The documentation says it is intended for use with the RP2040 on the TT demo PCB."
+    },
+    {
+     "tag": "microcontroller",
+     "reason": "It is a microcontroller-style SoC with processor, memory and peripherals."
+    }
+   ],
+   "notes": "Replaced unrelated analog/VCO tags with tags supported by the RISC-V SoC documentation and pins.",
+   "tags_before": [
+    "analog",
+    "vco",
+    "ring-oscillator",
+    "dac",
+    "vga",
+    "transistor-level",
+    "clock-divider",
+    "counter"
+   ],
+   "tags": [
+    "analog",
+    "dac",
+    "risc-v",
+    "soc",
+    "cpu",
+    "qspi",
+    "uart",
+    "spi",
+    "gamepad",
+    "r2r-dac",
+    "pwm",
+    "rp2040",
+    "microcontroller"
+   ],
+   "summary_before": "This design contains analog and custom layout experiments, primarily a current-starved ring oscillator VCO and a DAC, with digital test outputs and VGA signals. The VCO frequency is controlled by an analog input voltage and can be monitored directly or through divided digital outputs. Testing requires a precision variable voltage source and an oscilloscope to observe oscillation and frequency changes. The documentation provides detailed test steps and expected behavior, indicating it is an experimental analog block for the TT GF analog shuttle.",
+   "summary": "TinyQV is a small RISC-V SoC implementing the RV32EC instruction set plus the Zcb and Zicond extensions, with 28-bit addresses, 24-bit program addresses, and hardcoded gp and tp values. Instructions are read using QSPI from flash, and a QSPI PSRAM is used for memory, with the QSPI clock and data lines shared between flash and RAM so only one can be accessed at a time. Code can only be executed from flash, while data can be read from flash and RAM and written to RAM, and many peripherals are contributed by the Tiny Tapeout community. This version also includes Matt Venn's R2R DAC as an additional peripheral, and the design is intended to be used with a QSPI PMOD and the RP2040 on the demo board.",
+   "summary_changed": true
+  },
+  {
+   "key": "b2de69e36095",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The source mentions a clock divider, not a clock generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "The source explicitly says 'A clock diver' (divider) is used."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The how-to-test section says changes are seen on 7-seg LEDs."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the test section is placeholder text."
+    }
+   ],
+   "notes": "Corrected clock-generator to clock-divider and added 7-segment and insufficient-doc based on the source.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "logic-gate",
+    "clock-generator"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "logic-gate",
+    "clock-divider",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is described as a first test of the Wokwi-to-GDS flow, combining one AND gate and one OR gate between the eight switch inputs and a digital clock output. Eight input switches and eight outputs are exposed, but the how-to-test section still contains the placeholder text asking the author to explain usage. No external hardware is listed. The documentation is very thin and the project appears to be an introductory experiment rather than a functional design.",
+   "summary": "This design is described as a clock divider and two gates, with a single gate input on ui[7]. The how-to-test section says changes are seen on 7-segment LEDs, but the external hardware section still contains the placeholder text asking the author to list hardware. No pin names beyond gate_input are provided, and the documentation is very thin. The project appears to be an introductory experiment rather than a fully documented functional design.",
+   "summary_changed": true
+  },
+  {
+   "key": "d94496a2897f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "template",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "The project is titled First Tinytapeout and is described only as a first deployment with TinyTapeOut. The documentation consists of the unedited template placeholders for how it works, how to test and external hardware, so no actual function is described. No pin names or behavioural details are provided beyond the Wokwi language and a single tile. There is not enough information to determine what the design does.",
+   "summary": "The project is titled First Tinytapeout and is described only as a first deployment with TinyTapeOut. The documentation consists of the unedited template placeholders for how it works, how to test and external hardware, so no actual function is described. No pin names or behavioural details are provided beyond the Wokwi language and a single tile. There is not enough information to determine what the design does.",
+   "summary_changed": false
+  },
+  {
+   "key": "bf47d9ed1862",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "The source does not describe a communication protocol design; the SPI pins alone do not establish that domain."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systemverilog",
+     "reason": "The design is written in SystemVerilog."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans a 3x2 tile area."
+    }
+   ],
+   "notes": "Removed unsupported communication domain tag and added systemverilog and multi-tile from deterministic facts.",
+   "tags_before": [
+    "spi",
+    "gpio",
+    "communication",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "spi",
+    "gpio",
+    "insufficient-doc",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "summary_before": "This project provides an SPI interface with two chip-select lines and four general-purpose input and output pins. The documentation is essentially absent, with \"By magic\" given for how it works, how to test, and what external hardware is needed. The design likely serves as a simple bridge or test chip for SPI communication, but its exact behavior cannot be determined from the provided information. The pins indicate SPI master capabilities and GPIO, but no further details are available.",
+   "summary": "This project provides an SPI interface with two chip-select lines and four general-purpose input and output pins. The documentation is essentially absent, with 'By magic' given for how it works, how to test, and what external hardware is needed. The design likely serves as a simple bridge or test chip for SPI communication, but its exact behavior cannot be determined from the provided information. The pins indicate SPI master capabilities and GPIO, but no further details are available.",
+   "summary_changed": true
+  },
+  {
+   "key": "1670520d1119",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The pins are generic inputs and outputs, but the source does not describe general-purpose I/O functionality."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is entirely placeholder text with no functional description."
+    }
+   ],
+   "notes": "Removed unsupported gpio tag and added insufficient-doc for the placeholder-only documentation.",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "gpio"
+   ],
+   "tags": [
+    "template",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is an example template with eight inputs labelled i1 through i8 and eight outputs labelled E0 through E7. The documentation is entirely placeholder text, with 'NO: Explain how your project works', 'NO: Explain how to use your project' and the unedited external hardware prompt, and the one-line description is simply 'nothing'. No behaviour, test procedure or hardware requirements are described. Nothing can be concluded about the design beyond its pin count.",
+   "summary": "This project is an example template with eight inputs labelled i1 through i8 and eight outputs labelled E0 through E7. The documentation is entirely placeholder text, with 'NO: Explain how your project works', 'NO: Explain how to use your project' and the unedited external hardware prompt, and the one-line description is simply 'nothing'. No behaviour, test procedure or hardware requirements are described. Nothing can be concluded about the design beyond its pin count.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6192,
+  "completion_tokens": 2098,
+  "total_tokens": 8290,
+  "cost": 0.0024972,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0024972,
+   "upstream_inference_prompt_cost": 0.0012384,
+   "upstream_inference_completions_cost": 0.0012588
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0024972,
+ "elapsed_s": 111.0
+}

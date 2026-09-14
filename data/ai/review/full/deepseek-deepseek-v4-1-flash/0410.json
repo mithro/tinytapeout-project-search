@@ -1,0 +1,258 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "014ee1089da0",
+  "394d170fbcc6",
+  "177c04638720",
+  "e171c468a163",
+  "02b1b0544464",
+  "6325afbbad45"
+ ],
+ "results": [
+  {
+   "key": "014ee1089da0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "The project contains a seven-segment display encoder, not a generic signal-to-code encoder; the encoder tag is not supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The shift register is a sequential counter/storage element, but no counter tag is present and the project is a digital logic education block."
+    }
+   ],
+   "notes": "Encoder tag incorrectly describes the seven-segment display decoder as a generic encoder; counter tag added for the shift register.",
+   "tags_before": [
+    "alu",
+    "adder",
+    "shift-register",
+    "7-segment",
+    "encoder",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "alu",
+    "adder",
+    "shift-register",
+    "7-segment",
+    "wokwi",
+    "education",
+    "counter"
+   ],
+   "summary_before": "This project combines four sub-designs—a shift register, a hexadecimal seven-segment encoder, a 1-bit ALU, and a 3-bit adder—selectable via two project-select pins. The remaining six inputs are used for data and control depending on the selected mode, and outputs drive a 7-segment display or provide results. It is built for the Wokwi simulator and is intended as a multi-purpose educational tool. No silicon test results are reported.",
+   "summary": "This project combines four sub-designs—a shift register, a hexadecimal seven-segment encoder, a 1-bit ALU, and a 3-bit adder—selectable via two project-select pins. The remaining six inputs are used for data and control depending on the selected mode, and outputs drive a 7-segment display or provide results. It is built for the Wokwi simulator and serves as a multi-purpose educational tool. No silicon test results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "394d170fbcc6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "memory",
+    "audio",
+    "led",
+    "button",
+    "speaker",
+    "verilog",
+    "wokwi"
+   ],
+   "tags": [
+    "game",
+    "memory",
+    "audio",
+    "led",
+    "button",
+    "speaker",
+    "verilog",
+    "wokwi"
+   ],
+   "summary_before": "This is a Simon Says memory game where the user must repeat an ever-growing sequence of colors, each associated with a tone. The sequence is shown on four LEDs and played through a speaker, and the user responds using four buttons. The game supports four clock speeds selected by two inputs, and it plays level-up and game-over sounds. It requires external hardware including four push buttons with pull-down resistors, four LEDs, and optionally a speaker or buzzer.",
+   "summary": "This is a Simon Says memory game where the user must repeat an ever-growing sequence of colors, each associated with a tone. The sequence is shown on four LEDs and played through a speaker, and the user responds using four buttons. The game supports four clock speeds selected by two inputs, and it plays level-up and game-over sounds. It requires external hardware including four push buttons with pull-down resistors, four LEDs, and optionally a speaker or buzzer.",
+   "summary_changed": false
+  },
+  {
+   "key": "177c04638720",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "priority-encoder",
+     "reason": "The design contains a leading-zero counter, which is a different function from priority encoding; the tag is unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The leading-zero counter counts leading zeroes and outputs the count; this is a counting circuit."
+    }
+   ],
+   "notes": "Leading-zero counter was mislabeled as a priority encoder; corrected to counter.",
+   "tags_before": [
+    "game",
+    "vga",
+    "pong",
+    "display",
+    "audio",
+    "speaker",
+    "priority-encoder",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "pong",
+    "display",
+    "audio",
+    "speaker",
+    "verilog",
+    "counter"
+   ],
+   "summary_before": "Solo Squash is a single-player Pong-like game that outputs a 640x480 VGA signal and simple tones. The player controls a paddle to keep a ball bouncing within a playfield, with no score. The design includes a leading zero counter experiment that outputs on the bidirectional pins. It requires external VGA connections with resistors, buttons, and an optional speaker.",
+   "summary": "Solo Squash is a single-player Pong-like game that outputs a 640x480 VGA signal and simple tones. The player controls a paddle to keep a ball bouncing within a playfield, with no score. The design includes a leading zero counter experiment that outputs on the bidirectional pins. It requires external VGA connections with resistors, buttons, and an optional speaker.",
+   "summary_changed": false
+  },
+  {
+   "key": "e171c468a163",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "r2r-dac",
+     "reason": "The R2R DACs are external hardware mentioned in the testing instructions, not part of the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The author reports the silicon as working, which supports this tag."
+    }
+   ],
+   "notes": "R2R DAC is external hardware, not part of the design; added silicon-tested tag based on working silicon report.",
+   "tags_before": [
+    "pong",
+    "game",
+    "vga",
+    "video",
+    "audio",
+    "button",
+    "r2r-dac",
+    "verilog"
+   ],
+   "tags": [
+    "pong",
+    "game",
+    "vga",
+    "video",
+    "audio",
+    "button",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a two-player Pong game in Verilog, outputting a 2-bit-per-channel VGA video signal and a sound output. Each player controls a paddle with three buttons (left, right, action), and the game ends when one player runs out of lives. The design uses a VGA timing module and painter modules to generate graphics and detect collisions, with the ball bouncing at different angles depending on where it hits the paddle. It requires a VGA monitor, a VGA DAC built from 2-bit R2R resistor networks, and external buttons; the author reports that the silicon works.",
+   "summary": "This project implements a two-player Pong game in Verilog, outputting a 2-bit-per-channel VGA video signal and a sound output. Each player controls a paddle with three buttons (left, right, action), and the game ends when one player runs out of lives. The design uses a VGA timing module and painter modules to generate graphics and detect collisions, with the ball bouncing at different angles depending on where it hits the paddle. It requires a VGA monitor, a VGA DAC built from 2-bit R2R resistor networks, and external buttons; the author reports that the silicon works.",
+   "summary_changed": false
+  },
+  {
+   "key": "02b1b0544464",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "sound-generator",
+    "synthesizer",
+    "audio",
+    "music",
+    "pwm",
+    "dac",
+    "lfsr",
+    "verilog"
+   ],
+   "tags": [
+    "sound-generator",
+    "synthesizer",
+    "audio",
+    "music",
+    "pwm",
+    "dac",
+    "lfsr",
+    "verilog"
+   ],
+   "summary_before": "This is a Verilog replica of the SN76489 programmable sound generator, featuring three square wave tone generators and one noise generator with white and periodic noise. It is programmed via an 8-bit data bus and provides both digital 8-bit audio output and PWM output for analog audio. External hardware such as a DAC, RC filter, amplifier, and speaker are needed to produce sound. The design is well-documented, includes a test suite, and aims for hardware preservation and education.",
+   "summary": "This is a Verilog replica of the SN76489 programmable sound generator, featuring three square wave tone generators and one noise generator with white and periodic noise. It is programmed via an 8-bit data bus and provides both digital 8-bit audio output and PWM output for analog audio. External hardware such as a DAC, RC filter, amplifier, and speaker are needed to produce sound. The design is well-documented, includes a test suite, and aims for hardware preservation and education.",
+   "summary_changed": false
+  },
+  {
+   "key": "6325afbbad45",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "filter-analog",
+     "reason": "The second-order low-pass filter is implemented digitally in Verilog, not as an analog filter circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports from both author and a tester confirm working operation."
+    }
+   ],
+   "notes": "Filter-analog incorrectly describes a digital filter implementation; added silicon-tested tag from reported working silicon.",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "music",
+    "pwm",
+    "oscillator",
+    "filter-analog",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "music",
+    "pwm",
+    "oscillator",
+    "dsp",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a monophonic synth voice with two oscillators, a second-order low-pass filter, and programmable sweep rates that act as simple envelopes. It is controlled through a register interface written over eight data pins, four address pins and a write strobe, and it outputs audio both as a PWM signal and as an 8-bit sample for reconstruction with a resistor ladder. The oscillators use a floating-point-style period format to emulate the exponential volt-per-octave response of analog synths, and the filter uses a shared barrel shifter instead of multipliers. Silicon tests report that the registers can be written and that a demo tune plays back correctly, and it needs an external audio connection with a voltage divider to protect the audio device.",
+   "summary": "This design is a monophonic synth voice with two oscillators, a second-order low-pass filter, and programmable sweep rates that act as simple envelopes. It is controlled through a register interface written over eight data pins, four address pins and a write strobe, and it outputs audio both as a PWM signal and as an 8-bit sample for reconstruction with a resistor ladder. The oscillators use a floating-point-style period format to emulate the exponential volt-per-octave response of analog synths, and the filter uses a shared barrel shifter instead of multipliers. Silicon tests report that the registers can be written and that a demo tune plays back correctly, and it needs an external audio connection with a voltage divider to protect the audio device.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 13144,
+  "completion_tokens": 1355,
+  "total_tokens": 14499,
+  "cost": 0.0055692,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0055692,
+   "upstream_inference_prompt_cost": 0.0039432,
+   "upstream_inference_completions_cost": 0.001626
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0055692,
+ "elapsed_s": 8.5
+}

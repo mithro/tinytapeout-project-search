@@ -1,0 +1,305 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e580a982ee8f",
+  "a8582d6fc534",
+  "b5a417f8d4e9",
+  "0eb298a9d65e",
+  "38cc5dfdaf20",
+  "39ad004e542e"
+ ],
+ "results": [
+  {
+   "key": "e580a982ee8f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "The design is Manchester encode/decode, not UART; no UART framing or baud logic is described."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The PLL multiplies an external clock but the chip is not a standalone clock/timing generator; the PLL is an internal aid."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pll",
+     "reason": "The title and description explicitly state a built-in 5x PLL."
+    },
+    {
+     "tag": "bist",
+     "reason": "A BIST pin and BIST mode are documented."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state working on ASIC with TX/RX loopback verification."
+    }
+   ],
+   "notes": "Removed unsupported uart and clock-generator tags; added pll, bist, systemverilog, silicon-tested.",
+   "tags_before": [
+    "communication",
+    "encoder",
+    "decoder",
+    "pll",
+    "bist",
+    "systemverilog",
+    "uart",
+    "clock-generator",
+    "silicon-tested"
+   ],
+   "tags": [
+    "communication",
+    "encoder",
+    "decoder",
+    "pll",
+    "bist",
+    "systemverilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This chip performs Manchester encoding and decoding, converting between parallel 8-bit data and serial bitstreams. It includes a built-in 5x PLL and supports bidirectional operation controlled by a direction pin, with additional features like BIST mode and debug outputs. The design requires two clock inputs (25MHz and 100MHz) and uses bidirectional pins for data. Silicon testing confirmed functionality, with successful loopback tests using an external CPLD.",
+   "summary": "This chip performs Manchester encoding and decoding, converting between parallel 8-bit data and serial bitstreams. It includes a built-in 5x PLL and supports bidirectional operation controlled by a direction pin, with additional features like BIST mode and debug outputs. The design requires two clock inputs (25MHz and 100MHz) and uses bidirectional pins for data. Silicon testing confirmed functionality, with successful loopback tests using an external CPLD.",
+   "summary_changed": false
+  },
+  {
+   "key": "a8582d6fc534",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "reconfigurable",
+    "shift-register",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "reconfigurable",
+    "shift-register",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "This design is a simple programmable array logic device whose AND/OR matrix is configured by shifting a bitstream into an internal shift register. It is tested by clocking in a configuration bitstream from a microcontroller, then applying inputs through switches and observing the resulting boolean functions on LEDs connected to the outputs. No external hardware is strictly required, though switches and LEDs make the logic visible. The design is parametric in the Verilog sources and was originally written by Matthias Musch and included in TTGF180 by Ken, making it an educational programmable-logic block.",
+   "summary": "This design is a simple programmable array logic device whose AND/OR matrix is configured by shifting a bitstream into an internal shift register. It is tested by clocking in a configuration bitstream from a microcontroller, then applying inputs through switches and observing the resulting boolean functions on LEDs connected to the outputs. No external hardware is strictly required, though switches and LEDs make the logic visible. The design is parametric in the Verilog sources and was originally written by Matthias Musch and included in TTGF180 by Ken, making it an educational programmable-logic block.",
+   "summary_changed": false
+  },
+  {
+   "key": "b5a417f8d4e9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "instruction-decoder",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "instruction-decoder",
+    "memory",
+    "verilog"
+   ],
+   "summary_before": "This is a basic 4-bit processor implemented in Verilog, featuring a simple instruction set and 16 words of on-chip RAM. It accepts an 8-bit input (4-bit opcode and 4-bit operand) and outputs a 4-bit program counter and a 4-bit value from the accumulator. The processor is intended to be controlled by an external microcontroller like an Arduino, which supplies program instructions and may generate the clock. Testing requires writing a small program and feeding it via the microcontroller, but the documentation notes that testing procedures are not yet finalized.",
+   "summary": "This is a basic 4-bit processor implemented in Verilog, featuring a simple instruction set and 16 words of on-chip RAM. It accepts an 8-bit input (4-bit opcode and 4-bit operand) and outputs a 4-bit program counter and a 4-bit value from the accumulator. The processor is intended to be controlled by an external microcontroller like an Arduino, which supplies program instructions and may generate the clock. Testing requires writing a small program and feeding it via the microcontroller, but the documentation notes that testing procedures are not yet finalized.",
+   "summary_changed": false
+  },
+  {
+   "key": "0eb298a9d65e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "barrel-shifter",
+     "reason": "The design supports shift operations but no barrel shifter structure is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Comparison operations (SEQ, SNE, SLT, SGT, SLE, SGE, SLTU, SGTU, SLEU, SGEU) are supported."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "MUL operation is supported."
+    }
+   ],
+   "notes": "Removed unsupported barrel-shifter; added verilog, comparator, multiplier.",
+   "tags_before": [
+    "alu",
+    "multiplier",
+    "comparator",
+    "barrel-shifter"
+   ],
+   "tags": [
+    "alu",
+    "multiplier",
+    "comparator",
+    "verilog"
+   ],
+   "summary_before": "tt_gian_alu is a 32-bit ALU supporting arithmetic, logic, shift, comparison, and multiplication operations selected by a 6-bit function field. Operands and results are transferred over a nibble-based synchronous serial interface using ui[4..7] for input data, uo[4..7] for output data, and control/status pins for transaction start, result valid, frame error, and busy. It is driven synchronously with the 50 MHz clock and can be controlled by a microcontroller, requiring no external hardware. The documentation lists the supported operations and interface but gives little detail on timing or verification results.",
+   "summary": "tt_gian_alu is a 32-bit ALU supporting arithmetic, logic, shift, comparison, and multiplication operations selected by a 6-bit function field. Operands and results are transferred over a nibble-based synchronous serial interface using ui[4..7] for input data, uo[4..7] for output data, and control/status pins for transaction start, result valid, frame error, and busy. It is driven synchronously with the 50 MHz clock and can be controlled by a microcontroller, requiring no external hardware. The documentation lists the supported operations and interface but gives little detail on timing or verification results.",
+   "summary_changed": false
+  },
+  {
+   "key": "38cc5dfdaf20",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "The LFSR is described as cryptographic but no encryption/decryption or crypto algorithm is implemented."
+    },
+    {
+     "tag": "calculator",
+     "reason": "The design is a multi-tool OS with GCD/ISQRT/LFSR, not a general arithmetic calculator."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "A cryptographic LFSR engine is explicitly implemented."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive a 7-segment display."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The OS is described as an alphabet-driven multi-state FSM."
+    },
+    {
+     "tag": "soc",
+     "reason": "Described as a multi-tool system-on-chip with multiple hardware engines."
+    }
+   ],
+   "notes": "Removed unsupported crypto, calculator, education; added verilog, lfsr, 7-segment, fsm, soc.",
+   "tags_before": [
+    "soc",
+    "crypto",
+    "lfsr",
+    "7-segment",
+    "fsm",
+    "calculator",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "soc",
+    "lfsr",
+    "7-segment",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This design is a multi-tool system-on-chip that implements a small alphabet-driven operating system with hardware engines for Euclidean greatest common divisor, integer square root, and a cryptographic linear-feedback shift register. It is controlled through the Tiny Tapeout demo board's DIP switches and 7-segment display, using a debounced enter switch to step through opcode, operand, and result states. The 8-bit result is shown by multiplexing the hundreds, tens, and units digits on the display, with the decimal point marking the most significant digit. A test mode pin can bypass the internal timers for faster operation at low clock speeds.",
+   "summary": "This design is a multi-tool system-on-chip that implements a small alphabet-driven operating system with hardware engines for Euclidean greatest common divisor, integer square root, and a cryptographic linear-feedback shift register. It is controlled through the Tiny Tapeout demo board's DIP switches and 7-segment display, using a debounced enter switch to step through opcode, operand, and result states. The 8-bit result is shown by multiplexing the hundreds, tens, and units digits on the display, with the decimal point marking the most significant digit. A test mode pin can bypass the internal timers for faster operation at low clock speeds.",
+   "summary_changed": false
+  },
+  {
+   "key": "39ad004e542e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The LFSR is a subcomponent for noise generation, not the primary design."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "The datapath is described as pipelined but this is not a notable implementation tag for the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "The design is a SID voice synthesizer."
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "It generates sound waveforms and audio output."
+    },
+    {
+     "tag": "audio",
+     "reason": "It produces audio output via PWM."
+    },
+    {
+     "tag": "pwm",
+     "reason": "The audio output is 8-bit PWM."
+    },
+    {
+     "tag": "music",
+     "reason": "It is a music/sound synthesis chip."
+    }
+   ],
+   "notes": "Removed lfsr and pipeline; added verilog, synthesizer, sound-generator, audio, pwm, music.",
+   "tags_before": [
+    "synthesizer",
+    "sound-generator",
+    "audio",
+    "pwm",
+    "music",
+    "lfsr",
+    "verilog",
+    "pipeline"
+   ],
+   "tags": [
+    "synthesizer",
+    "sound-generator",
+    "audio",
+    "pwm",
+    "music",
+    "verilog"
+   ],
+   "summary_before": "This design is a triple-voice SID (MOS 6581-inspired) synthesizer without the analog filters, featuring a flat memory-mapped parallel interface for control and an 8-bit PWM audio output. It implements three voices with 24-bit phase accumulators, four waveform types (sawtooth, triangle, pulse, noise), ADSR envelopes, and sync/ring modulation. A host microcontroller writes registers to set frequency, pulse width, ADSR, and waveform parameters, and the PWM output requires an external RC low-pass filter to recover analog audio. Notable limitations include the removal of the filter chain and the use of a single PWM output for the mixed audio.",
+   "summary": "This design is a triple-voice SID (MOS 6581-inspired) synthesizer without the analog filters, featuring a flat memory-mapped parallel interface for control and an 8-bit PWM audio output. It implements three voices with 24-bit phase accumulators, four waveform types (sawtooth, triangle, pulse, noise), ADSR envelopes, and sync/ring modulation. A host microcontroller writes registers to set frequency, pulse width, ADSR, and waveform parameters, and the PWM output requires an external RC low-pass filter to recover analog audio. Notable limitations include the removal of the filter chain and the use of a single PWM output for the mixed audio.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9921,
+  "completion_tokens": 1845,
+  "total_tokens": 11766,
+  "cost": 0.006487875,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.006487875,
+   "upstream_inference_prompt_cost": 0.003720375,
+   "upstream_inference_completions_cost": 0.0027675
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.006487875,
+ "elapsed_s": 6.0
+}

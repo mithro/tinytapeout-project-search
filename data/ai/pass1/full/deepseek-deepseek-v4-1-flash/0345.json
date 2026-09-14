@@ -1,0 +1,199 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "46ee0328f163",
+  "26cdebd75cac",
+  "3aad5c90b7f2",
+  "bb2c2cde4d3c",
+  "885c564fb6f1",
+  "b9247ad5aa0f",
+  "6b71d83df84c",
+  "77ee8e42abe7",
+  "ec730bd64209",
+  "66a4ca95720b"
+ ],
+ "results": [
+  {
+   "key": "46ee0328f163",
+   "tags": [
+    "game",
+    "vga",
+    "gamepad",
+    "audio",
+    "pwm",
+    "tamagotchi",
+    "state-machine",
+    "animation"
+   ],
+   "summary": "TamaGotThis implements a Tamagotchi-style virtual pet that renders a cat to a VGA screen and allows interaction via a gamepad. The cat's battery decreases over time unless the player uses the gamepad to make it eat, sleep, or play; if the battery empties, the cat loses a life, and after nine lives the system reboots. The design outputs VGA video and PWM audio, and requires external gamepad, VGA, and audio PMODs. A fast mode is available for testing by holding select while pressing the A button.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "26cdebd75cac",
+   "tags": [
+    "multiplier",
+    "dsp",
+    "bit-serial",
+    "fixed-point",
+    "accumulator",
+    "rounding",
+    "arithmetic"
+   ],
+   "summary": "TinyTearout is a pipelined bit-serial multiplier that computes the product of an 8-bit multiplicand and an 8-bit Q0.7 signed coefficient, accumulating in a 24-bit signed accumulator. It uses a bit-serial multiply engine with sign extension and subtraction, applies round-half-up, and outputs a rounded 16-bit product with a data-available signal. The design is tested for arithmetic correctness against a golden model, including boundary coefficient values, rounding behavior, and overflow conditions. It targets a latency of approximately 8 clock cycles from operands valid to product emission.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3aad5c90b7f2",
+   "tags": [
+    "analog",
+    "transistor-level",
+    "exp",
+    "ln",
+    "eml",
+    "current-mode",
+    "ptat",
+    "scan-chain",
+    "compute"
+   ],
+   "summary": "This analog tile implements a chain of two translinear EML cells, each computing exp(u) - ln(v) in current mode, with radix-4 current-mode MDAC weights between cells. The fabric is biased by an on-chip PTAT core with a trimmed reference resistor, and configuration is loaded via a 29-bit scan chain. Only the final output of the chain is observable, so errors cannot be localized to a specific cell. Testing requires a source-measure unit for analog pins, and a startup delay of at least 10 ms is necessary for the PTAT bias core to wake from its degenerate state at cold corners.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "bb2c2cde4d3c",
+   "tags": [
+    "adc",
+    "analog",
+    "vco",
+    "delta-sigma",
+    "noise-shaping",
+    "switched-capacitor",
+    "bitstream",
+    "pulse-frequency"
+   ],
+   "summary": "This design integrates two independent first-order noise-shaping ADC architectures on a single die: a VCO-based pulse-frequency path and a switched-capacitor delta-sigma modulator, both sharing one analog input. The VCO output is a pulse train requiring off-chip counting and calibration, while the delta-sigma output is a one-bit bitstream needing off-chip filtering and decimation. A buffered analog monitor provides access to the delta-sigma loop state. The design operates from a 1.8 V supply and requires an external clock, stable analog source, and logic analyzer or counter for evaluation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "885c564fb6f1",
+   "tags": [
+    "analog",
+    "mosbius",
+    "reconfigurable",
+    "transistor-level",
+    "education",
+    "switch-array",
+    "layout"
+   ],
+   "summary": "This project is an alternative layout for Andrew Kang's mini-MOSbius, a reconfigurable analog array of MOS devices and switches intended for analog circuit experimentation. The analog design is largely unchanged from the original, but the digital control logic was rewritten and the layout is entirely new. Configuration is loaded serially via a bitstream, but the software to generate this bitstream is not yet available. External hardware depends on the specific circuit built, and the documentation notes that testing requires user-provided setup.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b9247ad5aa0f",
+   "tags": [
+    "i2c",
+    "gpio",
+    "pwm",
+    "io-expander",
+    "peripheral",
+    "control"
+   ],
+   "summary": "This design is an I2C-controlled IO expander that provides eight general-purpose input pins and eight output pins, each with PWM capability. It is intended to be controlled via an I2C interface using the scl and sda pins. The documentation is essentially empty, providing no details on how the device works, how to test it, or what external hardware is needed. The summary is inferred from the title and pin names only.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "6b71d83df84c",
+   "tags": [
+    "risc-v",
+    "soc",
+    "rv32im",
+    "uart",
+    "gpio",
+    "timer",
+    "qspi",
+    "psram",
+    "flash",
+    "zephyr"
+   ],
+   "summary": "Tiny32 is an RV32IM machine-mode SoC designed to run Zephyr, featuring software boot from external flash and PSRAM, along with UART, GPIO, and timers. It uses a QSPI interface for external flash and PSRAM, and provides UART communication on dedicated pins. The design targets a 25 MHz clock and occupies an 8x2 tile area. The documentation is minimal, consisting only of the title, one-line description, and pin names, so specific implementation details and testing procedures are not provided.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "77ee8e42abe7",
+   "tags": [
+    "fir",
+    "filter",
+    "dsp",
+    "spi",
+    "12-bit",
+    "36-tap"
+   ],
+   "summary": "D-FIR is a 12-bit 36-tap FIR filter that is programmable via an SPI interface. It includes a FIR_MODE pin and SPI pins (CS_N, MOSI, MISO, SCLK) for configuration and data transfer. The design operates at a 40 MHz clock and fits in a 2x2 tile area. The documentation is limited to the title, one-line description, and pin names, so details on filter coefficients, data flow, and testing are not available.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ec730bd64209",
+   "tags": [
+    "vga",
+    "gamepad",
+    "qspi",
+    "psram",
+    "flash",
+    "graphics",
+    "game",
+    "dual-gamepad"
+   ],
+   "summary": "This design generates a VGA scene with a flash palette and mirrored dual-PSRAM state, supporting two independent gamepads. It uses QSPI interfaces for flash and two PSRAM devices, and outputs VGA video signals. The gamepad inputs are read via a serial protocol on dedicated pins. The documentation is minimal, consisting only of the title, one-line description, and pin names, so the exact functionality and testing procedure are not described.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "66a4ca95720b",
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "animation",
+    "education",
+    "demo"
+   ],
+   "summary": "This project flashes the text 'U C L  2 0 2 7' on a 7-segment display. The documentation is essentially empty, providing no explanation of how it works, how to test it, or what external hardware is required. The summary is inferred from the title and one-line description only. It is likely a simple display driver or counter-based design.",
+   "confidence": "low",
+   "insufficient_docs": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5529,
+  "completion_tokens": 1918,
+  "total_tokens": 7447,
+  "cost": 0.0039603,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039603,
+   "upstream_inference_prompt_cost": 0.0016587,
+   "upstream_inference_completions_cost": 0.0023016
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039603,
+ "elapsed_s": 13.7
+}

@@ -1,0 +1,332 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "94c8c17e9d5a",
+  "e319c3bb0458",
+  "b848160ae079",
+  "af331c45d1e5",
+  "f3c7469e7372",
+  "14d666adf178"
+ ],
+ "results": [
+  {
+   "key": "94c8c17e9d5a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No evidence in the source that the design drives a 7-segment display; the title 'seven' and pin names are insufficient."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described or evidenced by the pins."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is extremely thin and does not describe the actual function."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment and display tags; retained wokwi and insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a 7-segment display controller with minimal documentation. It has 6 input pins and 3 output pins, and is tested by clicking buttons. The description states only 'it works' and 'click the buttons'. The project lacks sufficient detail to determine its exact function or usage.",
+   "summary": "This design has minimal documentation and its exact function is unclear. It has six input pins and three output pins, and the only test instruction is to click buttons. The description states only 'it works' and 'click the buttons'. The project lacks sufficient detail to determine its intended behavior or usage.",
+   "summary_changed": true
+  },
+  {
+   "key": "e319c3bb0458",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface is mentioned or evidenced by the pins."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics output is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "The design uses a UART port for receiving and transmitting characters."
+    },
+    {
+     "tag": "crypto",
+     "reason": "The design implements an XOR cipher, a cryptography-related function."
+    },
+    {
+     "tag": "cipher",
+     "reason": "The design implements a simple XOR cipher."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is Verilog."
+    }
+   ],
+   "notes": "Replaced incorrect VGA/video/display/graphics tags with UART, crypto, cipher, and Verilog.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics"
+   ],
+   "tags": [
+    "uart",
+    "crypto",
+    "cipher",
+    "verilog"
+   ],
+   "summary_before": "This project is a simple demo with no interactive inputs. It likely outputs a static pattern or message. The design is purely digital and requires no external hardware. The exact output behavior is not described.",
+   "summary": "This project implements a simple XOR cipher with a UART interface. It receives a character via UART and returns an encrypted character using a configurable key. The key can be updated by asserting the updateKey input before sending the new key. The default key is b10101010.",
+   "summary_changed": true
+  },
+  {
+   "key": "b848160ae079",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The source describes a beamforming signal processor, not a CPU."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "No esoteric language or novelty computation is described."
+    },
+    {
+     "tag": "chisel",
+     "reason": "The project language is Verilog, not Chisel."
+    },
+    {
+     "tag": "rom",
+     "reason": "No ROM is mentioned."
+    },
+    {
+     "tag": "led",
+     "reason": "No LED output is described."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "The design is a beamforming signal processor, a digital signal processing application."
+    },
+    {
+     "tag": "microphone",
+     "reason": "The design uses PDM microphone inputs."
+    },
+    {
+     "tag": "i2s",
+     "reason": "The design outputs PCM data and uses an I2S receiver according to the external hardware note."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is Verilog."
+    },
+    {
+     "tag": "audio",
+     "reason": "The design processes microphone audio signals and outputs PCM audio."
+    }
+   ],
+   "notes": "Corrected tags to reflect the beamforming microphone DSP design rather than a CPU.",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "chisel",
+    "rom",
+    "led",
+    "education"
+   ],
+   "tags": [
+    "dsp",
+    "microphone",
+    "i2s",
+    "verilog",
+    "audio"
+   ],
+   "summary_before": "This project is a simple 8-bit CPU inspired by the esoteric language BF. It is implemented in Chisel and includes a ROM for program storage. The design uses LEDs for output and is intended for educational purposes. The CPU executes BF programs.",
+   "summary": "This project is an 8-channel customizable beamforming signal processor. It accepts PDM microphone inputs and produces beamformed PCM output as well as individual PCM outputs for each microphone. Delay select inputs allow customization of the beamforming behavior. The documentation is largely placeholder text and lacks detailed implementation information.",
+   "summary_changed": true
+  },
+  {
+   "key": "af331c45d1e5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "No sequential logic is described; the design is only described as working by trial and error."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not describe the actual function."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is Verilog."
+    }
+   ],
+   "notes": "Removed unsupported FSM, sequential-logic, and education tags; added insufficient-doc.",
+   "tags_before": [
+    "fsm",
+    "sequential-logic",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a sequential logic design that uses a finite state machine to execute instructions deterministically across multiple clock cycles. It is intended for educational purposes, demonstrating how sequential circuits can control complex operations. The design is implemented in Verilog and is suitable for learning about state machines and timing. The documentation is clear and describes the architecture and testing approach.",
+   "summary": "This project is a Tiny Tapeout test run with eight inputs and eight outputs. The documentation states only that it works by trial and error and was tested with APyTypes. No detailed functional description is provided. The exact behavior of the design is unclear from the available documentation.",
+   "summary_changed": true
+  },
+  {
+   "key": "f3c7469e7372",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No basic logic gate implementation is described."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The documentation describes a factory test module, but the title and pins suggest a spike detection system; placeholder is not clearly supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "factory-test",
+     "reason": "The documentation explicitly describes a factory test module for testing I/O pins."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation contradicts the project title and pin labels, leaving the actual functionality unclear."
+    }
+   ],
+   "notes": "Escalated because the source documentation contradicts the project title and pin labels.",
+   "tags_before": [
+    "factory-test",
+    "verilog",
+    "placeholder",
+    "logic-gate"
+   ],
+   "tags": [
+    "factory-test",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "The design is documented as a factory test module that mirrors input pins to outputs, mirrors bidirectional pins to outputs, or outputs a counter, depending on control signals. However, the project title and pin labels imply a spike detection and classification system with four parallel detectors, which is not described in the documentation. The actual functionality based on the provided documentation is a simple I/O test and counter mode, with no spike detection logic described. This discrepancy indicates either a documentation error or that the project is a repurposed template, and no external hardware or test procedure for the spike system is described.",
+   "summary": "The documentation describes a factory test module that mirrors input pins to outputs, mirrors bidirectional pins to outputs, or outputs a counter depending on control signals. However, the project title and pin labels indicate a spike detection and classification system with four parallel detectors, which is not described. The actual functionality is ambiguous due to this contradiction. No external hardware or test procedure for the spike system is described.",
+   "summary_changed": true
+  },
+  {
+   "key": "14d666adf178",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "No communication protocol is described; only a command/data interface is implied by pin names."
+    },
+    {
+     "tag": "gpio",
+     "reason": "No general purpose digital I/O interface is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "The one-line description states it is a simple DSP core."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not specify the protocol or functionality."
+    }
+   ],
+   "notes": "Removed unsupported communication and gpio tags; added dsp, verilog, and insufficient-doc.",
+   "tags_before": [
+    "communication",
+    "insufficient-doc",
+    "gpio"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "dsp",
+    "verilog"
+   ],
+   "summary_before": "The design implements a command/data interface, but the documentation does not specify the protocol or timing. The pin names suggest a command/data interface, but no protocol or timing is given. The design is likely intended for communication experiments. The lack of detail makes it difficult to determine the exact functionality.",
+   "summary": "The design is described as a simple DSP core for TinyTapeout. It has command/data input pins and data output pins, but the documentation does not specify the protocol or timing. The exact functionality is unclear from the available information. The lack of detail makes it difficult to determine the intended behavior.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6272,
+  "completion_tokens": 1905,
+  "total_tokens": 8177,
+  "cost": 0.01576012,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.01576012,
+   "upstream_inference_prompt_cost": 0.00821632,
+   "upstream_inference_completions_cost": 0.0075438
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.01576012,
+ "elapsed_s": 26.0
+}

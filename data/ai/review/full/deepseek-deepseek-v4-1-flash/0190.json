@@ -1,0 +1,255 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "81e7773419f6",
+  "764deb7739d9",
+  "f2d574254bb9",
+  "75dfa1325099",
+  "9792996ae76a",
+  "150de226cc85"
+ ],
+ "results": [
+  {
+   "key": "81e7773419f6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The IO port is a serial shift-register interface (SPI-like), not general purpose digital IO pins; the pins are mem_sdi/sck/sdo and ioport_sck/sdo, not gpio."
+    }
+   ],
+   "add": [
+    {
+     "tag": "serial",
+     "reason": "placeholder"
+    }
+   ],
+   "notes": "Removed gpio: the IO port is a serial shift-register interface, not general purpose digital IO.",
+   "tags_before": [
+    "cpu",
+    "spi",
+    "sram",
+    "memory",
+    "verilog",
+    "gpio"
+   ],
+   "tags": [
+    "cpu",
+    "spi",
+    "sram",
+    "memory",
+    "verilog",
+    "uart"
+   ],
+   "summary_before": "Whisk is a 16-bit serial RISC CPU that executes instructions from up to 64 kilobytes of external SPI SRAM. It uses a single SPI interface for instruction fetch, loads, and stores, and internally operates in a fully serial manner to match the SPI memory throughput. An optional IO port interface provides up to 16 outputs and 8 inputs using shift registers. The design requires a host board with SPI SRAM and a host interface for loading programs, and it is notable for its compact serial architecture.",
+   "summary": "Whisk is a 16-bit serial RISC CPU that executes instructions from up to 64 kilobytes of external SPI SRAM. It uses a single SPI interface for instruction fetch, loads, and stores, and internally operates in a fully serial manner to match the SPI memory throughput. An optional IO port interface provides up to 16 outputs and 8 inputs using shift registers. The design requires a host board with SPI SRAM and a host interface for loading programs, and it is notable for its compact serial architecture.",
+   "summary_changed": false
+  },
+  {
+   "key": "764deb7739d9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The output is specifically a 7-segment display, already covered by 7-segment; display is redundant and less precise."
+    }
+   ],
+   "add": [],
+   "notes": "Removed redundant display tag; 7-segment already captures the output.",
+   "tags_before": [
+    "lfsr",
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "lfsr",
+    "counter",
+    "7-segment",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This project uses a linear-feedback shift register (LFSR) to implement a counter that displays its value on a 7-segment display. It includes a synchronous reset input and increments the count on each positive clock edge. Silicon testing confirmed that it counts up, repeating from 0 to 9. The design is simple and requires no external hardware beyond the display.",
+   "summary": "This project uses a linear-feedback shift register (LFSR) to implement a counter that displays its value on a 7-segment display. It includes a synchronous reset input and increments the count on each positive clock edge. Silicon testing confirmed that it counts up, repeating from 0 to 9. The design is simple and requires no external hardware beyond the display.",
+   "summary_changed": false
+  },
+  {
+   "key": "f2d574254bb9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The output is specifically a 7-segment display, already covered by 7-segment; display is redundant and less precise."
+    }
+   ],
+   "add": [],
+   "notes": "Removed redundant display tag; 7-segment already captures the output.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "fsm",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "fsm",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a hexadecimal countdown from F to 0 on a 7-segment display, controlled by a state machine that decrements on each clock pulse. An activation signal starts the countdown, and a reset returns the display to F. Silicon testing confirmed that it works as described, counting down when the activation input is high. It requires a 1 Hz clock signal and no additional external hardware.",
+   "summary": "This project implements a hexadecimal countdown from F to 0 on a 7-segment display, controlled by a state machine that decrements on each clock pulse. An activation signal starts the countdown, and a reset returns the display to F. Silicon testing confirmed that it works as described, counting down when the activation input is high. It requires a 1 Hz clock signal and no additional external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "75dfa1325099",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "No industrial control application is described; it is a simple alarm clock."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design does not generate a clock; it counts time from an external clock."
+    },
+    {
+     "tag": "education",
+     "reason": "The source mentions a summer institute sponsorship but does not state it is intended for teaching or learning digital design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "timer",
+     "reason": "The design implements hour and minute counters with an alarm comparison, i.e. a timing/alarm function."
+    }
+   ],
+   "notes": "Removed industrial, clock-generator and education tags unsupported by the source; added timer.",
+   "tags_before": [
+    "industrial",
+    "rtc",
+    "counter",
+    "clock-generator",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "rtc",
+    "counter",
+    "verilog",
+    "timer"
+   ],
+   "summary_before": "This project implements a simple alarm clock with configurable alarm hours and minutes. It uses internal counters for hours and minutes, and asserts an alarm output when the current time matches the alarm setting. The design was sponsored by MITRE and MIT/LL Beaverworks Summer Institute, and includes a testbench for simulation. It uses both dedicated and bidirectional pins to accommodate all inputs and outputs.",
+   "summary": "This project implements a simple alarm clock with configurable alarm hours and minutes. It uses internal counters for hours and minutes, and asserts an alarm output when the current time matches the alarm setting. The design was sponsored by MITRE and MIT/LL Beaverworks Summer Institute, and includes a testbench for simulation. It uses both dedicated and bidirectional pins to accommodate all inputs and outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "9792996ae76a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "VGA output is already covered by vga and graphics; display is redundant."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "ui_in[3:0] are pushbutton inputs for moving tiles."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Requires TinyVGA Pmod and optional Gamepad Pmod."
+    }
+   ],
+   "notes": "Removed redundant display tag; added button and pmod supported by pins and text.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "vga",
+    "gamepad",
+    "retro",
+    "display",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "vga",
+    "gamepad",
+    "retro",
+    "graphics",
+    "verilog",
+    "button",
+    "pmod"
+   ],
+   "summary_before": "This project implements the 2048 sliding tile puzzle game in Verilog with VGA video output and optional SNES-compatible gamepad input. Players move tiles using the ui_in buttons or a Gamepad Pmod, and the design includes a start animation, two color themes, and a unit test mode with debug pins. It requires a TinyVGA Pmod for display and optionally a Gamepad Pmod for controller input. The design is notable for fitting a complete graphical game with input handling and debug support into a 2x2 tile area.",
+   "summary": "This project implements the 2048 sliding tile puzzle game in Verilog with VGA video output and optional SNES-compatible gamepad input. Players move tiles using the ui_in buttons or a Gamepad Pmod, and the design includes a start animation, two color themes, and a unit test mode with debug pins. It requires a TinyVGA Pmod for display and optionally a Gamepad Pmod for controller input. The design is notable for fitting a complete graphical game with input handling and debug support into a 2x2 tile area.",
+   "summary_changed": false
+  },
+  {
+   "key": "150de226cc85",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "The design is a DAC encoder; the generic encoder tag is misleading and the DAC function is already captured by dac and r2r-dac."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design combines a digital mismatch-shaping encoder with an external resistor-ladder analog output."
+    }
+   ],
+   "notes": "Removed misleading encoder tag; added mixed-signal for the digital encoder plus external analog ladder.",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "encoder",
+    "verilog"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "verilog",
+    "mixed-signal"
+   ],
+   "summary_before": "This design is an 8-bit segmented mismatch-shaping R2R DAC encoder that takes digital input and produces a set of output bits that can be summed with specific weights to reconstruct the analog value. It operates in four modes: first-order mismatch shaping with dither, randomization, first-order shaping without dither, and static encoding, selectable via input pins. Testing requires an external resistor ladder and capacitor to create the analog output voltage, and the design is free-running off the project clock. The encoder is notable for its mismatch-shaping techniques aimed at improving DAC linearity, though it requires careful external component selection for optimal performance.",
+   "summary": "This design is an 8-bit segmented mismatch-shaping R2R DAC encoder that takes digital input and produces a set of output bits that can be summed with specific weights to reconstruct the analog value. It operates in four modes: first-order mismatch shaping with dither, randomization, first-order shaping without dither, and static encoding, selectable via input pins. Testing requires an external resistor ladder and capacitor to create the analog output voltage, and the design is free-running off the project clock. The encoder is notable for its mismatch-shaping techniques aimed at improving DAC linearity, though it requires careful external component selection for optimal performance.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7886,
+  "completion_tokens": 1239,
+  "total_tokens": 9125,
+  "cost": 0.002481558,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002481558,
+   "upstream_inference_prompt_cost": 0.001217778,
+   "upstream_inference_completions_cost": 0.00126378
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002481558,
+ "elapsed_s": 32.3
+}

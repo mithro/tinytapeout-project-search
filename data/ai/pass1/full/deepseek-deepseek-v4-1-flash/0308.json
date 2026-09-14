@@ -1,0 +1,203 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "623d3c97569b",
+  "4259f4cfbf33",
+  "b686df7fc9bf",
+  "f72c6b7e3970",
+  "6408ebcb93dd",
+  "81957f1964e6",
+  "746fb5ab9d22",
+  "b2078321697e",
+  "107f8f71e02a",
+  "4a72dfb2eb92"
+ ],
+ "results": [
+  {
+   "key": "623d3c97569b",
+   "tags": [
+    "game",
+    "vga",
+    "tron",
+    "light-cycles",
+    "two-player",
+    "collision-detection",
+    "ring-buffer",
+    "sprite",
+    "animation",
+    "wokwi"
+   ],
+   "summary": "This design implements a two-player Tron light-cycle game rendered over VGA at 640x480 resolution. Each player controls a light cycle using four directional buttons, and the trails are stored in circular buffers with collision detection against walls, trails, and head-on collisions. The game uses a 32x24 grid of 10x10 pixel cells, with procedural sprites and a blue checkerboard border. It requires a TinyVGA PMOD and eight pushbuttons, and is notable for its use of a multiply-by-reciprocal technique for pixel-to-grid mapping.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4259f4cfbf33",
+   "tags": [
+    "fifo",
+    "axi4-stream",
+    "fwft",
+    "register-file",
+    "handshake",
+    "debug",
+    "interface"
+   ],
+   "summary": "This project implements an 8-bit depth-16 AXI4-Stream FIFO with First-Word Fall-Through (FWFT) using a register file instead of Block RAM. The register file allows combinational reads, so data falls through to the output on the same clock cycle without a read strobe, providing true zero-cycle latency. The FIFO manages AXI4-Stream handshaking with tvalid and tready signals and provides full and empty flags. It is tested by driving the AXI-Stream control signals and observing the data flow.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b686df7fc9bf",
+   "tags": [
+    "fsm",
+    "irrigation",
+    "soil-moisture",
+    "comparator",
+    "pump-control",
+    "error-handling",
+    "sensor",
+    "industrial"
+   ],
+   "summary": "This design is a finite state machine that controls an irrigation pump based on soil moisture levels detected by two comparators. It has four states: IDLE, IRRIGATE, SATURATED, and INVALID, with transitions based on the comparator inputs. The design requires external hardware including a moisture sensor, two comparators, and a relay-controlled pump. It is part of the IEEE Division 1 Open Silicon Tapeout Initiative and includes error handling for invalid comparator states.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f72c6b7e3970",
+   "tags": [
+    "matrix-multiply",
+    "serial",
+    "nibble-stream",
+    "fsm",
+    "multiplier",
+    "arithmetic",
+    "protocol"
+   ],
+   "summary": "This design is a 3x3 unsigned 4-bit matrix multiplier that computes C = A * B with 10-bit output. It uses a nibble-stream protocol to load the matrices serially due to limited I/O pins, and a finite state machine manages the loading, computation, and reading phases. The result is read as two bytes per element, and status pins indicate busy, done, and output valid. It requires an external host such as a microcontroller or FPGA to drive the protocol, and no analog components are needed.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6408ebcb93dd",
+   "tags": [
+    "error-detection",
+    "hamming",
+    "crc",
+    "combinational",
+    "xor-tree",
+    "multiplexer",
+    "encoding",
+    "high-reliability"
+   ],
+   "summary": "This design is a combinational error detection engine that combines Hamming(12,8) encoding and CRC-8 checksum for 8-bit data protection. It uses pure XOR trees to provide zero-latency encoding, and a 4-to-1 multiplexer allows the 20-bit protected frame to be read in three 8-bit chunks. The design is tested by setting input data and toggling selection bits to read the segments. It requires an external controller to cycle through select states and reconstruct the frame.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "81957f1964e6",
+   "tags": [
+    "education",
+    "logic-gates",
+    "ring-oscillator",
+    "pfd",
+    "flip-flop",
+    "counter",
+    "test",
+    "analog",
+    "transistor-level",
+    "standard-cells"
+   ],
+   "summary": "This is a didactic testchip for teaching CMOS design, featuring five modules selected by a 3-bit MUX: a logic gate library, a ring oscillator with configurable divider, a phase-frequency detector, a D/T flip-flop study, and a 4-bit binary counter. The design includes always-live monitoring signals on bidirectional pins and is intended for hands-on experimentation with oscilloscopes, function generators, and push-buttons. It is notable for using explicit sky130 standard cell instantiations and for providing a range of frequencies from the ring oscillator for different measurement instruments. The chip is designed for educational purposes and includes detailed testing instructions for each module.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "746fb5ab9d22",
+   "tags": [
+    "vga",
+    "graphics",
+    "procedural",
+    "animation",
+    "arithmetic",
+    "no-framebuffer",
+    "demo"
+   ],
+   "summary": "This project generates real-time VGA graphics using purely arithmetic logic, with no framebuffer or ROM. It cycles through four rendering modes (rings, plasma, interference, chaos) based on a frame counter, and every pixel is computed on-the-fly. The design requires a VGA monitor and a 25 MHz clock, and it automatically starts rendering and cycling through modes upon reset release. It is notable for its fully procedural approach and continuous animation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b2078321697e",
+   "tags": [
+    "vga",
+    "typewriter",
+    "text",
+    "animation",
+    "prng",
+    "state-machine",
+    "display"
+   ],
+   "summary": "This design displays the sentence 'As above, so below' with a typewriter effect on a VGA monitor. It uses a standard 640x480 VGA timing generator and a state machine to manage the sequential animation, with a coordinate-based spatial hash to generate a flickering matrix of tiny green ASCII characters. The design requires a Tiny Tapeout VGA PMOD and a 25 MHz clock. It is notable for its text animation and pseudo-random character rendering.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "107f8f71e02a",
+   "tags": [
+    "vga",
+    "glyph",
+    "matrix",
+    "display",
+    "education",
+    "bootcamp",
+    "text"
+   ],
+   "summary": "This design displays 'PHILIPPINE IC DESIGN BOOTCAMP 2026!' in a Matrix-style display on a VGA monitor. It is based on the VGA Glyph mode by James Ross and includes palette selection and VGA mode bits. The design requires a VGA monitor and a 25 MHz clock. The documentation is minimal and refers to an external GitHub repository for details.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4a72dfb2eb92",
+   "tags": [
+    "vga",
+    "demo",
+    "logo",
+    "animation",
+    "parallax",
+    "bitmap-rom",
+    "palette",
+    "physics"
+   ],
+   "summary": "This project generates a 640x480 VGA signal and renders a demo scene with three bouncing logos, a parallax checkerboard background, and optional ripple and color cycling effects. It uses a bitmap ROM for the logos and a palette for color mapping. The design is tested with a cocotb testbench and requires a VGA monitor. It is notable for its demo scene effects and per-frame physics.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9100,
+  "completion_tokens": 1885,
+  "total_tokens": 10985,
+  "cost": 0.004992,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004992,
+   "upstream_inference_prompt_cost": 0.00273,
+   "upstream_inference_completions_cost": 0.002262
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004992,
+ "elapsed_s": 13.8
+}

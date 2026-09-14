@@ -1,0 +1,265 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a359bd9d68fa",
+  "9710837574f8",
+  "cc60b6601683",
+  "fb4348c6767f",
+  "1a1dc81f1b36",
+  "040eb209ee8f"
+ ],
+ "results": [
+  {
+   "key": "a359bd9d68fa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "button",
+     "reason": "Inputs are plain digital pins (ui_in), not documented as pushbuttons; no button interface evidence."
+    },
+    {
+     "tag": "rom",
+     "reason": "The bitmap ROM is an internal implementation detail, not a memory block interface or a notable design type."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pong",
+     "reason": "Flappy-Bird-style arcade game with flap/obstacle mechanics fits the arcade game category."
+    }
+   ],
+   "notes": "Removed button and rom tags (no button interface, ROM is internal detail); added pong for the arcade game style.",
+   "tags_before": [
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "scoreboard",
+    "rom",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "scoreboard",
+    "verilog",
+    "pong"
+   ],
+   "summary_before": "This design is a VGA-based mini-game inspired by Flappy Bird, where the player controls a logo that must avoid scrolling pipes. It includes features such as pause, hard mode, and score tracking, with controls mapped to input pins. The game outputs VGA signals to a TinyVGA PMOD and requires a VGA monitor or simulator. The design is implemented in Verilog and uses a bitmap ROM for the player sprite.",
+   "summary": "This design is a VGA-based mini-game inspired by Flappy Bird, where the player controls a logo that must avoid scrolling pipes. It includes features such as pause, hard mode, and score tracking, with controls mapped to input pins. The game outputs VGA signals to a TinyVGA PMOD and requires a VGA monitor or simulator. The design is implemented in Verilog and uses a bitmap ROM for the player sprite.",
+   "summary_changed": false
+  },
+  {
+   "key": "9710837574f8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "uo_out[7:0] drives LEDs as the primary observable output."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added led which is already present in the summary and pins.",
+   "tags_before": [
+    "cpu",
+    "rom",
+    "led",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "rom",
+    "led",
+    "verilog"
+   ],
+   "summary_before": "mini_cpu is a minimal 8-bit accumulator-based processor with a compact custom instruction set stored in an internal ROM. It runs a fixed program that drives an 8-bit LED output in a Knight Rider-style scanner pattern, with optional input switches that are not required for basic operation. Testing consists of applying a slow clock, holding reset for at least ten cycles, then observing the LED outputs. The design is self-contained and emphasises small area and simple synchronous behaviour, but no silicon results are reported.",
+   "summary": "mini_cpu is a minimal 8-bit accumulator-based processor with a compact custom instruction set stored in an internal ROM. It runs a fixed program that drives an 8-bit LED output in a Knight Rider-style scanner pattern, with optional input switches that are not required for basic operation. Testing consists of applying a slow clock, holding reset for at least ten cycles, then observing the LED outputs. The design is self-contained and emphasises small area and simple synchronous behaviour, but no silicon results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "cc60b6601683",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bandgap",
+     "reason": "The design uses a beta-multiplier reference, not a bandgap voltage reference."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence of discrete-transistor construction; it is a sky130 PDK analog design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "voltage-reference",
+     "reason": "Includes a beta-multiplier reference and startup circuit for bias generation."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Analog OTA/buffer with digital-style test and control context; analog-only block with supply/startup circuitry."
+    }
+   ],
+   "notes": "Removed bandgap (beta-multiplier, not bandgap) and transistor-level (no discrete transistor evidence); added voltage-reference and mixed-signal.",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "bandgap",
+    "filter-analog",
+    "transistor-level"
+   ],
+   "tags": [
+    "opamp",
+    "analog",
+    "filter-analog",
+    "voltage-reference",
+    "mixed-signal"
+   ],
+   "summary_before": "This analog block is a unity-gain buffer built from a two-stage Miller operational transconductance amplifier, together with a beta-multiplier reference and a startup circuit in the sky130 process. It is intended as the building block for a continuous-time Gm-C filter and is tested with a 3 pF load, square-wave pulses between 0.5 V and 1.0 V, DC sweeps and a 0 to 1.8 V supply ramp. External equipment includes a signal generator, 1.8 V supply, oscilloscope, 3 pF capacitor and multimeter, and the documentation warns that probe capacitance can degrade phase margin. Simulated figures such as 18.65 V/us slew rate and over 60 dB open-loop gain are quoted, but no measured silicon data are given.",
+   "summary": "This analog block is a unity-gain buffer built from a two-stage Miller operational transconductance amplifier, together with a beta-multiplier reference and a startup circuit in the sky130 process. It is intended as the building block for a continuous-time Gm-C filter and is tested with a 3 pF load, square-wave pulses between 0.5 V and 1.0 V, DC sweeps and a 0 to 1.8 V supply ramp. External equipment includes a signal generator, 1.8 V supply, oscilloscope, 3 pF capacitor and multimeter, and the documentation warns that probe capacitance can degrade phase margin. Simulated figures such as 18.65 V/us slew rate and over 60 dB open-loop gain are quoted, but no measured silicon data are given.",
+   "summary_changed": false
+  },
+  {
+   "key": "fb4348c6767f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pll",
+    "ring-oscillator",
+    "clock-generator",
+    "frequency-synthesizer",
+    "structural"
+   ],
+   "tags": [
+    "pll",
+    "ring-oscillator",
+    "clock-generator",
+    "frequency-synthesizer",
+    "structural"
+   ],
+   "summary_before": "This design implements a 127-stage coarse-tapped all-digital phase-locked loop (ADPLL) targeting 125 MHz in the SkyWater 130nm process. It features a structural digitally controlled oscillator (DCO) built from a 127-stage ring oscillator with coarse frequency tapping to switch between full and shortened loops. The feedback loop uses a synchronous digital divider, and the design includes pins for reference clock selection, reset, tap selection, and division ratio configuration. Testing involves applying reset, selecting the reference clock, configuring the tap and division settings, and monitoring the output clock and raw DCO clock.",
+   "summary": "This design implements a 127-stage coarse-tapped all-digital phase-locked loop (ADPLL) targeting 125 MHz in the SkyWater 130nm process. It features a structural digitally controlled oscillator (DCO) built from a 127-stage ring oscillator with coarse frequency tapping to switch between full and shortened loops. The feedback loop uses a synchronous digital divider, and the design includes pins for reference clock selection, reset, tap selection, and division ratio configuration. Testing involves applying reset, selecting the reference clock, configuring the tap and division settings, and monitoring the output clock and raw DCO clock.",
+   "summary_changed": false
+  },
+  {
+   "key": "1a1dc81f1b36",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design computes sine/cosine values; it does not generate a waveform signal output."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described; the datapath is a CORDIC rotation engine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fixed-point",
+     "reason": "Inputs and outputs are explicitly 16-bit fixed-point values scaled by 2^13."
+    }
+   ],
+   "notes": "Removed signal-generator and alu (unsupported); added fixed-point which is already described in the summary.",
+   "tags_before": [
+    "cordic",
+    "signal-generator",
+    "fixed-point",
+    "alu"
+   ],
+   "tags": [
+    "cordic",
+    "fixed-point"
+   ],
+   "summary_before": "This design implements a CORDIC-based math processor that computes sine and cosine functions for a 16-bit fixed-point angle input. The angle is loaded serially in 4-bit chunks, and the result is output as a 16-bit fixed-point value, selectable between sine and cosine. No external hardware is required, and the testing procedure is clearly described, including fixed-point conversion steps. The design is notable for its use of the CORDIC algorithm to calculate trigonometric functions in hardware.",
+   "summary": "This design implements a CORDIC-based math processor that computes sine and cosine functions for a 16-bit fixed-point angle input. The angle is loaded serially in 4-bit chunks, and the result is output as a 16-bit fixed-point value, selectable between sine and cosine. No external hardware is required, and the testing procedure is clearly described, including fixed-point conversion steps. The design is notable for its use of the CORDIC algorithm to calculate trigonometric functions in hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "040eb209ee8f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "motor-control",
+     "reason": "The PWM outputs drive a charger, igniter and dump FET, not a motor."
+    },
+    {
+     "tag": "industrial",
+     "reason": "This is a model-rocket launch controller, not an industrial control application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "bist",
+     "reason": "The device has a built-in self-test that runs a truncated system simulation after reset."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Three PWM outputs control the charger, igniter driver and energy dump."
+    },
+    {
+     "tag": "adc",
+     "reason": "Feedback comes from an external three-channel 12-bit ADC over a serial interface."
+    }
+   ],
+   "notes": "Removed motor-control and industrial (rocket launch controller, not motor/industrial); added bist, pwm and adc.",
+   "tags_before": [
+    "industrial",
+    "pwm",
+    "adc",
+    "fsm",
+    "motor-control",
+    "factory-test",
+    "systemverilog"
+   ],
+   "tags": [
+    "pwm",
+    "adc",
+    "fsm",
+    "factory-test",
+    "systemverilog",
+    "bist"
+   ],
+   "summary_before": "This chip is the control core for a capacitive-discharge model rocket launch controller, managing capacitor charging, igniter continuity testing, current-controlled igniter drive, and a safety energy dump. It uses three PWM outputs to drive a flyback charger, a buck igniter driver, and a dump FET, with feedback from an external three-channel ADC over a serial interface. A built-in self-test runs a truncated system simulation after reset and reports pass or fail through the output pins. The design requires substantial external hardware including ADCs, power FETs, a transformer, a speaker, buttons, and LEDs, and is notable for implementing a complete safety-critical control system on a tiny tile.",
+   "summary": "This chip is the control core for a capacitive-discharge model rocket launch controller, managing capacitor charging, igniter continuity testing, current-controlled igniter drive, and a safety energy dump. It uses three PWM outputs to drive a flyback charger, a buck igniter driver, and a dump FET, with feedback from an external three-channel ADC over a serial interface. A built-in self-test runs a truncated system simulation after reset and reports pass or fail through the output pins. The design requires substantial external hardware including ADCs, power FETs, a transformer, a speaker, buttons, and LEDs, and is notable for implementing a complete safety-critical control system on a tiny tile.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8556,
+  "completion_tokens": 1607,
+  "total_tokens": 10163,
+  "cost": 0.002223,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3380,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002223,
+   "upstream_inference_prompt_cost": 0.00116238,
+   "upstream_inference_completions_cost": 0.00106062
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002223,
+ "elapsed_s": 18.2
+}

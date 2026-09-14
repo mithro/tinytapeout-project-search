@@ -1,0 +1,204 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "557428e14958",
+  "249c9401246e",
+  "c58efb18d1d9",
+  "e2ae1afb6c82",
+  "04f27b97bbb7",
+  "c8058ee22848"
+ ],
+ "results": [
+  {
+   "key": "557428e14958",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The 7-segment outputs are only used as a debug/visual indicator in the Wokwi simulation; the design's function is UART transmission, and the pin labels are simulation artifacts, not a display feature."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed 7-segment tag as the display outputs are simulation-only debug indicators, not a design feature.",
+   "tags_before": [
+    "uart",
+    "shift-register",
+    "7-segment",
+    "wokwi",
+    "communication",
+    "ascii"
+   ],
+   "tags": [
+    "uart",
+    "shift-register",
+    "wokwi",
+    "communication",
+    "ascii"
+   ],
+   "summary_before": "This design implements a UART transmitter capable of sending a string of multiple ASCII characters using five 21-bit shift registers. It operates at a 300 Hz clock and is controlled via switches for load, transmit, and output enable. Testing involves connecting an Arduino's serial RX pin to the output and setting the Arduino serial monitor to 300 baud, then toggling switches to transmit the string. External hardware includes an Arduino and a computer with a serial monitor. The design is notable for extending the single-character UART concept to strings and is implemented in Wokwi.",
+   "summary": "This design implements a UART transmitter capable of sending a string of multiple ASCII characters using five 21-bit shift registers. It operates at a 300 Hz clock and is controlled via switches for load, transmit, and output enable. Testing involves connecting an Arduino's serial RX pin to the output and setting the Arduino serial monitor to 300 baud, then toggling switches to transmit the string. External hardware includes an Arduino and a computer with a serial monitor.",
+   "summary_changed": true
+  },
+  {
+   "key": "249c9401246e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "security",
+    "7-segment",
+    "wokwi",
+    "fsm"
+   ],
+   "tags": [
+    "security",
+    "7-segment",
+    "wokwi",
+    "fsm"
+   ],
+   "summary_before": "This design implements a customizable digital padlock that can be set to a user-defined code using switches. The code is entered via a push button, and the seven-segment display shows 'L' for locked and 'U' for unlocked. The design is tested by setting the code with switches, toggling the set switch, and then entering the code to unlock. No external hardware is required beyond the PCB's switches and display. The design is notable for being a simple embedded security application implemented in Wokwi.",
+   "summary": "This design implements a customizable digital padlock that can be set to a user-defined code using switches. The code is entered via a push button, and the seven-segment display shows 'L' for locked and 'U' for unlocked. The design is tested by setting the code with switches, toggling the set switch, and then entering the code to unlock. No external hardware is required beyond the PCB's switches and display.",
+   "summary_changed": true
+  },
+  {
+   "key": "c58efb18d1d9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "counter",
+    "fsm",
+    "wokwi",
+    "display",
+    "text"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "fsm",
+    "wokwi",
+    "display",
+    "text"
+   ],
+   "summary_before": "This circuit outputs the string 'tiny tapeout' to a 7-segment display using a modulo-11 counter to sequence through characters. It operates at a 1 Hz clock and includes a reset input to restart the counter. Testing is done by simply powering the design and observing the display, with an optional reset toggle. No external hardware is required. The design is notable for its use of a counter and lookup logic to display a fixed message, and it is implemented in Wokwi.",
+   "summary": "This circuit outputs the string 'tiny tapeout' to a 7-segment display using a modulo-11 counter to sequence through characters. It operates at a 1 Hz clock and includes a reset input to restart the counter. Testing is done by simply powering the design and observing the display, with an optional reset toggle. No external hardware is required. The design is notable for its use of a counter and lookup logic to display a fixed message, and it is implemented in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "e2ae1afb6c82",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "physics",
+    "stochastic-computing",
+    "lfsr",
+    "prng",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "physics",
+    "stochastic-computing",
+    "lfsr",
+    "prng",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This design simulates a 4-spin Ising chain in an external field using the Metropolis-Hastings Monte Carlo algorithm. It uses a 32-bit LFSR to generate random numbers for spin flip acceptance and can be chained with other instances to form longer chains. The design is tested by enabling neighbour inputs and observing the evolution to a ground state. No external hardware is required. The design is notable for being a self-contained physics simulation on a tiny tapeout chip, implemented in Wokwi.",
+   "summary": "This design simulates a 4-spin Ising chain in an external field using the Metropolis-Hastings Monte Carlo algorithm. It uses a 32-bit LFSR to generate random numbers for spin flip acceptance and can be chained with other instances to form longer chains. The design is tested by enabling neighbour inputs and observing the evolution to a ground state. No external hardware is required. The design is notable for being a self-contained physics simulation on a tiny tapeout chip, implemented in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "04f27b97bbb7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "memory",
+    "7-segment",
+    "decoder",
+    "wokwi",
+    "lookup-table"
+   ],
+   "tags": [
+    "memory",
+    "7-segment",
+    "decoder",
+    "wokwi",
+    "lookup-table"
+   ],
+   "summary_before": "This design implements a LUTRAM with a 4-bit address and 8-bit output, preloaded with a binary-to-7-segment decoder for digits 0-9. The memory content can be updated via clock and data pins, and a reset reverts to default data. Testing involves providing clock, data, reset, and address signals to display the corresponding digit. No external hardware is required. The design is notable for its use of a lookup table as memory and its limitation to 0-9 due to size constraints, implemented in Wokwi.",
+   "summary": "This design implements a LUTRAM with a 4-bit address and 8-bit output, preloaded with a binary-to-7-segment decoder for digits 0-9. The memory content can be updated via clock and data pins, and a reset reverts to default data. Testing involves providing clock, data, reset, and address signals to display the corresponding digit. No external hardware is required. The design is notable for its use of a lookup table as memory and its limitation to 0-9 due to size constraints, implemented in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "c8058ee22848",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "encoder",
+    "wokwi",
+    "lookup-table"
+   ],
+   "tags": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "encoder",
+    "wokwi",
+    "lookup-table"
+   ],
+   "summary_before": "This design encodes binary-coded decimal (BCD) inputs in the range 0-9 to 7-segment display control signals. It was fully generated using a lookup table generator from a truth table, and invalid BCD inputs result in a blank display. Testing is done by setting the input switches and observing the displayed digit. External hardware includes input switches and a 7-segment display on the PCB. The design is notable for being automatically generated from a truth table, implemented in Wokwi.",
+   "summary": "This design encodes binary-coded decimal (BCD) inputs in the range 0-9 to 7-segment display control signals. It was fully generated using a lookup table generator from a truth table, and invalid BCD inputs result in a blank display. Testing is done by setting the input switches and observing the displayed digit. External hardware includes input switches and a 7-segment display on the PCB. The design is notable for being automatically generated from a truth table, implemented in Wokwi.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "c58efb18d1d9: 5 sentences after review",
+  "e2ae1afb6c82: 5 sentences after review",
+  "04f27b97bbb7: 5 sentences after review",
+  "c8058ee22848: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6750,
+  "completion_tokens": 904,
+  "total_tokens": 7654,
+  "cost": 0.001850178,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001850178,
+   "upstream_inference_prompt_cost": 0.000928098,
+   "upstream_inference_completions_cost": 0.00092208
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001850178,
+ "elapsed_s": 30.2
+}

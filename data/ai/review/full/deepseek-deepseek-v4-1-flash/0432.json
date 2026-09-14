@@ -1,0 +1,293 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4404d6793173",
+  "b3602f1639c8",
+  "7d5b723efa83",
+  "fbd23d81ea51",
+  "01049a170439",
+  "63977e66b2a4"
+ ],
+ "results": [
+  {
+   "key": "4404d6793173",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence the switch is built from discrete transistors; it is an analog passgate design."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "No DIP switch interface; the control is a digital input pin, not a DIP switch."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Already present; analog switch with analog pins."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level and dip-switch tags; the design is a simple analog passgate switch.",
+   "tags_before": [
+    "analog",
+    "transistor-level",
+    "dip-switch"
+   ],
+   "tags": [
+    "analog",
+    "transistor-level",
+    "dip-switch"
+   ],
+   "summary_before": "This is a simple analog switch that connects or disconnects two analog pins (X and Y) based on a digital control input. When the control input is high, X and Y are connected; when low, they are isolated. The design also provides an inverse of the control signal as a digital output. Testing involves applying a digital high to X, a pull-down resistor on Y, and toggling the control input to verify connectivity and the inverse output.",
+   "summary": "This is a simple analog switch that connects or disconnects two analog pins (X and Y) based on a digital control input. When the control input is high, X and Y are connected; when low, they are isolated. The design also provides an inverse of the control signal as a digital output. Testing involves applying a digital high to X, a pull-down resistor on Y, and toggling the control input to verify connectivity and the inverse output.",
+   "summary_changed": false
+  },
+  {
+   "key": "b3602f1639c8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pll",
+     "reason": "The documentation describes a VCO, not a full phase-locked loop; no phase detector or loop filter is documented."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence of discrete transistor construction."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vco",
+     "reason": "Documented as a 100 MHz VCO tunable to ~180 MHz."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "The VCO is an oscillator circuit."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "Provides a clock-like oscillating output."
+    },
+    {
+     "tag": "analog",
+     "reason": "Analog design with analog pins."
+    }
+   ],
+   "notes": "Title says PLL but documentation only describes a VCO; removed pll and transistor-level tags.",
+   "tags_before": [
+    "pll",
+    "vco",
+    "oscillator",
+    "clock-generator",
+    "analog",
+    "transistor-level"
+   ],
+   "tags": [
+    "vco",
+    "oscillator",
+    "clock-generator",
+    "analog"
+   ],
+   "summary_before": "This analog project is a 100 MHz phase-locked loop (PLL) that includes a voltage-controlled oscillator (VCO) whose frequency can be tuned from approximately 100 MHz to 180 MHz by varying the control voltage. It provides analog outputs such as the VCO output and a digital output, along with control and reference pins. Testing is done by applying a 1.0 V control voltage and observing the output pins. No external hardware is required, and the design is notable for being a fully analog PLL implementation.",
+   "summary": "This analog project is a 100 MHz voltage-controlled oscillator (VCO) whose frequency can be tuned from approximately 100 MHz to 180 MHz by varying the control voltage. It provides analog outputs such as the VCO output and a digital output, along with control and reference pins. Testing is done by applying a 1.0 V control voltage and observing the output pins. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "7d5b723efa83",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "Passgates are analog switches, not necessarily discrete transistors; no explicit transistor-level claim."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Analog multiplexer/passgate design with analog pins."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "Core function is 4:1 and 8:1 analog multiplexing."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "Includes a ring oscillator and driver."
+    },
+    {
+     "tag": "counter",
+     "reason": "Includes a simple counter clocked from the ring oscillator."
+    }
+   ],
+   "notes": "Removed transistor-level tag; added analog, multiplexer, ring-oscillator, and counter tags supported by the documentation.",
+   "tags_before": [
+    "analog",
+    "multiplexer",
+    "transistor-level",
+    "ring-oscillator",
+    "counter"
+   ],
+   "tags": [
+    "analog",
+    "multiplexer",
+    "ring-oscillator",
+    "counter"
+   ],
+   "summary_before": "This analog module provides switchable passgates to route 4 or 8 analog signals, functioning as a multiplexer or analog switches for debug and inspection. It includes a ring oscillator and a digital block to generate one-hot control signals, allowing high-speed operation. Testing involves characterizing the passgates and chaining multiplexers, as demonstrated in a video. External analog hardware is required for full evaluation, and the design is notable for its integration of analog and digital components.",
+   "summary": "This analog module provides switchable passgates to route 4 or 8 analog signals, functioning as a multiplexer or analog switches for debug and inspection. It includes a ring oscillator and a digital block to generate one-hot control signals, allowing high-speed operation. Testing involves characterizing the passgates and chaining multiplexers, as demonstrated in a video. External analog hardware is required for full evaluation.",
+   "summary_changed": true
+  },
+  {
+   "key": "fbd23d81ea51",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "The rings are C-gate delay rings, not conventional ring oscillators; the term is misleading here."
+    },
+    {
+     "tag": "delay-line",
+     "reason": "No programmable or fixed delay line is implemented; the rings measure stage delay."
+    }
+   ],
+   "add": [
+    {
+     "tag": "asynchronous",
+     "reason": "C-gate/Muller C-element based asynchronous logic design."
+    },
+    {
+     "tag": "latch",
+     "reason": "One C-gate implementation is built from a latch."
+    },
+    {
+     "tag": "combinational",
+     "reason": "One C-gate implementation is built from combinatorial logic."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Implements C-gate logic elements."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working and partial results."
+    }
+   ],
+   "notes": "Removed ring-oscillator and delay-line tags; added asynchronous, latch, combinational, logic-gate, and silicon-tested tags.",
+   "tags_before": [
+    "asynchronous",
+    "ring-oscillator",
+    "latch",
+    "combinational",
+    "delay-line",
+    "logic-gate"
+   ],
+   "tags": [
+    "asynchronous",
+    "latch",
+    "combinational",
+    "logic-gate",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements two different C-gate (Muller C-element) circuits—one using a latch and one using combinatorial logic—and uses them to build 4-, 16-, and 64-stage rings. The C-gate outputs are directly observable, and the ring outputs toggle at frequencies related to the stage delays. Testing involves verifying the C-gate behavior and measuring ring frequencies, which requires an oscilloscope for the faster rings. Silicon tests show the C-gates work, but the fastest ring output was too fast to observe reliably.",
+   "summary": "This design implements two different C-gate (Muller C-element) circuits—one using a latch and one using combinatorial logic—and uses them to build 4-, 16-, and 64-stage rings. The C-gate outputs are directly observable, and the ring outputs toggle at frequencies related to the stage delays. Testing involves verifying the C-gate behavior and measuring ring frequencies, which requires an oscilloscope for the faster rings. Silicon tests show the C-gates work, but the fastest ring output was too fast to observe reliably.",
+   "summary_changed": false
+  },
+  {
+   "key": "01049a170439",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "fixed-point"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "fixed-point"
+   ],
+   "summary_before": "This design implements two Leaky Integrate-and-Fire (LIF) neurons connected by a synapse with Spike-Timing-Dependent Plasticity (STDP). It uses 8-bit fixed-point arithmetic for neuron states and synaptic weights, with the first neuron receiving an 8-bit input current and the second neuron receiving weighted input from the first. The synapse weight and neuron states are output for monitoring, and spike outputs are available on bidirectional pins. Testing can be done with a logic analyzer or signal generator, but no external hardware is required for basic operation.",
+   "summary": "This design implements two Leaky Integrate-and-Fire (LIF) neurons connected by a synapse with Spike-Timing-Dependent Plasticity (STDP). It uses 8-bit fixed-point arithmetic for neuron states and synaptic weights, with the first neuron receiving an 8-bit input current and the second neuron receiving weighted input from the first. The synapse weight and neuron states are output for monitoring, and spike outputs are available on bidirectional pins. Testing can be done with a logic analyzer or signal generator, but no external hardware is required for basic operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "63977e66b2a4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "The design includes a multiplexer but the documentation does not explicitly state it is purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplexer",
+     "reason": "Core function is a multiplexer controlling an LED and display."
+    },
+    {
+     "tag": "led",
+     "reason": "Drives an LED."
+    },
+    {
+     "tag": "display",
+     "reason": "Drives a display module."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Created using the Wokwi simulator."
+    }
+   ],
+   "notes": "Removed combinational tag; added multiplexer, led, display, and wokwi tags supported by the documentation.",
+   "tags_before": [
+    "multiplexer",
+    "combinational",
+    "led",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "multiplexer",
+    "led",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This design uses a multiplexer to control an LED and a display module based on input signals. It is tested by toggling input 7 and inputs 4 and 6 to observe the lighting behavior. External hardware includes an LED display and an LED diode. The documentation is brief but provides enough information to understand the basic operation.",
+   "summary": "This design uses a multiplexer to control an LED and a display module based on input signals. It is tested by toggling input 7 and inputs 4 and 6 to observe the lighting behavior. External hardware includes an LED display and an LED diode. The documentation is brief but provides enough information to understand the basic operation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "4404d6793173: only 1 tags after review; keeping pass-two tags"
+ ],
+ "usage": {
+  "prompt_tokens": 7053,
+  "completion_tokens": 1410,
+  "total_tokens": 8463,
+  "cost": 0.001762746,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001762746,
+   "upstream_inference_prompt_cost": 0.000832146,
+   "upstream_inference_completions_cost": 0.0009306
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001762746,
+ "elapsed_s": 15.3
+}

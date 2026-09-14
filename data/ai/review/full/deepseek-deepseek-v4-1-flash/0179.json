@@ -1,0 +1,252 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b88d0978a4e9",
+  "6d3d941dafc6",
+  "9650b9f83efd",
+  "aca03b22ace3",
+  "86a2c96136d5",
+  "753d0637d5e2"
+ ],
+ "results": [
+  {
+   "key": "b88d0978a4e9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The pins only expose serial RX/TX and a stop indicator; the eight LEDs in the pin list are not described in the source, and the documentation is a bare link."
+    },
+    {
+     "tag": "uart",
+     "reason": "Serial RX/TX is inferred only from pin names, but the source text does not describe a UART interface; the documentation is a bare GitHub link."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin, consisting only of external links, so the design cannot be described from the source."
+    }
+   ],
+   "notes": "Removed led and uart because neither is supported by the source; the only documentation is external links.",
+   "tags_before": [
+    "cpu",
+    "uart",
+    "education",
+    "led",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "education",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "Simplez is a small CPU design implemented in Verilog. It communicates via serial input from a keyboard and serial output to a display, with eight LEDs for status. The documentation is minimal, consisting only of links to an external GitHub repository, so details of its operation and testing are not provided here. External hardware likely includes a keyboard, display, and LEDs.",
+   "summary": "Simplez is a small CPU implemented in Verilog, with a single tile. Its pins include a serial receive input, a serial transmit output, and a stop indicator. The documentation is very thin, consisting only of links to an external GitHub repository, so the design's operation and test procedure are not described here. External hardware details are likewise not given in the source.",
+   "summary_changed": true
+  },
+  {
+   "key": "6d3d941dafc6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design reads graphics data from an external RAM emulator; it does not implement a memory block itself."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is working and the author reports a successful fabricated-silicon test of the graphics path."
+    },
+    {
+     "tag": "display",
+     "reason": "The PPU produces pixels for VGA video output, a display output."
+    }
+   ],
+   "notes": "Removed memory (external RAM emulator, not on-chip memory); added silicon-tested and display.",
+   "tags_before": [
+    "retro",
+    "game",
+    "graphics",
+    "sprite",
+    "synthesizer",
+    "audio",
+    "vga",
+    "rp2040",
+    "multi-tile",
+    "memory"
+   ],
+   "tags": [
+    "retro",
+    "game",
+    "graphics",
+    "sprite",
+    "synthesizer",
+    "audio",
+    "vga",
+    "rp2040",
+    "multi-tile",
+    "silicon-tested",
+    "display"
+   ],
+   "summary_before": "The Retro Console is an 8.5-bit game console implemented in Verilog that generates VGA video and audio. It includes a PPU that produces pixels from tile, map, and sprite data, and a synthesizer that mixes four voices at 96 kHz. The design is tested using an RP2040-based RAM emulator that provides program and graphics data, with VGA output via a Pmod and audio output left to external hardware. Silicon tests confirm the graphics work, but the synth portion has not been tested.",
+   "summary": "The Retro Console is an 8.5-bit retro game console implemented in Verilog across a 3x2 tile area. Its PPU generates pixels from tile, map, sprite and palette data and outputs them as VGA, while its synth mixes four voices at 96 kHz. An RP2040-based RAM emulator provides program and graphics data, and VGA output requires a Pmod; audio output is left to the RP2040 and is still to be determined. Silicon tests confirm the graphics work, but the synth portion has not been tested.",
+   "summary_changed": true
+  },
+  {
+   "key": "9650b9f83efd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gamepad",
+     "reason": "The buttons are individual paddle control inputs, not a gamepad interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is working and two testers report successful fabricated-silicon operation."
+    }
+   ],
+   "notes": "Removed unsupported gamepad tag; added silicon-tested from the working silicon reports.",
+   "tags_before": [
+    "game",
+    "pong",
+    "vga",
+    "pmod",
+    "button",
+    "gamepad"
+   ],
+   "tags": [
+    "game",
+    "pong",
+    "vga",
+    "pmod",
+    "button",
+    "silicon-tested"
+   ],
+   "summary_before": "VGA Experiments in Tennis is a simple Pong-like game implemented in Verilog. It uses VGA output to display paddles and a ball, with inputs for paddle movement, score reset, and speed selection. The design requires a VGA Pmod and buttons for gameplay. Silicon tests confirm it works with both Mole99 and Digilent VGA Pmods.",
+   "summary": "VGA Experiments in Tennis is a simple Pong-like game implemented in Verilog. It uses VGA output to display paddles and a ball, with inputs for paddle movement, score reset, and speed selection. The design requires a VGA Pmod and buttons for gameplay, and supports both Mole99 and Digilent pin mappings. Silicon tests confirm it works with both Mole99 and Digilent VGA Pmods.",
+   "summary_changed": true
+  },
+  {
+   "key": "aca03b22ace3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The output tag requires pin evidence; no output pins are detected and the source only lists a 7SEG display as external hardware."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Replaced by a partial test; the tag is not appropriate, but the summary reflects the silicon status."
+    }
+   ],
+   "notes": "Removed 7-segment output tag because no output pins are detected; the silicon test is partial, not a silicon-tested claim.",
+   "tags_before": [
+    "counter",
+    "asynchronous",
+    "flip-flop",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "asynchronous",
+    "flip-flop",
+    "wokwi",
+    "education",
+    "silicon-tested"
+   ],
+   "summary_before": "This Wokwi project is a 3-bit asynchronous down counter in which each flip-flop clocks the next, with a button used to advance the count. It is meant to drive a 7-segment display as external hardware. A tester ran it through the Commander application and found that ui_in[0] acts as the clock rather than the real clock, and that the observed output sequence 102, 63, 7, 79, 109, 6, 125, 91 repeats, suggesting the output bits are scrambled relative to the intended display. The silicon behaviour therefore only partially matches the intended counter.",
+   "summary": "This Wokwi project is a 3-bit asynchronous down counter in which each flip-flop clocks the next, with a button used to advance the count. It is intended to drive a 7-segment display as external hardware. A tester ran it through the Commander application and found that ui_in[0] acts as the clock rather than the real clock, and that the observed output sequence 102, 63, 7, 79, 109, 6, 125, 91 repeats, suggesting the output bits are scrambled relative to the intended display. The silicon behaviour therefore only partially matches the intended counter.",
+   "summary_changed": true
+  },
+  {
+   "key": "86a2c96136d5",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "parity",
+    "logic-gate",
+    "7-segment",
+    "led",
+    "dip-switch",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "parity",
+    "logic-gate",
+    "7-segment",
+    "led",
+    "dip-switch",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This Wokwi project lets a user select a number from 1 to 8 with DIP switches and indicates whether it is even or odd using LEDs and a 7-segment display, with logic gates such as AND, OR, XOR, NAND and NOT involved. Switching on 2, 4, 6 or 8 is intended to light all blue LEDs and show 8 on the display. A tester confirmed that the odd/even detection works on silicon but that the 7-segment output does not match the Wokwi simulation because the display is wired differently on the board. The project is a logic-gate teaching exercise and needs an external seven-segment display.",
+   "summary": "This Wokwi project lets a user select a number from 1 to 8 with DIP switches and indicates whether it is even or odd using LEDs and a 7-segment display, with logic gates such as AND, OR, XOR, NAND and NOT involved. Switching on 2, 4, 6 or 8 is intended to light all blue LEDs and show 8 on the display. A tester confirmed that the odd/even detection works on silicon but that the 7-segment output does not match the Wokwi simulation because the display is wired differently on the board. The project is a logic-gate teaching exercise and needs an external seven-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "753d0637d5e2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No ALU is described; the project is a 2-bit calculator combining simple arithmetic operations."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag; no ALU is mentioned in the source.",
+   "tags_before": [
+    "calculator",
+    "alu",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "calculator",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This is a 2-bit binary calculator that can add, subtract, or multiply two 2-bit numbers. The result is displayed on a 7-segment display. External hardware includes DIP switches for input and a 7-segment display. Silicon testing partially confirmed correct operation for addition and multiplication.",
+   "summary": "This is a 2-bit binary calculator that can add, subtract, or multiply two 2-bit numbers. The result is displayed on a 7-segment display. External hardware includes DIP switches for input and a 7-segment display. Silicon testing partially confirmed correct operation for addition and multiplication.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6432,
+  "completion_tokens": 1440,
+  "total_tokens": 7872,
+  "cost": 0.0036576,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036576,
+   "upstream_inference_prompt_cost": 0.0019296,
+   "upstream_inference_completions_cost": 0.001728
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036576,
+ "elapsed_s": 7.4
+}

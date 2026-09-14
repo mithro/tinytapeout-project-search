@@ -1,0 +1,196 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8896e64620ee",
+  "fa4b5be07de6",
+  "dc66bc6be1c7",
+  "33ecf73c81db",
+  "785ec57a6dad",
+  "bce30e633aae",
+  "e09fc6b5d3c3",
+  "972029330fa5",
+  "995f14d1e849",
+  "94c7fea1c1a0"
+ ],
+ "results": [
+  {
+   "key": "8896e64620ee",
+   "tags": [
+    "event-camera",
+    "denoising",
+    "debounce",
+    "sensor",
+    "tuple",
+    "state-machine",
+    "digital"
+   ],
+   "summary": "The design implements a debouncer for event-based camera data, filtering out spurious events caused by noise. It accepts an 8-bit tuple (x, y, p, t) via input pins and outputs the tuple only if the data remains stable for 5 clock cycles. The polarity bit is used to indicate high or low events, and the design can be tested by setting switches to simulate event tuples. The project is notable for addressing thermal noise in event cameras, but the documentation is minimal and lacks details on testing and implementation.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fa4b5be07de6",
+   "tags": [
+    "encryption",
+    "stream-cipher",
+    "lfsr",
+    "crypto",
+    "xor",
+    "shift-register",
+    "serial"
+   ],
+   "summary": "This project implements a stream cipher using an 8-byte linear shift register to encrypt and decrypt messages. It accepts 8-bit data on input pins and uses bidirectional pins for control signals such as increment, encrypt, and view mode. The encrypted or decrypted message can be viewed by selecting an index, and the design supports toggling between encryption and viewing without resetting. Notable limitations include the need to reset after 16 bytes to avoid losing encrypted data, and the documentation provides clear testing steps.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "dc66bc6be1c7",
+   "tags": [
+    "counter",
+    "gray-code",
+    "clock",
+    "led",
+    "4-bit",
+    "synchronous"
+   ],
+   "summary": "The design is a 4-bit synchronous Gray code counter that increments on a clock input and outputs the Gray code value on four LED pins. It is intended to demonstrate binary values changing in Gray code sequence, and can be tested by connecting a clock source and LEDs. The documentation is very brief, providing only a one-line description and basic testing instructions. There is no additional detail on implementation or features.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "33ecf73c81db",
+   "tags": [
+    "neural-network",
+    "spiking-neural-network",
+    "lstm",
+    "lif",
+    "neuron",
+    "adaptive-threshold",
+    "analog"
+   ],
+   "summary": "This project implements a spiking LSTM network based on a leaky integrate-and-fire neuron with an adaptive threshold. It accepts a current input and outputs spikes, with the threshold increasing when spikes occur and decaying otherwise. The design is tested by applying different current levels and observing the spiking behavior and threshold adaptation. The documentation is somewhat sparse, lacking details on the LSTM integration and external hardware requirements.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "785ec57a6dad",
+   "tags": [
+    "neuron",
+    "lif",
+    "spiking-neural-network",
+    "timer",
+    "counter",
+    "7-segment",
+    "clock-divider"
+   ],
+   "summary": "This project models a leaky integrate-and-fire neuron using a counter and comparator to generate spikes. It includes a clock divider and a 7-segment display driver to show the counter value, with the lower 8 bits of the counter available on bidirectional pins. The design can be tested by observing the counter increment every second with a 10 MHz clock, and the counting speed can be adjusted via input pins. The documentation is clear but the neuron model is simplified and lacks detailed biological realism.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "bce30e633aae",
+   "tags": [
+    "spi",
+    "qspi",
+    "memory",
+    "ram",
+    "rom",
+    "random-number-generator",
+    "7-segment",
+    "rp2040",
+    "debug"
+   ],
+   "summary": "The design implements an SPI peripheral with an 8-byte RAM, 324-byte ROM, and a random source, supporting standard and quad SPI read/write commands. It is intended to be used as a ROM for an RP2040, allowing it to boot from the ROM, and also provides debug access via switches and a 7-segment display. Silicon testing showed that the SPI RAM works and the RP2040 boots from the ROM, but writes to the RAM were not functioning and the random source distribution is non-uniform. The project requires a custom RP2040 board and a PIO-based SPI master for full testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e09fc6b5d3c3",
+   "tags": [
+    "neural-network",
+    "spiking-neural-network",
+    "spike",
+    "neuron",
+    "weights",
+    "digital"
+   ],
+   "summary": "This project implements a basic spiking neural network that takes spiking patterns from three input neurons and produces spikes from two output neurons based on predefined weights. It is intended for studying spike generation and can be tested by feeding different input spike patterns and observing the output spikes. The documentation is minimal, with many pins marked as unspecified and no details on the network architecture or testing methodology. The design appears to be a simple feedforward network with limited configurability.",
+   "confidence": "low",
+   "insufficient_docs": false
+  },
+  {
+   "key": "972029330fa5",
+   "tags": [
+    "neuron",
+    "lif",
+    "spiking-neural-network",
+    "adaptive-threshold",
+    "adaptive-decay",
+    "sparsity",
+    "analog"
+   ],
+   "summary": "This project implements an adaptive leaky integrate-and-fire neuron with configurable adaptive threshold and decay rate. It accepts an 8-bit current input and outputs the membrane potential and spike output, with control pins to enable adaptive features. Silicon testing confirmed that the neuron fires in response to different current levels, though the spike output appeared as digital pulses rather than narrow spikes. The design aims to enhance spike sparsity while preserving input features, and the documentation includes simulation and test results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "995f14d1e849",
+   "tags": [
+    "vga",
+    "spi",
+    "qspi",
+    "flash",
+    "rom",
+    "display",
+    "test",
+    "experiment",
+    "buffer"
+   ],
+   "summary": "This project reads data from an SPI flash ROM and displays it on a VGA monitor, supporting two resolutions and two line modes for buffered and direct display. It includes a loopback test and requires external hardware such as an SPI flash chip and a VGA DAC. Silicon testing showed that it displayed graphics on the screen, but the SPI ROM functionality was not fully tested. The documentation is detailed but notes that some aspects are still to be confirmed.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "94c7fea1c1a0",
+   "tags": [
+    "alu",
+    "7-segment",
+    "bcd",
+    "arithmetic",
+    "logic",
+    "4-bit",
+    "display"
+   ],
+   "summary": "This project is a simple 4-bit ALU that performs operations such as addition, subtraction, AND, OR, and comparisons, and outputs the result in BCD on a 7-segment display. It accepts two 4-bit inputs and a 4-bit operation code, and provides the result on both the 7-segment display and bidirectional pins. The documentation is very brief, with only a one-line description and no detailed testing instructions. The design is straightforward and lacks advanced features.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6450,
+  "completion_tokens": 1800,
+  "total_tokens": 8250,
+  "cost": 0.00390684,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 640,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00390684,
+   "upstream_inference_prompt_cost": 0.00174684,
+   "upstream_inference_completions_cost": 0.00216
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00390684,
+ "elapsed_s": 13.8
+}

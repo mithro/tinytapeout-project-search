@@ -1,0 +1,318 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d7e8392a7c5b",
+  "d5da10927d9d",
+  "ae0c9d4e240b",
+  "cf15308d00c4",
+  "0d3036ab36ca",
+  "b8cddcf19aa5"
+ ],
+ "results": [
+  {
+   "key": "d7e8392a7c5b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cipher",
+     "reason": "The design implements RSA, an asymmetric public-key cryptosystem, not a symmetric or block cipher."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the author tested the design as working on fabricated silicon."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The documentation explicitly says the RP2040 SPI1 peripheral shall be used to communicate with the RSA core."
+    }
+   ],
+   "notes": "Removed cipher because RSA is asymmetric, and added silicon-tested and rp2040 based on the source.",
+   "tags_before": [
+    "rsa",
+    "crypto",
+    "cipher",
+    "spi",
+    "coprocessor",
+    "verilog"
+   ],
+   "tags": [
+    "rsa",
+    "crypto",
+    "spi",
+    "coprocessor",
+    "verilog",
+    "silicon-tested",
+    "rp2040"
+   ],
+   "summary_before": "This is an 8-bit RSA encryption and decryption coprocessor that implements modular exponentiation through Montgomery modular multiplication. It uses an SPI slave peripheral with all four SPI modes, eight configurable 8-bit registers, and eight status registers, controlled from an RP2040 SPI1 master. The documentation provides a detailed key generation example and test procedure, and no external hardware is required. Silicon tests by the author confirmed register read and write operations across all SPI modes, with a self-checking test verifying encrypted output against predicted values.",
+   "summary": "This is an 8-bit RSA encryption and decryption coprocessor that implements modular exponentiation through Montgomery modular multiplication. It uses an SPI slave peripheral with all four SPI modes, eight configurable 8-bit registers, and eight status registers, controlled from an RP2040 SPI1 master. The documentation provides a detailed key generation example and test procedure, and no external hardware is required. Silicon tests by the author confirmed register read and write operations across all SPI modes, with a self-checking test verifying encrypted output against predicted values.",
+   "summary_changed": false
+  },
+  {
+   "key": "d5da10927d9d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "The source describes a language for a CTF but does not present the design as hardware security focused."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The design is a complete stack-based processor/interpreter with program counter, stack pointer, program memory, and execution control."
+    },
+    {
+     "tag": "stack-machine",
+     "reason": "The language and hardware are explicitly stack-based."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The source calls SPELL a minimal, cryptic, stack-based programming language for a CTF."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The serial interface is implemented using a shift register."
+    }
+   ],
+   "notes": "Removed unsupported security tag and added cpu, stack-machine, esoteric, and shift-register which are directly supported.",
+   "tags_before": [
+    "cpu",
+    "stack-machine",
+    "esoteric",
+    "security",
+    "shift-register"
+   ],
+   "tags": [
+    "cpu",
+    "stack-machine",
+    "esoteric",
+    "shift-register"
+   ],
+   "summary_before": "SPELL is a hardware implementation of a minimal stack-based programming language created for The Skull CTF, with 256 bytes of program memory, a 32-byte stack and 32 bytes of data memory. Programs and internal registers are loaded and inspected through a serial shift-register interface controlled by run, step, load, dump and register-select pins. It also exposes eight bidirectional and eight output-only pins as I/O ports. No external hardware is required, and the design is notable for implementing a complete esoteric language interpreter in hardware.",
+   "summary": "SPELL is a hardware implementation of a minimal stack-based programming language created for The Skull CTF, with 256 bytes of program memory, a 32-byte stack and 32 bytes of data memory. Programs and internal registers are loaded and inspected through a serial shift-register interface controlled by run, step, load, dump and register-select pins. It also exposes eight bidirectional and eight output-only pins as I/O ports. No external hardware is required, and the design is notable for implementing a complete esoteric language interpreter in hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "ae0c9d4e240b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The project is explicitly a 4x4 array multiplier."
+    },
+    {
+     "tag": "structural",
+     "reason": "The source states it was created using a manual structural design."
+    },
+    {
+     "tag": "adder",
+     "reason": "The design uses 1-bit full adder modules."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The multiplier is purely combinational logic."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed alu because the design is only a multiplier, and added the supported canonical tags.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "structural",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4-bit by 4-bit array multiplier that produces an 8-bit product using a structural design of AND gates and full adders. It takes two 4-bit inputs and outputs the product, following the standard shift-and-add multiplication algorithm. The design can be tested by editing the provided Python test script to add custom test cases. No external hardware is needed, and the documentation includes a diagram of the multiplier.",
+   "summary": "This project is a 4-bit by 4-bit array multiplier that produces an 8-bit product using a structural design of AND gates and full adders. It takes two 4-bit inputs and outputs the product, following the standard shift-and-add multiplication algorithm. The design can be tested by editing the provided Python test script to add custom test cases. No external hardware is needed, and the documentation includes a diagram of the multiplier.",
+   "summary_changed": false
+  },
+  {
+   "key": "cf15308d00c4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that this project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The project is explicitly a 4x4 array multiplier."
+    },
+    {
+     "tag": "structural",
+     "reason": "The source states it was created using manual structural design."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The multiplier is purely combinational logic."
+    },
+    {
+     "tag": "adder",
+     "reason": "The design uses full adder modules."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed education because the source does not state an educational purpose, and added the supported canonical tags.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "combinational",
+    "adder",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "combinational",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This is a 4x4 structural array multiplier implemented in Verilog, using AND gates and full adders to compute the 8-bit product of two 4-bit inputs. The design is purely combinational and can be tested by applying input values to the pins and observing the output. No external hardware is required. The documentation includes example test cases and a brief explanation of the structural approach, suggesting it is an educational project.",
+   "summary": "This is a 4x4 structural array multiplier implemented in Verilog, using AND gates and full adders to compute the 8-bit product of two 4-bit inputs. The design is purely combinational and can be tested by applying input values to the pins and observing the output. No external hardware is required. The documentation includes example test cases and a brief explanation of the structural approach, suggesting it is an educational project.",
+   "summary_changed": false
+  },
+  {
+   "key": "0d3036ab36ca",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that this project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The project is explicitly a 4x4 array multiplier."
+    },
+    {
+     "tag": "structural",
+     "reason": "The source states it was created using manual structural design."
+    },
+    {
+     "tag": "adder",
+     "reason": "The design uses carry-save adders and a final carry-propagate adder."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed education because the source does not state an educational purpose, and added the supported canonical tags.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "adder",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This is a 4x4 unsigned array multiplier implemented in Verilog using structural design with carry-save adders and a final carry-propagate adder. It takes an 8-bit input split into two 4-bit operands and outputs an 8-bit product. The design is a class project (ECE2204) and includes a testbench for verification. No external hardware is required.",
+   "summary": "This is a 4x4 unsigned array multiplier implemented in Verilog using structural design with carry-save adders and a final carry-propagate adder. It takes an 8-bit input split into two 4-bit operands and outputs an 8-bit product. The design is a class project (ECE2204) and includes a testbench for verification. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "b8cddcf19aa5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that this project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The project is explicitly a 4x4 array multiplier."
+    },
+    {
+     "tag": "adder",
+     "reason": "The design uses full adders."
+    },
+    {
+     "tag": "structural",
+     "reason": "The source states it was created using manual structural design."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed education because the source does not state an educational purpose, and added the supported canonical tags.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "structural",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4x4 structural array multiplier using full adders and AND gates. It takes two 4-bit inputs and produces an 8-bit product. The design is built from basic logic gates and full adders, forming partial products and summing them with carry propagation. It is an educational project (ECE-UY 2204) intended to demonstrate digital arithmetic design, and testing involves applying input values and comparing the output to expected results.",
+   "summary": "This project implements a 4x4 structural array multiplier using full adders and AND gates. It takes two 4-bit inputs and produces an 8-bit product. The design is built from basic logic gates and full adders, forming partial products and summing them with carry propagation. It is an educational project (ECE-UY 2204) intended to demonstrate digital arithmetic design, and testing involves applying input values and comparing the output to expected results.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8876,
+  "completion_tokens": 1811,
+  "total_tokens": 10687,
+  "cost": 0.004836,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004836,
+   "upstream_inference_prompt_cost": 0.0026628,
+   "upstream_inference_completions_cost": 0.0021732
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004836,
+ "elapsed_s": 21.4
+}

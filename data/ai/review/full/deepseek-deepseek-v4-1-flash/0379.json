@@ -1,0 +1,288 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "29da74f5699f",
+  "dcf9f8930b88",
+  "d8729619a7df",
+  "55a55afa9964",
+  "4259f4cfbf33",
+  "dc44d77b5bcb"
+ ],
+ "results": [
+  {
+   "key": "29da74f5699f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "The design is a motor mixer/flight controller; no data communication protocol is implemented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "Inputs and outputs are PWM signals with 20 ms frames."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "Produces four motor drive PWM outputs."
+    },
+    {
+     "tag": "robotics",
+     "reason": "Quadcopter flight controller for a drone."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Source language is SystemVerilog."
+    }
+   ],
+   "notes": "Removed unsupported communication tag and added systemverilog to match the stated language.",
+   "tags_before": [
+    "pwm",
+    "robotics",
+    "motor-control",
+    "communication"
+   ],
+   "tags": [
+    "pwm",
+    "robotics",
+    "motor-control",
+    "systemverilog"
+   ],
+   "summary_before": "This project implements a simple quadcopter flight controller in SystemVerilog that converts four PWM control inputs (throttle, yaw, pitch, roll) into four motor PWM outputs. It mixes the inputs so throttle raises all motors together while yaw, pitch, and roll introduce differential adjustments, using a 20 ms PWM frame with 1 ms minimum and 2 ms maximum duty. The full system requires a radio receiver or control source, ESCs, and motors, with the author using an ELRS/CRSF receiver and a CRSF-to-PWM converter. The design is a straightforward hardware mixer without sensor feedback or stabilization, intended as a minimal flight controller.",
+   "summary": "This project implements a simple quadcopter drone flight controller in SystemVerilog that converts four PWM control inputs (throttle, yaw, pitch, roll) into four motor PWM outputs. It mixes the inputs so throttle raises all motors together while yaw, pitch, and roll introduce differential adjustments, using a 20 ms PWM frame with 1 ms minimum and 2 ms maximum duty. The full system requires a radio receiver or control source, ESCs, and motors, with the author using an ELRS/CRSF receiver and a CRSF-to-PWM converter. The design is a straightforward hardware mixer without sensor feedback or stabilization, intended as a minimal flight controller.",
+   "summary_changed": true
+  },
+  {
+   "key": "dcf9f8930b88",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "communication",
+    "clock-domain-crossing",
+    "fifo",
+    "fpga"
+   ],
+   "tags": [
+    "communication",
+    "clock-domain-crossing",
+    "fifo",
+    "fpga"
+   ],
+   "summary_before": "This design implements a Physical Coding Sublayer (PCS) with 8b10b encoding and decoding, asynchronous clock domain crossing FIFOs, and a link training state machine for a half-duplex serial link. It operates between a 66 MHz link clock and a 10 MHz system clock, and can be tested using an RP2040 for functional validation or an FPGA for at-speed 66 MHz testing. External hardware for full validation includes a 3.3V FPGA and jumper wires, while basic functional tests can be done with just the demoboard. The design is notable for its compact implementation of a high-speed serial communication protocol on a Tiny Tapeout tile.",
+   "summary": "This design implements a Physical Coding Sublayer (PCS) with 8b10b encoding and decoding, asynchronous clock domain crossing FIFOs, and a link training state machine for a half-duplex serial link. It operates between a 66 MHz link clock and a 10 MHz system clock, and can be tested using an RP2040 for functional validation or an FPGA for at-speed 66 MHz testing. External hardware for full validation includes a 3.3V FPGA and jumper wires, while basic functional tests can be done with just the demoboard. The design is notable for its compact implementation of a high-speed serial communication protocol on a Tiny Tapeout tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "d8729619a7df",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "The module is a learning tool for scan chains, not a chip factory self-test structure."
+    }
+   ],
+   "add": [
+    {
+     "tag": "scan-chain",
+     "reason": "Implements muxed scan flip-flop chains for DFT practice."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Base design is a universal 4-bit shift register."
+    },
+    {
+     "tag": "education",
+     "reason": "Explicitly a tool to practice DFT/scan chain concepts."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Source language is Verilog."
+    }
+   ],
+   "notes": "Removed factory-test (not a factory self-test structure) and added verilog.",
+   "tags_before": [
+    "scan-chain",
+    "education",
+    "shift-register",
+    "factory-test"
+   ],
+   "tags": [
+    "scan-chain",
+    "education",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This design is a test module for learning about scan chains and Design for Testability (DFT) concepts. It contains two 4-bit universal shift registers, one of which can be configured to exhibit stuck-at faults via the ERR input, and both can be placed in scan mode for testing. The module can be used to practice scan chain operation and fault detection, and may require an FPGA or microcontroller to manipulate the inputs. The project is notable for being an educational tool for understanding scan chain testing and fault injection.",
+   "summary": "This design is a test module for learning about scan chains and Design for Testability (DFT) concepts. It contains two 4-bit universal shift registers, one of which can be configured to exhibit stuck-at faults via the ERR input, and both can be placed in scan mode for testing. The module can be used to practice scan chain operation and fault detection, and may require an FPGA or microcontroller to manipulate the inputs. The project is notable for being an educational tool for understanding scan chain testing and fault injection.",
+   "summary_changed": false
+  },
+  {
+   "key": "55a55afa9964",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "clock-generator",
+    "frequency-synthesizer",
+    "clock-divider",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "clock-generator",
+    "frequency-synthesizer",
+    "clock-divider",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This project implements a programmable clock generator that produces output frequencies from 100 Hz to 900 kHz based on a 50 MHz input clock. The output frequency is selected by a 4-bit radix input (1-9) and a 2-bit scale input that sets the base frequency range. The design uses a precomputed division factor and an 18-bit counter to generate a 50% duty-cycle square wave, with glitch-free updates occurring only at half-period boundaries. No external hardware is required, and the output is available on a single pin for observation with an oscilloscope or logic analyzer.",
+   "summary": "This project implements a programmable clock generator that produces output frequencies from 100 Hz to 900 kHz based on a 50 MHz input clock. The output frequency is selected by a 4-bit radix input (1-9) and a 2-bit scale input that sets the base frequency range. The design uses a precomputed division factor and an 18-bit counter to generate a 50% duty-cycle square wave, with glitch-free updates occurring only at half-period boundaries. No external hardware is required, and the output is available on a single pin for observation with an oscilloscope or logic analyzer.",
+   "summary_changed": false
+  },
+  {
+   "key": "4259f4cfbf33",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synchronizer",
+     "reason": "No clock domain crossing synchronizer is described; the FIFO is single-clock."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fifo",
+     "reason": "Implements an 8-bit depth-16 FIFO."
+    },
+    {
+     "tag": "axi",
+     "reason": "Uses AXI4-Stream tvalid/tready handshaking."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Storage is implemented with a register file of D flip-flops."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Source language is Verilog."
+    }
+   ],
+   "notes": "Removed synchronizer (no CDC described) and added verilog.",
+   "tags_before": [
+    "fifo",
+    "axi",
+    "register-file",
+    "synchronizer",
+    "verilog"
+   ],
+   "tags": [
+    "fifo",
+    "axi",
+    "register-file",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8-bit depth-16 AXI4-Stream FIFO with First-Word Fall-Through (FWFT) using a register file instead of Block RAM. The register file allows combinational reads, so data falls through to the output on the same clock cycle without a read strobe, providing true zero-cycle latency. The FIFO manages AXI4-Stream handshaking with tvalid and tready signals and provides full and empty flags. It is tested by driving the AXI-Stream control signals and observing the data flow.",
+   "summary": "This project implements an 8-bit depth-16 AXI4-Stream FIFO with First-Word Fall-Through (FWFT) using a register file instead of Block RAM. The register file allows combinational reads, so data falls through to the output on the same clock cycle without a read strobe, providing true zero-cycle latency. The FIFO manages AXI4-Stream handshaking with tvalid and tready signals and provides full and empty flags. It is tested by driving the AXI-Stream control signals and observing the data flow.",
+   "summary_changed": false
+  },
+  {
+   "key": "dc44d77b5bcb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source presents this as a lab/exploration platform, not explicitly a teaching or learning design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "trng",
+     "reason": "Core function is a true random number generator."
+    },
+    {
+     "tag": "puf",
+     "reason": "Title and description state PUF-style hardware entropy sources."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "Ring oscillators are the entropy source."
+    },
+    {
+     "tag": "uart",
+     "reason": "UART-controlled interface for configuration and readback."
+    },
+    {
+     "tag": "spi",
+     "reason": "SPI interface is exposed alongside UART."
+    },
+    {
+     "tag": "security",
+     "reason": "Targets cryptographic and security applications."
+    },
+    {
+     "tag": "crypto",
+     "reason": "Entropy for cryptographic keying material."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Source language is Verilog."
+    }
+   ],
+   "notes": "Removed education (not explicitly a teaching design) and added verilog.",
+   "tags_before": [
+    "trng",
+    "puf",
+    "ring-oscillator",
+    "uart",
+    "spi",
+    "security",
+    "crypto",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "trng",
+    "puf",
+    "ring-oscillator",
+    "uart",
+    "spi",
+    "security",
+    "crypto",
+    "verilog"
+   ],
+   "summary_before": "This project is a UART/SPI-controlled ASIC lab for exploring true-random number generation and PUF-style hardware entropy sources, using a bank of ring oscillators as the entropy source. A host can send ASCII commands over UART to configure internal registers, control the oscillator network, and read back raw entropy samples, with status and data also available over SPI. It requires an external UART adapter for interaction, and the design is intended for cryptographic and security applications. It is notable for providing a hands-on platform for evaluating hardware entropy sources, though no silicon test results are included.",
+   "summary": "This project is a UART/SPI-controlled ASIC lab for exploring true-random number generation and PUF-style hardware entropy sources, using a bank of ring oscillators as the entropy source. A host can send ASCII commands over UART to configure internal registers, control the oscillator network, and read back raw entropy samples, with status and data also available over SPI. It requires an external UART adapter for interaction, and the design is intended for cryptographic and security applications. It is notable for providing a hands-on platform for evaluating hardware entropy sources, though no silicon test results are included.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9447,
+  "completion_tokens": 1459,
+  "total_tokens": 10906,
+  "cost": 0.003104013,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003104013,
+   "upstream_inference_prompt_cost": 0.001615833,
+   "upstream_inference_completions_cost": 0.00148818
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003104013,
+ "elapsed_s": 30.4
+}

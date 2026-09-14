@@ -1,0 +1,375 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1c93755f5cf5",
+  "61a541b9e69e",
+  "97c9e2332aa0",
+  "6bbd9567d9a9",
+  "291ba977ef1c",
+  "d51bf32beac0"
+ ],
+ "results": [
+  {
+   "key": "1c93755f5cf5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The design is AND/NAND/OR gates plus a clock divider, not a counter."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is used or mentioned."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is present; outputs are logic signals."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Source explicitly implements AND, NAND and OR gates."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "16 flip-flops divide the clock, with taps at the 12th and 16th flop."
+    }
+   ],
+   "notes": "Proposed summary described a nonexistent down counter and seven-segment display; replaced with the actual gate and clock-divider design.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "flip-flop",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "flip-flop",
+    "wokwi",
+    "education",
+    "logic-gate",
+    "clock-divider"
+   ],
+   "summary_before": "This project is a 4-bit down counter that counts backward in binary from 1111 (decimal 15) down to 0000 (decimal 0). Every time a clock pulse arrives, the counter subtracts one from its current value. It is tested by checking that the output counts downward from F to 0, and it is intended to drive an external seven-segment display. The design is a basic educational arithmetic circuit with no further implementation details or silicon results.",
+   "summary": "This project implements AND, NAND and OR logic gates driven by inputs a and b. It also includes a clock divider built from 16 flip-flops, with outputs taken at the 12th and 16th stages. Testing consists of setting the inputs and checking the gate outputs against the provided truth table. It is a simple educational test design created in Wokwi with no silicon results reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "61a541b9e69e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate implementation is described anywhere in the source."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent beyond placeholder text."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no design description."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The submission contains only template placeholder text and no actual design content."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and education tags; added insufficient-doc and placeholder to match the empty template content.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "logic-gate",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "summary_before": "This project appears to be a template or basic logic experiment with insufficient documentation to determine its specific purpose. The documentation is placeholder text, so the exact implementation, testing method, and external hardware requirements are not described. It is likely an educational attempt with insufficient documentation to understand its current state.",
+   "summary": "This project has no substantive documentation, only placeholder text for the how-it-works, testing and external hardware sections. No implementation details, interfaces or purpose can be determined from the source. It was created in Wokwi and resubmitted on one shuttle. No silicon test results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "97c9e2332aa0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is used; the outputs are VGA signals."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "Nothing in the source indicates a demoscene purpose."
+    },
+    {
+     "tag": "retro",
+     "reason": "No retro computing or gaming recreation is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game-of-life",
+     "reason": "The project is explicitly Conway's Game of Life."
+    },
+    {
+     "tag": "gpio",
+     "reason": "uio pins are used for field manipulation and randomization input."
+    },
+    {
+     "tag": "button",
+     "reason": "Selection and step inputs are edge-triggered pushbutton-style controls."
+    }
+   ],
+   "notes": "Proposed summary invented 7-segment inputs and demoscene/retro purposes; corrected to the documented Game of Life with VGA and GPIO controls.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "7-segment",
+    "demoscene",
+    "graphics",
+    "retro"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "game-of-life",
+    "gpio",
+    "button"
+   ],
+   "summary_before": "This project adds retro VGA graphics to existing Tiny Tapeout projects by using their 7-segment display outputs as input. It outputs VGA signals on uo_out, providing a video display. The design is implemented in Verilog and is suitable for demoscene and retro computing applications. The documentation is clear and describes the architecture and testing approach.",
+   "summary": "This project implements Conway's Game of Life with VGA output and GPIO controls for field manipulation and randomization. It uses a 2x2 tile area and outputs VGA color, HSync and VSync signals on uo_out. Inputs on ui and uio handle stepping, holding, selection movement, target state setting and randomization. The design is written in Verilog and no silicon test results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "6bbd9567d9a9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gates are described; the design lights LEDs in patterns."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock division is described, only clock-driven LED patterns."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "Outputs drive LEDs, per the description and pin names."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "External hardware is stated to be a seven-segment display."
+    }
+   ],
+   "notes": "Proposed summary invented input pins and logic-gate/clock-divider content; corrected to the documented LED pattern design with seven-segment display.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "education",
+    "led",
+    "7-segment"
+   ],
+   "summary_before": "This project is a test of logic gates and a clock divider, with eight input pins and one output pin. The documentation is sparse, providing only a brief description of the design and test procedure. The project appears to be a simple educational template for testing basic digital components.",
+   "summary": "This project uses the clock to light up LEDs in different patterns. It has eight output pins labeled display 0 through display 7 and requires an external seven-segment display. The documentation is sparse, giving only a brief description and stating that no test action is needed. It is a simple Wokwi design with no silicon test results reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "291ba977ef1c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "radio",
+     "reason": "No radio transmission or reception is described."
+    },
+    {
+     "tag": "modulator",
+     "reason": "No modulation circuitry is present."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "No demodulation circuitry is present."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing is described."
+    },
+    {
+     "tag": "nco",
+     "reason": "No numerically controlled oscillator is present."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is described or present in the pins."
+    },
+    {
+     "tag": "pwm",
+     "reason": "No PWM output is described."
+    },
+    {
+     "tag": "fir-filter",
+     "reason": "No FIR filter is implemented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "reconfigurable",
+     "reason": "The design is a reconfigurable logic circuit made of rotatable tiles."
+    },
+    {
+     "tag": "fpga",
+     "reason": "It is an FPGA-like reconfigurable fabric, named ROTFPGA."
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "Pins include scan enable, scan chain input and scan chain output."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "A silicon test report states the design works as expected."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans a 1x2 tile area."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated radio modulator; replaced with the documented reconfigurable FPGA-like fabric and its silicon-tested status.",
+   "tags_before": [
+    "radio",
+    "modulator",
+    "demodulator",
+    "dsp",
+    "nco",
+    "spi",
+    "pwm",
+    "fir-filter"
+   ],
+   "tags": [
+    "reconfigurable",
+    "fpga",
+    "scan-chain",
+    "silicon-tested",
+    "multi-tile"
+   ],
+   "summary_before": "This project is a radio modulator that uses a comparator, resistor bias network, RC network, RF amplifier, and an SPI microcontroller to set the station. It includes a demodulator, DSP, and NCO for signal processing. The design is intended for communication applications. The documentation is sparse, but the external hardware requirements are described.",
+   "summary": "This project is a reconfigurable logic circuit built from identical rotatable tiles, arranged as a 1x2 tile design. It is a minor modification of ROTFPGA v2a that simulates latches using flip-flops and combines some inputs to make room for two extra inputs, serving as a control group for latch testing on IHP. The design includes scan chain input and output pins plus configuration and loop-breaker controls, and its test suite replaces each original clock tick with 50 latch clocks, a latch-and-flip-flop clock, and 50 more latch clocks. A silicon test report from the author states it works as expected, with no external hardware required.",
+   "summary_changed": true
+  },
+  {
+   "key": "d51bf32beac0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter is implemented; the design is a ray tracer with animated eye position."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is used; output is VGA."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation is described; an external 25.25 MHz clock is required."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Outputs r/g/b, hsync and vsync matching the Tiny VGA pinout."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The design renders a ray-traced image with rounding errors."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "It is a demoscene competition entry following the Demoscene rules."
+    },
+    {
+     "tag": "audio",
+     "reason": "It produces audio as a mix of hsync and vsync signals on uio[7]."
+    },
+    {
+     "tag": "pwm",
+     "reason": "uio[7] is labeled PWM output."
+    },
+    {
+     "tag": "image-processing",
+     "reason": "It implements a ray tracer, a rendering algorithm."
+    },
+    {
+     "tag": "art",
+     "reason": "The rounding-error visuals are the primary artistic feature."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated counter/7-segment design; replaced with the documented HardCaml ray tracer demoscene entry.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "clock-generator",
+    "education"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "demoscene",
+    "audio",
+    "pwm",
+    "image-processing",
+    "art"
+   ],
+   "summary_before": "This design implements a counter that can be displayed on a 7-segment display. It includes a clock generator and is intended for educational purposes. The design is simple and demonstrates basic counting and display. It is implemented in Verilog and targets the Tiny Tapeout platform.",
+   "summary": "This project is a demoscene competition entry that implements a limited-precision ray tracer in two Tiny Tapeout tiles, embracing rounding errors as its primary feature. The RTL was written in HardCaml, which emits Verilog that is committed to the source tree. It renders 640x480 at 60 Hz with the eye Z coordinate animated between 3.5 and 4.5 over 256 frames, and outputs VGA on uo[0-7] plus a simple hsync/vsync audio mix on uio[7]. Setting ui[0] to 0 runs the default demo and setting it to 1 shows a color-bar test image, with an external 25.25 MHz clock required.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6456,
+  "completion_tokens": 2056,
+  "total_tokens": 8512,
+  "cost": 0.002950248,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002950248,
+   "upstream_inference_prompt_cost": 0.000853128,
+   "upstream_inference_completions_cost": 0.00209712
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002950248,
+ "elapsed_s": 45.8
+}

@@ -1,0 +1,268 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d70be2337974",
+  "fdd9f196779b",
+  "5279d098822c",
+  "5d087540a685",
+  "ee0bca5d8235",
+  "ca3759681957"
+ ],
+ "results": [
+  {
+   "key": "d70be2337974",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "counter already proposed; keep"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon status working with tester reports"
+    }
+   ],
+   "notes": "Tags and summary are supported; no changes needed beyond confirming the factory-test and counter tags.",
+   "tags_before": [
+    "factory-test",
+    "counter",
+    "silicon-tested"
+   ],
+   "tags": [
+    "factory-test",
+    "counter",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a factory test module that either outputs a counter or mirrors the bidirectional pins to the output pins based on a select input. When select is high, a counter is driven onto both the output and bidirectional pins; when low, the bidirectional pins are passed through to the outputs. Silicon test reports indicate the counter function works as expected. The design is used for validating the Tiny Tapeout manufacturing process.",
+   "summary": "This is a factory test module that either outputs a counter or mirrors the bidirectional pins to the output pins based on a select input. When select is high, a counter is driven onto both the output and bidirectional pins; when low, the bidirectional pins are passed through to the outputs. Silicon test reports indicate the counter function works as expected. The design is used for validating the Tiny Tapeout manufacturing process.",
+   "summary_changed": false
+  },
+  {
+   "key": "fdd9f196779b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vco",
+     "reason": "VCO is a pin name for the measured frequency input, not evidence the design implements a voltage controlled oscillator"
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "a selector mux is mentioned but the design is a frequency-to-digital converter, not a multiplexer circuit"
+    }
+   ],
+   "add": [
+    {
+     "tag": "frequency-counter",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "asynchronous",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon status working with author test report"
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "already proposed; keep"
+    }
+   ],
+   "notes": "Removed vco and multiplexer tags that describe pin names rather than implemented circuits.",
+   "tags_before": [
+    "frequency-counter",
+    "asynchronous",
+    "vco",
+    "multiplexer",
+    "silicon-tested",
+    "instrumentation"
+   ],
+   "tags": [
+    "frequency-counter",
+    "asynchronous",
+    "silicon-tested",
+    "instrumentation"
+   ],
+   "summary_before": "This chip combines asynchronous and synchronous frequency-to-digital converters, selectable via a multiplexer. It takes a reference clock and a VCO signal as inputs and outputs a 5-bit digital value representing the measured frequency. The design was tested using an Analog Discovery 2 and reportedly worked flawlessly across all configurations. External hardware such as a waveform generator and logic analyzer is required for testing.",
+   "summary": "This chip combines asynchronous and synchronous frequency-to-digital converters, selectable via a multiplexer. It takes a reference clock and a VCO signal as inputs and outputs a 5-bit digital value representing the measured frequency. The design was tested using an Analog Discovery 2 and reportedly worked flawlessly across all configurations. External hardware such as a waveform generator and logic analyzer is required for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "5279d098822c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "error-correction",
+     "reason": "CRC detects errors; it does not correct them"
+    }
+   ],
+   "add": [
+    {
+     "tag": "crc",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon status working with tester report"
+    }
+   ],
+   "notes": "Removed error-correction since CRC only detects errors, and added silicon-tested to match the working status.",
+   "tags_before": [
+    "crc",
+    "error-correction",
+    "wokwi"
+   ],
+   "tags": [
+    "crc",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements an 8-bit cyclic redundancy check for error detection in serial data streams. It takes a serial input and provides an 8-bit CRC output. External hardware includes LEDs, a clock source, and switches for reset and input. Silicon testing showed it functioned correctly compared to a software model.",
+   "summary": "This design implements an 8-bit cyclic redundancy check for error detection in serial data streams. It takes a serial input and provides an 8-bit CRC output. External hardware includes LEDs, a clock source, and switches for reset and input. Silicon testing showed it functioned correctly compared to a software model.",
+   "summary_changed": false
+  },
+  {
+   "key": "5d087540a685",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "display",
+    "wokwi",
+    "logic-gate",
+    "silicon-tested"
+   ],
+   "tags": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "display",
+    "wokwi",
+    "logic-gate",
+    "silicon-tested"
+   ],
+   "summary_before": "This design converts a 4-bit binary-coded decimal input into the seven segment drive signals for a single common-cathode 7-segment display. It uses combinational logic gates to map input values 0 through 9 to the appropriate segment patterns. The design requires an external DIP switch for the BCD input and a common-cathode 7-segment display for output. A silicon test report confirms that the fabricated chip works as described.",
+   "summary": "This design converts a 4-bit binary-coded decimal input into the seven segment drive signals for a single common-cathode 7-segment display. It uses combinational logic gates to map input values 0 through 9 to the appropriate segment patterns. The design requires an external DIP switch for the BCD input and a common-cathode 7-segment display for output. A silicon test report confirms that the fabricated chip works as described.",
+   "summary_changed": false
+  },
+  {
+   "key": "ee0bca5d8235",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "security",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "fsm",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon status working with tester report"
+    }
+   ],
+   "notes": "Tags and summary are supported; silicon-tested matches the working status.",
+   "tags_before": [
+    "security",
+    "fsm",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "security",
+    "fsm",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a 4-bit combination lock with a maximum of three unlock attempts and a master reset. The user sets a password, then enters attempts via input pins; after three failures the lock becomes locked until reset. External hardware such as buttons or switches is required for physical operation, and a microcontroller is recommended for admin reset control. Silicon testing confirms that setting the password, unlocking, and the lockout after three wrong attempts all function correctly.",
+   "summary": "This project implements a 4-bit combination lock with a maximum of three unlock attempts and a master reset. The user sets a password, then enters attempts via input pins; after three failures the lock becomes locked until reset. External hardware such as buttons or switches is required for physical operation, and a microcontroller is recommended for admin reset control. Silicon testing confirms that setting the password, unlocking, and the lockout after three wrong attempts all function correctly.",
+   "summary_changed": false
+  },
+  {
+   "key": "ca3759681957",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "the design is a simple adder, not an arithmetic logic unit with multiple operations"
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "combinational",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "verilog",
+     "reason": "already proposed; keep"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon status working with multiple tester reports"
+    }
+   ],
+   "notes": "Removed alu since the design is a plain adder, and added silicon-tested to match the working status.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a 6-bit ripple carry adder with a carry input and carry output, using continuous assignment without a clock. It takes two 6-bit numbers on the input and bidirectional pins and produces their sum on the output pins. The design is purely combinational and requires no external hardware. Silicon tests confirm that the adder works correctly, with one tester noting it works eventually.",
+   "summary": "This project implements a 6-bit ripple carry adder with a carry input and carry output, using continuous assignment without a clock. It takes two 6-bit numbers on the input and bidirectional pins and produces their sum on the output pins. The design is purely combinational and requires no external hardware. Silicon tests confirm that the adder works correctly, with one tester noting it works eventually.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6629,
+  "completion_tokens": 1250,
+  "total_tokens": 7879,
+  "cost": 0.001563866,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001563866,
+   "upstream_inference_prompt_cost": 0.000738866,
+   "upstream_inference_completions_cost": 0.000825
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001563866,
+ "elapsed_s": 12.2
+}

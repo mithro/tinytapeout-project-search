@@ -1,0 +1,293 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "81a4066d9881",
+  "d0fe87614954",
+  "a71255785b69",
+  "3050cfd7d528",
+  "7a8739eb07a0",
+  "c2627af9f0ea"
+ ],
+ "results": [
+  {
+   "key": "81a4066d9881",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A full adder is not an ALU; no ALU functionality is described."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "A full adder is purely combinational logic."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin ('A simple full adder', 'Don't')."
+    }
+   ],
+   "notes": "Removed unsupported alu/education tags and added combinational and insufficient-doc.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "wokwi",
+    "logic-gate",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "logic-gate",
+    "combinational",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a simple full adder with three inputs and two outputs. The documentation is minimal, with 'Don't' for testing and 'Not sponsored...' for external hardware, suggesting a lack of seriousness. No external hardware is specified. The project is a basic arithmetic circuit but poorly documented.",
+   "summary": "This design is a simple full adder with three inputs and two outputs. The documentation is minimal, giving 'Don't' for testing and 'Not sponsored...' for external hardware. No external hardware is specified. The project is a basic combinational arithmetic circuit but is poorly documented.",
+   "summary_changed": true
+  },
+  {
+   "key": "d0fe87614954",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "barrel-shifter",
+     "reason": "No barrel shifter is described; the design only loops a pattern using the clock."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sequential-logic",
+     "reason": "The design relies on flip-flop states and clock-driven looping, i.e. sequential logic."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and notes no tests have been performed."
+    }
+   ],
+   "notes": "Removed unsupported barrel-shifter and education tags; added sequential-logic and insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "barrel-shifter",
+    "clock-divider",
+    "flip-flop",
+    "wokwi",
+    "pmod",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "clock-divider",
+    "flip-flop",
+    "wokwi",
+    "pmod",
+    "sequential-logic",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design uses the clock to drive a rotating pattern on a 7-segment display, looping through states and possibly requiring a few seconds to reset from undefined flip-flop states. It is intended to be run without specific tests, and it needs an external PMOD 7-segment display. The documentation is minimal and notes that no tests have been performed yet. The project is a simple demonstration of sequential logic driving a display.",
+   "summary": "This design uses the clock to drive a rotating pattern on a 7-segment display, looping through states and possibly requiring a few seconds to reset from undefined flip-flop states. It is intended to be run without specific tests, and it needs an external PMOD 7-segment display. The documentation is minimal and notes that no tests have been performed yet. The project is a simple demonstration of sequential logic driving a display.",
+   "summary_changed": false
+  },
+  {
+   "key": "a71255785b69",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counting circuit is described; the design signs numbers on a display."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit evidence of educational intent."
+    },
+    {
+     "tag": "template",
+     "reason": "Despite the title, the design is a number-signing display project, not a boilerplate template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very sparse ('sign numbers', 'buttons')."
+    },
+    {
+     "tag": "button",
+     "reason": "Testing uses buttons and external hardware is eight buttons."
+    }
+   ],
+   "notes": "Removed unsupported counter/education/template tags; added button and insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "counter",
+    "button",
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "button",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project aims to display numbers from 0 to 9 on an 8-segment display, with eight inputs, eight bidirectional pins and eight outputs. It is tested using buttons, and external hardware consists of eight buttons. The documentation is very sparse, saying only 'sign numbers' and 'buttons', so the exact mapping and control scheme are unclear. The design appears to be a student exercise in driving a display with button inputs.",
+   "summary": "This project aims to display numbers from 0 to 9 on an 8-segment display, with eight inputs, eight bidirectional pins and eight outputs. It is tested using buttons, and external hardware consists of eight buttons. The documentation is very sparse, saying only 'sign numbers' and 'buttons', so the exact mapping and control scheme are unclear. The design appears to be a student exercise in driving a display with button inputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "3050cfd7d528",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "No general purpose digital IO interface is described beyond specific logic outputs."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit evidence of educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and unclear."
+    }
+   ],
+   "notes": "Removed unsupported gpio/education tags; added insufficient-doc.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education",
+    "gpio"
+   ],
+   "tags": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements basic logic gates (AND, NAND, OR) and two clock dividers (divide by 16 and divide by 12). The documentation is brief and somewhat unclear, mentioning 'electric pulses to flash light' and testing with the AND output. It has two inputs and five outputs, but the pin names do not fully match the described functions. No external hardware is required, and it appears to be a student project.",
+   "summary": "This design implements basic logic gates (AND, NAND, OR) and two clock dividers (divide by 16 and divide by 12). The documentation is brief and somewhat unclear, mentioning 'electric pulses to flash light' and testing with the AND output. It has two inputs and five outputs, but the pin names do not fully match the described functions. No external hardware is required, and it appears to be a student project.",
+   "summary_changed": false
+  },
+  {
+   "key": "7a8739eb07a0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "No general purpose digital IO interface is described; the pins are specific switch inputs and display outputs."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit evidence of educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present but the truth table is truncated and external hardware field is a placeholder."
+    }
+   ],
+   "notes": "Removed unsupported gpio/education tags; added insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "decoder",
+    "display",
+    "wokwi",
+    "education",
+    "logic-gate",
+    "gpio"
+   ],
+   "tags": [
+    "7-segment",
+    "decoder",
+    "display",
+    "wokwi",
+    "logic-gate",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design uses four switches to control a seven-segment display through a decoder built from AND and OR gates. The documentation includes a partial truth table and describes testing by setting inputs and checking outputs. It requires external switches and a seven-segment display. The project is an educational exercise in combinational logic.",
+   "summary": "This design uses four switches to control a seven-segment display through a decoder built from AND and OR gates. The documentation includes a partial truth table and describes testing by setting inputs and checking outputs. It requires external switches and a seven-segment display. The project is an educational exercise in combinational logic.",
+   "summary_changed": false
+  },
+  {
+   "key": "c2627af9f0ea",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The design is a collection of logic gates with no clocked elements described."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "External hardware includes DIP switches for input."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added combinational and dip-switch.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "multiplexer",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "multiplexer",
+    "combinational",
+    "dip-switch"
+   ],
+   "summary_before": "This design is an experiment that combines various logic gates (AND, NOT, XNOR, MUX, OR, NAND, NOR, XOR) with eight inputs and eight outputs. The documentation admits it is 'super complicated' and the creator is unsure of its exact behavior, describing it as a fun experiment. Testing involves connecting a seven-segment display or LED bar graph, with the expectation that when all inputs are off, the display shows '4'. External hardware includes DIP switches, resistors, and an LED bar graph or seven-segment display.",
+   "summary": "This design is an experiment that combines various logic gates (AND, NOT, XNOR, MUX, OR, NAND, NOR, XOR) with eight inputs and eight outputs. The documentation admits it is 'super complicated' and the creator is unsure of its exact behavior, describing it as a fun experiment. Testing involves connecting a seven-segment display or LED bar graph, with the expectation that when all inputs are off, the display shows '4'. External hardware includes DIP switches, resistors, and an LED bar graph or seven-segment display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5736,
+  "completion_tokens": 1255,
+  "total_tokens": 6991,
+  "cost": 0.001949628,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001949628,
+   "upstream_inference_prompt_cost": 0.000669528,
+   "upstream_inference_completions_cost": 0.0012801
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001949628,
+ "elapsed_s": 35.6
+}

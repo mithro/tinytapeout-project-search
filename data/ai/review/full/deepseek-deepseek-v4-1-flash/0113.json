@@ -1,0 +1,235 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "929d304b78e4",
+  "74f872bb6eb9",
+  "622ceb56f0dd",
+  "ad2c36e2d576",
+  "ebdc861825e6",
+  "292a7185b326"
+ ],
+ "results": [
+  {
+   "key": "929d304b78e4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source only describes addition/subtraction of two 8-bit values, not a full ALU with logic operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the neuron aspect and operation selection are unspecified."
+    }
+   ],
+   "notes": "Removed alu tag since only add/subtract is documented; added incomplete for the very thin documentation.",
+   "tags_before": [
+    "adder",
+    "subtractor",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "adder",
+    "subtractor",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "This design takes two 8-bit values and performs addition or subtraction, serving as a digital neuron component test. It is intended to be tested by supplying two 8-bit numbers and observing the sum or difference on the outputs. The documentation is minimal and does not specify how the operation is selected or provide details on the neuron aspect. The project appears to be a simple arithmetic unit with limited documentation.",
+   "summary": "This design takes two 8-bit values and performs addition or subtraction, described as a digital neuron component test. It is intended to be tested by supplying two 8-bit numbers and observing the sum or difference on the outputs. The documentation is minimal and does not specify how the operation is selected or provide details on the neuron aspect. The project appears to be a simple arithmetic unit with limited documentation.",
+   "summary_changed": true
+  },
+  {
+   "key": "74f872bb6eb9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "Half/full adders are internal building blocks, not the design's function; the design is a multiplier."
+    }
+   ],
+   "add": [],
+   "notes": "Removed adder tag; adders are only internal components of the multiplier.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4-bit Wallace tree multiplier written in Verilog, built from instantiated half-adder and full-adder modules. It takes two 4-bit operands on the eight input pins and presents the product on the eight outputs. A testbench named wallace_tb.v is provided to exercise the design. The documentation is brief and does not report synthesis results or silicon measurements.",
+   "summary": "This project is a 4-bit Wallace tree multiplier written in Verilog, built from instantiated half-adder and full-adder modules. It takes two 4-bit operands on the eight input pins and presents the product on the eight outputs. A testbench named wallace_tb.v is provided to exercise the design. The documentation is brief and does not report synthesis results or silicon measurements.",
+   "summary_changed": false
+  },
+  {
+   "key": "622ceb56f0dd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "No evidence the project is a boilerplate or starter template."
+    },
+    {
+     "tag": "education",
+     "reason": "Workshop context alone does not establish an educational design intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and explicitly refuses to describe function or testing."
+    }
+   ],
+   "notes": "Removed unsupported template and education tags; added insufficient-doc.",
+   "tags_before": [
+    "wokwi",
+    "workshop",
+    "template",
+    "education",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "workshop",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a placeholder created during a Hackaday workshop, with no functional description provided. The documentation explicitly states that the author refuses to describe how it works or how to test it. No pins or external hardware are specified. As a result, there is insufficient information to determine the design's purpose or capabilities.",
+   "summary": "This project is a placeholder created during a Hackaday workshop, with no functional description provided. The documentation explicitly states that the author refuses to describe how it works or how to test it. No pins or external hardware are specified. As a result, there is insufficient information to determine the design's purpose or capabilities.",
+   "summary_changed": false
+  },
+  {
+   "key": "ad2c36e2d576",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "No LED output is documented; the title alone does not establish an LED interface."
+    },
+    {
+     "tag": "template",
+     "reason": "No evidence the project is a boilerplate or starter template."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the author does not know how the design works."
+    }
+   ],
+   "notes": "Removed unsupported led, template and education tags; added insufficient-doc.",
+   "tags_before": [
+    "wokwi",
+    "incomplete",
+    "led",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled 'Some_LEDs' and described as 'Nothing special'. The documentation states that the author does not yet know how it works and that testing involves connecting the right things. No pins or external hardware are specified. There is insufficient information to determine the design's functionality or purpose.",
+   "summary": "This project is titled 'Some_LEDs' and described as 'Nothing special'. The documentation states that the author does not yet know how it works and that testing involves connecting the right things. No pins or external hardware are specified. There is insufficient information to determine the design's functionality or purpose.",
+   "summary_changed": false
+  },
+  {
+   "key": "ebdc861825e6",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working on a tester."
+    }
+   ],
+   "notes": "Added silicon-tested to match the working silicon test reports.",
+   "tags_before": [
+    "factory-test",
+    "gpio",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "factory-test",
+    "gpio",
+    "counter",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "The TinyTapeout 7 Factory Test module is a simple design for testing all I/O pins of the ASIC. It has three modes selected by rst_n and sel: mirroring input pins to outputs, mirroring bidirectional pins to outputs, or outputting an 8-bit counter on both output and bidirectional pins. No external hardware is required, and the design has been reported working by multiple testers. It is notable as a dedicated factory test and bring-up utility rather than a functional application.",
+   "summary": "The TinyTapeout 7 Factory Test module is a simple design for testing all I/O pins of the ASIC. It has three modes selected by rst_n and sel: mirroring input pins to outputs, mirroring bidirectional pins to outputs, or outputting an 8-bit counter on both output and bidirectional pins. No external hardware is required, and the design has been reported working by multiple testers. It is notable as a dedicated factory test and bring-up utility rather than a functional application.",
+   "summary_changed": false
+  },
+  {
+   "key": "292a7185b326",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design has two 32-bit registers, not a multi-register file block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "No, this is wrong; the design is complete and documented."
+    }
+   ],
+   "notes": "Removed register-file tag; the two 32-bit registers are not a register file.",
+   "tags_before": [
+    "alu",
+    "esoteric",
+    "education",
+    "register-file"
+   ],
+   "tags": [
+    "alu",
+    "esoteric",
+    "education",
+    "incomplete"
+   ],
+   "summary_before": "This ALU implements the five operators of the INTERCAL programming language, including unary AND/OR/XOR, interleave, and select, operating on 32-bit registers. It is controlled via address, selector, and write/read enable pins, with data transferred through bidirectional and dedicated output pins. The design is primarily educational and can be tested using example calculations from the INTERCAL manual, as included in its test suite. External hardware such as a microcontroller is recommended for driving inputs and reading outputs, as the chip itself has no display or interface.",
+   "summary": "This ALU implements the five operators of the INTERCAL programming language, including unary AND/OR/XOR, interleave, and select, operating on 32-bit registers. It is controlled via address, selector, and write/read enable pins, with data transferred through bidirectional and dedicated output pins. The design is primarily educational and can be tested using example calculations from the INTERCAL manual, as included in its test suite. External hardware such as a microcontroller is recommended for driving inputs and reading outputs, as the chip itself has no display or interface.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8019,
+  "completion_tokens": 1206,
+  "total_tokens": 9225,
+  "cost": 0.001840626,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001840626,
+   "upstream_inference_prompt_cost": 0.001044666,
+   "upstream_inference_completions_cost": 0.00079596
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001840626,
+ "elapsed_s": 12.4
+}

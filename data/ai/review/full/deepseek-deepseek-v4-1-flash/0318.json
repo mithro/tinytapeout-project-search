@@ -1,0 +1,242 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4f4ffcc81c61",
+  "18f20553efc1",
+  "c80c2056049a",
+  "454421cb52bb",
+  "ac5c007f300f",
+  "40628330f35b"
+ ],
+ "results": [
+  {
+   "key": "4f4ffcc81c61",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "text",
+     "reason": "The design shifts out a fixed string over UART; there is no text rendering/display output stage, so the 'text' output tag is unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "Already proposed and supported: the string is loaded into a shift register and clocked out."
+    }
+   ],
+   "notes": "Removed 'text' output tag: the design only serializes a fixed string over UART, with no text display/rendering output.",
+   "tags_before": [
+    "uart",
+    "shift-register",
+    "communication",
+    "text",
+    "wokwi"
+   ],
+   "tags": [
+    "uart",
+    "shift-register",
+    "communication",
+    "wokwi"
+   ],
+   "summary_before": "This design is a simple UART transmitter that loads the text 'PSI Open IC 2026' into a shift register and clocks it out to the UART_TX pin. It uses a 100 Hz clock and has control inputs for output enable, reset, and input selection. To test, set RST_N low and provide a clock, then set RST_N high to start transmission; a UART receiver is needed to observe the output. External hardware includes a clock generator and a UART receiver. The design is a straightforward serial communication exercise.",
+   "summary": "This design is a simple UART transmitter that loads the text 'PSI Open IC 2026' into a shift register and clocks it out to the UART_TX pin. It uses a 100 Hz clock and has control inputs for output enable, reset, and input selection. To test, set RST_N low and provide a clock, then set RST_N high to start transmission; a UART receiver is needed to observe the output. External hardware includes a clock generator and a UART receiver.",
+   "summary_changed": true
+  },
+  {
+   "key": "18f20553efc1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The source describes a BCD-to-7-segment decoder circuit, not a basic logic gate implementation."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or classroom intent; it is a 7448-style decoder modification."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported 'logic-gate' and 'education' tags; the design is a BCD-to-7-segment decoder.",
+   "tags_before": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This circuit converts a 4-bit binary-coded decimal (BCD) input (0-9) to 7-segment display outputs, similar to the 7448 IC but with the modification that a zero input always turns the display off. It is implemented in Wokwi. To test, connect four switches to the inputs and a common-cathode 7-segment display to the outputs, then apply valid BCD values from 0 to 9. External hardware includes 4 switches or a DIP switch, a common-cathode 7-segment display, and 7 resistors for protection. The design provides a simple BCD-to-7-segment decoding function.",
+   "summary": "This circuit converts a 4-bit binary-coded decimal (BCD) input (0-9) to 7-segment display outputs, similar to the 7448 IC but with the modification that a zero input always turns the display off. It is implemented in Wokwi. To test, connect four switches to the inputs and a common-cathode 7-segment display to the outputs, then apply valid BCD values from 0 to 9. External hardware includes 4 switches or a DIP switch, a common-cathode 7-segment display, and 7 resistors for protection.",
+   "summary_changed": true
+  },
+  {
+   "key": "c80c2056049a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes only a 4-bit adder, not an arithmetic logic unit with multiple operations."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state a teaching or workshop purpose; the title 'Tiny Tapeout Exercise' alone does not establish educational intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'alu' (only an adder is described) and 'education' (no stated teaching intent); rewrote summary to avoid unsupported workshop claim.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a simple 4-bit adder that takes two 4-bit inputs on ui[0:7] and produces a 5-bit sum on uo[0:4]. It is a Wokwi exercise intended for educational purposes, likely as part of a Tiny Tapeout workshop. The design is purely combinational, with no clock or reset. Testing involves applying all pairs of 4-bit numbers and verifying the output sum. No external hardware is required.",
+   "summary": "This project implements a simple 4-bit adder that takes two 4-bit inputs on ui[0:7] and produces a 5-bit sum on uo[0:4]. It is implemented in Wokwi. The design is purely combinational, with no clock or reset. Testing involves applying all pairs of 4-bit numbers and verifying the output sum, and no external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "454421cb52bb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "Brightness is set by on-time proportional to the brightness value in a charlieplex scan, not a PWM output interface; the source never describes PWM."
+    },
+    {
+     "tag": "led",
+     "reason": "The output is a charlieplexed LED array driven via 8 bidirectional pins, better captured by led-matrix; discrete led output is not the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "The source explicitly says to connect the 8 signal pins of the bidirectional I/O PMOD to the LED array."
+    }
+   ],
+   "notes": "Removed unsupported 'pwm' and 'led' tags, added 'pmod' (explicitly mentioned), and dropped the unsupported efficiency claim from the summary.",
+   "tags_before": [
+    "led-matrix",
+    "spi",
+    "display",
+    "verilog",
+    "pwm",
+    "led"
+   ],
+   "tags": [
+    "led-matrix",
+    "spi",
+    "display",
+    "verilog",
+    "pmod"
+   ],
+   "summary_before": "This project is a controller for an Adafruit Charlieplex LED array, supporting up to 56 LEDs (7x8). It includes an SPI slave interface for loading custom display data, with each byte representing the brightness of one LED. On reset, it displays a brightness gradient across the array. Testing involves connecting the eight signal pins to the LED array and optionally using SPI to update the display. The design is notable for its efficient use of a single 8-pin bidirectional port to drive a large LED matrix and its SPI programmability.",
+   "summary": "This project is a controller for an Adafruit Charlieplex LED array, supporting up to 56 LEDs (7x8). It includes an SPI slave interface for loading custom display data, with each byte representing the brightness of one LED. On reset, it displays a brightness gradient across the array. Testing involves connecting the eight signal pins to the LED array and optionally using SPI to update the display.",
+   "summary_changed": true
+  },
+  {
+   "key": "ac5c007f300f",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "standard-cell",
+     "reason": "The source states the digital block is hardened with LibreLane using 9T gf180mcuD standard cells."
+    }
+   ],
+   "notes": "Added 'standard-cell' (explicitly stated) and removed the unsupported 'notable for wide frequency range' claim from the summary.",
+   "tags_before": [
+    "vco",
+    "dac",
+    "ring-oscillator",
+    "counter",
+    "clock-divider",
+    "analog",
+    "mixed-signal"
+   ],
+   "tags": [
+    "vco",
+    "dac",
+    "ring-oscillator",
+    "counter",
+    "clock-divider",
+    "analog",
+    "mixed-signal",
+    "standard-cell"
+   ],
+   "summary_before": "This mixed-signal project features a voltage-controlled oscillator (VCO) implemented as a current-starved ring oscillator, with its control voltage set by a 9-bit DAC. The VCO output drives a 5-bit counter and clock divider stages, providing divided outputs. It operates without an external clock and is tested by applying power and varying the 9-bit DAC input to observe frequency changes on the outputs, with an oscilloscope recommended for monitoring. The design demonstrates analog-digital integration using standard cells and is notable for its wide frequency range and digital controllability. Limitations include potential instability at extreme control voltages.",
+   "summary": "This mixed-signal project features a voltage-controlled oscillator (VCO) implemented as a current-starved ring oscillator, with its control voltage set by a 9-bit DAC. The VCO output drives a 5-bit counter and clock divider stages, providing divided outputs. It operates without an external clock and is tested by applying power and varying the 9-bit DAC input to observe frequency changes on the outputs, with an oscilloscope recommended for monitoring. The design combines an analog oscillator with a standard-cell digital block.",
+   "summary_changed": true
+  },
+  {
+   "key": "40628330f35b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or classroom intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported 'education' tag and replaced the unsupported 'educational' claim in the summary.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "7-segment",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "7-segment",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit single-cycle CPU with a simple RISC/Accumulator instruction set, containing a register file, ALU, and 7-segment decoder. Instructions and register addresses are supplied via the input pins, and results can be stored in the ALU, register file, or displayed on a 7-segment display. The design was tested using a ModelSim TCL script, and no external hardware is required. It is a compact educational CPU design that demonstrates basic processor architecture.",
+   "summary": "This project implements a 4-bit single-cycle CPU with a simple RISC/Accumulator instruction set, containing a register file, ALU, and 7-segment decoder. Instructions and register addresses are supplied via the input pins, and results can be stored in the ALU, register file, or displayed on a 7-segment display. The design was tested using a ModelSim TCL script, and no external hardware is required. It is a compact single-cycle CPU design with a simple accumulator-style instruction set.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7054,
+  "completion_tokens": 1319,
+  "total_tokens": 8373,
+  "cost": 0.002350998,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002350998,
+   "upstream_inference_prompt_cost": 0.001005618,
+   "upstream_inference_completions_cost": 0.00134538
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002350998,
+ "elapsed_s": 48.3
+}

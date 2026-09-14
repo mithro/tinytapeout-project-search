@@ -1,0 +1,210 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e35f97b994da",
+  "22aaa12a2323",
+  "6d9f5e6474f8",
+  "a473f91d14e6",
+  "0744324c1cd2",
+  "dc605291dcd1"
+ ],
+ "results": [
+  {
+   "key": "e35f97b994da",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The design is a countdown timer guessing activity, not an interactive game implementation as described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puzzle",
+     "reason": "Players must guess a hidden timer value, matching puzzle logic."
+    }
+   ],
+   "notes": "Removed unsupported game tag and added puzzle tag for the guessing mechanic.",
+   "tags_before": [
+    "game",
+    "timer",
+    "7-segment",
+    "button",
+    "pmod"
+   ],
+   "tags": [
+    "timer",
+    "7-segment",
+    "button",
+    "pmod",
+    "puzzle"
+   ],
+   "summary_before": "This is a two-player countdown timer game where players must guess when a hidden timer reaches a target time. The game uses four buttons for start, reset, and player inputs, and displays the timer on a 7-segment display. After both players have pressed their buttons, the displayed times are shown. It requires an external PMOD 7-segment display and a PMOD button module for operation.",
+   "summary": "This is a two-player countdown timer game where players must guess when a hidden timer reaches a target time. The game uses four buttons for start, reset, and player inputs, and displays the timer on a 7-segment display. After both players have pressed their buttons, the displayed times are shown. It requires an external PMOD 7-segment display and a PMOD button module for operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "22aaa12a2323",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "compression",
+    "encoder",
+    "decoder",
+    "verilog"
+   ],
+   "tags": [
+    "compression",
+    "encoder",
+    "decoder",
+    "verilog"
+   ],
+   "summary_before": "This project implements an Asymmetric Numeral Systems (ANS) encoder and decoder in Verilog. The design accepts data via a streaming interface and outputs compressed or decompressed data. The documentation is very sparse, providing only a one-line description and no details on testing or usage. External hardware requirements are not specified.",
+   "summary": "This project implements an Asymmetric Numeral Systems (ANS) encoder and decoder in Verilog. The design accepts data via a streaming interface and outputs compressed or decompressed data. The documentation is very sparse, providing only a one-line description and no details on testing or usage. External hardware requirements are not specified.",
+   "summary_changed": false
+  },
+  {
+   "key": "6d9f5e6474f8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is described as Verilog instantiating a digital inverter ring, not an analog circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "process-experiment",
+     "reason": "The ring oscillator is intended as a sky130 process characterization/experiment structure."
+    }
+   ],
+   "notes": "Removed analog tag because implementation uses digital inverter cells; added process-experiment for characterization intent.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "verilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "verilog",
+    "process-experiment"
+   ],
+   "summary_before": "This project is a simple ring oscillator implemented by instantiating a sky130 inv_2 inverter ring in Verilog. It provides a single output pin for the oscillator signal. The documentation is minimal, consisting only of the title and one-line description, with no testing details or external hardware requirements. It is likely an experiment to characterize oscillator behavior in the sky130 process.",
+   "summary": "This project is a simple ring oscillator implemented by instantiating a sky130 inv_2 inverter ring in Verilog. It provides a single output pin for the oscillator signal. The documentation is minimal, consisting only of the title and one-line description, with no testing details or external hardware requirements. It is likely an experiment to characterize oscillator behavior in the sky130 process.",
+   "summary_changed": false
+  },
+  {
+   "key": "a473f91d14e6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog",
+    "fsm",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog",
+    "fsm",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a simple leaky integrate-and-fire neuron implemented in Verilog that integrates an 8-bit input current into a membrane potential, leaks it over time, and fires a spike when a threshold is reached before resetting. The input current is applied on ui_in, the membrane state is exposed on uo_out, and the spike appears on uio[7]. The testing section only says 'Do something', so no concrete test procedure is documented. No external hardware is required, but the documentation is too thin to describe the implementation details beyond the general LIF behavior.",
+   "summary": "This design is a simple leaky integrate-and-fire neuron implemented in Verilog that integrates an 8-bit input current into a membrane potential, leaks it over time, and fires a spike when a threshold is reached before resetting. The input current is applied on ui_in, the membrane state is exposed on uo_out, and the spike appears on uio[7]. The testing section only says 'Do something', so no concrete test procedure is documented. No external hardware is required, but the documentation is too thin to describe the implementation details beyond the general LIF behavior.",
+   "summary_changed": false
+  },
+  {
+   "key": "0744324c1cd2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The opcodes are merely based on RISC-V ALU opcodes; the design is not a RISC-V processor."
+    },
+    {
+     "tag": "combinational",
+     "reason": "ALU output selection is combinational, but the canonical design type is alu; this tag is less directly supported than alu."
+    }
+   ],
+   "add": [],
+   "notes": "Removed risc-v tag because the design is an ALU using RISC-V-style opcodes, not a RISC-V core.",
+   "tags_before": [
+    "alu",
+    "risc-v",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 6-bit input ALU that selects an operation based on a 4-bit RISC-V opcode and produces an 8-bit output. Inputs A and B are provided through the bidirectional pins and the dedicated input pins, while the opcode is set on the remaining input pins. Testing involves applying input values and opcodes and observing the output, optionally with LEDs connected for visual feedback. The design is a straightforward iterative ALU with no external hardware required.",
+   "summary": "This project implements a 6-bit input ALU that selects an operation based on a 4-bit RISC-V opcode and produces an 8-bit output. Inputs A and B are provided through the bidirectional pins and the dedicated input pins, while the opcode is set on the remaining input pins. Testing involves applying input values and opcodes and observing the output, optionally with LEDs connected for visual feedback. The design is a straightforward iterative ALU with no external hardware required.",
+   "summary_changed": false
+  },
+  {
+   "key": "dc605291dcd1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "barrel-shifter",
+     "reason": "The design performs a simple shift using the bidirectional input as a shift amount, not a barrel shifter."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed barrel-shifter and education tags as unsupported by the minimal documentation.",
+   "tags_before": [
+    "barrel-shifter",
+    "alu",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "verilog"
+   ],
+   "summary_before": "This project implements a shifter that outputs the result of shifting the 8-bit input right by the number of positions specified on the 8-bit bidirectional input. The design is tested by setting switches on the inputs and observing the shifted value on LEDs connected to the outputs. No external hardware beyond switches and LEDs is required. The documentation is minimal, describing only the basic operation.",
+   "summary": "This project implements a shifter that outputs the result of shifting the 8-bit input right by the number of positions specified on the 8-bit bidirectional input. The design is tested by setting switches on the inputs and observing the shifted value on LEDs connected to the outputs. No external hardware beyond switches and LEDs is required. The documentation is minimal, describing only the basic operation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5879,
+  "completion_tokens": 1210,
+  "total_tokens": 7089,
+  "cost": 0.0032157,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032157,
+   "upstream_inference_prompt_cost": 0.0017637,
+   "upstream_inference_completions_cost": 0.001452
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032157,
+ "elapsed_s": 7.2
+}

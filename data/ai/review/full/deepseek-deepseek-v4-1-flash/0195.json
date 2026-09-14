@@ -1,0 +1,207 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9e329bed74cb",
+  "9dee7bf03658",
+  "a1086e53d61d",
+  "fba7ab6424ad",
+  "21b8967d29b6",
+  "02877fb7050c"
+ ],
+ "results": [
+  {
+   "key": "9e329bed74cb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The 8-bit output is a digital sample bus intended for an external resistor ladder, not an on-chip digital-to-analog converter."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sound-generator",
+     "reason": "The design is a synth voice with oscillators and a filter, matching the programmable sound generator category."
+    }
+   ],
+   "notes": "Removed dac because the 8-bit output is a digital sample bus for an external resistor ladder, not an on-chip DAC.",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "oscillator",
+    "pwm",
+    "dac"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "oscillator",
+    "pwm",
+    "sound-generator"
+   ],
+   "summary_before": "This project implements an analog emulation monosynth with two oscillators and a second-order filter. It is controlled by writing to configuration registers via an 8-bit data bus and a 4-bit address bus, and provides both PWM and 8-bit digital audio outputs. The PWM output requires external filtering, and caution is advised when connecting to audio equipment. The documentation is incomplete, with register descriptions and oscillator/filter details marked as TODO.",
+   "summary": "This project implements an analog emulation monosynth with two oscillators and a second-order filter. It is controlled by writing to configuration registers via an 8-bit data bus and a 4-bit address bus, and provides both PWM and 8-bit digital audio outputs. The PWM output requires external filtering, and caution is advised when connecting to audio equipment. The documentation is incomplete, with register descriptions and oscillator/filter details marked as TODO.",
+   "summary_changed": false
+  },
+  {
+   "key": "9dee7bf03658",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source says the bandgap uses only MOSFETs, but does not establish a discrete-transistor implementation rather than standard analog devices."
+    },
+    {
+     "tag": "temperature-sensor",
+     "reason": "The hot air gun is used to heat the chip during testing; the design is not a temperature sensing interface or circuit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed transistor-level and temperature-sensor because the source only says MOSFET-only bandgap and uses heating for test, not a discrete-transistor or temperature-sensing design.",
+   "tags_before": [
+    "bandgap",
+    "voltage-reference",
+    "analog",
+    "transistor-level",
+    "temperature-sensor"
+   ],
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "analog"
+   ],
+   "summary_before": "This analog block implements a bandgap voltage reference using only MOSFETs, with a second output for a DTMOS variant. The documentation points to an external paper for the operating principle and provides no further explanation of the circuit. Testing requires a multimeter to measure the bandgap outputs and a hot air gun to heat the chip and observe temperature behavior. The design is notable for being a transistor-level analog reference submitted to a digital-oriented shuttle.",
+   "summary": "This analog block implements a bandgap voltage reference using only MOSFETs, with a second output for a DTMOS variant. The documentation points to an external paper for the operating principle and provides no further explanation of the circuit. Testing requires a multimeter to measure the bandgap outputs and a hot air gun to heat the chip and observe temperature behavior. The design is notable for being a transistor-level analog reference submitted to a digital-oriented shuttle.",
+   "summary_changed": false
+  },
+  {
+   "key": "a1086e53d61d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "silicon-art",
+    "display",
+    "graphics"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "silicon-art",
+    "display",
+    "graphics"
+   ],
+   "summary_before": "This design displays a 480x480 pixel Tiny Tapeout logo on a VGA monitor, using compressed data and dithered colors to fit into a single tile. It generates standard VGA signals including red, green, blue, horizontal sync, and vertical sync. The design requires an external VGA PMOD and a VGA monitor for operation, and it has been tested successfully by a silicon tester who confirmed the video works as expected. Notable features include the large resolution crammed into a small area and the use of dithering for color effects.",
+   "summary": "This design displays a 480x480 pixel Tiny Tapeout logo on a VGA monitor, using compressed data and dithered colors to fit into a single tile. It generates standard VGA signals including red, green, blue, horizontal sync, and vertical sync. The design requires an external VGA PMOD and a VGA monitor for operation, and it has been tested successfully by a silicon tester who confirmed the video works as expected. Notable features include the large resolution crammed into a small area and the use of dithering for color effects.",
+   "summary_changed": false
+  },
+  {
+   "key": "fba7ab6424ad",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "The project language is Silice, not Verilog."
+    }
+   ],
+   "add": [],
+   "notes": "Removed verilog because the source language is Silice.",
+   "tags_before": [
+    "vga",
+    "video",
+    "audio",
+    "demoscene",
+    "art",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "audio",
+    "demoscene",
+    "art"
+   ],
+   "summary_before": "This is a demoscene demo for Tiny Tapeout that produces a VGA video effect and audio, using the Tiny VGA and audio PMODs. It is written in Silice and is intended to be run by plugging in the PMODs, with a silicon test report confirming it works as expected with the Tiny VGA PMOD. The documentation is extremely sparse, providing only a one-line description and a rhetorical question, so little is known about the specific visual or audio content. The design is notable for being part of a demoscene competition and for fitting on a single tile.",
+   "summary": "This is a demoscene demo for Tiny Tapeout that produces a VGA video effect and audio, using the Tiny VGA and audio PMODs. It is written in Silice and is intended to be run by plugging in the PMODs, with a silicon test report confirming it works as expected with the Tiny VGA PMOD. The documentation is extremely sparse, providing only a one-line description and a rhetorical question, so little is known about the specific visual or audio content. The design is notable for being part of a demoscene competition and for fitting on a single tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "21b8967d29b6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "display"
+   ],
+   "tags": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "display"
+   ],
+   "summary_before": "This is a simple VGA tennis game where four input pins move the left and right paddles and additional inputs reset the score and select the ball speed. It outputs VGA signals through a Pmod, with a pin option selecting between mole99 and Digilent VGA pinouts. The design needs a VGA Pmod and a monitor plus buttons to play. The documentation is brief and does not describe the internal game logic in detail.",
+   "summary": "This is a simple VGA tennis game where four input pins move the left and right paddles and additional inputs reset the score and select the ball speed. It outputs VGA signals through a Pmod, with a pin option selecting between mole99 and Digilent VGA pinouts. The design needs a VGA Pmod and a monitor plus buttons to play. The documentation is brief and does not describe the internal game logic in detail.",
+   "summary_changed": false
+  },
+  {
+   "key": "02877fb7050c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "incomplete",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "incomplete",
+    "wokwi"
+   ],
+   "summary_before": "This project aims to control a 7-segment display using mixed logic gates, but the functionality is not yet fully defined. The documentation states that the gates make signals do funky things and that testing is to be determined. External hardware includes a 7-segment display, input board, output board, and switch panel. The design is a work in progress and lacks clear specifications.",
+   "summary": "This project aims to control a 7-segment display using mixed logic gates, but the functionality is not yet fully defined. The documentation states that the gates make signals do funky things and that testing is to be determined. External hardware includes a 7-segment display, input board, output board, and switch panel. The design is a work in progress and lacks clear specifications.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5912,
+  "completion_tokens": 1178,
+  "total_tokens": 7090,
+  "cost": 0.0031872,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0031872,
+   "upstream_inference_prompt_cost": 0.0017736,
+   "upstream_inference_completions_cost": 0.0014136
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0031872,
+ "elapsed_s": 9.5
+}

@@ -1,0 +1,218 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "636b248d4c1b",
+  "3e2e02900a0f",
+  "200b4c8b4a05",
+  "430b63e3ccf1",
+  "33008ce40907",
+  "3e8d54a51662"
+ ],
+ "results": [
+  {
+   "key": "636b248d4c1b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "time-to-digital-converter",
+     "reason": "not in the canonical vocabulary"
+    }
+   ],
+   "add": [
+    {
+     "tag": "time-to-digital-converter",
+     "reason": "not in the canonical vocabulary, cannot be added"
+    }
+   ],
+   "notes": "Proposed tag 'time-to-digital-converter' is outside the canonical vocabulary; the closest canonical tag is 'oscillator'.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "analog",
+    "comparator",
+    "oscillator",
+    "transistor-level"
+   ],
+   "tags": [
+    "analog",
+    "comparator",
+    "oscillator",
+    "transistor-level",
+    "time-to-digital-converter"
+   ],
+   "summary_before": "This analog block implements the fine-resolution part of a time-to-digital converter using time interpolation. It converts an input pulse of 20 to 60 nanoseconds into a periodic square wave with a period 90 times longer, allowing a low-frequency counter to measure the pulse width with high resolution. The circuit requires external hardware including a signal generator, a 13uA current source, and an oscilloscope for testing. It is a transistor-level analog design intended for applications such as digital communications, radar, and particle physics.",
+   "summary": "This analog block implements the fine-resolution part of a time-to-digital converter using time interpolation. It converts an input pulse of 20 to 60 nanoseconds into a periodic square wave with a period 90 times longer, allowing a low-frequency counter to measure the pulse width with high resolution. The circuit requires external hardware including a digital signal generator, a 13uA current source, and an oscilloscope for testing. It is an analog design intended for applications such as digital communications, radar, and particle physics.",
+   "summary_changed": true
+  },
+  {
+   "key": "3e2e02900a0f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "no evidence that the design is built from discrete transistors rather than standard cells"
+    }
+   ],
+   "add": [],
+   "notes": "'transistor-level' is unsupported by the source, which says only VCOs, transmission gates and a phase detector.",
+   "tags_before": [
+    "pll",
+    "vco",
+    "phase-detector",
+    "analog",
+    "oscillator",
+    "transistor-level"
+   ],
+   "tags": [
+    "pll",
+    "vco",
+    "phase-detector",
+    "analog",
+    "oscillator"
+   ],
+   "summary_before": "This analog test circuit contains a transmission-gate VCO with on-chip capacitors for linearization, plus a phase detector and a second VCO forming parts of a phase-locked loop. Six analog pins expose the VCO outputs, control inputs, PLL VCO output and differential PLL filter nodes. Testing requires a typical experimental PLL or VCO bench setup, and no digital control pins are provided. The design is notable as a transistor-level analog exploration of PLL building blocks on a shared shuttle.",
+   "summary": "This analog test circuit contains a transmission-gate VCO with on-chip capacitors for linearization, plus a phase detector and a second VCO forming parts of a phase-locked loop. Six analog pins expose the VCO outputs, control inputs, the PLL VCO output and the differential PLL filter nodes. Testing requires a typical experimental PLL or VCO bench setup, and no digital control pins are provided. The submission is an analog exploration of PLL and VCO building blocks on a shared shuttle.",
+   "summary_changed": true
+  },
+  {
+   "key": "200b4c8b4a05",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "the design uses 8b/10b encoding/decoding, but there is no code-to-signal encoder primitive; the canonical 'encoder' refers to signal-to-code encoding"
+    }
+   ],
+   "add": [],
+   "notes": "'encoder' is not supported by the design, which uses 8b/10b encoding but no encoder primitive; the other tags are fine.",
+   "tags_before": [
+    "communication",
+    "encoder",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This project implements a Serializer and Deserializer (SerDes) module that converts 8-bit parallel data to a 10-bit encoded serial stream and back. It uses 8b/10b encoding for data integrity and includes control signals for enabling serialization, deserialization, and data latching. The design is purely digital and requires no external hardware, making it suitable for integration into larger systems. The documentation is thorough but lacks silicon test results.",
+   "summary": "This project implements a Serializer/Deserializer (SerDes) that converts 8-bit parallel data into a 10-bit serial stream using 8b/10b encoding and decodes it back. It includes data, serial, parallel, and serialization enable control signals plus a synchronous reset, with latch and shift-register elements synchronizing the paths. The design is purely digital and requires no external hardware, making it suitable for integration into larger systems. The documentation is thorough but contains no silicon test results.",
+   "summary_changed": true
+  },
+  {
+   "key": "430b63e3ccf1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "the external SPI NOR flash is not an on-chip generic memory block implemented by the design"
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'memory' because the flash is external hardware rather than an on-chip memory block.",
+   "tags_before": [
+    "vga",
+    "video",
+    "audio",
+    "spi",
+    "memory",
+    "pwm",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "audio",
+    "spi",
+    "pwm",
+    "demoscene"
+   ],
+   "summary_before": "This is a video and audio player that reads binary 80x60 pixel video and PCM/PWM audio data from an external SPI NOR flash chip and outputs it as 640x480 VGA with audio. It supports configurable audio type (PCM or PWM), VGA PMOD type, and pixel colors via input pins. External hardware includes a VGA monitor, a Tiny VGA PMOD, an SPI flash chip (W25Q128JVSSIQ), and for PWM audio an external DAC. The design is notable for playing the 'Bad Apple' video and demonstrating complex data streaming from flash.",
+   "summary": "This is a video and audio player that reads binary 80x60 pixel video and PCM/PWM audio data from an external SPI NOR flash chip and outputs it as 640x480 VGA with audio. It supports configurable audio type (PCM or PWM), VGA PMOD type, and pixel colors via input pins. External hardware includes a VGA monitor, a Tiny VGA PMOD, an SPI flash chip (W25Q128JVSSIQ), and for PWM audio an external DAC. The design is notable for streaming video and audio data from external flash to a VGA display.",
+   "summary_changed": true
+  },
+  {
+   "key": "33008ce40907",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "video",
+     "reason": "redundant with the more specific 'vga' interface/output tag"
+    }
+   ],
+   "add": [],
+   "notes": "'video' is redundant with 'vga'; the rest of the tags and summary are supported.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "video",
+    "silicon-art",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "silicon-art",
+    "verilog"
+   ],
+   "summary_before": "This project displays a bouncing Tiny Tapeout logo on a 640x480 VGA screen, mimicking a DVD screensaver. It includes options to tile the logo across the screen and enable color output via input pins. The design requires a TinyVGA PMOD and a VGA monitor, and has been tested successfully by multiple users. It is a simple visual demo with no additional external hardware.",
+   "summary": "This project displays a bouncing Tiny Tapeout logo on a 640x480 VGA screen, mimicking a DVD screensaver. It includes options to tile the logo across the screen and enable color output via input pins. The design requires a TinyVGA PMOD and a VGA monitor, and has been tested successfully by multiple users. It is a simple visual demo with no additional external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "3e8d54a51662",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "oscillator",
+    "analog",
+    "opamp",
+    "signal-generator",
+    "filter-analog",
+    "counter",
+    "silicon-tested"
+   ],
+   "tags": [
+    "oscillator",
+    "analog",
+    "opamp",
+    "signal-generator",
+    "filter-analog",
+    "counter",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog design uses a Twin Tee notch filter with an opamp to generate a sine wave at approximately 4.93 MHz. A 20-bit digital counter is connected to the oscillator output, with the top 8 bits driving the LEDs, so the most significant bit flashes about 5 times per second. An oscilloscope is required to observe the sine wave, and the design is sensitive to loading, so it should be started with no scope connected. Silicon testing by the author shows it oscillates at about 4.6 MHz and the counter works, though the sine wave quality is moderate.",
+   "summary": "This analog design uses a Twin Tee notch filter with an opamp to generate a sine wave at approximately 4.93 MHz. A 20-bit digital counter is connected to the oscillator output, with the top 8 bits driving the LEDs, so the most significant bit flashes about 5 times per second. An oscilloscope is required to observe the sine wave, and the design is sensitive to loading, so it should be started with no scope connected. Silicon testing by the author shows it oscillates at about 4.6 MHz and the counter works, though the sine wave quality is moderate.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8209,
+  "completion_tokens": 1271,
+  "total_tokens": 9480,
+  "cost": 0.0039879,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039879,
+   "upstream_inference_prompt_cost": 0.0024627,
+   "upstream_inference_completions_cost": 0.0015252
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039879,
+ "elapsed_s": 8.5
+}

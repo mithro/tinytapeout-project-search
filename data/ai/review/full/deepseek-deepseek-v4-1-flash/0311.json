@@ -1,0 +1,342 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6d367af7a1ae",
+  "226bdf4ca861",
+  "af9944e57c44",
+  "1e69f9715a6e",
+  "6f94ee8ece23",
+  "c8c2e4235d33"
+ ],
+ "results": [
+  {
+   "key": "6d367af7a1ae",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter circuit is described; the score display sequencing is a state machine, not a counting circuit."
+    },
+    {
+     "tag": "education",
+     "reason": "Not stated as intended for teaching or learning digital design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Already present; keep."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The display/round sequencing is a finite state machine."
+    },
+    {
+     "tag": "button",
+     "reason": "Eight active-high buttons or switches are the inputs."
+    },
+    {
+     "tag": "game",
+     "reason": "Simon-style memory game."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported counter and education tags; kept the rest.",
+   "tags_before": [
+    "game",
+    "7-segment",
+    "education",
+    "wokwi",
+    "fsm",
+    "counter",
+    "button"
+   ],
+   "tags": [
+    "game",
+    "7-segment",
+    "wokwi",
+    "fsm",
+    "button"
+   ],
+   "summary_before": "Tiny Number Simon is a Simon-style digital memory game implemented in Wokwi. It uses eight active-high buttons as number inputs and a common-cathode 7-segment display to show the sequence and score. The game requires a slow or manually stepped clock and an active-low reset, with no microcontroller or external memory needed. The design is notable for its simple state-machine implementation and clear test procedure.",
+   "summary": "Tiny Number Simon is a Simon-style digital memory game implemented in Wokwi. It uses eight active-high buttons as number inputs and a common-cathode 7-segment display to show the sequence and score. The game requires a slow or manually stepped clock and an active-low reset, with no microcontroller or external memory needed. The design is notable for its simple state-machine implementation and clear test procedure.",
+   "summary_changed": false
+  },
+  {
+   "key": "226bdf4ca861",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "filter-analog",
+     "reason": "No analog filter circuit is described; the loops are digital control loops."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is a digital Verilog ASIC that samples external ADCs; no on-chip analog circuitry is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cordic",
+     "reason": "Uses a CORDIC rotational block to generate the sine wave."
+    },
+    {
+     "tag": "adc",
+     "reason": "Samples AC and DC grid voltages via external ADC."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Produces bi-polar grid PWM and dump PWM outputs."
+    },
+    {
+     "tag": "power-management",
+     "reason": "Grid-forming and dump-load control for micro-inverters."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Power electronics / grid-tied inverter application."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Written in Verilog."
+    }
+   ],
+   "notes": "Removed filter-analog and mixed-signal tags not supported by the digital Verilog source.",
+   "tags_before": [
+    "power-management",
+    "pwm",
+    "cordic",
+    "adc",
+    "verilog",
+    "industrial",
+    "mixed-signal",
+    "filter-analog"
+   ],
+   "tags": [
+    "power-management",
+    "pwm",
+    "cordic",
+    "adc",
+    "verilog",
+    "industrial"
+   ],
+   "summary_before": "This ASIC implements a 60 Hz grid-forming reference using a CORDIC-locked sine wave generator and a linear dump-load controller for micro-inverters. It includes PWM modulators for driving an H-bridge and dump FET, with ADC sampling for AC and DC voltage feedback. The design requires substantial external hardware including a grid-tied solar system, H-bridge, transformer, rectifier, and dump load. It is notable for its complex control loops and power electronics application.",
+   "summary": "This ASIC implements a 60 Hz grid-forming reference using a CORDIC-locked sine wave generator and a linear dump-load controller for micro-inverters. It includes PWM modulators for driving an H-bridge and dump FET, with ADC sampling for AC and DC voltage feedback. The design requires substantial external hardware including a grid-tied solar system, H-bridge, transformer, rectifier, and dump load. It is notable for its complex control loops and power electronics application.",
+   "summary_changed": false
+  },
+  {
+   "key": "af9944e57c44",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "level-shifter",
+     "reason": "No level-shifting circuitry is described; the block is simply 5V/3.3V compatible."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sram",
+     "reason": "Single-port SRAM block."
+    },
+    {
+     "tag": "memory",
+     "reason": "128 words of 8 bits storage."
+    },
+    {
+     "tag": "full-custom",
+     "reason": "Language is Full Custom."
+    },
+    {
+     "tag": "asic",
+     "reason": "Custom SRAM macro implementation."
+    }
+   ],
+   "notes": "Removed level-shifter tag; no level-shifting circuit is documented.",
+   "tags_before": [
+    "sram",
+    "memory",
+    "full-custom",
+    "level-shifter",
+    "asic"
+   ],
+   "tags": [
+    "sram",
+    "memory",
+    "full-custom",
+    "asic"
+   ],
+   "summary_before": "This is a 5V-compatible version of a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins. It operates synchronously with read and write operations on the clock edge, including write-through behavior. The design is full-custom and also compatible with 3.3V, using standard design rules. Testing is done by performing writes and reads to verify data retention.",
+   "summary": "This is a 5V-compatible version of a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins. It operates synchronously with read and write operations on the clock edge, including write-through behavior. The design is full-custom and also compatible with 3.3V. Testing is done by performing writes and reads to verify data retention.",
+   "summary_changed": true
+  },
+  {
+   "key": "1e69f9715a6e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "Not stated that the design is built from discrete transistors; it is an analog full-custom-style block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vco",
+     "reason": "Quadrature voltage-controlled oscillator."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "Oscillator circuit."
+    },
+    {
+     "tag": "analog",
+     "reason": "Analog design with analog pins."
+    }
+   ],
+   "notes": "Removed transistor-level tag not supported by the source.",
+   "tags_before": [
+    "vco",
+    "oscillator",
+    "analog",
+    "transistor-level"
+   ],
+   "tags": [
+    "vco",
+    "oscillator",
+    "analog"
+   ],
+   "summary_before": "This is an analog four-stage differential delay voltage-controlled oscillator that uses a comparator tapping two stages to produce four single-ended quadrature outputs at 0, 90, 180 and 270 degrees. Its nominal target frequency is 240 MHz with an expected tuning range of roughly 120 MHz to 500 MHz, controlled by an analog control voltage. Testing requires a programmable precision voltage source and an oscilloscope to observe oscillation. The design is notable for providing quadrature phases from a compact analog VCO suitable for clock generation or PLL use.",
+   "summary": "This is an analog four-stage differential delay voltage-controlled oscillator that uses a comparator tapping two stages to produce four single-ended quadrature outputs at 0, 90, 180 and 270 degrees. Its nominal target frequency is 240 MHz with an expected tuning range of roughly 120 MHz to 500 MHz, controlled by an analog control voltage. Testing requires a programmable precision voltage source and an oscilloscope to observe oscillation. The design is notable for providing quadrature phases from a compact analog VCO suitable for clock generation or PLL use.",
+   "summary_changed": false
+  },
+  {
+   "key": "6f94ee8ece23",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "text",
+     "reason": "Text output is not a supported canonical output tag for this design; the display is VGA."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Drives a VGA display via the Tiny VGA pinout."
+    },
+    {
+     "tag": "video",
+     "reason": "Generates a video signal."
+    },
+    {
+     "tag": "display",
+     "reason": "Outputs to a VGA display."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Written in Verilog."
+    }
+   ],
+   "notes": "Removed text tag; VGA/video/display tags cover the output.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "text",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design drives a VGA display to show the text \"DESIGN YOUR OWN CHIP\" using the Tiny VGA pinout at a 25.175 MHz pixel clock. It outputs two bits each of red, green and blue along with horizontal and vertical sync on the eight outputs. It is used by connecting a VGA display through a Tiny VGA Pmod, with no other external hardware required. The project is a simple demonstration of generating a VGA signal from a Tiny Tapeout design.",
+   "summary": "This Verilog design drives a VGA display to show the text \"DESIGN YOUR OWN CHIP\" using the Tiny VGA pinout at a 25.175 MHz pixel clock. It outputs two bits each of red, green and blue along with horizontal and vertical sync on the eight outputs. It is used by connecting a VGA display through a Tiny VGA Pmod, with no other external hardware required. The project is a simple demonstration of generating a VGA signal from a Tiny Tapeout design.",
+   "summary_changed": false
+  },
+  {
+   "key": "c8c2e4235d33",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "It is a fused multiply-add unit, not a general arithmetic logic unit."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "The two-phase streaming protocol is not a pipelined datapath."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "Implements multiply-accumulate (fused multiply-add)."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Contains an 8-bit signed multiplier."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Arithmetic datapath useful for digital signal processing."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Written in Verilog."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Verified with cocotb tests."
+    }
+   ],
+   "notes": "Removed alu and pipeline tags; added cocotb for the documented testbench.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "dsp",
+    "alu",
+    "verilog",
+    "pipeline"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "dsp",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This Verilog design is an 8-bit signed fused multiply-add unit that computes z = a*b + c with a 16-bit internal product and sum, outputting the low 8 bits of the result. It uses a two-phase streaming protocol in which a and b are captured on even cycles and c on odd cycles, producing one result every two cycles with no separate valid signal. It is verified with cocotb tests covering reset, corner cases, 2000 randomized triples against a Python reference, and back-to-back streaming, plus a plain Verilog self-checking testbench. No external hardware is required, and the design is notable for its compact streaming arithmetic datapath.",
+   "summary": "This Verilog design is an 8-bit signed fused multiply-add unit that computes z = a*b + c with a 16-bit internal product and sum, outputting the low 8 bits of the result. It uses a two-phase streaming protocol in which a and b are captured on even cycles and c on odd cycles, producing one result every two cycles with no separate valid signal. It is verified with cocotb tests covering reset, corner cases, 2000 randomized triples against a Python reference, and back-to-back streaming, plus a plain Verilog self-checking testbench. No external hardware is required, and the design is notable for its compact streaming arithmetic datapath.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7717,
+  "completion_tokens": 1581,
+  "total_tokens": 9298,
+  "cost": 0.002787303,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002787303,
+   "upstream_inference_prompt_cost": 0.001174683,
+   "upstream_inference_completions_cost": 0.00161262
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002787303,
+ "elapsed_s": 72.8
+}

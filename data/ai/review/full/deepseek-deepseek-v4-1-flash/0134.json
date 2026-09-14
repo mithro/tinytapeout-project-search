@@ -1,0 +1,338 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f6c57ac690f6",
+  "162d9c919b5e",
+  "02ccd6e3facc",
+  "728155d53f52",
+  "4ea6a464521e",
+  "b452b86b03bb"
+ ],
+ "results": [
+  {
+   "key": "f6c57ac690f6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "physics",
+     "reason": "The design is a controller for a thruster, not a physics simulation or modeling design."
+    },
+    {
+     "tag": "industrial",
+     "reason": "No evidence of industrial control application; it is a specialized thruster controller."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design generates configurable pulse trains, which is a waveform/signal generation function."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "It includes a clock divider register and outputs a divided clock."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The pulses are displayed on a 7-segment display as described in the testing section."
+    },
+    {
+     "tag": "i2c",
+     "reason": "It implements an I2C slave interface for configuration."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported physics and industrial tags; added signal-generator, clock-divider, 7-segment, i2c, and verilog based on source evidence.",
+   "tags_before": [
+    "physics",
+    "i2c",
+    "signal-generator",
+    "clock-divider",
+    "7-segment",
+    "industrial"
+   ],
+   "tags": [
+    "i2c",
+    "signal-generator",
+    "clock-divider",
+    "7-segment",
+    "verilog"
+   ],
+   "summary_before": "This design is a controller for a Pulsed Plasma Thruster (PPT) that generates a configurable number of pulses with adjustable frequency and pulse width, controllable via an I2C slave interface. It can also run with default settings using an override input, producing a pulse train at 0.25 Hz with 16 pulses. The design outputs pulse train status and a divided clock, and displays pulses on a 7-segment display. It is notable for being verified in simulation and prototyped on an FPGA, targeting space propulsion applications.",
+   "summary": "This design is a controller for a Pulsed Plasma Thruster (PPT) that generates a configurable number of pulses with adjustable frequency and pulse width, controllable via an I2C slave interface. It can also run with default settings using an override input, producing a pulse train at 0.25 Hz with 16 pulses. The design outputs pulse train status and a divided clock, and displays pulses on a 7-segment display. It is verified in simulation and prototyped on an FPGA.",
+   "summary_changed": true
+  },
+  {
+   "key": "162d9c919b5e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "No evidence of pulse-width modulation output; the output is a sound signal, not PWM."
+    }
+   ],
+   "add": [
+    {
+     "tag": "synthesizer",
+     "reason": "The design is a sound synthesizer."
+    },
+    {
+     "tag": "audio",
+     "reason": "It outputs an audio signal."
+    },
+    {
+     "tag": "music",
+     "reason": "It is intended for music generation."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "It generates a waveform, functioning as an oscillator."
+    },
+    {
+     "tag": "waveform-generator",
+     "reason": "It generates selectable triangle or sawtooth waveforms."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported pwm tag; added synthesizer, audio, music, oscillator, waveform-generator, and verilog based on source evidence.",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "music",
+    "oscillator",
+    "waveform-generator",
+    "pwm",
+    "verilog"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "music",
+    "oscillator",
+    "waveform-generator",
+    "verilog"
+   ],
+   "summary_before": "This design is a basic sound synthesizer that generates a waveform and shapes it with an ADSR envelope. The waveform is selected between triangle and sawtooth, and the note frequency is chosen with four input bits while a separate clock sets the sampling rate. The envelope attack, decay, sustain and release stages are configured through the bidirectional pins, and the resulting sound is emitted on one output pin. Documentation is very thin, consisting only of a one-line description and a short test note, so the exact envelope resolution and output encoding are not specified.",
+   "summary": "This design is a basic sound synthesizer that generates a waveform and shapes it with an ADSR envelope. The waveform is selected between triangle and sawtooth, and the note frequency is chosen with four input bits while a separate clock sets the sampling rate. The envelope attack, decay, sustain and release stages are configured through the bidirectional pins, and the resulting sound is emitted on one output pin. Documentation is very thin, consisting only of a one-line description and a short test note, so the exact envelope resolution and output encoding are not specified.",
+   "summary_changed": false
+  },
+  {
+   "key": "02ccd6e3facc",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "lfsr",
+    "multiplexer",
+    "flip-flop",
+    "wokwi",
+    "neuromorphic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "lfsr",
+    "multiplexer",
+    "flip-flop",
+    "wokwi",
+    "neuromorphic"
+   ],
+   "summary_before": "This project implements several test clusters featuring various spike trains for neuro-inspired computing research. It includes neuron clusters of different sizes, an LFSR, flip-flops, and a multiplexer, with inputs and outputs exposed on the chip pins. The design is tested by providing input clock frequencies to the neuron clusters and observing outputs via an oscilloscope to generate raster spiking plots. It is implemented in Wokwi and is intended for investigating spike-based information representation, with no silicon test results provided.",
+   "summary": "This project implements several test clusters featuring various spike trains for neuro-inspired computing research. It includes neuron clusters of different sizes, an LFSR, flip-flops, and a multiplexer, with inputs and outputs exposed on the chip pins. The design is tested by providing input clock frequencies to the neuron clusters and observing outputs via an oscilloscope to generate raster spiking plots. It is implemented in Wokwi and is intended for investigating spike-based information representation, with no silicon test results provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "728155d53f52",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "No evidence of an LFSR in the source documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "The design is a competition entry for the demoscene."
+    },
+    {
+     "tag": "vga",
+     "reason": "It provides VGA output."
+    },
+    {
+     "tag": "audio",
+     "reason": "It provides audio output via PWM."
+    },
+    {
+     "tag": "pwm",
+     "reason": "The audio output is a PWM signal."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It produces rendered graphics for VGA."
+    }
+   ],
+   "notes": "Removed unsupported lfsr tag; added demoscene, vga, audio, pwm, and graphics based on source evidence.",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "audio",
+    "pwm",
+    "graphics",
+    "lfsr"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "audio",
+    "pwm",
+    "graphics"
+   ],
+   "summary_before": "This design is a competition entry for the Tiny Tapeout demoscene, producing a VGA output and audio PWM signal. It is intended to be connected to a VGA PMOD for 640x480 video and an audio PMOD for sound. The design uses HardCaml and operates at 25.25 MHz, with a test mode pin. The documentation is minimal, providing only pinouts and external hardware requirements, so the visual and audio content is not described.",
+   "summary": "This design is a competition entry for the Tiny Tapeout demoscene, producing a VGA output and audio PWM signal. It is intended to be connected to a VGA PMOD for 640x480 video and an audio PMOD for sound. The design uses HardCaml and operates at 25.25 MHz, with a test mode pin. The documentation is minimal, providing only pinouts and external hardware requirements, so the visual and audio content is not described.",
+   "summary_changed": false
+  },
+  {
+   "key": "4ea6a464521e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No evidence of basic logic gate implementation; the design maps switches to display segments."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of intended use for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The design drives a seven-segment display."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "It uses switches as inputs."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The design is implemented in Wokwi."
+    },
+    {
+     "tag": "display",
+     "reason": "It outputs to a display."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and education tags; added 7-segment, dip-switch, wokwi, and display based on source evidence.",
+   "tags_before": [
+    "7-segment",
+    "dip-switch",
+    "logic-gate",
+    "wokwi",
+    "display",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "dip-switch",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This design drives a seven-segment display from eight input switches. It uses logic gates to map the switch states to the display segments, allowing the user to toggle the switches to turn on individual segments. Testing is done by turning on the switches and observing the display. It requires an external seven-segment display and switches.",
+   "summary": "This design drives a seven-segment display from eight input switches. It maps the switch states to the display segments, allowing the user to toggle the switches to turn on individual segments. Testing is done by turning on the switches and observing the display. It requires an external seven-segment display and switches.",
+   "summary_changed": true
+  },
+  {
+   "key": "b452b86b03bb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "While a FIFO is a memory buffer, the canonical tag 'memory' is for generic memory storage blocks; 'fifo' is more specific and sufficient."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fifo",
+     "reason": "The design is an asynchronous FIFO."
+    },
+    {
+     "tag": "asynchronous",
+     "reason": "It operates across two asynchronous clock domains."
+    },
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "It handles data transfer between different clock domains."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "It includes synchronization logic to avoid metastability."
+    },
+    {
+     "tag": "gray-code",
+     "reason": "It uses Gray-coded pointers."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed generic memory tag; added fifo, asynchronous, clock-domain-crossing, synchronizer, gray-code, and verilog based on source evidence.",
+   "tags_before": [
+    "fifo",
+    "asynchronous",
+    "clock-domain-crossing",
+    "synchronizer",
+    "gray-code",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "fifo",
+    "asynchronous",
+    "clock-domain-crossing",
+    "synchronizer",
+    "gray-code",
+    "verilog"
+   ],
+   "summary_before": "The design implements an asynchronous FIFO that buffers data between two clock domains with independent read and write clocks. It uses Gray-coded pointers and synchronization logic to prevent metastability, with full and empty flags indicating when the FIFO cannot accept or provide data. The documentation describes how to test by setting write and read enables and observing the flags and data outputs, but the pin list provided in the documentation does not match the actual pin names given in the project metadata. External hardware is minimal, likely just a way to drive the inputs and observe the outputs.",
+   "summary": "The design implements an asynchronous FIFO that buffers data between two clock domains with independent read and write clocks. It uses Gray-coded pointers and synchronization logic to prevent metastability, with full and empty flags indicating when the FIFO cannot accept or provide data. The documentation describes how to test by setting write and read enables and observing the flags and data outputs, but the pin list provided in the documentation does not match the actual pin names given in the project metadata. External hardware is minimal, likely just a way to drive the inputs and observe the outputs.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6731,
+  "completion_tokens": 1874,
+  "total_tokens": 8605,
+  "cost": 0.0033273,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033273,
+   "upstream_inference_prompt_cost": 0.0010785,
+   "upstream_inference_completions_cost": 0.0022488
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033273,
+ "elapsed_s": 56.9
+}

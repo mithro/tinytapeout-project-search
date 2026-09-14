@@ -1,0 +1,223 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6d8e7fa48e8f",
+  "82e7bfebd1ff",
+  "2a9fd146c4d3",
+  "4d8fafd712ec",
+  "7c38738de9cf",
+  "81c510de9ffd"
+ ],
+ "results": [
+  {
+   "key": "6d8e7fa48e8f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asic",
+     "reason": "No evidence of ASIC-specific implementation beyond standard Tiny Tapeout flow; not supported by source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "Source states a cocotb suite with 18 tests covers the design."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Source says all tests pass in RTL and post-synthesis gate-level simulation, but not fabricated silicon; this tag is not supported and should not be added."
+    }
+   ],
+   "notes": "Removed unsupported asic tag and added cocotb based on explicit testbench documentation; silicon-tested was not added because only simulation is reported.",
+   "tags_before": [
+    "spiking-neural-network",
+    "stochastic-computing",
+    "lfsr",
+    "neural-network",
+    "spi",
+    "neuromorphic",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "stochastic-computing",
+    "lfsr",
+    "neural-network",
+    "spi",
+    "neuromorphic",
+    "verilog",
+    "cocotb",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a stochastic leaky integrate-and-fire neuron with a configurable 16-bit LFSR, programmable sigmoid LUT, and refractory period. It supports both parallel and SPI control modes, with outputs for spike events and membrane potential monitoring. Testing involves configuring via SPI or parallel pins and observing spike outputs. The design is notable for its stochastic firing mechanism and neuromorphic computing focus.",
+   "summary": "This project implements a stochastic leaky integrate-and-fire neuron with a configurable 16-bit LFSR, programmable sigmoid LUT, and refractory period. It supports both parallel and SPI control modes, with outputs for spike events and membrane potential monitoring. Testing involves configuring via SPI or parallel pins and observing spike outputs. The design is notable for its stochastic firing mechanism and neuromorphic computing focus.",
+   "summary_changed": false
+  },
+  {
+   "key": "82e7bfebd1ff",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "counter",
+    "multiplexer",
+    "display",
+    "wokwi",
+    "education",
+    "workshop"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "multiplexer",
+    "display",
+    "wokwi",
+    "education",
+    "workshop"
+   ],
+   "summary_before": "This design cycles through the letters of a word on a seven segment display using a three-bit counter and 8-to-1 multiplexers. It has no input pins and eight outputs labelled Hex_0 through Hex_7 that drive the display segments. Testing is done by applying a clock signal and watching the display change. An external seven segment display is required, and the project appears to originate from a workshop.",
+   "summary": "This design cycles through the letters of a word on a seven segment display using a three-bit counter and 8-to-1 multiplexers. It has no input pins and eight outputs labelled Hex_0 through Hex_7 that drive the display segments. Testing is done by applying a clock signal and watching the display change. An external seven segment display is required, and the project appears to originate from a workshop.",
+   "summary_changed": false
+  },
+  {
+   "key": "2a9fd146c4d3",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "clock-generator",
+     "reason": "Source one-line description explicitly mentions a clock driver."
+    }
+   ],
+   "notes": "Added clock-generator because the source explicitly describes a clock driver.",
+   "tags_before": [
+    "logic-gate",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "clock-generator"
+   ],
+   "summary_before": "This design implements a NAND gate and an XOR gate, with additional outputs that pass through some inputs directly. It also includes a clock driver, though the clock frequency is not specified. The eight inputs can be set, and the outputs observed to verify the logic functions. It is a simple educational project created in Wokwi, intended for testing basic logic gates and a clock signal.",
+   "summary": "This design implements a NAND gate and an XOR gate, with additional outputs that pass through some inputs directly. It also includes a clock driver, though the clock frequency is not specified. The eight inputs can be set, and the outputs observed to verify the logic functions. It is a simple educational project created in Wokwi, intended for testing basic logic gates and a clock signal.",
+   "summary_changed": false
+  },
+  {
+   "key": "4d8fafd712ec",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Summary is supported; no tag changes needed.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design implements several logic gates (AND, NOR, XOR, NOT) in a Tiny Tapeout project. The gates are interconnected between inputs and outputs. It is tested by applying input combinations and observing outputs. The design is intended to drive a 7-segment display to show the letter 'm', but documentation is sparse and the test table is incomplete.",
+   "summary": "This design implements several logic gates (AND, NOR, XOR, NOT) in a Tiny Tapeout project. The gates are interconnected between inputs and outputs. It is tested by applying input combinations and observing outputs. The design is intended to drive a 7-segment display to show the letter 'm', but documentation is sparse and the test table is incomplete.",
+   "summary_changed": false
+  },
+  {
+   "key": "7c38738de9cf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design filters an external random bit stream; it does not implement a pseudo-random number generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "Source explicitly states the design uses D flip-flops."
+    }
+   ],
+   "notes": "Removed prng because the design consumes rather than generates randomness, and added flip-flop based on explicit D flip-flop usage.",
+   "tags_before": [
+    "prng",
+    "uart",
+    "wokwi"
+   ],
+   "tags": [
+    "uart",
+    "wokwi",
+    "flip-flop"
+   ],
+   "summary_before": "This design implements a bias correction filter for a random bit stream, using D flip-flops to detect and invert duplicate bits, with UART output for monitoring. It is tested by receiving the output and verifying that the average number of 0s and 1s approaches 50% over time. External hardware includes a clock source and a random number generator transmitting a bit stream via GPIO. The project is notable for addressing bias in random bit streams, though no silicon results are provided.",
+   "summary": "This design implements a bias correction filter for a random bit stream, using D flip-flops to detect and invert duplicate bits, with UART output for monitoring. It is tested by receiving the output and verifying that the average number of 0s and 1s approaches 50% over time. External hardware includes a clock source and a random number generator transmitting a bit stream via GPIO. The project is notable for addressing bias in random bit streams, though no silicon results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "81c510de9ffd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator is described; the slot symbols are selected by the game logic, not a PRNG."
+    }
+   ],
+   "add": [],
+   "notes": "Removed prng because the source does not describe a pseudo-random number generator.",
+   "tags_before": [
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "prng",
+    "button",
+    "verilog",
+    "systemverilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "button",
+    "verilog",
+    "systemverilog"
+   ],
+   "summary_before": "This design implements a slot machine game with three reels displaying four possible symbols on a VGA screen. The game starts with random flashing symbols, and pressing the start button initiates spinning that stops each reel sequentially. It requires a 25 MHz clock, two push buttons for start and reset, and a Tiny VGA PMOD connected to a VGA monitor. The design is a simple interactive game with no additional external components.",
+   "summary": "This design implements a slot machine game with three reels displaying four possible symbols on a VGA screen. The game starts with random flashing symbols, and pressing the start button initiates spinning that stops each reel sequentially. It requires a 25 MHz clock, two push buttons for start and reset, and a Tiny VGA PMOD connected to a VGA monitor. The design is a simple interactive game with no additional external components.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7263,
+  "completion_tokens": 1156,
+  "total_tokens": 8419,
+  "cost": 0.0035661,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035661,
+   "upstream_inference_prompt_cost": 0.0021789,
+   "upstream_inference_completions_cost": 0.0013872
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035661,
+ "elapsed_s": 30.2
+}

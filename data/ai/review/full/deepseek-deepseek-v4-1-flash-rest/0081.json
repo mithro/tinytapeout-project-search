@@ -1,0 +1,361 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a80a64258c4b",
+  "50b6403e3a05",
+  "709d1f901c1e",
+  "9cf0cd198c4b",
+  "95979b329597",
+  "bd59ccd926e0"
+ ],
+ "results": [
+  {
+   "key": "a80a64258c4b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display or segment output exists; pins are a mux and copies of inputs."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is present in the pins or documentation."
+    },
+    {
+     "tag": "education",
+     "reason": "Source does not state any teaching or learning intent."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The mux select is driven by a clock, so the design is sequential, not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplexer",
+     "reason": "Documentation explicitly describes a MUX selecting between inputs 0 and 1."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the project was built in the Wokwi simulator."
+    },
+    {
+     "tag": "template",
+     "reason": "Title is 'tiny-tapeout-workshop-result' and description says 'Just some messing around', matching a starter/boilerplate submission."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment/display/education/combinational tags; design is a clocked mux, not a display or combinational circuit.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "combinational"
+   ],
+   "tags": [
+    "wokwi",
+    "multiplexer",
+    "template"
+   ],
+   "summary_before": "This project is a very basic circuit that switches the output number from 0 to 1 on a seven-segment display, as described. It has two inputs and eight outputs, but the documentation states it is only for pipeline testing and advises against using it. The design is a simple combinational circuit. It is notable only for its minimal functionality.",
+   "summary": "This project is a simple multiplexer that selects between two inputs based on a clock signal. Inputs 0 and 1 are also forwarded directly to outputs 1 and 2. The MUX output appears on output 0, alternating between the two inputs each half clock cycle. It is a minimal Wokwi-based design with no external hardware required.",
+   "summary_changed": true
+  },
+  {
+   "key": "50b6403e3a05",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design is a clock/calendar display, not a clock signal generator."
+    },
+    {
+     "tag": "timer",
+     "reason": "No programmable timer block is described; it is a time-of-day clock."
+    },
+    {
+     "tag": "counter",
+     "reason": "The core function is a clock/calendar, not a generic counting circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "Documentation describes a digital clock with hour/minute/second and date modes."
+    },
+    {
+     "tag": "vga",
+     "reason": "Pins match the Tiny VGA pinout and external hardware is a VGA display."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is rendered on a VGA monitor."
+    },
+    {
+     "tag": "retro",
+     "reason": "Documentation explicitly calls it a 'Retro Digital Clock & Date Display'."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Corrected tags: it is an RTC/VGA display, not a clock generator or timer.",
+   "tags_before": [
+    "clock-generator",
+    "timer",
+    "counter",
+    "vga",
+    "display"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "rtc",
+    "retro",
+    "verilog"
+   ],
+   "summary_before": "The design is a clock generator that produces a programmable clock signal. It includes a timer and counter to generate precise timing intervals. The output can be displayed on a VGA monitor or used as a real-time clock. External hardware may include a VGA connector and a display.",
+   "summary": "This project is a digital clock and date display implemented in Verilog. It supports 12h/24h modes, hour/minute adjustment, second sync, and a date mode for month/day/year. The output is a VGA signal matching the Tiny VGA pinout, intended for a VGA monitor. External hardware is a VGA display.",
+   "summary_changed": true
+  },
+  {
+   "key": "709d1f901c1e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Source does not state any educational intent."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "Pins are a request/done handshake and temperature data, not a generic sensor interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "Title and documentation describe a temperature sensor."
+    },
+    {
+     "tag": "analog",
+     "reason": "Language is Analog and the design uses an analog oscillator."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "Output OSC_TEMP is a temperature-dependent oscillation frequency."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "It is a measurement device for temperature."
+    }
+   ],
+   "notes": "Removed unsupported education/sensor-interface tags; added instrumentation for the measurement purpose.",
+   "tags_before": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "sensor-interface",
+    "education"
+   ],
+   "tags": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "instrumentation"
+   ],
+   "summary_before": "This project is a temperature sensor design that uses an analog oscillator to generate a frequency proportional to temperature. It includes a sensor interface and is intended for educational purposes. The design is notable for its simplicity and analog approach. It is suitable for temperature measurement applications.",
+   "summary": "This project is a temperature sensor design that uses an analog oscillator to produce a frequency dependent on temperature. It can be read either by measuring the OSC_TEMP frequency or by asserting REQUEST and reading the 8-bit TEMP value when DONE goes high. No external hardware is required, though a logic analyzer can be used to measure the oscillation frequency. It is suitable for temperature measurement applications.",
+   "summary_changed": true
+  },
+  {
+   "key": "9cf0cd198c4b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cocotb",
+     "reason": "Source does not mention cocotb or any testbench framework."
+    }
+   ],
+   "add": [
+    {
+     "tag": "perceptron",
+     "reason": "Documentation describes a 16-neuron perceptron-style binary neural network."
+    },
+    {
+     "tag": "popcount",
+     "reason": "Compute uses a popcount tree over XNOR results."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "Described as a BNN accelerator for inference, suitable for edge AI."
+    }
+   ],
+   "notes": "Removed unsupported cocotb tag; added perceptron/popcount/verilog/edge-ai supported by the documentation.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "systolic-array",
+    "edge-ai",
+    "cocotb"
+   ],
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "systolic-array",
+    "edge-ai",
+    "perceptron",
+    "popcount",
+    "verilog"
+   ],
+   "summary_before": "The design is a systolic binary neural network accelerator that performs inference for binary neural networks. It uses a systolic array of processing elements to compute weighted sums and activations. The accelerator is designed for edge AI applications and can be tested with a cocotb testbench. External hardware may include a microcontroller to provide input data and read output results.",
+   "summary": "This project is a systolic binary neural network accelerator that performs inference for binary neural networks. Each neuron computes an XNOR dot product with a popcount tree and fires when the result plus a signed bias is non-negative. The compute engine processes one bit per clock cycle over eight cycles, reusing hardware to reduce silicon area. No external hardware is required, though a Raspberry Pi or Arduino can load weights and run inference via the pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "95979b329597",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "art",
+     "reason": "Source does not describe an artistic intent; documentation is only 'ChristmasTree_MaligayangPasko VGA Display'."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Pins match the Tiny VGA pinout and the design outputs a VGA signal."
+    },
+    {
+     "tag": "video",
+     "reason": "It generates a VGA video signal."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It renders a visual Christmas tree scene."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is intended for a VGA display."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting only of the project name repeated."
+    }
+   ],
+   "notes": "Removed unsupported art tag and invented animation/hearts details; added insufficient-doc given very thin documentation.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "verilog",
+    "art"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design generates a VGA video signal that animates columns of pink hearts transitioning on and off the screen. It is implemented in Verilog using the VGA Playground environment and is intended to be tested by running the simulation and observing the output. The design requires a VGA monitor connected to the Tiny VGA PMOD pinout. The project is a playful visual demonstration rather than a practical application.",
+   "summary": "This project generates a VGA video signal showing a Christmas tree scene. It is implemented in Verilog and uses the Tiny VGA pinout. The design requires a VGA monitor connected to the Tiny VGA PMOD pinout. Documentation is very thin, consisting only of the project name repeated.",
+   "summary_changed": true
+  },
+  {
+   "key": "bd59ccd926e0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The deliverable is a RISC-V processor running a Fibonacci sequence, not a generic counter circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "Documentation explicitly describes a single-cycle RISC-V processor."
+    },
+    {
+     "tag": "cpu",
+     "reason": "It is a complete processor core."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output pins are SEG_A through SEG_G for a seven-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is shown on a seven-segment display."
+    },
+    {
+     "tag": "education",
+     "reason": "Documentation states it is educational material for teaching computer architecture."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Removed counter tag; the design is a RISC-V CPU running Fibonacci, not a simple counter.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "7-segment",
+    "display",
+    "counter",
+    "education"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "7-segment",
+    "display",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project is a simple counter demo implemented on a RISC-V CPU, with output displayed on a 7-segment display. It is designed for educational purposes to demonstrate basic CPU and counter operation. The counter increments and the value is shown on the 7-segment display. The design can be tested using simulation or on Tiny Tapeout hardware.",
+   "summary": "This project is an educational single-cycle RISC-V processor implemented in Verilog. It executes a Fibonacci sequence using RISC-V assembly and displays the result on a seven-segment display. The design is intended as pedagogical material for CWRU computer engineering students learning computer architecture. No external hardware is needed to run the ASIC.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6291,
+  "completion_tokens": 1640,
+  "total_tokens": 7931,
+  "cost": 0.002483853,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002483853,
+   "upstream_inference_prompt_cost": 0.000811053,
+   "upstream_inference_completions_cost": 0.0016728
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002483853,
+ "elapsed_s": 44.3
+}

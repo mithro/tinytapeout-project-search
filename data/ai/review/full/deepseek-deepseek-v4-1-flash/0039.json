@@ -1,0 +1,251 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "da06b6521181",
+  "e9b20c8f92b1",
+  "295b7172ab3d",
+  "4c04bffaf6bb",
+  "6c7a8c30601f",
+  "1f0226d69d08"
+ ],
+ "results": [
+  {
+   "key": "da06b6521181",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The output is specifically a 7-segment display, already covered by the 7-segment tag; generic display tag is redundant and unsupported as a separate interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "classifier",
+     "reason": "Not in canonical vocabulary; no canonical tag for classifier. The design is a machine-learning classifier, already tagged machine-learning."
+    }
+   ],
+   "notes": "Removed redundant display tag; corrected summary to remove unsupported 10 MHz clock claim and align with source.",
+   "tags_before": [
+    "machine-learning",
+    "image-processing",
+    "7-segment",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "machine-learning",
+    "image-processing",
+    "7-segment",
+    "verilog",
+    "perceptron"
+   ],
+   "summary_before": "This design classifies images of numbers from 0 to 7 using the 16 most significant pixels of an 8x8 image as input features. The classification result is displayed on a 7-segment display. The design requires a 10 MHz clock and uses 16 input pins for the features. Testing involves setting the feature inputs according to the pixel pattern of the desired number. The documentation is brief but sufficient, and no silicon test results are provided.",
+   "summary": "This design classifies images of numbers from 0 to 7 using the 16 most significant pixels of an 8x8 image as input features. The classification result is displayed on a 7-segment display. The design uses 16 input pins for the features and outputs to the seven segments plus a dot. Testing involves setting the feature inputs according to the pixel pattern of the desired number. No silicon test results are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "e9b20c8f92b1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No evidence of a finite state machine in the source; the design is described as an event-based processor, not an FSM."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Already present; no change."
+    }
+   ],
+   "notes": "Removed unsupported fsm tag; summary unchanged as it is supported.",
+   "tags_before": [
+    "cpu",
+    "fsm",
+    "systemverilog"
+   ],
+   "tags": [
+    "cpu",
+    "systemverilog"
+   ],
+   "summary_before": "This design implements a processor that uses Tick Tock Tokens, where each token is represented by a start and end event, to perform event-based computation inspired by Time Petri Nets. It accepts a 4-bit instruction and 8-bit data on the inputs, and outputs data with token start/stop flags and a good/bad token flag. The documentation is thin and admits that the test script and explanation may be incomplete. An Arduino is suggested to generate the I/O signals for testing.",
+   "summary": "This design implements a processor that uses Tick Tock Tokens, where each token is represented by a start and end event, to perform event-based computation inspired by Time Petri Nets. It accepts a 4-bit instruction and 8-bit data on the inputs, and outputs data with token start/stop flags and a good/bad token flag. The documentation is thin and admits that the test script and explanation may be incomplete. An Arduino is suggested to generate the I/O signals for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "295b7172ab3d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This design implements leaky-integrate-and-fire neurons and time-multiplexes them to realize multiple neurons from shared hardware. An input current is applied through the input pins, accumulates in a membrane potential that decays over time, and triggers a spike when the potential crosses a threshold. The membrane potential is exposed on the eight output pins and spike outputs appear on the bidirectional pins, so a higher input current should produce a higher firing rate. The documentation is brief and does not specify the number of neurons, the time-multiplexing scheme, or any silicon test results.",
+   "summary": "This design implements leaky-integrate-and-fire neurons and time-multiplexes them to realize multiple neurons from shared hardware. An input current is applied through the input pins, accumulates in a membrane potential that decays over time, and triggers a spike when the potential crosses a threshold. The membrane potential is exposed on the eight output pins and spike outputs appear on the bidirectional pins, so a higher input current should produce a higher firing rate. The documentation is brief and does not specify the number of neurons, the time-multiplexing scheme, or any silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "4c04bffaf6bb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adc",
+     "reason": "The design requires an external 8-bit ADC but does not implement an ADC on-chip; the adc tag implies an on-chip ADC."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No evidence of a finite state machine in the source; the design is described as a co-processor for sensor analysis."
+    }
+   ],
+   "add": [
+    {
+     "tag": "industrial",
+     "reason": "The design is for precision farming, an industrial application."
+    }
+   ],
+   "notes": "Removed unsupported adc and fsm tags; added industrial tag for precision farming application.",
+   "tags_before": [
+    "sensor-interface",
+    "adc",
+    "instrumentation",
+    "fsm"
+   ],
+   "tags": [
+    "sensor-interface",
+    "instrumentation",
+    "industrial"
+   ],
+   "summary_before": "This co-processor reads data from four sensors sequentially and compares each reading to previous data to detect deviations, also identifying sensor faults and providing warning signals along with sensor identification. It is intended for precision farming applications and requires an external 8-bit ADC to convert sensor data. The design outputs a deviation detector signal, fault warnings, and sensor identifiers. The documentation is limited to a basic description and a single test example, without full implementation details.",
+   "summary": "This co-processor reads data from four sensors sequentially and compares each reading to previous data to detect deviations, also identifying sensor faults and providing warning signals along with sensor identification. It is intended for precision farming applications and requires an external 8-bit ADC to convert sensor data. The design outputs a deviation detector signal, fault warnings, and sensor identifiers. The documentation is limited to a basic description and a single test example, without full implementation details.",
+   "summary_changed": false
+  },
+  {
+   "key": "6c7a8c30601f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The design uses gates to drive a 7-segment display, but the pins and documentation do not show direct 7-segment segment control; the outputs are gate outputs, not segment drivers."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No evidence of a decoder circuit; the design is a collection of logic gates."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Already present; no change."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment and decoder tags; summary unchanged as it is supported.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "logic-gate",
+    "7-segment",
+    "decoder"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "logic-gate"
+   ],
+   "summary_before": "This project implements a combinational logic circuit using NAND, NOT, AND, and OR gates to drive segments of a 7-segment display. The user applies binary inputs to the listed pins and observes the resulting gate outputs on the chip's outputs. It is intended as a basic digital logic exercise, likely from a workshop or class. The documentation is sparse and the provided test instructions are garbled, so the exact mapping from inputs to displayed digits is not clear. No external hardware is needed other than the simulator.",
+   "summary": "This project implements a combinational logic circuit using NAND, NOT, AND, and OR gates to drive segments of a 7-segment display. The user applies binary inputs to the listed pins and observes the resulting gate outputs on the chip's outputs. It is intended as a basic digital logic exercise, likely from a workshop or class. The documentation is sparse and the provided test instructions are garbled, so the exact mapping from inputs to displayed digits is not clear. No external hardware is needed other than the simulator.",
+   "summary_changed": false
+  },
+  {
+   "key": "1f0226d69d08",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "flip-flop",
+     "reason": "The documentation is placeholder text and does not confirm a flip-flop implementation; the title mentions flip-flop but no details are provided."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The documentation is placeholder text and does not confirm a 7-segment display implementation; the title mentions it but no details are provided."
+    },
+    {
+     "tag": "display",
+     "reason": "No evidence of a display interface in the placeholder documentation."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent in the placeholder documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Already present; no change."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is placeholder text, indicating an unfinished or incomplete design."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed unsupported tags due to placeholder documentation; added incomplete and insufficient-doc tags.",
+   "tags_before": [
+    "flip-flop",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a Wokwi design that demonstrates a flip-flop driving a seven-segment display, as indicated by the title and one-line description. All documentation sections contain placeholder text, so the flip-flop type, clocking, and segment mapping are not specified. No clock frequency, pins, or external hardware are provided beyond the title. It appears to be a teaching example intended for learning about flip-flops and display driving.",
+   "summary": "This project is a Wokwi design that demonstrates a flip-flop driving a seven-segment display, as indicated by the title and one-line description. All documentation sections contain placeholder text, so the flip-flop type, clocking, and segment mapping are not specified. No clock frequency, pins, or external hardware are provided beyond the title. It appears to be a teaching example intended for learning about flip-flops and display driving.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "da06b6521181: 5 sentences after review",
+  "6c7a8c30601f: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6324,
+  "completion_tokens": 1633,
+  "total_tokens": 7957,
+  "cost": 0.002916,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002916,
+   "upstream_inference_prompt_cost": 0.0009564,
+   "upstream_inference_completions_cost": 0.0019596
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002916,
+ "elapsed_s": 10.9
+}

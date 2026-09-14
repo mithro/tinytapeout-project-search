@@ -1,0 +1,355 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "53b06776cebb",
+  "2215669a7201",
+  "34b4b8f3d2fa",
+  "292aa3edb6a3",
+  "ea006b95ace9",
+  "000e3213309f"
+ ],
+ "results": [
+  {
+   "key": "53b06776cebb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "The source says combinational logic converts binary to decimal for the display, but does not describe BCD logic or a BCD output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The outputs are explicitly segment a-g plus dot, driving a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "The design drives a 7-segment display output."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The source states registers divide the clock to produce the one-second interval."
+    },
+    {
+     "tag": "counter",
+     "reason": "The design counts up to 10, one second at a time."
+    },
+    {
+     "tag": "timer",
+     "reason": "The design generates a one-second timing interval."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    }
+   ],
+   "notes": "Removed unsupported bcd tag and added canonical tags for the documented 7-segment display, clock divider, counter, timer, and Verilog implementation.",
+   "tags_before": [
+    "counter",
+    "timer",
+    "7-segment",
+    "clock-divider",
+    "bcd",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "counter",
+    "timer",
+    "7-segment",
+    "clock-divider",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This project is a 7-segment display counter that increments once per second, counting up to 10. It uses a clock divider and combinational logic to convert binary to decimal for the display, with the bottom 8 bits of the counter also output on the bidirectional pins. The counting speed can be adjusted by setting the input pins to override bits 11-18 of a 24-bit compare register; with all inputs zero, the compare is 10,000,000, giving a 1-second interval at 10 MHz. The design requires a 10 MHz clock and a 7-segment display; no silicon test results are provided.",
+   "summary": "This project is a 7-segment display counter that increments once per second, counting up to 10. It uses a clock divider and combinational logic to convert binary to decimal for the display, with the bottom 8 bits of the counter also output on the bidirectional pins. The counting speed can be adjusted by setting the input pins to override bits 11-18 of a 24-bit compare register; with all inputs zero, the compare is 10,000,000, giving a 1-second interval at 10 MHz. The design requires a 10 MHz clock and a 7-segment display; no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "2215669a7201",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "The serial output is a custom PISO/state-machine readout, not a UART interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "The design uses a parallel-input-serial-output readout register."
+    },
+    {
+     "tag": "counter",
+     "reason": "It contains four 12-bit pulse counters."
+    },
+    {
+     "tag": "rtc",
+     "reason": "It includes an mm:ss real-time clock for the measurement interval."
+    },
+    {
+     "tag": "fsm",
+     "reason": "A readout state machine controls the serial output and resets."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "It is described as a low-power sensor interface for pulse/acoustic event readout."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project was created using Wokwi."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The author explicitly calls it an early work-in-progress implementation."
+    }
+   ],
+   "notes": "Removed unsupported uart tag and added canonical tags for the documented shift register, counters, RTC, FSM, sensor interface, Wokwi implementation, and incomplete status.",
+   "tags_before": [
+    "counter",
+    "rtc",
+    "sensor-interface",
+    "fsm",
+    "wokwi",
+    "uart",
+    "shift-register"
+   ],
+   "tags": [
+    "counter",
+    "rtc",
+    "sensor-interface",
+    "fsm",
+    "wokwi",
+    "shift-register",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi design is a multi-channel pulse counter with serial output, counting pulses on four input channels within a time interval measured by an RTC. It includes four 12-bit counters, overflow detection, and a state machine that periodically reads out the RTC time and counter values serially. Testing involves applying short pulses to the input channels and clocking out the serial data when overflow is signaled; the design is an early work-in-progress for a low-power sensor interface for acoustic emission detection. It is notable for its application in sensor interfaces and non-destructive testing, though the documentation notes it is a work in progress.",
+   "summary": "This Wokwi design is a multi-channel pulse counter with serial output, counting pulses on four input channels within a time interval measured by an RTC. It includes four 12-bit counters, overflow detection, and a state machine that periodically reads out the RTC time and counter values serially. Testing involves applying short pulses to the input channels and clocking out the serial data when overflow is signaled; the design is an early work-in-progress for a low-power sensor interface for acoustic emission detection. It is intended for applications such as sensor interfaces and non-destructive testing, and the documentation notes it is a work in progress.",
+   "summary_changed": true
+  },
+  {
+   "key": "34b4b8f3d2fa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design uses configuration registers, but the source does not describe a multi-register register-file block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "prng",
+     "reason": "It generates a pseudo-random binary sequence."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "It implements a Galois LFSR with XOR taps."
+    },
+    {
+     "tag": "spi",
+     "reason": "Registers are configured over an SPI mode 0 interface."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "It includes a configurable clock divider."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project was created using Wokwi."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "A silicon test report states the design was tested and working."
+    }
+   ],
+   "notes": "Removed unsupported register-file tag and added canonical tags for the documented PRBS/LFSR, SPI, clock divider, Wokwi implementation, and silicon-tested status.",
+   "tags_before": [
+    "prng",
+    "lfsr",
+    "spi",
+    "clock-divider",
+    "register-file",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "prng",
+    "lfsr",
+    "spi",
+    "clock-divider",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a configurable pseudo-random binary sequence (PRBS) generator using a Galois linear-feedback shift register (LFSR) with XOR taps. It supports SPI configuration of parameters such as clock divider, sequence length, polynomial, and data bit count, and provides differential outputs with look-ahead. The design includes a debug mode for easy setup and testing, and it can be enabled or reset via dedicated pins. Silicon testing confirmed that the generator works as described when following the author's instructions.",
+   "summary": "This project implements a configurable pseudo-random binary sequence (PRBS) generator using a Galois linear-feedback shift register (LFSR) with XOR taps. It supports SPI configuration of parameters such as clock divider, sequence length, polynomial, and data bit count, and provides differential outputs with look-ahead. The design includes a debug mode for easy setup and testing, and it can be enabled or reset via dedicated pins. Silicon testing confirmed that the generator works as described when following the author's instructions.",
+   "summary_changed": false
+  },
+  {
+   "key": "292aa3edb6a3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design uses configuration registers, but the source does not describe a multi-register register-file block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "prng",
+     "reason": "It generates a pseudo-random binary sequence."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "It implements a Galois LFSR with XOR taps."
+    },
+    {
+     "tag": "spi",
+     "reason": "Registers are configured over an SPI mode 0 interface."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "It includes a configurable clock divider."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project was created using Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported register-file tag and added canonical tags for the documented PRBS/LFSR, SPI, clock divider, and Wokwi implementation.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "spi",
+    "clock-divider",
+    "register-file",
+    "wokwi"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "spi",
+    "clock-divider",
+    "wokwi"
+   ],
+   "summary_before": "This design is a configurable pseudo-random binary sequence generator built around a Galois LFSR with XOR taps, supporting polynomial sizes up to 16 bits. It is configured over an SPI mode 0 interface with four registers controlling command/address, clock divider, polynomial enable bits, and tap selection. Outputs include differential PRBS and look-ahead versions of the next bit, and a fail-safe all-zeros check prevents lock-up. It requires an external SPI controller, a clock input, and a logic analyzer to observe the generated sequence.",
+   "summary": "This design is a configurable pseudo-random binary sequence generator built around a Galois LFSR with XOR taps, supporting polynomial sizes up to 16 bits. It is configured over an SPI mode 0 interface with four registers controlling command/address, clock divider, polynomial enable bits, and tap selection. Outputs include differential PRBS and look-ahead versions of the next bit, and a fail-safe all-zeros check prevents lock-up. It requires an external SPI controller, a clock input, and a logic analyzer to observe the generated sequence.",
+   "summary_changed": false
+  },
+  {
+   "key": "ea006b95ace9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "snake-game",
+    "vga",
+    "video",
+    "display",
+    "pmod",
+    "silicon-tested"
+   ],
+   "tags": [
+    "game",
+    "snake-game",
+    "vga",
+    "video",
+    "display",
+    "pmod",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a simple implementation of the Snake game with VGA output. The snake can be controlled with four buttons, and the game resets upon collision. It requires a 25.179 MHz clock for correct VGA timing and uses a Tiny VGA PMOD for output. Silicon testing confirmed that it works correctly.",
+   "summary": "This is a simple implementation of the Snake game with VGA output. The snake can be controlled with four buttons, and the game resets upon collision. It requires a 25.179 MHz clock for correct VGA timing and uses a Tiny VGA PMOD for output. Silicon testing confirmed that it works correctly.",
+   "summary_changed": false
+  },
+  {
+   "key": "000e3213309f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "robotics",
+     "reason": "The source describes stepper motor control but does not state a robotics application."
+    },
+    {
+     "tag": "industrial",
+     "reason": "The source does not state an industrial control application."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The bidirectional pins are dedicated stepper coil, enable, and direction signals, not general-purpose I/O."
+    }
+   ],
+   "add": [
+    {
+     "tag": "stepper-motor",
+     "reason": "The design controls a bipolar stepper motor."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "It provides motor driving control outputs."
+    },
+    {
+     "tag": "fsm",
+     "reason": "It consists of a state machine with four outputs."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "A silicon test report states the design was tested and working."
+    }
+   ],
+   "notes": "Removed unsupported robotics, industrial, and gpio tags and added canonical tags for the documented stepper motor control, FSM, Verilog implementation, and silicon-tested status.",
+   "tags_before": [
+    "stepper-motor",
+    "motor-control",
+    "fsm",
+    "robotics",
+    "industrial",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "stepper-motor",
+    "motor-control",
+    "fsm",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a state machine that controls a bipolar stepper motor with four output bits, plus enable and direction inputs. It requires an external clock to set the step rate. Testing involves verifying the output waveforms for enable and direction. Silicon testing confirmed correct operation.",
+   "summary": "This design is a state machine that controls a bipolar stepper motor with four output bits, plus enable and direction inputs. It requires an external clock to set the step rate. Testing involves verifying the output waveforms for enable and direction. Silicon testing confirmed correct operation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9764,
+  "completion_tokens": 1926,
+  "total_tokens": 11690,
+  "cost": 0.002699726,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002699726,
+   "upstream_inference_prompt_cost": 0.001428566,
+   "upstream_inference_completions_cost": 0.00127116
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002699726,
+ "elapsed_s": 18.9
+}

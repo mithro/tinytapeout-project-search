@@ -1,0 +1,199 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "80802c024fbd",
+  "fc720da4c784",
+  "d6aa70e42c94",
+  "dfa7d1c70145",
+  "77a180bca289",
+  "23c1c4668158",
+  "9d1c6559fc10",
+  "dd8a75a2a30a",
+  "1d46b7bc6c56",
+  "d7e8392a7c5b"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "80802c024fbd",
+   "summary": "This design computes the Mandelbrot fractal in real time while racing the VGA beam, using one iteration per clock cycle and a maximum depth of 16 iterations. It outputs a 720x480 VGA signal through a Tiny VGA Pmod, with the fractal rendered at 180x480 pixels using 16-bit fixed-point arithmetic and approximated multipliers. The image position and zoom are configured through the input and bidirectional pins, with control values written during vsync. It is notable for fitting a real-time fractal renderer into a 2x2 tile area at 100 MHz.",
+   "tags": [
+    "vga",
+    "graphics",
+    "fixed-point",
+    "video",
+    "display",
+    "multiplier",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "fc720da4c784",
+   "summary": "TinyQV is a small RISC-V SoC implementing the RV32EC instruction set with Zcb and Zicond extensions, using QSPI flash for program storage and QSPI PSRAM for data memory. It includes a UART and an SPI controller intended for driving an ST7789 LCD, and is designed to work with a QSPI Pmod containing flash and RAM. Testing requires loading an image into flash and following a specific reset and clocking sequence, with MicroPython scripts on the RP2040 handling the setup. Silicon tests confirmed it runs CoreMark and MicroPython at 64 MHz with latency 1 or 2, and up to 100 MHz with latency 2.",
+   "tags": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "qspi",
+    "uart",
+    "spi",
+    "microcontroller",
+    "memory",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "d6aa70e42c94",
+   "summary": "This is an 8-bit digital QIF (quadratic integrate-and-fire) circuit that produces spikes when the input is positive and resets when the signal exceeds a predetermined value. It accepts an 8-bit two's complement positive number on the inputs and outputs spike signals on the outputs. The documentation is very thin, consisting only of a brief description and a note about external hardware. It is unclear from the provided text how the threshold is set or what the output encoding represents.",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "qif",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "dfa7d1c70145",
+   "summary": "This is a standalone VGA and sound demo that loops after about 25 seconds, developed for a 48 MHz clock and using a non-standard 1220-pixel horizontal VGA mode with RGB222 dithered output. It generates sound through a 16-bit sigma-delta DAC on one pin from an internal three-channel synthesizer with triangle, noise, and square waves. The graphics include a procedurally rendered plane, a starfield from an LFSR, and a TT08 logo, with a soundtrack based on a riff from a demoscene track. It requires a Tiny VGA Pmod and either a Tiny Tapeout Audio Pmod or a simple RC filter for sound, and silicon tests confirm it works as expected.",
+   "tags": [
+    "vga",
+    "graphics",
+    "audio",
+    "sigma-delta",
+    "lfsr",
+    "synthesizer",
+    "demoscene",
+    "music",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "77a180bca289",
+   "summary": "This is a framebuffer-less VGA ray casting engine inspired by Wolfenstein 3D, rendering textured walls with flat-colored floor and ceiling while racing the beam. The player point of view is controlled via SPI, and an optional external QSPI memory can supply textures instead of internally generated ones. It outputs standard 640x480 VGA at 25.175 MHz and includes debug and demo modes, though the documentation notes that testing details are still to be confirmed. It is a resubmission of a previous Tiny Tapeout design and lacks doors, sprites, or other game elements.",
+   "tags": [
+    "vga",
+    "graphics",
+    "game",
+    "spi",
+    "video",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "23c1c4668158",
+   "summary": "This design is the digital block from a larger VGA project, packaged with a simple sequencer loop and dithering to simulate 8-bit color output on the 2-bit Tiny VGA Pmod. It runs standalone by plugging into a VGA monitor and resetting, with manual mode and bit-depth selection available by overriding the sequencer. It requires a Tiny VGA Pmod and a 25 MHz clock, and silicon tests by the author confirm it works as expected. The design is a 1x1 tile implementation intended for the Tiny Tapeout shuttle.",
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "sequencer",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "9d1c6559fc10",
+   "summary": "This is the same digital VGA block as the Tiny VGA version but targeting the Digilent PmodVGA with 4 bits per color channel, including a simple sequencer loop and dithering. It runs standalone when connected to a VGA monitor and reset, with manual mode and bit-depth selection possible by overriding the sequencer. It requires a Digilent PmodVGA and a 25 MHz clock, and the author's silicon test confirms it works as expected. The documentation notes that another version of this design on the same shuttle targets the Tiny VGA Pmod.",
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "sequencer",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "dd8a75a2a30a",
+   "summary": "This prototype reads a 16-bit design ID from an I2C EEPROM and uses it to select the corresponding Tiny Tapeout project by driving control signals for the multiplexer. It also prints the read value over UART at 115200 baud for debugging. It requires an external 1 kbit or 2 kbit I2C EEPROM such as a 24C01 or 24C02 with 10k pull-up resistors on SCL and SDA. The design is intended for automatic project selection in Tiny Tapeout and is documented with specific expected behavior for the control outputs.",
+   "tags": [
+    "i2c",
+    "uart",
+    "rom",
+    "multiplexer",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "1d46b7bc6c56",
+   "summary": "This design replicates the 74181 4-bit slice ALU twice to form an 8-bit ALU that performs arithmetic and logical operations on 8-bit words. It includes an SPI slave peripheral supporting all four SPI modes with eight configurable read/write registers and eight read-only status registers, and a multiplexer maps internal signals to a 7-segment display for debug. It is controlled from an RP2040 SPI1 master on GPIOs 24 to 27, and no external hardware is required. Silicon tests by the author confirmed read and write operations of all registers across all four SPI modes.",
+   "tags": [
+    "alu",
+    "spi",
+    "7-segment",
+    "register-file",
+    "systemverilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "d7e8392a7c5b",
+   "summary": "This is an 8-bit RSA encryption and decryption coprocessor that implements modular exponentiation through Montgomery modular multiplication. It uses an SPI slave peripheral with all four SPI modes, eight configurable 8-bit registers, and eight status registers, controlled from an RP2040 SPI1 master. The documentation provides a detailed key generation example and test procedure, and no external hardware is required. Silicon tests by the author confirmed register read and write operations across all SPI modes, with a self-checking test verifying encrypted output against predicted values.",
+   "tags": [
+    "rsa",
+    "crypto",
+    "cipher",
+    "spi",
+    "coprocessor",
+    "verilog"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "80802c024fbd: dropped non-canonical tag 'fractal'"
+ ],
+ "usage": {
+  "prompt_tokens": 11594,
+  "completion_tokens": 1979,
+  "total_tokens": 13573,
+  "cost": 0.0011197046,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0011197046,
+   "upstream_inference_prompt_cost": 0.0007872326,
+   "upstream_inference_completions_cost": 0.000332472
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0011197046,
+ "elapsed_s": 359.3
+}

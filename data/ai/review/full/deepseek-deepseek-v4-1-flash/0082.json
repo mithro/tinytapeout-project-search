@@ -1,0 +1,337 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f016aab2806f",
+  "940cffd425d2",
+  "efb2fbe752b6",
+  "26839193f70c",
+  "5c734fd28aeb",
+  "a01ebaaeb1f6"
+ ],
+ "results": [
+  {
+   "key": "f016aab2806f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No evidence of gate-level implementation; design is described only as a parity generator."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Parity generation is combinational, but the source does not state it; keep only if clearly supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "parity",
+     "reason": "Title and function are parity generation."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "One-line description says 'TT06 Learning Exercise'."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and combinational tags; kept parity, wokwi, education.",
+   "tags_before": [
+    "parity",
+    "wokwi",
+    "education",
+    "combinational",
+    "logic-gate"
+   ],
+   "tags": [
+    "parity",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This is a simple parity generator that takes 8 input bits and produces a parity output on 4 output pins. It is implemented as a Wokwi learning exercise, likely using basic logic gates. The design is tested by setting input switches and observing the output LEDs. The documentation is minimal and does not specify the exact parity function or output encoding.",
+   "summary": "This is a simple parity generator that takes 8 input bits and produces outputs on 4 output pins. It is implemented as a Wokwi learning exercise. The design is tested by setting input switches and observing the output LEDs. The documentation is minimal and does not specify the exact parity function or output encoding.",
+   "summary_changed": true
+  },
+  {
+   "key": "940cffd425d2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "No source evidence of an LFSR; title says Fibonacci, not LFSR."
+    },
+    {
+     "tag": "prng",
+     "reason": "No source evidence of pseudo-random generation."
+    },
+    {
+     "tag": "counter",
+     "reason": "No source evidence of a counter."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "No source evidence of a sequencer."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is essentially absent and the design is not described."
+    }
+   ],
+   "notes": "Removed speculative LFSR/PRNG/counter/sequencer tags; added wokwi and incomplete.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "wokwi",
+    "counter",
+    "sequencer"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a 32-bit Fibonacci LFSR or PRNG, as suggested by the title and description. It has two inputs and eight outputs, but the documentation is essentially absent, providing no details on functionality or testing. The design is likely a sequence generator based on the Fibonacci series. Without further documentation, the exact behavior and usage cannot be determined.",
+   "summary": "This project is titled '32b Fibonacci Original' and described as 'Fibonacci Serie'. It has two inputs and eight outputs, but the documentation is essentially absent, providing no details on functionality or testing. The design is likely a sequence generator based on the Fibonacci series. Without further documentation, the exact behavior and usage cannot be determined.",
+   "summary_changed": true
+  },
+  {
+   "key": "efb2fbe752b6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "FIFO is a buffer, not generic memory; the source does not describe a memory block."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "No synchronizer is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fifo",
+     "reason": "Title and pin names describe a FIFO."
+    },
+    {
+     "tag": "asynchronous",
+     "reason": "Title says ASYNCHRONOUS and pins include separate read/write resets and clocks."
+    },
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "Asynchronous FIFO implies separate read and write clock domains."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation text is gibberish and provides no usable explanation."
+    }
+   ],
+   "notes": "Removed memory and synchronizer; added verilog and insufficient-doc.",
+   "tags_before": [
+    "fifo",
+    "asynchronous",
+    "memory",
+    "synchronizer",
+    "clock-domain-crossing"
+   ],
+   "tags": [
+    "fifo",
+    "asynchronous",
+    "clock-domain-crossing",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is an asynchronous FIFO with separate read and write clocks, 8-bit data ports, and full and empty flags. The pin names indicate standard FIFO control signals such as write increment, read increment, and active-low resets for each domain. However, the documentation text is gibberish and provides no usable explanation of the implementation or test procedure. The design can only be inferred from its title and pin names, so the description is essentially unsupported.",
+   "summary": "This project is an asynchronous FIFO with separate read and write clocks, 8-bit data ports, and full and empty flags. The pin names indicate standard FIFO control signals such as write increment, read increment, and active-low resets for each domain. However, the documentation text is gibberish and provides no usable explanation of the implementation or test procedure. The design can only be inferred from its title and pin names, so the description is essentially unsupported.",
+   "summary_changed": false
+  },
+  {
+   "key": "26839193f70c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "No evidence this is a template project."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Pins are named 'abc' and no GPIO function is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "All documentation fields are filled with repeated nonsense text and pin names are 'abc'."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "No function or test procedure is described."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present but meaningless."
+    }
+   ],
+   "notes": "Removed template/education/gpio; added wokwi, placeholder, incomplete, insufficient-doc.",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "education",
+    "gpio",
+    "placeholder",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "placeholder",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project has no meaningful documentation, with all fields filled with the German word 'Pfusch' (botch) repeated. The pin names are all 'abc', and no function or test procedure is described. No external hardware is specified. The design is effectively undocumented and appears to be a non-serious submission.",
+   "summary": "This project has no meaningful documentation, with all fields filled with the German word 'Pfusch' (botch) repeated. The pin names are all 'abc', and no function or test procedure is described. No external hardware is specified. The design is effectively undocumented and appears to be a non-serious submission.",
+   "summary_changed": false
+  },
+  {
+   "key": "5c734fd28aeb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "No discrete LED output is described; the source mentions a segment blinking."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The source says 'one segement will blink' but does not specify a 7-segment display."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "template",
+     "reason": "Documentation states it is 'just the template demo'."
+    },
+    {
+     "tag": "chisel",
+     "reason": "Language is Chisel."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Title is 'Undecided' and description says the design is not yet decided."
+    }
+   ],
+   "notes": "Removed led/7-segment/education; added template, chisel, incomplete.",
+   "tags_before": [
+    "template",
+    "chisel",
+    "led",
+    "7-segment",
+    "education",
+    "incomplete"
+   ],
+   "tags": [
+    "template",
+    "chisel",
+    "incomplete"
+   ],
+   "summary_before": "This project is an undecided design that currently only contains the Tiny Tapeout template demo. It has a few input and output pins, and the documentation states that one segment will blink. There is no external hardware required. The documentation is essentially minimal, providing no real information about the intended functionality beyond the template.",
+   "summary": "This project is an undecided design that currently only contains the Tiny Tapeout template demo. It has a few input and output pins, and the documentation states that one segment will blink. There is no external hardware required. The documentation is essentially minimal, providing no real information about the intended functionality beyond the template.",
+   "summary_changed": false
+  },
+  {
+   "key": "a01ebaaeb1f6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No evidence of gate-level implementation."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Documentation says 'some adders'."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Adders are combinational logic."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Title 'idk' and sparse documentation indicate an unfinished design."
+    }
+   ],
+   "notes": "Removed logic-gate and education; added adder, combinational, wokwi, incomplete.",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "logic-gate",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project appears to implement some adders, as mentioned in the description, but the documentation is very sparse. It has 8 inputs and 8 outputs, and testing involves turning inputs 1-4 on and off. No external hardware is listed. The exact functionality and purpose are unclear due to the lack of detailed documentation.",
+   "summary": "This project appears to implement some adders, as mentioned in the description, but the documentation is very sparse. It has 8 inputs and 8 outputs, and testing involves turning inputs 1-4 on and off. No external hardware is listed. The exact functionality and purpose are unclear due to the lack of detailed documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5406,
+  "completion_tokens": 1763,
+  "total_tokens": 7169,
+  "cost": 0.0027966,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0027966,
+   "upstream_inference_prompt_cost": 0.000681,
+   "upstream_inference_completions_cost": 0.0021156
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0027966,
+ "elapsed_s": 40.7
+}

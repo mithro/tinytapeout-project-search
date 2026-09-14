@@ -1,0 +1,211 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f1d274f6e8c7",
+  "196ab0c29a8c",
+  "a9c0616da73a",
+  "9721489e4807",
+  "372a299f40bf",
+  "ee127b65f71f"
+ ],
+ "results": [
+  {
+   "key": "f1d274f6e8c7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag because the source describes only a multiplier, not a general ALU.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "structural",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4-bit by 4-bit array multiplier that takes an 8-bit input, splits it into two 4-bit operands, and produces an 8-bit product. It is built structurally from AND gates and full adders, following the classic array multiplier architecture. The design can be tested by applying an 8-bit input and verifying that the output equals the product of the upper and lower nibbles. No external hardware is needed, and the documentation includes a diagram of the multiplier.",
+   "summary": "This project is a 4-bit by 4-bit array multiplier that takes an 8-bit input, splits it into two 4-bit operands, and produces an 8-bit product. It is built structurally from AND gates and full adders, following the classic array multiplier architecture. The design can be tested by applying an 8-bit input and verifying that the output equals the product of the first and last 4-bit halves of the input. No external hardware is needed, and the documentation includes a diagram of the multiplier.",
+   "summary_changed": true
+  },
+  {
+   "key": "196ab0c29a8c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "signal-generator",
+    "counter",
+    "chisel",
+    "instrumentation"
+   ],
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "counter",
+    "chisel",
+    "instrumentation"
+   ],
+   "summary_before": "This design is a programmable PWM generator implemented in Chisel. It produces a PWM signal whose frequency and duty cycle are set by two 8-bit values, pwm_top and pwm_threshold, encoded on the uio and ui pins respectively. The output frequency is fin/(pwm_top+1) and the duty cycle is (pwm_threshold+1)/(pwm_top+1). Testing requires setting the input pins to desired values and observing the PWM output on an oscilloscope; external switches may be used to set the inputs.",
+   "summary": "This design is a programmable PWM generator implemented in Chisel. It produces a PWM signal whose frequency and duty cycle are set by two 8-bit values, pwm_top and pwm_threshold, encoded on the uio and ui pins respectively. The output frequency is fin/(pwm_top+1) and the duty cycle is (pwm_threshold+1)/(pwm_top+1). Testing requires setting the input pins to desired values and observing the PWM output on an oscilloscope; external switches may be used to set the inputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "a9c0616da73a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any educational intent or use."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag because the documentation does not mention teaching or learning intent.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit array multiplier using structural Verilog. It takes two 4-bit inputs and computes their 8-bit product using partial products and adders. The design is combinational and does not use clock or reset signals. Testing can be done by applying inputs and observing the output, and no external hardware is required.",
+   "summary": "This project implements a 4-bit array multiplier using structural Verilog. It takes two 4-bit inputs and computes their 8-bit product using partial products and adders. The design is combinational and does not use clock or reset signals. Testing can be done by applying inputs and observing the output, and no external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "9721489e4807",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design only accumulates input values; it is not an arithmetic logic unit."
+    },
+    {
+     "tag": "register-file",
+     "reason": "There is a single accumulator register, not a multi-register file."
+    },
+    {
+     "tag": "counter",
+     "reason": "The design accumulates input values rather than counting clock or event pulses."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state any educational intent or use."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu, register-file, counter, and education tags because the source describes only a simple accumulator/test design.",
+   "tags_before": [
+    "alu",
+    "register-file",
+    "counter",
+    "template",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "template",
+    "verilog"
+   ],
+   "summary_before": "This is a simple Verilog test project that accumulates the value on the dedicated input pins into an internal register every clock cycle. The least significant bits of the accumulated value are output on the dedicated output pins, while the most significant bits are output on the bidirectional pins. It is intended as a basic demonstration and requires switches on inputs and LEDs on outputs for testing. The design is minimal and serves as a template or experiment.",
+   "summary": "This is a simple Verilog test project that accumulates the value on the dedicated input pins into an internal register every clock cycle. The least significant bits of the accumulated value are output on the dedicated output pins, while the most significant bits are output on the bidirectional pins. It is intended as a basic demonstration and requires switches on inputs and LEDs on outputs for testing. The design is minimal and serves as a template or experiment.",
+   "summary_changed": false
+  },
+  {
+   "key": "372a299f40bf",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "education",
+    "scan-chain",
+    "alu",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "education",
+    "scan-chain",
+    "alu",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This is a 4-bit toy CPU based on a design from a German textbook, featuring a 4-bit accumulator and 4-bit instructions with 4-bit operands. It uses external memory and requires a testbed to drive the pins, including a microcontroller program to handle the clock, reset, and tristate data bus. The internal 19-bit state can be scanned out for debugging and visualization. The design is intended as an educational tool to transition from digital design to microprocessors.",
+   "summary": "This is a 4-bit toy CPU based on a design from a German textbook, featuring a 4-bit accumulator and 4-bit instructions with 4-bit operands. It uses external memory and requires a testbed to drive the pins, including a microcontroller program to handle the clock, reset, and tristate data bus. The internal 19-bit state can be scanned out for debugging and visualization. The design is intended as an educational tool to transition from digital design to microprocessors.",
+   "summary_changed": false
+  },
+  {
+   "key": "ee127b65f71f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education",
+    "dip-switch",
+    "led"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "education",
+    "dip-switch",
+    "led"
+   ],
+   "summary_before": "This design demonstrates trivial AND gates and inverters on a Tiny Tapeout tile, with OUT0 combining IN0 and a reset signal, OUT1 combining IN0 and IN1, OUT2 and OUT3 inverting IN2 and IN3, and OUT4 through OUT7 passing inputs straight through. It is meant to illustrate logical inputs and outputs, the tool flow, and 3D visualization. Testing uses a reset pushbutton, DIP switches for inputs, and an LED display for outputs. The project is a simple educational gate sample rather than a functional application.",
+   "summary": "This design demonstrates trivial AND gates and inverters on a Tiny Tapeout tile, with OUT0 combining IN0 and a reset signal, OUT1 combining IN0 and IN1, OUT2 and OUT3 inverting IN2 and IN3, and OUT4 through OUT7 passing inputs straight through. It is meant to illustrate logical inputs and outputs, the tool flow, and 3D visualization. Testing uses a reset pushbutton, DIP switches for inputs, and an LED display for outputs. The project is a simple educational gate sample rather than a functional application.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6979,
+  "completion_tokens": 1130,
+  "total_tokens": 8109,
+  "cost": 0.0034497,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034497,
+   "upstream_inference_prompt_cost": 0.0020937,
+   "upstream_inference_completions_cost": 0.001356
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034497,
+ "elapsed_s": 6.9
+}

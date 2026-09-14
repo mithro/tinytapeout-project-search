@@ -1,0 +1,463 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8881bfbe9383",
+  "b7e05ec99299",
+  "aa2f8d6ed94e",
+  "e4f9bf1a9dcf",
+  "a96a013561ef",
+  "3fe6e422aad6"
+ ],
+ "results": [
+  {
+   "key": "8881bfbe9383",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video signal in pins or documentation; design is a reconfigurable logic fabric."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output described; pins are tile inputs/outputs and scan/config signals."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output in the design."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface; configuration uses a scan chain, not SPI."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation circuitry described; clock is an input."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Configuration is stored in latches, not a register file."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Test suite is described as a Python test directory but cocotb is not stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "Reconfigurable logic fabric of rotatable/mirrorable tiles, a port of ROTFPGA from Caravel."
+    },
+    {
+     "tag": "reconfigurable",
+     "reason": "Runtime-configurable logic tiles via scan chain."
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "Configuration and reset are performed using a routing-efficient scan chain."
+    },
+    {
+     "tag": "gate-level",
+     "reason": "Tiles were rewritten as hand-optimized gate-level Verilog."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "Standard cells placed with >80% density via OpenLane."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "Design spans 1x2 tiles."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary described a VGA/SPI video tool with no basis in the source; replaced with fabric-related tags.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "spi",
+    "clock-generator",
+    "register-file",
+    "cocotb"
+   ],
+   "tags": [
+    "fpga",
+    "reconfigurable",
+    "scan-chain",
+    "gate-level",
+    "standard-cell",
+    "multi-tile",
+    "verilog"
+   ],
+   "summary_before": "The design allows experimentation with VGA timing parameters through a set of registers written over an SPI interface. It is a reconfigurable tool for exploring video modes rather than a fixed-function display controller. The design outputs a VGA video signal and uses a clock generator for timing. It is verified with a cocotb testbench.",
+   "summary": "ROTFPGA v2 is a reconfigurable logic circuit built from identical tiles, each containing a NAND gate, a D flip-flop and a buffer, that can be individually rotated or mirrored according to configuration. It is a port of the original ROTFPGA from Caravel to TinyTapeout, reduced from 24x24 to 8x8 tiles with 8 inputs and 8 outputs. Configuration and reset use a routing-efficient scan chain, and tiles are written as hand-optimized gate-level Verilog with configuration stored in latches. The test suite sets up two configurations and runs upload, download, single-step, propagation and loop-breaker tests.",
+   "summary_changed": true
+  },
+  {
+   "key": "b7e05ec99299",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "No UART interface in pins or documentation; pins are data_in, control and result signals."
+    },
+    {
+     "tag": "communication",
+     "reason": "No communication protocol described."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "No cocotb testbench mentioned; documentation is in progress."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "Compute-in-memory array core."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Dedicated compute-in-memory acceleration core."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "8x8 array core with row/column selection and accumulate control."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Control signals (wen, execute, read_next, acc_clear, done) indicate a state machine."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and marked in progress."
+    }
+   ],
+   "notes": "Proposed UART/communication/cocotb tags and summary were unrelated to the compute-in-memory source.",
+   "tags_before": [
+    "uart",
+    "communication",
+    "fsm",
+    "cocotb"
+   ],
+   "tags": [
+    "fsm",
+    "memory",
+    "accelerator",
+    "systolic-array",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a UART communication interface that echoes received data back. It is designed to test UART functionality and is verified using a cocotb testbench. The design uses a simple state machine to handle serial data. It is notable for its straightforward implementation of a common communication protocol.",
+   "summary": "TinyMOA-IHP0P4-8x8 is an 8x8 digital compute-in-memory core implemented in Verilog on an experimental IHP SG13G2 CMOS5L shuttle. It exposes 8 data input bits, write-enable, execute, read-next and accumulator-clear controls, along with column-select and done outputs. Results are read out on 8 output pins, with the top two marked as zero. Documentation and testing details are still in progress.",
+   "summary_changed": true
+  },
+  {
+   "key": "aa2f8d6ed94e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cellular-automaton",
+     "reason": "No cellular automaton in the source; design is a matrix multiplier."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator described."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systolic-array",
+     "reason": "Title and description state a 2x2 systolic array matrix multiplier."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Signed 4-bit matrix multiplication with 9-bit accumulators."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Systolic array performs multiply-accumulate operations."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Signed 4-bit operands with 9-bit accumulators and sign reconstruction."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin."
+    }
+   ],
+   "notes": "Proposed tags and summary described a VGA cellular automaton, which contradicts the matrix multiplier source.",
+   "tags_before": [
+    "cellular-automaton",
+    "vga",
+    "display",
+    "graphics",
+    "prng",
+    "education"
+   ],
+   "tags": [
+    "systolic-array",
+    "multiplier",
+    "mac-unit",
+    "fixed-point",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a cellular automaton display that generates patterns on a VGA output. It uses a PRNG to seed the automaton and displays the evolving patterns on a screen. The design is implemented in Verilog and targets the Tiny Tapeout platform. It is intended for visual demos or educational purposes.",
+   "summary": "This project is a 2x2 signed 4-bit systolic array matrix multiplier with 9-bit accumulators, overflow detection, sign reconstruction and a manual step mode. Data is loaded as an 8-bit byte with write-enable and start controls, and results are read out on 8 output bits. Status signals include busy, output-valid, 8-bit overflow, accumulator sign, manual clock and step mode. It is implemented in Verilog for Tiny Tapeout, though documentation is very thin.",
+   "summary_changed": true
+  },
+  {
+   "key": "e4f9bf1a9dcf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "No UART interface; pins show SPI (spi_clk, MOSI, MISO) and ADC control."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR in the source."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator in the source."
+    },
+    {
+     "tag": "comparator",
+     "reason": "No comparator described."
+    },
+    {
+     "tag": "led",
+     "reason": "No LED output in the pins or documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "Title and description state this is the FSM for the VAK lab PCB."
+    },
+    {
+     "tag": "spi",
+     "reason": "Pins include spi_clk, MOSI and MISO."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "ADC data, end-of-conversion and conversion-start signals interface to a sensor ADC."
+    },
+    {
+     "tag": "radio",
+     "reason": "LoRA chip-select and radio VCC enable indicate a radio subsystem."
+    },
+    {
+     "tag": "power-management",
+     "reason": "en_sensor_vcc and en_radio_vcc control power to subsystems."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Design is written in SystemVerilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin."
+    }
+   ],
+   "notes": "Proposed UART/LFSR/comparator tags and summary were unrelated to the SPI/ADC/radio FSM source.",
+   "tags_before": [
+    "uart",
+    "lfsr",
+    "prng",
+    "comparator",
+    "led"
+   ],
+   "tags": [
+    "fsm",
+    "spi",
+    "sensor-interface",
+    "radio",
+    "power-management",
+    "systemverilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design receives serial data via UART, stores it in an 8-bit register, and compares it with a pseudo-random pattern generated by an LFSR. It uses an LFSR for pattern generation and a comparator for detection. The design is notable for its use of LFSR and UART interface.",
+   "summary": "This is the VAK FSM replacement for the VAK lab PCB board at Northwestern. It interfaces to an ADC through 12 data bits, end-of-conversion and conversion-start signals, and to SPI devices via spi_clk, MOSI and MISO. Chip selects for FRAM and LoRA, plus sensor and radio VCC enables, are provided on the outputs. It is written in SystemVerilog and will be tested locally, with no external hardware required at this time.",
+   "summary_changed": true
+  },
+  {
+   "key": "a96a013561ef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "No logic is described; the project is a TODO placeholder."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent stated."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display in the pins or documentation."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "Documentation consists of TODO placeholders and the one-line description is 'TOSO'."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Project is unfinished with TODO sections."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is too sparse to describe the design."
+    }
+   ],
+   "notes": "Source is a placeholder with no describable design; proposed tags and summary invented a multiplexer and display.",
+   "tags_before": [
+    "combinational",
+    "wokwi",
+    "education",
+    "7-segment",
+    "display"
+   ],
+   "tags": [
+    "wokwi",
+    "placeholder",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a multiplexer that selects between two inputs based on a clock signal, with the selected output on one pin and copies of the inputs on two other pins. The documentation describes it as a workshop result and mentions a seven-segment display in the one-line description, though the display is not directly used in the described logic. The design is a basic combinational circuit. It is notable for being a simple educational example.",
+   "summary": "This is a Wokwi project whose documentation is entirely placeholder text, with TODO sections for how it works, how to test, and external hardware. The pins define two inputs, a third input marked TODO, and one output marked TODO. The one-line description is 'TOSO', giving no indication of the intended function. No logic, interface or purpose can be determined from the available source.",
+   "summary_changed": true
+  },
+  {
+   "key": "3fe6e422aad6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "nco",
+     "reason": "No numerically controlled oscillator in the source."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No signal processing described."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator circuit described."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "No waveform generation described."
+    },
+    {
+     "tag": "dac",
+     "reason": "No digital-to-analog converter described."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio output described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Design implements one AND gate and one NOT gate."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Both gates are purely combinational logic."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "led",
+     "reason": "External hardware section states OUT1 and OUT2 drive LEDs."
+    }
+   ],
+   "notes": "Proposed NCO/DAC/audio tags and summary were unrelated to the simple AND/NOT gate test source.",
+   "tags_before": [
+    "nco",
+    "dsp",
+    "oscillator",
+    "signal-generator",
+    "dac",
+    "audio"
+   ],
+   "tags": [
+    "logic-gate",
+    "combinational",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "This project is a numerically controlled oscillator (NCO) with a DAC output, capable of generating frequencies up to about 12.3 MHz. It is controlled via a parallel interface and includes a filter-analog block. The design is a compact signal-generation experiment with detailed pin-level control but no silicon test results. It is intended for audio or waveform generation applications.",
+   "summary": "This project adds one AND gate and one NOT gate for testing. The AND gate takes IN0 and IN1 as inputs and drives OUT1, while the NOT gate takes IN2 and drives OUT2. Testing consists of checking the AND and NOT gate truth tables. OUT1 and OUT2 drive LEDs as external hardware.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6418,
+  "completion_tokens": 2488,
+  "total_tokens": 8906,
+  "cost": 0.00305404,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00305404,
+   "upstream_inference_prompt_cost": 0.00141196,
+   "upstream_inference_completions_cost": 0.00164208
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00305404,
+ "elapsed_s": 24.9
+}

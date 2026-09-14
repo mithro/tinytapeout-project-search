@@ -1,0 +1,262 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b7248f8ba9b4",
+  "2088472351ad",
+  "6eb2c3c700a4",
+  "700f775049d9",
+  "c33ae664db90",
+  "ae8f80432d56"
+ ],
+ "results": [
+  {
+   "key": "b7248f8ba9b4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "microcontroller",
+     "reason": "The design is described as a RISC-V SoC, not a microcontroller; soc and cpu already cover it."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multi-tile",
+     "reason": "Facts state the submission spans 3x2 tiles."
+    },
+    {
+     "tag": "qspi",
+     "reason": "Pins include QSPI flash/PSRAM signals (Flash CS, SCK, SD0-SD3) and the detected pinout is QSPI Flash/PSRAM."
+    }
+   ],
+   "notes": "Removed microcontroller (SoC/cpu already cover it) and added multi-tile and qspi, both supported by the pin facts.",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "uart",
+    "spi",
+    "qspi",
+    "gpio",
+    "microcontroller"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "uart",
+    "spi",
+    "qspi",
+    "gpio",
+    "multi-tile"
+   ],
+   "summary_before": "AlphaOneSoC is a 32-bit RISC-V SoC based on Michael Bell's TinyQV, implementing the RV32EC ISA. It boots from external QSPI flash or PSRAM and provides UART, SPI, and GPIO interfaces for interaction and debugging. Testing involves flashing instructions into memory and observing outputs via UART, SPI, or GPIO. The design requires a QSPI flash/PSRAM PMOD and is a larger 3x2 tile submission.",
+   "summary": "AlphaOneSoC is a 32-bit RISC-V SoC based on Michael Bell's TinyQV, implementing the RV32EC ISA. It boots from external QSPI flash or PSRAM and provides UART, SPI, and GPIO interfaces for interaction and debugging. Testing involves flashing instructions into memory and observing outputs via UART, SPI, or GPIO. The design requires a QSPI flash/PSRAM PMOD and is a larger 3x2 tile submission.",
+   "summary_changed": false
+  },
+  {
+   "key": "2088472351ad",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "No DSP-specific signal processing is described; the design is a CNN accelerator."
+    },
+    {
+     "tag": "image-processing",
+     "reason": "The convolution operates on streamed image pixels, but the design is an NN accelerator rather than an image-processing algorithm implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "tpu",
+     "reason": "It is a tensor/CNN accelerator, matching the tensor-processing accelerator tag."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "It contains 16-bit floating point add and multiply units used for convolution and accumulation."
+    }
+   ],
+   "notes": "Removed dsp and image-processing as unsupported; added tpu and mac-unit which the CNN accelerator description supports.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "image-processing",
+    "floating-point",
+    "dsp"
+   ],
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "floating-point",
+    "tpu",
+    "mac-unit"
+   ],
+   "summary_before": "This is a toy neural network accelerator aimed at convolutional neural networks, containing 16-bit floating point add and multiply units using an approximation of the BF16 encoding. It supports a 4x2 convolution operation with streamed image pixels and an accumulate operation with optional bias and ReLU, all controlled by operation codes sent over a 16-bit input formed from ui_in and uio_in. Results are emitted as 16-bit values split over two clock cycles on the 8-bit output, so the user must know which cycles carry valid data. The Verilog is generated from a separate SystemVerilog repository that holds the full verification environment and software, both described as work in progress at tapeout time, and no specific external hardware is required beyond something to drive the sequences, such as the demo board's RP2040.",
+   "summary": "This is a toy neural network accelerator aimed at convolutional neural networks, containing 16-bit floating point add and multiply units using an approximation of the BF16 encoding. It supports a 4x2 convolution operation with streamed image pixels and an accumulate operation with optional bias and ReLU, all controlled by operation codes sent over a 16-bit input formed from ui_in and uio_in. Results are emitted as 16-bit values split over two clock cycles on the 8-bit output, so the user must know which cycles carry valid data. The Verilog is generated from a separate SystemVerilog repository that holds the full verification environment and software, both described as work in progress at tapeout time, and no specific external hardware is required beyond something to drive the sequences, such as the demo board's RP2040.",
+   "summary_changed": false
+  },
+  {
+   "key": "6eb2c3c700a4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "amaranth",
+     "reason": "Only one of five layers uses Amaranth; the project as a whole is not written in Amaranth."
+    },
+    {
+     "tag": "myhdl",
+     "reason": "Only one of five layers uses MyHDL; the project as a whole is not written in MyHDL."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "It recreates a classic VGA Playground demo, a visual demoscene-style showcase."
+    },
+    {
+     "tag": "retro",
+     "reason": "It reproduces the classic Checkers demo, a retro-style visual recreation."
+    }
+   ],
+   "notes": "Removed amaranth/myhdl since only individual layers use them; added demoscene and retro for the classic demo recreation.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "amaranth",
+    "myhdl"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "demoscene",
+    "retro"
+   ],
+   "summary_before": "This project recreates the classic Checkers demo from VGA Playground, with each of its five layers generated by a different Python-based HDL: Amaranth, MyHDL, PyCDE, PyRTL and PyMTL3. It outputs VGA signals on the Tiny VGA PMOD pinout at a 25.175 MHz clock, and the eight input pins can be toggled to change the main, sub, foreground and background colours. The only external hardware needed is the TinyVGA PMOD and a screen, and the design is notable for demonstrating several Python HDLs in a single chip. It is essentially a visual demonstration rather than a functional application.",
+   "summary": "This project recreates the classic Checkers demo from VGA Playground, with each of its five layers generated by a different Python-based HDL: Amaranth, MyHDL, PyCDE, PyRTL and PyMTL3. It outputs VGA signals on the Tiny VGA PMOD pinout at a 25.175 MHz clock, and the eight input pins can be toggled to change the main, sub, foreground and background colours. The only external hardware needed is the TinyVGA PMOD and a screen, and the design is notable for demonstrating several Python HDLs in a single chip. It is essentially a visual demonstration rather than a functional application.",
+   "summary_changed": false
+  },
+  {
+   "key": "700f775049d9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "spi",
+    "iir-filter",
+    "sigma-delta",
+    "music",
+    "education"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "spi",
+    "iir-filter",
+    "sigma-delta",
+    "music",
+    "education"
+   ],
+   "summary_before": "This is a digital saw-wave synthesizer with a programmable pulse generator, ADSR amplitude modulation, a one-pole IIR filter, and a first-order delta-sigma audio output. Parameters are set over an SPI slave interface, and a trigger input starts and stops notes; a VST/CLAP plugin generates the SPI commands. It is an educational design that deliberately mirrors the audio pipeline structurally in hardware, and it requires an external lowpass filter, button Pmod, audio Pmod, and SPI master. Testing uses a cocotb testbench that writes audio to a file and compares against a golden reference.",
+   "summary": "This is a digital saw-wave synthesizer with a programmable pulse generator, ADSR amplitude modulation, a one-pole IIR filter, and a first-order delta-sigma audio output. Parameters are set over an SPI slave interface, and a trigger input starts and stops notes; a VST/CLAP plugin generates the SPI commands. It is an educational design that deliberately mirrors the audio pipeline structurally in hardware, and it requires an external lowpass filter, button Pmod, audio Pmod, and SPI master. Testing uses a cocotb testbench that writes audio to a file and compares against a golden reference.",
+   "summary_changed": false
+  },
+  {
+   "key": "c33ae664db90",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The source describes an 8-bit pseudo-random value, not an LFSR; the title mentions LFSR but the documentation does not describe one."
+    }
+   ],
+   "add": [
+    {
+     "tag": "bcd",
+     "reason": "The design converts binary values into decimal for 7-segment display."
+    }
+   ],
+   "notes": "Removed lfsr (source only says pseudo-random value) and added bcd for the binary-to-decimal display conversion.",
+   "tags_before": [
+    "7-segment",
+    "lfsr",
+    "counter",
+    "display",
+    "prng"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "display",
+    "prng",
+    "bcd"
+   ],
+   "summary_before": "This design drives a 7-segment display from a counter whose period is either fixed or pseudo-random, selected by an input pin. A second input chooses between a hexadecimal sequence and a fixed text string, and the low 8 bits of a 24-bit counter are exposed on the bidirectional pins. It is tested on the Tiny Tapeout evaluation board by observing the display and changing the two select inputs. The design is notable mainly as a simple display and LFSR demonstration.",
+   "summary": "This design drives a 7-segment display from a counter whose period is either fixed or pseudo-random, selected by an input pin. A second input chooses between a hexadecimal sequence and a fixed text string, and the low 8 bits of a 24-bit counter are exposed on the bidirectional pins. It is tested on the Tiny Tapeout evaluation board by observing the display and changing the two select inputs. The design is notable mainly as a simple display and LFSR demonstration.",
+   "summary_changed": false
+  },
+  {
+   "key": "ae8f80432d56",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "spi",
+    "iir-filter",
+    "sigma-delta",
+    "music",
+    "education"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "spi",
+    "iir-filter",
+    "sigma-delta",
+    "music",
+    "education"
+   ],
+   "summary_before": "This is a digital synthesizer with a programmable pulse-wave generator, ADSR amplitude modulation, a one-pole IIR filter, and a first-order delta-sigma audio output. It is controlled through an SPI slave interface and a trigger input, with a VST/CLAP plugin available to generate SPI commands from a DAW. The design is educational and intentionally maps the audio pipeline directly into hardware, requiring an external lowpass filter, button Pmod, audio Pmod, and SPI master. Testing uses a cocotb testbench that captures audio to a file and compares against a golden reference.",
+   "summary": "This is a digital synthesizer with a programmable pulse-wave generator, ADSR amplitude modulation, a one-pole IIR filter, and a first-order delta-sigma audio output. It is controlled through an SPI slave interface and a trigger input, with a VST/CLAP plugin available to generate SPI commands from a DAW. The design is educational and intentionally maps the audio pipeline directly into hardware, requiring an external lowpass filter, button Pmod, audio Pmod, and SPI master. Testing uses a cocotb testbench that captures audio to a file and compares against a golden reference.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8085,
+  "completion_tokens": 1543,
+  "total_tokens": 9628,
+  "cost": 0.002842383,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002842383,
+   "upstream_inference_prompt_cost": 0.001268523,
+   "upstream_inference_completions_cost": 0.00157386
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002842383,
+ "elapsed_s": 30.3
+}

@@ -1,0 +1,323 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "fafc35c01733",
+  "74eb489e0306",
+  "3555a7f51a73",
+  "5a6fe4a7a8a2",
+  "e527f37febe1",
+  "646259f765e6"
+ ],
+ "results": [
+  {
+   "key": "fafc35c01733",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "The source describes a floating point adder, not a multiplier."
+    },
+    {
+     "tag": "structural",
+     "reason": "No evidence of structural HDL style; the design is described as a floating point unit."
+    },
+    {
+     "tag": "adder",
+     "reason": "The design is a floating point unit with registers and SPI, not a simple binary adder circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "The pins and documentation explicitly define an SPI interface (SCLK, NCS, COPI, CIPO)."
+    },
+    {
+     "tag": "floating-point",
+     "reason": "The project is a 32-bit floating point adder/FPU."
+    },
+    {
+     "tag": "register-file",
+     "reason": "It features 4 internal floating point registers writeable and readable over SPI."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the SPI floating point unit described in the source.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "adder"
+   ],
+   "tags": [
+    "spi",
+    "floating-point",
+    "register-file",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4x4 structural array multiplier that multiplies two 4-bit inputs to produce an 8-bit product. It is built using structural Verilog and consists of AND gates and full adders arranged in an array. Testing can be done by applying input values and observing the output product. The design is purely combinational and requires no external hardware.",
+   "summary": "This project is a 32-bit floating point unit accessible over SPI. It features four internal floating point registers that can be written and read over SPI. Every SPI transaction starts with a command byte followed by arguments, and data output requires sending enough bytes to receive the entire response. Testing is best done with the provided Arduino testbench, though the author notes issues with Arduino SPI controllers.",
+   "summary_changed": true
+  },
+  {
+   "key": "74eb489e0306",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting only of 'some words'."
+    }
+   ],
+   "notes": "Removed unsupported education tag, added insufficient-doc, and rewrote summary to match the sparse source.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a simple test of basic gates and clock division, likely a first Wokwi exercise. It is explicitly a simple test of basic gates and clock division, likely a first Wokwi exercise. The documentation is very thin, with a one-line description in German and no real explanation of the mapping between inputs and segments. It requires an external seven-segment display, and testing is described only as using it for a seven-segment display.",
+   "summary": "This project is a simple test of basic gates and clock division, created with Wokwi. It has inputs a and b, and outputs for AND, NAND, OK, and clock divided by 16 and 12. The documentation is very thin, with only placeholder text. No external hardware or testing procedure is described.",
+   "summary_changed": true
+  },
+  {
+   "key": "3555a7f51a73",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "The pinout matches TT Audio but the design is described as a digital LED circuit; no audio functionality is stated."
+    },
+    {
+     "tag": "filter-analog",
+     "reason": "A LOW_PASS_OUT pin exists but no analog filter is described; the design is digital."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present, though brief; the tag is not supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Pins include DECODER_DATA, DECODER_CLK, and DECODER_ERROR, indicating decoding logic."
+    },
+    {
+     "tag": "pwm",
+     "reason": "A PWM_SET pin indicates PWM output."
+    },
+    {
+     "tag": "rgb-led",
+     "reason": "Pins LED_RED, LED_GREEN, LED_BLUE indicate RGB LED control."
+    },
+    {
+     "tag": "led",
+     "reason": "The design is described as a digital LED circuit."
+    }
+   ],
+   "notes": "Removed unsupported audio, filter-analog, and insufficient-doc tags; added verilog, decoder, pwm, rgb-led, and led; rewrote summary to match source.",
+   "tags_before": [
+    "led",
+    "rgb-led",
+    "pwm",
+    "decoder",
+    "audio",
+    "filter-analog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "led",
+    "rgb-led",
+    "pwm",
+    "decoder",
+    "verilog"
+   ],
+   "summary_before": "This design is described as a digital LED circuit, but the documentation is very thin and does not explain its function beyond that. The pins suggest interfaces for an encoder, decoder, PWM, low-pass filter, and RGB LED control, matching the TT Audio pinout. The design likely drives RGB LEDs with PWM signals and includes analog filtering. The lack of detailed documentation makes it difficult to determine the exact behavior.",
+   "summary": "This design is described as a digital LED circuit. The pins suggest interfaces for an encoder, decoder, PWM, low-pass filter, and RGB LED control, matching the TT Audio pinout. Testing begins with software tests, and more hardware plans are to be added later. External hardware includes a reset source, a clock source, and RGB LEDs with 4mA current per color.",
+   "summary_changed": true
+  },
+  {
+   "key": "5a6fe4a7a8a2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design is an SRAM, not a pseudo-random number generator."
+    },
+    {
+     "tag": "led",
+     "reason": "LEDs are mentioned only as external monitoring hardware, not as an output of the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sram",
+     "reason": "The project is explicitly a 128-bit SRAM."
+    },
+    {
+     "tag": "memory",
+     "reason": "It is a memory storage block."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The language is Wokwi."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The outputs are labeled a-g and DP, indicating a 7-segment display interface."
+    }
+   ],
+   "notes": "Corrected tags and summary to describe the SRAM rather than a PRNG.",
+   "tags_before": [
+    "prng",
+    "7-segment",
+    "wokwi",
+    "led"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "sram",
+    "memory"
+   ],
+   "summary_before": "This project is a pseudo-random number generator with LED and 7-segment display outputs, created with Wokwi. The design includes graphics and counter elements. It is intended for educational purposes. No external hardware or silicon results are described.",
+   "summary": "This project implements a 128-bit SRAM using a decoder to activate rows of DFFs and multiplexers for read/write operations. It is created with Wokwi and has a 7-segment display output. Testing involves connecting address and data pins, setting R/W to write or read, and using LEDs or a 7-segment display to monitor outputs. External hardware may include a 7-segment display, LEDs, and bidirectional tristate buffers.",
+   "summary_changed": true
+  },
+  {
+   "key": "e527f37febe1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter is described; the design is a ROM."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rom",
+     "reason": "The design is explicitly a ROM."
+    },
+    {
+     "tag": "memory",
+     "reason": "It is a memory storage block."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The first 16 bytes are 7-segment encoded and displayed on the on-board 7-segment display."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    }
+   ],
+   "notes": "Removed unsupported counter and education tags; added rom, memory, 7-segment, and verilog; adjusted summary to remove educational claim.",
+   "tags_before": [
+    "memory",
+    "rom",
+    "7-segment",
+    "counter",
+    "education"
+   ],
+   "tags": [
+    "memory",
+    "rom",
+    "7-segment",
+    "verilog"
+   ],
+   "summary_before": "This design implements a 256-byte ROM that stores information about the Tiny Tapeout chip, including the shuttle name and commit hash. The first 16 bytes are 7-segment encoded and can be displayed on the on-board 7-segment display by holding reset low and toggling the clock, or by setting the address with DIP switches. The ROM is 8-bit wide and 256 bytes long. It is intended for educational purposes to demonstrate ROM access and display.",
+   "summary": "This design implements a 256-byte ROM that stores information about the Tiny Tapeout chip, including the shuttle name and commit hash. The first 16 bytes are 7-segment encoded and can be displayed on the on-board 7-segment display by holding reset low and toggling the clock, or by setting the address with DIP switches. The ROM is 8-bit wide and 256 bytes long. It is intended to provide chip information via ROM access and display.",
+   "summary_changed": true
+  },
+  {
+   "key": "646259f765e6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent; the documentation is placeholder text."
+    },
+    {
+     "tag": "template",
+     "reason": "The project is not a boilerplate template; it is an unfinished full adder."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The one-line description says 'not finished' and documentation is placeholder text."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting only of placeholder instructions."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported education and template tags; added incomplete and insufficient-doc; rewrote summary to match placeholder documentation.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "template",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "The documentation is placeholder text, so the exact implementation, testing procedure, and any external hardware requirements are not described. It appears to be an educational project with insufficient documentation to determine its specific behavior.",
+   "summary": "The documentation is placeholder text, so the exact implementation, testing procedure, and any external hardware requirements are not described. The project is titled as a full adder but is marked as not finished. It appears to be an incomplete Wokwi project with insufficient documentation to determine its specific behavior. No external hardware or testing details are provided.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5736,
+  "completion_tokens": 1876,
+  "total_tokens": 7612,
+  "cost": 0.003972,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003972,
+   "upstream_inference_prompt_cost": 0.0017208,
+   "upstream_inference_completions_cost": 0.0022512
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003972,
+ "elapsed_s": 47.7
+}

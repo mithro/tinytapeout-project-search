@@ -1,0 +1,214 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "767734ced361",
+  "82dca9c6eb1a",
+  "4a70e2a8a553",
+  "f67443a68527",
+  "69e40a3b47a2",
+  "d028fdaa851f"
+ ],
+ "results": [
+  {
+   "key": "767734ced361",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "no general purpose IO interface is documented; pins are dedicated combo/reset/unlock signals"
+    }
+   ],
+   "add": [
+    {
+     "tag": "security",
+     "reason": "already proposed and supported as a combination lock; keep"
+    }
+   ],
+   "notes": "Removed gpio tag because the documented pins are dedicated lock signals, not a general purpose IO interface.",
+   "tags_before": [
+    "puzzle",
+    "security",
+    "fsm",
+    "gpio"
+   ],
+   "tags": [
+    "puzzle",
+    "security",
+    "fsm"
+   ],
+   "summary_before": "Combo lock is a four-digit combination lock that accepts digits 0-9 in binary on four input pins, with each digit followed by a 0000 separator. The first four digits entered become the new combination, and re-entering the same sequence asserts the unlock output; the combination can be changed by holding unlock and pressing reset, or cleared with master reset. The design uses a state machine to track the entered sequence and compare it against the stored combination. No external hardware is required beyond the input switches and an unlock indicator.",
+   "summary": "This design is a four-digit combination lock that accepts digits 0-9 in binary on four input pins, with each digit followed by a 0000 separator. The first four digits entered become the new combination, and re-entering the same sequence asserts the unlock output. To change the combination, unlock must be high while reset is pressed, or master reset can be used. A state machine tracks the entered sequence and compares it against the stored combination.",
+   "summary_changed": true
+  },
+  {
+   "key": "82dca9c6eb1a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "two nibble-holding registers are not a multi-register register file"
+    }
+   ],
+   "add": [
+    {
+     "tag": "serial",
+     "reason": "author tag serial is supported by UART byte transmission"
+    },
+    {
+     "tag": "shift-register",
+     "reason": "not supported; registers hold nibbles; do not add"
+    }
+   ],
+   "notes": "Removed register-file because two nibble registers do not constitute a multi-register storage block.",
+   "tags_before": [
+    "uart",
+    "communication",
+    "register-file"
+   ],
+   "tags": [
+    "uart",
+    "communication",
+    "shift-register"
+   ],
+   "summary_before": "This design loads two 4-bit nibbles into registers and transmits the resulting byte over UART. It uses mode pins to select whether the nibble is the least or most significant half of the byte, and a transmit mode to send the data. An Arduino can be used to test the UART output. The design is a simple serial communication interface for sending bytes.",
+   "summary": "This design loads two 4-bit nibbles into registers and transmits the resulting byte over UART. It uses mode pins to select whether the nibble is the least or most significant half of the byte, and a transmit mode to send the data. An Arduino can be used to test the UART output. The design is a simple serial communication interface for sending bytes over UART.",
+   "summary_changed": true
+  },
+  {
+   "key": "4a70e2a8a553",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "arbiter",
+    "fsm",
+    "counter",
+    "led",
+    "education"
+   ],
+   "tags": [
+    "game",
+    "arbiter",
+    "fsm",
+    "counter",
+    "led",
+    "education"
+   ],
+   "summary_before": "This is a two-player game where players compete to press their button first after a countdown. The countdown and winner are displayed on LEDs. It uses a finite state machine and counters, and requires external pushbuttons and LEDs for operation. The design is educational, demonstrating basic digital logic and game mechanics.",
+   "summary": "This is a two-player game where players compete to press their button first after a countdown. The countdown and winner are displayed on LEDs. It uses a finite state machine and counters, and requires external pushbuttons and LEDs for operation. The design is educational, demonstrating basic digital logic and game mechanics.",
+   "summary_changed": false
+  },
+  {
+   "key": "f67443a68527",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "densely packed decimal is a decimal encoding, but the design is not binary coded decimal logic; use bcd cautiously; remove to avoid miscategorization"
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "author tag and 7-segment outputs supported"
+    },
+    {
+     "tag": "display",
+     "reason": "7-segment display output supported by pins and text"
+    }
+   ],
+   "notes": "Removed bcd because the design uses densely packed decimal storage and a 7-segment decoder, not binary coded decimal logic; kept 7-segment and display as supported.",
+   "tags_before": [
+    "7-segment",
+    "memory",
+    "display",
+    "bcd",
+    "counter"
+   ],
+   "tags": [
+    "7-segment",
+    "memory",
+    "display",
+    "counter"
+   ],
+   "summary_before": "This design stores and outputs the first 1400 decimal digits of Pi to a 7-segment display using densely packed decimal encoding. It uses an index counter to select digits and includes a decimal point. The design is an experiment in data storage and display, and it requires a 7-segment display for output. It is notable for its efficient use of area to store a large number of digits.",
+   "summary": "This design stores and outputs up to 1400 decimal digits of Pi to a 7-segment display using densely packed decimal encoding. An index counter selects triplets and individual digits, and a multiplexer inserts the decimal point once. The design is an experiment in data storage and display and requires a 7-segment display for output. It is notable for its efficient use of area to store a large number of digits.",
+   "summary_changed": true
+  },
+  {
+   "key": "69e40a3b47a2",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fsm",
+    "memory",
+    "shift-register",
+    "education",
+    "cpu"
+   ],
+   "tags": [
+    "fsm",
+    "memory",
+    "shift-register",
+    "education",
+    "cpu"
+   ],
+   "summary_before": "This project is a two-bit universal finite state machine inspired by Rue Mohr's 1Bit CPU, implemented as a Moore FSM where the next-state logic is stored in a dual-port RAM. Instructions are loaded into the RAM via a 16-bit shift register using a specific serial format, and the FSM uses two input bits and two output bits. External hardware such as a microcomputer (e.g., Arduino) is required to load the RAM instructions, and a clock is needed to run the FSM. The design is notable for its flexible, programmable nature and educational value in demonstrating FSM concepts.",
+   "summary": "This project is a two-bit universal finite state machine inspired by Rue Mohr's 1Bit CPU, implemented as a Moore FSM where the next-state logic is stored in a dual-port RAM. Instructions are loaded into the RAM via a 16-bit shift register using a specific serial format, and the FSM uses two input bits and two output bits. External hardware such as a microcomputer (e.g., Arduino) is required to load the RAM instructions, and a clock is needed to run the FSM. The design is notable for its flexible, programmable nature and educational value in demonstrating FSM concepts.",
+   "summary_changed": false
+  },
+  {
+   "key": "d028fdaa851f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "led",
+    "debouncer",
+    "button"
+   ],
+   "tags": [
+    "pwm",
+    "led",
+    "debouncer",
+    "button"
+   ],
+   "summary_before": "This project implements a PWM controller to adjust LED brightness using two buttons for increasing and decreasing the duty cycle. It includes debouncing logic for the button inputs and outputs signals indicating when maximum or minimum duty cycle is reached, as well as a 1 Hz clock. The design operates from a 12.5 kHz clock and provides a PWM output that ranges from 0% to 100%. It is a simple experiment demonstrating PWM and button debouncing.",
+   "summary": "This project implements a PWM controller to adjust LED brightness using two buttons for increasing and decreasing the duty cycle. It includes debouncing logic for the button inputs and outputs signals indicating when maximum or minimum duty cycle is reached, as well as a 1 Hz clock. The design operates from a 12.5 kHz clock and provides a PWM output that ranges from 0% to 100%. It is a simple experiment demonstrating PWM and button debouncing.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7056,
+  "completion_tokens": 717,
+  "total_tokens": 7773,
+  "cost": 0.0029772,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0029772,
+   "upstream_inference_prompt_cost": 0.0021168,
+   "upstream_inference_completions_cost": 0.0008604
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0029772,
+ "elapsed_s": 6.2
+}

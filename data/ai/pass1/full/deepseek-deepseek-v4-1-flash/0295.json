@@ -1,0 +1,191 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6714a3c06e75",
+  "6775b7fe1951",
+  "272f0194c39b",
+  "ea3932e16252",
+  "1a1dc81f1b36",
+  "8766f72ace6c",
+  "881e132250a0",
+  "dac340c12177",
+  "ce3b6983d46a",
+  "c45b954c34ab"
+ ],
+ "results": [
+  {
+   "key": "6714a3c06e75",
+   "tags": [
+    "collatz",
+    "math",
+    "counter",
+    "state-machine",
+    "education",
+    "onchip-uis"
+   ],
+   "summary": "This design computes the Collatz orbit for an 8-bit input, outputting the number of iterations to reach 1 and a busy status bit. It is controlled by a clock and active-low reset, with the input and iteration count presented on the ui and uio pins respectively. The circuit holds the final iteration count indefinitely after completion for inspection. No external hardware is required beyond switches for input, and the documentation is sufficient to understand its operation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6775b7fe1951",
+   "tags": [
+    "random-number-generator",
+    "chaotic-map",
+    "prng",
+    "nonlinear",
+    "programmable",
+    "onchip-uis"
+   ],
+   "summary": "This project implements a programmable chaotic random number generator based on a 3D double-scroll chaotic map. It uses three 32-bit state variables updated each clock cycle with arithmetic feedback and nonlinear functions, producing an 8-bit random output. The chaotic parameters are partially programmable via input pins, allowing configuration of the nonlinear function. No external hardware is required, and the design is documented with details on its internal state and programmability.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "272f0194c39b",
+   "tags": [
+    "stopwatch",
+    "7-segment",
+    "timer",
+    "display",
+    "multiplexed",
+    "lap-mode"
+   ],
+   "summary": "This is a digital stopwatch implemented in Verilog with start/stop and lap functions. It displays hundredths of a second and seconds on a multiplexed 4-digit 7-segment display, using two buttons for control. The design requires external 7-segment displays and buttons to operate. The documentation is minimal, providing only the pinout and a one-line description, so detailed operation and testing procedures are not specified.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ea3932e16252",
+   "tags": [
+    "coffee",
+    "classifier",
+    "color-sensor",
+    "tcs3200",
+    "uart",
+    "state-machine",
+    "led",
+    "industrial"
+   ],
+   "summary": "The Coffee Chip is a hardware-based color classifier for sorting coffee beans into unripe, optimal, and overripe categories. It interfaces with a TCS3200 color sensor to measure frequency signals and uses a digital state machine to classify the beans, indicating results via LEDs. The design supports optional UART calibration to update classification thresholds. External hardware includes the color sensor, LEDs, and optionally a UART bridge, and the documentation provides detailed testing steps.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1a1dc81f1b36",
+   "tags": [
+    "cordic",
+    "sine",
+    "cosine",
+    "math",
+    "fixed-point",
+    "serial",
+    "processor"
+   ],
+   "summary": "This design implements a CORDIC-based math processor that computes sine and cosine functions for a 16-bit fixed-point angle input. The angle is loaded serially in 4-bit chunks, and the result is output as a 16-bit fixed-point value, selectable between sine and cosine. No external hardware is required, and the testing procedure is clearly described, including fixed-point conversion steps. The design is notable for its use of the CORDIC algorithm to calculate trigonometric functions in hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8766f72ace6c",
+   "tags": [
+    "memory-controller",
+    "dram",
+    "request-queue",
+    "bank-table",
+    "systemverilog",
+    "simulation",
+    "fake-memory"
+   ],
+   "summary": "This project is a simplified memory controller that simulates DRAM read/write behavior with request queuing, bank-row-column address decoding, and a fake memory. It services requests from a testbench CPU in order, using a bank table to track open rows, though the final design includes only one bank, two rows, and two columns to reduce area. The controller runs at 50 MHz and has a defined interface for read and write transactions. Testing was done with SystemVerilog testbenches and cocotb, and no external hardware is needed.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "881e132250a0",
+   "tags": [
+    "multiplier",
+    "array-multiplier",
+    "full-adder",
+    "structural",
+    "arithmetic",
+    "education"
+   ],
+   "summary": "This design is a 4x4 structural array multiplier that multiplies two 4-bit numbers using full adders and AND gates. It takes an 8-bit input that is split into two 4-bit operands and outputs the 8-bit product. The multiplier is purely combinational and requires no external hardware. The documentation describes the multiplication process and suggests testing with various input values, but does not provide detailed test results or silicon validation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "dac340c12177",
+   "tags": [
+    "vga",
+    "video",
+    "animation",
+    "sprite",
+    "game",
+    "charizard",
+    "pixel-art"
+   ],
+   "summary": "This project displays a Charizard sprite with a flamethrower animation on a VGA monitor. It uses sprite ROM lookups, palette mapping, and state-based rendering to produce real-time animation at a 25.175 MHz clock. The design requires a VGA display and appropriate connections, with no other external hardware. The documentation notes that the original plan for a full evolution line was scaled back due to area constraints, and the final design uses a 1x2 tile area.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ce3b6983d46a",
+   "tags": [
+    "mbist",
+    "ecc",
+    "hamming",
+    "ram",
+    "memory",
+    "test",
+    "march",
+    "secded"
+   ],
+   "summary": "This design implements Memory Built-In Self-Test (MBIST) using the March C- algorithm and Hamming ECC (SECDED) for an 8x32 RAM, expanded to 8x40 for ECC. It provides status outputs for MBIST pass/fail, ECC error detection and correction, and RAM enable. The design is tested through functional checks and fault injection, with all test logic built-in. No external hardware is required, and the documentation details the algorithms and expected results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c45b954c34ab",
+   "tags": [
+    "pwm",
+    "generator",
+    "duty-cycle",
+    "counter",
+    "onchip-uis",
+    "clock"
+   ],
+   "summary": "This project is a PWM generator that produces a signal with a duty cycle set by an 8-bit input. It uses a counter with a programmable maximum resolution, selected via three bidirectional pins, to determine the PWM frequency. A D flip-flop synchronizes the output to reduce glitches. The design requires external switches for the bit selector and operates at a 5 MHz clock, with testing described as straightforward.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6345,
+  "completion_tokens": 1739,
+  "total_tokens": 8084,
+  "cost": 0.0023124,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0023124,
+   "upstream_inference_prompt_cost": 0.001269,
+   "upstream_inference_completions_cost": 0.0010434
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0023124,
+ "elapsed_s": 56.2
+}

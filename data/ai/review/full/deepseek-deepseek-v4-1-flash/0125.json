@@ -1,0 +1,206 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "11c5cebab1d6",
+  "947f54483a2d",
+  "2c7032baeaee",
+  "ea4a76c0e2d8",
+  "785afc509be4",
+  "7ce46d64fd53"
+ ],
+ "results": [
+  {
+   "key": "11c5cebab1d6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "wishbone",
+     "reason": "The design is AXI4-Lite; no Wishbone bus appears in the source or pins."
+    }
+   ],
+   "add": [],
+   "notes": "Removed wishbone tag: design is AXI4-Lite, not Wishbone.",
+   "tags_before": [
+    "axi",
+    "communication",
+    "wishbone"
+   ],
+   "tags": [
+    "axi",
+    "communication"
+   ],
+   "summary_before": "This design implements a dual-master, dual-slave AXI4-Lite interconnect that hides the full AXI handshake behind a simplified interface. Start-write, start-read, address and data signals are driven from the input and bidirectional pins, and a done signal plus read data appear on the outputs. The top module instantiates an AXI4-Lite master and slave and drives the protocol signals internally when a transaction is started. Two testbenches are mentioned, but the provided documentation is truncated and does not describe the full test procedure or any silicon results.",
+   "summary": "This design implements a dual-master, dual-slave AXI4-Lite interconnect that hides the AXI handshake behind a simplified interface. Start-write, start-read, address and write-data signals are driven from the input and bidirectional pins, and read data appears on the outputs, with a done indication. The top module instantiates an AXI4-Lite master and slave and drives the protocol signals internally when a transaction is started. Two testbenches are mentioned, but the provided documentation is truncated and does not describe the full test procedure or any silicon results.",
+   "summary_changed": true
+  },
+  {
+   "key": "947f54483a2d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "mac-unit",
+    "floating-point",
+    "dsp",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "mac-unit",
+    "floating-point",
+    "dsp",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This design implements an 8-bit posit multiply-accumulate (MAC) unit with a 32-bit quire register for exact accumulation. It takes two 8-bit posit inputs (es=2), multiplies them, and accumulates the product into the quire, which can be read back as a posit8 or cleared. The unit uses ready/valid handshaking and is controlled via a finite state machine, with data read/written through bidirectional ports. It is tested with a testbench that verifies basic operations, accumulation, and dot product fuzz testing against a float reference.",
+   "summary": "This design implements an 8-bit posit multiply-accumulate (MAC) unit with a 32-bit quire register for exact accumulation. It takes two 8-bit posit inputs (es=2), multiplies them, and accumulates the product into the quire, which can be read back as a posit8 or cleared. The unit uses ready/valid handshaking and is controlled via a finite state machine, with data read/written through bidirectional ports. It is tested with a testbench that verifies basic operations, accumulation, and dot product fuzz testing against a float reference.",
+   "summary_changed": false
+  },
+  {
+   "key": "2c7032baeaee",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The source never states a RISC-V ISA; it is a custom 16-bit RISC core."
+    }
+   ],
+   "add": [],
+   "notes": "Removed risc-v tag: no RISC-V ISA evidence in the thin documentation.",
+   "tags_before": [
+    "cpu",
+    "risc-v",
+    "interrupt-controller",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "cpu",
+    "interrupt-controller",
+    "verilog",
+    "asic"
+   ],
+   "summary_before": "This project is a 16-bit RISC processor designed to be logically pin-compatible with the WDC 65C02, allowing it to be used as a drop-in replacement in existing systems. It provides address and data buses multiplexed on the bidirectional pins, along with interrupt, ready, and sync signals. The documentation is minimal, consisting only of a one-line description and pin names, so testing and usage details are not provided. The design is notable for its compatibility with a classic microprocessor interface.",
+   "summary": "This project is a 16-bit RISC processor designed to be logically pin-compatible with the WDC 65C02. It provides address and data buses multiplexed on the bidirectional pins, along with interrupt, ready, and sync signals. The documentation is minimal, consisting only of a one-line description and pin names, so testing and usage details are not provided. The design is notable for its compatibility with a classic microprocessor interface.",
+   "summary_changed": true
+  },
+  {
+   "key": "ea4a76c0e2d8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "placeholder",
+    "adc",
+    "analog",
+    "dsp",
+    "vga"
+   ],
+   "tags": [
+    "placeholder",
+    "adc",
+    "analog",
+    "dsp",
+    "vga"
+   ],
+   "summary_before": "This project is described as a stand-in for an ADC ASIC design that aims to digitize a clamped ±3V sinusoidal signal applied to an input pin. The documentation states that the tile uses a DSP block but the author is unsure and is using it as a placeholder. Testing involves applying an analog signal to input pin 1 and enabling input pin 2 to begin digitization, with a function generator recommended. The documentation is thin and the design appears incomplete or speculative, so its actual functionality is uncertain.",
+   "summary": "This project is described as a stand-in for an ADC ASIC design that aims to digitize a clamped ±3V sinusoidal signal applied to an input pin. The documentation states that the tile uses a DSP block but the author is unsure and is using it as a placeholder. Testing involves applying an analog signal to input pin 1 and enabling input pin 2 to begin digitization, with a function generator recommended. The documentation is thin and the design appears incomplete or speculative, so its actual functionality is uncertain.",
+   "summary_changed": false
+  },
+  {
+   "key": "785afc509be4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The project is a concrete NAND gate implementation; placeholder text appears in documentation only, not as a template submission."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit educational or teaching purpose in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation retains untemplated placeholder text and lacks design or test details."
+    }
+   ],
+   "notes": "Removed template/education tags; project is a real NAND gate with placeholder docs, added incomplete.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi project implements a simple NAND gate with two inputs and one output. The documentation is essentially a template with placeholder text, providing no details on how the design works or how to test it. No external hardware is mentioned. The project appears to be a minimal logic gate example, but the lack of documentation makes it difficult to assess its purpose or functionality.",
+   "summary": "This Wokwi project implements a simple NAND gate with two inputs and one output. The documentation is essentially a template with placeholder text, providing no details on how the design works or how to test it. No external hardware is described in the source. The project appears to be a minimal logic gate example whose purpose beyond that cannot be determined from the available documentation.",
+   "summary_changed": true
+  },
+  {
+   "key": "7ce46d64fd53",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "LEDs are mentioned only as external hardware, not as a design output; no LED output pin or driver is documented."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit educational content beyond the workshop origin."
+    }
+   ],
+   "add": [],
+   "notes": "Removed led and education tags: LED is only external hardware, and education isn't independently supported.",
+   "tags_before": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "led",
+    "workshop"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "workshop"
+   ],
+   "summary_before": "This design implements a NAND gate, with one input pin labeled 'Input A' and presumably another input, though the pin list is incomplete. The documentation is very sparse, with placeholder text and no clear explanation of how the design works or how to test it. External LEDs are mentioned as required hardware. It appears to be a workshop exercise created in Wokwi, but the lack of documentation makes it difficult to understand its full functionality.",
+   "summary": "This design implements a NAND gate, with one input pin labeled 'Input A' and presumably another input, though the pin list is incomplete. The documentation is very sparse, with placeholder text and no clear explanation of how the design works or how to test it. External LEDs are mentioned as required hardware. It appears to be a workshop exercise created in Wokwi, but the lack of documentation makes it difficult to understand its full functionality.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6155,
+  "completion_tokens": 1210,
+  "total_tokens": 7365,
+  "cost": 0.0032985,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032985,
+   "upstream_inference_prompt_cost": 0.0018465,
+   "upstream_inference_completions_cost": 0.001452
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032985,
+ "elapsed_s": 8.0
+}

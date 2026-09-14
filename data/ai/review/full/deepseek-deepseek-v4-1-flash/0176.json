@@ -1,0 +1,279 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3854b992d3ec",
+  "f61fb5319772",
+  "64d8a57e64c6",
+  "f822c92867eb",
+  "4444ab4e187b",
+  "549ede4f4827"
+ ],
+ "results": [
+  {
+   "key": "3854b992d3ec",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "A traffic light demo is not an industrial control application; no industrial context in source."
+    },
+    {
+     "tag": "education",
+     "reason": "No statement that it is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "The design is a state sequence selected by 2-bit input, i.e. a finite state machine."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "It steps through a fixed traffic-light sequence."
+    },
+    {
+     "tag": "led",
+     "reason": "Three outputs drive the traffic light lamps (implied LEDs)."
+    }
+   ],
+   "notes": "Removed industrial and education tags not supported by the source; kept fsm, sequencer, wokwi, led.",
+   "tags_before": [
+    "industrial",
+    "fsm",
+    "sequencer",
+    "education",
+    "wokwi",
+    "led"
+   ],
+   "tags": [
+    "fsm",
+    "sequencer",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "Traffic-light-sequence implements a simple traffic light state sequence from red through red-yellow, green and yellow back to red. Two input pins select the state and three output pins drive the corresponding lights. It is a Wokwi project with no tiles, intended as a basic educational demonstration. The documentation is minimal and does not describe any external hardware beyond the implied LEDs.",
+   "summary": "Traffic-light-sequence implements a simple traffic light state sequence from red through red-yellow, green and yellow back to red. Two input pins select the state and three output pins drive the corresponding lights. It is a Wokwi project with no tiles. The documentation is minimal and does not describe any external hardware beyond the implied LEDs.",
+   "summary_changed": true
+  },
+  {
+   "key": "f61fb5319772",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The source describes a logic circuit driving a 7-segment display, not a basic logic gate implementation."
+    },
+    {
+     "tag": "text",
+     "reason": "Output is a 7-segment letter display, not generic textual output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Explicitly outputs the letter 'A' on a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Drives a display output."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed logic-gate and text tags; the design is a 7-segment letter display.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "display",
+    "wokwi",
+    "text"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This Wokwi design continually outputs the letter 'A' on a 7-segment display unless any input is active, in which case the display changes. It uses a clock at 10000 Hz and a logic circuit to drive the display. The test involves running the clock and observing the output while toggling inputs. No external hardware beyond the display and input switches is required.",
+   "summary": "This Wokwi design continually outputs the letter 'A' on a 7-segment display unless any input is active, in which case the display changes. It uses a clock at 10000 Hz and a logic circuit to drive the display. The test involves running the clock and observing the output while toggling inputs. No external hardware beyond the display and input switches is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "64d8a57e64c6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No basic logic gate is described; it is a simple combinational pass-through."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Outputs depend only on inputs, but the source is too thin to confirm a purely combinational design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not describe the logic."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and combinational tags; added insufficient-doc.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "combinational"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This Wokwi design sets all outputs high when inputs IN0, IN1, IN2, and IN3 are high; otherwise, the outputs are low. The description claims that 'power goes in, power maybe comes out?' and that no testing is needed. The project is extremely simple and lacks detailed documentation. It uses 8 inputs and 8 outputs, but the logic only involves four inputs.",
+   "summary": "This Wokwi design sets all outputs high when inputs IN0, IN1, IN2, and IN3 are high; otherwise, the outputs are low. The description claims that 'power goes in, power maybe comes out?' and that no testing is needed. The project is extremely simple and lacks detailed documentation. It uses 8 inputs and 8 outputs, but the logic only involves four inputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "f822c92867eb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "The serial interface is a simple serial data/load-mode scheme, not a UART."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "Implements a Leaky Integrate-and-Fire spiking neuron."
+    },
+    {
+     "tag": "neuromorphic",
+     "reason": "Brain-inspired spiking neuron hardware."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Written in Verilog."
+    }
+   ],
+   "notes": "Removed uart tag; the serial interface is not a UART. Added verilog and spiking-neural-network.",
+   "tags_before": [
+    "neural-network",
+    "spiking-neural-network",
+    "uart",
+    "neuromorphic"
+   ],
+   "tags": [
+    "neural-network",
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This project implements a hardware-optimized Leaky Integrate-and-Fire (LIF) neuron in Verilog, designed for area efficiency while maintaining biological realism. It includes a serial interface for loading parameters and provides outputs for membrane voltage and spike events. The design can be used with DIP switches for stimulus and LEDs or a 7-segment display for monitoring. No external hardware is required for basic operation.",
+   "summary": "This project implements a hardware-optimized Leaky Integrate-and-Fire (LIF) neuron in Verilog, designed for area efficiency while maintaining biological realism. It includes a serial interface for loading parameters and provides outputs for membrane voltage and spike events. The design can be used with DIP switches for stimulus and LEDs or a 7-segment display for monitoring. No external hardware is required for basic operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "4444ab4e187b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design outputs analog VGA signals, not a generic display interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Intended for analog VGA display signals."
+    },
+    {
+     "tag": "dac",
+     "reason": "Implements current-switching DACs."
+    },
+    {
+     "tag": "analog",
+     "reason": "Analog circuit design with analog pins."
+    },
+    {
+     "tag": "video",
+     "reason": "Generates video signals for a VGA display."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Combines digital control with analog current-steering DACs."
+    }
+   ],
+   "notes": "Removed generic display tag; added mixed-signal and kept vga, dac, analog, video.",
+   "tags_before": [
+    "vga",
+    "dac",
+    "analog",
+    "video",
+    "display"
+   ],
+   "tags": [
+    "vga",
+    "dac",
+    "analog",
+    "video",
+    "mixed-signal"
+   ],
+   "summary_before": "This project implements current-switching DACs for generating analog VGA signals, using a 16x16 matrix of unit current sources to convert 8-bit digital inputs to analog current outputs. It is intended for analog VGA displays and requires external pull-up resistors and opamps to convert the current to voltage. The digital display controller is not yet implemented, and testing details are incomplete. The design is an experiment in analog VGA signal generation.",
+   "summary": "This project implements current-switching DACs for generating analog VGA signals, using a 16x16 matrix of unit current sources to convert 8-bit digital inputs to analog current outputs. It is intended for analog VGA displays and requires external pull-up resistors and opamps to convert the current to voltage. The digital display controller is not yet implemented, and testing details are incomplete. The design is an experiment in analog VGA signal generation.",
+   "summary_changed": false
+  },
+  {
+   "key": "549ede4f4827",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "ws2812",
+    "led",
+    "button"
+   ],
+   "tags": [
+    "game",
+    "ws2812",
+    "led",
+    "button"
+   ],
+   "summary_before": "LEDs Racer is a multiplayer game where up to four players press arcade buttons to race their LED segment toward a center circle on a WS2812B LED ring. The design drives the LED data line and provides per-player ready-to-play indicators and a frame update signal. It requires external arcade buttons with pull-down resistors and a WS2812B LED ring. The documentation is brief but sufficient to understand the game and its hardware needs.",
+   "summary": "LEDs Racer is a multiplayer game where up to four players press arcade buttons to race their LED segment toward a center circle on a WS2812B LED ring. The design drives the LED data line and provides per-player ready-to-play indicators and a frame update signal. It requires external arcade buttons with pull-down resistors and a WS2812B LED ring. The documentation is brief but sufficient to understand the game and its hardware needs.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6581,
+  "completion_tokens": 1294,
+  "total_tokens": 7875,
+  "cost": 0.002204883,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002204883,
+   "upstream_inference_prompt_cost": 0.000885003,
+   "upstream_inference_completions_cost": 0.00131988
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002204883,
+ "elapsed_s": 40.1
+}

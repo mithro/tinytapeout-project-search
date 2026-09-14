@@ -1,0 +1,202 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3d9cc1fa83ec",
+  "6f3693e85803",
+  "cbb5c3ddf605",
+  "4b555ab369a6",
+  "43f65ac4b8c1",
+  "4f19f626da3a",
+  "8a02974477bc",
+  "16a53621339f",
+  "709d1f901c1e",
+  "c6979b34f9e6"
+ ],
+ "results": [
+  {
+   "key": "3d9cc1fa83ec",
+   "tags": [
+    "watchdog",
+    "timer",
+    "spi",
+    "reset",
+    "irq",
+    "window-mode",
+    "state-machine",
+    "lock",
+    "microcontroller"
+   ],
+   "summary": "This design is a SPI-configurable watchdog timer intended to supervise an external microcontroller. The host sets a timeout over SPI and periodically kicks the watchdog either by SPI write or by a rising edge on a dedicated pin; if kicks stop, the watchdog first raises an IRQ warning and then pulls an active-low reset line low. It supports eight timeouts from 5.24 ms to 5.37 s with an optional prescaler, a window mode that flags kicks arriving too early, a lock bit that freezes configuration, and fault flags that survive the reset pulse so the cause can be read back. The FSM state is exposed on three output pins to aid silicon bring-up, and the design requires only the SPI host plus connections to the MCU reset and optional interrupt pins.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6f3693e85803",
+   "tags": [
+    "vga",
+    "video",
+    "animation",
+    "demo",
+    "game",
+    "minsky-oscillator",
+    "counter"
+   ],
+   "summary": "This project generates a real-time VGA animation of NASA's Space Launch System orbiting a crescent moon against a star-filled background. A compact Minsky circle oscillator updates the rocket's position once per video frame while counters animate flickering engine flames. It is tested by connecting the VGA output to a monitor or capture device and verifying stable sync, centered animation, smooth motion, correct colors, and continuous looping, with simulation checking the horizontal sync, vertical sync, and RGB timing. The design needs a Tiny Tapeout demo board, a VGA PMOD or compatible adapter, a VGA monitor and cable, and USB power.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cbb5c3ddf605",
+   "tags": [
+    "cordic",
+    "dds",
+    "sine",
+    "audio",
+    "sigma-delta",
+    "synthesizer",
+    "bit-serial",
+    "led",
+    "formal"
+   ],
+   "summary": "CORDIC-1 is a standalone sine generator implemented as a bit-serial CORDIC DDS engine in a single Tiny Tapeout tile. A 20-bit phase accumulator sweeps the CORDIC core, and a first-order sigma-delta modulator streams the sine on one output pin while a phase-locked square wave appears on another; a seven-bit input selects frequency from a 440 Hz default through roughly 68 Hz steps up to about 8.6 kHz, with a slow breathe mode at the top code. The design is verified exhaustively against reference math, FFT-checked for harmonic distortion, and formally proven for its control schedule. It needs no external hardware for the heartbeat and level-bar outputs, but an RC low-pass or the Tiny Tapeout Audio Pmod is required for analog audio.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4b555ab369a6",
+   "tags": [
+    "kalman-filter",
+    "accelerator",
+    "dsp",
+    "fixed-point",
+    "register-file",
+    "state-machine"
+   ],
+   "summary": "This project implements the measurement-update step of a basic Kalman filter as a fixed-function hardware accelerator in a single Tiny Tapeout tile. It exposes an 8-bit write data bus, register address and byte-select pins, a write enable, a software reset, a start trigger, and an 8-bit read data bus, allowing a host to load operands and read results. The documentation is very thin: beyond the pin list and a one-line description, no internal architecture, numerical format, or test procedure is given. No external hardware is required beyond clock, reset, and the standard Tiny Tapeout GPIO pins.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "43f65ac4b8c1",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "matrix-multiply",
+    "spi",
+    "fp4",
+    "sparse",
+    "multiplierless",
+    "accelerator",
+    "quantization"
+   ],
+   "summary": "This design is a mini tensor processing unit that computes a 3x3 output tile from INT8 activations and 1:2 structurally sparse E2M1 weights using a single time-multiplexed processing element. It avoids hardware multipliers entirely by decomposing each E2M1 product into a conditional add, a shift, and a conditional negate, and it is driven over SPI by an external host. The cocotb testbench drives the SPI interface like a real host and checks results against an independent golden model, covering both sparse and dense modes, partial frames, reset mid-frame, maximum-rate SPI, and exhaustive PE input combinations. No external hardware is required beyond an SPI-capable host such as the demo board's RP2040, though the host must load all operands before the first run because operand memories do not reset.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4f19f626da3a",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "mnist",
+    "classifier",
+    "ternary",
+    "bit-serial",
+    "7-segment",
+    "serial",
+    "quantization"
+   ],
+   "summary": "This project is a self-contained MNIST handwritten-digit classifier whose ternary weights are baked into the netlist as constants, so no RAM or ROM macros are needed. A host strobes START and shifts 64 binarized pixel bits in serially; the chip then runs a 64-32-10 MLP with binary hidden activations and reports the predicted digit on four bidirectional pins and on the on-board 7-segment display, taking about 172 clock cycles per digit at 10 MHz. The default variant achieves 80.3% test-set accuracy on 10,000 MNIST images and hardens to roughly 31% utilization of a 2x2 tile. No external hardware is required beyond a microcontroller or the demo board's RP2040 to drive the serial input.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8a02974477bc",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "mnist",
+    "classifier",
+    "ternary",
+    "bit-serial",
+    "conformal-prediction",
+    "early-exit",
+    "quantization"
+   ],
+   "summary": "Chrome Chain classifies handwritten digits from 8x8 4-bit greyscale images using a ternary-weight neural network and stops early under a distribution-free conformal guarantee as soon as the answer is decided. All control is on the bidirectional pins: a six-byte config blob is loaded first, then START is pulsed and the image is fed eight bits per cycle across four bitplanes while the host observes LD_READY. When the answer is ready, DONE pulses and the predicted class appears on four output pins, with a DFT selector exposing which checkpoint the decision was taken at. No external hardware is needed beyond a host able to drive the 8-bit bus and control pins, and four LEDs are enough to read the class.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "16a53621339f",
+   "tags": [
+    "game",
+    "conway",
+    "life",
+    "vga",
+    "video",
+    "interactive",
+    "cellular-automaton",
+    "cursor"
+   ],
+   "summary": "This project is an interactive Conway's Game of Life running on a VGA display, with toggleable bounded and toroidal board modes and cursor-based cell editing. Eleven active-high buttons control cursor movement, cell toggling, start/stop, cursor visibility, board mode, simulation speed, and reset, and the design runs at the standard 25.175 MHz VGA clock. It is tested by connecting a VGA Pmod and monitor, drawing a pattern such as a glider or blinker, and pressing play to watch the simulation evolve. The design requires a Tiny Tapeout VGA Pmod connector and eleven buttons with pull-down resistors.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "709d1f901c1e",
+   "tags": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "sensor",
+    "adc",
+    "education"
+   ],
+   "summary": "LELO-GR01 is an analog temperature sensor that can be used in two ways: raising one input produces a temperature-dependent oscillation frequency on an output pin, or raising a request input causes the chip to convert and present an 8-bit temperature value on the bidirectional pins with a done flag. The documentation is brief and does not describe the sensing principle, accuracy, or calibration. No external hardware is required, though a logic analyzer can be used to measure the oscillation frequency, and touching the chip can change its temperature. The project appears to be a student group design.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c6979b34f9e6",
+   "tags": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "sensor",
+    "education",
+    "insufficient-docs"
+   ],
+   "summary": "LELO-GR02 is described only as a temperature sensor from Group 2, with a power-up input and a single temperature-dependent oscillator output pin. There is no documentation of how it works, how it is tested, or what accuracy it achieves. The design appears to be an analog student project, but the available information is too thin to say more. No external hardware is mentioned.",
+   "confidence": "low",
+   "insufficient_docs": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7621,
+  "completion_tokens": 2247,
+  "total_tokens": 9868,
+  "cost": 0.0049827,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0049827,
+   "upstream_inference_prompt_cost": 0.0022863,
+   "upstream_inference_completions_cost": 0.0026964
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0049827,
+ "elapsed_s": 24.1
+}

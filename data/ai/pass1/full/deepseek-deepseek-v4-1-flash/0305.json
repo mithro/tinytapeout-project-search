@@ -1,0 +1,199 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6bdf5212b09c",
+  "30027dd8c7fc",
+  "16d29871532d",
+  "f5e95f338fc8",
+  "7ff4dfe90ee7",
+  "6249f10cf9a9",
+  "05d7e5aaf857",
+  "8cfebfc77cfb",
+  "2970cb210fca",
+  "5fb98c1d8402"
+ ],
+ "results": [
+  {
+   "key": "6bdf5212b09c",
+   "tags": [
+    "sand-simulation",
+    "physics",
+    "vga",
+    "qspi",
+    "game",
+    "animation",
+    "cellular-automaton",
+    "display"
+   ],
+   "summary": "SandSim is a SystemVerilog physics engine that simulates falling sand on a 36x48 binary grid, computing the next state for pairs of rows with a compute kernel. It outputs a 640x480-style VGA signal through the Tiny VGA pinout and stores data in external QSPI flash and RAM. Users drive any of the eight ui pins high to spawn a grain of sand at the top of the grid. It requires a TinyVGA Pmod and a TinyQSPI Pmod to operate.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "30027dd8c7fc",
+   "tags": [
+    "register-file",
+    "memory",
+    "bcd",
+    "education",
+    "state-machine",
+    "wokwi"
+   ],
+   "summary": "This project implements an 8-bit register bank with eight storage locations, addressed by separate 3-bit write and read pointers. Data is written when the write-enable signal is asserted and read back when the read-enable signal is asserted, with 8-bit data in and out on the dedicated pins. It is a simple educational design that needs no external hardware. The documentation is brief and does not describe any silicon test results or notable implementation details.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "16d29871532d",
+   "tags": [
+    "dsp",
+    "filter",
+    "fir",
+    "adc",
+    "dac",
+    "fixed-point",
+    "multiplier",
+    "audio"
+   ],
+   "summary": "This is an 8-bit, 8-tap Finite Impulse Response filter with parallel 8-bit input and output buses, using Q1.7 fixed-point coefficients that can be generated with MATLAB or Scilab. It requires an external MCU for clock generation and coefficient loading, and is intended to interface with an ADC08100 and AD9708 converter on a companion PCB. The design was verified with FPGA testing before tapeout. The documentation notes that a supporting PCB is planned but does not report silicon measurements.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f5e95f338fc8",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "fixed-point",
+    "state-machine",
+    "education",
+    "class-project"
+   ],
+   "summary": "TINY_NN implements a two-layer fully-connected neural network in hardware that classifies whether a 4-bit (x, y) coordinate lies inside or outside a circle. Layer 0 is a 2-input, 6-neuron linear layer with ReLU activation, and layer 1 is a 6-input, 1-neuron linear layer, all using 4-bit signed fixed-point arithmetic with saturating multiply-accumulate. A 6-state FSM sequences the computation, and the result is read from the inside_circle output once valid goes high. It needs four switches, four push buttons and two LEDs, and appears to be a student class project.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7ff4dfe90ee7",
+   "tags": [
+    "vga",
+    "display",
+    "animation",
+    "rom",
+    "silicon-art",
+    "gamepad",
+    "graphics",
+    "demo"
+   ],
+   "summary": "This design displays a bouncing Tiny Tapeout logo with an animated color gradient on a 640x480 VGA screen, with the 128x128 monochrome bitmap stored in a custom NOR ROM macro. The ROM's transistor pattern doubles as silicon art, making the logo visible in the diffusion layer of the fabricated chip. Inputs allow tiling the logo, switching to a solid color, and optionally controlling bouncing with a Gamepad Pmod. It requires a Tiny VGA Pmod and an optional Gamepad Pmod.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6249f10cf9a9",
+   "tags": [
+    "game",
+    "snake",
+    "vga",
+    "display",
+    "shift-register",
+    "bcd",
+    "animation",
+    "led"
+   ],
+   "summary": "This is a SystemVerilog implementation of the Snake game rendered over a 640x480 VGA interface, with an 8x8 tile gameboard and a rainbow-colored snake. The snake is stored in a 20-tile shift register, which caps its maximum length at 20 and the score at 99 due to limited BCD digit space. Five buttons control start and direction, and optional LEDs show current button presses. It requires a TinyVGA Pmod, a VGA monitor, and buttons or a joystick.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "05d7e5aaf857",
+   "tags": [
+    "game",
+    "bomberman",
+    "vga",
+    "display",
+    "multiplayer",
+    "animation",
+    "graphics"
+   ],
+   "summary": "This is a mini two-player Bomberman game implemented in SystemVerilog, where each player has up, down, left, right and bomb buttons. The game is displayed through a VGA interface using the standard Tiny Tapeout VGA pinout. Testing consists of connecting it to a VGA monitor and using the ten buttons. It requires a VGA Pmod, buttons, wires, resistors and a breadboard, and the documentation is otherwise very brief.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8cfebfc77cfb",
+   "tags": [
+    "pll",
+    "vco",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "clock",
+    "factory-test",
+    "test"
+   ],
+   "summary": "This is a test tile for a Tiny Tapeout PLL covering roughly 50-250 MHz, combining Sky HS logic blocks with analog blocks including a five-stage VCO, charge pump and loop capacitors. The digital side includes a programmable 4-bit clock scaler, reset logic that asserts RESET_OUT_N after 16 stable clocks, and a phase detector driving the charge pump. Testing involves setting the divider pins, asserting and clearing reset, and observing the raw clock and divided outputs on an oscilloscope. It requires a scope to inspect the output signals and is explicitly a test structure rather than a functional product.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2970cb210fca",
+   "tags": [
+    "pwm",
+    "uart",
+    "serial",
+    "state-machine",
+    "counter",
+    "communication",
+    "protocol"
+   ],
+   "summary": "This design is a UART-controlled seven-channel PWM generator that receives 8N1 serial commands on ui_in[0]. A two-byte command format selects a channel (0-6) and sets its duty cycle (0-255), with a shared 8-bit counter compared against each duty register to produce the PWM outputs. The UART transmitter returns 0xAA as an acknowledgment for every received byte, and an enable pin gates operation. It needs a USB-to-UART adapter or microcontroller and an oscilloscope or logic analyzer to observe the outputs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5fb98c1d8402",
+   "tags": [
+    "pwm",
+    "uart",
+    "serial",
+    "alu",
+    "lfsr",
+    "sequencer",
+    "communication",
+    "protocol",
+    "audio"
+   ],
+   "summary": "This is a UART-controlled smart I/O hub built around a 64-channel PWM engine, with channels divided into banks of eight selected by ui_in[6:4]. UART commands can write duty cycles, set a prescaler, and load internal modulation registers, while the upper eight channels are driven by a phase counter, an LFSR-style pattern source and an add/multiply datapath. A status page can be shown on uio_out when ui_in[7] is asserted, and a sequencer enable and clear-registers input are provided. It requires a USB-to-UART adapter or microcontroller and an oscilloscope or logic analyzer, and the pinout matches the TT Audio recommendation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6534,
+  "completion_tokens": 1746,
+  "total_tokens": 8280,
+  "cost": 0.003241458,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 896,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003241458,
+   "upstream_inference_prompt_cost": 0.001460538,
+   "upstream_inference_completions_cost": 0.00178092
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003241458,
+ "elapsed_s": 52.6
+}

@@ -1,0 +1,206 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "72632e477117",
+  "760aad6a1b9b",
+  "541986cbf4b2",
+  "2c7032baeaee",
+  "8e00d56bcf85",
+  "8910712fb32a",
+  "498c6f747c35",
+  "ea300a07901e",
+  "6d8e7fa48e8f",
+  "dc8b149aa863"
+ ],
+ "results": [
+  {
+   "key": "72632e477117",
+   "tags": [
+    "cpu",
+    "16-bit",
+    "spi",
+    "qspi",
+    "i2c",
+    "debug",
+    "external-memory",
+    "compiler",
+    "toolchain"
+   ],
+   "summary": "This project implements a 16-bit CPU with a custom instruction set, designed to use external SPI/QSPI flash for program storage and SPI RAM for data. It exposes 8 general-purpose input pins, 8 output pins, and 8 bidirectional pins that carry SPI, QSPI, I2C, and debug signals. Testing requires assembling code with a custom toolchain and uploading the program image to external flash, then running and debugging via the exposed interfaces. The design is notable for its external memory architecture and the accompanying work-in-progress compiler and IDE integration.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "760aad6a1b9b",
+   "tags": [
+    "adpll",
+    "pll",
+    "dco",
+    "phase-frequency-detector",
+    "loop-filter",
+    "lock-detector",
+    "digital",
+    "clock-generation"
+   ],
+   "summary": "This project implements an all-digital phase-locked loop (ADPLL) with a phase-frequency detector, proportional-integral loop filter, 24-bit phase-accumulator digitally controlled oscillator, and a leaky-bucket lock detector. It uses a reference input on ui_in[0] and outputs the DCO clock and lock status on uo_out[1] and uo_out[0] respectively. Testing involves providing a system clock and a reference square wave, then monitoring the outputs with an oscilloscope or logic analyzer to verify frequency tracking and lock assertion. The design is notable for its fully digital architecture and configurable lock thresholds.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "541986cbf4b2",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "rv32i",
+    "gpio",
+    "core",
+    "minimal"
+   ],
+   "summary": "This project is a minimal RISC-V core implementing an RV32I-like instruction set, intended for Tiny Tapeout. It provides 8 general-purpose input pins and 8 output pins for external interfacing. The documentation is extremely sparse, offering only a one-line description and pin names, with no details on how to test or program the core. As a result, the summary is limited to what can be inferred from the title and pins.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "2c7032baeaee",
+   "tags": [
+    "cpu",
+    "risc",
+    "16-bit",
+    "65c02",
+    "pin-compatible",
+    "processor",
+    "interrupt"
+   ],
+   "summary": "This project is a 16-bit RISC processor designed to be logically pin-compatible with the WDC 65C02, allowing it to be used as a drop-in replacement in existing systems. It provides address and data buses multiplexed on the bidirectional pins, along with interrupt, ready, and sync signals. The documentation is minimal, consisting only of a one-line description and pin names, so testing and usage details are not provided. The design is notable for its compatibility with a classic microprocessor interface.",
+   "confidence": "medium",
+   "insufficient_docs": true
+  },
+  {
+   "key": "8e00d56bcf85",
+   "tags": [
+    "audio",
+    "sound",
+    "synthesizer",
+    "pwm",
+    "dds",
+    "cordic",
+    "sine",
+    "triangle",
+    "wave-generator"
+   ],
+   "summary": "This project is a two-channel audio wave generator that produces sine and triangle waves using direct digital synthesis and CORDIC algorithms, output as an 8-bit PWM signal. It is controlled via a parallel bus interface with two 16-bit frequency registers, and it requires an external Audio Pmod for output. Testing can be done with simulation tools like GTKWave, and the design is notable for its multi-channel synthesis and PWM output on a single pin.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8910712fb32a",
+   "tags": [
+    "tdc",
+    "resistance",
+    "rc",
+    "sensor",
+    "uart",
+    "time-to-digital",
+    "measurement"
+   ],
+   "summary": "This project implements a time-to-digital converter that estimates the resistance of an external RC circuit by measuring its rise time in response to a step signal. It outputs the calculated 32-bit resistance value via UART. Testing requires only a resistor and a 10 nF capacitor connected to the appropriate pins. The design is notable for providing a way to measure resistance without a mixed-signal ADC.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "498c6f747c35",
+   "tags": [
+    "ring-oscillator",
+    "trng",
+    "pvt-sensor",
+    "spi",
+    "frequency-counter",
+    "health-monitor",
+    "differential",
+    "entropy",
+    "sky130"
+   ],
+   "summary": "This project integrates five configurable ring oscillators with a 16-bit frequency counter, a true random number generator, and a health monitor for PVT characterization and fault detection. It supports both parallel and SPI control modes, with features like auto gate timing, prescaler, and differential beat-frequency measurement. Testing involves configuring via SPI or parallel pins, gating the oscillators, and reading the counts or TRNG data. The design is notable for its comprehensive on-chip characterization capabilities and all-digital implementation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ea300a07901e",
+   "tags": [
+    "stdp",
+    "neuromorphic",
+    "learning",
+    "spi",
+    "lut",
+    "r-stdp",
+    "eligibility-trace",
+    "anti-hebbian"
+   ],
+   "summary": "This project is a digital spike-timing-dependent plasticity (STDP) learning controller with a programmable LUT, configurable learning rate, reward-gated updates, anti-Hebbian mode, and an eligibility trace. It captures pre- and post-synaptic spike timestamps, computes weight changes, and outputs update signals. Configuration is done via SPI, and it requires external spike sources and an optional reward signal. The design is notable for its biologically inspired features and comprehensive test suite.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6d8e7fa48e8f",
+   "tags": [
+    "neuron",
+    "stochastic",
+    "lfsr",
+    "sigmoid",
+    "spi",
+    "neuromorphic",
+    "lif",
+    "refractory"
+   ],
+   "summary": "This project implements a stochastic leaky integrate-and-fire neuron with a configurable 16-bit LFSR, programmable sigmoid LUT, and refractory period. It supports both parallel and SPI control modes, with outputs for spike events and membrane potential monitoring. Testing involves configuring via SPI or parallel pins and observing spike outputs. The design is notable for its stochastic firing mechanism and neuromorphic computing focus.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "dc8b149aa863",
+   "tags": [
+    "memristor",
+    "crossbar",
+    "spi",
+    "controller",
+    "dac",
+    "adc",
+    "pulse-train",
+    "compliance",
+    "sneak-path"
+   ],
+   "summary": "This project is a peripheral controller for 8x8 memristive crossbar arrays, supporting READ, SET, RESET, FORMING, and SWEEP modes with configurable pulse widths, pulse trains, and compliance current limits. It interfaces with external DACs and ADCs via SPI and provides row/column addressing and V/2 half-select biasing. Testing requires an SPI master, external DAC/ADC, and a crossbar array. The design is notable for its device-agnostic approach and comprehensive control features.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "8e00d56bcf85: 3 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 10690,
+  "completion_tokens": 1871,
+  "total_tokens": 12561,
+  "cost": 0.0054522,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0054522,
+   "upstream_inference_prompt_cost": 0.003207,
+   "upstream_inference_completions_cost": 0.0022452
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0054522,
+ "elapsed_s": 15.2
+}

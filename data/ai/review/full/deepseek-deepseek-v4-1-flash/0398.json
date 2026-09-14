@@ -1,0 +1,261 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6db7eb0f02f0",
+  "867b900b8a59",
+  "b155e0852d19",
+  "ddd7ab353eb1",
+  "766b83c18147",
+  "c1485969d58d"
+ ],
+ "results": [
+  {
+   "key": "6db7eb0f02f0",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "The 7-segment display is a discrete LED output device driven by the design."
+    }
+   ],
+   "notes": "Added led tag because the 7-segment display is an LED output device.",
+   "tags_before": [
+    "7-segment",
+    "fsm",
+    "lfsr",
+    "clock-divider",
+    "flip-flop",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "fsm",
+    "lfsr",
+    "clock-divider",
+    "flip-flop",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "This project creates a random walk animation on a 7-segment display, where the active segment moves randomly. It uses a finite state machine with 14 flip-flops and a linear feedback shift register to generate randomness. A clock divider, controlled by DIP switches, slows the walk to a visible speed, and an optional flashing dot can be enabled. The design is implemented in Wokwi and is self-initializing, requiring no reset signal.",
+   "summary": "This project creates a random walk animation on a 7-segment display, where the active segment moves randomly. It uses a finite state machine with 14 flip-flops and a linear feedback shift register to generate randomness. A clock divider, controlled by DIP switches, slows the walk to a visible speed, and an optional flashing dot can be enabled. The design is implemented in Wokwi and is self-initializing, requiring no reset signal.",
+   "summary_changed": false
+  },
+  {
+   "key": "867b900b8a59",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "wokwi",
+     "reason": "The design is written in Verilog; the Wokwi link is only an online simulation, not the implementation language."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed wokwi and education tags because the implementation is Verilog and no educational intent is stated.",
+   "tags_before": [
+    "game",
+    "audio",
+    "button",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "game",
+    "audio",
+    "button",
+    "led"
+   ],
+   "summary_before": "This design implements the 'Simon Says' memory game, where the user repeats an ever-growing sequence of colors, each associated with a tone played on a speaker. It requires four push buttons with pull-down resistors, four LEDs, and optionally a speaker or buzzer; the game is reset and then started by pressing any button. The design needs a 50 kHz clock input and has been tested in the Wokwi online simulator. It is a simple educational game with clear documentation.",
+   "summary": "This design implements the 'Simon Says' memory game, where the user repeats an ever-growing sequence of colors, each associated with a tone played on a speaker. It requires four push buttons with pull-down resistors, four LEDs, and optionally a speaker or buzzer; the game is reset and then started by pressing any button. The design needs a 50 kHz clock input and has been tested in the Wokwi online simulator. It is a simple educational game with clear documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "b155e0852d19",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The source describes a 4-register datapath, not a multi-register file."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "No pipelined datapath is described."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "The design is a datapath/ALU controlled by an FSM, not a pattern or event sequencer."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The Collatz sequence is a mathematical computation, not an esoteric programming language or novelty computation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported register-file, pipeline, sequencer, and esoteric tags.",
+   "tags_before": [
+    "alu",
+    "fsm",
+    "register-file",
+    "pipeline",
+    "sequencer",
+    "esoteric",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This component computes the Collatz sequence for an 8-bit input number, using a four-register datapath and ALU that emulates basic assembler instructions driven by a simple state machine. Data is presented on the 8-bit input bus and the reset signal is activated to latch the input and begin the series calculation, with results appearing on the 8-bit output bus. The sequence is computed at close to the clock rate, so intermediate values are not visible without probing individual digital channels on an oscilloscope. The design is synchronous and includes a reset input, but the documentation gives no further detail on the instruction set or timing.",
+   "summary": "This component computes the Collatz sequence for an 8-bit input number, using a four-register datapath and ALU that emulates basic assembler instructions driven by a simple state machine. Data is presented on the 8-bit input bus and the reset signal is activated to latch the input and begin the series calculation, with results appearing on the 8-bit output bus. The sequence is computed at close to the clock rate, so intermediate values are not visible without probing individual digital channels on an oscilloscope. The design is synchronous and includes a reset input, but the documentation gives no further detail on the instruction set or timing.",
+   "summary_changed": false
+  },
+  {
+   "key": "ddd7ab353eb1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "calculator",
+     "reason": "The design is an FFT processor, not an arithmetic calculator with keypad and numeric display."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "The design uses mode_change and enter buttons for user control."
+    }
+   ],
+   "notes": "Removed calculator and education tags; added button tag for the mode/enter controls.",
+   "tags_before": [
+    "fft",
+    "dsp",
+    "7-segment",
+    "fixed-point",
+    "calculator",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "fft",
+    "dsp",
+    "7-segment",
+    "fixed-point",
+    "verilog",
+    "button"
+   ],
+   "summary_before": "This project implements a 4-point, 8-point, and 16-point FFT calculator using the radix-2 Cooley-Tukey algorithm with 4-bit fixed-point precision. It features a simple user interface with buttons for mode selection and data entry, and displays results on a 7-segment display. The design is intended for low-complexity circuits and includes bit-reversal ordering and a single butterfly unit. It requires external buttons and a way to input and read 8-bit data.",
+   "summary": "This project implements a 4-point, 8-point, and 16-point FFT calculator using the radix-2 Cooley-Tukey algorithm with 4-bit fixed-point precision. It features a simple user interface with buttons for mode selection and data entry, and displays results on a 7-segment display. The design is intended for low-complexity circuits and includes bit-reversal ordering and a single butterfly unit. It requires external buttons and a way to input and read 8-bit data.",
+   "summary_changed": false
+  },
+  {
+   "key": "766b83c18147",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The project stores Laplace transform text, not digital signal processing hardware."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon test report states the design was working on TT04."
+    }
+   ],
+   "notes": "Removed dsp and education tags; added silicon-tested based on the working silicon report.",
+   "tags_before": [
+    "rom",
+    "lookup-table",
+    "ascii",
+    "education",
+    "dsp",
+    "memory"
+   ],
+   "tags": [
+    "rom",
+    "lookup-table",
+    "ascii",
+    "memory",
+    "silicon-tested"
+   ],
+   "summary_before": "This project is a read-only memory that stores ASCII encodings of LaTeX code for typesetting Laplace transforms of common functions. It is controlled by an address input and a start signal, and it outputs the function and its transform character by character on two separate 8-bit output buses. The design uses two address spaces: one for the character data and one for pointers to each transform's start and length. It was verified on silicon and correctly recalled 43 Laplace transforms after a proper reset.",
+   "summary": "This project is a read-only memory that stores ASCII encodings of LaTeX code for typesetting Laplace transforms of common functions. It is controlled by an address input and a start signal, and it outputs the function and its transform character by character on two separate 8-bit output buses. The design uses two address spaces: one for the character data and one for pointers to each transform's start and length. It was verified on silicon and correctly recalled 43 Laplace transforms after a proper reset.",
+   "summary_changed": false
+  },
+  {
+   "key": "c1485969d58d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "The source describes ring oscillators whose frequency depends on temperature but does not implement a temperature sensor interface or circuit."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No generic sensor input interface is present."
+    }
+   ],
+   "add": [],
+   "notes": "Removed temperature-sensor and sensor-interface tags because the design only exposes oscillator counts and does not implement a sensor interface.",
+   "tags_before": [
+    "temperature-sensor",
+    "ring-oscillator",
+    "uart",
+    "counter",
+    "oscillator",
+    "sensor-interface",
+    "verilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "uart",
+    "counter",
+    "oscillator",
+    "verilog"
+   ],
+   "summary_before": "This design implements a temperature sensor using four ring oscillators whose frequencies vary with temperature. It counts the oscillator cycles over a fixed period of the system clock, accumulates the counts based on a selectable sum factor, and transmits the 3-byte sum over UART when a start code is received. The oscillator counter divided by two is also output on the bidirectional pins and upper output pins. The project is based on a previous Tiny Tapeout design and requires an external clock and UART connection for testing; no silicon test results are provided.",
+   "summary": "This design implements a temperature sensor using four ring oscillators whose frequencies vary with temperature. It counts the oscillator cycles over a fixed period of the system clock, accumulates the counts based on a selectable sum factor, and transmits the 3-byte sum over UART when a start code is received. The oscillator counter divided by two is also output on the bidirectional pins and upper output pins. The project is based on a previous Tiny Tapeout design and requires an external clock and UART connection for testing; no silicon test results are provided.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7713,
+  "completion_tokens": 1567,
+  "total_tokens": 9280,
+  "cost": 0.0041943,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041943,
+   "upstream_inference_prompt_cost": 0.0023139,
+   "upstream_inference_completions_cost": 0.0018804
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041943,
+ "elapsed_s": 7.9
+}

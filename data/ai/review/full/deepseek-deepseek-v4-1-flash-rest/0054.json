@@ -1,0 +1,447 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7781ca06b80a",
+  "6f2840d99328",
+  "0e0816dac323",
+  "887b0e021c74",
+  "e24c5be4614f",
+  "117469610373"
+ ],
+ "results": [
+  {
+   "key": "7781ca06b80a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "No adder in the design; it is a wear-leveling controller with mapping/wear tables."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU is described."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "No evidence of Wokwi use; testing is via cocotb."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent stated."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Not a basic logic gate implementation."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Design is FSM/sequential, not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "Maintains mapping and wear-counter tables for EEPROM block management."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Operations are pipelined through a purely digital finite-state machine."
+    },
+    {
+     "tag": "error-correction",
+     "reason": "Includes Hamming(6,3) single-error correction on persistent state."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Provides a Cocotb testbench for automated verification."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "security",
+     "reason": "Feistel address scrambler provides resistance against wear-leveling attacks."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated adder/ALU design; replaced with tags and summary matching the wear-leveling controller source.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "wokwi",
+    "education",
+    "logic-gate",
+    "combinational"
+   ],
+   "tags": [
+    "memory",
+    "fsm",
+    "error-correction",
+    "cocotb",
+    "verilog",
+    "security"
+   ],
+   "summary_before": "This project is an adder and ALU design created using the Wokwi simulator. It is intended for educational purposes, demonstrating basic arithmetic and logic operations. The design includes logic gates and combinational logic. It is a simple digital circuit suitable for learning digital design.",
+   "summary": "This project is a hardware EEPROM wear-leveling controller implementing the Start-Gap algorithm with a 2-round Feistel address scrambler. It maintains an 8-entry logical-to-physical mapping table and 16-bit wear counters per physical block, triggering remaps when wear differences exceed a threshold. Additional features include Hamming(6,3) single-error correction, bad-block retirement, saturating wear counters, and an in-band telemetry port. The purely digital finite-state machine is written in Verilog and verified with a Cocotb testbench.",
+   "summary_changed": true
+  },
+  {
+   "key": "6f2840d99328",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "power-management",
+     "reason": "No power supply or regulation functionality; it is an ADC."
+    },
+    {
+     "tag": "ldo",
+     "reason": "No low dropout regulator in the design."
+    },
+    {
+     "tag": "voltage-reference",
+     "reason": "No bandgap or reference voltage generator described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adc",
+     "reason": "Implements an 8-bit sigma-delta decimator ADC."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "Processes 1-bit sigma-delta bitstreams with a 256-cycle decimator."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Verified with a cocotb testbench."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "ADC conversion with gain/offset trim and status flags is a measurement application."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated power supply design; replaced with tags and summary matching the sigma-delta ADC source.",
+   "tags_before": [
+    "power-management",
+    "ldo",
+    "voltage-reference"
+   ],
+   "tags": [
+    "adc",
+    "sigma-delta",
+    "cocotb",
+    "verilog",
+    "instrumentation"
+   ],
+   "summary_before": "This project is a power supply design that accepts a 5V power supply or USB power source. It is intended for use with external hardware such as push buttons, LEDs, and a breadboard for prototyping. The design likely provides regulated power for digital circuits. It is a simple power management application.",
+   "summary": "This project is an enable-controlled 8-bit sigma-delta decimator ADC for 1-bit bitstreams. The incoming bitstream is sampled by the Tiny Tapeout clock and a 256-cycle decimator counts ones to produce a raw 8-bit code. Gain trim and signed offset trim are applied, with the calibrated result output on uo[7:0] and status bits {saturated, activity, busy, valid} on uio[7:4]. It is written in Verilog and verified with a cocotb testbench.",
+   "summary_changed": true
+  },
+  {
+   "key": "0e0816dac323",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rom",
+     "reason": "No read-only memory block is described."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory storage block in the design."
+    },
+    {
+     "tag": "cipher",
+     "reason": "No cipher or encryption functionality."
+    },
+    {
+     "tag": "error-correction",
+     "reason": "No error detection or correction logic."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "No measurement or instrumentation application."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite-state machine is described; it is a combinational decoder."
+    }
+   ],
+   "add": [
+    {
+     "tag": "decoder",
+     "reason": "Translates a 4-bit HEX input into a 7-segment glyph pattern."
+    },
+    {
+     "tag": "bcd",
+     "reason": "BCD/HEX to 7-segment decoding logic."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Drives seven-segment display segments a-g and decimal point."
+    },
+    {
+     "tag": "display",
+     "reason": "Outputs a display glyph pattern."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Includes a cocotb regression test."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Pure translation of input to segment pattern with no sequential state described."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated ROM/cipher design; replaced with tags and summary matching the 7-segment decoder source.",
+   "tags_before": [
+    "rom",
+    "memory",
+    "cipher",
+    "error-correction",
+    "instrumentation",
+    "fsm"
+   ],
+   "tags": [
+    "decoder",
+    "bcd",
+    "7-segment",
+    "display",
+    "cocotb",
+    "verilog",
+    "combinational"
+   ],
+   "summary_before": "This project is a ROM and memory design that includes a cipher and error-correction functionality. It is controlled by a finite-state machine and is intended for instrumentation applications. The design likely stores data and performs encryption or error checking. It is a digital logic block with multiple functions.",
+   "summary": "This project is a BCD/HEX to 7-segment decoder that translates a 4-bit input into a seven-segment glyph pattern for 0-9, A, b, C, d, e, and F. It supports display enable, blank, lamp test, decimal point input, and an active-low mode for common-anode or common-cathode displays. Status outputs indicate valid digit, invalid digit, display on, and active-low mode echo. It is written in Verilog and verified with a cocotb regression plus a standalone Verilog check.",
+   "summary_changed": true
+  },
+  {
+   "key": "887b0e021c74",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "No industrial control application; it is a stream cipher demonstration."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite-state machine is described; it uses two registers and a control edge."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent stated."
+    },
+    {
+     "tag": "led",
+     "reason": "No LED output in the design."
+    },
+    {
+     "tag": "button",
+     "reason": "No pushbutton input interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cipher",
+     "reason": "Implements a naive stream cipher demonstration."
+    },
+    {
+     "tag": "crypto",
+     "reason": "Cryptography-related design."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Contains two internal 8-bit registers for data and key."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated washing machine controller; replaced with tags and summary matching the stream cipher source.",
+   "tags_before": [
+    "industrial",
+    "fsm",
+    "education",
+    "led",
+    "button"
+   ],
+   "tags": [
+    "cipher",
+    "crypto",
+    "verilog",
+    "register-file"
+   ],
+   "summary_before": "The washing machine controller is a modular digital system implemented in Verilog using a finite-state-machine (FSM). It controls a washing machine cycle with states for filling, washing, rinsing, and spinning. The design uses LEDs to indicate the current state and buttons for user input. It is intended for educational purposes to demonstrate FSM design.",
+   "summary": "This project is a naive and very simple implementation of a stream cipher demonstration. It contains two internal 8-bit registers, data_mem and key_mem, which store the input data and encryption key. The output is generated by XORing the stored data and key values, with uio_in[0] triggering register updates on a rising edge and uio_in[1] selecting which register is loaded. The bidirectional pins are configured as inputs only and are never driven by the design.",
+   "summary_changed": true
+  },
+  {
+   "key": "e24c5be4614f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "image-processing",
+     "reason": "No image processing functionality."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder described."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier described."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "Implemented as a finite-state machine controlling washing stages."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Washing machine control is an appliance/industrial control application."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "led",
+     "reason": "DONE_LED output indicates state."
+    },
+    {
+     "tag": "button",
+     "reason": "START button input."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "Drives WASH_MOTOR and SPIN_MOTOR outputs."
+    },
+    {
+     "tag": "education",
+     "reason": "Documentation describes it as a simplified teaching-style washing process simulation."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated image-processing/DSP design; replaced with tags and summary matching the washing machine FSM source.",
+   "tags_before": [
+    "image-processing",
+    "dsp",
+    "adder",
+    "multiplier",
+    "alu"
+   ],
+   "tags": [
+    "fsm",
+    "industrial",
+    "verilog",
+    "led",
+    "button",
+    "motor-control",
+    "education"
+   ],
+   "summary_before": "This project implements image processing algorithms using digital signal processing techniques. It includes arithmetic units such as adders, multipliers, and an ALU. The design processes image data in a pipelined fashion. It is intended for educational purposes to demonstrate DSP concepts.",
+   "summary": "The washing machine controller is a modular digital system implemented in Verilog using a finite-state machine. It simulates a simplified washing process and automatically progresses through stages such as filling, washing, rinsing, and spinning. If the door is closed, the start button can be pressed, and the washing duration can be changed using a lever. Outputs include water valve, wash motor, spin motor, and a done LED, with a button for start and levers for mode select and door closed.",
+   "summary_changed": true
+  },
+  {
+   "key": "117469610373",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cocotb",
+     "reason": "No cocotb testbench is mentioned; testing is described as physical verification."
+    },
+    {
+     "tag": "template",
+     "reason": "Not a boilerplate or starter template project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "Generates a configurable pulse-width modulated output."
+    },
+    {
+     "tag": "counter",
+     "reason": "Uses an 8-bit counter to time the PWM period."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Compares the counter against the duty cycle configuration."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Produces a configurable waveform signal."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "led",
+     "reason": "Documentation recommends an LED to observe PWM brightness."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated cocotb template test design; replaced with tags and summary matching the PWM generator source.",
+   "tags_before": [
+    "cocotb",
+    "template",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "pwm",
+    "counter",
+    "comparator",
+    "signal-generator",
+    "led"
+   ],
+   "summary_before": "This project is a test design that uses the cocotb testbench framework for verification. It was tested using cocotb and Icarus Verilog simulation. The design likely contains simple logic blocks for testing purposes. It serves as an example of how to use cocotb with TinyTapeout.",
+   "summary": "This project is a PWM generator with configurable period and duty cycle via 8-bit input pins. It uses a two-process finite-state machine structure consisting of an 8-bit counter and an 8-bit comparator, with the period set on ui_in and the duty cycle set on uio_in. The module continuously increments the counter and compares it against the duty cycle configuration to drive uo_out[0] HIGH or LOW, with asynchronous reset and synchronous enable. An LED or PMOD LED module can be connected to uo_out[0] to observe brightness scaling with duty cycle.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8008,
+  "completion_tokens": 2439,
+  "total_tokens": 10447,
+  "cost": 0.002651986,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002651986,
+   "upstream_inference_prompt_cost": 0.001042246,
+   "upstream_inference_completions_cost": 0.00160974
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002651986,
+ "elapsed_s": 25.4
+}

@@ -1,0 +1,191 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b02f45ec6073",
+  "82b8bd7a9feb",
+  "62957f1f0cab",
+  "199b9515c05e",
+  "5e38e05b6639",
+  "5a64b78ad34e"
+ ],
+ "results": [
+  {
+   "key": "b02f45ec6073",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The pin names mention segment c through g and dot, but the documentation never explains a seven-segment display or its use; the outputs are described as motor enables, so the display tag is not supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The language is Wokwi and the design is a Wokwi project."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment tag; the documentation does not describe a seven-segment display.",
+   "tags_before": [
+    "fsm",
+    "motor-control",
+    "robotics",
+    "sensor-interface",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "fsm",
+    "motor-control",
+    "robotics",
+    "sensor-interface",
+    "wokwi"
+   ],
+   "summary_before": "This is a four-state Moore finite state machine intended for a microrobot that detects water contamination, with two sensor inputs and two motor enable outputs. The state transitions are defined by a truth table, and the current state is stored in D flip-flops. The design requires external hardware including a 3-electrode sensor and motors, and some state bits are also routed to seven-segment display segments. The documentation is clear and includes a complete truth table, though the display outputs are not fully explained.",
+   "summary": "This is a four-state Moore finite state machine intended for a microrobot that detects water contamination, with two sensor inputs and two motor enable outputs. The state transitions are defined by a truth table, and the current state is stored in D flip-flops. The design requires external hardware including a 3-electrode sensor and motors. The documentation is clear and includes a complete truth table.",
+   "summary_changed": true
+  },
+  {
+   "key": "82b8bd7a9feb",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "timer",
+    "counter",
+    "clock-generator",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "timer",
+    "counter",
+    "clock-generator",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This is a two-minute toothbrush timer that divides a 10 kHz clock to produce 30-second increments, with each increment indicated by a segment on the seven-segment display. Each of the four increments can be gated by an enable switch so the user must acknowledge completion before moving on, and at the end all middle segments flash. A pause input freezes the timer, and a reset input restarts it. The documentation is detailed and includes testing instructions, though it notes that the first increment may be shorter than 30 seconds after a hard reset.",
+   "summary": "This is a two-minute toothbrush timer that divides a 10 kHz clock to produce 30-second increments, with each increment indicated by a segment on the seven-segment display. Each of the four increments can be gated by an enable switch so the user must acknowledge completion before moving on, and at the end all middle segments flash. A pause input freezes the timer, and a reset input restarts it. The documentation is detailed and includes testing instructions, though it notes that the first increment may be shorter than 30 seconds after a hard reset.",
+   "summary_changed": false
+  },
+  {
+   "key": "62957f1f0cab",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "shift-register",
+    "communication",
+    "wokwi"
+   ],
+   "tags": [
+    "uart",
+    "shift-register",
+    "communication",
+    "wokwi"
+   ],
+   "summary_before": "This is a customized UART string transmitter that sends the fixed string \"EDM!\" using five 21-bit shift registers, with a 300 Hz clock and a 300 baud rate. It is a copy of a previous Tiny Tapeout design and requires an external MCU or UART-to-USB adapter connected to the TX output pin. Testing involves setting the clock, load and output enable switches appropriately and receiving the string on a serial terminal. The documentation is brief but includes clear testing steps and acknowledges the design's origin.",
+   "summary": "This is a customized UART string transmitter that sends the fixed string \"EDM!\" using five 21-bit shift registers, with a 300 Hz clock and a 300 baud rate. It is a copy of a previous Tiny Tapeout design and requires an external MCU or UART-to-USB adapter connected to the TX output pin. Testing involves setting the clock, load and output enable switches appropriately and receiving the string on a serial terminal. The documentation is brief but includes clear testing steps and acknowledges the design's origin.",
+   "summary_changed": false
+  },
+  {
+   "key": "199b9515c05e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "bit-serial",
+    "spi",
+    "uart"
+   ],
+   "tags": [
+    "cpu",
+    "esoteric",
+    "bit-serial",
+    "spi",
+    "uart"
+   ],
+   "summary_before": "The M0 is a 16-bit bit-serial microprocessor based on the SUBLEQ architecture, requiring external SPI RAM and ROM for operation. It includes a transmit UART for serial output and interoperates with Oleg Mazonka's HSQ C-compiler for SUBLEQ. The design can be tested without RAM/ROM by observing SPI clock patterns and UART output, or with external memory for full program execution. Notable for fitting a capable processor into a very small area, though it operates slowly due to its bit-serial nature.",
+   "summary": "The M0 is a 16-bit bit-serial microprocessor based on the SUBLEQ architecture, requiring external SPI RAM and ROM for operation. It includes a transmit UART for serial output and interoperates with Oleg Mazonka's HSQ C-compiler for SUBLEQ. The design can be tested without RAM/ROM by observing SPI clock patterns and UART output, or with external memory for full program execution. Notable for fitting a capable processor into a very small area, though it operates slowly due to its bit-serial nature.",
+   "summary_changed": false
+  },
+  {
+   "key": "5e38e05b6639",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "synchronizer",
+    "clock-domain-crossing",
+    "flip-flop",
+    "education"
+   ],
+   "tags": [
+    "synchronizer",
+    "clock-domain-crossing",
+    "flip-flop",
+    "education"
+   ],
+   "summary_before": "This design implements and compares three different clock domain crossing synchronizers: a two flip-flop synchronizer, a recirculation mux synchronizer, and a toggle synchronizer. The user can select which synchronizer output to observe using a 3-bit selector input, and the design includes an enable control block to run each synchronizer once. External hardware is not required beyond clock and data sources to drive the inputs. The project is notable for being an educational testbed to study metastability mitigation techniques in multi-clock designs.",
+   "summary": "This design implements and compares three different clock domain crossing synchronizers: a two flip-flop synchronizer, a recirculation mux synchronizer, and a toggle synchronizer. The user can select which synchronizer output to observe using a 3-bit selector input, and the design includes an enable control block to run each synchronizer once. External hardware is not required beyond clock and data sources to drive the inputs. The project is notable for being an educational testbed to study metastability mitigation techniques in multi-clock designs.",
+   "summary_changed": false
+  },
+  {
+   "key": "5a64b78ad34e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "rom",
+    "fsm",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "rom",
+    "fsm",
+    "education"
+   ],
+   "summary_before": "This design is an implementation of the SAP-1 (Simple As Possible) CPU from the book 'Digital Computer Electronics' by Malvino and Brown. It executes a fixed program hard-coded in a 16x8 ROM, implementing instructions like LDA, ADD, SUB, and OUT, with the results appearing on an 8-bit output. It requires an external clock and reset signal, and the output can be observed via LEDs. The project is notable for being an educational CPU implementation that adapts the book's shared-bus architecture to CMOS-friendly design.",
+   "summary": "This design is an implementation of the SAP-1 (Simple As Possible) CPU from the book 'Digital Computer Electronics' by Malvino and Brown. It executes a fixed program hard-coded in a 16x8 ROM, implementing instructions like LDA, ADD, SUB, and OUT, with the results appearing on an 8-bit output. It requires an external clock and reset signal, and the output can be observed via LEDs. The project is notable for being an educational CPU implementation that adapts the book's shared-bus architecture to CMOS-friendly design.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8944,
+  "completion_tokens": 1078,
+  "total_tokens": 10022,
+  "cost": 0.003036,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003036,
+   "upstream_inference_prompt_cost": 0.0017424,
+   "upstream_inference_completions_cost": 0.0012936
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003036,
+ "elapsed_s": 18.7
+}

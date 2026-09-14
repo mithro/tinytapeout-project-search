@@ -1,0 +1,191 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a0bd974db397",
+  "5ce79f6777ea",
+  "c4cf4e128f57",
+  "e95632c6184b",
+  "6aade9ceea73",
+  "e17eda69ef89",
+  "3b9f62aa955c",
+  "cff100d0505b",
+  "6f021e65cbd3",
+  "4f6d47bd9280"
+ ],
+ "results": [
+  {
+   "key": "a0bd974db397",
+   "tags": [
+    "posit",
+    "division",
+    "floating-point",
+    "arithmetic",
+    "fixed-point",
+    "decoder",
+    "encoder"
+   ],
+   "summary": "This design implements an <8,0> posit division circuit, accepting two 8-bit posit inputs via ui and uio and outputting the 8-bit quotient on uo. Pre-fabrication testing compared simulated outputs against a software-generated table for all possible input pairs, and post-fabrication testing requires supplying input posit values and observing the quotient on the output pins. External hardware such as a microcontroller or DIP switches is needed to drive the input pins. The design is notable for supporting the posit number format, an alternative to IEEE floating point, but the testing description contains an apparent error referring to a sum instead of a quotient.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5ce79f6777ea",
+   "tags": [
+    "timer",
+    "countdown",
+    "7-segment",
+    "encoder",
+    "pwm",
+    "led",
+    "debounce",
+    "control"
+   ],
+   "summary": "This design implements a countdown timer that uses three rotary encoders to adjust seven-segment display values and PWM brightness. It includes debouncing logic and a control pin to enable a minute-based countdown, and it requires a 16 MHz clock oscillator. To use it, external hardware including a PMOD, three seven-segment LED displays, and three digital encoders must be connected to the appropriate pins. The design was created as a term project for the Zero to ASIC course, and its functionality is straightforward but relies on external components for interaction.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c4cf4e128f57",
+   "tags": [
+    "cpu",
+    "risc-v",
+    "education",
+    "rom",
+    "state-machine",
+    "8-bit"
+   ],
+   "summary": "This project is a 4-bit toy CPU called TD4, based on the book 'CPUの創り方', and it includes an on-chip 8-bit by 16-word ROM for program storage. It operates in three modes: Load, Read, and Execution, selectable via two input pins, with pin functions varying by mode. Testing is done via a provided makefile, and external hardware such as LEDs or an Arduino is suggested for reading or writing data. The design is notable for being a learning tool and originated from a project supervised at Security Camp 2025 in Japan.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e95632c6184b",
+   "tags": [
+    "random-number-generator",
+    "lfsr",
+    "7-segment",
+    "dice",
+    "game",
+    "prng"
+   ],
+   "summary": "This design simulates a six-sided die by using an 8-bit LFSR to generate pseudo-random numbers between 1 and 6, outputting the result on a seven-segment display. A dipswitch input triggers the dice roll, and the design outputs zero when the switch is off. It uses on-board dipswitches and a seven-segment display for interaction, requiring no additional external hardware. The design is a simple game-like utility, with the limitation that the LFSR state locks on the first clock cycle after the switch is turned on, which may cause unexpected behavior at startup.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6aade9ceea73",
+   "tags": [
+    "rgbw",
+    "led",
+    "spi",
+    "pwm",
+    "color",
+    "display"
+   ],
+   "summary": "This design is an RGBW color processor that converts SPI commands into four PWM channels for driving LEDs, with a color wheel mode that generates hue, tint, and intensity from a color index. It operates as an SPI slave in Mode 0 and can also directly map RGBW values to PWM outputs in bypass mode. Testing is typically done with a MicroPython script on the Tiny Tapeout demoboard, and external hardware consists of four LEDs connected to the output pins with current-limiting to avoid exceeding 4 mA per pin. The design is notable for its flexibility in controlling RGBW LEDs and its provision of test outputs for debugging, but it requires careful handling of output current.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e17eda69ef89",
+   "tags": [
+    "vga",
+    "display",
+    "gamepad",
+    "animation",
+    "screensaver",
+    "demo"
+   ],
+   "summary": "This design displays a bouncing Tiny Tapeout logo on a VGA monitor with an animated color gradient, supporting tiling and solid color options via input pins. It can be controlled with a Gamepad Pmod to start, pause, and change the bouncing direction or move the logo. External hardware includes a Tiny VGA Pmod and optionally a Gamepad Pmod. The design is a simple graphical demo, notable for its use of the VGA interface and gamepad input, but it has no complex functionality beyond the screensaver behavior.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3b9f62aa955c",
+   "tags": [
+    "analog",
+    "transistor-level",
+    "standard-cells",
+    "reconfigurable",
+    "education",
+    "mos"
+   ],
+   "summary": "This project is an alternative layout for Andrew Kang's mini-MOSbius, a reconfigurable analog array intended for building and experimenting with MOS circuits, adapted for SKY130 on Tiny Tapeout. It includes analog switches controlled by a serial bitstream, with digital logic for configuration, and it requires external hardware to generate the bitstream and to interface with the analog pins depending on the circuit being built. Silicon test reports indicate that the configuration shift registers work and that various circuits functioned properly. The design is notable for bringing the MOSbius educational concept to a Tiny Tapeout-compatible form, though the software suite for generating configuration bitstreams is not yet written.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cff100d0505b",
+   "tags": [
+    "sram",
+    "register-file",
+    "memory",
+    "analog",
+    "test",
+    "factory-test"
+   ],
+   "summary": "This project is a test structure for a future register file macro, implemented as an SRAM with one write port and two read ports. It is not designed for use with the demo board but instead requires a dedicated test platform, ideally using FPGA hardware to drive control signals with precise timing. Silicon test reports from the author indicate that the memory works correctly, with tens of thousands of random read/write cycles passing, but timing characterization is incomplete due to limitations of the RP2040 controller. The design is notable as a successful early test of a memory macro, though further testing is needed.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6f021e65cbd3",
+   "tags": [
+    "capacitive",
+    "sensor",
+    "touch",
+    "vhdl",
+    "analog",
+    "gpio"
+   ],
+   "summary": "This design implements a capacitive touch sensor that measures changes in the capacitive time constant when a finger is applied to a touch pad. It uses a simple external circuit with a large pull-up resistor and a capacitive pad, and it outputs button signals on uo pins while also providing pass-through buttons. Silicon test reports from the author show that the capacitive touch portion mostly works, but required a stronger pull-up resistor (15k instead of 100k) due to pulldowns in the RP2350, and it was tested at clock frequencies of 1, 10, and 24 MHz. The pass-through buttons also work as expected. The design is notable for being a straightforward capacitive touch interface, but it necessitates an external touch pad PCB or DIY alternative.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4f6d47bd9280",
+   "tags": [
+    "synthesizer",
+    "audio",
+    "pwm",
+    "music",
+    "alu",
+    "register-file",
+    "chip-tune",
+    "stereo"
+   ],
+   "summary": "This design is a 4-channel chiptune synthesizer that uses a 12-13 bit ALU with a barrel shifter, a latch-based register file, and a 64-cycle program to calculate each sample, outputting PWM audio signals. It requires external hardware to convert the PWM outputs to audio, such as Mike's audio Pmod for mono or a resistive divider and capacitor for stereo, and it is controlled via register writes through a command interface. Example test code and functions are provided for playing notes and configuring waveforms. Silicon test reports indicate that the design works after adapting the test scripts, and it is notable for its compact implementation of a polyphonic synthesizer on Tiny Tapeout, though care must be taken to avoid damaging audio equipment with high output voltages.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "6f021e65cbd3: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 7165,
+  "completion_tokens": 2060,
+  "total_tokens": 9225,
+  "cost": 0.0046215,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0046215,
+   "upstream_inference_prompt_cost": 0.0021495,
+   "upstream_inference_completions_cost": 0.002472
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0046215,
+ "elapsed_s": 12.0
+}

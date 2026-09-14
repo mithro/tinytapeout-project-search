@@ -1,0 +1,282 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "db9a1d1db5fe",
+  "9953777603a0",
+  "ab4c0acdd91a",
+  "451ab32b1b31",
+  "4b18591e805f",
+  "15b64c772ffa"
+ ],
+ "results": [
+  {
+   "key": "db9a1d1db5fe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design is a programmable sound generator, not a general waveform/signal generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "chiptune",
+     "reason": "The design replicates a vintage 8-bit programmable sound generator for chiptune-style audio."
+    },
+    {
+     "tag": "retro",
+     "reason": "It recreates the audio processing unit of vintage video games."
+    }
+   ],
+   "notes": "Removed unsupported signal-generator tag and added chiptune/retro tags supported by the vintage PSG description.",
+   "tags_before": [
+    "sound-generator",
+    "synthesizer",
+    "music",
+    "audio",
+    "pwm",
+    "uart",
+    "signal-generator",
+    "verilog"
+   ],
+   "tags": [
+    "sound-generator",
+    "synthesizer",
+    "music",
+    "audio",
+    "pwm",
+    "uart",
+    "verilog",
+    "chiptune",
+    "retro"
+   ],
+   "summary_before": "ChipTune is an 8-bit programmable sound generator that replicates the audio processing unit of vintage video games. It features two rectangular pulse generators, a triangle wave generator, and a noise generator, each controlled by four 8-bit registers. Configuration data is received via a UART interface at 9600 baud, and the audio output is pulse-width modulated. The design requires an external analog PWM filter and audio driver for testing, and it can be interfaced with a computer COM port.",
+   "summary": "ChipTune is an 8-bit programmable sound generator that replicates the audio processing unit of vintage video games. It features two rectangular pulse generators, a triangle wave generator, and a noise generator, each controlled by four 8-bit registers. Configuration data is received via a UART interface at 9600 baud, and the audio output is pulse-width modulated. The design requires an external analog PWM filter and audio driver for testing, and it can be interfaced with a computer COM port.",
+   "summary_changed": false
+  },
+  {
+   "key": "9953777603a0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sar-adc",
+     "reason": "The source describes a comparator/DAC search ADC, not a successive-approximation register ADC."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "A silicon test report states the design was tested and working."
+    }
+   ],
+   "notes": "Removed incorrect sar-adc tag and added silicon-tested based on the working test report.",
+   "tags_before": [
+    "adc",
+    "analog",
+    "comparator",
+    "dac",
+    "opamp",
+    "mixed-signal",
+    "sar-adc",
+    "amaranth"
+   ],
+   "tags": [
+    "adc",
+    "analog",
+    "comparator",
+    "dac",
+    "opamp",
+    "mixed-signal",
+    "amaranth",
+    "silicon-tested"
+   ],
+   "summary_before": "This mixed-signal design implements a simple ADC using an analog comparator, an R2R DAC, and digital control logic. It performs a search to determine the digital value corresponding to an analog input, with optional comparator calibration. The design includes a p3 opamp for testing and provides analog pins for inspection. Silicon testing showed good conversions at 10MHz, and it requires an external voltage source and a way to read the digital outputs.",
+   "summary": "This mixed-signal design implements a simple ADC using an analog comparator, an R2R DAC, and digital control logic. It performs a search to determine the digital value corresponding to an analog input, with optional comparator calibration. The design includes a p3 opamp for testing and provides analog pins for inspection. Silicon testing showed good conversions at 10MHz, and it requires an external voltage source and a way to read the digital outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "ab4c0acdd91a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "coprocessor",
+     "reason": "The design is a standalone RISC-V processor, not an auxiliary coprocessor."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The source says testing cannot be performed yet and test instructions will follow."
+    }
+   ],
+   "notes": "Removed unsupported coprocessor tag and added incomplete because testing is not yet possible.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "esoteric",
+    "uart",
+    "spi",
+    "gpio",
+    "memory",
+    "verilog",
+    "coprocessor"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "esoteric",
+    "uart",
+    "spi",
+    "gpio",
+    "memory",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "Goldcrest RISC-V is a microcoded RISC-V processor based on the SUBLEQ architecture. It interfaces with external SPI ROM and RAM, a UART, and GPIO pins, and supports three additional SPI devices. The design is intended to run at 20 MHz and requires external SPI memory chips and a UART connection. Testing has not yet been performed, so no silicon results are available.",
+   "summary": "Goldcrest RISC-V is a microcoded RISC-V processor based on the SUBLEQ architecture. It interfaces with external SPI ROM and RAM, a UART, and GPIO pins, and supports three additional SPI devices. The design is intended to run at 20 MHz and requires external SPI memory chips and a UART connection. Testing has not yet been performed, so no silicon results are available.",
+   "summary_changed": false
+  },
+  {
+   "key": "451ab32b1b31",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The design outputs digital audio and PWM; it does not contain a DAC."
+    }
+   ],
+   "add": [
+    {
+     "tag": "chiptune",
+     "reason": "It replicates a classic programmable sound generator used in vintage computers and game consoles."
+    }
+   ],
+   "notes": "Removed dac tag because the chip does not include a DAC, and added chiptune for the classic PSG replica.",
+   "tags_before": [
+    "audio",
+    "synthesizer",
+    "sound-generator",
+    "pwm",
+    "dac",
+    "lfsr",
+    "retro",
+    "verilog"
+   ],
+   "tags": [
+    "audio",
+    "synthesizer",
+    "sound-generator",
+    "pwm",
+    "lfsr",
+    "retro",
+    "verilog",
+    "chiptune"
+   ],
+   "summary_before": "This design is a Verilog replica of the SN76489 programmable sound generator, featuring three square-wave tone channels, a noise generator with white and periodic modes, and 16 levels of attenuation per channel. It is controlled via an 8-bit data bus with a write-enable pin, and it provides digital 8-bit audio output plus PWM outputs for each channel and a master audio output. External hardware such as a DAC, RC filter, amplifier, and speaker are required to produce sound, and the design includes a configurable clock divider. The project emphasizes hardware preservation and includes a comprehensive test suite, fitting on a single tile.",
+   "summary": "This design is a Verilog replica of the SN76489 programmable sound generator, featuring three square-wave tone channels, a noise generator with white and periodic modes, and 16 levels of attenuation per channel. It is controlled via an 8-bit data bus with a write-enable pin, and it provides digital 8-bit audio output plus PWM outputs for each channel and a master audio output. External hardware such as a DAC, RC filter, amplifier, and speaker are required to produce sound, and the design includes a configurable clock divider. The project emphasizes hardware preservation and includes a comprehensive test suite, fitting on a single tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "4b18591e805f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design is a matrix-multiply accelerator, not a digital signal processing block."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "The source describes matrix multiplication, not a neural network implementation."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The pins are dedicated matrix data and control signals, not general-purpose I/O."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "It is inspired by Google's TPU AI inference accelerator and targets matrix multiplication for ML."
+    }
+   ],
+   "notes": "Removed unsupported dsp, neural-network, and gpio tags; machine-learning is already supported by the TPU inspiration.",
+   "tags_before": [
+    "tpu",
+    "systolic-array",
+    "mac-unit",
+    "accelerator",
+    "dsp",
+    "machine-learning",
+    "neural-network",
+    "verilog",
+    "gpio"
+   ],
+   "tags": [
+    "tpu",
+    "systolic-array",
+    "mac-unit",
+    "accelerator",
+    "machine-learning",
+    "verilog"
+   ],
+   "summary_before": "This is a Tiny Tapeout Tensor Processing Unit that multiplies two 2x2 matrices of signed 8-bit elements to produce signed 16-bit results using a systolic array of four multiply-accumulate processing elements. It is controlled through an external microcontroller that sends input matrices sequentially in row-major order and receives outputs in the same order, with control signals LOAD_EN, TRANSPOSE, and ACTIVATION, and a DONE output. The design includes memory registers for the input matrices, a control unit, and a feeder module to schedule data flow. It achieves over 99.8 million operations per second when streamed and requires an external clock and coordination via the chip interface.",
+   "summary": "This is a Tiny Tapeout Tensor Processing Unit that multiplies two 2x2 matrices of signed 8-bit elements to produce signed 16-bit results using a systolic array of four multiply-accumulate processing elements. It is controlled through an external microcontroller that sends input matrices sequentially in row-major order and receives outputs in the same order, with control signals LOAD_EN, TRANSPOSE, and ACTIVATION, and a DONE output. The design includes memory registers for the input matrices, a control unit, and a feeder module to schedule data flow. It achieves over 99.8 million operations per second when streamed and requires an external clock and coordination via the chip interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "15b64c772ffa",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "audio",
+    "lfsr",
+    "demoscene",
+    "pattern-generator",
+    "graphics",
+    "video"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "lfsr",
+    "demoscene",
+    "pattern-generator",
+    "graphics",
+    "video"
+   ],
+   "summary_before": "DemosceneTTSKY is a fully autonomous VGA visual synthesizer that generates 640x480 video and bytebeat audio entirely from logic gates, with no RAM, ROM, or CPU. It uses an LFSR to randomly change visual equations, shift amounts, and palettes every second, creating evolving fractal patterns. The audio is output on bidirectional pins during video blanking intervals. The design requires a 25 MHz clock and external hardware such as a VGA monitor and a resistor DAC for RGB, plus an optional audio amplifier, and is notable for its self-directing demoscene nature.",
+   "summary": "DemosceneTTSKY is a fully autonomous VGA visual synthesizer that generates 640x480 video and bytebeat audio entirely from logic gates, with no RAM, ROM, or CPU. It uses an LFSR to randomly change visual equations, shift amounts, and palettes every second, creating evolving fractal patterns. The audio is output on bidirectional pins during video blanking intervals. The design requires a 25 MHz clock and external hardware such as a VGA monitor and a resistor DAC for RGB, plus an optional audio amplifier, and is notable for its self-directing demoscene nature.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 14097,
+  "completion_tokens": 1551,
+  "total_tokens": 15648,
+  "cost": 0.0051495,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0051495,
+   "upstream_inference_prompt_cost": 0.0032883,
+   "upstream_inference_completions_cost": 0.0018612
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0051495,
+ "elapsed_s": 9.3
+}

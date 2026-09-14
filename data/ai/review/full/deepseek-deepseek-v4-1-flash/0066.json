@@ -1,0 +1,248 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cdccff03d718",
+  "07ad980bd09b",
+  "b0505b32d64b",
+  "e0fabb9f4d5c",
+  "98bb1223ee45",
+  "6c6b223b6f71"
+ ],
+ "results": [
+  {
+   "key": "cdccff03d718",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The specific VGA output tags already cover the display function; the documentation never names a display driver."
+    },
+    {
+     "tag": "education",
+     "reason": "The source says it was made during a workshop, not that it is intended for teaching or learning digital design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "The VGA checkers display and VGA playground template recreate retro style video hardware."
+    }
+   ],
+   "notes": "Removed display and education because they are not supported by the source; added retro for the retro-style VGA checkers output.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "workshop",
+    "education",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "workshop",
+    "cocotb",
+    "verilog",
+    "retro"
+   ],
+   "summary_before": "This project generates a VGA display that shows a checkers pattern based on a template from VGA playground. It was created during a workshop at Latchup and uses the Tiny VGA pinout. The design includes a test.py file for verification and requires an external VGA display to show the output. The documentation is minimal and does not specify the exact visual content or any unique features.",
+   "summary": "This project generates a VGA display that shows a checkers pattern, based on a template from VGA playground. It uses the Tiny VGA pinout and was created during a workshop at Latchup. There is a test.py file in the test folder for verification, and an external VGA display is required to show the output. The documentation is minimal and does not specify any unique features.",
+   "summary_changed": true
+  },
+  {
+   "key": "07ad980bd09b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The seven-segment output tag already fully covers the display function and the generic display tag is redundant."
+    }
+   ],
+   "add": [],
+   "notes": "Removed redundant display tag; kept the rest as supported.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a binary counter that drives a 7-segment display, showing a count that increments with each clock cycle. The design is described as a binary counter connected to the clock, with outputs for each segment and the decimal point. The documentation is very sparse, providing no details on how to test the project or any external hardware requirements. It appears to be a simple display counter, but further specifics are not available.",
+   "summary": "This project implements a binary counter that drives a 7-segment display, incrementing with each clock cycle. The design is described only as a binary counter connected to the clock, with separate outputs for each segment and the decimal point. The documentation is very sparse and explicitly leaves the test instructions as a placeholder with no external hardware details. Beyond the basic counter and display function, no further specifics are available.",
+   "summary_changed": true
+  },
+  {
+   "key": "b0505b32d64b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "Huffman coding is a compression scheme, not a signal-to-code encoder in the canonical sense."
+    }
+   ],
+   "add": [],
+   "notes": "Removed encoder; compression, lookup-table, ascii and verilog are all supported.",
+   "tags_before": [
+    "compression",
+    "encoder",
+    "lookup-table",
+    "ascii",
+    "verilog"
+   ],
+   "tags": [
+    "compression",
+    "lookup-table",
+    "ascii",
+    "verilog"
+   ],
+   "summary_before": "This ASIC compresses ASCII characters into Huffman codes using a lookup table, taking a 7-bit ASCII character on the input pins with a load strobe on ui[7]. After loading, a valid output signal indicates when the Huffman code and its bit length are available on the uo and uio pins. Communication requires an RP2040 or external microcontroller to send ASCII input and read the compressed output. The documentation is brief and does not describe the code table or the internal implementation beyond the lookup table.",
+   "summary": "This ASIC compresses ASCII characters into Huffman codes using a lookup table, taking a 7-bit ASCII character on the input pins with a load strobe on ui[7]. After loading, a Valid_out signal indicates when the Huffman code and its bit length are available on the uo and uio pins. Communication requires an RP2040 or external microcontroller to send ASCII input and read the compressed output. The documentation is brief and does not describe the code table or the internal implementation beyond the lookup table.",
+   "summary_changed": true
+  },
+  {
+   "key": "e0fabb9f4d5c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "The design is a moving average filter and decimator, not a documented finite impulse response filter implementation."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The concept and intended use are described even though testing instructions remain a work in progress."
+    }
+   ],
+   "add": [
+    {
+     "tag": "iir-filter",
+     "reason": "A moving average filter is an IIR-style averaging filter with feedback-like weighted history."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The testing instructions explicitly say 'Inprogress' and are unfinished."
+    }
+   ],
+   "notes": "Filter is a moving average/IIR style not a FIR; testing section is explicitly unfinished.",
+   "tags_before": [
+    "dsp",
+    "audio",
+    "microphone",
+    "fir-filter",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "dsp",
+    "audio",
+    "microphone",
+    "verilog",
+    "iir-filter",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a moving average filter and decimator for PDM microphone input, intended to filter out a specific frequency and its harmonics by averaging over a period where the sine wave's energy sums to zero. It outputs PCM data for each microphone and a beamformed PCM output, with filter and decimator parameters set via an SPI port. The design requires external PDM microphones, a clock generator, and an SPI interface. The documentation is incomplete and contains placeholder text, but the basic filtering concept is explained.",
+   "summary": "This project implements a moving average filter and decimator for PDM microphone input, intended to filter out a specific frequency and its harmonics by averaging over a period where the sine wave's energy sums to zero. It outputs PCM data for each microphone plus a beamformed PCM output, with filter and decimator parameters set via an SPI port. The design requires external PDM microphones, a clock generator, and an SPI interface. The documentation contains placeholder text and testing instructions that are still in progress.",
+   "summary_changed": true
+  },
+  {
+   "key": "98bb1223ee45",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "The operation is a ternary dot product with 1-bit activations, not a standalone digital multiplier."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "The dot product accumulates products of ternary weights and binary activations, which is multiply-accumulate hardware."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is a dedicated on-chip compute block for neural network dot products."
+    }
+   ],
+   "notes": "Removed multiplier; added mac-unit and accelerator to reflect the actual dot-product datapath.",
+   "tags_before": [
+    "neural-network",
+    "mac-unit",
+    "accelerator",
+    "multiplier",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "mac-unit",
+    "accelerator",
+    "verilog"
+   ],
+   "summary_before": "This project computes a dot product between a binary vector A and a ternary vector B, with ternary weights and 1-bit activations, targeting on-chip neural network inference. The inputs are eight binary elements of A and serial ternary elements of B, and the dot product result is provided on eight output pins. Testing is done via the Commander app to set inputs and weights, with no additional hardware required. The documentation is very brief, only stating the basic function and test method.",
+   "summary": "This project computes a dot product between a binary vector A and a ternary vector B, with ternary weights and 1-bit activations, targeting on-chip neural network inference. The inputs are eight binary elements of A and serial ternary elements of B, and the dot product result is provided on eight output pins. Testing is done via the Commander app to set inputs and weights, with no additional hardware required. The documentation is very brief, only stating the basic function and test method.",
+   "summary_changed": false
+  },
+  {
+   "key": "6c6b223b6f71",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The ROM data is 7-segment encoded, but the design has no seven-segment display driver or output of its own; the encoding is only data."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 7-segment because the design only stores 7-segment-encoded data rather than driving a seven-segment display.",
+   "tags_before": [
+    "rom",
+    "memory",
+    "7-segment",
+    "ascii",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "rom",
+    "memory",
+    "ascii",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an 8-bit wide, 128-byte ROM containing information about the Tiny Tapeout chip, with the first eight bytes holding the shuttle name in 7-segment encoding and the rest holding a null-terminated ASCII chip descriptor of key-value lines. The address is set on the eight input pins and the data is read from the eight output pins. The first bytes can be read by toggling the first four DIP switches and observing the on-board 7-segment display. The author's silicon test report states that the entire ROM was read back correctly.",
+   "summary": "This is an 8-bit wide, 128-byte ROM containing information about the Tiny Tapeout chip, with the shuttle name in 7-segment encoding and a null-terminated ASCII chip descriptor of key-value lines. The address is set on the eight input pins and the data is read from the eight output pins. The first bytes can be read by toggling the first four DIP switches and observing the on-board 7-segment display. The author's silicon test report states that the entire ROM was read back correctly.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6222,
+  "completion_tokens": 1457,
+  "total_tokens": 7679,
+  "cost": 0.003615,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003615,
+   "upstream_inference_prompt_cost": 0.0018666,
+   "upstream_inference_completions_cost": 0.0017484
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003615,
+ "elapsed_s": 8.5
+}

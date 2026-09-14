@@ -1,0 +1,190 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6a3301a6ab70",
+  "f8b17bb251fd",
+  "85ea5ce1ad82",
+  "13cc5a790cde",
+  "c9228ed66c48",
+  "cdd25a746a6c",
+  "353fb530b23c",
+  "571bb0670979",
+  "050cb9623365",
+  "3414d27b7119"
+ ],
+ "results": [
+  {
+   "key": "6a3301a6ab70",
+   "tags": [
+    "temperature-sensor",
+    "analog",
+    "pwm",
+    "ntnu",
+    "education",
+    "transistor-level"
+   ],
+   "summary": "This analog block contains two temperature sensors designed by NTNU students in the TFE4188 Advanced Integrated Circuits course. One sensor outputs a PWM signal whose period varies with temperature, while the other emits a single pulse whose duration is inversely proportional to temperature when its reset input is toggled. Testing requires an external clock and monitoring of the output pins with appropriate measurement equipment. The design is notable as a student coursework project with limited published documentation beyond the brief testing instructions.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f8b17bb251fd",
+   "tags": [
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "spi",
+    "flash",
+    "rle",
+    "decoder"
+   ],
+   "summary": "This Verilog design reads RLE-encoded video and audio data from an external flash memory, decodes it, and outputs 8-bit VGA colour signals plus PWM audio. It uses SPI to access the flash and continues playback until a stop signal resets it to the beginning. Testing is done with a cocotb testbench that consumes a data.bin file and produces an output.bin log of every pixel, which can be converted for visual inspection. A custom PCB is required to handle the VGA output, PWM audio, and external memory connections.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "85ea5ce1ad82",
+   "tags": [
+    "pdm",
+    "microphone",
+    "audio",
+    "pcm",
+    "spi",
+    "sensor",
+    "mems"
+   ],
+   "summary": "This Verilog peripheral generates a bit clock for a PDM microphone and decodes the returned density signal into PCM words. It is configured through parameters for clock period and enable, and connects to the microphone via clock and data pins. Silicon testing with an MP34DT01-M breakout succeeded, capturing five seconds of audio while clocked from an RP2350 SPI interface. The design is notable for having a verified working silicon test report.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "13cc5a790cde",
+   "tags": [
+    "pll",
+    "analog",
+    "oscillator",
+    "bandgap",
+    "frequency-synthesizer",
+    "rf"
+   ],
+   "summary": "This analog PLL targets a 2.4 GHz output frequency and includes a bandgap reference circuit for its charge pump. It is tested by applying a 20 MHz, 1.8 Vpp reference signal and monitoring the output frequency with a multimeter, expecting convergence within about 3 microseconds. The designer notes doubt that the output will reach exactly 2.4 GHz and suggests increasing the input frequency if needed. External hardware required includes a signal generator and a multimeter.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c9228ed66c48",
+   "tags": [
+    "alu",
+    "cpu",
+    "arithmetic",
+    "logic",
+    "4-bit",
+    "minicomputer",
+    "fpga"
+   ],
+   "summary": "This Verilog design implements a 4-bit ALU slice intended for mini and microcomputer CPUs, supporting ADD, AND, OR, XOR, pass-through, and shift operations selected by a 3-bit function code. It provides carry in/out, complement, zero, and negative-zero flags, and was tested on an Intel/Altera FPGA. The design is controlled entirely through its input pins and requires no external hardware beyond the FPGA used for verification. It is a straightforward educational ALU block with clear function and pin documentation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cdd25a746a6c",
+   "tags": [
+    "cpu",
+    "mips",
+    "processor",
+    "alu",
+    "single-cycle",
+    "8-bit"
+   ],
+   "summary": "This Verilog design is a complete 8-bit MIPS single-cycle processor supporting eight instruction types covering arithmetic, logical, memory, and jump operations. The program counter bits are exposed on bidirectional pins and the ALU result on the outputs, while all dedicated inputs are unused. No documentation is provided beyond the pin list and one-line description, so the instruction encoding and memory interface are not described. The design appears to be an educational processor implementation with no test or usage instructions given.",
+   "confidence": "medium",
+   "insufficient_docs": true
+  },
+  {
+   "key": "353fb530b23c",
+   "tags": [
+    "cpu",
+    "manchester-baby",
+    "computer",
+    "serial",
+    "debug",
+    "education",
+    "history"
+   ],
+   "summary": "This Verilog design is a modern implementation of the Manchester Baby, the first stored-program computer, with an 8-bit data path and control signals for the PTP interface. It exposes data in and out, stop lamp, RAM read/write, and debug controls, and can be driven from a microcontroller such as the official devkit or a Raspberry Pi Pico. A serial mode reduces the number of required GPIO pins. The design is notable as a historical reimplementation intended for education and demonstration.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "571bb0670979",
+   "tags": [
+    "lcd",
+    "display",
+    "hd44780",
+    "controller",
+    "4-bit",
+    "text"
+   ],
+   "summary": "This Verilog design controls a 16x2 HD44780-compatible LCD in 4-bit data mode and displays a hardcoded funny message. It requires a 50 MHz clock and an active-low reset, and its pins are named to match the LCD signals for direct wiring. After reset is released the message should appear on the screen. The only external hardware needed is the 16x2 LCD module itself.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "050cb9623365",
+   "tags": [
+    "spi",
+    "ws2812",
+    "led",
+    "led-matrix",
+    "driver",
+    "animation",
+    "micropython"
+   ],
+   "summary": "This Verilog design is a write-only SPI peripheral that drives WS2812B RGB LED matrices or strips, latching each 3-byte GRB frame to the next LED in sequence. It operates with SPI mode 0 at 1 MHz and supports roughly 300 Hz refresh for an 8x8 matrix. Testing involves connecting a Pi Pico as SPI master and running an example MicroPython script, with optional status LEDs for debugging. Up to 64 LEDs have been tested, and the design requires an external WS2812B matrix or strip plus an SPI master.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3414d27b7119",
+   "tags": [
+    "lfsr",
+    "prng",
+    "random-number-generator",
+    "shift-register",
+    "seed",
+    "8-bit"
+   ],
+   "summary": "This Verilog design implements an 8-bit linear feedback shift register that produces a new pseudo-random value on each read. A seed can be loaded by placing a value on the input pins and pulsing the write-enable pin, or the register can be reset with the chip reset. Testing consists of reading the output pins repeatedly and confirming that each value differs from the last. The design is a simple, self-contained PRNG block requiring no external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4841,
+  "completion_tokens": 1572,
+  "total_tokens": 6413,
+  "cost": 0.001926176,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001926176,
+   "upstream_inference_prompt_cost": 0.000888656,
+   "upstream_inference_completions_cost": 0.00103752
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001926176,
+ "elapsed_s": 22.4
+}

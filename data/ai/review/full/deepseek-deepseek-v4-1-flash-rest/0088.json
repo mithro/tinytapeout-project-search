@@ -1,0 +1,235 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e755e18d31a3",
+  "7e4f39432f0f",
+  "500cbe7b7d97",
+  "ebd0693ec93e",
+  "58f4ddf5f226",
+  "81a18ba8c548"
+ ],
+ "results": [
+  {
+   "key": "e755e18d31a3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The documentation labels the design 'broken counter' and describes turning outputs on and off with button presses, not counting."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The four-output sequencing could be a state machine, but the design is explicitly broken and the docs do not clearly describe FSM behavior."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs are generic OUT1-OUT4 with unspecified display hardware; no LEDs are specified."
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "Documentation is thin and the design is explicitly described as broken, providing no usable function."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The one-line description 'broken counter' and thin docs indicate an unfinished or non-functional submission."
+    },
+    {
+     "tag": "button",
+     "reason": "The documentation says a button is pressed at least six times to operate the design."
+    }
+   ],
+   "notes": "Design is documented as a broken counter with unspecified output hardware; replaced counter/fsm/led tags with placeholder/incomplete/button and kept summary within three sentences plus Wokwi note.",
+   "tags_before": [
+    "counter",
+    "button",
+    "led",
+    "incomplete",
+    "wokwi",
+    "fsm"
+   ],
+   "tags": [
+    "button",
+    "incomplete",
+    "wokwi",
+    "placeholder"
+   ],
+   "summary_before": "This design uses a clock and a button input, and requires external hardware to generate current, a button, and something to display the outputs. The documentation is thin and the design is explicitly labelled broken, so its intended behaviour is unclear.",
+   "summary": "This design uses a button input to turn on four outputs one after another, and additional presses to turn them off again. It requires external hardware to generate current, a button, and a way to display the outputs. The submission is explicitly labelled a broken counter, so its intended behaviour is unclear. It was created using the Wokwi simulator.",
+   "summary_changed": true
+  },
+  {
+   "key": "7e4f39432f0f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source says this is intended for teaching or learning; it appears to be a personal experiment."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag and corrected summary sentence that invented counting downward from F to 0 and an educational arithmetic purpose.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "flip-flop",
+    "button",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "display",
+    "flip-flop",
+    "button",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a simple counter built from flip-flops that increments when a pushbutton is pressed and shows the count on a seven-segment display. It is tested by checking that the output counts downward from F to 0, and it is intended to drive an external seven-segment display. The design is a basic educational arithmetic circuit with no further implementation details or silicon results. It is a small personal experiment rather than a complete application.",
+   "summary": "This project implements a simple counter built from flip-flops that increments when a pushbutton is pressed and shows the count on a seven-segment display. It is tested by pushing the button and checking whether it counts correctly. It is intended to drive an external seven-segment display, and the pushbutton may need debouncing with a capacitor. The design has no reported silicon results and was created using the Wokwi simulator.",
+   "summary_changed": true
+  },
+  {
+   "key": "500cbe7b7d97",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in source that this is for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Corrected summary that claimed the docs do not describe gate connections or function beyond output pattern, while source explicitly states XNOR chaining and gives a truth table; also removed unsupported education tag.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This design implements a chain of logic gates that produces a specific output pattern. The documentation is sparse and does not describe the gate connections or the intended function beyond the output pattern. The project was created in Wokwi and has no external hardware requirements. It is intended as a basic logic gate test and includes a truth table for verification.",
+   "summary": "This design chains seven XNOR gates, linking each previous gate output with the next input number. A truth table shows the XNOR behaviour for the previous gate and current number inputs, and multiple outputs will produce varying displays. The documentation is sparse and says only to read the description and figure it out. The project was created in Wokwi and includes no specified external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "ebd0693ec93e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "template",
+     "reason": "The project title is 'Tiny Tapeout Template Copy' and it has the boilerplate external-hardware prompt text."
+    }
+   ],
+   "notes": "Added template tag for 'Tiny Tapeout Template Copy' and replaced summary that claimed a truth table and test intent not present in source; removed unsupported education tag.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "template"
+   ],
+   "summary_before": "This design implements a simple logic gate example with eight inputs and eight outputs. The documentation is minimal and does not describe the specific gate connections or intended function beyond listing the inputs. The project was created in Wokwi and has no external hardware requirements. It is intended as a basic logic gate test and includes a truth table for verification.",
+   "summary": "This design takes eight inputs a through h and produces outputs labelled for and, not, xor, or, and combined or functions. The documentation is very thin and only lists the inputs, so the specific gate connections are not described. Testing consists of toggling inputs a through h between 0 and 1. It is based on a Tiny Tapeout template copy and was created in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "58f4ddf5f226",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Replaced summary that invented a truth table and generic gate-test purpose; source describes AND, NAND, OR gates and direct switch outputs; removed unsupported education tag.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This design implements a simple logic gate example with eight inputs and eight outputs. The documentation is minimal and does not describe the specific gate connections or intended function beyond listing the inputs. The project was created in Wokwi and has no external hardware requirements. It is intended as a basic logic gate test and includes a truth table for verification.",
+   "summary": "This design connects AND, NAND, and OR gates to inputs and exposes the results on eight outputs. The documentation is minimal and says to use the stiff for testing, which does not clearly specify a test procedure. The pin names indicate NAND, OR, and direct switch passthrough functions. The project was created in Wokwi and has no specified external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "81a18ba8c548",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "The design is a generic eight-input/eight-output pass-through with no factory self-test structure in the source."
+    },
+    {
+     "tag": "combinational",
+     "reason": "No logic is described and the documentation says it does not work, so combinational behaviour is not supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "The design is a non-functional test with inputs mapped directly to outputs and no described logic."
+    }
+   ],
+   "notes": "Removed factory-test and combinational unsupported by source; added placeholder to reflect explicitly non-working test submission.",
+   "tags_before": [
+    "factory-test",
+    "combinational",
+    "wokwi",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "placeholder"
+   ],
+   "summary_before": "This project is a factory test structure with eight inputs and eight outputs, designed to verify chip functionality. The documentation describes a truth table for testing, but the design is incomplete and not intended for end users. No external hardware is required beyond the standard Tiny Tapeout setup. The design is notable for its test-oriented purpose.",
+   "summary": "This project presents eight inputs and eight outputs, with outputs mirroring the inputs by name. The documentation says 'It doesn't :3' and testing is described as impossible, so no functional behaviour is claimed. No external hardware is required, and it was created in Wokwi. The submission appears to be a placeholder or test rather than a working design.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5346,
+  "completion_tokens": 1445,
+  "total_tokens": 6791,
+  "cost": 0.0033378,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033378,
+   "upstream_inference_prompt_cost": 0.0016038,
+   "upstream_inference_completions_cost": 0.001734
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033378,
+ "elapsed_s": 44.7
+}

@@ -1,0 +1,247 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6e7f4956a2f6",
+  "58f0b068b3e0",
+  "1c712f0ed305",
+  "75ebfd234a34",
+  "24d655237a99",
+  "16e6b227b66f"
+ ],
+ "results": [
+  {
+   "key": "6e7f4956a2f6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vhdl",
+     "reason": "Source states the design is implemented in Verilog, not VHDL."
+    },
+    {
+     "tag": "communication",
+     "reason": "The design is a Brainfuck interpreter/CPU; UART is only the I/O method, not a communication protocol design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Source describes a fully functional CPU executing a hardcoded Brainfuck program."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "Implements a Brainfuck interpreter, an esoteric programming language."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "rom",
+     "reason": "The demonstration program is hardcoded in ROM."
+    }
+   ],
+   "notes": "Corrected language tag and replaced communication with CPU/esoteric/ROM tags matching the Brainfuck interpreter description.",
+   "tags_before": [
+    "uart",
+    "vhdl",
+    "communication"
+   ],
+   "tags": [
+    "uart",
+    "cpu",
+    "esoteric",
+    "verilog",
+    "rom"
+   ],
+   "summary_before": "This design is a UART controller for serial communication, implemented in VHDL. It provides a standard UART interface for transmitting and receiving serial data. The controller is designed for use in digital systems requiring serial communication. The design is notable for its VHDL implementation and focus on serial data transfer.",
+   "summary": "TinyBF is a complete hardware implementation of a Brainfuck interpreter in Verilog, fitting within a single Tiny Tapeout tile. It is a fully functional CPU with integrated UART I/O that executes a hardcoded demonstration program in ROM. The design provides UART transmit and receive pins plus debug outputs for the program counter, data pointer, and cell values. Because the program is hardcoded in ROM, it serves as a demonstration platform rather than a general-purpose Brainfuck interpreter.",
+   "summary_changed": true
+  },
+  {
+   "key": "58f0b068b3e0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "This project implements a 4x4 array multiplier in Verilog that computes the product of two 4-bit binary numbers using partial products and full adders. The multiplier generates partial products by ANDing each bit of one input with all bits of the other, then sums them with full adders in a staged manner. The design is combinational and purely digital, producing an 8-bit product output. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary": "This project implements a 4x4 array multiplier in Verilog that computes the product of two 4-bit binary numbers using partial products and full adders. The multiplier generates partial products by ANDing each bit of one input with all bits of the other, then sums them with full adders in a staged manner. The design is combinational and purely digital, producing an 8-bit product output. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary_changed": false
+  },
+  {
+   "key": "1c712f0ed305",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "No neural network is described; the ML-guided exploration produced a MAC unit, not an NN."
+    },
+    {
+     "tag": "npu",
+     "reason": "No neural processing unit is implemented."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "The design is a MAC unit; machine learning was only used during design-space exploration, not in the hardware function."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Source describes operand registers and an accumulator, not a multi-register file."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "Source explicitly describes a multiply-accumulate unit."
+    },
+    {
+     "tag": "gate-level",
+     "reason": "Source states the inner datapath is gate-level optimized."
+    },
+    {
+     "tag": "accumulator",
+     "reason": "Not in vocabulary; omitted."
+    }
+   ],
+   "notes": "Removed unsupported neural-network/NPU/machine-learning tags and corrected summary to describe the MAC unit rather than an AI accelerator.",
+   "tags_before": [
+    "neural-network",
+    "npu",
+    "fixed-point",
+    "multiplier",
+    "adder",
+    "machine-learning",
+    "register-file"
+   ],
+   "tags": [
+    "fixed-point",
+    "multiplier",
+    "adder",
+    "mac-unit",
+    "gate-level",
+    "alu"
+   ],
+   "summary_before": "This design implements a neural network accelerator with fixed-point arithmetic. It includes a multiplier, adder, and register file for computation. The accelerator is designed for machine learning inference. It processes data in a pipelined manner.",
+   "summary": "This design wraps a structurally-optimized gate-level multiply-accumulate (MAC) unit in a TinyTapeout-compatible clocked interface. The inner MAC core computes y[16:0] = a[7:0] * b[7:0] + c[15:0] as a purely combinational circuit using a ripple-carry accumulation structure. The wrapper adds clocked operand registers, a 17-bit accumulator, and a serial command interface, with the accumulator feeding back into the MAC addend for running accumulation. It performs unsigned 8-bit by 8-bit multiplication with a 17-bit accumulator and single-cycle combinational MAC latency.",
+   "summary_changed": true
+  },
+  {
+   "key": "75ebfd234a34",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "esoteric",
+    "combinational",
+    "fsm",
+    "education"
+   ],
+   "tags": [
+    "esoteric",
+    "combinational",
+    "fsm",
+    "education"
+   ],
+   "summary_before": "This project implements the state transition logic for a 5-state, 8-symbol universal Turing machine as combinational logic mapping (state, symbol) to (state, symbol, direction). State and symbol are supplied on the input pins, and the next state, new symbol and head direction appear on the outputs. Testing is performed by applying state and symbol combinations and comparing the outputs against the transition table in test.py. The design is purely combinational and requires no external hardware, but the documentation is limited to a short description.",
+   "summary": "This project implements the state transition logic for a 5-state, 8-symbol universal Turing machine as combinational logic mapping (state, symbol) to (state, symbol, direction). State and symbol are supplied on the input pins, and the next state, new symbol and head direction appear on the outputs. Testing is performed by applying state and symbol combinations and comparing the outputs against the transition table in test.py. The design is purely combinational and requires no external hardware, but the documentation is limited to a short description.",
+   "summary_changed": false
+  },
+  {
+   "key": "24d655237a99",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "calculator",
+    "stack-machine",
+    "alu",
+    "fsm",
+    "memory",
+    "7-segment"
+   ],
+   "tags": [
+    "calculator",
+    "stack-machine",
+    "alu",
+    "fsm",
+    "memory",
+    "7-segment"
+   ],
+   "summary_before": "This stack-based calculator operates on 4-bit values with an 8-entry deep stack and 64 bits of random access memory. It accepts 4-bit opcodes and operands through input pins and provides results via output pins, with modes to display the output register or stack contents on a 7-segment display. The design requires external hardware such as buttons, a DIP switch, and a 7-segment display for testing. It is notable for its stack architecture and detailed opcode set, though it lacks a program counter and must be sequenced externally.",
+   "summary": "This stack-based calculator operates on 4-bit values with an 8-entry deep stack and 64 bits of random access memory. It accepts 4-bit opcodes and operands through input pins and provides results via output pins, with modes to display the output register or stack contents on a 7-segment display. The design requires external hardware such as buttons, a DIP switch, and a 7-segment display for testing. It is notable for its stack architecture and detailed opcode set, though it lacks a program counter and must be sequenced externally.",
+   "summary_changed": false
+  },
+  {
+   "key": "16e6b227b66f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pipeline",
+     "reason": "Source describes a control unit and datapath optimization, not a pipelined implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed pipeline tag; source only mentions control unit/datapath optimization, not pipelining.",
+   "tags_before": [
+    "calculator",
+    "7-segment",
+    "dip-switch",
+    "fsm",
+    "pipeline",
+    "education"
+   ],
+   "tags": [
+    "calculator",
+    "7-segment",
+    "dip-switch",
+    "fsm",
+    "education"
+   ],
+   "summary_before": "This design computes the greatest common divisor (GCD) of two 4-bit numbers using an optimized Euclidean algorithm. The two numbers are entered via DIP switches, with a num_okey switch controlling register loading, and the result is displayed on a seven-segment display. The implementation separates the control unit and datapath to optimize the algorithm. No external hardware is required beyond the switches and display.",
+   "summary": "This design computes the greatest common divisor (GCD) of two 4-bit numbers using an optimized Euclidean algorithm. The two numbers are entered via DIP switches, with a num_okey switch controlling register loading, and the result is displayed on a seven-segment display. The implementation separates the control unit and datapath to optimize the algorithm. No external hardware is required beyond the switches and display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8263,
+  "completion_tokens": 1411,
+  "total_tokens": 9674,
+  "cost": 0.0041721,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041721,
+   "upstream_inference_prompt_cost": 0.0024789,
+   "upstream_inference_completions_cost": 0.0016932
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041721,
+ "elapsed_s": 10.8
+}

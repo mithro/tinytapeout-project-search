@@ -1,0 +1,251 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "74b983ef0208",
+  "0db3690682bf",
+  "810a8f4cd2b1",
+  "1646c5841369",
+  "7c60d36b726c",
+  "d801dcb5393e"
+ ],
+ "results": [
+  {
+   "key": "74b983ef0208",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "error-correction",
+     "reason": "TMR voting is fault-tolerance/redundancy, not error detection and correction coding logic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "Already present; retained as the core storage element."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; project is built in the Wokwi simulator."
+    }
+   ],
+   "notes": "Removed error-correction because TMR voting is redundancy/fault tolerance, not coding-based error correction.",
+   "tags_before": [
+    "error-correction",
+    "flip-flop",
+    "wokwi"
+   ],
+   "tags": [
+    "flip-flop",
+    "wokwi"
+   ],
+   "summary_before": "This design implements simple triple modular redundancy (TMR) voters with an error injection option. It includes one single D flip-flop, three TMR-protected D flip-flops, and one TMR flip-flop that allows error injection. The design is tested by setting inputs, triggering the clock, and observing outputs to verify correct voting behavior. It is a minimal experiment for studying TMR concepts and requires no external hardware.",
+   "summary": "This design implements simple triple modular redundancy (TMR) voters with an error injection option. It includes one single D flip-flop, three TMR-protected D flip-flops, and one TMR flip-flop that allows error injection. The design is tested by setting inputs, triggering the clock, and observing outputs to verify correct voting behavior. It is a minimal experiment for studying TMR concepts and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "0db3690682bf",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "wokwi"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "wokwi"
+   ],
+   "summary_before": "This is a 32-bit Galois linear feedback shift register with taps at bits 32, 30, 26, and 25. It includes a fail-safe to prevent all-zero lock-up and allows manual initialization via input pins. The design outputs the lower 8 bits and can be tested with a logic analyzer. No silicon test results are provided.",
+   "summary": "This is a 32-bit Galois linear feedback shift register with taps at bits 32, 30, 26, and 25. It includes a fail-safe to prevent all-zero lock-up and allows manual initialization via input pins. The design outputs the lower 8 bits and can be tested with a logic analyzer. No silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "810a8f4cd2b1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "power-gating",
+     "reason": "The documentation explicitly says there is no power gating; the enable pin only drives the comparator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "comparator-analog",
+     "reason": "The design is a single analog voltage comparator with vinp/vinn analog inputs and a mostly-digital output."
+    }
+   ],
+   "notes": "Removed power-gating because the source explicitly states no power gating is implemented; added comparator-analog for the analog comparator function.",
+   "tags_before": [
+    "comparator",
+    "analog",
+    "transistor-level",
+    "power-gating"
+   ],
+   "tags": [
+    "comparator",
+    "analog",
+    "transistor-level",
+    "comparator-analog"
+   ],
+   "summary_before": "This project provides a single high-speed comparator built with SiGe NPN heterojunction bipolar transistors. It compares two analog inputs and outputs a mostly-digital signal, with power gating controlled by a digital enable pin. Testing involves setting the enable high, applying analog signals between 0.0 V and 1.2 V to the inputs, and observing the output. No external hardware is required, but the documentation notes that the comparator should be disabled when not in use because there is no power gating.",
+   "summary": "This project provides a single high-speed comparator built with SiGe NPN heterojunction bipolar transistors. It compares two analog inputs and outputs a mostly-digital signal, with an enable pin controlling the comparator. Testing involves setting the enable high, applying analog signals between 0.0 V and 1.2 V to the inputs, and observing the output. No external hardware is required, and the documentation notes that there is no power gating, so the comparator should be disabled when not in use.",
+   "summary_changed": true
+  },
+  {
+   "key": "1646c5841369",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sequence-detector",
+     "reason": "The design is a static 4-bit combination lock, not a detector of a bit sequence over time."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational intent."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "The source mentions switches generically, not DIP switches specifically."
+    }
+   ],
+   "add": [
+    {
+     "tag": "security",
+     "reason": "Already present; the key lock is a security-related combinational circuit."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Already present; the lock is implemented as combinational logic."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; the project is built in the Wokwi simulator."
+    },
+    {
+     "tag": "led",
+     "reason": "Already present; the output is observed with an LED."
+    }
+   ],
+   "notes": "Removed sequence-detector, education, and dip-switch because they are not supported by the source.",
+   "tags_before": [
+    "security",
+    "combinational",
+    "sequence-detector",
+    "wokwi",
+    "education",
+    "led",
+    "dip-switch"
+   ],
+   "tags": [
+    "security",
+    "combinational",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "This project implements a four-input digital key lock using combinational logic, with inputs on ui[0] through ui[3] and a single output on uo[0]. The output goes high only for the specific input combination 1001, and stays low for all other combinations. It is tested with switches on the inputs and an LED on the output. The design is a simple Wokwi-based logic exercise with no reported silicon results.",
+   "summary": "This project implements a four-input digital key lock using combinational logic, with inputs on ui[0] through ui[3] and a single output on uo[0]. The output goes high only for the specific input combination 1001, and stays low for all other combinations. It is tested with switches on the inputs and an LED on the output. The design is a simple Wokwi-based logic exercise with no reported silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "7c60d36b726c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "bandgap",
+    "voltage-reference",
+    "current-mirror",
+    "analog",
+    "characterization",
+    "spi"
+   ],
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "current-mirror",
+    "analog",
+    "characterization",
+    "spi"
+   ],
+   "summary_before": "This project implements a current-mode bandgap reference that provides a PVT-stable 1V reference voltage and a 5.6uA reference current. It includes a test buffer for measurement, an 8-bit trim for process variation, and SPI control for configuration. Testing requires a 3.3V supply, a ~5uA bias current for the test buffer, and a multimeter to measure voltage and current. Silicon tests confirm the voltage buffer and reference are working, with a 1V output at a trim value of 142.",
+   "summary": "This project implements a current-mode bandgap reference that provides a PVT-stable 1V reference voltage and a 5.6uA reference current. It includes a test buffer for measurement, an 8-bit trim for process variation, and SPI control for configuration. Testing requires a 3.3V supply, a ~5uA bias current for the test buffer, and a multimeter to measure voltage and current. Silicon tests confirm the voltage buffer and reference are working, with a 1V output at a trim value of 142.",
+   "summary_changed": false
+  },
+  {
+   "key": "d801dcb5393e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a counter; instrumentation is only mentioned as external test equipment, not the design purpose."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design counts clock pulses; it does not generate a clock."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "Already present; the design is a synchronous counter."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; the project is built in the Wokwi simulator."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting of only a one-line description and test note."
+    }
+   ],
+   "notes": "Removed instrumentation and clock-generator because the source describes a counter, not an instrument or clock generator; added insufficient-doc for the very thin documentation.",
+   "tags_before": [
+    "counter",
+    "instrumentation",
+    "wokwi",
+    "clock-generator"
+   ],
+   "tags": [
+    "counter",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a 3-bit synchronous counter, with inputs for bits 3 through 7 and outputs for bits 0 through 7. Testing requires attaching a logic analyzer, and external hardware includes a clock and logic analyzer. The documentation is brief but sufficient to understand the basic function.",
+   "summary": "This design implements a 3-bit synchronous counter, with inputs for bits 3 through 7 and outputs for bits 0 through 7. Testing requires attaching a logic analyzer, and external hardware includes a clock and logic analyzer. The documentation is brief but sufficient to understand the basic function. No silicon test results are provided.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8704,
+  "completion_tokens": 1521,
+  "total_tokens": 10225,
+  "cost": 0.0044364,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044364,
+   "upstream_inference_prompt_cost": 0.0026112,
+   "upstream_inference_completions_cost": 0.0018252
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044364,
+ "elapsed_s": 11.6
+}

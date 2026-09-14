@@ -1,0 +1,225 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "274893fa8755",
+  "4f48f8d12634",
+  "3de9a96b4052",
+  "4c092909f1e4",
+  "31ab1b037bb0",
+  "b8c6e5cce358"
+ ],
+ "results": [
+  {
+   "key": "274893fa8755",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "Source only describes an 8x3 encoder, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Testing and external hardware are explicitly marked as work in progress."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate tag and added incomplete because documentation marks testing and hardware as WiP.",
+   "tags_before": [
+    "encoder",
+    "combinational",
+    "logic-gate",
+    "wokwi"
+   ],
+   "tags": [
+    "encoder",
+    "combinational",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project is an 8x3 encoder, which converts eight input lines into a three-bit binary output. The documentation states that testing and external hardware are works in progress. No further details are provided. The design is likely a basic educational exercise.",
+   "summary": "This project is an 8x3 encoder, which converts eight input lines into a three-bit binary output. The documentation states that testing and external hardware are works in progress. No further implementation details are provided. The design is implemented as a Wokwi project.",
+   "summary_changed": true
+  },
+  {
+   "key": "4f48f8d12634",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "Source mentions an LED display, not a seven-segment display."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The project demonstrates OR/AND switch behavior but is not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "Already present, but the design is LED-based; no change needed for add, so this entry should not be included."
+    }
+   ],
+   "notes": "Removed 7-segment because the source says LED display, not seven-segment; removed unsupported logic-gate.",
+   "tags_before": [
+    "7-segment",
+    "dip-switch",
+    "led",
+    "wokwi",
+    "logic-gate"
+   ],
+   "tags": [
+    "dip-switch",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This design lights up segments of a seven-segment display to form the letter 'b' with a period at the end. The segments are controlled by switches: switches 1 and 2 control the bottom-right segment (OR logic), switches 3 and 4 control the bottom segment (AND logic), and switches 5-8 control other segments individually. It can be tested by toggling switches and observing the display. External hardware includes an LED display and switches.",
+   "summary": "This design lights LEDs to form the letter 'b' with a period at the end. Switches 1 and 2 use OR-style control for the bottom-right light, switches 3 and 4 use AND-style control for the bottom light, and switches 5-8 each control their own light. It can be tested by toggling switches and observing the lights. External hardware includes an LED display and switches.",
+   "summary_changed": true
+  },
+  {
+   "key": "3de9a96b4052",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "logic-gate",
+    "flip-flop",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "logic-gate",
+    "flip-flop",
+    "education",
+    "wokwi"
+   ],
+   "summary_before": "This design implements an XOR gate with a registered output using a flip-flop. The flip-flop has active-high set and reset, with set unused. It is a basic digital logic building block built in Wokwi. Testing involves applying input combinations and observing the registered output according to the XOR truth table. External hardware includes a push button for reset, DIP switches, and an LED. The documentation is clear and includes a truth table.",
+   "summary": "This design implements an XOR gate with a registered output using a flip-flop. The flip-flop has active-high set and reset, with set unused. It is a basic digital logic building block built in Wokwi. Testing involves applying input combinations and observing the registered output according to the XOR truth table. External hardware includes a push button for reset, DIP switches, and an LED. The documentation is clear and includes a truth table.",
+   "summary_changed": false
+  },
+  {
+   "key": "4c092909f1e4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "The design is an arbiter/priority encoder, not a decoder."
+    }
+   ],
+   "add": [],
+   "notes": "Removed decoder because source describes arbiter/priority behavior, not decoding.",
+   "tags_before": [
+    "arbiter",
+    "priority-encoder",
+    "combinational",
+    "clock-generator",
+    "7-segment",
+    "wokwi",
+    "decoder"
+   ],
+   "tags": [
+    "arbiter",
+    "priority-encoder",
+    "combinational",
+    "clock-generator",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This is a 7-bit priority arbiter that takes seven inputs and asserts at most one of seven outputs, prioritizing the lowest active input. An eighth output toggles with a clock and reset signal. It is tested by connecting outputs to a 7-segment display or LEDs and verifying correct arbitration as inputs change. External hardware includes input switches, a 7-segment LED display, and possibly a button to step the clock.",
+   "summary": "This is a 7-bit priority arbiter that takes seven inputs and asserts at most one of seven outputs, prioritizing the lowest active input. An eighth output stays high while reset_n XOR clk is active, effectively when the clock is low. It is tested by connecting outputs to a 7-segment display or LEDs and verifying correct arbitration as inputs change. External hardware includes input switches, a 7-segment LED display, and possibly a button to step the clock.",
+   "summary_changed": true
+  },
+  {
+   "key": "31ab1b037bb0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes only a 4-bit adder, not a full arithmetic logic unit."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "A 7-segment display is only suggested as optional test hardware, not a design interface."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu and 7-segment as they overstate the design or treat optional test hardware as an interface.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "dip-switch",
+    "7-segment",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "dip-switch",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This is a 4-bit adder that takes two 4-bit inputs and produces a 5-bit sum output. It is tested by setting the two numbers on a DIP switch and observing whether the output LEDs light up in a way consistent with addition. External hardware includes a DIP switch and a 7-segment display or LEDs. The documentation is brief but clearly describes a standard educational adder.",
+   "summary": "This is a 4-bit adder that takes two 4-bit inputs and produces a 5-bit sum output. It is tested by setting the two numbers on a DIP switch and observing whether the output LEDs light up in a way consistent with addition. External hardware includes a DIP switch and a 7-segment display or LEDs. The documentation is brief but clearly describes a standard educational adder.",
+   "summary_changed": false
+  },
+  {
+   "key": "b8c6e5cce358",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education because the source does not state an educational intent.",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi"
+   ],
+   "summary_before": "This project is a one-bit full adder with three input pins and two output pins, producing a sum and a carry from three one-bit inputs. It is tested by applying the three input bits and checking the resulting sum and carry bits. No external hardware is listed. The documentation is minimal and gives no gate-level detail, but the function is clearly stated.",
+   "summary": "This project is a one-bit full adder with three input pins and two output pins, producing a sum and a carry from three one-bit inputs. It is tested by applying the three input bits and checking the resulting sum and carry bits. No external hardware is specified. The documentation is minimal and gives no gate-level detail, but the function is clearly stated.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "3de9a96b4052: 6 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 5632,
+  "completion_tokens": 1172,
+  "total_tokens": 6804,
+  "cost": 0.003096,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003096,
+   "upstream_inference_prompt_cost": 0.0016896,
+   "upstream_inference_completions_cost": 0.0014064
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003096,
+ "elapsed_s": 8.1
+}

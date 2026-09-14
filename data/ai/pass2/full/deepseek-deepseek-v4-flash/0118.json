@@ -1,0 +1,194 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "138fcc66c63e",
+  "f1d274f6e8c7",
+  "35fe7ad8e89e",
+  "48e27907e33e",
+  "9d5379ea9501",
+  "93f0aa208c57",
+  "1b2d81ee7c7e",
+  "ae0c9d4e240b",
+  "bc757e6ac60c",
+  "55fdcda8df60"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "138fcc66c63e",
+   "summary": "This design implements a simple stream cipher that XORs an 8-bit data input with the output of a linear-feedback shift register. The LFSR value is also provided on the bidirectional pins so that the encrypted output can be decrypted externally by XORing with the same value. The design was verified in simulation by manually calculating LFSR states and checking the encrypted output against expected values. No external hardware is required, and the project is a straightforward demonstration of LFSR-based encryption.",
+   "tags": [
+    "cipher",
+    "lfsr",
+    "crypto",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "f1d274f6e8c7",
+   "summary": "This project is a 4-bit by 4-bit array multiplier that takes an 8-bit input, splits it into two 4-bit operands, and produces an 8-bit product. It is built structurally from AND gates and full adders, following the classic array multiplier architecture. The design can be tested by applying an 8-bit input and verifying that the output equals the product of the upper and lower nibbles. No external hardware is needed, and the documentation includes a diagram of the multiplier.",
+   "tags": [
+    "multiplier",
+    "alu",
+    "structural",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "35fe7ad8e89e",
+   "summary": "This design decodes two 8b10b-encoded serial streams and can optionally multiply the decoded bytes. It uses the K.28.5 comma symbol to establish synchronization and indicates valid data on an output pin. The decoded or multiplied results are presented on the outputs, and the bidirectional pins can be configured as differential pairs when in reset. The design requires no external hardware and is intended for testing high-speed cell libraries.",
+   "tags": [
+    "communication",
+    "decoder",
+    "multiplier",
+    "encoder",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "48e27907e33e",
+   "summary": "This project is functionally identical to the 8b10b decoder and multiplier design, but it is specifically intended as a test for a high-speed standard cell library. It decodes two 8b10b streams, detects the K.28.5 synchronization symbol, and can output either the decoded bytes or their product. The design can be tested by sending 8b10b encoded data and observing the outputs, with no external hardware required. The documentation is the same as the non-test version, emphasizing its use as a library characterization vehicle.",
+   "tags": [
+    "communication",
+    "decoder",
+    "multiplier",
+    "encoder",
+    "characterization",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "9d5379ea9501",
+   "summary": "This design reads run-length encoded video data from a QSPI flash memory and displays it on a 640x480 VGA output, with PWM audio output. It is intended for playing the Bad Apple music video and requires a QSPI Pmod plugged into an audio Pmod, plus a Tiny VGA Pmod. The design runs at 24 MHz and includes inputs to adjust SPI latency and select the QSPI pinout. Notable limitations include the need for a specific flash command and the requirement to generate the RLE binary file externally.",
+   "tags": [
+    "vga",
+    "video",
+    "qspi",
+    "compression",
+    "audio",
+    "pwm",
+    "display",
+    "demoscene",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "93f0aa208c57",
+   "summary": "This project implements a simple RISC-V processor that fetches 16-bit instructions, decodes them, performs ALU operations, and writes back to a register file. The design is a basic educational core that supports a subset of instructions and can be expanded with memory operations and additional control logic. It is intended to be tested with cocotb by applying various instruction sequences and checking the results. The documentation notes that it is not a complete processor and lacks memory operations.",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "education",
+    "cocotb",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "1b2d81ee7c7e",
+   "summary": "This design simulates a single perceptron that takes three inputs, multiplies them by weights, sums the products, and compares the sum to a threshold to produce a binary output. It also accepts a desired output and performs a weight update when the actual output differs, implementing a simple learning rule. The design can be tested by verifying clock and reset operation, but the documentation does not provide detailed test procedures or expected behavior. No external hardware is required.",
+   "tags": [
+    "perceptron",
+    "neural-network",
+    "machine-learning",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "ae0c9d4e240b",
+   "summary": "This project is a 4-bit by 4-bit array multiplier that produces an 8-bit product using a structural design of AND gates and full adders. It takes two 4-bit inputs and outputs the product, following the standard shift-and-add multiplication algorithm. The design can be tested by editing the provided Python test script to add custom test cases. No external hardware is needed, and the documentation includes a diagram of the multiplier.",
+   "tags": [
+    "multiplier",
+    "alu",
+    "structural",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "bc757e6ac60c",
+   "summary": "This design is an 8-bit digital-to-analog converter that uses successive approximation to convert a digital input into an analog output. It requires an external analog comparator and a resistor array to function, as indicated by the pin names and description. The conversion process uses nonlinear sampling, and the design can be tested by providing comparator values and checking the digital outputs. The documentation is brief and does not provide detailed schematics or test results.",
+   "tags": [
+    "dac",
+    "sar-adc",
+    "analog",
+    "comparator",
+    "mixed-signal",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "55fdcda8df60",
+   "summary": "This project implements a variable-length LFSR with configurable 2-tap or 4-tap feedback, controlled by input pins for length, number of taps, hold, and step. It outputs the low-order 15 bits of the LFSR value and a valid signal indicating whether the configuration is supported. The design was tested using hand-generated test modules and simulation, but no automated test is included. It requires no external hardware and can be used as a configurable pseudo-random number generator.",
+   "tags": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8931,
+  "completion_tokens": 1707,
+  "total_tokens": 10638,
+  "cost": 0.00158382,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00158382,
+   "upstream_inference_prompt_cost": 0.00098637,
+   "upstream_inference_completions_cost": 0.00059745
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00158382,
+ "elapsed_s": 17.3
+}

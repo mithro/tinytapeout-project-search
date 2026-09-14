@@ -1,0 +1,442 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5fb7c50e559d",
+  "6e42515b258b",
+  "88f3d7ced1ae",
+  "c63b167cbba8",
+  "aeb6fd49dff9",
+  "dd4fe4c81c39"
+ ],
+ "results": [
+  {
+   "key": "5fb7c50e559d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "No adder in the design; it is a ring-oscillator temperature sensor with counters and UART."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU is described."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Design uses counters and a ring oscillator, i.e. sequential logic."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "No evidence the design was created with the Wokwi simulator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "Title and description state a ring oscillator whose frequency depends on temperature."
+    },
+    {
+     "tag": "temperature-sensor",
+     "reason": "The design measures temperature via the ring-oscillator frequency."
+    },
+    {
+     "tag": "uart",
+     "reason": "Pins rx/tx and text describe sending values over UART."
+    },
+    {
+     "tag": "counter",
+     "reason": "Uses counters to count ring-oscillator cycles within a clock period."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Used to characterize temperature vs frequency."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated ALU/adder; corrected to the documented ring-oscillator temperature sensor.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "combinational",
+    "wokwi"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "temperature-sensor",
+    "uart",
+    "counter",
+    "instrumentation"
+   ],
+   "summary_before": "This project is a basic arithmetic building block that performs addition and logic operations. It is implemented in Wokwi and requires no external hardware beyond the standard board switches and LEDs. The design is combinational and can be used as a simple ALU. It is suitable for educational purposes.",
+   "summary": "This project is a ring-oscillator-based temperature sensor implemented in Verilog. It uses counters to count ring-oscillator cycles within a clock period and sends the result over UART. The design includes internal and external clock inputs, oscillator selection and enable signals, and a reset. It is intended to characterize the temperature versus frequency relationship.",
+   "summary_changed": true
+  },
+  {
+   "key": "6e42515b258b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "edge-detector",
+     "reason": "No edge detection is described; the design is a VGA ray caster."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is present."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Not a measurement/instrumentation design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Generates 640x480 VGA with hsync/vsync and RGB222 outputs."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Renders a realtime 3D-like ray-cast scene."
+    },
+    {
+     "tag": "game",
+     "reason": "Described as a game demo inspired by Wolf3D."
+    },
+    {
+     "tag": "retro",
+     "reason": "Retro FPS/ray-casting style demo."
+    },
+    {
+     "tag": "spi",
+     "reason": "SPI and SPI2 interfaces are used to set POV and colors."
+    },
+    {
+     "tag": "framebuffer",
+     "reason": "Explicitly framebuffer-less VGA display generator."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Partial silicon test report from the author."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated edge detector; corrected to the documented VGA ray caster.",
+   "tags_before": [
+    "edge-detector",
+    "sensor-interface",
+    "instrumentation"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "game",
+    "retro",
+    "spi",
+    "framebuffer",
+    "silicon-tested"
+   ],
+   "summary_before": "This design uses an edge detection circuit to find rising edges, which are then converted into a binary value. The documentation is sparse, providing only that the input is set on ui_in[7:0] and the output is read from uo_out. The design is intended for edge detection applications. It is a simple digital circuit for detecting signal edges.",
+   "summary": "This is a framebuffer-less VGA ray-casting game demo implemented in Verilog. It renders a realtime 3D-like view of a hard-coded 16x16 map with textures and flat-colored floor/ceiling, inspired by Wolf3D. A host controller sets the point of view via SPI, and SPI2 sets ceiling/floor colors. It outputs 640x480 VGA at about 60 Hz from a 25 MHz clock and has a partial silicon test report.",
+   "summary_changed": true
+  },
+  {
+   "key": "88f3d7ced1ae",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "No CPU is described; this is a dice roller with I2C and PWM."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU is described."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier is described."
+    },
+    {
+     "tag": "divider",
+     "reason": "No divider is described."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory block is described."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No FSM is described."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Not a measurement/instrumentation design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "TTRPG dice roller for tabletop gaming."
+    },
+    {
+     "tag": "i2c",
+     "reason": "Includes an I2C peripheral with SDA/SCL pins."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Drives a two-digit 7-segment display."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Has a PWM-capable GPIO pin."
+    },
+    {
+     "tag": "button",
+     "reason": "Multiple button inputs for dice selection."
+    },
+    {
+     "tag": "education",
+     "reason": "Author describes it as a simple I2C peripheral and dice roller, suitable for learning."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Partial silicon test reports (one broken, one working)."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated SAP-1 CPU; corrected to the documented dice roller and I2C peripheral.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "multiplier",
+    "divider",
+    "memory",
+    "fsm",
+    "education",
+    "instrumentation"
+   ],
+   "tags": [
+    "education",
+    "game",
+    "i2c",
+    "7-segment",
+    "pwm",
+    "button",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an implementation of the Malvino and Brown SAP-1 simple computer, forked from another Tiny Tapeout design, with an 8-bit bus connecting a program counter, registers, adder, multiplier, divider, memory, and instruction decoder. The design is educational and demonstrates basic computer architecture. It is tested by loading programs and observing the output. The documentation is brief but sufficient to understand the overall structure.",
+   "summary": "This is a TTRPG dice roller with a simple I2C peripheral, implemented in Verilog. It supports rolling d4 through d20 using button inputs and can drive a two-digit 7-segment display for multi-digit results. The design includes an I2C slave, a PWM-capable GPIO, and configuration pins for display polarity. Silicon test reports are mixed, with one tester reporting no output and the author reporting all functions working.",
+   "summary_changed": true
+  },
+  {
+   "key": "c63b167cbba8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier is described; this is a 7-segment animation project."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU is described."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder is described."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Design is a counter with animations, i.e. sequential logic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Drives a 7-segment display with animations."
+    },
+    {
+     "tag": "counter",
+     "reason": "Described as a counter with adjustable speed."
+    },
+    {
+     "tag": "button",
+     "reason": "Four button inputs control animation and speed."
+    },
+    {
+     "tag": "display",
+     "reason": "Outputs to a 7-segment display."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports indicate working status."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated multiplier; corrected to the documented 7-segment animation project.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "adder",
+    "combinational"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "button",
+    "display",
+    "silicon-tested"
+   ],
+   "summary_before": "The multiplier in unsigned mode uses an array of 4 x 4 cells that each consists of a full adder and an AND-gate (NAND-gate for a few cells in signed mode). A silicon tester confirmed operation with several input combinations and the signed-mode control pin. The design is a combinational multiplier with signed and unsigned modes. It is notable for its efficient use of basic logic gates.",
+   "summary": "This project displays many different animations on a 7-segment display, implemented in Verilog. It is essentially a counter whose speed can be changed, combined with switchable animations. Four buttons control incrementing/decrementing the animation and speed. Silicon test reports indicate it works, though one tester could not see speed changes.",
+   "summary_changed": true
+  },
+  {
+   "key": "aeb6fd49dff9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "characterization",
+     "reason": "Not a process/device characterization structure; it is an I2C bit error rate tester."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "No fabrication process experiment is described."
+    },
+    {
+     "tag": "analog",
+     "reason": "Design is digital; no analog circuitry is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "i2c",
+     "reason": "Implements an I2C peripheral with SCL/SDA pins."
+    },
+    {
+     "tag": "alu",
+     "reason": "Implements an 8-bit ALU over I2C for pattern testing."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Drives a 7-segment display for accumulated results."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Designed to pair with an RP2040 I2C controller."
+    },
+    {
+     "tag": "spinalhdl",
+     "reason": "Language is SpinalHDL."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Bit error rate test for I2C communication."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated process characterization structure; corrected to the documented I2C BERT.",
+   "tags_before": [
+    "characterization",
+    "process-experiment",
+    "analog"
+   ],
+   "tags": [
+    "i2c",
+    "alu",
+    "7-segment",
+    "rp2040",
+    "spinalhdl",
+    "instrumentation"
+   ],
+   "summary_before": "This design is a test structure for characterizing fabrication process parameters. It is intended to measure device characteristics on the fabricated chip. The documentation is sparse, but the pin names and description indicate its purpose as a test structure. It likely includes test circuits for process monitoring.",
+   "summary": "This is an I2C bit error rate tester implemented in SpinalHDL. It is an I2C peripheral that implements an 8-bit ALU over I2C to allow pattern testing and read back accumulated results. It supports open-drain or push-pull modes and various clocking configurations set at power-on reset. The design is intended to be driven by an RP2040 controller and outputs results to a 7-segment display.",
+   "summary_changed": true
+  },
+  {
+   "key": "dd4fe4c81c39",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "divider",
+     "reason": "No divider is described; this is an 8-bit CPU."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder is described."
+    },
+    {
+     "tag": "combinational",
+     "reason": "CPU is sequential, not purely combinational."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "No multiplexer is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Title and description state it is an 8-bit CPU."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Features an 8 x 8-bit register file."
+    },
+    {
+     "tag": "rom",
+     "reason": "Includes a built-in 256-byte demo ROM."
+    },
+    {
+     "tag": "memory",
+     "reason": "External parallel Flash/RAM interface."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "DIP switches select demo at reset."
+    },
+    {
+     "tag": "speaker",
+     "reason": "Speaker used for Demo 2."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated restoring array divider; corrected to the documented DJ8 CPU.",
+   "tags_before": [
+    "divider",
+    "adder",
+    "combinational",
+    "multiplexer"
+   ],
+   "tags": [
+    "cpu",
+    "register-file",
+    "rom",
+    "memory",
+    "dip-switch",
+    "speaker"
+   ],
+   "summary_before": "This design is a digital circuit that implements a restoring array divider using full adders and multiplexers. It is a combinational divider that computes division in hardware. The design is purely combinational and does not require a clock. It is intended for arithmetic operations in digital systems.",
+   "summary": "DJ8 is an 8-bit CPU implemented in Verilog with a parallel Flash/RAM interface. It features an 8 x 8-bit register file, 3-4 cycles per instruction, a 15-bit external address bus, and an 8-bit external data bus. A built-in 256-byte demo ROM provides two demos selected by DIP switches at reset. It can connect to parallel flash or RAM and run at full speed without serialization overhead.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7886,
+  "completion_tokens": 2445,
+  "total_tokens": 10331,
+  "cost": 0.00662475,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00662475,
+   "upstream_inference_prompt_cost": 0.00295725,
+   "upstream_inference_completions_cost": 0.0036675
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00662475,
+ "elapsed_s": 9.3
+}

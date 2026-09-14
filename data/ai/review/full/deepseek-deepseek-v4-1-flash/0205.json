@@ -1,0 +1,365 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6a2965b70949",
+  "cd4e1ff9189e",
+  "be1573a1a5b6",
+  "32447ad0a0bf",
+  "c22bf4f6e85e",
+  "3ef6436bf741"
+ ],
+ "results": [
+  {
+   "key": "6a2965b70949",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "Morse-to-ASCII translation is not a data communication protocol design."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine or sequential structure is described in the source."
+    },
+    {
+     "tag": "led",
+     "reason": "The source names 'led for output', but the documented pin map is ASCII[0..7]; the LED display is external and not a dedicated LED output interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "decoder",
+     "reason": "Translates Morse code input into ASCII character codes."
+    },
+    {
+     "tag": "ascii",
+     "reason": "The eight outputs are explicitly ASCII[0..7]."
+    },
+    {
+     "tag": "button",
+     "reason": "Input is taken from push buttons."
+    },
+    {
+     "tag": "education",
+     "reason": "The one-line style and test instructions suggest a simple learning exercise."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and gives almost no implementation detail."
+    }
+   ],
+   "notes": "Thin documentation; communication and fsm tags unsupported, and LED is external rather than a dedicated LED output.",
+   "tags_before": [
+    "communication",
+    "decoder",
+    "ascii",
+    "vhdl",
+    "button",
+    "led",
+    "fsm"
+   ],
+   "tags": [
+    "decoder",
+    "ascii",
+    "vhdl",
+    "button",
+    "education",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project translates Morse code input from push buttons into ASCII characters. It provides an 8-bit ASCII output that can be displayed on LEDs. The documentation is minimal, describing only the basic function and suggesting a test program. It is a simple VHDL design for Morse code decoding, but lacks detailed implementation or testing information.",
+   "summary": "This project translates Morse code input from push buttons into ASCII characters. It provides an 8-bit ASCII output on pins uo[0] through uo[7], which can be shown on LEDs. A button supplies the input, and the documentation is minimal. It leaves the implementation and testing details largely undescribed.",
+   "summary_changed": true
+  },
+  {
+   "key": "cd4e1ff9189e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The design is a divide-by-four clock divider, not a counting circuit with a counter value."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "No arbitrary or signal-generating function is described; only divided clocks are output."
+    },
+    {
+     "tag": "timer",
+     "reason": "The source describes divide-by-four clock outputs, not a programmable timer."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "Explicitly described and titled as a clock divider producing Clock/4."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "Produces derived clock signals on the outputs."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The language field and project facts identify it as a Wokwi design."
+    },
+    {
+     "tag": "divider",
+     "reason": "The only operation is frequency division by four."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present but very limited, with no implementation detail."
+    }
+   ],
+   "notes": "Correction fixes unsupported counter/signal-generator/timer tags and adds Wokwi and insufficient-doc.",
+   "tags_before": [
+    "clock-divider",
+    "divider",
+    "counter",
+    "clock-generator",
+    "wokwi",
+    "signal-generator",
+    "timer"
+   ],
+   "tags": [
+    "clock-divider",
+    "divider",
+    "clock-generator",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a quick clock-divider test in which the input clock is routed to output 7 and a divide-by-four version is routed to output 0. An enable input on ui[0] gates the divider, and the documented test procedure is to hold the enable low and wait four seconds, then raise it and press reset for one second. It runs at a 1 Hz clock in Wokwi and needs no external hardware. It is a minimal verification exercise rather than a complete application.",
+   "summary": "This design is a quick clock-divider test in which the input clock is routed to output 7 and a divide-by-four version is routed to output 0. An enable input on ui[0] is described as gating the divider, and the documented test procedure is to hold the enable low and wait four seconds, then raise it and press reset for one second. It runs at a 1 Hz clock in Wokwi and needs no external hardware. It is a minimal verification exercise rather than a complete application.",
+   "summary_changed": true
+  },
+  {
+   "key": "be1573a1a5b6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sensor-interface",
+     "reason": "The analog inputs connect to a capacitor and a reference voltage, not to a generic sensor."
+    },
+    {
+     "tag": "counter",
+     "reason": "The output bits are described as counting results, so counter is justified; keep as a type tag rather than remove."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "Measures capacitor values and reports an 8-bit result, an instrumentation application."
+    },
+    {
+     "tag": "analog",
+     "reason": "Language is Analog and the design uses analog input pins ua[0] and ua[1]."
+    },
+    {
+     "tag": "comparator",
+     "reason": "ua[1] is described as a comparator input."
+    },
+    {
+     "tag": "counter",
+     "reason": "uo[0:7] is explicitly the counter result."
+    },
+    {
+     "tag": "adc",
+     "reason": "The charge/time measurement with an analog comparator and counter is functionally an analog-to-digital readout."
+    },
+    {
+     "tag": "current-mirror",
+     "reason": "Selectable current sources are controlled by transistor lengths, consistent with current-mirror-style sources."
+    }
+   ],
+   "notes": "The proposed summary is broadly accurate; tag corrections remove a generic sensor impression and make the analog instrumentation nature explicit.",
+   "tags_before": [
+    "analog",
+    "instrumentation",
+    "sensor-interface",
+    "counter",
+    "comparator",
+    "current-mirror"
+   ],
+   "tags": [
+    "analog",
+    "instrumentation",
+    "comparator",
+    "current-mirror",
+    "counter",
+    "adc"
+   ],
+   "summary_before": "Analog Readout Circuit measures capacitors by charging them with selectable current sources and timing the result with a counter. Switches select small, medium, or large capacitor ranges, pulse delay pins control small-signal timing, and current source control pins select transistor lengths, with the analog inputs connected to a capacitor and a comparator reference voltage. The 8-bit counter result appears on the digital outputs and the design runs from a 1 to 20 MHz clock with a reset button. It needs a button, a voltage source, and a microcontroller for control, and the documentation is a pin-by-pin usage guide rather than a full description.",
+   "summary": "Analog Readout Circuit measures capacitors by charging them with selectable current sources and timing the result with a counter. Switches select small, medium, or large capacitor ranges, pulse delay pins control small-signal timing, and current source control pins select transistor lengths. The analog inputs connect to a capacitor and a comparator reference voltage, while the 8-bit counter result appears on the digital outputs, and the design runs from a 1 to 20 MHz clock with a reset button. The documentation is a pin-by-pin usage guide rather than a full circuit description.",
+   "summary_changed": true
+  },
+  {
+   "key": "32447ad0a0bf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "The source says PWM Audio Out, so pwm is supported as an output, but it is better represented as audio; keep audio."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text, so insufficient-doc is supported; keep."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "Describes a deep-space nebula effect with Sierpinski fractal logic."
+    },
+    {
+     "tag": "vga",
+     "reason": "The pinout matches Tiny VGA and video sync/color pins are described."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Outputs VGA color and sync signals for a rendered effect."
+    },
+    {
+     "tag": "audio",
+     "reason": "Produces PWM audio output."
+    },
+    {
+     "tag": "chiptune",
+     "reason": "The one-line description explicitly says 4-voice PWM chiptune audio."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation consists only of placeholder text."
+    }
+   ],
+   "notes": "Summary and tags are mostly supported, but ensures only canonical tags and flags placeholder documentation.",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "graphics",
+    "pwm",
+    "audio",
+    "chiptune",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "graphics",
+    "audio",
+    "chiptune",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design produces a deep-space nebula effect based on Sierpinski fractal logic, along with 4-voice PWM chiptune audio. It outputs VGA video and PWM audio, with inputs controlling speed and density. The documentation is placeholder text, so the exact implementation and testing procedure are not described. It requires a VGA PMOD for display and likely a speaker or audio output for the PWM signal.",
+   "summary": "This design produces a deep-space nebula effect based on Sierpinski fractal logic, along with 4-voice PWM chiptune audio. It outputs VGA video and PWM audio, with speed and density controlled by the eight input pins. The documentation is placeholder text, so the exact implementation and testing procedure are not described. It requires a VGA PMOD for display and likely a speaker or audio output for the PWM signal.",
+   "summary_changed": true
+  },
+  {
+   "key": "c22bf4f6e85e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "vga",
+    "audio",
+    "gamepad",
+    "pwm",
+    "music",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "audio",
+    "gamepad",
+    "pwm",
+    "music",
+    "verilog"
+   ],
+   "summary_before": "This design lets a user play an ocarina-style instrument on screen using a gamepad, with the notes rendered as VGA graphics and sound produced through a PWM audio output. It uses three gamepad pins for the controller and outputs Tiny VGA signals plus audio on a bidirectional pin. It requires a VGA Pmod, an audio Pmod, and a gamepad Pmod with a gamepad. The documentation is minimal and does not describe the note mapping, visual feedback, or any limitations.",
+   "summary": "This design lets a user play an ocarina-style instrument on screen using a gamepad, with the notes rendered as VGA graphics and sound produced through a PWM audio output. It uses three gamepad pins for the controller and outputs Tiny VGA signals plus audio on a bidirectional pin. It requires a VGA Pmod, an audio Pmod, and a gamepad Pmod with a gamepad. The documentation is minimal and does not describe the note mapping, visual feedback, or any limitations.",
+   "summary_changed": false
+  },
+  {
+   "key": "3ef6436bf741",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The source describes inverting even-numbered inputs, not a counter circuit, despite the title."
+    },
+    {
+     "tag": "display",
+     "reason": "Seven-segment is the specific canonical output tag; generic display is unnecessary and less accurate."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language and facts identify it as a Wokwi design."
+    },
+    {
+     "tag": "workshop",
+     "reason": "Title and summary identify it as a workshop exercise."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output pins are explicitly SEG_A through SEG_DP for a seven-segment display."
+    },
+    {
+     "tag": "education",
+     "reason": "It is a teaching example from a workshop."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present but extremely brief and does not explain the counting behavior."
+    }
+   ],
+   "notes": "Title claims counting but the description only describes input inversion; tags adjusted to the documented behavior.",
+   "tags_before": [
+    "wokwi",
+    "workshop",
+    "counter",
+    "7-segment",
+    "display",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "workshop",
+    "7-segment",
+    "education",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a workshop exercise that inverts even-numbered inputs and drives the result onto a seven-segment display. The eight inputs IN0 to IN7 map to the seven segment lines plus decimal point, and the description says it counts from 1 to 8. It is tested by observing which segments light up on the display. No external hardware is needed beyond the Tiny Tapeout board and its display, and it appears to be a teaching example.",
+   "summary": "This design is a workshop exercise that inverts even-numbered inputs and drives the result onto a seven-segment display. The eight inputs IN0 to IN7 map to the seven segment lines plus decimal point, and the title says it counts from 1 to 8. It is tested by observing which segments light up on the display. No external hardware is needed beyond the Tiny Tapeout board and its display, and it appears to be a teaching example.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5879,
+  "completion_tokens": 2113,
+  "total_tokens": 7992,
+  "cost": 0.0042993,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042993,
+   "upstream_inference_prompt_cost": 0.0017637,
+   "upstream_inference_completions_cost": 0.0025356
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042993,
+ "elapsed_s": 10.5
+}

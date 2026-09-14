@@ -1,0 +1,327 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8ba438fc5d63",
+  "53e61aa827da",
+  "5cb028efe9ca",
+  "1d7010f1ca0d",
+  "baae7d89c0cd",
+  "4b62730c6e18"
+ ],
+ "results": [
+  {
+   "key": "8ba438fc5d63",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The design drives a seven-segment display, not discrete LEDs; the 'LED Display' wording refers to the 7-segment module."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The design reads a bank of switches as its input."
+    },
+    {
+     "tag": "decoder",
+     "reason": "It decodes the switch value into a digit shown on the display."
+    }
+   ],
+   "notes": "Removed unsupported 'led' tag and added dip-switch/decoder tags supported by the switch-to-digit behavior.",
+   "tags_before": [
+    "7-segment",
+    "led",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "education",
+    "wokwi",
+    "display",
+    "dip-switch",
+    "decoder"
+   ],
+   "summary_before": "This project is a simple educational logic example with very little documentation. It uses a seven-segment display and LEDs to show a digit based on switch inputs. The design is implemented in Wokwi and is intended for learning purposes. It is a minimal demonstration of combinational logic.",
+   "summary": "This project is a simple educational logic example with very little documentation. It reads a switch bank and outputs the corresponding digit on a seven-segment display. The design is implemented in Wokwi and is intended for learning purposes. It is a minimal demonstration of combinational logic.",
+   "summary_changed": true
+  },
+  {
+   "key": "53e61aa827da",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "Audio is only mentioned as an optional external signal source, not a feature of the design."
+    },
+    {
+     "tag": "dac",
+     "reason": "The DAC/R-2R ladder is optional external hardware, not part of the submitted design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fixed-point",
+     "reason": "The core performs 8-bit scaled arithmetic with saturation, i.e. fixed-point processing."
+    },
+    {
+     "tag": "filter-analog",
+     "reason": "The design implements FIR/IIR digital filters, matching the filter tag family."
+    }
+   ],
+   "notes": "Removed audio/dac tags that describe optional external hardware rather than the design, and added fixed-point/filter tags.",
+   "tags_before": [
+    "dsp",
+    "fir-filter",
+    "iir-filter",
+    "audio",
+    "fixed-point",
+    "dac"
+   ],
+   "tags": [
+    "dsp",
+    "fir-filter",
+    "iir-filter",
+    "fixed-point",
+    "filter-analog"
+   ],
+   "summary_before": "The design is a digital signal processing filter that implements FIR and IIR filters. It processes audio signals in fixed-point arithmetic. The output is an 8-bit DAC or R-2R resistor ladder for analog reconstruction. External hardware includes an ADC for input and a DAC for output.",
+   "summary": "The design is a configurable 8-bit streaming DSP core that implements 4-tap FIR and IIR filtering with dynamic scaling and saturation protection. It processes an 8-bit digital input stream and outputs the filtered 8-bit result. The core is written in Verilog and runs at 50 MHz. Optional external hardware such as an ADC and DAC can be used for real-world signal processing.",
+   "summary_changed": true
+  },
+  {
+   "key": "5cb028efe9ca",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is detailed, describing counters, RTC, PISO readout and state machine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design is built around four 12-bit pulse counters."
+    },
+    {
+     "tag": "rtc",
+     "reason": "It includes an mm:ss real-time clock used as the measurement interval."
+    },
+    {
+     "tag": "uart",
+     "reason": "It provides a serial output for readout of the counted values."
+    },
+    {
+     "tag": "fsm",
+     "reason": "A readout state machine controls the serial readout and resets."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "It is intended for pulse counting and acoustic emission measurement."
+    }
+   ],
+   "notes": "Corrected the summary, which wrongly claimed sparse documentation, and added counter/rtc/uart/fsm/instrumentation tags.",
+   "tags_before": [
+    "sensor-interface",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "sensor-interface",
+    "incomplete",
+    "counter",
+    "rtc",
+    "uart",
+    "fsm",
+    "instrumentation"
+   ],
+   "summary_before": "This design is an early work-in-progress implementation of a low-power sensor interface for a multichannel acoustic emission detector. The documentation is sparse, providing only that the input is set on ui_in[7:0] and the output is read from uo_out. The design is incomplete and lacks sufficient documentation to fully describe its operation. It is intended for sensor interface applications.",
+   "summary": "This design is an early work-in-progress implementation of a low-power sensor interface for a multichannel acoustic emission detector. It contains four 12-bit pulse counters with overflow detection, an mm:ss real-time clock, and a parallel-in serial-out readout register controlled by a state machine. The counters accumulate pulses on four input channels and are read out serially after each RTC overflow or channel overflow. It is intended for low-power wake-up sensor interfaces, acoustic event detection, non-destructive testing, and particle counting.",
+   "summary_changed": true
+  },
+  {
+   "key": "1d7010f1ca0d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "placeholder",
+     "reason": "The design is a real 1-bit full adder, not an empty placeholder."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The adder is fully described and testable."
+    },
+    {
+     "tag": "template",
+     "reason": "It is not a boilerplate starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The design is a 1-bit full adder."
+    },
+    {
+     "tag": "combinational",
+     "reason": "It is built from NAND, XOR and OR gates with no storage."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "It is implemented directly from basic logic gates."
+    }
+   ],
+   "notes": "Replaced incorrect placeholder/incomplete/template tags with adder/combinational/logic-gate and rewrote the summary to match the actual full adder.",
+   "tags_before": [
+    "placeholder",
+    "incomplete",
+    "template",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "adder",
+    "combinational",
+    "logic-gate"
+   ],
+   "summary_before": "This project is a placeholder with no meaningful documentation, consisting only of TODO notes. The pins include two inputs and one output, but the functionality is described only as 'TODO'. No testing procedure or external hardware requirements are described. The design is notable only for being an incomplete placeholder.",
+   "summary": "This project is a 1-bit full adder implemented with NAND, XOR and OR gates. It takes two input bits and a carry input, and produces sum and carry outputs. The design is implemented in Wokwi and can be tested by applying binary inputs and observing the outputs. It is a minimal combinational logic example.",
+   "summary_changed": true
+  },
+  {
+   "key": "baae7d89c0cd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier is present in the design."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is present in the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The pins match the Tiny VGA pinout and the design drives VGA signals."
+    },
+    {
+     "tag": "video",
+     "reason": "It generates a video signal for display."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It renders a checkered pattern."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "It is a visual pattern showcase in the style of a demo effect."
+    }
+   ],
+   "notes": "Removed unsupported multiplier/alu tags and added VGA/video/graphics/demoscene tags matching the actual design.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "vga",
+    "video",
+    "graphics",
+    "demoscene"
+   ],
+   "summary_before": "This project implements a multiplier and ALU design in Verilog. It is intended for digital arithmetic operations and can be tested with standard digital inputs and outputs. The design is a combinational or sequential logic block that performs multiplication and arithmetic logic functions. It is a basic building block for more complex digital systems.",
+   "summary": "This project is a VGA pattern generator based on a modified checkers example that bounces back and forth. It uses the Tiny VGA pinout to output RGB, HSync and VSync signals. The design is written in Verilog and runs at 25.175 MHz. It can be tested by compiling it in the VGA playground.",
+   "summary_changed": true
+  },
+  {
+   "key": "4b62730c6e18",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "The design is an anomaly detection engine, not a cryptographic algorithm."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "It implements a lightweight ML inference core with MAC and ReLU."
+    },
+    {
+     "tag": "security",
+     "reason": "It detects malicious or anomalous V2X packet behavior."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "The core uses a multiply-accumulate unit for inference."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "The architecture is described as deeply pipelined with six stages."
+    },
+    {
+     "tag": "uart",
+     "reason": "It provides a uart_tx output pin."
+    },
+    {
+     "tag": "automotive",
+     "reason": "It targets V2X vehicle-to-everything packet analysis."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "It is a lightweight embedded ML inference engine."
+    }
+   ],
+   "notes": "Removed incorrect crypto tag and added machine-learning/security/mac-unit/pipeline/uart/automotive/edge-ai tags with a corrected summary.",
+   "tags_before": [
+    "crypto",
+    "security",
+    "verilog"
+   ],
+   "tags": [
+    "security",
+    "verilog",
+    "machine-learning",
+    "mac-unit",
+    "pipeline",
+    "uart",
+    "automotive",
+    "edge-ai"
+   ],
+   "summary_before": "This design is a hardware implementation of a cryptographic algorithm. The documentation describes the algorithm but does not provide implementation details. The design is intended for security applications. The documentation does not provide silicon test results.",
+   "summary": "This project implements a lightweight machine-learning-based hardware anomaly detection engine for V2X packet data. It serially ingests 64-bit packets, extracts velocity and heading features, and runs a MAC-based inference core with ReLU activation and threshold scoring. The 8-bit threat score is output on uo_out, with done and interrupt flags on uio pins. The design is written in Verilog and can be tested by feeding serial packets and monitoring the outputs.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7126,
+  "completion_tokens": 1842,
+  "total_tokens": 8968,
+  "cost": 0.0043482,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043482,
+   "upstream_inference_prompt_cost": 0.0021378,
+   "upstream_inference_completions_cost": 0.0022104
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043482,
+ "elapsed_s": 55.8
+}

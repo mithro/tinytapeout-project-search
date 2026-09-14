@@ -1,0 +1,444 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a1bcf320d879",
+  "4f6969700673",
+  "08245b6a36dd",
+  "7be864771df0",
+  "c6f5ad45d837",
+  "956f4f4c4610"
+ ],
+ "results": [
+  {
+   "key": "a1bcf320d879",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or signal mentioned in pins or documentation."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics or video output described; design is a baremetal CPU with audio/SPI/UART."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output interface or functionality described."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the documentation."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation circuit is described; clock is external."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "Documentation explicitly says it is a RISC-V RV32E SoC."
+    },
+    {
+     "tag": "cpu",
+     "reason": "It is a general-purpose RISC-V processor core (SoC)."
+    },
+    {
+     "tag": "soc",
+     "reason": "Described as a system-on-chip with CPU, UART, QSPI, SPI, and audio emulator."
+    },
+    {
+     "tag": "uart",
+     "reason": "Pins include uart_rx and uart_tx, and documentation describes a UART."
+    },
+    {
+     "tag": "spi",
+     "reason": "Pins include SPI signals and documentation describes a generic SPI interface."
+    },
+    {
+     "tag": "qspi",
+     "reason": "Documentation describes a qspi memory controller for psram/flash."
+    },
+    {
+     "tag": "silicon-art",
+     "reason": "Wait, silicon-art is for artistic silicon layout; this is a CPU, not art. Do not add."
+    },
+    {
+     "tag": "audio",
+     "reason": "Documentation mentions a sigma-delta emulator for playing audio files."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "Documentation mentions a sigma-delta emulator for audio."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Pin uo[3] is pwm_o and PWM_ADDR register is defined."
+    },
+    {
+     "tag": "led",
+     "reason": "Pins uo[5], uo[6], uo[7] are led[0], led[1], led[2]."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Documentation says it's very important to use the PMOD Flash + PSRAM."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No, remove. Do not add."
+    }
+   ],
+   "notes": "Removed VGA/graphics tags not supported; added correct CPU and interface tags based on documentation.",
+   "tags_before": [
+    "vga",
+    "clock-generator",
+    "graphics",
+    "fsm",
+    "display"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "uart",
+    "spi",
+    "qspi",
+    "silicon-art",
+    "audio",
+    "sigma-delta",
+    "pwm",
+    "led",
+    "pmod",
+    "clock-generator"
+   ],
+   "summary_before": "This project is a VGA graphics design that includes a clock generator, FSM, and display output. It is intended for educational purposes, demonstrating VGA signal generation. The design is not fully verified and the documentation is sparse. The project is notable for its use of VGA and graphics output.",
+   "summary": "This project is a baremetal RISC-V RV32E SoC that includes a UART, QSPI memory controller, generic SPI interface, and a sigma-delta emulator for audio playback. It is designed for embedded processing and includes LED and PWM outputs. The design is implemented in Verilog and uses PMOD Flash and PSRAM for external memory. It is intended for educational and baremetal application development.",
+   "summary_changed": true
+  },
+  {
+   "key": "4f6969700673",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "No multiplication operation is described or implied by the design."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory storage is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "i2s",
+     "reason": "Pins include Bit Clock, LR Clock, and PCM I/O, typical of I2S audio interface."
+    },
+    {
+     "tag": "microphone",
+     "reason": "Multiple PDM input mic pins and PCM outputs for microphones are present."
+    },
+    {
+     "tag": "audio",
+     "reason": "Design processes audio (PDM mics, PCM output, beamforming)."
+    },
+    {
+     "tag": "dsp",
+     "reason": "It performs differential delay and beamforming on audio signals, a DSP function."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is extremely sparse and uses placeholder text ('cool stuff')."
+    }
+   ],
+   "notes": "Added correct audio/DSP tags and insufficient-doc; removed unsupported multiplier/ALU/memory tags.",
+   "tags_before": [
+    "music",
+    "synthesizer",
+    "sound-generator",
+    "multiplier",
+    "alu",
+    "memory"
+   ],
+   "tags": [
+    "music",
+    "synthesizer",
+    "sound-generator",
+    "i2s",
+    "microphone",
+    "audio",
+    "dsp",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a music synthesizer that generates tones and melodies. It uses a multiplier and ALU for note generation, and includes memory for storing sequences. The design is intended for music generation and playback. It is implemented in Verilog and targets the Tiny Tapeout platform.",
+   "summary": "This design is an audio processing circuit that interfaces with PDM microphones and outputs PCM audio. It uses I2S for clocking and includes delay selection for beamforming. The design is implemented in Verilog and targets the Tiny Tapeout platform. The documentation is insufficient to fully describe its operation.",
+   "summary_changed": true
+  },
+  {
+   "key": "08245b6a36dd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "No audio processing or interface is described."
+    },
+    {
+     "tag": "i2s",
+     "reason": "No I2S interface is present in pins or documentation."
+    },
+    {
+     "tag": "microphone",
+     "reason": "No microphone input is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "stochastic-computing",
+     "reason": "Design implements stochastic computing (multiplier, adder, self-multiplier using stochastic bitstreams)."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Design includes a stochastic multiplier."
+    },
+    {
+     "tag": "adder",
+     "reason": "Design includes a stochastic adder."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Documentation references LFSR design in stochastic computing and likely uses LFSR for bitstream generation."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Stochastic computing is often used for DSP; but is it explicitly? The design is for arithmetic, not specific DSP. Better to keep dsp? The tags proposed included dsp. However, the design is arithmetic; dsp is a domain tag meaning digital signal processing design. It is not explicitly for DSP. Remove dsp? The proposed tags had dsp. I think dsp is not supported. Remove dsp."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No specific DSP application described; design is arithmetic using stochastic computing. Remove."
+    }
+   ],
+   "notes": "Removed unsupported audio tags; added correct stochastic computing tags and removed dsp as it is not explicitly a DSP design.",
+   "tags_before": [
+    "dsp",
+    "audio",
+    "i2s",
+    "microphone"
+   ],
+   "tags": [
+    "dsp",
+    "stochastic-computing",
+    "multiplier",
+    "adder",
+    "lfsr"
+   ],
+   "summary_before": "This project is an audio processing design that uses an I2S interface and a microphone input. It is intended for DSP applications. The design is implemented in digital logic. The documentation is sparse, but the design appears to be for audio capture or processing.",
+   "summary": "This project implements a stochastic multiplier, adder, and self-multiplier using stochastic computing. It uses serial bitstreams for inputs and outputs, and includes a clock counter reset. The design is implemented in Verilog and is intended for arithmetic computation. The documentation provides references and testing details via an ADALM2000.",
+   "summary_changed": true
+  },
+  {
+   "key": "7be864771df0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "music",
+     "reason": "No music generation is described; it is a multiplier."
+    },
+    {
+     "tag": "pwm",
+     "reason": "No PWM output is present or described."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio functionality is described."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR is used or described."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Design implements an 8-bit Baugh-Wooley multiplier."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Implemented in Verilog (fact confirms language)."
+    }
+   ],
+   "notes": "Replaced incorrect music/audio tags with correct multiplier and verilog tags.",
+   "tags_before": [
+    "music",
+    "pwm",
+    "audio",
+    "lfsr",
+    "prng",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "multiplier"
+   ],
+   "summary_before": "This project generates music-like tones using a PWM output that can drive a buzzer. It is implemented in Verilog and uses a pseudo-random number generator and LFSR for stochastic sound generation. The design requires a PMOD buzzer for audio output. It is a simple sound generator for experimentation.",
+   "summary": "This project implements an 8-bit signed Baugh-Wooley multiplier. It takes two 8-bit operands via the input pins and produces a 16-bit product split across the output pins. The design is implemented in Verilog and requires no external hardware. It is intended as a compact arithmetic building block.",
+   "summary_changed": true
+  },
+  {
+   "key": "c6f5ad45d837",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "It is an ALU, not a CPU with instruction fetch/decode."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is present."
+    },
+    {
+     "tag": "bootloader",
+     "reason": "No bootloader is described."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "No instruction decoder is described."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file is described."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory is described."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The summary mentions a state machine but the source does not describe an FSM; the tags should not include fsm if not supported? The documentation says 'with state machine to read A and B inputs'. So fsm is supported. Keep fsm."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "Design is explicitly an 8-bit ALU."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Documentation mentions a state machine to read inputs and control operations."
+    },
+    {
+     "tag": "arithmetic",
+     "reason": "Not a canonical tag; use alu."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Implemented in Verilog (fact confirms language)."
+    }
+   ],
+   "notes": "Corrected tags to reflect ALU functionality; removed unsupported CPU, UART, bootloader, etc.; added verilog and fsm.",
+   "tags_before": [
+    "cpu",
+    "uart",
+    "bootloader",
+    "instruction-decoder",
+    "register-file",
+    "memory",
+    "fsm"
+   ],
+   "tags": [
+    "alu",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "tcpu is an 8-bit CPU with integrated IO and a bootloader, featuring a simple instruction set that includes add, and, not, jump, store, load, and nop operations. It uses a UART interface for programming and communication, requiring an external USB-to-UART converter. The CPU is designed for educational purposes and can be tested on a Tiny Tapeout board. Its notable feature is the integrated bootloader for easy program loading.",
+   "summary": "This project is an 8-bit arithmetic logic unit (ALU) that performs arithmetic and bitwise operations on integer binary numbers. It uses a state machine to read two operands from the input pins and control the operation. The result and status flags are output on the bidirectional and output pins. It is implemented in Verilog and is intended for educational use.",
+   "summary_changed": true
+  },
+  {
+   "key": "956f4f4c4610",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or signal is present."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics functionality is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "factory-test",
+     "reason": "Title and description explicitly state it is a factory test for a timer."
+    },
+    {
+     "tag": "spi",
+     "reason": "Pins include SPI_SCK, SPI_CS, SPI_MOSI, SPI_MISO."
+    },
+    {
+     "tag": "timer",
+     "reason": "Design is a factory test for a timer (zTimer)."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is somewhat sparse but sufficient to describe basic operation. However, the proposed summary says documentation is incomplete; but the source has some details. I think insufficient-doc is not warranted; remove."
+    }
+   ],
+   "notes": "Replaced unrelated VGA/display tags with factory-test, SPI, and timer tags; removed insufficient-doc as documentation is adequate.",
+   "tags_before": [
+    "vga",
+    "display",
+    "spi",
+    "graphics",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "spi",
+    "insufficient-doc",
+    "factory-test",
+    "timer"
+   ],
+   "summary_before": "This project is a VGA display design that requires a Tiny VGA PMOD and optionally an SPI controller and external SPI ROM. It is experimental and uses a 6x2 tile area. The documentation is incomplete, with testing details still to be confirmed. It is notable for its experimental nature and potential for graphics display.",
+   "summary": "This project is a factory test for a timer (zTimer) that can be started and stopped. It uses an SPI interface to read out the elapsed count value stored in internal registers. The design is implemented in Verilog and requires an external MCU to read the timer value via SPI. It is intended for production testing of the timer circuit.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7271,
+  "completion_tokens": 2563,
+  "total_tokens": 9834,
+  "cost": 0.0052569,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0052569,
+   "upstream_inference_prompt_cost": 0.0021813,
+   "upstream_inference_completions_cost": 0.0030756
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0052569,
+ "elapsed_s": 12.8
+}

@@ -1,0 +1,229 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f690a2e58d3b",
+  "719964e0b8da",
+  "0027d89f7312",
+  "613c28265cc4",
+  "a8edf4873832",
+  "0e9668fa3394"
+ ],
+ "results": [
+  {
+   "key": "f690a2e58d3b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The source describes a ring-oscillator TRNG, not a pseudo-random number generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puf",
+     "reason": "Not supported; no physically unclonable function is described."
+    }
+   ],
+   "notes": "Removed prng because the design uses a ring-oscillator TRNG, not a pseudo-random generator.",
+   "tags_before": [
+    "stochastic-computing",
+    "accelerator",
+    "trng",
+    "ring-oscillator",
+    "spi",
+    "prng"
+   ],
+   "tags": [
+    "stochastic-computing",
+    "accelerator",
+    "trng",
+    "ring-oscillator",
+    "spi",
+    "puf"
+   ],
+   "summary_before": "WobblyBits is a probabilistic computing chip containing six p-bits that fluctuate randomly, forming an Ising/Boltzmann machine. A 6x6 coupling matrix is loaded over SPI, and the network samples from the encoded probability distribution when the run pin is released. The p-bits are driven by a ring-oscillator true random number generator. The design is implemented in Verilog for the SKY130 process and fits in a 1x2 tile area.",
+   "summary": "WobblyBits is a probabilistic computing chip containing six p-bits that fluctuate randomly, forming an Ising/Boltzmann machine. A 6x6 coupling matrix is loaded over SPI, and the network samples from the encoded probability distribution when the run pin is released. The p-bits are driven by a ring-oscillator true random number generator. The design is implemented in Verilog for the SKY130 process and fits in a 1x2 tile area.",
+   "summary_changed": false
+  },
+  {
+   "key": "719964e0b8da",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "Redundant with spiking-neural-network and not separately evidenced as a generic ANN."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "The design is a neural network accelerator for inference/learning."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "It is an embedded SNN accelerator intended to run with an RP2040 host."
+    }
+   ],
+   "notes": "Removed redundant neural-network tag and added machine-learning/edge-ai tags supported by the SNN accelerator description.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "accelerator",
+    "rp2040",
+    "pio",
+    "fsm"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "accelerator",
+    "rp2040",
+    "pio",
+    "fsm",
+    "machine-learning",
+    "edge-ai"
+   ],
+   "summary_before": "NeuroPulse is a 4-neuron spiking neural network accelerator using the Leaky Integrate-and-Fire model, with weights held off-chip by an RP2040 and streamed via PIO. The FSM processes one neuron at a time in 7 states, achieving about 1.78 million network passes per second at 50 MHz. It supports external spike injection and Hebbian learning (LTP only), with spike outputs and control signals on the pins. The design is notable for its minimal transistor budget (under 2000T) and requires an RP2040 for weight storage and learning updates.",
+   "summary": "NeuroPulse is a 4-neuron spiking neural network accelerator using the Leaky Integrate-and-Fire model, with weights held off-chip by an RP2040 and streamed via PIO. The FSM processes one neuron at a time in 7 states, achieving about 1.78 million network passes per second at 50 MHz. It supports external spike injection and Hebbian learning (LTP only), with spike outputs and control signals on the pins. The design is notable for its minimal transistor budget (under 2000T) and requires an RP2040 for weight storage and learning updates.",
+   "summary_changed": false
+  },
+  {
+   "key": "0027d89f7312",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "esoteric",
+    "text",
+    "framebuffer",
+    "art",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "esoteric",
+    "text",
+    "framebuffer",
+    "art",
+    "verilog"
+   ],
+   "summary_before": "This circuit is a Verilog quine that outputs its own source code as a 640x480 VGA image. It uses a bitmap font to render the source code, which is stored in a hexadecimal array, and displays it on a VGA monitor. The design takes no input and must be clocked at 25.175 MHz. It is notable for being the first Verilog quine to output via VGA and the first hardened quine.",
+   "summary": "This circuit is a Verilog quine that outputs its own source code as a 640x480 VGA image. It uses a bitmap font to render the source code, which is stored in a hexadecimal array, and displays it on a VGA monitor. The design takes no input and must be clocked at 25.175 MHz. It is notable for being the first Verilog quine to output via VGA and the first hardened quine.",
+   "summary_changed": false
+  },
+  {
+   "key": "613c28265cc4",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "vga",
+    "audio",
+    "gamepad",
+    "pwm",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "audio",
+    "gamepad",
+    "pwm",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "This is a side-scrolling runner game where the player jumps or crouches to avoid rocks and birds, with a game over when an obstacle is hit. It is played with a gamepad connected through latch, clock, and data pins, and it outputs VGA video plus PWM audio for background and game-over sounds. It needs a VGA Pmod, a gamepad Pmod, and an audio Pmod to operate. The documentation is brief but sufficient to describe the gameplay and the required external hardware.",
+   "summary": "This is a side-scrolling runner game where the player jumps or crouches to avoid rocks and birds, with a game over when an obstacle is hit. It is played with a gamepad connected through latch, clock, and data pins, and it outputs VGA video plus PWM audio for background and game-over sounds. It needs a VGA Pmod, a gamepad Pmod, and an audio Pmod to operate. The documentation is brief but sufficient to describe the gameplay and the required external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "a8edf4873832",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "machine-learning",
+    "neural-network",
+    "spi",
+    "accelerator",
+    "mac-unit",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "machine-learning",
+    "neural-network",
+    "spi",
+    "accelerator",
+    "mac-unit",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This design is a hardware convolutional neural network accelerator that classifies 10x10 pixel images using two 5x5 kernels. It communicates over SPI to load image and weight data, trigger inference, and read results. The design includes a state machine that processes the image in fragments, performs multiply-accumulate operations, and uses max-pooling to produce a classification. It requires an external SPI master for control and data transfer.",
+   "summary": "This design is a hardware convolutional neural network accelerator that classifies 10x10 pixel images using two 5x5 kernels. It communicates over SPI to load image and weight data, trigger inference, and read results. The design includes a state machine that processes the image in fragments, performs multiply-accumulate operations, and uses max-pooling to produce a classification. It requires an external SPI master for control and data transfer.",
+   "summary_changed": false
+  },
+  {
+   "key": "0e9668fa3394",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "graphics",
+    "vga",
+    "game",
+    "lookup-table",
+    "video",
+    "display",
+    "maze"
+   ],
+   "tags": [
+    "graphics",
+    "vga",
+    "game",
+    "lookup-table",
+    "video",
+    "display",
+    "maze"
+   ],
+   "summary_before": "This is a Wolfenstein-style raycaster that renders a 3D maze from a hardcoded 32x32 grid into a 640x480 VGA signal at 25 MHz, using one scanline per vertical scene column. Player position and angle are updated once per vsync, with direction stored as a 6-bit index into a 64-entry lookup table and wall height derived from a reciprocal lookup. Buttons on the inputs move and turn the player, a demo mode walks forward automatically, and two bits select the wall colour. It needs a VGA PMOD and a 640x480 monitor, and the bidirectional pins expose the angle index and debug position bits.",
+   "summary": "This is a Wolfenstein-style raycaster that renders a 3D maze from a hardcoded 32x32 grid into a 640x480 VGA signal at 25 MHz, using one scanline per vertical scene column. Player position and angle are updated once per vsync, with direction stored as a 6-bit index into a 64-entry lookup table and wall height derived from a reciprocal lookup. Buttons on the inputs move and turn the player, a demo mode walks forward automatically, and two bits select the wall colour. It needs a VGA PMOD and a 640x480 monitor, and the bidirectional pins expose the angle index and debug position bits.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9093,
+  "completion_tokens": 1188,
+  "total_tokens": 10281,
+  "cost": 0.005191875,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.005191875,
+   "upstream_inference_prompt_cost": 0.003409875,
+   "upstream_inference_completions_cost": 0.001782
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.005191875,
+ "elapsed_s": 4.7
+}

@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "81131144689c",
+  "1026305a553d",
+  "bee81719ec50",
+  "26dd4e2f11db",
+  "529a11c05654",
+  "5cd8d8e0430b"
+ ],
+ "results": [
+  {
+   "key": "81131144689c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "logic-gate",
+    "wokwi",
+    "education",
+    "led"
+   ],
+   "tags": [
+    "adder",
+    "logic-gate",
+    "wokwi",
+    "education",
+    "led"
+   ],
+   "summary_before": "This project implements a 1-bit half adder that computes sum and carry from two inputs. It is tested by applying all input combinations and observing the sum and carry outputs, which are connected to LEDs. The design requires two external LED bulbs to indicate the outputs. The documentation includes a truth table and images, making it a clear educational example.",
+   "summary": "This project implements a 1-bit half adder that computes sum and carry from two inputs. It is tested by applying all input combinations and observing the sum and carry outputs, which are connected to LEDs. The design requires two external LED bulbs to indicate the outputs. The documentation includes a truth table and images, making it a clear educational example.",
+   "summary_changed": false
+  },
+  {
+   "key": "1026305a553d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "flip-flop",
+    "wokwi",
+    "led",
+    "button"
+   ],
+   "tags": [
+    "flip-flop",
+    "wokwi",
+    "led",
+    "button"
+   ],
+   "summary_before": "This project implements a flip-flop with set, reset, and enable inputs. The outputs provide both the stored value and its complement. To test it, the inputs should be pulled high via resistors and then momentarily grounded using buttons to change state. External hardware includes four resistors, two LEDs, and two buttons.",
+   "summary": "This project implements a flip-flop with set, reset, and enable inputs. The outputs provide both the stored value and its complement. To test it, the inputs should be pulled high via resistors and then momentarily grounded using buttons to change state. External hardware includes four resistors, two LEDs, and two buttons.",
+   "summary_changed": false
+  },
+  {
+   "key": "bee81719ec50",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "shift-register",
+    "wokwi",
+    "led"
+   ],
+   "tags": [
+    "shift-register",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "This design is a 4-bit serial-in parallel-out shift register with an output enable. Data is shifted in on the clock edge, and the parallel outputs are only active when the output enable is high. It can be tested by providing a clock and data input, and observing the outputs with LEDs. External hardware requires four LEDs for the outputs.",
+   "summary": "This design is a 4-bit serial-in parallel-out shift register with an output enable. Data is shifted in on the clock edge, and the parallel outputs are only active when the output enable is high. It can be tested by providing a clock and data input, and observing the outputs with LEDs. External hardware requires four LEDs for the outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "26dd4e2f11db",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "The source says 'mask production test', not a chip factory self-test structure; the factory-test tag is not supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the design is explicitly not meant to be used, matching an unfinished/placeholder submission."
+    }
+   ],
+   "notes": "Removed factory-test because the source only mentions mask production testing, not a factory self-test structure; added incomplete for the very thin, explicitly unusable design.",
+   "tags_before": [
+    "logic-gate",
+    "factory-test",
+    "wokwi",
+    "led"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "led",
+    "incomplete"
+   ],
+   "summary_before": "This project consists of some logic gates intended for mask production testing. The documentation explicitly states it should not be used at all. It has four inputs and four outputs, and testing would involve connecting LEDs to the outputs. The design is not meant for any functional application.",
+   "summary": "This project consists of some logic gates intended for mask production testing. The documentation explicitly states it should not be used at all. It has four inputs and four outputs, and testing would involve connecting LEDs to the outputs. The design is not meant for any functional application.",
+   "summary_changed": false
+  },
+  {
+   "key": "529a11c05654",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a 25 MHz clock and generates VGA timing; it does not generate a clock signal."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter block is described; the clock/timekeeping is not documented as a counter."
+    },
+    {
+     "tag": "game",
+     "reason": "The bouncing ball is a demo animation, not an interactive game."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "The design implements a VGA clock with adjustable hours, minutes, and seconds."
+    },
+    {
+     "tag": "pmod",
+     "reason": "It explicitly supports the Tiny VGA PMOD and Matt's VGA Clock PMOD."
+    },
+    {
+     "tag": "video",
+     "reason": "It generates VGA video timing and RGB222 colour output."
+    }
+   ],
+   "notes": "Removed clock-generator/counter/game as unsupported; added rtc, pmod, and video based on the documented clock and VGA PMOD functionality.",
+   "tags_before": [
+    "vga",
+    "clock-generator",
+    "graphics",
+    "display",
+    "counter",
+    "game"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "display",
+    "rtc",
+    "pmod",
+    "video"
+   ],
+   "summary_before": "This design is a VGA clock demo that shows a bouncing ball animation over an adaptation of Matt Venn's VGA clock. It produces 640x480 60Hz VGA timing with RGB222 colour outputs compatible with the Tiny VGA PMOD. Inputs allow adjusting hours, minutes, and seconds, and selecting between Tiny VGA and Matt's VGA Clock PMODs. It requires a 25 MHz clock, a VGA monitor, and the appropriate PMOD, and the seconds timer assumes an exact 25.000 MHz clock.",
+   "summary": "This design is a VGA clock demo that shows a bouncing ball animation over an adaptation of Matt Venn's VGA clock. It produces 640x480 60Hz VGA timing with RGB222 colour outputs compatible with the Tiny VGA PMOD. Inputs allow adjusting hours, minutes, and seconds, and selecting between Tiny VGA and Matt's VGA Clock PMODs. It requires a 25 MHz clock, a VGA monitor, and the appropriate PMOD, and the seconds timer assumes an exact 25.000 MHz clock.",
+   "summary_changed": false
+  },
+  {
+   "key": "5cd8d8e0430b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The ring oscillator is used as an internal clock source, but the design is not primarily a clock generation circuit."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The oscilloscope is only suggested for observation; the design is not a measurement/instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "Data is loaded and shifted out through a shift interface, matching the shift-register tag."
+    }
+   ],
+   "notes": "Removed clock-generator and instrumentation as unsupported; added shift-register because the documented load/readback interface is a shift register.",
+   "tags_before": [
+    "ring-oscillator",
+    "counter",
+    "clock-generator",
+    "shift-register",
+    "instrumentation"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "counter",
+    "shift-register"
+   ],
+   "summary_before": "This design includes a simple digital counter that can be driven by either an external clock or an internal ring oscillator. Data is loaded through a shift interface, and the counter runs as fast as possible to produce a result that can be read back. Testing involves selecting the internal clock, loading a starting value and cycle count, and observing that the output is the starting value plus the counter value. An oscilloscope is recommended to measure the actual speed, and the ring oscillator frequency divided by 16 is expected to be between 12.5 MHz and 25 MHz.",
+   "summary": "This design includes a simple digital counter that can be driven by either an external clock or an internal ring oscillator. Data is loaded through a shift interface, and the counter runs as fast as possible to produce a result that can be read back. Testing involves selecting the internal clock, loading a starting value and cycle count, and observing that the output is the starting value plus the counter value. An oscilloscope is recommended to measure the actual speed, and the ring oscillator frequency divided by 16 is expected to be between 12.5 MHz and 25 MHz.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6140,
+  "completion_tokens": 1295,
+  "total_tokens": 7435,
+  "cost": 0.003396,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003396,
+   "upstream_inference_prompt_cost": 0.001842,
+   "upstream_inference_completions_cost": 0.001554
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003396,
+ "elapsed_s": 13.5
+}

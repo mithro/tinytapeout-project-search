@@ -1,0 +1,207 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6819891e9d25",
+  "5a9bbec8eab7",
+  "3cf28c840600",
+  "868c8d2df97c",
+  "4cc27b7ecea0",
+  "4aeb8b16ea86",
+  "6938ec4ffbf4",
+  "bfdf746cde50",
+  "8b288fa27ee8",
+  "3a3ac33f071a"
+ ],
+ "results": [
+  {
+   "key": "6819891e9d25",
+   "tags": [
+    "beamforming",
+    "audio",
+    "pdm",
+    "i2s",
+    "cic-filter",
+    "microphone-array",
+    "delay-and-sum",
+    "signal-processing"
+   ],
+   "summary": "Supermic implements an 8-channel delay-and-sum beamformer for digital microphone arrays. It accepts eight PDM microphone inputs in DDR format, converts them to single-data-rate PCM using third-order CIC filters, applies per-channel configurable delays via shift registers, and sums the results. The beamformed signal is output as an I2S stream, and individual channel PCM outputs are also provided. External hardware includes eight digital microphones, a clock generator (such as a Raspberry Pi or microcontroller), and an I2S receiver; the design is documented but has no reported silicon test results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5a9bbec8eab7",
+   "tags": [
+    "rgbw",
+    "led",
+    "pwm",
+    "spi",
+    "color-processor",
+    "color-wheel",
+    "demoboard",
+    "micropython"
+   ],
+   "summary": "The RGBW Color Processor generates PWM control signals for RGBW LEDs based on color index, intensity, and white level, or acts as a direct SPI-to-four-channel PWM converter in bypass mode. It is an SPI slave in mode 0 that receives an 8-byte command, and it can produce hue, tint, and intensity from a color index when in color wheel mode. Testing is typically done with a MicroPython script on the Tiny Tapeout demoboard, connecting LEDs to the PWM outputs while respecting the 4 mA current limit. No silicon test results are provided, but the design is well documented and supports both RP2040-based and STM32-based test setups.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3cf28c840600",
+   "tags": [
+    "pll",
+    "frequency-synthesizer",
+    "fractional-n",
+    "clock-generation",
+    "csr",
+    "adc",
+    "ring-oscillator",
+    "control-voltage"
+   ],
+   "summary": "Tiny PLL is a 4-channel fractional-N frequency synthesizer that generates four independent clock outputs based on control register settings. It is configured through a simple CSR interface using data and address inputs, and it includes an ADC to monitor the tuning voltage of channel 0. Silicon testing showed that the PLL blocks work and produce the expected outputs, but the ADC output was stuck high, indicating a fault. The design is notable for integrating multiple PLL channels and an ADC on a tiny tapeout tile, though the ADC issue limits its usefulness for monitoring.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "868c8d2df97c",
+   "tags": [
+    "vga",
+    "screensaver",
+    "tinyvga",
+    "animation",
+    "logo",
+    "graphics",
+    "gradient",
+    "pmod"
+   ],
+   "summary": "This design displays a bouncing Tiny Tapeout logo with an animated color gradient on a VGA monitor at 640x480 resolution. It uses the TinyVGA PMOD for video output and provides two configuration inputs: one to tile the logo across the screen and another to use a solid color instead of the gradient. Silicon testing confirmed that the design works correctly in default, tiled, and solid color modes at standard VGA clock and even up to 32 MHz. The design is a simple graphics demo with no external components beyond the VGA PMOD.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4cc27b7ecea0",
+   "tags": [
+    "rgb",
+    "mixer",
+    "rotary-encoder",
+    "pwm",
+    "debounce",
+    "led",
+    "control",
+    "debug"
+   ],
+   "summary": "The RGB Mixer reads three digital rotary encoders to control the brightness of three PWM outputs, intended for driving RGB LEDs. It debounces the encoder inputs and includes a debug mode where the internal encoder values are output on the bidirectional pins when the debug input is set to 0, 1, or 2. The design is tested by twisting each encoder and observing the corresponding LED brightness change. External hardware consists of three digital encoders connected to the first six inputs, and the project is noted as the creator's first ASIC design.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4aeb8b16ea86",
+   "tags": [
+    "differential-receiver",
+    "analog",
+    "deserializer",
+    "high-speed",
+    "test",
+    "ibias",
+    "debug",
+    "serial"
+   ],
+   "summary": "This is a test module for a differential input receiver, implemented in analog circuitry. It accepts differential clock and data inputs, along with a bias current and a bias select signal, and deserializes the data to 16 parallel outputs. Silicon testing by the author successfully deserialized data up to 600 Mbit/s with a 500 mV single-ended swing (1 V differential). The documentation is minimal, with 'FIXME' placeholders for how it works, how to test, and external hardware, but the silicon result confirms functionality.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6938ec4ffbf4",
+   "tags": [
+    "demo",
+    "vga",
+    "audio",
+    "raycaster",
+    "synthesizer",
+    "music",
+    "sequencer",
+    "dithering",
+    "tinyvga",
+    "tt-audio"
+   ],
+   "summary": "Sequential Shadows is a demoscene demo that combines a ray caster, synthesizer, music sequencer, and audio visualizer to produce a real-time audiovisual experience. It requires a TinyVGA PMOD for video and Mike's audio PMOD for sound, and it includes controls for pausing, stepping frames, and disabling bass or drums. The design was developed for the TT08 demo competition and was tested on hardware by both the author and an independent tester, who confirmed it works as simulated. The demo is best viewed with the monitor rotated 90 degrees and includes flashing lights by default.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "bfdf746cde50",
+   "tags": [
+    "demo",
+    "vga",
+    "audio",
+    "raycaster",
+    "synthesizer",
+    "music",
+    "sequencer",
+    "dithering",
+    "tinyvga",
+    "tt-audio"
+   ],
+   "summary": "Sequential Shadows Deluxe is an extended version of the TT08 demo competition entry, adding a shadow beneath the logo and credits, with support for both TinyVGA and Digilent Pmod VGA pinouts. It requires a VGA PMOD and an audio PMOD, and it includes the same controls as the original for pausing, stepping frames, and disabling bass or drums. The design was tested on hardware by the author and confirmed to work similarly to the simulation. Documentation refers to the original version for details, and the deluxe version offers additional visual tweaks.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8b288fa27ee8",
+   "tags": [
+    "asynchronous",
+    "multiplier",
+    "bundled-data",
+    "self-timed",
+    "handshake",
+    "req-ack",
+    "arithmetic"
+   ],
+   "summary": "This design implements an asynchronous self-timed bundled-data multiplier. It uses a four-phase request-acknowledge handshake to indicate data validity and provides a 15-bit result via req and ack signals, with the result presented as x*(x+1) transformed by x ^ (x >> 15). Testing can be done by manually driving the ack signal and observing the outputs; tying ack to req may produce a continuous stream, though output bandwidth limitations are noted. The design is an educational exercise in asynchronous logic, with results directly observable from the RP2040 on the demoboard.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3a3ac33f071a",
+   "tags": [
+    "demo",
+    "flame",
+    "vga",
+    "audio",
+    "pwm",
+    "tinyvga",
+    "tt-audio",
+    "animation"
+   ],
+   "summary": "Flame demo displays a flame animation on a VGA monitor and plays simple 1-bit PWM audio. It requires a TinyVGA PMOD for video and either Mike's audio PMOD or a basic RC filter for sound, and it runs at a 25 MHz clock with a reset pulse. Silicon testing by two independent testers confirmed that both audio and video work as expected, with good use of color and dithering. The design is a compact demoscene-style demo suitable for the Tiny Tapeout demo competition.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6170,
+  "completion_tokens": 2059,
+  "total_tokens": 8229,
+  "cost": 0.0043218,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043218,
+   "upstream_inference_prompt_cost": 0.001851,
+   "upstream_inference_completions_cost": 0.0024708
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043218,
+ "elapsed_s": 14.8
+}

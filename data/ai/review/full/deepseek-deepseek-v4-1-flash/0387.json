@@ -1,0 +1,238 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9db13362808f",
+  "547d357762d6",
+  "fee196f57eac",
+  "4e47400f0fa1",
+  "98ab3d8f0c20",
+  "6819891e9d25"
+ ],
+ "results": [
+  {
+   "key": "9db13362808f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "The source describes a PUF for identification/authentication and nonce generation, not a cryptographic cipher or protocol."
+    },
+    {
+     "tag": "trng",
+     "reason": "The design is a PUF with deterministic challenge-response pairs, not a true random number generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "The source explicitly asks board owners to collect CRP data to characterize the manufacturing process and PUF architecture."
+    }
+   ],
+   "notes": "Removed crypto and trng because the source describes a PUF for identification/authentication and nonce generation, not a cipher or true random source; added characterization for the explicit process/PUF characterization effort.",
+   "tags_before": [
+    "puf",
+    "ring-oscillator",
+    "security",
+    "crypto",
+    "trng",
+    "verilog"
+   ],
+   "tags": [
+    "puf",
+    "ring-oscillator",
+    "security",
+    "verilog",
+    "characterization"
+   ],
+   "summary_before": "This project implements a ring-oscillator-based physically unclonable function (PUF) with 8 bits of challenge-response pairs. It uses 32 ring oscillators per bit, selected by the challenge, and races counters to produce a response bit. The design requires no external hardware and is tested by applying challenges and observing responses, though responses may vary with temperature. The author seeks collaboration to characterize the PUF's uniqueness, reliability, and entropy across many devices.",
+   "summary": "This project implements a ring-oscillator-based physically unclonable function (PUF) with 8 bits of challenge-response pairs. It uses 32 ring oscillators per bit, selected by the challenge, and races counters to produce a response bit. The design requires no external hardware and is tested by applying challenges and observing responses, though responses may vary with temperature. The author seeks collaboration to characterize the PUF's uniqueness, reliability, and entropy across many devices.",
+   "summary_changed": false
+  },
+  {
+   "key": "547d357762d6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "trng",
+     "reason": "The source describes an LFSR with configurable delay lines and NIST randomness tests, not a true random number generator."
+    },
+    {
+     "tag": "prng",
+     "reason": "The source does not describe a pseudo-random number generator; it describes an LFSR-based delay-line circuit and statistical tests."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "The NIST statistical tests are used to characterize the randomness of the LFSR/delay-line output."
+    }
+   ],
+   "notes": "Removed trng and prng because the source describes an LFSR/delay-line circuit with NIST randomness tests, not a random number generator; added characterization for the statistical test purpose.",
+   "tags_before": [
+    "trng",
+    "lfsr",
+    "prng",
+    "delay-line",
+    "oscillator",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "delay-line",
+    "oscillator",
+    "verilog",
+    "characterization"
+   ],
+   "summary_before": "This project implements four NIST statistical tests (Frequency, Block Frequency, Runs, and Longest Run of Ones) to evaluate random bit sequences. It also includes an analog LFSR with configurable delay lines that can act as a conventional LFSR, oscillator, or chaotic oscillator. The design accepts random bits as input and outputs test results, and requires external hardware for configuration and monitoring. It is based on published works on low-cost on-chip randomness tests.",
+   "summary": "This project implements four NIST statistical tests (Frequency, Block Frequency, Runs, and Longest Run of Ones) to evaluate random bit sequences. It also includes an analog LFSR with configurable delay lines that can act as a conventional LFSR, oscillator, or chaotic oscillator. The design accepts random bits as input and outputs test results, and requires external hardware for configuration and monitoring. It is based on published works on low-cost on-chip randomness tests.",
+   "summary_changed": false
+  },
+  {
+   "key": "fee196f57eac",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pll",
+    "vco",
+    "phase-detector",
+    "analog",
+    "oscillator",
+    "silicon-tested"
+   ],
+   "tags": [
+    "pll",
+    "vco",
+    "phase-detector",
+    "analog",
+    "oscillator",
+    "silicon-tested"
+   ],
+   "summary_before": "This project exposes a VCO and a phase-frequency detector as building blocks of a phase-locked loop, with analog control and output pins plus digital select and clock inputs. An oscilloscope, function generator and bench power supply are suggested but not required for testing. A silicon test report confirms the VCO works, producing 13 kHz to 66 MHz, though the usable control range was 0.4 V to 1.0 V rather than the documented 1.0 V to 1.8 V. The phase-frequency detector was not tested by the reporter, and the design is notable for including measured silicon results.",
+   "summary": "This project exposes a VCO and a phase-frequency detector as building blocks of a phase-locked loop, with analog control and output pins plus digital select and clock inputs. An oscilloscope, function generator and bench power supply are suggested but not required for testing. A silicon test report confirms the VCO works, producing 13 kHz to 66 MHz, though the usable control range was 0.4 V to 1.0 V rather than the documented 1.0 V to 1.8 V. The phase-frequency detector was not tested by the reporter, and the design is notable for including measured silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "4e47400f0fa1",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pong",
+    "game",
+    "vga",
+    "video",
+    "amaranth"
+   ],
+   "tags": [
+    "pong",
+    "game",
+    "vga",
+    "video",
+    "amaranth"
+   ],
+   "summary_before": "This is a simple Pong game where the ball is represented by an image of the Polish pope, output over VGA. It supports two players via button inputs or an AI opponent, selectable by a pin. The design requires external hardware for VGA digital-to-analog conversion, a VGA monitor, and buttons for player input. The game logic runs once per frame during vertical sync, and it outputs one pixel per clock cycle.",
+   "summary": "This is a simple Pong game where the ball is represented by an image of the Polish pope, output over VGA. It supports two players via button inputs or an AI opponent, selectable by a pin. The design requires external hardware for VGA digital-to-analog conversion, a VGA monitor, and buttons for player input. The game logic runs once per frame during vertical sync, and it outputs one pixel per clock cycle.",
+   "summary_changed": false
+  },
+  {
+   "key": "98ab3d8f0c20",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "i2s",
+     "reason": "The source does not mention I2S; it describes PDM microphone inputs and PCM outputs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pdm",
+     "reason": "The design operates on PDM microphone inputs and performs correlation on PDM bitstreams."
+    }
+   ],
+   "notes": "Removed i2s because the source describes PDM inputs and PCM outputs, not I2S; added pdm for the PDM microphone processing.",
+   "tags_before": [
+    "dsp",
+    "audio",
+    "microphone",
+    "spi",
+    "i2s",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "audio",
+    "microphone",
+    "spi",
+    "verilog"
+   ],
+   "summary_before": "This chip performs cross- or auto-correlation on PDM microphone inputs to find time difference of arrival or pitch. It uses shift registers and XOR summation, with a decimator and SPI-configurable settings. It outputs PCM audio via I2S and requires external microphones, a clock generator, and an SPI port. The design is notable for its customizable correlation and beamforming capabilities.",
+   "summary": "This chip performs cross- or auto-correlation on PDM microphone inputs to find time difference of arrival or pitch. It uses shift registers and XOR summation, with a decimator and SPI-configurable settings. It outputs PCM audio and requires external microphones, a clock generator, and an SPI port. The design is notable for its customizable correlation and beamforming capabilities.",
+   "summary_changed": true
+  },
+  {
+   "key": "6819891e9d25",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "The source describes third-order CIC filters, not FIR filters."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pdm",
+     "reason": "The design accepts PDM microphone inputs and converts them to PCM."
+    }
+   ],
+   "notes": "Removed fir-filter because the source specifies third-order CIC filters; added pdm for the PDM microphone input processing.",
+   "tags_before": [
+    "dsp",
+    "audio",
+    "i2s",
+    "microphone",
+    "fir-filter",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "audio",
+    "i2s",
+    "microphone",
+    "verilog"
+   ],
+   "summary_before": "Supermic implements an 8-channel delay-and-sum beamformer for digital microphone arrays. It accepts eight PDM microphone inputs in DDR format, converts them to single-data-rate PCM using third-order CIC filters, applies per-channel configurable delays via shift registers, and sums the results. The beamformed signal is output as an I2S stream, and individual channel PCM outputs are also provided. External hardware includes eight digital microphones, a clock generator (such as a Raspberry Pi or microcontroller), and an I2S receiver; the design is documented but has no reported silicon test results.",
+   "summary": "Supermic implements an 8-channel delay-and-sum beamformer for digital microphone arrays. It accepts eight PDM microphone inputs in DDR format, converts them to single-data-rate PCM using third-order CIC filters, applies per-channel configurable delays via shift registers, and sums the results. The beamformed signal is output as an I2S stream, and individual channel PCM outputs are also provided. External hardware includes eight digital microphones, a clock generator (such as a Raspberry Pi or microcontroller), and an I2S receiver; the design is documented but has no reported silicon test results.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7610,
+  "completion_tokens": 1441,
+  "total_tokens": 9051,
+  "cost": 0.0030714,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0030714,
+   "upstream_inference_prompt_cost": 0.0013422,
+   "upstream_inference_completions_cost": 0.0017292
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0030714,
+ "elapsed_s": 58.4
+}

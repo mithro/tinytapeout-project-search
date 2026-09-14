@@ -1,0 +1,321 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8910712fb32a",
+  "ed20aeb95163",
+  "f72c6b7e3970",
+  "431f5e69227f",
+  "bb7267f69390",
+  "368cc4b8066a"
+ ],
+ "results": [
+  {
+   "key": "8910712fb32a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asic",
+     "reason": "No evidence of ASIC-specific implementation beyond the standard Tiny Tapeout flow; not supported by the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "time-to-digital-converter",
+     "reason": "The design measures the rise time of an external RC circuit, which is a time-to-digital conversion."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "It is intended to estimate resistance for external sensors."
+    },
+    {
+     "tag": "uart",
+     "reason": "The calculated resistance is output via a UART pin."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "It is a measurement circuit for estimating resistance."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported 'asic' tag; the rest of the proposed tags are supported.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "sensor-interface",
+    "uart",
+    "instrumentation",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "time-to-digital-converter",
+    "sensor-interface",
+    "uart",
+    "instrumentation",
+    "verilog"
+   ],
+   "summary_before": "This project implements a time-to-digital converter that estimates the resistance of an external RC circuit by measuring its rise time in response to a step signal. It outputs the calculated 32-bit resistance value via UART. Testing requires only a resistor and a 10 nF capacitor connected to the appropriate pins. The design is notable for providing a way to measure resistance without a mixed-signal ADC.",
+   "summary": "This project implements a time-to-digital converter that estimates the resistance of an external RC circuit by measuring its rise time in response to a step signal. It outputs the calculated 32-bit resistance value via UART. Testing requires only a resistor and a 10 nF capacitor connected to the appropriate pins. The design is notable for providing a way to measure resistance without a mixed-signal ADC.",
+   "summary_changed": false
+  },
+  {
+   "key": "ed20aeb95163",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "biomedical",
+     "reason": "The design is for heat stress detection, not biomedical or health monitoring; no medical application is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sensor-interface",
+     "reason": "It uses a pulse input as a proxy for temperature from a sensor."
+    },
+    {
+     "tag": "counter",
+     "reason": "It counts pulses over time."
+    },
+    {
+     "tag": "temperature-sensor",
+     "reason": "The pulse frequency represents temperature level."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported 'biomedical' tag; the rest of the proposed tags are supported.",
+   "tags_before": [
+    "sensor-interface",
+    "counter",
+    "temperature-sensor",
+    "biomedical",
+    "verilog"
+   ],
+   "tags": [
+    "sensor-interface",
+    "counter",
+    "temperature-sensor",
+    "verilog"
+   ],
+   "summary_before": "This design implements a heat stress alert system that counts pulses on a single input pin, using pulse frequency as a proxy for temperature, and classifies the condition into safe, warm, high risk or critical. The state is continuously driven to four output pins and can be observed in simulation with a generated pulse stimulus. For real use, a signal generator can drive the input directly, or a temperature sensor can be connected through a microcontroller that converts readings to pulse frequency. The documentation is clear but brief, and no silicon results are reported.",
+   "summary": "This design implements a heat stress alert system that counts pulses on a single input pin, using pulse frequency as a proxy for temperature, and classifies the condition into safe, warm, high risk or critical. The state is continuously driven to four output pins and can be observed in simulation with a generated pulse stimulus. For real use, a signal generator can drive the input directly, or a temperature sensor can be connected through a microcontroller that converts readings to pulse frequency. The documentation is clear but brief, and no silicon results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "f72c6b7e3970",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a matrix multiplier, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "accelerator",
+     "reason": "It is a dedicated compute accelerator for matrix multiplication."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "It performs multiplication of matrix elements."
+    },
+    {
+     "tag": "fsm",
+     "reason": "A finite state machine controls the loading, computation, and reading phases."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported 'alu' tag; the rest of the proposed tags are supported.",
+   "tags_before": [
+    "accelerator",
+    "multiplier",
+    "fsm",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "accelerator",
+    "multiplier",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This design is a 3x3 unsigned 4-bit matrix multiplier that computes C = A * B with 10-bit output. It uses a nibble-stream protocol to load the matrices serially due to limited I/O pins, and a finite state machine manages the loading, computation, and reading phases. The result is read as two bytes per element, and status pins indicate busy, done, and output valid. It requires an external host such as a microcontroller or FPGA to drive the protocol, and no analog components are needed.",
+   "summary": "This design is a 3x3 unsigned 4-bit matrix multiplier that computes C = A * B with 10-bit output. It uses a nibble-stream protocol to load the matrices serially due to limited I/O pins, and a finite state machine manages the loading, computation, and reading phases. The result is read as two bytes per element, and status pins indicate busy, done, and output valid. It requires an external host such as a microcontroller or FPGA to drive the protocol, and no analog components are needed.",
+   "summary_changed": false
+  },
+  {
+   "key": "431f5e69227f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design is a MAC engine intended as a co-processor for neural-network inference, but it does not implement a neural network itself."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "It is a multiply-accumulate engine."
+    },
+    {
+     "tag": "spi",
+     "reason": "It is controlled over a 4-wire SPI slave interface."
+    },
+    {
+     "tag": "coprocessor",
+     "reason": "It is intended as a co-processor for quantized neural-network inference on a small MCU."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The design is written in SystemVerilog."
+    }
+   ],
+   "notes": "Removed unsupported 'neural-network' tag; the rest of the proposed tags are supported.",
+   "tags_before": [
+    "mac-unit",
+    "neural-network",
+    "spi",
+    "coprocessor",
+    "systemverilog"
+   ],
+   "tags": [
+    "mac-unit",
+    "spi",
+    "coprocessor",
+    "systemverilog"
+   ],
+   "summary_before": "This design is a quantized INT8 multiply-accumulate (MAC) engine with bias, activation, and quantizer post-processing, intended as a co-processor for neural-network inference on a microcontroller. It is controlled via a 4-wire SPI slave interface and provides status outputs including idle, busy, result-valid, and accumulator overflow. Testing requires an SPI master host, and optional logic analyzer; no other external hardware is needed. The chip is self-contained and notable for its integrated post-processing pipeline, but it has no silicon test results reported.",
+   "summary": "This design is a quantized INT8 multiply-accumulate (MAC) engine with bias, activation, and quantizer post-processing, intended as a co-processor for neural-network inference on a microcontroller. It is controlled via a 4-wire SPI slave interface and provides status outputs including idle, busy, result-valid, and accumulator overflow. Testing requires an SPI master host, and optional logic analyzer; no other external hardware is needed. The chip is self-contained and notable for its integrated post-processing pipeline, but it has no silicon test results reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "bb7267f69390",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "graphics",
+     "reason": "The design renders a bouncing logo, but the source does not describe general graphics rendering; it is a specific screensaver."
+    },
+    {
+     "tag": "display",
+     "reason": "The output is VGA video, not a generic display interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "It outputs VGA video signals."
+    },
+    {
+     "tag": "video",
+     "reason": "It generates a video signal for a VGA display."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported 'graphics' and 'display' tags; the rest of the proposed tags are supported.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "display",
+    "video",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "verilog"
+   ],
+   "summary_before": "This project is a VGA screensaver that displays a bouncing logo with the text UACJ and A.M.G on a 640x480 @ 60 Hz screen. It is based on a DVD screensaver design and includes modules for VGA sync generation and bitmap ROM. The logo moves around the screen and changes color upon hitting edges. It requires a VGA display and a VGA PMOD or breakout board with a resistor DAC for connection.",
+   "summary": "This project is a VGA screensaver that displays a bouncing logo with the text UACJ and A.M.G on a 640x480 @ 60 Hz screen. It is based on a DVD screensaver design and includes modules for VGA sync generation and bitmap ROM. The logo moves around the screen and changes color upon hitting edges. It requires a VGA display and a VGA PMOD or breakout board with a resistor DAC for connection.",
+   "summary_changed": false
+  },
+  {
+   "key": "368cc4b8066a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design computes sine and cosine, but it is not a general signal generator; it is a CORDIC calculator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cordic",
+     "reason": "It implements the CORDIC algorithm."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "It uses Q2.6 fixed-point arithmetic."
+    },
+    {
+     "tag": "dsp",
+     "reason": "It is a digital signal processing building block for sine/cosine generation."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "It is verified with a cocotb testbench."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported 'signal-generator' tag; the rest of the proposed tags are supported.",
+   "tags_before": [
+    "cordic",
+    "fixed-point",
+    "dsp",
+    "signal-generator",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "cordic",
+    "fixed-point",
+    "dsp",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This project computes the sine and cosine of an 8-bit input angle using an iterative 8-stage CORDIC algorithm in Q2.6 fixed-point format. The angle is provided on the input pins, and a start signal triggers the computation, with results available after about 11 clock cycles. The design is tested with a cocotb testbench that sweeps all 128 angles and checks against a golden model. External hardware is not required, but an optional 8-bit LED PMOD can be connected to view the cosine output.",
+   "summary": "This project computes the sine and cosine of an 8-bit input angle using an iterative 8-stage CORDIC algorithm in Q2.6 fixed-point format. The angle is provided on the input pins, and a start signal triggers the computation, with results available after about 11 clock cycles. The design is tested with a cocotb testbench that sweeps all 128 angles and checks against a golden model. External hardware is not required, but an optional 8-bit LED PMOD can be connected to view the cosine output.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8606,
+  "completion_tokens": 1899,
+  "total_tokens": 10505,
+  "cost": 0.0039198,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039198,
+   "upstream_inference_prompt_cost": 0.001641,
+   "upstream_inference_completions_cost": 0.0022788
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039198,
+ "elapsed_s": 49.7
+}

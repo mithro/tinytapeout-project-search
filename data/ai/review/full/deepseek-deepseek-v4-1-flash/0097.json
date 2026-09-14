@@ -1,0 +1,314 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d90c05d7a83e",
+  "b8a139860abd",
+  "f1bf262f2408",
+  "a14cb40f73f1",
+  "806719035579",
+  "bc757e6ac60c"
+ ],
+ "results": [
+  {
+   "key": "d90c05d7a83e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "UART is only mentioned as external test equipment, not implemented in the design."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ascii",
+     "reason": "Already present; outputs ASCII-encoded characters."
+    },
+    {
+     "tag": "text",
+     "reason": "Already present; outputs text sequences."
+    }
+   ],
+   "notes": "Removed uart and education tags not supported by the design itself.",
+   "tags_before": [
+    "ascii",
+    "text",
+    "counter",
+    "uart",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "ascii",
+    "text",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This design outputs ASCII-encoded text sequences character by character, selecting between two texts using a 2-bit input. One text is the beginning of a traditional Guatemalan song, and the other lists the project participants' names. An internal counter increments each clock cycle until a limit is reached, then resets to repeat the sequence. Testing requires an external microcontroller to read the 8 output pins synchronously and forward the characters over UART to a computer terminal; the author tested it with a TIVA C and an FPGA.",
+   "summary": "This design outputs ASCII-encoded text sequences character by character, selecting between two texts using a 2-bit input. One text is the beginning of a traditional Guatemalan song, and the other lists the project participants' names. An internal counter increments each clock cycle until a limit is reached, then resets to repeat the sequence. Testing requires an external microcontroller to read the 8 output pins synchronously and forward the characters over UART to a computer terminal; the author tested it with a TIVA C and an FPGA.",
+   "summary_changed": false
+  },
+  {
+   "key": "b8a139860abd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "No evidence of digital signal processing application; matrix multiply is generic compute."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is placeholder text, indicating unfinished documentation."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation too sparse to describe design beyond title and pins."
+    }
+   ],
+   "notes": "Removed dsp tag; added incomplete and insufficient-doc due to placeholder documentation.",
+   "tags_before": [
+    "systolic-array",
+    "accelerator",
+    "coprocessor",
+    "multiplier",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "systolic-array",
+    "accelerator",
+    "coprocessor",
+    "multiplier",
+    "verilog",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a 1-bit 8x8 matrix multiply using a systolic array, with eight data input pins and eight output pins for the result. A bidirectional pin selects between OR and XOR accumulation, and another bidirectional pin outputs a greeting. The documentation consists only of placeholder text ('Explain how your project works' and 'Explain how to test your project'), so the exact interface and operation cannot be verified beyond the pin names and title. The design is notable for targeting matrix multiplication in a single Tiny Tapeout tile.",
+   "summary": "This project implements a 1-bit 8x8 matrix multiply using a systolic array, with eight data input pins and eight output pins for the result. A bidirectional pin selects between OR and XOR accumulation, and another bidirectional pin outputs a greeting. The documentation consists only of placeholder text ('Explain how your project works' and 'Explain how to test your project'), so the exact interface and operation cannot be verified beyond the pin names and title. The design is notable for targeting matrix multiplication in a single Tiny Tapeout tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "f1bf262f2408",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neuromorphic",
+     "reason": "No evidence of brain-inspired neuromorphic computing; event-based denoising is not neuromorphic per se."
+    },
+    {
+     "tag": "image-processing",
+     "reason": "No evidence of image processing; event denoising is not necessarily image processing."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "Already present; design includes a counter."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; drives a 7-segment display."
+    },
+    {
+     "tag": "timer",
+     "reason": "Already present; functions as a timer."
+    }
+   ],
+   "notes": "Removed neuromorphic and image-processing tags not supported by source.",
+   "tags_before": [
+    "neuromorphic",
+    "image-processing",
+    "counter",
+    "7-segment",
+    "timer",
+    "verilog"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "timer",
+    "verilog"
+   ],
+   "summary_before": "This design accepts an 8-bit event signal with x, y, p, and t parameters and outputs the signal only when the p bit is high, filtering it to reduce noise. It also includes a clock divider and binary-to-decimal logic driving a 7-segment display, with the lower counter bits exposed on the bidirectional pins. The input pins program a 24-bit compare value that sets the counting rate. The documentation describes the counter behavior in detail but gives only a brief description of the denoising function.",
+   "summary": "This design accepts an 8-bit event signal with x, y, p, and t parameters and outputs the signal only when the p bit is high, filtering it to reduce noise. It also includes a clock divider and binary-to-decimal logic driving a 7-segment display, with the lower counter bits exposed on the bidirectional pins. The input pins program a 24-bit compare value that sets the counting rate. The documentation describes the counter behavior in detail but gives only a brief description of the denoising function.",
+   "summary_changed": false
+  },
+  {
+   "key": "a14cb40f73f1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "No generic display interface; only PWM outputs for LEDs."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "7-segment display is only mentioned in testing, not a design interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "Already present; core function is PWM generation."
+    },
+    {
+     "tag": "led",
+     "reason": "Already present; controls LED brightness."
+    },
+    {
+     "tag": "i2c",
+     "reason": "Already present; I2C interface for control."
+    }
+   ],
+   "notes": "Removed display and 7-segment tags not supported as design interfaces.",
+   "tags_before": [
+    "pwm",
+    "led",
+    "i2c",
+    "display",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "led",
+    "i2c",
+    "verilog"
+   ],
+   "summary_before": "This is an 8-channel PWM controller for LED brightness, using an exponential (X^3) duty cycle curve to provide linear perceived brightness with 8-bit input. It can be controlled either by the ui inputs or via I2C, with the first I2C write switching to I2C mode. Testing can be done by adjusting DIP switches to see different brightness levels on a 7-segment LED display. External hardware includes LEDs and optionally an I2C master.",
+   "summary": "This is an 8-channel PWM controller for LED brightness, using an exponential (X^3) duty cycle curve to provide linear perceived brightness with 8-bit input. It can be controlled either by the ui inputs or via I2C, with the first I2C write switching to I2C mode. Testing can be done by adjusting DIP switches to see different brightness levels on a 7-segment LED display. External hardware includes LEDs and optionally an I2C master.",
+   "summary_changed": false
+  },
+  {
+   "key": "806719035579",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "No audio application; mixer is for RF up/down conversion."
+    }
+   ],
+   "add": [
+    {
+     "tag": "modulator",
+     "reason": "Already present; mixer performs modulation/demodulation."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "Already present; mixer performs demodulation."
+    },
+    {
+     "tag": "analog",
+     "reason": "Already present; analog circuit."
+    },
+    {
+     "tag": "rf",
+     "reason": "Already present; RF mixer."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports confirm working status."
+    }
+   ],
+   "notes": "Removed audio tag; added silicon-tested based on working silicon reports.",
+   "tags_before": [
+    "modulator",
+    "analog",
+    "rf",
+    "demodulator",
+    "audio"
+   ],
+   "tags": [
+    "modulator",
+    "analog",
+    "rf",
+    "demodulator",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog project implements a Gilbert cell mixer for up and down conversion of signals, with both internal and external local oscillator options. The digital control part can generate internal LO signals at different frequencies or pass an external LO to the analog mixer. Testing requires biasing the input ports with 900-950 mV and applying a differential signal of about 20 mV peak-to-peak, typically using a custom interface PCB. Silicon tests confirm successful downconversion from 32 MHz RF and 30 MHz LO to a 2 MHz IF, and the author notes it works well with both internal and external LO sources.",
+   "summary": "This analog project implements a Gilbert cell mixer for up and down conversion of signals, with both internal and external local oscillator options. The digital control part can generate internal LO signals at different frequencies or pass an external LO to the analog mixer. Testing requires biasing the input ports with 900-950 mV and applying a differential signal of about 20 mV peak-to-peak, typically using a custom interface PCB. Silicon tests confirm successful downconversion from 32 MHz RF and 30 MHz LO to a 2 MHz IF, and the author notes it works well with both internal and external LO sources.",
+   "summary_changed": false
+  },
+  {
+   "key": "bc757e6ac60c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sar-adc",
+     "reason": "Design is a DAC, not an ADC; SAR is used for DAC conversion."
+    },
+    {
+     "tag": "analog",
+     "reason": "Design is digital Verilog; analog parts are external."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "No on-chip analog; external comparator and resistor array."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dac",
+     "reason": "Already present; core function is digital-to-analog conversion."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Already present; uses comparator input."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; written in Verilog."
+    }
+   ],
+   "notes": "Removed sar-adc, analog, and mixed-signal tags not supported by source.",
+   "tags_before": [
+    "dac",
+    "sar-adc",
+    "analog",
+    "comparator",
+    "mixed-signal",
+    "verilog"
+   ],
+   "tags": [
+    "dac",
+    "comparator",
+    "verilog"
+   ],
+   "summary_before": "This design is an 8-bit digital-to-analog converter that uses successive approximation to convert a digital input into an analog output. It requires an external analog comparator and a resistor array to function, as indicated by the pin names and description. The conversion process uses nonlinear sampling, and the design can be tested by providing comparator values and checking the digital outputs. The documentation is brief and does not provide detailed schematics or test results.",
+   "summary": "This design is an 8-bit digital-to-analog converter that uses successive approximation to convert a digital input into an analog output. It requires an external analog comparator and a resistor array to function, as indicated by the pin names and description. The conversion process uses nonlinear sampling, and the design can be tested by providing comparator values and checking the digital outputs. The documentation is brief and does not provide detailed schematics or test results.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6651,
+  "completion_tokens": 1749,
+  "total_tokens": 8400,
+  "cost": 0.0031533,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0031533,
+   "upstream_inference_prompt_cost": 0.0010545,
+   "upstream_inference_completions_cost": 0.0020988
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0031533,
+ "elapsed_s": 14.3
+}

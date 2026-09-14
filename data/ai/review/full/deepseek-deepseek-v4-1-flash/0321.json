@@ -1,0 +1,230 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3ddf09647d58",
+  "ed3bef9a77cc",
+  "28d31df1b868",
+  "9714124be261",
+  "3f918f15d1b1",
+  "295e4a93b78b"
+ ],
+ "results": [
+  {
+   "key": "3ddf09647d58",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "accelerator",
+    "neural-network",
+    "machine-learning",
+    "floating-point",
+    "systolic-array",
+    "verilog"
+   ],
+   "tags": [
+    "accelerator",
+    "neural-network",
+    "machine-learning",
+    "floating-point",
+    "systolic-array",
+    "verilog"
+   ],
+   "summary_before": "This design implements a matrix multiplication accelerator for 4-bit floating point (E3M0) weights and 8-bit activations. It uses a systolic array architecture and accepts packed weight data on input pins and activation data on bidirectional pins. Results are output on 8 output pins, and an enable pin strobes the operation. An external microcontroller is required to feed data and retrieve results.",
+   "summary": "This design implements a matrix multiplication accelerator for 4-bit floating point (E3M0) weights and 8-bit activations. It uses a systolic array architecture and accepts packed weight data on input pins and activation data on bidirectional pins. Results are output on 8 output pins, and an enable pin strobes the operation. An external microcontroller is required to feed data and retrieve results.",
+   "summary_changed": false
+  },
+  {
+   "key": "ed3bef9a77cc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design drives a 7-segment display, which is already covered by the more specific 7-segment tag; generic display is redundant."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working on fabricated silicon."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The test procedure uses an RP2040 to provide the clock and emulate the LM70 sensor."
+    }
+   ],
+   "notes": "Removed redundant generic display tag and added silicon-tested and rp2040 tags supported by the test report and procedure.",
+   "tags_before": [
+    "temperature-sensor",
+    "spi",
+    "7-segment",
+    "sensor-interface",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "temperature-sensor",
+    "spi",
+    "7-segment",
+    "sensor-interface",
+    "verilog",
+    "silicon-tested",
+    "rp2040"
+   ],
+   "summary_before": "This design reads 8-bit temperature data from an LM70 sensor over SPI and displays it on a 7-segment display. It can be tested without external hardware by using an RP2040 to emulate the sensor and provide the clock, with modes to show MSB or LSB. External hardware includes an LM70 sensor and a 7-segment display. Silicon testing confirmed it works when connected to a real LM70 sensor.",
+   "summary": "This design reads 8-bit temperature data from an LM70 sensor over SPI and displays it on a 7-segment display. It can be tested without external hardware by using an RP2040 to emulate the sensor and provide the clock, with modes to show MSB or LSB. External hardware includes an LM70 sensor and a 7-segment display. Silicon testing confirmed it works when connected to a real LM70 sensor.",
+   "summary_changed": false
+  },
+  {
+   "key": "28d31df1b868",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a set of inverters for characterization, not a measurement/instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-art",
+     "reason": "The project is a decorative/experimental set of inverters rather than a functional application."
+    }
+   ],
+   "notes": "Removed instrumentation tag not supported by the source; added silicon-art for the decorative inverter array.",
+   "tags_before": [
+    "logic-gate",
+    "instrumentation",
+    "characterization",
+    "flip-flop",
+    "wokwi",
+    "verilog"
+   ],
+   "tags": [
+    "logic-gate",
+    "characterization",
+    "flip-flop",
+    "wokwi",
+    "verilog",
+    "silicon-art"
+   ],
+   "summary_before": "This project contains a set of digital inverters of different sizes, along with a D flip-flop, intended for analog characterization on a digital Tiny Tapeout tile. Inputs and outputs are connected to the inverters, with some bidirectional pins allowing flexible configurations such as paralleling inverters or building an amplifier. Testing requires a signal generator and an oscilloscope to measure propagation delays and analog behavior. The design is notable for comparing digital inverter measurements with those from an analog tile, and it originated from a TT06 submission.",
+   "summary": "This project contains a set of digital inverters of different sizes, along with a D flip-flop, intended for analog characterization on a digital Tiny Tapeout tile. Inputs and outputs are connected to the inverters, with some bidirectional pins allowing flexible configurations such as paralleling inverters or building an amplifier. Testing requires a signal generator and an oscilloscope to measure propagation delays and analog behavior. The design is notable for comparing digital inverter measurements with those from an analog tile, and it originated from a TT06 submission.",
+   "summary_changed": false
+  },
+  {
+   "key": "9714124be261",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "analog",
+    "comparator",
+    "comparator-analog",
+    "photodiode",
+    "sensor-interface",
+    "instrumentation"
+   ],
+   "tags": [
+    "analog",
+    "comparator",
+    "comparator-analog",
+    "photodiode",
+    "sensor-interface",
+    "instrumentation"
+   ],
+   "summary_before": "This analog block is a current-mode Schmitt trigger that converts input currents into a digital output with hysteresis, using internally set reference currents and an adjustable falling-edge threshold via an external voltage. It is intended to detect current-mode signals from devices such as photodiodes, SPADs and silicon photomultipliers for LIDAR, medical and particle-physics applications. Testing requires a current source or voltage source with series resistance in the tens of microamperes range, a tunable voltage supply for references, and a fast oscilloscope on the output. The design is notable for targeting single-photon and rare-event detection front ends, though no silicon test results are provided.",
+   "summary": "This analog block is a current-mode Schmitt trigger that converts input currents into a digital output with hysteresis, using internally set reference currents and an adjustable falling-edge threshold via an external voltage. It is intended to detect current-mode signals from devices such as photodiodes, SPADs and silicon photomultipliers for LIDAR, medical and particle-physics applications. Testing requires a current source or voltage source with series resistance in the tens of microamperes range, a tunable voltage supply for references, and a fast oscilloscope on the output. The design is notable for targeting single-photon and rare-event detection front ends, though no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "3f918f15d1b1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a PRBS generator/analyzer, not a measurement/instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design generates PRBS signals, which is a form of signal generation."
+    }
+   ],
+   "notes": "Removed instrumentation tag not supported by the source; added signal-generator for the PRBS output.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "signal-generator",
+    "pwm",
+    "instrumentation",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "signal-generator",
+    "pwm",
+    "verilog"
+   ],
+   "summary_before": "This design generates a PRBS31 signal using a Fibonacci LFSR and also analyzes it with a similar structure. It includes two 7-bit vectors that are converted to pseudo-random signals by comparison with the PRBS, which can be used as an alternative to a PWM DAC. A 131-bit PRBS generator is also included. The design requires an external ADALM2000 for testing.",
+   "summary": "This design generates a PRBS31 signal using a Fibonacci LFSR and also analyzes it with a similar structure. It includes two 7-bit vectors that are converted to pseudo-random signals by comparison with the PRBS, which can be used as an alternative to a PWM DAC. A 131-bit PRBS generator is also included. The design requires an external ADALM2000 for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "295e4a93b78b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "risc-v",
+    "pipeline",
+    "spi",
+    "bootloader",
+    "systemverilog"
+   ],
+   "tags": [
+    "cpu",
+    "risc-v",
+    "pipeline",
+    "spi",
+    "bootloader",
+    "systemverilog"
+   ],
+   "summary_before": "This project is a RISC-V RV32I CPU core with a bare-bones SPI wrapper that allows uploading programs to instruction memory and echoing data. The CPU is a 5-stage pipeline supporting most of the base integer instruction set, with 16 words of instruction memory and 8 words of data memory. The SPI wrapper starts in boot mode, requiring the user to upload a program and then enter echo mode to release the CPU from reset. Testing involves preparing a RISC-V binary, programming via SPI commands, and observing the passed/failed signals that check if register 10 equals 45.",
+   "summary": "This project is a RISC-V RV32I CPU core with a bare-bones SPI wrapper that allows uploading programs to instruction memory and echoing data. The CPU is a 5-stage pipeline supporting most of the base integer instruction set, with 16 words of instruction memory and 8 words of data memory. The SPI wrapper starts in boot mode, requiring the user to upload a program and then enter echo mode to release the CPU from reset. Testing involves preparing a RISC-V binary, programming via SPI commands, and observing the passed/failed signals that check if register 10 equals 45.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8328,
+  "completion_tokens": 1265,
+  "total_tokens": 9593,
+  "cost": 0.0040164,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0040164,
+   "upstream_inference_prompt_cost": 0.0024984,
+   "upstream_inference_completions_cost": 0.001518
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0040164,
+ "elapsed_s": 5.8
+}

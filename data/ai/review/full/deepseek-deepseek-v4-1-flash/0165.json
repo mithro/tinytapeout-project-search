@@ -1,0 +1,297 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "872271003b51",
+  "290d6db6e1e7",
+  "fa4b5be07de6",
+  "e84c4cfa8bb8",
+  "521293866999",
+  "cff100d0505b"
+ ],
+ "results": [
+  {
+   "key": "872271003b51",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a vector multiply-accumulate engine, not an arithmetic logic unit."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No DSP algorithm or signal processing application is described; it is a generic vector MAC engine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "The design multiplies vectors and accumulates the result, which is a multiply-accumulate unit."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The documentation states it will be programmed by an RP2040."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon test report says the design is working on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported alu/dsp tags and added mac-unit, rp2040, and silicon-tested based on the source.",
+   "tags_before": [
+    "multiplier",
+    "accelerator",
+    "dsp",
+    "alu",
+    "mac-unit",
+    "rp2040",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "accelerator",
+    "mac-unit",
+    "rp2040",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a 4-bit vector multiplication engine that multiplies two vectors of up to 32 elements and accumulates the result into an 8-bit output. It is programmed via a register interface using read/write opcodes and a run command, and it operates in two clock cycles. The design is intended to be controlled by an RP2040 and requires no other external hardware. Silicon tests show it works, though timing adjustments were needed.",
+   "summary": "This is a 4-bit vector multiplication engine that multiplies two vectors of up to 32 elements and accumulates the result into an 8-bit output. It is programmed via a register interface using read/write opcodes and a run command, and it operates in two clock cycles. The design is intended to be controlled by an RP2040 and requires no other external hardware. Silicon tests show it works, though timing adjustments were needed.",
+   "summary_changed": false
+  },
+  {
+   "key": "290d6db6e1e7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "gamepad",
+    "vga",
+    "pmod",
+    "video",
+    "display"
+   ],
+   "tags": [
+    "gamepad",
+    "vga",
+    "pmod",
+    "video",
+    "display"
+   ],
+   "summary_before": "This project reads input from a Gamepad PMOD and displays the pressed buttons as green symbols on a VGA monitor. It uses the Tiny VGA PMOD pinout and a 25.175 MHz clock, and is intended to be run on the Tiny Tapeout demo board with both PMODs attached. After reset, pressing a gamepad button causes its corresponding symbol to appear on screen. It is a demonstration of combining the Gamepad and Tiny VGA PMODs, derived from the VGA Playground, and needs both external PMOD boards to operate.",
+   "summary": "This project reads input from a Gamepad PMOD and displays the pressed buttons as green symbols on a VGA monitor. It uses the Tiny VGA PMOD pinout and a 25.175 MHz clock, and is intended to be run on the Tiny Tapeout demo board with both PMODs attached. After reset, pressing a gamepad button causes its corresponding symbol to appear on screen. It is a demonstration of combining the Gamepad and Tiny VGA PMODs, derived from the VGA Playground, and needs both external PMOD boards to operate.",
+   "summary_changed": false
+  },
+  {
+   "key": "fa4b5be07de6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The design uses a linear shift register, not a linear feedback shift register; no feedback taps are described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "The design is built around an internal linear shift register."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The source language is SystemVerilog."
+    }
+   ],
+   "notes": "Removed lfsr because the source describes a linear shift register without feedback, and added shift-register and systemverilog.",
+   "tags_before": [
+    "cipher",
+    "crypto",
+    "lfsr",
+    "shift-register",
+    "systemverilog"
+   ],
+   "tags": [
+    "cipher",
+    "crypto",
+    "shift-register",
+    "systemverilog"
+   ],
+   "summary_before": "This project implements a stream cipher using an 8-byte linear shift register to encrypt and decrypt messages. It accepts 8-bit data on input pins and uses bidirectional pins for control signals such as increment, encrypt, and view mode. The encrypted or decrypted message can be viewed by selecting an index, and the design supports toggling between encryption and viewing without resetting. Notable limitations include the need to reset after 16 bytes to avoid losing encrypted data, and the documentation provides clear testing steps.",
+   "summary": "This project implements a stream cipher using an 8-byte linear shift register to encrypt and decrypt messages. It accepts 8-bit data on input pins and uses bidirectional pins for control signals such as increment, encrypt, and view mode. The encrypted or decrypted message can be viewed by selecting an index, and the design supports toggling between encryption and viewing without resetting. Notable limitations include the need to reset after 16 bytes to avoid losing encrypted data, and the documentation provides clear testing steps.",
+   "summary_changed": false
+  },
+  {
+   "key": "e84c4cfa8bb8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design is a single perceptron, not a generic neural network."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "The implementation is a weighted sum and threshold, not a dedicated multiply-accumulate unit."
+    },
+    {
+     "tag": "education",
+     "reason": "The source credits a professor but does not state it is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "perceptron",
+     "reason": "The design implements a perceptron classifier."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The source language is Verilog."
+    }
+   ],
+   "notes": "Removed unsupported neural-network, mac-unit, and education tags; kept perceptron and verilog.",
+   "tags_before": [
+    "perceptron",
+    "neural-network",
+    "mac-unit",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "perceptron",
+    "verilog"
+   ],
+   "summary_before": "This design implements a perceptron that reads two 8-bit inputs and computes a weighted sum with fixed 8-bit weights, classifying the result as 1 if it exceeds a threshold of 11111110 and 0 otherwise. The documentation explains the math with examples, such as any input with two or more 1s being classified as 1, and credits a UCSC professor. It is intended as a simple 9+10 adder or perceptron demonstration, and testing involves applying inputs and observing the 8-bit output. The design is notable for being an educational neuromorphic example with clear documentation.",
+   "summary": "This design implements a perceptron that reads two 8-bit inputs and computes a weighted sum with fixed 8-bit weights, classifying the result as 1 if it exceeds a threshold of 11111110 and 0 otherwise. The documentation explains the math with examples, such as any input with two or more 1s being classified as 1, and credits a UCSC professor. It is intended as a simple 9+10 adder or perceptron demonstration, and testing involves applying inputs and observing the 8-bit output. The design is notable for being an educational neuromorphic example with clear documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "521293866999",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rtc",
+     "reason": "The RTC is a minor sub-block; the core function is a multichannel pulse counter."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The state machine is a control detail, not the primary design type."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design counts pulses on 15 channels."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "It is a sensor interface for acoustic emission detection."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "It is intended for measurement and instrumentation applications."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The source language is Verilog."
+    }
+   ],
+   "notes": "Removed rtc and fsm as primary tags; added counter, sensor-interface, instrumentation, and verilog.",
+   "tags_before": [
+    "counter",
+    "sensor-interface",
+    "rtc",
+    "fsm",
+    "verilog",
+    "instrumentation"
+   ],
+   "tags": [
+    "counter",
+    "sensor-interface",
+    "verilog",
+    "instrumentation"
+   ],
+   "summary_before": "This project is a 15-channel pulse counter designed for acoustic emission detection, counting short digital pulses on each channel and periodically outputting the counts serially. It includes a real-time clock (RTC) for time-stamping, overflow detection, and a readout state machine. The design is an early work-in-progress test implementation and is the second Tiny Tapeout submission, improving on a previous 4-channel version. External hardware such as a logic analyzer is recommended for debugging.",
+   "summary": "This project is a 15-channel pulse counter designed for acoustic emission detection, counting short digital pulses on each channel and periodically outputting the counts serially. It includes a real-time clock (RTC) for time-stamping, overflow detection, and a readout state machine. The design is an early work-in-progress test implementation and is the second Tiny Tapeout submission, improving on a previous 4-channel version. External hardware such as a logic analyzer is recommended for debugging.",
+   "summary_changed": false
+  },
+  {
+   "key": "cff100d0505b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is a digital SRAM register file test structure, not an analog circuit."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The source says timing is not characterized yet; the tag is not supported."
+    },
+    {
+     "tag": "fpga",
+     "reason": "FPGA is mentioned only as external test equipment, not as a target or port."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sram",
+     "reason": "The design is an SRAM with one write port and two read ports."
+    },
+    {
+     "tag": "register-file",
+     "reason": "It is a test structure for a future register file macro."
+    },
+    {
+     "tag": "memory",
+     "reason": "It is a memory macro test structure."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon test report says the memory works on fabricated silicon."
+    }
+   ],
+   "notes": "Removed analog, characterization, and fpga; added sram, register-file, memory, and silicon-tested.",
+   "tags_before": [
+    "sram",
+    "register-file",
+    "memory",
+    "analog",
+    "characterization",
+    "fpga"
+   ],
+   "tags": [
+    "sram",
+    "register-file",
+    "memory",
+    "silicon-tested"
+   ],
+   "summary_before": "This project is a test structure for a future register file macro, implemented as an SRAM with one write port and two read ports. It is not designed for use with the demo board but instead requires a dedicated test platform, ideally using FPGA hardware to drive control signals with precise timing. Silicon test reports from the author indicate that the memory works correctly, with tens of thousands of random read/write cycles passing, but timing characterization is incomplete due to limitations of the RP2040 controller. The design is notable as a successful early test of a memory macro, though further testing is needed.",
+   "summary": "This project is a test structure for a future register file macro, implemented as an SRAM with one write port and two read ports. It is not designed for use with the demo board but instead requires a dedicated test platform, ideally using FPGA hardware to drive control signals with precise timing. Silicon test reports from the author indicate that the memory works correctly, with tens of thousands of random read/write cycles passing, but timing characterization is incomplete due to limitations of the RP2040 controller. The design is notable as a successful early test of a memory macro, though further testing is needed.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7729,
+  "completion_tokens": 1803,
+  "total_tokens": 9532,
+  "cost": 0.0026276,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0026276,
+   "upstream_inference_prompt_cost": 0.0015458,
+   "upstream_inference_completions_cost": 0.0010818
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0026276,
+ "elapsed_s": 57.6
+}

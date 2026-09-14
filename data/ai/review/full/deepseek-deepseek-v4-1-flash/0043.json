@@ -1,0 +1,196 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "defe6a20d2d3",
+  "5e8f1cc644e9",
+  "561ff843397e",
+  "0a5ce81cdf1b",
+  "082567f1fae0",
+  "92a0528d85c4"
+ ],
+ "results": [
+  {
+   "key": "defe6a20d2d3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "No LED output is documented; only generic output pins out0/out1, and 'changes lights' does not justify an led tag."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported led tag; the output is only described generically as changing lights.",
+   "tags_before": [
+    "button",
+    "led",
+    "wokwi",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "tags": [
+    "button",
+    "wokwi",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "summary_before": "This project is a Wokwi design that changes lights when buttons are pressed, according to its one-line description and how-it-works text. The documentation is extremely thin: there is no explanation of the logic, no details on how to test beyond \"Not really sure\", and no external hardware listed. The pin names ui[0] and ui[1] as inp0/inp1 and uo[0]/uo[1] as out0/out1 suggest simple input-to-output connections, but the actual behavior is unclear. The project appears to be a placeholder or incomplete experiment with insufficient information to describe its function accurately.",
+   "summary": "This project is a Wokwi design that changes lights when buttons are pressed, according to its one-line description and how-it-works text. The documentation is extremely thin: there is no explanation of the logic, no details on how to test beyond \"Not really sure\", and no external hardware listed. The pin names ui[0] and ui[1] as inp0/inp1 and uo[0]/uo[1] as out0/out1 suggest simple input-to-output connections, but the actual behavior is unclear. The project appears to be a placeholder or incomplete experiment with insufficient information to describe its function accurately.",
+   "summary_changed": false
+  },
+  {
+   "key": "5e8f1cc644e9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "summary_before": "The project is titled 'Tiny Laura L' and its one-line description states that setting the first four inputs to 1010 will display an 'L' on a 7-segment display. However, the documentation sections for how it works, how to test, and external hardware are all placeholder text, providing no actual details. Therefore, it is unclear how the design functions or what external hardware is needed. The project appears to be a simple display driver, but the lack of documentation prevents a full understanding.",
+   "summary": "The project is titled 'Tiny Laura L' and its one-line description states that setting the first four inputs to 1010 will display an 'L' on a 7-segment display. However, the documentation sections for how it works, how to test, and external hardware are all placeholder text, providing no actual details. Therefore, it is unclear how the design functions or what external hardware is needed. The project appears to be a simple display driver, but the lack of documentation prevents a full understanding.",
+   "summary_changed": false
+  },
+  {
+   "key": "561ff843397e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sensor-interface",
+     "reason": "The pin list defines a temperature-sensor block output, not a generic external sensor input interface."
+    }
+   ],
+   "add": [],
+   "notes": "Removed sensor-interface because the design itself is the temperature-sensing block rather than an interface to an external sensor.",
+   "tags_before": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "sensor-interface",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "insufficient-doc"
+   ],
+   "summary_before": "This analog block contains a temperature sensor that is one of a group of student designs. The pin list shows only a power-up input and a temperature-dependent oscillator output, and there is no documentation beyond the one-line description. A user would power the block and measure the output frequency, but without a data sheet or schematic the behaviour cannot be verified. The documentation is essentially absent, so the functionality is inferred from the title and pin names.",
+   "summary": "This analog block contains a temperature sensor from a group of student designs. The pin list shows only a power-up input and a temperature-dependent oscillator output, and there is no documentation beyond the one-line description. A user would power the block and measure the output frequency, but without a data sheet or schematic the behaviour cannot be verified. The documentation is essentially absent, so the functionality is inferred from the title and pin names.",
+   "summary_changed": true
+  },
+  {
+   "key": "0a5ce81cdf1b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The pins and text describe BCD digit outputs; seven-segment conversion is explicitly external and not part of the design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 7-segment because the chip only outputs BCD digits; the seven-segment display and decoder are external.",
+   "tags_before": [
+    "bcd",
+    "7-segment",
+    "shift-register",
+    "memory",
+    "spinalhdl",
+    "education"
+   ],
+   "tags": [
+    "bcd",
+    "shift-register",
+    "memory",
+    "spinalhdl",
+    "education"
+   ],
+   "summary_before": "This project implements a bounded spigot algorithm to compute 31 digits of Euler's number (e) in BCD format. The digits are output on the bidirectional and output pins, requiring external BCD-to-7-segment decoders (such as 7447) to display them. The design uses a ring of gated shift registers for storage and shares calculation hardware across iterations to fit within a single tile. It is notable for its low memory footprint and the use of SpinalHDL, but it only produces a fixed number of digits and requires a slow clock (below 500 Hz) to observe the output.",
+   "summary": "This project implements a bounded spigot algorithm to compute 31 digits of Euler's number (e) in BCD format. The digits are output on the bidirectional and output pins, requiring external BCD-to-7-segment decoders (such as 7447) to display them. The design uses a ring of gated shift registers for storage and shares calculation hardware across iterations to fit within a single tile. It is notable for its low memory footprint and the use of SpinalHDL, but it only produces a fixed number of digits and requires a slow clock (below 500 Hz) to observe the output.",
+   "summary_changed": false
+  },
+  {
+   "key": "082567f1fae0",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Corrected the invented PS2 PMOD hardware mention; the source only documents a companion PCB for radio interfacing and 12 MHz clock.",
+   "tags_before": [
+    "communication",
+    "radio",
+    "7-segment",
+    "audio",
+    "buzzer",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "radio",
+    "7-segment",
+    "audio",
+    "buzzer",
+    "verilog"
+   ],
+   "summary_before": "This Morse code keyer converts paddle or straight-key inputs into Morse code outputs, including an auxiliary Morse output, a buzzer tone, and a 7-segment display showing the last character. It supports iambic keying types A and B, and adjustable speed from about 7 to 110 WPM via dip switches. It requires a 12 MHz clock and external hardware such as a PS2 PMOD for level shifting and a companion PCB for radio interfacing. The design is notable for its comprehensive feature set and warning against using the auxiliary output directly for radio transmission.",
+   "summary": "This Morse code keyer converts paddle or straight-key inputs into Morse code outputs, including an auxiliary Morse output, a buzzer tone, and a 7-segment display showing the last character. It supports iambic keying types A and B, and adjustable speed from about 7 to 110 WPM via dip switches. It uses a 12 MHz clock and requires a 12 MHz input clock plus external hardware such as a companion PCB for radio interfacing. The design includes a warning against using the auxiliary output directly for radio transmission.",
+   "summary_changed": true
+  },
+  {
+   "key": "92a0528d85c4",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lookup-table",
+    "reconfigurable",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "lookup-table",
+    "reconfigurable",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design, named LFMPDM (Lightning Fast Matrix Programmable Design Module), implements 8 four-input look-up tables (LUTs) that can be configured via input pins. The documentation contains only placeholder text for how it works and how to test, so the detailed operation is not described. The pin names indicate an address/data bus for loading configuration, a data input, and a single output. It appears to be a small programmable logic block but lacks sufficient documentation.",
+   "summary": "This design, named LFMPDM (Lightning Fast Matrix Programmable Design Module), implements 8 four-input look-up tables (LUTs) that can be configured via input pins. The documentation contains only placeholder text for how it works and how to test, so the detailed operation is not described. The pin names indicate an address/data bus for loading configuration, a data input, and a single output. It appears to be a small programmable logic block but lacks sufficient documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6679,
+  "completion_tokens": 1201,
+  "total_tokens": 7880,
+  "cost": 0.0034449,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034449,
+   "upstream_inference_prompt_cost": 0.0020037,
+   "upstream_inference_completions_cost": 0.0014412
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034449,
+ "elapsed_s": 6.4
+}

@@ -1,0 +1,176 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ebc1beae8a1d",
+  "5191247a1ed6",
+  "5b329f8b3835",
+  "735ba866841c",
+  "f04716927a2e",
+  "0bdb7d55e329"
+ ],
+ "results": [
+  {
+   "key": "ebc1beae8a1d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not an arithmetic logic unit; no ALU functions are described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag: source describes only a multiplier, not an ALU.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "systemverilog"
+   ],
+   "tags": [
+    "multiplier",
+    "systemverilog"
+   ],
+   "summary_before": "This design is an 8-bit by 8-bit unsigned multiplier that computes a 16-bit product internally and emits it over two clock cycles. One operand is taken from the eight dedicated input pins and the other from the eight bidirectional pins, with the low eight product bits on the outputs. The author notes that exhaustive testing of all 65536 input pairs is feasible at the current size, and that no external hardware is currently used, though a display might be added later. The documentation is brief and does not describe the two-cycle output sequencing in detail.",
+   "summary": "This design is an 8-bit by 8-bit multiplier that computes a 16-bit product internally and outputs it over two clock cycles. One operand is taken from the eight dedicated input pins and the other from the eight bidirectional pins, with the product bits driven on the outputs. The author notes that exhaustive testing of all 65536 input pairs is feasible at the current size, and that no external hardware is currently used, though a display might be added later. The documentation is brief and does not describe the two-cycle output sequencing in detail.",
+   "summary_changed": true
+  },
+  {
+   "key": "5191247a1ed6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that the design is intended for teaching or learning; it is a minimal inverter bank."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag: no teaching/learning intent stated in source.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate"
+   ],
+   "summary_before": "This project is a simple bank of inverters, with eight inputs in0 to in7 and eight outputs o0 to o7. The documentation says only that it contains inverters and wires, and testing is done by simulation. A seven-segment display is listed as external hardware, presumably to observe the inverted outputs. It is a basic educational logic design with minimal documentation.",
+   "summary": "This project is a simple bank of inverters, with eight inputs in0 to in7 and eight outputs o0 to o7. The documentation says only that it contains inverters and wires, and testing is done by simulation. A seven-segment display is listed as external hardware, presumably to observe the inverted outputs. It is a basic logic design with minimal documentation.",
+   "summary_changed": true
+  },
+  {
+   "key": "5b329f8b3835",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "prng",
+    "graphics"
+   ],
+   "tags": [
+    "vga",
+    "prng",
+    "graphics"
+   ],
+   "summary_before": "This Verilog project generates a VGA scene of a grass field whose colors are chosen by a Fibonacci-based PRNG, with cloud height also driven by the random algorithm adapted from a rings demo. It outputs a Tiny VGA pinout and is used by connecting a TinyVGA PMOD and a monitor. The documentation is very short and does not describe the internal implementation beyond the PRNG and cloud adaptation. No silicon test results or additional hardware requirements are mentioned.",
+   "summary": "This Verilog project generates a VGA scene of a grass field whose colors are chosen by a Fibonacci-based PRNG, with cloud height also driven by the random algorithm adapted from a rings demo. It outputs a Tiny VGA pinout and is used by connecting a TinyVGA PMOD and a monitor. The documentation is very short and does not describe the internal implementation beyond the PRNG and cloud adaptation. No silicon test results or additional hardware requirements are mentioned.",
+   "summary_changed": false
+  },
+  {
+   "key": "735ba866841c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ldo",
+    "analog",
+    "power-management",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "ldo",
+    "analog",
+    "power-management",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a capless low-dropout linear regulator with a 1.27 V output and a claimed 51.1 dB power-supply rejection ratio at 100 kHz. It is tested by sweeping the input voltage from 1.62 V to 1.98 V while monitoring the output. An oscilloscope and function generator are listed as the required external hardware. The documentation is very brief, consisting of a single sentence plus the test condition, so no load range, current capability or silicon measurements are described.",
+   "summary": "This is a capless low-dropout linear regulator with a 1.27 V output and a claimed 51.1 dB power-supply rejection ratio at 100 kHz. It is tested by sweeping the input voltage from 1.62 V to 1.98 V while monitoring the output. An oscilloscope and function generator are listed as the required external hardware. The documentation is very brief, consisting of a single sentence plus the test condition, so no load range, current capability or silicon measurements are described.",
+   "summary_changed": false
+  },
+  {
+   "key": "f04716927a2e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "display",
+    "graphics"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "graphics"
+   ],
+   "summary_before": "My First TT Demo is a Verilog design that uses elementary bitwise logic to generate colorful graphics on a VGA display. It has no inputs and only VGA outputs, matching the Tiny VGA PMOD pinout, and requires a VGA monitor or compatible PMOD to view the output. The documentation is very thin, describing only that it produces subjectively cool colors through simple logic. There are no silicon test results or further details about the generated patterns.",
+   "summary": "My First TT Demo is a Verilog design that uses elementary bitwise logic to generate colorful graphics on a VGA display. It has no inputs and only VGA outputs, matching the Tiny VGA PMOD pinout, and requires a VGA monitor or compatible PMOD to view the output. The documentation is very thin, describing only that it produces subjectively cool colors through simple logic. There are no silicon test results or further details about the generated patterns.",
+   "summary_changed": false
+  },
+  {
+   "key": "0bdb7d55e329",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bootloader",
+     "reason": "The design loads instructions via external pins in load mode; there is no bootstrap loading logic or bootloader described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed bootloader tag: source describes pin-based instruction loading, not a bootloader.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "bootloader",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "verilog"
+   ],
+   "summary_before": "This is a complete 16-bit MIPS single-cycle processor that loads 16-bit instructions through the 8-bit Tiny Tapeout input pins. A mode pin selects load or run, address bits and a byte-select pin choose where each byte is written, and in run mode the ALU result is driven onto the outputs and upper bidirectional pins. The documentation consists mainly of pin descriptions, with no instruction set listing or test procedure. It is a 1x1 design that requires an external host to feed instruction bytes during load mode.",
+   "summary": "This is a complete 16-bit MIPS single-cycle processor that loads 16-bit instructions through the 8-bit Tiny Tapeout input pins. A mode pin selects load or run, address bits and a byte-select pin choose where each byte is written, and in run mode the ALU result is driven onto the outputs and upper bidirectional pins. The documentation consists mainly of pin descriptions, with no instruction set listing or test procedure. It is a 1x1 design that requires an external host to feed instruction bytes during load mode.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5753,
+  "completion_tokens": 1065,
+  "total_tokens": 6818,
+  "cost": 0.0017896,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0017896,
+   "upstream_inference_prompt_cost": 0.0011506,
+   "upstream_inference_completions_cost": 0.000639
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0017896,
+ "elapsed_s": 35.4
+}

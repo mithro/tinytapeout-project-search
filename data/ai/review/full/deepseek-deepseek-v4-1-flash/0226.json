@@ -1,0 +1,223 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "88b511c3ee99",
+  "d6e86e637214",
+  "138fcc66c63e",
+  "51fedd674109",
+  "68d0063ab923",
+  "28db0ea88aca"
+ ],
+ "results": [
+  {
+   "key": "88b511c3ee99",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "Source describes a 4-stage differential VCO with capacitive loading, not a ring oscillator."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Not supported; the design is an oscillator, not a general waveform/signal generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states the design is working with measured frequencies."
+    }
+   ],
+   "notes": "Removed ring-oscillator and signal-generator tags not supported by the source; added silicon-tested per the working test report.",
+   "tags_before": [
+    "vco",
+    "analog",
+    "oscillator",
+    "ring-oscillator",
+    "transistor-level",
+    "signal-generator"
+   ],
+   "tags": [
+    "vco",
+    "analog",
+    "oscillator",
+    "transistor-level",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an analog voltage-controlled oscillator built from four differential stages with capacitive loading, providing eight output taps with phase differences. The frequency is controlled by a bias current or voltage applied to an analog input pin, and the eight tap signals are buffered to digital outputs. It requires external DC power for control and an oscilloscope for monitoring. Silicon tests show it works, achieving frequencies from 33 kHz to 2.8 MHz depending on bias current, with measured phase relationships among the taps.",
+   "summary": "This is an analog voltage-controlled oscillator built from four differential stages with capacitive loading, providing eight output taps with phase differences. The frequency is controlled by a bias current or voltage applied to an analog input pin, and the eight tap signals are buffered to digital outputs. It requires external DC power for control and an oscilloscope for monitoring. Silicon tests show it works, achieving frequencies from 33 kHz to 2.8 MHz depending on bias current, with measured phase relationships among the taps.",
+   "summary_changed": false
+  },
+  {
+   "key": "d6e86e637214",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is described as a ring oscillator with a digital divider; no analog circuitry is documented."
+    }
+   ],
+   "add": [],
+   "notes": "Removed mixed-signal tag; the source describes only a digital ring oscillator and divider.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "divider",
+    "mixed-signal",
+    "verilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "divider",
+    "verilog"
+   ],
+   "summary_before": "This design implements a ring oscillator operating in the GHz range, with a divider to produce an observable output frequency around 20 MHz. It includes a test/debug mode and an enable pin to control the oscillator. Testing requires an oscilloscope, power supply, and function generator, and the documentation suggests monitoring supply current to verify functionality. A silicon test report indicates the design is broken: no output was observed, and debug outputs were not accessible due to pin configuration issues.",
+   "summary": "This design implements a ring oscillator operating in the GHz range, with a divider to produce an observable output frequency around 20 MHz. It includes a test/debug mode and an enable pin to control the oscillator. Testing requires an oscilloscope, power supply, and function generator, and the documentation suggests monitoring supply current to verify functionality. A silicon test report indicates the design is broken: no output was observed, and debug outputs were not accessible due to pin configuration issues.",
+   "summary_changed": false
+  },
+  {
+   "key": "138fcc66c63e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cipher",
+    "lfsr",
+    "crypto",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "cipher",
+    "lfsr",
+    "crypto",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This design implements a simple stream cipher that XORs an 8-bit data input with the output of a linear-feedback shift register. The LFSR value is also provided on the bidirectional pins so that the encrypted output can be decrypted externally by XORing with the same value. The design was verified in simulation by manually calculating LFSR states and checking the encrypted output against expected values. No external hardware is required, and the project is a straightforward demonstration of LFSR-based encryption.",
+   "summary": "This design implements a simple stream cipher that XORs an 8-bit data input with the output of a linear-feedback shift register. The LFSR value is also provided on the bidirectional pins so that the encrypted output can be decrypted externally by XORing with the same value. The design was verified in simulation by manually calculating LFSR states and checking the encrypted output against expected values. No external hardware is required, and the project is a straightforward demonstration of LFSR-based encryption.",
+   "summary_changed": false
+  },
+  {
+   "key": "51fedd674109",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dip-switch",
+     "reason": "The source specifies a switch for the up/down input, not a DIP switch."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dip-switch tag; the source only mentions a generic switch.",
+   "tags_before": [
+    "up-down-counter",
+    "counter",
+    "led",
+    "dip-switch",
+    "verilog"
+   ],
+   "tags": [
+    "up-down-counter",
+    "counter",
+    "led",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4-bit up/down binary counter with enable and test mode. It uses input pins for test, up/down selection, and enable, and outputs the 4-bit count value. Testing requires connecting the enable pin to VDD, test to GND, up/down to a switch, reset to an RC startup circuit, and a 50 MHz clock, with the outputs connected to LEDs. The design is a straightforward digital building block with minimal documentation beyond basic operation.",
+   "summary": "This project is a 4-bit up/down binary counter with enable and test mode. It uses input pins for test, up/down selection, and enable, and outputs the 4-bit count value. Testing requires connecting the enable pin to VDD, test to GND, up/down to a switch, reset to an RC startup circuit, and a 50 MHz clock, with the outputs connected to LEDs. The design is a straightforward digital building block with minimal documentation beyond basic operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "68d0063ab923",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "The source describes a three-gate oscillator, not a ring oscillator."
+    }
+   ],
+   "add": [],
+   "notes": "Removed ring-oscillator tag; the source specifies a three-gate oscillator.",
+   "tags_before": [
+    "7-segment",
+    "oscillator",
+    "ring-oscillator",
+    "display",
+    "text",
+    "verilog"
+   ],
+   "tags": [
+    "7-segment",
+    "oscillator",
+    "display",
+    "text",
+    "verilog"
+   ],
+   "summary_before": "This design displays the letters of 'SEnOLGULGONUL' on a 7-segment display using an internal three-gate ring oscillator. It requires external resistors and a capacitor to complete the oscillator circuit, and the outputs connect directly to a 7-segment display. Testing involves connecting the external components and observing the letters on the display. The project is notable for using a simple gate-based oscillator to drive a text display.",
+   "summary": "This design displays the letters of 'SEnOLGULGONUL' on a 7-segment display using an internal three-gate oscillator. It requires external resistors and a capacitor to complete the oscillator circuit, and the outputs connect directly to a 7-segment display. Testing involves connecting the external components and observing the letters on the display. The project is notable for using a simple gate-based oscillator to drive a text display.",
+   "summary_changed": true
+  },
+  {
+   "key": "28db0ea88aca",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is an adder, not a basic logic gate implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed logic-gate tag; the source describes an adder, not a gate-level logic implementation.",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "dip-switch",
+    "led"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "education",
+    "wokwi",
+    "dip-switch",
+    "led"
+   ],
+   "summary_before": "This project is a 2-bit adder that adds two inputs and outputs the result to two LEDs. It is tested by inputting two numbers and verifying the output is correct. External hardware required includes a DIP switch for input and two LEDs for output. The documentation is brief and the design is a basic educational exercise.",
+   "summary": "This project is a 2-bit adder that adds two inputs and outputs the result to two LEDs. It is tested by inputting two numbers and verifying the output is correct. External hardware required includes a DIP switch for input and two LEDs for output. The documentation is brief and the design is a basic educational exercise.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6582,
+  "completion_tokens": 1107,
+  "total_tokens": 7689,
+  "cost": 0.002014398,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002014398,
+   "upstream_inference_prompt_cost": 0.000885258,
+   "upstream_inference_completions_cost": 0.00112914
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002014398,
+ "elapsed_s": 43.4
+}

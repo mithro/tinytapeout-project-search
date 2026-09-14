@@ -1,0 +1,269 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f678057a636a",
+  "d953bf4f769e",
+  "e55e082e8188",
+  "2a59ef7ab614",
+  "74e9ee4776e9",
+  "5558e7fabf97"
+ ],
+ "results": [
+  {
+   "key": "f678057a636a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "No LED output is described; outputs are named as strokes of the letter n, not discrete LEDs."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The source does not state the design is built from basic logic gates; it only says a small n appears when the right inputs are on."
+    }
+   ],
+   "add": [
+    {
+     "tag": "text",
+     "reason": "The design produces a letter glyph on its outputs, which is textual output."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The behavior is purely input-to-output combinational logic with no clock or state described."
+    }
+   ],
+   "notes": "Removed unsupported led and logic-gate tags; added text and combinational based on the letter output and purely combinational behavior.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "logic-gate",
+    "led"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "text",
+    "combinational"
+   ],
+   "summary_before": "Nicolas' first Wokwi design is a simple combinational circuit that displays a lowercase letter n when the correct inputs are driven high. The design is built from basic logic gates and is intended as a first introduction to the Wokwi and Tiny Tapeout workflow. It is tested by setting inputs IN0, IN1, IN3, IN5, and IN7 on with all others off. No external hardware beyond the simulator is required, and the project has essentially no documentation beyond the pin names.",
+   "summary": "Nicolas' first Wokwi design is a simple combinational circuit that displays a lowercase letter n when the correct inputs are driven high. The design is intended as a first introduction to the Wokwi and Tiny Tapeout workflow. It is tested by setting inputs IN0, IN1, IN3, IN5, and IN7 on with all others off. No external hardware beyond the simulator is required, and the documentation is limited to the pin names and a short description.",
+   "summary_changed": true
+  },
+  {
+   "key": "d953bf4f769e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source calls it a trial for a VGA data controller, not a boilerplate or starter template."
+    },
+    {
+     "tag": "education",
+     "reason": "It is for workshop attendees, but the workshop tag already covers the class activity; education is not separately supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The description explicitly says it is a trial for a VGA data controller testing VGA output frame rates."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is sparse and the exact purpose and implementation cannot be fully determined from the provided text."
+    }
+   ],
+   "notes": "Removed template and education; added vga and incomplete to match the stated VGA trial and sparse documentation.",
+   "tags_before": [
+    "logic-gate",
+    "workshop",
+    "template",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "logic-gate",
+    "workshop",
+    "wokwi",
+    "vga",
+    "incomplete"
+   ],
+   "summary_before": "This project is a trial logic block for a VGA data controller created for a Tiny Tapeout workshop. It takes two inputs and produces AND and NOR outputs, and is described as having a different clock configuration to test VGA output at various frame rates. The documentation is sparse: it does not explain the VGA interface, the clock settings, or how to connect external hardware, and the 'External hardware' section is left as a placeholder. The design appears to be a simple combinational logic experiment intended for workshop attendees, but its exact purpose and implementation cannot be fully determined from the provided text.",
+   "summary": "This project is a trial logic block for a VGA data controller created for a Tiny Tapeout workshop. It takes two inputs and produces AND and NOR outputs, and is described as having a different clock configuration to test VGA output at various frame rates. The documentation is sparse: it does not explain the VGA interface, the clock settings, or how to connect external hardware, and the 'External hardware' section is left as a placeholder. The design appears to be a simple combinational logic experiment intended for workshop attendees, but its exact purpose and implementation cannot be fully determined from the provided text.",
+   "summary_changed": false
+  },
+  {
+   "key": "e55e082e8188",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "timer",
+    "rtc",
+    "7-segment",
+    "spi",
+    "max7219",
+    "button",
+    "display"
+   ],
+   "tags": [
+    "timer",
+    "rtc",
+    "7-segment",
+    "spi",
+    "max7219",
+    "button",
+    "display"
+   ],
+   "summary_before": "This design is a three-mode clock and timer that shows a clock, a date, or a Pomodoro countdown on an external MAX7219 8-digit 7-segment display driven over SPI. Four breadboard buttons enter and leave setup mode, cycle modes and fields, increment or decrement values, and start, pause or reset the Pomodoro. Eight LED outputs report the display mode, setup state, work and break phases, alarm, and selected field. It needs the MAX7219 display and buttons as external hardware, and the documentation is brief but consistent with the pin names.",
+   "summary": "This design is a three-mode clock and timer that shows a clock, a date, or a Pomodoro countdown on an external MAX7219 8-digit 7-segment display driven over SPI. Four breadboard buttons enter and leave setup mode, cycle modes and fields, increment or decrement values, and start, pause or reset the Pomodoro. Eight LED outputs report the display mode, setup state, work and break phases, alarm, and selected field. It needs the MAX7219 display and buttons as external hardware, and the documentation is brief but consistent with the pin names.",
+   "summary_changed": false
+  },
+  {
+   "key": "2a59ef7ab614",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design accepts an optional external clock source; it does not generate a clock."
+    }
+   ],
+   "add": [],
+   "notes": "Removed clock-generator because the clock is an optional external input, not a generated output.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "wokwi",
+    "education",
+    "logic-gate",
+    "display",
+    "clock-generator",
+    "button",
+    "sequential-logic"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "wokwi",
+    "education",
+    "logic-gate",
+    "display",
+    "button",
+    "sequential-logic"
+   ],
+   "summary_before": "This circuit is a counter that increments a 7-segment display using Step and Reset buttons. Logic gates drive the display segments based on the counter output. An optional clock source may be connected for automatic counting. The project serves as an introductory exercise in digital logic and display interfacing within the Wokwi environment.",
+   "summary": "This circuit is a counter that increments a 7-segment display using Step and Reset buttons. Logic gates drive the display segments based on the counter output. An optional clock source may be connected for automatic counting. The project serves as an introductory exercise in digital logic and display interfacing within the Wokwi environment.",
+   "summary_changed": false
+  },
+  {
+   "key": "74e9ee4776e9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "button",
+     "reason": "The inputs are switches, not pushbuttons, per the external hardware list."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "The design requires TinyVGA and TT Audio PMODs as external hardware."
+    },
+    {
+     "tag": "music",
+     "reason": "It produces a looping soundtrack, which is music generation/playback."
+    },
+    {
+     "tag": "video",
+     "reason": "It outputs a VGA video signal with RGB, H-Sync, and V-Sync."
+    }
+   ],
+   "notes": "Removed button (inputs are switches); added pmod, music, and video to match the PMOD hardware and audio/video outputs.",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "audio",
+    "graphics",
+    "synthesizer",
+    "button"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "audio",
+    "graphics",
+    "synthesizer",
+    "pmod",
+    "music",
+    "video"
+   ],
+   "summary_before": "DemoSiine is a demoscene-style audio-visual project that generates a 640x480 VGA video signal and a looping ~28 second audio track. The video output includes dynamic wavy sine layers and a rainbowy overlay, with user controls to enable/disable layers, pause the animation, and toggle styles. The audio engine drives a frequency synthesizer to produce the soundtrack. It requires external hardware: a TinyVGA PMOD for video output, a TT Audio PMOD for audio output, and switches for input control.",
+   "summary": "DemoSiine is a demoscene-style audio-visual project that generates a 640x480 VGA video signal and a looping ~28 second audio track. The video output includes dynamic wavy sine layers and a rainbowy overlay, with user controls to enable/disable layers, pause the animation, and toggle styles. The audio engine drives a frequency synthesizer to produce the soundtrack. It requires external hardware: a TinyVGA PMOD for video output, a TT Audio PMOD for audio output, and switches for input control.",
+   "summary_changed": false
+  },
+  {
+   "key": "5558e7fabf97",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "timer",
+     "reason": "The design is a clock display, not a programmable timer block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "It implements a real-time clock with hour and minute set inputs."
+    },
+    {
+     "tag": "text",
+     "reason": "It displays time as text on a character LCD."
+    }
+   ],
+   "notes": "Removed timer; added rtc and text to reflect the clock function and character LCD text output.",
+   "tags_before": [
+    "lcd",
+    "display",
+    "timer",
+    "verilog"
+   ],
+   "tags": [
+    "lcd",
+    "display",
+    "verilog",
+    "rtc",
+    "text"
+   ],
+   "summary_before": "This design drives an HD44780-compatible character LCD to display a clock, using a 4-bit LCD interface with data pins D4-D7 plus enable and register-select lines. Hour and minute set inputs allow the time to be adjusted, and the design runs from the Tiny Tapeout clock. The documentation consists only of links to an external GitHub README, so the internal implementation and exact test procedure are not described in the provided text. External hardware required is an HD44780 LCD module.",
+   "summary": "This design drives an HD44780-compatible character LCD to display a clock, using a 4-bit LCD interface with data pins D4-D7 plus enable and register-select lines. Hour and minute set inputs allow the time to be adjusted, and the design runs from the Tiny Tapeout clock. The documentation consists only of links to an external GitHub README, so the internal implementation and exact test procedure are not described in the provided text. External hardware required is an HD44780 LCD module.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6055,
+  "completion_tokens": 1548,
+  "total_tokens": 7603,
+  "cost": 0.0036741,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036741,
+   "upstream_inference_prompt_cost": 0.0018165,
+   "upstream_inference_completions_cost": 0.0018576
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036741,
+ "elapsed_s": 7.2
+}

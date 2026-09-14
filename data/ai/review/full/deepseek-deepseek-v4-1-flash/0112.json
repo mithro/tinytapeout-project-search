@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d575a599caea",
+  "11bb1ee62e98",
+  "99a1f25ecfa3",
+  "e7348d29c46b",
+  "170f412af42b",
+  "fcfcf432dc73"
+ ],
+ "results": [
+  {
+   "key": "d575a599caea",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This design implements a leaky integrate-and-fire neuron in 130 nm CMOS using Verilog. An input current is added to a membrane potential that decays by a factor beta, and a spike is triggered when the potential exceeds a threshold. The membrane potential is output on eight pins and the spike on a bidirectional pin. Testing involves resetting the circuit, varying the input current, and observing that higher current produces a higher spike rate; no external hardware beyond input switches and observation is described.",
+   "summary": "This design implements a leaky integrate-and-fire neuron in 130 nm CMOS using Verilog. An input current is added to a membrane potential that decays by a factor beta, and a spike is triggered when the potential exceeds a threshold. The membrane potential is output on eight pins and the spike on a bidirectional pin. Testing involves resetting the circuit, varying the input current, and observing that higher current produces a higher spike rate; no external hardware beyond input switches and observation is described.",
+   "summary_changed": false
+  },
+  {
+   "key": "11bb1ee62e98",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The design is a fixed loopback/AND test structure, not a general purpose digital IO interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working with measured delays and bringup results."
+    }
+   ],
+   "notes": "Removed gpio because the pins implement a fixed loopback/AND test structure, and added silicon-tested based on the working silicon test report.",
+   "tags_before": [
+    "factory-test",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "factory-test",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a simple loopback test module where input 0 is mirrored to outputs 0 through 6, and output 7 is the logical AND of inputs 4 through 7. It is used to measure signal delay by toggling input 0 and timing the response on output 0. Silicon tests measured a 20 ns falling-edge delay and 24 ns rising-edge delay, and the design was shown to work up to 90 MHz during bringup, with degraded behavior past 100 MHz. No external hardware is required beyond the chip itself.",
+   "summary": "This is a simple loopback test module where input 0 is mirrored to outputs 0 through 6, and output 7 is the logical AND of inputs 4 through 7. It is used to measure signal delay by toggling input 0 and timing the response on output 0. Silicon tests measured a 20 ns falling-edge delay and 24 ns rising-edge delay, and the design was shown to work up to 90 MHz during bringup, with degraded behavior past 100 MHz. No external hardware is required beyond the chip itself.",
+   "summary_changed": false
+  },
+  {
+   "key": "99a1f25ecfa3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "The source only describes a spiking neural net; no learning, training, or inference application is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with only a one-line description and a truncated test instruction."
+    }
+   ],
+   "notes": "Removed machine-learning because no learning or inference application is documented, and added insufficient-doc to reflect the very thin documentation.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "machine-learning",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a 3-layer spiking neural network with on-chip weights. It has an 8-bit input bus, control signals for execution and synchronization, and outputs from the last layer's neurons. The documentation is minimal, stating only that it is a 3-layer spiking neural net with on-chip weights and that testing begins after reset. There is insufficient information to describe its operation, external hardware requirements, or notable features.",
+   "summary": "This project implements a 3-layer spiking neural network with on-chip weights. It has an 8-bit input bus, control signals for execution and synchronization, and outputs from the last layer's neurons. The documentation is minimal, stating only that it is a 3-layer spiking neural net with on-chip weights and that testing begins after reset. There is insufficient information to describe its operation, external hardware requirements, or notable features.",
+   "summary_changed": false
+  },
+  {
+   "key": "e7348d29c46b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "The source only describes a spiking neural net; no learning, training, or inference application is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with only a one-line description and a truncated test instruction."
+    }
+   ],
+   "notes": "Removed machine-learning because no learning or inference application is documented, and added insufficient-doc to reflect the very thin documentation.",
+   "tags_before": [
+    "neural-network",
+    "spiking-neural-network",
+    "machine-learning"
+   ],
+   "tags": [
+    "neural-network",
+    "spiking-neural-network",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a 3-layer spiking neural network with on-chip weights. It accepts an 8-bit input bus and control signals for execution and synchronization, and outputs the states of 8 neurons from the last layer. The documentation is minimal, with only a brief description and a truncated test instruction. It likely requires a host to provide inputs and control signals for operation.",
+   "summary": "This design implements a 3-layer spiking neural network with on-chip weights. It accepts an 8-bit input bus and control signals for execution and synchronization, and outputs the states of 8 neurons from the last layer. The documentation is minimal, with only a brief description and a truncated test instruction. It likely requires a host to provide inputs and control signals for operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "170f412af42b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "alu",
+    "adder",
+    "multiplexer",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "adder",
+    "multiplexer",
+    "verilog"
+   ],
+   "summary_before": "Tiny ALU is a simple 4-bit arithmetic logic unit extracted from a larger GPU design. It takes two 4-bit operands and a 2-bit arithmetic mux selection, and produces a 4-bit output; the testbench only exercises the addition function. The design is intended as a small, self-contained submission while the author works on a more complex GPU project. No external hardware is required, and no silicon test results are reported.",
+   "summary": "Tiny ALU is a simple 4-bit arithmetic logic unit extracted from a larger GPU design. It takes two 4-bit operands and a 2-bit arithmetic mux selection, and produces a 4-bit output; the testbench only exercises the addition function. The design is intended as a small, self-contained submission while the author works on a more complex GPU project. No external hardware is required, and no silicon test results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "fcfcf432dc73",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "retro",
+    "rp2040",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "retro",
+    "rp2040",
+    "verilog"
+   ],
+   "summary_before": "This is an Intel 8080-compatible CPU core intended to run software such as Microsoft BASIC or CP/M. It requires an external RP2040 to simulate RAM and I/O, and exposes a bus handshake interface along with debug and interrupt signals. The documentation is minimal, with testing procedures still to be determined, and no silicon test results are provided. The design is notable for targeting a classic 8-bit instruction set on a Tiny Tapeout tile.",
+   "summary": "This is an Intel 8080-compatible CPU core intended to run software such as Microsoft BASIC or CP/M. It requires an external RP2040 to simulate RAM and I/O, and exposes a bus handshake interface along with debug and interrupt signals. The documentation is minimal, with testing procedures still to be determined, and no silicon test results are provided. The design is notable for targeting a classic 8-bit instruction set on a Tiny Tapeout tile.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6088,
+  "completion_tokens": 1196,
+  "total_tokens": 7284,
+  "cost": 0.0032616,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032616,
+   "upstream_inference_prompt_cost": 0.0018264,
+   "upstream_inference_completions_cost": 0.0014352
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032616,
+ "elapsed_s": 16.2
+}

@@ -1,0 +1,248 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3e79613524a6",
+  "5a81e77357d9",
+  "9217009ce53e",
+  "809faab7622f",
+  "a6c2f5798a27",
+  "86051d16cdbf"
+ ],
+ "results": [
+  {
+   "key": "3e79613524a6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "PWM output is a peripheral detail; the pin pwmout_tdo carries JTAG TDO, not a supported PWM function tag"
+    },
+    {
+     "tag": "sram",
+     "reason": "External SRAM is required but not implemented on-chip, so the SRAM tag is unsupported"
+    }
+   ],
+   "add": [
+    {
+     "tag": "education",
+     "reason": "JTAG/RISC-V bootloader setup suggests a teaching/learning oriented design"
+    },
+    {
+     "tag": "gpio",
+     "reason": "ui[4..7] are general purpose inputs and xd[0..7] are bidirectional digital IO"
+    }
+   ],
+   "notes": "Removed unsupported pwm/sram tags, added gpio and education, and rephrased the summary from source-supported facts.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "uart",
+    "jtag",
+    "bootloader",
+    "pwm",
+    "sram"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "uart",
+    "jtag",
+    "bootloader",
+    "education",
+    "gpio"
+   ],
+   "summary_before": "This project is a RISC-V CPU with a serial port, JTAG interface, PWM output, and GPIO, but it requires external SRAM and address latches for memory. A bootloader allows programs to be loaded over the serial port at 115200 bps, and a simple test is to send an 'L' and receive an 'L' back. More complete testing needs an external memory board attached to the Pmod connectors, and the JTAG port can also be used. The design is notable for fitting a CPU with a bootloader and debug interface into a small Tiny Tapeout tile budget.",
+   "summary": "This project is a RISC-V CPU (LaRVa) with a serial port, JTAG interface, and a few other peripherals, but it requires external memory. An included bootloader allows programs loaded through the serial port to execute, and JTAG provides an additional debug path. A simple test is to connect a serial port at 8-bit, no parity, 115200 bps and send an 'L', expecting the bootloader to reply with another 'L'. More complete testing needs an external board with SRAM memory and address latches attached to the Pmod ports, and the JTAG port can also be used.",
+   "summary_changed": true
+  },
+  {
+   "key": "5a81e77357d9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation is implemented; the pin list shows only a clock input and PWM output"
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed clock-generator which is contradicted by pins; kept verilog and corrected summary wording to match source.",
+   "tags_before": [
+    "pwm",
+    "debouncer",
+    "motor-control",
+    "led",
+    "clock-generator",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "debouncer",
+    "motor-control",
+    "led",
+    "verilog"
+   ],
+   "summary_before": "This Verilog module generates a PWM signal with an adjustable duty cycle controlled by two debounced buttons, using a 50 MHz input clock. The duty cycle can be increased or decreased in 10% steps, and the output is intended for applications such as motor speed control or LED brightness adjustment. Testing can be done in simulation or on an FPGA, with buttons connected to the inputs and an oscilloscope or LED on the output. External hardware includes push buttons, a clock source, and a device to display or use the PWM signal.",
+   "summary": "This Verilog module generates a PWM signal with an adjustable duty cycle controlled by two debounced buttons, using a 50 MHz input clock. The duty cycle can be increased or decreased in 10% steps from 0% to 90%, producing a PWM output. Testing can be done in simulation or on an FPGA, with buttons connected to the inputs and an oscilloscope or LED on the output to verify the waveform. External hardware includes two push buttons, a clock source, a reset, and a device such as an LED or motor to use the PWM signal.",
+   "summary_changed": true
+  },
+  {
+   "key": "9217009ce53e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sensor-interface",
+     "reason": "The IR modules are external note generators, and the pins are note-enable inputs, not a generic sensor interface"
+    }
+   ],
+   "add": [],
+   "notes": "Removed sensor-interface which overstates the IR note inputs; summary aligned with the source.",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "pwm",
+    "music",
+    "sensor-interface"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "pwm",
+    "music"
+   ],
+   "summary_before": "This is a simple monophonic synthesizer with PWM audio output. It uses five input pins for note enable signals and eight switches to select sounds or notes, producing left and right PWM outputs. External hardware includes five IR modules to generate notes, eight switches, and two low-pass filters to produce audio signals. The design is a basic synth with limited documentation.",
+   "summary": "This is a simple monophonic synthesizer with PWM left and right output channels. It uses five input pins for note enable signals and eight switches to select sounds or notes, producing PWM outputs on uo[0] and uo[1]. External hardware includes five IR modules to generate notes, eight switches to choose sounds or notes, and two low-pass filters to produce left/right audio signals. The design is a basic synth whose documentation is very brief.",
+   "summary_changed": true
+  },
+  {
+   "key": "809faab7622f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes only an adder, not an arithmetic logic unit with operations"
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose, only a simple adder"
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The adder has no carry-in storage; it is purely combinational logic"
+    }
+   ],
+   "notes": "Removed alu and education tags unsupported by source; added combinational.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This project implements a 4-bit ripple carry adder without carry-in, taking two 4-bit inputs A and B and producing a 5-bit sum output. It is used by applying logic levels to the eight input pins and observing the five output pins, for example with a scope. External hardware can include LEDs with series resistors on the outputs and switches on the inputs to make testing easier. The design is a simple educational arithmetic block built in Wokwi, and the documentation is brief but sufficient to describe its function.",
+   "summary": "This project implements a 4-bit ripple carry adder without carry-in, taking two 4-bit inputs A and B and producing a 5-bit sum output. It is used by applying logic levels to the eight input pins and observing the five output pins, for example with a scope. External hardware can include LEDs with series resistors on the outputs and switches on the inputs to make testing easier. The design is a simple arithmetic block built in Wokwi, and the documentation is brief but sufficient to describe its function.",
+   "summary_changed": true
+  },
+  {
+   "key": "a6c2f5798a27",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes an external clock on ui[0]; it does not generate one"
+    },
+    {
+     "tag": "display",
+     "reason": "Text output tag plus lcd is sufficient; generic display tag adds little and lcd is the concrete interface"
+    }
+   ],
+   "add": [],
+   "notes": "Removed clock-generator contradicted by the clock input pin; kept lcd and text, trimmed display tag and speculative summary claim.",
+   "tags_before": [
+    "lcd",
+    "display",
+    "text",
+    "verilog",
+    "clock-generator"
+   ],
+   "tags": [
+    "lcd",
+    "text",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design echoes a predefined text string onto a 16x2 character LCD using a 4-bit data interface with RS and E control signals. It is used by connecting an LCD1602 module according to the pinout and supplying a clock on the input pin. The only external hardware needed is the 16x2 character LCD. The project is notable for fitting an LCD text controller into a single Tiny Tapeout tile, though the documentation is very brief.",
+   "summary": "This Verilog design echoes a predefined text string onto a 16x2 character LCD using a 4-bit data interface with RS and E control signals. It is used by connecting an LCD1602 module according to the pinout and supplying a clock on the input pin. The only external hardware needed is the 16x2 character LCD. The project implements a small LCD text controller, though the documentation is very brief.",
+   "summary_changed": true
+  },
+  {
+   "key": "86051d16cdbf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "No decoding logic is described; the input combination directly drives the display"
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed decoder as unsupported; adjusted summary to match the source without adding purpose claims.",
+   "tags_before": [
+    "7-segment",
+    "dip-switch",
+    "led",
+    "decoder",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "dip-switch",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This Wokwi design displays a mirrored '3' (or 'M') on a 7-segment display when inputs IN0, IN2, IN4, and IN6 are set high. An LED also lights to indicate the correct combination. It uses a shared Tiny Tapeout tile with 8 inputs and 8 outputs, but only the specified inputs matter for the intended behaviour. The design is a simple introductory project, likely created for educational purposes.",
+   "summary": "This Wokwi design displays a mirrored '3' (or 'M') on a 7-segment display when inputs IN0, IN2, IN4, and IN6 are set high. An LED also lights to indicate the correct combination. It uses eight inputs and eight outputs on the Tiny Tapeout tile, but only the specified inputs matter for the intended behaviour. The design is a simple introductory project, and the documentation is very brief.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6511,
+  "completion_tokens": 1285,
+  "total_tokens": 7796,
+  "cost": 0.0034953,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034953,
+   "upstream_inference_prompt_cost": 0.0019533,
+   "upstream_inference_completions_cost": 0.001542
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034953,
+ "elapsed_s": 7.7
+}

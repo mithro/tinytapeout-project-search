@@ -1,0 +1,202 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "978c1628dfa3",
+  "b3b56020a2ea",
+  "4030f3f6796e",
+  "4450808593b2",
+  "b1addd91f939",
+  "30ebdcd9fe60",
+  "42402e56aff8",
+  "d63d7dd917cf",
+  "551f44d3b7f2",
+  "250ac644cc29"
+ ],
+ "results": [
+  {
+   "key": "978c1628dfa3",
+   "tags": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "sound",
+    "input",
+    "verilog"
+   ],
+   "summary": "This design implements a two-player Pong game rendered on a VGA display. It accepts button inputs for each player's paddle movement and select, and outputs VGA sync and color signals along with a sound output. The documentation is minimal and does not describe the internal implementation or testing procedure in detail. External hardware likely includes a VGA monitor and buttons, but this is not explicitly stated.",
+   "confidence": "medium",
+   "insufficient_docs": true
+  },
+  {
+   "key": "b3b56020a2ea",
+   "tags": [
+    "finance",
+    "state-machine",
+    "risk-model",
+    "fed-model",
+    "counter",
+    "trend",
+    "verilog"
+   ],
+   "summary": "The Fed Model is a hardware implementation of a Federal Reserve rate-cycle risk model that counts rate cuts and signals when to exit the market. It uses event strobes for rate cuts, hikes, and months, and outputs the investment decision along with internal state. The design supports two model variants (F1 and F2) selectable at runtime, with configurable cut threshold. It is tested via a cocotb suite against a Python reference model and requires no external hardware beyond strobe drivers.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4030f3f6796e",
+   "tags": [
+    "finance",
+    "regime-classifier",
+    "ema",
+    "threshold",
+    "hysteresis",
+    "persistence",
+    "verilog"
+   ],
+   "summary": "This chip classifies an 8-bit input stream into a binary regime using a shift-only exponential moving average compared against a programmable threshold with hysteresis. It includes a persistence counter to require N consecutive qualifying samples before changing the output. The design is configurable via strobe pins for threshold, hysteresis, and persistence, and exposes the running average on outputs. It is tested with a cocotb testbench against a Python reference model and requires no external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4450808593b2",
+   "tags": [
+    "crypto",
+    "rsa",
+    "encryption",
+    "modular-exponentiation",
+    "square-and-multiply",
+    "verilog"
+   ],
+   "summary": "This project implements a textbook RSA encryption core that computes message^5 mod 221 using a pipelined square-and-multiply modular exponentiation algorithm. It uses an 8-bit datapath and a shift-and-add multiplier to fit in a 1x1 tile, taking up to 512 clock cycles per encryption. The design is for educational purposes only and is not secure. It requires no external hardware beyond input and output pins.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b1addd91f939",
+   "tags": [
+    "temporal-monitor",
+    "fault-detection",
+    "latency",
+    "arbiter",
+    "round-robin",
+    "fixed-priority",
+    "verilog"
+   ],
+   "summary": "RTFCE is a multi-context temporal latency monitor that measures time between configurable start and end events and classifies each measurement as PASS, EARLY, or TIMEOUT. It supports three independent contexts sharing a single classification datapath via selectable fixed-priority or round-robin arbitration. The design includes a near-miss diagnostic and is fully configurable via a bidirectional bus. It is tested with a cocotb regression and requires no external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "30ebdcd9fe60",
+   "tags": [
+    "neural-network",
+    "mac",
+    "bit-serial",
+    "banyan-switch",
+    "risc-v",
+    "formal-verification",
+    "lean",
+    "sat",
+    "verilog"
+   ],
+   "summary": "This project is a bit-serial neural dataflow fabric with MAC cells on a self-routing banyan switch, accompanied by a 32-bit RISC-V core. The MAC cells are generated from a Lean model proved correct and then formally verified against their arithmetic specification. The design includes a 14-cycle frame protocol and supports edge input/output for streaming data. It is notable for its formal verification approach, though the sequencer and glue logic are not part of the proofs. No external hardware is required.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "42402e56aff8",
+   "tags": [
+    "opamp",
+    "analog",
+    "folded-cascode",
+    "class-ab",
+    "fully-differential",
+    "cmfb",
+    "sky130",
+    "transistor-level"
+   ],
+   "summary": "This is a fully-differential Class-AB folded-cascode operational amplifier implemented in SKY130A. It achieves 100.3 dB open-loop gain, 9.34 MHz GBW, and 0.71 mW power consumption, with an on-chip bias generator requiring only two external bias voltages. The amplifier is tested in a closed-loop configuration with external resistors and a differential signal source. Notable limitations include non-rail-to-rail output and reduced phase margin at low temperatures.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d63d7dd917cf",
+   "tags": [
+    "serdes",
+    "8b10b",
+    "prbs",
+    "cdr",
+    "analog",
+    "driver",
+    "slicer",
+    "bist",
+    "loopback"
+   ],
+   "summary": "This design implements a UCIe-style SERDES with an 8b/10b encoder/decoder, PRBS BIST, and a 3x-oversampling CDR. It includes a custom analog TX driver and RX slicer for full analog loopback, as well as a digital loopback mode. The link self-trains and can recover from disconnection. It requires a 66.5 MHz clock and minimal external hardware for analog loopback (a resistor and jumper wire).",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "551f44d3b7f2",
+   "tags": [
+    "adc",
+    "sar",
+    "analog",
+    "noise-shaping",
+    "differential",
+    "cdac",
+    "comparator",
+    "research"
+   ],
+   "summary": "This is an 8-bit differential SAR ADC designed as the core for a future noise-shaping SAR ADC. It uses a capacitive DAC and dynamic comparator, with a digital controller that provides timing for sampling and successive approximation. The fabricated version implements only the fundamental SAR conversion, with noise-shaping and DEM reserved for future work. It requires external reference voltages, a bias current, and a 96 kHz clock.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "250ac644cc29",
+   "tags": [
+    "sonar",
+    "ultrasonic",
+    "pdm",
+    "microphone",
+    "cordic",
+    "uart",
+    "correlator",
+    "verilog"
+   ],
+   "summary": "This digital sonar processor drives a 40 kHz ultrasonic transducer and demodulates echoes from two PDM microphones using square-wave I/Q correlators. It computes echo distance and bearing via CORDIC atan2 and a lookup table, reporting results on parallel pins and a 115200 baud UART. It supports single-shot and automatic measurements, single-microphone operation, and UART-tunable thresholds. External hardware includes a custom PCB with microphones and a transducer.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "30ebdcd9fe60: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 11966,
+  "completion_tokens": 1793,
+  "total_tokens": 13759,
+  "cost": 0.0057414,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0057414,
+   "upstream_inference_prompt_cost": 0.0035898,
+   "upstream_inference_completions_cost": 0.0021516
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0057414,
+ "elapsed_s": 10.1
+}

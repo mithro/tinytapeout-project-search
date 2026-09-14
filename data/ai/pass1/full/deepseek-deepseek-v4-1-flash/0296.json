@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a18af1dcc7ae",
+  "9cf0cd198c4b",
+  "31cde06500b0",
+  "59f096ca5b33",
+  "50b6403e3a05",
+  "fe5a774d3c48",
+  "53e61aa827da",
+  "13b651bd1dc1",
+  "d42269311d97",
+  "a4293dc946d0"
+ ],
+ "results": [
+  {
+   "key": "a18af1dcc7ae",
+   "tags": [
+    "oscillator",
+    "dco",
+    "clock",
+    "counter",
+    "frequency",
+    "divider",
+    "digital"
+   ],
+   "summary": "The design is a digitally controlled oscillator that generates a frequency-adjustable clock signal based on an 8-bit control input. The control input selects an oscillation period from 3 to 50 clock cycles using a priority-based scheme, and the output toggles when a counter reaches the selected period. A testbench is provided to simulate different input scenarios and observe the output behavior. The design is purely digital and requires no external hardware, but the documentation is limited to a basic testbench and frequency table.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9cf0cd198c4b",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "bnn",
+    "systolic",
+    "accelerator",
+    "popcount",
+    "xnor",
+    "dot-product",
+    "inference"
+   ],
+   "summary": "This is a systolic binary neural network accelerator that implements 16 neurons with XNOR dot product and popcount. It processes one bit per clock cycle over 8 cycles, reusing hardware to reduce silicon area compared to a fully parallel design. The chip can be loaded with weights and thresholds via the input pins and provides neuron fire outputs. External hardware such as a Raspberry Pi or Arduino is required to load trained weights and run inference, and detailed documentation is provided for both versions.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "31cde06500b0",
+   "tags": [
+    "vga",
+    "audio",
+    "pwm",
+    "nyan-cat",
+    "animation",
+    "game",
+    "display",
+    "sound"
+   ],
+   "summary": "This project generates a 640x480 VGA signal displaying a Nyan Cat animation with synchronized audio and a toggleable color mutation mode called Devil Mode. It requires a 25.175 MHz clock and provides VGA outputs on uo_out and a 1-bit audio PWM output on uio_out[7]. External hardware includes a TinyVGA Pmod for video and a Tiny Tapeout Audio Pmod or simple RC filter for sound. The design was developed at the Cosmic Rays Group (UMSA) and is notable for its humorous 'cursed' theme.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "59f096ca5b33",
+   "tags": [
+    "divider",
+    "fixed-point",
+    "serial",
+    "arithmetic",
+    "binary",
+    "fsm",
+    "datapath"
+   ],
+   "summary": "This is a 24-bit serial fixed-point binary divider that computes the quotient of two normalized numbers with 23 fractional bits. It uses a serial interface to load operands and read the quotient, with a start signal and done flag for handshaking. The design is tested by an external microcontroller that bit-bangs the serial protocol and verifies the results against expected fixed-point values. The documentation provides a detailed test procedure and example, but no silicon test results are mentioned.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "50b6403e3a05",
+   "tags": [
+    "clock",
+    "vga",
+    "display",
+    "rtc",
+    "timer",
+    "counter"
+   ],
+   "summary": "This project implements a digital clock and date display with VGA output. It supports 12/24-hour modes, time and date adjustment via input pins, and a hold function to display the date. The design requires a VGA display and a 25.175 MHz clock. The documentation is minimal, providing only a brief description and pin functions, so the internal implementation details are not fully described.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fe5a774d3c48",
+   "tags": [
+    "dma",
+    "memory",
+    "controller",
+    "copy",
+    "fsm",
+    "error-detection",
+    "dual-channel"
+   ],
+   "summary": "This is a dual-channel DMA controller for memory-to-memory transfers with error detection and programmable transfer widths. It supports single-word and burst transfers, with source and destination addresses specified via input pins. The design includes two independent channels, each with its own memory and FSM, and provides error flags for boundary violations and address mismatches. Testing can be done via simulation with Cocotb, and the documentation includes a detailed example transfer sequence.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "53e61aa827da",
+   "tags": [
+    "dsp",
+    "fir",
+    "iir",
+    "filter",
+    "streaming",
+    "audio",
+    "saturation",
+    "scaling"
+   ],
+   "summary": "This is a configurable 8-bit streaming DSP core that implements 4-tap FIR and IIR filtering with dynamic scaling and saturation protection. It operates on a continuous stream of 8-bit input samples and produces filtered 8-bit outputs, with four modes selected by a configuration byte. The design requires no external hardware for basic operation, but can be interfaced with an ADC and DAC for real-world signal processing. The documentation includes detailed test vectors and expected outputs for verification.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "13b651bd1dc1",
+   "tags": [
+    "eml",
+    "fixed-point",
+    "spi",
+    "cordic",
+    "multiplier",
+    "math",
+    "exp",
+    "ln"
+   ],
+   "summary": "This chip implements the EML operator eml(x,y)=exp(x)-ln(y) using Q6.14 fixed-point arithmetic, with a shared sequential multiplier and hyperbolic CORDIC unit. It features an SPI interface for communication and supports a multiply opcode for host-side composition. The design is tested with a cocotb suite that verifies scalar operations, sweeps, and all 38 elementary functions from the referenced paper. An external SPI controller is required to manage the RPN stack and call the chip for each operation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d42269311d97",
+   "tags": [
+    "uart",
+    "serial",
+    "communication",
+    "test",
+    "ip",
+    "sharc"
+   ],
+   "summary": "This is a byte-sized serial UART IP test chip from SHaRC. The documentation is extremely sparse, consisting only of the title, one-line description, and pin names, with no details on functionality, testing, or external hardware. The design appears to be a UART implementation, but no further information is available. The lack of documentation makes it difficult to assess the design's capabilities or how to use it.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "a4293dc946d0",
+   "tags": [
+    "spi",
+    "memory",
+    "vga",
+    "display",
+    "test",
+    "ram",
+    "controller",
+    "timing"
+   ],
+   "summary": "This design combines an SPI memory controller and a VGA timing core, allowing either SPI RAM reading or VGA output based on a mode select pin. In SPI mode, it reads bytes from an external SPI RAM using command 0x03 and outputs the data; in VGA mode, it generates 640x480 @ 60 Hz timing with 2-bit RGB color. The design requires an external SPI RAM compatible with the 23LC512 protocol and optionally a VGA display. Testing can be done via simulation with a provided cocotb test, and the documentation includes pin descriptions and usage instructions.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8218,
+  "completion_tokens": 1799,
+  "total_tokens": 10017,
+  "cost": 0.00259884,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 640,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00259884,
+   "upstream_inference_prompt_cost": 0.00151944,
+   "upstream_inference_completions_cost": 0.0010794
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00259884,
+ "elapsed_s": 104.0
+}

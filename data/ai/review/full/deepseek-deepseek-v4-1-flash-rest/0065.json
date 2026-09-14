@@ -1,0 +1,286 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d562662ae87a",
+  "de08ff8da7b8",
+  "3bd0d79aa586",
+  "af7dc0c8d0f8",
+  "c3b4a51f2e6d",
+  "f221afdfd6aa"
+ ],
+ "results": [
+  {
+   "key": "d562662ae87a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The documentation is 'TODO' and does not describe a counter; only the title mentions a counter, but the summary's specific claim of a 2-bit counter is unsupported."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The documentation does not mention a 7-segment display; pins are generic outputs uo[0..6], only the title suggests 7segCounter."
+    },
+    {
+     "tag": "display",
+     "reason": "No evidence in the documentation that a display is driven; pins are generic outputs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is placeholder ('TODO', 'TEST', 'LOL') and the design is unfinished/undocumented."
+    }
+   ],
+   "notes": "Source is a placeholder skeleton; the summary invented a 2-bit counter and display decoding without evidence.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi project is a simple 2-bit counter that shows its current value on a 7-segment display. The counter increments on each clock edge and wraps around after reaching the maximum value. The output is decoded to drive the 7-segment display. It is an educational example of counter and display logic.",
+   "summary": "This Wokwi project is titled 7segCounter, suggesting a counter for a 7-segment display. The documentation, however, is placeholder text: the how-it-works section says 'TODO', the test section says 'TEST', and the external hardware section says 'LOL'. There is no description of the counter width, display decoding, or operation. The design therefore cannot be described beyond its title.",
+   "summary_changed": true
+  },
+  {
+   "key": "de08ff8da7b8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The design is an NTT butterfly core, not an LFSR; no LFSR is mentioned in the source."
+    },
+    {
+     "tag": "prng",
+     "reason": "The design is an NTT butterfly core, not a random number generator; no PRNG is mentioned."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a modular arithmetic butterfly core, not a basic logic gate implementation."
+    },
+    {
+     "tag": "security",
+     "reason": "The source discusses PQC Kyber, which is cryptography, but does not describe a security-focused design such as side-channel resistance or hardware security."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "The design targets CRYSTALS-Kyber post-quantum cryptography and implements NTT butterfly arithmetic."
+    }
+   ],
+   "notes": "Proposed summary described an LFSR data masker that does not exist; corrected to the documented NTT butterfly core.",
+   "tags_before": [
+    "crypto",
+    "security",
+    "lfsr",
+    "prng",
+    "logic-gate"
+   ],
+   "tags": [
+    "crypto",
+    "security",
+    "lfsr",
+    "prng",
+    "logic-gate"
+   ],
+   "summary_before": "This design demonstrates a simple hardware-based data masking technique that can be used in secure communication systems. It uses an LFSR to generate a pseudo-random mask that is XORed with the data. The design is intended for educational purposes to illustrate basic side-channel countermeasures. It is notable for its simplicity and potential application in security.",
+   "summary": "This project implements a hardware-accelerated Cooley-Tukey Number Theoretic Transform (NTT) butterfly core optimized for CRYSTALS-Kyber post-quantum cryptography with q = 3329. It performs fast modular addition and subtraction using specialized combinational subtraction matrix logic blocks without slow division operations. The design provides X_out and Y_out buses for the butterfly results, with A_in and B_in input buses and split bidirectional lines for B_in and Y_out. Testing is done by applying input arrays and twiddle factors, then driving clock transitions to observe the modular transformation outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "3bd0d79aa586",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The design is a working mux, not a boilerplate or starter template project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "Created as part of the Tiny Tapeout Teardown2026 Workshop, as stated in the title."
+    },
+    {
+     "tag": "led",
+     "reason": "The pin description explicitly says the mux output goes to an LED."
+    }
+   ],
+   "notes": "The proposed summary invented an explanation that no external hardware is required beyond the demo board; the source says only the mux drives an LED and external hardware is not listed.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "template",
+    "combinational",
+    "multiplexer",
+    "led"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "combinational",
+    "multiplexer",
+    "led",
+    "workshop"
+   ],
+   "summary_before": "This design implements a simple 2-to-1 multiplexer that selects between two input signals based on a select line and drives an LED output. It is intended as a teaching example for the Tiny Tapeout Teardown 2026 workshop, demonstrating basic digital logic on a Wokwi-based project. The design uses three input pins: two data inputs and one select input, with the output connected to an LED. No external hardware is required beyond the standard Tiny Tapeout demo board, and the documentation is minimal, consisting only of placeholder text.",
+   "summary": "This design implements a simple multiplexer that selects between two input signals based on a select line and drives an LED output. It uses three input pins: in0 and in1 as data inputs and sel as the select input. It was created as part of the Tiny Tapeout Teardown2026 Workshop and is intended as a teaching example, though the documentation is minimal placeholder text. No external hardware is required beyond the LED that the mux output drives.",
+   "summary_changed": true
+  },
+  {
+   "key": "af7dc0c8d0f8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design is a 7-segment cellular automaton, not a neural network."
+    },
+    {
+     "tag": "encoder",
+     "reason": "The design has no encoder; it implements a cellular automaton with loading logic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game-of-life",
+     "reason": "The design implements a Conway-style cellular automaton with life/death rules and neighbor counting, as described by the author."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "The author explicitly lists puzzles/exercises for the reader and tags the project as 'puzzle'."
+    }
+   ],
+   "notes": "Proposed tags and summary described a neural-network encoder; corrected to the documented cellular automaton with puzzle aspect.",
+   "tags_before": [
+    "neural-network",
+    "encoder",
+    "shift-register",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "shift-register",
+    "7-segment",
+    "wokwi",
+    "game-of-life",
+    "puzzle"
+   ],
+   "summary_before": "This project implements a neural network encoder that loads a 6-bit input and shifts it out while encoding the bits for display. The write_not_shift control selects between loading and shifting, and the encoded bits are shown one at a time on an 8-segment display. It is tested using the standard Tiny Tapeout board with DIP switches and a display. The design demonstrates neural network encoding and shift register operation.",
+   "summary": "This project implements a very simple 7-segment cellular automaton using about 200 basic logic gates. At each clock cycle, each of the seven segments is set alive or dead based on whether it had exactly one living neighbor when alive or exactly two living neighbors when dead, where touching segments are neighbors. Seven flip-flops hold the state, combinatorial logic computes the next state, and the state is latched on a clock edge; support logic allows manual loading, clock division, and run mode. It is tested on the standard Tiny Tapeout PCB using DIP switches for control and the seven-segment display for output, with additional puzzles suggested for the reader.",
+   "summary_changed": true
+  },
+  {
+   "key": "c3b4a51f2e6d",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "i2c",
+     "reason": "The pin names i2c_scl/i2c_sda and amp_i2c_scl/amp_i2c_sda indicate I2C interfaces, and the source mentions I2C register access and amplifier communication."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The source includes a silicon test report stating 'working' with I2C, PWM, SPDIF decoding, and audio playback."
+    },
+    {
+     "tag": "spdif",
+     "reason": "The design decodes an SPDIF input signal, as stated in the title and description."
+    }
+   ],
+   "notes": "Tags were missing key documented interfaces and status; summary described only clock generation and omitted the SPDIF-to-I2S conversion.",
+   "tags_before": [
+    "i2s",
+    "clock-divider",
+    "counter",
+    "audio",
+    "verilog"
+   ],
+   "tags": [
+    "i2s",
+    "clock-divider",
+    "counter",
+    "audio",
+    "verilog",
+    "i2c",
+    "silicon-tested"
+   ],
+   "summary_before": "This project generates an I2S bit clock by counting system clock cycles and producing a divided clock signal. It is used with an I2S audio interface, and the clock frequency is determined by the count value. The design includes a counter and a clock divider. It is notable for its role in audio clock generation.",
+   "summary": "This project converts SPDIF audio to I2S format for a ClassD amplifier MA12070p. It oversamples the SPDIF input using a 27 MHz system clock, regenerates the I2S bit clock by counting system clock cycles between SPDIF edges, and detects left/right sync words to toggle the I2S word-select signal. PCM samples are decoded from phase/mark changes, shifted into left and right FIFOs, and output on i2s_d0 from the non-active FIFO in reversed order. Silicon test reports working read/write I2C register access, PWM output, I2C communication with the amplifier, and SPDIF decoding to I2S with good audio, using a clock set to 27 MHz.",
+   "summary_changed": true
+  },
+  {
+   "key": "f221afdfd6aa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dip-switch",
+     "reason": "There is no DIP switch mentioned in the source; the description mentions a switch but not a DIP switch."
+    },
+    {
+     "tag": "education",
+     "reason": "The documentation is too thin to support an educational intent; it is a minimal seven-segment display project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin placeholder text and the behavior is only vaguely described."
+    }
+   ],
+   "notes": "Proposed summary invented external seven-segment display requirement details and an education tag; removed unsupported dip-switch and education tags, added incomplete.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "led",
+    "dip-switch",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "led",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This design lights up a number on a seven-segment display when a switch is pressed. The documentation is very thin, stating only that pressing the right switch should light the right number, and the pin names are generic inputs and outputs. It requires an external seven-segment display and switches, but no wiring details are given. The project appears to be a beginner exercise and provides no test procedure or implementation detail.",
+   "summary": "This Wokwi design is intended to light up a number on a seven-segment display when a switch is pressed. The documentation is minimal, saying only that pressing the right switch should light the right number, and the pins are generic inputs INT1-INT8 and outputs OUT1-OUT8. It requires an external seven-segment display and switches, but no wiring details or test procedure are provided. The project appears to be a beginner exercise with little implementation detail.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "de08ff8da7b8: only 1 tags after review; keeping pass-two tags"
+ ],
+ "usage": {
+  "prompt_tokens": 6780,
+  "completion_tokens": 1972,
+  "total_tokens": 8752,
+  "cost": 0.0044004,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044004,
+   "upstream_inference_prompt_cost": 0.002034,
+   "upstream_inference_completions_cost": 0.0023664
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044004,
+ "elapsed_s": 46.0
+}

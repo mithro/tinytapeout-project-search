@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f85d40941c7e",
+  "25f93fcbc229",
+  "f48c23c44b56",
+  "01ecc1a49059",
+  "8d40ece57362",
+  "a4d9eeca0e20"
+ ],
+ "results": [
+  {
+   "key": "f85d40941c7e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source says it was a first tapeout, not that it is intended for teaching or learning digital design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag: source describes a first tapeout, not a teaching/learning intent.",
+   "tags_before": [
+    "counter",
+    "up-down-counter",
+    "sequential-logic",
+    "education",
+    "cocotb"
+   ],
+   "tags": [
+    "counter",
+    "up-down-counter",
+    "sequential-logic",
+    "cocotb"
+   ],
+   "summary_before": "This is a synchronous 4-bit up/down counter with enable and direction controls. The count value is output on four pins, and the counter wraps at both ends. It is tested with a cocotb testbench covering reset, count up, hold, count down, underflow wraparound, and a second reset. The design was built as a first Tiny Tapeout submission, intentionally kept simple to maximize the odds of a clean first tapeout, and requires no external hardware.",
+   "summary": "This is a synchronous 4-bit up/down counter with enable and direction controls. The count value is output on four pins, and the counter wraps at both ends. It is tested with a cocotb testbench covering reset, count up, hold, count down, underflow wraparound, and a second reset. The design was built as a first Tiny Tapeout submission, intentionally kept simple to maximize the odds of a clean first tapeout, and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "25f93fcbc229",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag: source presents a custom CPU, not an educational design.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "uart",
+    "gpio",
+    "memory",
+    "systemverilog",
+    "cocotb",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "uart",
+    "gpio",
+    "memory",
+    "systemverilog",
+    "cocotb"
+   ],
+   "summary_before": "CPU8 is a small 8-bit accumulator-based processor with a custom 8-bit instruction set, an ALU supporting arithmetic and logic operations, 8-bit RAM, conditional branches, HALT, and memory-mapped GPIO. Programs are uploaded through a UART interface using a simple protocol that writes instructions into instruction memory and then starts execution from address zero. The included cocotb testbench programs the CPU over the same UART interface and verifies reset, arithmetic, RAM access, GPIO, jumps, branches, and HALT. Basic operation needs no external hardware, though a USB-to-UART adapter or microcontroller is useful for physical programming.",
+   "summary": "CPU8 is a small 8-bit accumulator-based processor with a custom 8-bit instruction set, an ALU supporting arithmetic and logic operations, 8-bit RAM, conditional branches, HALT, and memory-mapped GPIO. Programs are uploaded through a UART interface using a simple protocol that writes instructions into instruction memory and then starts execution from address zero. The included cocotb testbench programs the CPU over the same UART interface and verifies reset, arithmetic, RAM access, GPIO, jumps, branches, and HALT. Basic operation needs no external hardware, though a USB-to-UART adapter or microcontroller is useful for physical programming.",
+   "summary_changed": false
+  },
+  {
+   "key": "f48c23c44b56",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "biomedical",
+    "dsp",
+    "i2c",
+    "sensor-interface",
+    "verilog"
+   ],
+   "tags": [
+    "biomedical",
+    "dsp",
+    "i2c",
+    "sensor-interface",
+    "verilog"
+   ],
+   "summary_before": "This project implements a fatigue monitor that reads IR PPG samples from a MAX30102 sensor over I2C, detects heartbeat peaks, and tracks variability in pulse intervals. It includes a calibration phase to learn a personal baseline, after which it raises an alert when a sustained drop in variability occurs. The design requires a MAX30102 breakout connected to the I2C pins, external pull-ups, and optionally a transistor-driven buzzer or motor for the alert output. Debug pins provide visibility into sensor acquisition and beat detection, and the design has been characterized on real hardware, with bring-up notes emphasizing the importance of checking the I2C path first.",
+   "summary": "This project implements a fatigue monitor that reads IR PPG samples from a MAX30102 sensor over I2C, detects heartbeat peaks, and tracks variability in pulse intervals. It includes a calibration phase to learn a personal baseline, after which it raises an alert when a sustained drop in variability occurs. The design requires a MAX30102 breakout connected to the I2C pins, external pull-ups, and optionally a transistor-driven buzzer or motor for the alert output. Debug pins provide visibility into sensor acquisition and beat detection, and the design has been characterized on real hardware, with bring-up notes emphasizing the importance of checking the I2C path first.",
+   "summary_changed": false
+  },
+  {
+   "key": "01ecc1a49059",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sram",
+     "reason": "The 64-bit Bloom filter array is a register array, not an SRAM block; the source does not describe SRAM."
+    }
+   ],
+   "add": [],
+   "notes": "Removed sram tag: the implementation is a 64-bit register-array Bloom filter, not an SRAM block.",
+   "tags_before": [
+    "hash",
+    "sram",
+    "verilog"
+   ],
+   "tags": [
+    "hash",
+    "verilog"
+   ],
+   "summary_before": "The design implements a Bloom filter for probabilistic set membership testing using a 64-bit array and two XOR-fold hash functions on 8-bit inputs. It supports insert and query operations through a simple strobe interface, with a VALID signal indicating completion and a RESULT output for queries; debug outputs expose the computed hash indices. It requires no external hardware beyond the standard Tiny Tapeout demo board, and the documentation explains the operation sequence and timing. The design guarantees no false negatives and may produce false positives, as expected for a Bloom filter.",
+   "summary": "The design implements a Bloom filter for probabilistic set membership testing using a 64-bit array and two XOR-fold hash functions on 8-bit inputs. It supports insert and query operations through a simple strobe interface, with a VALID signal indicating completion and a RESULT output for queries; debug outputs expose the computed hash indices. It requires no external hardware beyond the standard Tiny Tapeout demo board, and the documentation explains the operation sequence and timing. The design guarantees no false negatives and may produce false positives, as expected for a Bloom filter.",
+   "summary_changed": false
+  },
+  {
+   "key": "8d40ece57362",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "neural-network",
+    "mac-unit",
+    "machine-learning",
+    "accelerator",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "mac-unit",
+    "machine-learning",
+    "accelerator",
+    "verilog"
+   ],
+   "summary_before": "This design is a neural network inference engine with four signed 4-bit MAC lanes that compute four dot products per job with 20-bit accumulation. It uses an acknowledged byte interface to receive commands and data from a host and to stream back twelve result bytes, with support for optional biases. The host is responsible for activation functions, requantization, and multilayer scheduling, as the core returns raw signed sums; a standalone ReLU block exists but is not connected. The design targets a 50 MHz clock pending SKY130 timing verification and requires a host with memory for images and weights, plus a Tiny Tapeout demo board or compatible host.",
+   "summary": "This design is a neural network inference engine with four signed 4-bit MAC lanes that compute four dot products per job with 20-bit accumulation. It uses an acknowledged byte interface to receive commands and data from a host and to stream back twelve result bytes, with support for optional biases. The host is responsible for activation functions, requantization, and multilayer scheduling, as the core returns raw signed sums; a standalone ReLU block exists but is not connected. The design targets a 50 MHz clock pending SKY130 timing verification and requires a host with memory for images and weights, plus a Tiny Tapeout demo board or compatible host.",
+   "summary_changed": false
+  },
+  {
+   "key": "a4d9eeca0e20",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "lookup-table",
+    "reconfigurable",
+    "cocotb",
+    "systemverilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "lookup-table",
+    "reconfigurable",
+    "cocotb",
+    "systemverilog"
+   ],
+   "summary_before": "This design implements a reconfigurable look-up-table spiking neural network that classifies the orientation of a line in a 3x3 binary grid as vertical or horizontal. It uses latency ordering without membrane potentials or time stepping, and the weights can be rewritten at runtime via a shift register interface. The design achieves 100% accuracy on clean patterns and 80.99% under 10% flip noise, with a fixed 2-cycle latency. It is tested exhaustively with a cocotb suite that covers all 512 possible inputs.",
+   "summary": "This design implements a reconfigurable look-up-table spiking neural network that classifies the orientation of a line in a 3x3 binary grid as vertical or horizontal. It uses latency ordering without membrane potentials or time stepping, and the weights can be rewritten at runtime via a shift register interface. The design achieves 100% accuracy on clean patterns and 80.99% under 10% flip noise, with a fixed 2-cycle latency. It is tested exhaustively with a cocotb suite that covers all 512 possible inputs.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9538,
+  "completion_tokens": 1204,
+  "total_tokens": 10742,
+  "cost": 0.0043062,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043062,
+   "upstream_inference_prompt_cost": 0.0028614,
+   "upstream_inference_completions_cost": 0.0014448
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043062,
+ "elapsed_s": 6.7
+}

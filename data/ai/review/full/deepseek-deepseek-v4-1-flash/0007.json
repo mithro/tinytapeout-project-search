@@ -1,0 +1,275 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ab1f915db53f",
+  "5571e2df7466",
+  "6c01ff501de9",
+  "f8ea57e1c936",
+  "05dd1e46d665",
+  "20e7355b892a"
+ ],
+ "results": [
+  {
+   "key": "ab1f915db53f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The source describes a sprite bouncer demo, not an interactive game."
+    },
+    {
+     "tag": "framebuffer",
+     "reason": "The design uses sprite ROM and background registers, not a pixel framebuffer."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "External hardware explicitly lists Tiny VGA Pmod and Audio Pmod."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "It is a visual sprite/background showcase suitable for demos."
+    }
+   ],
+   "notes": "Removed unsupported game/framebuffer tags and added pmod and demoscene based on the documented external hardware and demo purpose.",
+   "tags_before": [
+    "sprite",
+    "vga",
+    "graphics",
+    "spi",
+    "audio",
+    "verilog",
+    "game",
+    "framebuffer"
+   ],
+   "tags": [
+    "sprite",
+    "vga",
+    "graphics",
+    "spi",
+    "audio",
+    "verilog",
+    "pmod",
+    "demoscene"
+   ],
+   "summary_before": "This design displays a bouncing sprite with multiple background options on a VGA output, with sprite ROM, background control registers, and audio ROM configured via SPI. It requires a Tiny VGA PMOD and an audio PMOD for sound output. The design is controlled by SPI to set the background, sprite image, and sound effects. It is a hardware sprite engine suitable for simple games or demos.",
+   "summary": "This design displays a bouncing sprite with multiple background options on a VGA output, with sprite ROM, background control registers, and audio ROM configured via SPI. It requires a Tiny VGA Pmod and an audio Pmod for sound output. The design is controlled by SPI to set the background, sprite image, and sound effects. It is a hardware sprite engine suitable for simple demos.",
+   "summary_changed": true
+  },
+  {
+   "key": "5571e2df7466",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Pin names uo[0]-uo[7] are segment a-g and dot, indicating a seven-segment display output."
+    }
+   ],
+   "notes": "Added 7-segment tag because the output pins are explicitly named as seven-segment segments.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "insufficient-doc",
+    "7-segment"
+   ],
+   "summary_before": "This project is a single leaky integrate-and-fire (LIF) neuron with post-synaptic spike-timing-dependent plasticity (STDP) learning. The documentation is essentially absent, with placeholder text for both the operation and testing sections. The pin names suggest a 7-segment display output and a counter, but the actual functionality cannot be determined from the provided information. No external hardware requirements or notable features are described.",
+   "summary": "This project is a single leaky integrate-and-fire (LIF) neuron with post-synaptic spike-timing-dependent plasticity (STDP) learning. The documentation is essentially absent, with placeholder text for both the operation and testing sections. The pin names suggest a 7-segment display output and a counter, but the actual functionality cannot be determined from the provided information. No external hardware requirements or notable features are described.",
+   "summary_changed": false
+  },
+  {
+   "key": "6c01ff501de9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is described as an adder with three input pins and two output pins, but the documentation says it works by magic and gives no real explanation. It is tested simply by using it, with switches and LED displays listed as external hardware. No details are provided about the bit width, encoding, or internal logic of the adder. The documentation is too thin to determine the actual behavior beyond the title.",
+   "summary": "This project is described as an adder with three input pins and two output pins, but the documentation says it works by magic and gives no real explanation. It is tested simply by using it, with switches and LED displays listed as external hardware. No details are provided about the bit width, encoding, or internal logic of the adder. The documentation is too thin to determine the actual behavior beyond the title.",
+   "summary_changed": false
+  },
+  {
+   "key": "f8ea57e1c936",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR is mentioned or supported by the source."
+    },
+    {
+     "tag": "ring-counter",
+     "reason": "No ring counter is mentioned or supported by the source."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random generator is mentioned or supported by the source."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "No rhythm sequencer is mentioned or supported by the source."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "No flip-flop is mentioned or supported by the source."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The single pin is not described as general-purpose GPIO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The documentation explicitly states there is an AND gate."
+    },
+    {
+     "tag": "led",
+     "reason": "The documentation states the AND gate output is connected to an LED."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and testing is unknown."
+    }
+   ],
+   "notes": "Replaced hallucinated sequencer/LFSR tags with logic-gate, led, and insufficient-doc based on the actual AND-gate documentation.",
+   "tags_before": [
+    "lfsr",
+    "ring-counter",
+    "prng",
+    "sequencer",
+    "wokwi",
+    "flip-flop",
+    "gpio"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "led",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a rhythm sequencer and randomizer that uses an 8-stage ring counter or LFSR to generate looping or pseudo-random patterns on eight outputs. It is controlled by three switches: one selects between looper and randomizer modes, another toggles to create a new loop, and a third clears the pattern or allows input of a custom rhythm. The outputs can drive external hardware via the Tiny Tapeout GPIO pins. Testing involves a specific sequence of switch operations to clear, start, and randomize the pattern.",
+   "summary": "This project is a Wokwi test design containing an AND gate whose output is connected to an LED. The documentation is very thin, stating only that there is an AND gate on input 1 and two connected to an LED. The testing instructions are simply 'I don't know,' and no external hardware is required. The design is a minimal logic gate demonstration.",
+   "summary_changed": true
+  },
+  {
+   "key": "05dd1e46d665",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "qif",
+    "spiking-neural-network",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "qif",
+    "spiking-neural-network",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is an 8-bit digital QIF circuit that spikes when the input is positive and resets when the signal exceeds a predetermined value. The documentation is extremely minimal, consisting only of the title, one-line description, and pin names, with no detailed explanation of the QIF algorithm or its implementation. The external hardware mentioned is an ADALM2000, suggesting analog testing, but the design's purpose and operation are unclear. Due to the lack of documentation, the tags and summary are largely inferred from the title and brief description.",
+   "summary": "This project is an 8-bit digital QIF circuit that spikes when the input is positive and resets when the signal exceeds a predetermined value. The documentation is extremely minimal, consisting only of the title, one-line description, and pin names, with no detailed explanation of the QIF algorithm or its implementation. The external hardware mentioned is an ADALM2000, suggesting analog testing, but the design's purpose and operation are unclear. Due to the lack of documentation, the tags and summary are largely inferred from the title and brief description.",
+   "summary_changed": false
+  },
+  {
+   "key": "20e7355b892a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spi",
+     "reason": "The design uses I2C, not SPI."
+    },
+    {
+     "tag": "stepper-motor",
+     "reason": "The 'stepper' is an internal output sequencer, not a motor driver."
+    },
+    {
+     "tag": "button",
+     "reason": "No buttons are mentioned; inputs are switches."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "A seven-segment display is only an optional example output, not a core interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "gpio",
+     "reason": "The design provides direct passthrough between input and output pins."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "The stepper mode sequentially activates outputs."
+    }
+   ],
+   "notes": "Removed unsupported SPI, stepper-motor, button, and 7-segment tags; added gpio and sequencer to match the documented passthrough and stepper behavior.",
+   "tags_before": [
+    "i2c",
+    "spi",
+    "register-file",
+    "stepper-motor",
+    "counter",
+    "sequential-logic",
+    "verilog",
+    "button",
+    "led",
+    "7-segment"
+   ],
+   "tags": [
+    "i2c",
+    "register-file",
+    "counter",
+    "sequential-logic",
+    "verilog",
+    "led",
+    "gpio",
+    "sequencer"
+   ],
+   "summary_before": "This project is a write-only I2C slave with address 0x8E, featuring three control registers and eight data registers. It supports direct passthrough mode and a stepper mode that sequentially activates outputs based on a programmable counter. The design requires an external I2C master, switches for inputs, and LEDs or a seven-segment display for outputs. It is a configurable I2C peripheral for controlling external devices.",
+   "summary": "This project is a write-only I2C slave with address 0x8E, featuring three control registers and eight data registers. It supports direct passthrough mode and a stepper mode that sequentially activates outputs based on a programmable counter. The design requires an external I2C master, switches for inputs, and LEDs or a seven-segment display for outputs. It is a configurable I2C peripheral for controlling external devices.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5941,
+  "completion_tokens": 1498,
+  "total_tokens": 7439,
+  "cost": 0.0035799,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035799,
+   "upstream_inference_prompt_cost": 0.0017823,
+   "upstream_inference_completions_cost": 0.0017976
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035799,
+ "elapsed_s": 11.2
+}

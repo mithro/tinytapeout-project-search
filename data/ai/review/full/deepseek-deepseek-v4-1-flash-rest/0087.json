@@ -1,0 +1,275 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7bc8956dc5b1",
+  "3f24346416f2",
+  "5552381fdfce",
+  "3f13215dc390",
+  "3dee1cff0aaf",
+  "3a13e8680a0d"
+ ],
+ "results": [
+  {
+   "key": "7bc8956dc5b1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ps2",
+     "reason": "The design uses a PMOD gamepad; PS2 is not mentioned in any source or pin name."
+    },
+    {
+     "tag": "fpga",
+     "reason": "No source text indicates FPGA targeting or porting."
+    }
+   ],
+   "add": [],
+   "notes": "Removed ps2 and fpga tags; summary now matches PMOD gamepad/VGA evidence and removes unsupported PS2 attribution.",
+   "tags_before": [
+    "vga",
+    "game",
+    "maze",
+    "gamepad",
+    "ps2",
+    "puzzle",
+    "graphics",
+    "fpga"
+   ],
+   "tags": [
+    "vga",
+    "game",
+    "maze",
+    "gamepad",
+    "puzzle",
+    "graphics"
+   ],
+   "summary_before": "This design generates a perfect 10x10 maze on-chip using a binary-tree algorithm and displays it over VGA while it is being built. The maze is rendered graphically on a VGA display, and the construction process is visible in real time. The design uses a gamepad or PS2 input for interaction, and the maze can be navigated as a puzzle. The project is implemented in Verilog and targets FPGA platforms.",
+   "summary": "This design generates a perfect 10x10 maze on-chip using a binary-tree maze generator and shows it over VGA while it is being built. The maze is displayed graphically using Tiny VGA pins, and the construction process is visible in real time. A PMOD gamepad supplies player input for navigating the maze and racing a wall-following solver. The project is implemented in Verilog.",
+   "summary_changed": true
+  },
+  {
+   "key": "3f24346416f2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The design is a logic-gate XOR/AND circuit, not a counter."
+    },
+    {
+     "tag": "template",
+     "reason": "The design itself is a logic-gate implementation, not simply a starter template."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation includes clear gate behavior and a test table, so it is not too sparse to describe."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Source implements XOR and AND gates."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The XOR and AND gate outputs depend only on current inputs."
+    }
+   ],
+   "notes": "Corrected erroneous counter/template/insufficient-doc tags and replaced the counter template summary with the actual logic-gate design.",
+   "tags_before": [
+    "counter",
+    "wokwi",
+    "template",
+    "education",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "logic-gate",
+    "combinational"
+   ],
+   "summary_before": "TT-wokwi-template is a design based on the Wokwi template that increments a counter from 0 to 9 on a screen when a STEP button is pressed. The design is implemented in Wokwi and is intended as a template for educational purposes. The documentation is minimal, and the design may be incomplete. The project lacks detailed information about its operation and external hardware requirements.",
+   "summary": "This design implements XOR and AND logic gates on input a and input b. The XOR result is driven onto output 0, and the AND result is driven onto output 1. A truth table documents the expected outputs for all four input combinations. The project is implemented in Wokwi and is not reported as tested on silicon.",
+   "summary_changed": true
+  },
+  {
+   "key": "5552381fdfce",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source describes an example logic-gate implementation, not a boilerplate starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Already present; confirming supported by AND, NAND, OR and XOR documentation."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states the gates work as expected."
+    }
+   ],
+   "notes": "Removed unsupported template tag and added silicon-tested tag plus mention based on the provided report.",
+   "tags_before": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "workshop",
+    "template"
+   ],
+   "tags": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "workshop",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements four basic logic gates on a single tile: an AND of inputs 0 and 1, a NAND of inputs 2 and 3, an OR of inputs 4 and 5, and an XOR of inputs 6 and 7, with the results on outputs 0 through 3. It was created as an example for a Supercon workshop, presumably to teach the Tiny Tapeout design flow. The design is built using the Wokwi online simulator. It is intended for educational purposes, demonstrating simple combinational logic.",
+   "summary": "This design implements four basic logic gates: an AND of inputs 0 and 1, a NAND of inputs 2 and 3, an OR of inputs 4 and 5, and an XOR of inputs 6 and 7, with the results on outputs 0 through 3. It demonstrates simple combinational logic and is intended for education. The design was created as part of a Supercon workshop using the Wokwi simulator. Silicon test reports say each gate worked as expected.",
+   "summary_changed": true
+  },
+  {
+   "key": "3f13215dc390",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "LEDs are only recommended external hardware, not an implemented output interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The documented behavior is a down-counter that counts toward zero."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The circuit stores a loaded value and counts over time."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Inputs and outputs are general-purpose digital pins."
+    }
+   ],
+   "notes": "Removed led output tag since LEDs are external recommendations only; added counter, sequential-logic and gpio and corrected unsupported educational/clock-generator claims.",
+   "tags_before": [
+    "timer",
+    "counter",
+    "led",
+    "wokwi"
+   ],
+   "tags": [
+    "timer",
+    "counter",
+    "wokwi",
+    "sequential-logic",
+    "gpio"
+   ],
+   "summary_before": "This circuit acts as a configurable timer that counts down from a value set on its inputs (0 to 7) and displays the remaining time in binary form on LEDs. It uses a counter and a clock generator to manage the countdown. The design is implemented in Wokwi and is intended for educational purposes. No silicon test report is provided, so its hardware behavior is not confirmed.",
+   "summary": "This configurable timer counts down from a value placed on inputs 0 through 7 and displays the remaining time in binary form. The start input loads the configured value and begins the countdown, and the end flag is raised when the count reaches zero. An out_state signal reports the running state. The design is implemented in Wokwi; no silicon test report is provided, so hardware behavior is not confirmed.",
+   "summary_changed": true
+  },
+  {
+   "key": "3dee1cff0aaf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The specific implementation is a spiking neural network, already tagged; generic neural-network is not needed."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Source states the design is implemented in Verilog."
+    },
+    {
+     "tag": "neuromorphic",
+     "reason": "The source describes LIF neurons with programmable delays and synapses."
+    }
+   ],
+   "notes": "Added verilog and neuromorphic tags; replaced a generic neural-network tag and made the summary match the documented LIF/SPI behavior.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "spi",
+    "verilog",
+    "neuromorphic"
+   ],
+   "summary_before": "This project implements a spiking neural network with 18 programmable digital LIF neurons and 144 synapses arranged in three fully connected layers. The design is notable for being generated by ChatGPT and for its use of programmable delays, but it lacks silicon test results.",
+   "summary": "This project implements 18 programmable digital LIF neurons with programmable delays and 144 synapses arranged in three fully connected layers. Input spikes are weighted and accumulated into membrane potentials, with weights, thresholds, decay, refractory periods, and delays programmable over SPI. Internal membrane potentials or output spikes can be read through SPI selection. The design is implemented in Verilog and is not reported as tested on silicon.",
+   "summary_changed": true
+  },
+  {
+   "key": "3a13e8680a0d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pll",
+     "reason": "The design implements phase/frequency detector blocks, not a complete PLL."
+    },
+    {
+     "tag": "analog",
+     "reason": "Documented circuit is digital UP/DN logic in Wokwi, with no analog circuitry described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "phase-detector",
+     "reason": "Source explicitly describes a basic phase frequency detector and zero dead zone PFD."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The PFD produces UP/DN outputs based on relative input phase/state."
+    }
+   ],
+   "notes": "Corrected pll and analog tags to phase-detector/sequential-logic; summary reflects only the documented PFD function.",
+   "tags_before": [
+    "phase-detector",
+    "pll",
+    "analog",
+    "wokwi"
+   ],
+   "tags": [
+    "phase-detector",
+    "wokwi",
+    "sequential-logic"
+   ],
+   "summary_before": "This design implements a phase detector and PLL circuit using analog components in Wokwi. The phase detector compares the phase of two input signals and generates an error signal. The PLL uses this error signal to lock onto the input frequency.",
+   "summary": "This design implements a phase frequency detector and a zero dead zone PFD. The basic PFD drives UP high when the VCO input leads and DN high when the reference input leads. A second PFD block provides additional UP2, DN2, and Reset outputs. The design is implemented in Wokwi and is not reported as tested on silicon.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5768,
+  "completion_tokens": 1566,
+  "total_tokens": 7334,
+  "cost": 0.0036096,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036096,
+   "upstream_inference_prompt_cost": 0.0017304,
+   "upstream_inference_completions_cost": 0.0018792
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036096,
+ "elapsed_s": 45.5
+}

@@ -1,0 +1,223 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2133bf8f36ac",
+  "95be2ea5f219",
+  "326ea6dba0a7",
+  "f8a7e3a495b3",
+  "221b410e64c6",
+  "a0f8e763bbcf"
+ ],
+ "results": [
+  {
+   "key": "2133bf8f36ac",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "already present"
+    },
+    {
+     "tag": "bcd",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Tags and summary are fully supported by the source; no changes needed.",
+   "tags_before": [
+    "timer",
+    "counter",
+    "bcd",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "timer",
+    "counter",
+    "bcd",
+    "7-segment",
+    "verilog"
+   ],
+   "summary_before": "This is a two-digit seconds timer that counts from 00 to 99, with the target value loaded from 8 input switches as two BCD digits. A Load signal latches the target, and a Start signal begins counting at one second per tick from a 10 MHz clock. When the count reaches the target, the Time_Out output goes high, and the current ones or tens digit is displayed on a 7-segment display depending on a select input. Testing involves resetting, activating Load and Start, and observing the count and timeout.",
+   "summary": "This is a two-digit seconds timer that counts from 00 to 99, with the target value loaded from 8 input switches as two BCD digits. A Load signal latches the target, and a Start signal begins counting at one second per tick from a 10 MHz clock. When the count reaches the target, the Time_Out output goes high, and the current ones or tens digit is displayed on a 7-segment display depending on a select input. Testing involves resetting, activating Load and Start, and observing the count and timeout.",
+   "summary_changed": false
+  },
+  {
+   "key": "95be2ea5f219",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rgb-led",
+     "reason": "The source never mentions RGB LEDs; the title 'RGB Mixer' and three PWM channels are suggestive but the documentation only describes PWM generators driven by encoders, so rgb-led is not supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'working' with an author test report, so the silicon-tested tag is supported."
+    }
+   ],
+   "notes": "Removed rgb-led (not stated in source) and added silicon-tested (author report confirms working silicon).",
+   "tags_before": [
+    "pwm",
+    "rotary-encoder",
+    "rgb-led",
+    "debouncer",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "rotary-encoder",
+    "debouncer",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design uses three rotary encoders to control three PWM generators, likely for RGB LED mixing. It includes debouncing for the encoder inputs and provides debug outputs for the encoder values and debounce signals. The encoders are connected to the first six input pins, and the PWM outputs appear on the first three output pins. A silicon test report from the author confirms all three channels work up to 50 MHz.",
+   "summary": "This design uses three rotary encoders to control three PWM generators. It includes debouncing for the encoder inputs and provides debug outputs for the encoder values and debounce signals. The encoders are connected to the first six input pins, and the PWM outputs appear on the first three output pins. A silicon test report from the author confirms all three channels work up to 50 MHz.",
+   "summary_changed": true
+  },
+  {
+   "key": "326ea6dba0a7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The 'game' domain tag implies interactive game design; this is a cellular automaton simulation, which is better covered by game-of-life and cellular-automaton."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'game' as the design is a cellular automaton simulation rather than an interactive game.",
+   "tags_before": [
+    "game-of-life",
+    "cellular-automaton",
+    "game",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "game-of-life",
+    "cellular-automaton",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This design simulates Conway's Game of Life on an 8x8 grid using two shift registers, one holding the current state and one holding the updated state. The user loads cells one at a time in row-major order through a single input pin, then asserts a start pin to begin the simulation, after which the circuit alternates between updating and outputting indefinitely. During output, one pin carries the cell value and seven pins carry the cell index from 1 to 64, so an external display or host must reconstruct the grid. The documentation is detailed about the protocol but notes that the design should simply be prayed over, and no silicon test results are given.",
+   "summary": "This design simulates Conway's Game of Life on an 8x8 grid using two shift registers, one holding the current state and one holding the updated state. The user loads cells one at a time in row-major order through a single input pin, then asserts a start pin to begin the simulation, after which the circuit alternates between updating and outputting indefinitely. During output, one pin carries the cell value and seven pins carry the cell index from 1 to 64, so an external display or host must reconstruct the grid. The documentation is detailed about the protocol but notes that the design should simply be prayed over, and no silicon test results are given.",
+   "summary_changed": false
+  },
+  {
+   "key": "f8a7e3a495b3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "A 74HC595 is a shift register with output latches, not a multi-register file; register-file is incorrect."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'working' with an author test report, so the silicon-tested tag is supported."
+    }
+   ],
+   "notes": "Removed register-file (incorrect for a shift register) and added silicon-tested (author report confirms working silicon).",
+   "tags_before": [
+    "shift-register",
+    "register-file",
+    "led",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "shift-register",
+    "led",
+    "pmod",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a 74HC595 8-bit shift register with output latches in Verilog. It accepts serial data, shift clock, latch clock, output enable and clear signals, and drives eight parallel outputs. The design is intended to be tested by connecting eight LEDs, such as a Pmod, and bit-banging data to create effects like a Knight Rider pattern. Silicon testing confirmed it works, with the author using C and MicroPython to drive the LEDs.",
+   "summary": "This project implements a 74HC595 8-bit shift register with output latches in Verilog. It accepts serial data, shift clock, latch clock, output enable and clear signals, and drives eight parallel outputs. The design is intended to be tested by connecting eight LEDs, such as a Pmod, and bit-banging data to create effects like a Knight Rider pattern. Silicon testing confirmed it works, with the author using C and MicroPython to drive the LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "221b410e64c6",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'working' with both tester and author reports, so the silicon-tested tag is supported."
+    }
+   ],
+   "notes": "Added silicon-tested (both tester and author reports confirm working silicon).",
+   "tags_before": [
+    "transistor-level",
+    "logic-gate",
+    "flip-flop",
+    "silicon-art"
+   ],
+   "tags": [
+    "transistor-level",
+    "logic-gate",
+    "flip-flop",
+    "silicon-art",
+    "silicon-tested"
+   ],
+   "summary_before": "This project contains hand-crafted, skull-shaped MOSFET transistors implemented in a custom description language. It includes three devices: a NOT gate, a NAND gate, and an SR flip-flop, with inputs and outputs exposed on the chip pins. Testing involves applying input values and observing the outputs, and pulsing set/reset for the flip-flop. Silicon tests confirmed that the inverter and NAND work perfectly, and the flip-flop outputs are inverted as noted by the author.",
+   "summary": "This project contains hand-crafted, skull-shaped MOSFET transistors implemented in a custom description language. It includes three devices: a NOT gate, a NAND gate, and an SR flip-flop, with inputs and outputs exposed on the chip pins. Testing involves applying input values and observing the outputs, and pulsing set/reset for the flip-flop. Silicon tests confirmed that the inverter and NAND work perfectly, and the flip-flop outputs are inverted as noted by the author.",
+   "summary_changed": false
+  },
+  {
+   "key": "a0f8e763bbcf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design drives a 7-segment display directly; the generic 'display' tag is redundant and less specific than 7-segment."
+    }
+   ],
+   "add": [],
+   "notes": "Removed redundant 'display' tag; 7-segment already covers the output.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This project is a simple counter that displays a digit on a 7-segment display, counting from 0 to 9 and wrapping around, with one step per clock cycle. It uses SR flip-flops to avoid combinational logic in the clock path, which previously caused glitches. Testing involves pressing reset and then clocking to advance the count. No external hardware is required beyond the display.",
+   "summary": "This project is a simple counter that displays a digit on a 7-segment display, counting from 0 to 9 and wrapping around, with one step per clock cycle. It uses SR flip-flops to avoid combinational logic in the clock path, which previously caused glitches. Testing involves pressing reset and then clocking to advance the count. No external hardware is required beyond the display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6865,
+  "completion_tokens": 1287,
+  "total_tokens": 8152,
+  "cost": 0.001640206,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001640206,
+   "upstream_inference_prompt_cost": 0.000790786,
+   "upstream_inference_completions_cost": 0.00084942
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001640206,
+ "elapsed_s": 16.7
+}

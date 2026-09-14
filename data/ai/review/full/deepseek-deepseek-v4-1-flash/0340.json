@@ -1,0 +1,205 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e97fbf792b2e",
+  "dfa70fc144d8",
+  "1eea9dd15d38",
+  "cd0ee53dc61e",
+  "fccf97781b61",
+  "20f37c6c0a04"
+ ],
+ "results": [
+  {
+   "key": "e97fbf792b2e",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Title and one-line description are both 'WIP', indicating an unfinished submission."
+    }
+   ],
+   "notes": "Added incomplete tag because the title and one-line description are both 'WIP'.",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "wokwi"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This design implements the TEA (Tiny Encryption Algorithm) block cipher in hardware, encrypting a 64-bit data block with a 128-bit key over 32 rounds using 32-bit modular addition, XOR and shifts. It exposes eight data input pins and eight data output pins, and is tested by following the Tiny Tapeout workshop flow to load key and plaintext and read back the ciphertext. A known reference vector is provided with an all-zero key and plaintext producing ciphertext 0x41EA3A0A_94BAA940. No external hardware is required, and the title is still marked WIP despite the detailed algorithm description.",
+   "summary": "This design implements the TEA (Tiny Encryption Algorithm) block cipher in hardware, encrypting a 64-bit data block with a 128-bit key over 32 rounds using 32-bit modular addition, XOR and shifts. It exposes eight data input pins and eight data output pins, and is tested by following the Tiny Tapeout workshop flow to load key and plaintext and read back the ciphertext. A known reference vector is provided with an all-zero key and plaintext producing ciphertext 0x41EA3A0A_94BAA940. No external hardware is required, and the title is still marked WIP despite the detailed algorithm description.",
+   "summary_changed": false
+  },
+  {
+   "key": "dfa70fc144d8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "i2c",
+    "uart",
+    "communication"
+   ],
+   "tags": [
+    "i2c",
+    "uart",
+    "communication"
+   ],
+   "summary_before": "This design is a Two-Wire Interface (I2C) bus monitor that passively captures I2C frames and outputs the captured data over a UART at 115200 baud. It does not act as an I2C slave; instead, it shifts in the bus data and formats it into three bytes per frame: the address and read/write bit, the data byte, and the acknowledge bits. The monitor requires an external UART-to-USB adapter to view the output on a PC. It runs at 50 MHz and cannot currently capture repeated I2C frames, but it has been tested on an FPGA.",
+   "summary": "This design is a Two-Wire Interface (I2C) bus monitor that passively captures I2C frames and outputs the captured data over a UART at 115200 baud. It does not act as an I2C slave; instead, it shifts in the bus data and formats it into three bytes per frame: the address and read/write bit, the data byte, and the acknowledge bits. The monitor requires an external UART-to-USB adapter to view the output on a PC. It runs at 50 MHz and cannot currently capture repeated I2C frames, but it has been tested on an FPGA.",
+   "summary_changed": false
+  },
+  {
+   "key": "1eea9dd15d38",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag because the source does not describe an educational purpose.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "alu"
+   ],
+   "summary_before": "TinyCore8 is an 8-bit programmable CPU with eight registers, a 4-bit program counter, and a simple accumulator-style instruction set. Programs are loaded serially through dedicated pins, and execution starts when the run signal is asserted. The CPU can perform ALU operations, branches, and I/O with a 4-bit input and 8-bit output. A smoke-test program is provided to demonstrate basic functionality.",
+   "summary": "TinyCore8 is an 8-bit programmable CPU with eight registers, a 4-bit program counter, and a simple accumulator-style instruction set. Programs are loaded serially through dedicated pins, and execution starts when the run signal is asserted. The CPU can perform ALU operations, branches, and I/O with a 4-bit input and 8-bit output. A smoke-test program is provided to demonstrate basic functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "cd0ee53dc61e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The source describes an MLIR-generated arithmetic accumulator, not a digital signal processing application."
+    },
+    {
+     "tag": "alu",
+     "reason": "The source does not describe an arithmetic logic unit; it describes a specialized S3FDP accumulator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "accelerator",
+     "reason": "The design is a dedicated arithmetic compute core generated from MLIR."
+    }
+   ],
+   "notes": "Removed dsp and alu tags not supported by the source; added accelerator for the dedicated arithmetic core.",
+   "tags_before": [
+    "dsp",
+    "floating-point",
+    "alu",
+    "systemverilog"
+   ],
+   "tags": [
+    "floating-point",
+    "systemverilog",
+    "accelerator"
+   ],
+   "summary_before": "This project implements a streaming byte-fed sequential and combinational accumulator generated from MLIR for-loop patterns. It detects specific loop shapes and emits a specialized S3FDP accumulator instead of generic floating-point logic. The design has 8-bit input and output ports and requires no external hardware. It demonstrates a compiler flow using Emeraude and CIRCT to optimize arithmetic operations.",
+   "summary": "This project implements a streaming byte-fed sequential and combinational accumulator generated from MLIR for-loop patterns. It detects specific loop shapes and emits a specialized S3FDP accumulator instead of generic floating-point logic. The design has 8-bit input and output ports and requires no external hardware. It demonstrates a compiler flow using Emeraude and CIRCT to optimize arithmetic operations.",
+   "summary_changed": false
+  },
+  {
+   "key": "fccf97781b61",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source says it is based on an old university project, but does not state an educational purpose for this design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag because the source does not describe an educational purpose.",
+   "tags_before": [
+    "cpu",
+    "clock-divider",
+    "shift-register",
+    "register-file",
+    "alu",
+    "education",
+    "systemverilog"
+   ],
+   "tags": [
+    "cpu",
+    "clock-divider",
+    "shift-register",
+    "register-file",
+    "alu",
+    "systemverilog"
+   ],
+   "summary_before": "PicoMIPS CPU is a basic MIPS-like processor with a 24-bit program word, 4-bit code memory, and a 16x8-bit register file. It includes a clock prescaler and a shift register for instruction loading. The CPU can be halted and interrupted, and it outputs address and status signals. It requires an oscilloscope for testing the prescaler and is based on an old university project.",
+   "summary": "PicoMIPS CPU is a basic MIPS-like processor with a 24-bit program word, 4-bit code memory, and a 16x8-bit register file. It includes a clock prescaler and a shift register for instruction loading. The CPU can be halted and interrupted, and it outputs address and status signals. It requires an oscilloscope for testing the prescaler and is based on an old university project.",
+   "summary_changed": false
+  },
+  {
+   "key": "20f37c6c0a04",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The source states automated tests using cocotb are included."
+    }
+   ],
+   "notes": "Added cocotb tag because the source explicitly mentions cocotb tests.",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "spi",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "spi",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This project implements the SIMON64/128 block cipher with an SPI interface for communication. It provides busy and output valid signals, and can be controlled via SPI from a microcontroller or PC. Automated tests using cocotb and pytest are included, and the design can be used with MicroPython on a Tiny Tapeout demo board or an external FTDI breakout. The documentation covers parts of the cipher and testing but leaves out full details.",
+   "summary": "This project implements the SIMON64/128 block cipher with an SPI interface for communication. It provides busy and output valid signals, and can be controlled via SPI from a microcontroller or PC. Automated tests using cocotb and pytest are included, and the design can be used with MicroPython on a Tiny Tapeout demo board or an external FTDI breakout. The documentation covers parts of the cipher and testing but leaves out full details.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6789,
+  "completion_tokens": 1251,
+  "total_tokens": 8040,
+  "cost": 0.0035379,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035379,
+   "upstream_inference_prompt_cost": 0.0020367,
+   "upstream_inference_completions_cost": 0.0015012
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035379,
+ "elapsed_s": 11.4
+}

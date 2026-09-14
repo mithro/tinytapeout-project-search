@@ -1,0 +1,324 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1848a7e73335",
+  "5ab60443e231",
+  "28d34948eefc",
+  "b0c2f360a18d",
+  "fb52c6f0ba31",
+  "a4d820599079"
+ ],
+ "results": [
+  {
+   "key": "1848a7e73335",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is purely analog with a single analog pin; no digital circuitry is documented."
+    },
+    {
+     "tag": "education",
+     "reason": "The stated purpose is to learn the analog flow for future tapeouts, but the source does not describe it as a teaching/learning design for others; the tag is weakly supported at best."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Already present; NMOS current mirror is an analog circuit."
+    },
+    {
+     "tag": "current-mirror",
+     "reason": "Already present; the source explicitly states it is an NMOS current mirror."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "Already present; built from discrete NMOS devices in a full-custom flow."
+    }
+   ],
+   "notes": "Removed mixed-signal (no digital content) and education (learning intent is personal, not a teaching design).",
+   "tags_before": [
+    "analog",
+    "current-mirror",
+    "transistor-level",
+    "education",
+    "mixed-signal"
+   ],
+   "tags": [
+    "analog",
+    "current-mirror",
+    "transistor-level"
+   ],
+   "summary_before": "This is a simple NMOS current mirror implemented as an analog block occupying a 1x2 tile area with a single analog pin. The stated purpose is to exercise the full custom analog flow, including xschem schematic entry, ngspice simulation, SKY130 PDK usage, Magic layout, DRC/LVS, and GitHub submission, as preparation for future tapeouts. Testing consists of applying a voltage to the output pin and sweeping it while measuring current to plot an IV curve. The documentation is brief and reports no measured silicon results.",
+   "summary": "This is a simple NMOS current mirror implemented as an analog block occupying a 1x2 tile area with a single analog pin. The stated purpose is to exercise the full custom analog flow, including xschem schematic entry, ngspice simulation, SKY130 PDK usage, Magic layout, DRC/LVS, and GitHub submission, as preparation for future tapeouts. Testing consists of applying a voltage to the output pin and sweeping it while measuring current to plot an IV curve. The documentation is brief and reports no measured silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "5ab60443e231",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A multiplier is not an ALU; the source describes only a 4x4 multiplier."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning; it is a standalone arithmetic block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Already present; the design is a 4x4 Vedic multiplier."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; written in Verilog."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Already present; tested with a cocotb testbench."
+    }
+   ],
+   "notes": "Removed alu (multiplier is not an ALU) and education (no teaching intent stated).",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "verilog",
+    "cocotb",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This design implements a 4x4 Vedic multiplier based on the Urdhva Tiryagbhyam sutra, hierarchically composing four 2x2 Vedic multipliers to produce an 8-bit product from two 4-bit inputs. The eight input pins carry the two operands and the eight output pins carry the product. Testing is done with a cocotb testbench run through make in the test directory, which sets inputs and checks outputs with assertions. The documentation is short and gives no silicon test results or hardware requirements beyond simulation.",
+   "summary": "This design implements a 4x4 Vedic multiplier based on the Urdhva Tiryagbhyam sutra, hierarchically composing four 2x2 Vedic multipliers to produce an 8-bit product from two 4-bit inputs. The eight input pins carry the two operands and the eight output pins carry the product. Testing is done with a cocotb testbench run through make in the test directory, which sets inputs and checks outputs with assertions. The documentation is short and gives no silicon test results or hardware requirements beyond simulation.",
+   "summary_changed": false
+  },
+  {
+   "key": "28d34948eefc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the voting machine is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "Already present; the mode-based control is a finite state machine."
+    },
+    {
+     "tag": "counter",
+     "reason": "Already present; vote counters are central to the design."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; written in Verilog."
+    }
+   ],
+   "notes": "Removed education (no teaching intent stated).",
+   "tags_before": [
+    "fsm",
+    "counter",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "fsm",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This design implements a 4-bit digital voting machine that records votes for up to four candidates, counts them, and displays the winner in one-hot form along with debug vote totals. Voters select a candidate with a one-hot button and confirm, and a two-bit mode input selects voting, counting, reset, or test behavior. The outputs provide the one-hot winner, a voting-complete flag, and a three-bit debug value equal to the total vote count modulo eight. The documentation is clear about the mode table and testing procedure but reports no silicon test results.",
+   "summary": "This design implements a 4-bit digital voting machine that records votes for up to four candidates, counts them, and displays the winner in one-hot form along with debug vote totals. Voters select a candidate with a one-hot button and confirm, and a two-bit mode input selects voting, counting, reset, or test behavior. The outputs provide the one-hot winner, a voting-complete flag, and a three-bit debug value equal to the total vote count modulo eight. The documentation is clear about the mode table and testing procedure but reports no silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "b0c2f360a18d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the peg solitaire design is intended for teaching or learning."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The source does not describe a finite state machine; it is a board-state simulator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Already present; it is a game simulation."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "Already present; peg solitaire is a puzzle game."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; written in Verilog."
+    }
+   ],
+   "notes": "Removed education (no teaching intent) and fsm (no state machine described).",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "fsm",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "verilog"
+   ],
+   "summary_before": "This design simulates a peg solitaire board using English rules, accepting the x and y coordinates of a peg to move plus a two-bit direction, and outputting the remaining piece count and a game-over flag. Invalid moves, such as coordinates outside the grid or positions without a peg, leave the board state unchanged. The game is clocked at 1000 Hz and the goal is to reduce the board to a single remaining piece. The documentation describes the starting board layout and testing approach but reports no silicon test results.",
+   "summary": "This design simulates a peg solitaire board using English rules, accepting the x and y coordinates of a peg to move plus a two-bit direction, and outputting the remaining piece count and a game-over flag. Invalid moves, such as coordinates outside the grid or positions without a peg, leave the board state unchanged. The game is clocked at 1000 Hz and the goal is to reduce the board to a single remaining piece. The documentation describes the starting board layout and testing approach but reports no silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "fb52c6f0ba31",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state the CPU trainer is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Already present; it is an 8-bit CPU trainer."
+    },
+    {
+     "tag": "alu",
+     "reason": "Already present; the accumulator performs add, subtract, logic, and shift operations."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Already present; four 8-bit working registers are described."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "Already present; opcodes are loaded and executed."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; output is shown on a 7-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; language is Wokwi."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design was tested working from 10 kHz to 50 MHz."
+    }
+   ],
+   "notes": "Removed education (no teaching intent stated); added silicon-tested to match the working silicon report.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "7-segment",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an 8-bit CPU trainer with an accumulator, four working registers, and an ALU supporting add, subtract, logic, and shift operations. It is controlled by feeding opcodes and immediate data through the ui pins and toggling load and execute inputs, with results shown on a 7-segment display or as binary. The design requires a 10 kHz clock and a 7-segment display for output. Silicon testing confirmed operation from 10 kHz to 50 MHz, though a known bug in the subtract-with-borrow instruction adds the carry flag instead of subtracting it.",
+   "summary": "This is an 8-bit CPU trainer with an accumulator, four working registers, and an ALU supporting add, subtract, logic, and shift operations. It is controlled by feeding opcodes and immediate data through the ui pins and toggling load and execute inputs, with results shown on a 7-segment display or as binary. The design requires a 10 kHz clock and a 7-segment display for output. Silicon testing confirmed operation from 10 kHz to 50 MHz, though a known bug in the subtract-with-borrow instruction adds the carry flag instead of subtracting it.",
+   "summary_changed": false
+  },
+  {
+   "key": "a4d820599079",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The source describes a simple display demo, not an interactive game with player input or scoring."
+    }
+   ],
+   "add": [
+    {
+     "tag": "snake-game",
+     "reason": "Already present; the design is a snake-style moving segment display."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; output is on a 7-segment display."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Already present; an LFSR randomizes direction."
+    },
+    {
+     "tag": "counter",
+     "reason": "Already present; a counter controls speed."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; language is Wokwi."
+    }
+   ],
+   "notes": "Removed game (source describes a display demo, not an interactive game); snake-game retained.",
+   "tags_before": [
+    "game",
+    "snake-game",
+    "7-segment",
+    "lfsr",
+    "counter",
+    "wokwi"
+   ],
+   "tags": [
+    "snake-game",
+    "7-segment",
+    "lfsr",
+    "counter",
+    "wokwi"
+   ],
+   "summary_before": "TinySnake is a simple game where a three-segment snake moves around a 7-segment display, with direction randomized by an LFSR. The speed is set via the ui input pins, and the snake's position is stored in three 3-bit registers. It requires only the on-board 7-segment display and a 10 kHz clock. A limitation is that changing from a slower to a faster speed may cause a delay because the speed comparison uses an equality check rather than greater-than-or-equal.",
+   "summary": "TinySnake is a simple game where a three-segment snake moves around a 7-segment display, with direction randomized by an LFSR. The speed is set via the ui input pins, and the snake's position is stored in three 3-bit registers. It requires only the on-board 7-segment display and a 10 kHz clock. A limitation is that changing from a slower to a faster speed may cause a delay because the speed comparison uses an equality check rather than greater-than-or-equal.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7906,
+  "completion_tokens": 1704,
+  "total_tokens": 9610,
+  "cost": 0.002144446,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002144446,
+   "upstream_inference_prompt_cost": 0.001019806,
+   "upstream_inference_completions_cost": 0.00112464
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002144446,
+ "elapsed_s": 22.2
+}

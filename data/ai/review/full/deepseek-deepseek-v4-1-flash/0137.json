@@ -1,0 +1,222 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "50de24a8b3a6",
+  "3ce035bb26b1",
+  "ab1218eea027",
+  "e3346a154fef",
+  "6c68fe81f3e5",
+  "a4aab9682993"
+ ],
+ "results": [
+  {
+   "key": "50de24a8b3a6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design has programmable weights but no memory block is described; weights are loaded via a serial interface, not a memory storage block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neuromorphic",
+     "reason": "The design implements a recurrent spiking neural network with LIF neurons, which is a brain-inspired neuromorphic computing design."
+    }
+   ],
+   "notes": "Removed unsupported memory tag and added neuromorphic tag for the spiking neural network.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "verilog",
+    "neuromorphic"
+   ],
+   "summary_before": "This design implements a programmable recurrent spiking neural network with nine leaky integrate-and-fire neurons arranged in three layers of three, with three spike inputs and three spike outputs. Weights, thresholds, leak rate, feedback scale, and refractory period are loaded through a custom serial interface, and the network processes input spikes synchronously with one-clock-cycle output pulses. The documentation states that the design was generated with ChatGPT and describes the programming procedure, but no test results or external hardware requirements are given. It is a research-style experiment rather than a validated product.",
+   "summary": "This design implements a programmable recurrent spiking neural network with nine leaky integrate-and-fire neurons arranged in three layers of three, with three spike inputs and three spike outputs. Weights, thresholds, leak rate, feedback scale, and refractory period are loaded through a custom serial interface, and the network processes input spikes synchronously with one-clock-cycle output pulses. The documentation states that the design was generated with ChatGPT and describes the programming procedure, but no test results or external hardware requirements are given. It is a research-style experiment rather than a validated product.",
+   "summary_changed": false
+  },
+  {
+   "key": "3ce035bb26b1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'no reports', so the design has not been validated on fabricated silicon."
+    }
+   ],
+   "add": [],
+   "notes": "Removed silicon-tested tag because no silicon test reports are available.",
+   "tags_before": [
+    "temperature-sensor",
+    "standard-cell",
+    "instrumentation",
+    "dac",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "temperature-sensor",
+    "standard-cell",
+    "instrumentation",
+    "dac",
+    "verilog"
+   ],
+   "summary_before": "This project implements an on-chip temperature sensor synthesized from standard cells. It measures the chip temperature and outputs the result, with a debug mode that allows direct control of the sensor's DAC and enable signals. The design is intended to be used by simply powering it on and observing the digital outputs, though a logic analyzer is recommended for inspection. The documentation is minimal, stating that a better explanation will be provided in the future, but the pin descriptions and debug instructions provide enough detail to understand its operation.",
+   "summary": "This project implements an on-chip temperature sensor synthesized from standard cells. It measures the chip temperature and outputs the result, with a debug mode that allows direct control of the sensor's DAC and enable signals. The design is intended to be used by simply powering it on and observing the digital outputs, though a logic analyzer is recommended for inspection. The documentation is minimal, stating that a better explanation will be provided in the future, but the pin descriptions and debug instructions provide enough detail to understand its operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "ab1218eea027",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design tests randomness of an input bit source; it does not implement a pseudo random number generator."
+    },
+    {
+     "tag": "trng",
+     "reason": "The design tests randomness of an input bit source; it does not implement a true random number generator."
+    }
+   ],
+   "add": [],
+   "notes": "Removed prng and trng tags because the design is a randomness test, not a random number generator.",
+   "tags_before": [
+    "prng",
+    "trng",
+    "verilog"
+   ],
+   "tags": [
+    "prng",
+    "trng",
+    "verilog"
+   ],
+   "summary_before": "This design implements the NIST 800.22 Monobit test for random number generators using high-level synthesis. It samples one bit per clock cycle and evaluates randomness over 65536 cycles, asserting a valid signal when the result is ready. The design requires only a clock and input bit, with no external hardware currently needed. The documentation is minimal and does not include test results or usage examples.",
+   "summary": "This design implements the NIST 800.22 Monobit test for random number generators using high-level synthesis. It samples one bit per clock cycle and evaluates randomness over 65536 cycles, asserting a valid signal when the result is ready. The design requires only a clock and input bit, with no external hardware currently needed. The documentation is minimal and does not include test results or usage examples.",
+   "summary_changed": false
+  },
+  {
+   "key": "e3346a154fef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design tests randomness of an input bit source; it does not implement a pseudo random number generator."
+    },
+    {
+     "tag": "trng",
+     "reason": "The design tests randomness of an input bit source; it does not implement a true random number generator."
+    }
+   ],
+   "add": [],
+   "notes": "Removed prng and trng tags because the design is a randomness test, not a random number generator.",
+   "tags_before": [
+    "prng",
+    "trng",
+    "verilog"
+   ],
+   "tags": [
+    "prng",
+    "trng",
+    "verilog"
+   ],
+   "summary_before": "This project is another implementation of the NIST 800.22 Monobit test for random number generators, using high-level synthesis. It operates similarly to the other Monobit test design, sampling one bit per clock and producing a result every 65536 cycles. The documentation is identical to the other entry and lacks details on testing or external hardware. No silicon test results are provided.",
+   "summary": "This project is another implementation of the NIST 800.22 Monobit test for random number generators, using high-level synthesis. It operates similarly to the other Monobit test design, sampling one bit per clock and producing a result every 65536 cycles. The documentation is identical to the other entry and lacks details on testing or external hardware. No silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "6c68fe81f3e5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is an analog buffer made from inverters, not a basic logic gate implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed logic-gate tag because the design is an analog buffer, not a logic gate.",
+   "tags_before": [
+    "analog",
+    "logic-gate",
+    "transistor-level",
+    "education"
+   ],
+   "tags": [
+    "analog",
+    "transistor-level",
+    "education"
+   ],
+   "summary_before": "This is an analog buffer made from two inverters, one large and one small, connected together, originating from Matt's analog course. The analog input is on ua[1] and the output is on ua[0], and it is tested simply by applying an input signal and observing the buffered output. No external hardware is required. The documentation is minimal and does not provide measured performance or silicon test results.",
+   "summary": "This is an analog buffer made from two inverters, one large and one small, connected together, originating from Matt's analog course. The analog input is on ua[1] and the output is on ua[0], and it is tested simply by applying an input signal and observing the buffered output. No external hardware is required. The documentation is minimal and does not provide measured performance or silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "a4aab9682993",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "No instruction decoding logic is described; the design is a microcode-based multiplier."
+    },
+    {
+     "tag": "alu",
+     "reason": "The design is a multiplier, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported instruction-decoder and alu tags; the design is a multiplier.",
+   "tags_before": [
+    "multiplier",
+    "instruction-decoder",
+    "alu",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This design is a microcode-based shift-and-add multiplier that takes two 4-bit inputs and produces an 8-bit product. The documentation is minimal, describing only that the inputs are supplied and the product returned, with a reset required before operation. Switches and LEDs are suggested as external hardware for driving inputs and observing outputs. The very low 1 kHz clock and sparse description suggest an educational demonstration rather than a high-performance arithmetic unit.",
+   "summary": "This design is a microcode-based shift-and-add multiplier that takes two 4-bit inputs and produces an 8-bit product. The documentation is minimal, describing only that the inputs are supplied and the product returned, with a reset required before operation. Switches and LEDs are suggested as external hardware for driving inputs and observing outputs. The very low 1 kHz clock and sparse description suggest an educational demonstration rather than a high-performance arithmetic unit.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "ab1218eea027: only 1 tags after review; keeping pass-two tags",
+  "e3346a154fef: only 1 tags after review; keeping pass-two tags"
+ ],
+ "usage": {
+  "prompt_tokens": 6035,
+  "completion_tokens": 1322,
+  "total_tokens": 7357,
+  "cost": 0.0013794,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0013794,
+   "upstream_inference_prompt_cost": 0.0005862,
+   "upstream_inference_completions_cost": 0.0007932
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0013794,
+ "elapsed_s": 31.4
+}

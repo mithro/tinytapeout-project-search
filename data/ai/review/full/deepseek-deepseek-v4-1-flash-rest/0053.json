@@ -1,0 +1,428 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "689b601e5ff6",
+  "c4b89576435f",
+  "c32a671cd787",
+  "a4293dc946d0",
+  "e4244ce4c9fb",
+  "d74d158ac7fc"
+ ],
+ "results": [
+  {
+   "key": "689b601e5ff6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "Design is purely digital SystemVerilog; no analog circuitry described."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor input; interface is SPI to a host."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator in the design."
+    },
+    {
+     "tag": "rf",
+     "reason": "No radio frequency content."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Not a measurement/instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "SPI slave with SCK/MOSI/CS/MISO pins is the main interface."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "Explicitly a 4x4 systolic array."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Processing elements perform multiply-accumulate."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Described as a matrix multiply accelerator."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Each PE multiplies 8-bit operands."
+    },
+    {
+     "tag": "fsm",
+     "reason": "control_fsm is a 5-state sequencer."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "Uses 2x2 tiles."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Unsigned 8-bit integer inputs with 20-bit accumulators, integer arithmetic."
+    }
+   ],
+   "notes": "Proposed tags were entirely unsupported; replaced with SPI, systolic-array, MAC and related tags.",
+   "tags_before": [
+    "analog",
+    "sensor-interface",
+    "oscillator",
+    "rf",
+    "instrumentation"
+   ],
+   "tags": [
+    "spi",
+    "systolic-array",
+    "mac-unit",
+    "accelerator",
+    "multiplier",
+    "fsm",
+    "systemverilog",
+    "multi-tile",
+    "fixed-point"
+   ],
+   "summary_before": "This design is an analog sensor interface that includes an oscillator and RF components. It is intended for instrumentation applications. The design uses analog circuitry to interface with sensors. It is tested using standard Tiny Tapeout analog test methods.",
+   "summary": "This project implements a 4x4 systolic array matrix multiply-accumulate accelerator in SystemVerilog. It computes C = A x B for two 4x4 matrices of unsigned 8-bit integers, producing 16 results with 20-bit accumulator precision. A control FSM sequences loading matrices over an SPI slave interface and transmitting the truncated 16-bit results back over SPI MISO. The design spans a 2x2 tile area and requires an external SPI master to communicate with the chip.",
+   "summary_changed": true
+  },
+  {
+   "key": "c4b89576435f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "No accelerator; it is a general-purpose 8-bit CPU."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "No multiply-accumulate unit in the ISA."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "ISA has no multiply instruction."
+    },
+    {
+     "tag": "adder",
+     "reason": "Adder is incidental to the CPU, not the design's focus."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Only two registers reg_a/reg_b; not a register file block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Documented as an 8-bit CPU with its own ISA."
+    },
+    {
+     "tag": "bootloader",
+     "reason": "Title and description state integrated bootloader."
+    },
+    {
+     "tag": "uart",
+     "reason": "UART over demo board USB pins uart_rx/uart_tx."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Instruction sequencing is FSM-based control."
+    }
+   ],
+   "notes": "Tags described a matrix accelerator that does not exist; corrected to CPU/UART/bootloader tags.",
+   "tags_before": [
+    "accelerator",
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "register-file",
+    "fsm"
+   ],
+   "tags": [
+    "fsm",
+    "cpu",
+    "bootloader",
+    "uart",
+    "systemverilog"
+   ],
+   "summary_before": "The design includes a controller, register file, and a combinational MAC array that computes the full matmul in a single cycle. This will be useful if it turns out that the silicon is too slow to work at the intended 50.4 MHz clock frequency. The design is a matrix multiply accelerator. It is tested using a standard testbench.",
+   "summary": "This project is an 8-bit CPU implemented in SystemVerilog with an integrated bootloader and IO. Its ISA supports add, add 1, and, not, jmp, store, load, and nop instructions operating on two registers and a data memory. Programming and communication use a UART interface on the uart_rx and uart_tx pins, matching the UART over demo board USB pinout. An external USB-to-UART converter is required to program the CPU.",
+   "summary_changed": true
+  },
+  {
+   "key": "c32a671cd787",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Implements a NAND gate."
+    },
+    {
+     "tag": "led",
+     "reason": "Output pin drives an LED."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Test and external hardware sections are 'tbd' and documentation is very thin."
+    }
+   ],
+   "notes": "Added logic-gate, led and incomplete tags; removed unsupported education claim.",
+   "tags_before": [
+    "education",
+    "wokwi",
+    "combinational"
+   ],
+   "tags": [
+    "education",
+    "wokwi",
+    "combinational",
+    "logic-gate",
+    "led",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a simple NAND gate that controls an LED output based on two inputs. The design is a basic logic gate demonstration intended for educational purposes. External hardware includes an LED and switches. The project is a first tapeout attempt and serves as a learning exercise.",
+   "summary": "This project implements a simple NAND gate whose output steers an LED based on two input pins. It is a first tapeout attempt created with the Wokwi simulator. The documentation is very thin, with testing and external hardware sections left as 'tbd'. It serves as a basic logic gate demonstration.",
+   "summary_changed": true
+  },
+  {
+   "key": "a4293dc946d0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is detailed, with full pin descriptions and test steps."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Design is complete with SPI controller and VGA timing core."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "SPI memory controller with CS/SCK/MOSI/MISO pins."
+    },
+    {
+     "tag": "vga",
+     "reason": "VGA timing core with hsync/vsync and RGB outputs."
+    },
+    {
+     "tag": "memory",
+     "reason": "Reads an external SPI RAM (23LC512 protocol)."
+    },
+    {
+     "tag": "fsm",
+     "reason": "spi_mem_ctrl is a small FSM."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Cocotb test in test/ exercises the SPI path."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "video",
+     "reason": "Generates 640x480 video timing."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "Produces VGA sync timing signals."
+    }
+   ],
+   "notes": "Proposed tags claimed sparse documentation and incompleteness, contradicting the detailed source; replaced with SPI/VGA/memory tags.",
+   "tags_before": [
+    "insufficient-doc",
+    "cocotb",
+    "incomplete"
+   ],
+   "tags": [
+    "cocotb",
+    "spi",
+    "vga",
+    "memory",
+    "fsm",
+    "verilog",
+    "video",
+    "clock-generator"
+   ],
+   "summary_before": "The design is a project with extremely sparse documentation, consisting only of a title, one-line description, and pin names. No details on functionality, testing, or external hardware are provided. Testing can be done via simulation with a provided cocotb test. The design is likely a simple digital block but its purpose is unclear.",
+   "summary": "This design combines an SPI memory controller and a VGA timing core in Verilog. The SPI controller reads bytes from an external SPI RAM using command 0x03 with a 16-bit address, exposing busy and valid status. The VGA core generates 640x480 at 60 Hz timing with hsync, vsync, and 2-bit RGB output. A mode pin selects between raw SPI byte output and VGA timing output, and a cocotb test exercises the SPI path in simulation.",
+   "summary_changed": true
+  },
+  {
+   "key": "e4244ce4c9fb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "No neural network; it is a keypad calculator."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning content."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Not an accelerator; it is a calculator."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "No pipelined datapath described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "calculator",
+     "reason": "Implements a keypad calculator with numeric output."
+    },
+    {
+     "tag": "keypad",
+     "reason": "Scans a 4x4 matrix keypad."
+    },
+    {
+     "tag": "alu",
+     "reason": "ALU computes add, subtract, multiply, divide."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Keypad scanner and control logic are FSM-based."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is System Verilog."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "8-bit result output pins, typically shown on a display."
+    }
+   ],
+   "notes": "Tags described a neural network accelerator unrelated to the keypad calculator source.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "fsm",
+    "pipeline"
+   ],
+   "tags": [
+    "fsm",
+    "calculator",
+    "keypad",
+    "alu",
+    "systemverilog",
+    "7-segment"
+   ],
+   "summary_before": "This project is a neural network accelerator that performs inference using a purely digital finite-state machine. It is designed to be integrated into any SPI or I²C memory controller, with all operations pipelined for efficiency. The design is intended for machine learning inference tasks and is notable for its compact implementation. It is not a general-purpose processor but a dedicated accelerator.",
+   "summary": "This project implements a calculator for a 4x4 matrix keypad in System Verilog. The keypad scanner drives the column lines and reads the row lines to detect key presses, buffering digits and storing operators. An ALU computes addition, subtraction, multiplication, or division, and the 8-bit result is presented on the dedicated output pins. An external 4x4 matrix keypad is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "d74d158ac7fc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "subtractor",
+     "reason": "No subtraction; it is a UART transmitter."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU in the design."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Verilog, not Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent stated."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Not a logic gate implementation."
+    },
+    {
+     "tag": "combinational",
+     "reason": "UART transmitter is sequential."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "UART TX module with TX and tx_busy pins."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "serial",
+     "reason": "Transmits serial data at 115200 baud."
+    },
+    {
+     "tag": "fsm",
+     "reason": "UART transmitter uses sequential state control."
+    }
+   ],
+   "notes": "Proposed tags described an unrelated subtractor/ALU design; replaced with UART transmitter tags.",
+   "tags_before": [
+    "subtractor",
+    "alu",
+    "wokwi",
+    "education",
+    "logic-gate",
+    "combinational"
+   ],
+   "tags": [
+    "uart",
+    "verilog",
+    "fsm"
+   ],
+   "summary_before": "This project is a subtractor and ALU design created using the Wokwi simulator. It is intended for educational purposes, demonstrating basic arithmetic and logic operations. The design includes logic gates and combinational logic. It is a simple digital circuit suitable for learning digital design.",
+   "summary": "This project is a simple UART transmitter module written in Verilog. It transmits 8-bit parallel data presented on ui[7:0] at 115200 baud when the tx_send pin is asserted. The TX output pin carries the serial data, and tx_busy indicates transmission activity. No external hardware beyond a UART receiver is required.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6993,
+  "completion_tokens": 2167,
+  "total_tokens": 9160,
+  "cost": 0.002249166,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002249166,
+   "upstream_inference_prompt_cost": 0.000818946,
+   "upstream_inference_completions_cost": 0.00143022
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002249166,
+ "elapsed_s": 25.4
+}

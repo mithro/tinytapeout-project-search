@@ -1,0 +1,276 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "753e5e36ec91",
+  "948ed1298cb6",
+  "a3ae65c40282",
+  "a52958e38040",
+  "ef88672c01fb",
+  "b2e86d4531ff"
+ ],
+ "results": [
+  {
+   "key": "753e5e36ec91",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sigma-delta",
+     "reason": "sigma-delta is not in the canonical vocabulary; the closest canonical tag is modulator"
+    }
+   ],
+   "add": [
+    {
+     "tag": "modulator",
+     "reason": "the design implements a first-order sigma-delta modulator output"
+    },
+    {
+     "tag": "speaker",
+     "reason": "the output is an analog audio signal intended to drive a speaker"
+    },
+    {
+     "tag": "covox",
+     "reason": "not in vocabulary"
+    }
+   ],
+   "notes": "sigma-delta is not a canonical tag; replaced with modulator and added speaker for the audio output.",
+   "tags_before": [
+    "audio",
+    "pwm",
+    "sigma-delta",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "audio",
+    "pwm",
+    "verilog",
+    "silicon-tested",
+    "modulator",
+    "speaker"
+   ],
+   "summary_before": "This design takes 8-bit audio over a parallel port interface and generates an analog audio signal using PWM and a first-order sigma-delta modulator, similar to a Covox Speech Thing. It requires a 0.1uF capacitor to ground on the audio output pins for proper operation. The design has been tested in silicon and works as expected, providing a fixed-function sound card without the need for microcontroller firmware. It is notable for its simplicity and successful implementation in hardware.",
+   "summary": "This design takes 8-bit audio over a parallel port interface and generates an analog audio signal using PWM and a first-order sigma-delta modulator, similar to a Covox Speech Thing. It requires a 0.1uF capacitor to ground on the audio output pins for proper operation. The design has been tested in silicon and works as expected, providing a fixed-function sound card without the need for microcontroller firmware. It is notable for its simplicity and successful implementation in hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "948ed1298cb6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "buzzer",
+     "reason": "the external hardware is a piezo speaker, and the canonical speaker tag better matches the audio output"
+    }
+   ],
+   "add": [
+    {
+     "tag": "speaker",
+     "reason": "the design drives a piezo speaker with a differential PWM audio signal"
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "it plays a stored ringtone tune as a sound output"
+    }
+   ],
+   "notes": "buzzer replaced with speaker since the source specifies a piezo speaker; added sound-generator for the ringtone playback.",
+   "tags_before": [
+    "music",
+    "pwm",
+    "audio",
+    "buzzer"
+   ],
+   "tags": [
+    "music",
+    "pwm",
+    "audio",
+    "speaker",
+    "sound-generator"
+   ],
+   "summary_before": "This design plays the Super Mario Bros. theme tune on a piezo speaker using differential PWM modulation. It converts an RTTL ringtone into Verilog and outputs a differential sound wave on uo[0] and uo[1]. The design requires an external piezo speaker connected across those pins, and is tested by providing a 100 kHz clock and pulsing the reset pin. The project demonstrates a simple method for generating music from a hardware description language.",
+   "summary": "This design plays the Super Mario Bros. theme tune on a piezo speaker using differential PWM modulation. It converts an RTTL ringtone into Verilog and outputs a differential sound wave on uo[0] and uo[1]. The design requires an external piezo speaker connected across those pins, and is tested by providing a 100 kHz clock and pulsing the reset pin. The project demonstrates a simple method for generating music from a hardware description language.",
+   "summary_changed": false
+  },
+  {
+   "key": "a3ae65c40282",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "the design is a PWM duty-cycle controller, not a general waveform/signal generator"
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "already present"
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "already present"
+    },
+    {
+     "tag": "led",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed signal-generator because the source describes a fixed PWM duty-cycle controller rather than a general signal generator.",
+   "tags_before": [
+    "pwm",
+    "led",
+    "dip-switch",
+    "signal-generator"
+   ],
+   "tags": [
+    "pwm",
+    "led",
+    "dip-switch"
+   ],
+   "summary_before": "This project is a PWM generator that produces a 1 kHz signal with duty cycle adjustable from 10% to 80% using three switches, providing eight discrete steps. It is designed to control LED brightness or similar loads, and requires an external LED with a resistor and switches for input. The design is a straightforward implementation of PWM for educational or simple control applications.",
+   "summary": "This project is a PWM generator that produces a 1 kHz signal with duty cycle adjustable from 10% to 80% using three switches, providing eight discrete steps. It is designed to control LED brightness or similar loads, and requires an external LED with a resistor and switches for input. The design is a straightforward implementation of PWM for educational or simple control applications.",
+   "summary_changed": false
+  },
+  {
+   "key": "a52958e38040",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "the source does not state an educational or teaching intent"
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "already present"
+    },
+    {
+     "tag": "structural",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed education tag because the source does not state a teaching or learning purpose.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "adder",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers using full adders to sum partial products. It is tested via a provided Python testbench where inputs and expected outputs are set. The design requires no external hardware and is a straightforward educational project demonstrating binary multiplication.",
+   "summary": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers using full adders to sum partial products. It is tested via a provided Python testbench where inputs and expected outputs are set. The design requires no external hardware and is a straightforward educational project demonstrating binary multiplication.",
+   "summary_changed": false
+  },
+  {
+   "key": "ef88672c01fb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "the source does not state an educational or teaching intent"
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "already present"
+    },
+    {
+     "tag": "structural",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed education tag because the source does not state a teaching or learning purpose.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "adder",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers using full adders to sum partial products. It is tested via simulation with a testbench covering five test cases including minimum and maximum values to verify carry propagation. The design requires no external hardware and is a straightforward educational project demonstrating binary multiplication.",
+   "summary": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers using full adders to sum partial products. It is tested via simulation with a testbench covering five test cases including minimum and maximum values to verify carry propagation. The design requires no external hardware and is a straightforward educational project demonstrating binary multiplication.",
+   "summary_changed": false
+  },
+  {
+   "key": "b2e86d4531ff",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "the source does not state an educational or teaching intent"
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "already present"
+    },
+    {
+     "tag": "structural",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed education tag because the source does not state a teaching or learning purpose.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "adder",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers using full adders to sum partial products. It is tested by applying input pairs covering typical, edge, and corner cases, and verifying the 8-bit product. The design requires no external hardware and is a straightforward educational project demonstrating binary multiplication.",
+   "summary": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers using full adders to sum partial products. It is tested by applying input pairs covering typical, edge, and corner cases, and verifying the 8-bit product. The design requires no external hardware and is a straightforward educational project demonstrating binary multiplication.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "948ed1298cb6: 5 sentences after review",
+  "a3ae65c40282: 3 sentences after review",
+  "a52958e38040: 3 sentences after review",
+  "ef88672c01fb: 3 sentences after review",
+  "b2e86d4531ff: 3 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6809,
+  "completion_tokens": 1091,
+  "total_tokens": 7900,
+  "cost": 0.002055963,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002055963,
+   "upstream_inference_prompt_cost": 0.000943143,
+   "upstream_inference_completions_cost": 0.00111282
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002055963,
+ "elapsed_s": 30.3
+}

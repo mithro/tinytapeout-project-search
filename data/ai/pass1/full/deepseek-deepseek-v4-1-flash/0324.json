@@ -1,0 +1,200 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4f491bd3b9ae",
+  "8fea07fabee8",
+  "c4a41dfa1e36",
+  "bd59ccd926e0",
+  "3b0f24327533",
+  "d9ca4490c916",
+  "06e21e4b5ece",
+  "e9b0556efcbb",
+  "1ce78060d71f",
+  "ba7bfab4ffd4"
+ ],
+ "results": [
+  {
+   "key": "4f491bd3b9ae",
+   "tags": [
+    "comparator",
+    "arithmetic",
+    "combinational",
+    "education",
+    "bcd",
+    "decoder"
+   ],
+   "summary": "This design is an 8-bit magnitude comparator that takes two 8-bit values on ui_in and uio_in and drives one of three output lines to indicate equal, greater-than, or less-than. It is purely combinational, so the outputs change immediately with the inputs and no clock is needed. Testing requires only switches or DIP switches for the two operands and LEDs on uo_out to read the result, or simulation with Icarus Verilog and GTKWave. The documentation presents it as a simple beginner-level digital design exercise, and no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8fea07fabee8",
+   "tags": [
+    "pwm",
+    "timer",
+    "counter",
+    "clock",
+    "polarity",
+    "safety-clamp",
+    "gpio",
+    "education"
+   ],
+   "summary": "This is a run-time configurable PWM generator with 4-bit period and duty-cycle inputs, an invert control, and an enable pin, producing both a primary and complementary PWM output. The design clamps the period to a minimum of three clock cycles and limits the duty value to the period to avoid overflow, and it forces both outputs low when disabled. It is tested by driving the DIP switches on a Tiny Tapeout demo board and observing LED brightness or by probing the outputs with an oscilloscope or logic analyzer. The documentation is detailed and complete, though no silicon measurements are included.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c4a41dfa1e36",
+   "tags": [
+    "video",
+    "display",
+    "animation",
+    "graphics",
+    "shader",
+    "procedural",
+    "xor",
+    "counter"
+   ],
+   "summary": "This design is a scan-based procedural graphics generator that computes an 8-bit grayscale pixel stream on the fly from x/y raster coordinates, with selectable modes for gradients, distance lighting, and XOR noise. It includes controls to freeze the animation and invert colors, and it uses no framebuffer or external memory. Verification is done with a cocotb Python testbench that reconstructs full frames from the pixel stream and checks each mode. The documentation is clear about the architecture but reports no silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "bd59ccd926e0",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "7-segment",
+    "display",
+    "education",
+    "counter",
+    "fibonacci",
+    "single-cycle"
+   ],
+   "summary": "This project is an educational single-cycle RISC-V processor that runs a Fibonacci sequence program and displays the result on a seven-segment display. It is intended as teaching material for CWRU computer engineering students learning computer architecture and Verilog design. The design needs no external hardware beyond the Tiny Tapeout board, since the seven-segment outputs are driven directly. The documentation is thin: it describes the pedagogical goal and the Fibonacci demo but gives few implementation details and no silicon test results.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3b0f24327533",
+   "tags": [
+    "music",
+    "audio",
+    "synthesizer",
+    "lfsr",
+    "dds",
+    "pwm",
+    "dac",
+    "sound",
+    "generative"
+   ],
+   "summary": "This chip autonomously generates ambient music using three maximal-length LFSRs for note selection, a scale quantizer, and two DDS oscillators for bass and melody voices with square, triangle, and sawtooth waveforms. The mixed audio is available as a 4-bit parallel DAC output and a single-pin PWM output, with debug signals on the upper output pins. It is tested by applying the 25 MHz clock, releasing reset, and connecting an R-2R ladder or RC low-pass filter to hear the result, with scale, tempo, and waveform selected via input pins. The documentation is thorough and warns against driving low-impedance headphones directly from a GPIO pin.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d9ca4490c916",
+   "tags": [
+    "alu",
+    "multiplier",
+    "divider",
+    "adder",
+    "register-file",
+    "arithmetic",
+    "cocotb",
+    "asic"
+   ],
+   "summary": "This tile combines a byte adder, an 8x8 multiplier, and a reciprocal-ROM divider behind a small register-loaded interface with four task slots and command, mode, and bank selection pins. Results appear on uo_out, while status flags report carry or signed overflow, divide-by-zero, and multiplier high-byte nonzero depending on the selected mode. The design is verified with a cocotb regression covering add, multiply low and high byte, and divide behavior, and it is hardened for GF180MCU with an SDC and a non-gating KLayout DRC runset. No external hardware is required, and the documentation notes a known DRC contact/Metal1 end-of-line hit inside a PDK standard cell.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "06e21e4b5ece",
+   "tags": [
+    "uart",
+    "debug",
+    "trace",
+    "pattern-generator",
+    "lfsr",
+    "counter",
+    "protocol",
+    "bring-up"
+   ],
+   "summary": "This tile is a UART-controlled bring-up aid that samples eight trace probe inputs and emits four-byte trace packets when masked bits change, while also driving eight pattern outputs in modes such as counter, walking one, LFSR, and probe mirroring. It exposes UART receive and transmit on the bidirectional pins along with status signals for armed, streaming, busy, overflow, and receive error. Testing is done with a local RTL simulation that configures the pattern generator over UART, arms tracing, changes a probe, and checks the emitted packet and status response. Only a UART adapter or host MCU is needed, and the design targets the GF180 native-3.3 V standard-cell library.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e9b0556efcbb",
+   "tags": [
+    "crypto",
+    "ecc",
+    "scalar-multiplication",
+    "accelerator",
+    "arithmetic",
+    "asic",
+    "sky130"
+   ],
+   "summary": "This project is described as a simplified ECC scalar multiplication accelerator that takes two 8-bit operands on the input and bidirectional pins and produces an 8-bit output. The documentation states that it performs arithmetic similar to ECC point processing by adding the two operands and generating a scaled output, which is not a real elliptic-curve operation. It is intended for ASIC implementation on SKY130 with OpenLane, and no external hardware is required. The documentation is vague about the actual arithmetic and provides no test procedure or silicon results, so the ECC claim should be treated with caution.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1ce78060d71f",
+   "tags": [
+    "crypto",
+    "ecc",
+    "scalar-multiplication",
+    "processor",
+    "arithmetic",
+    "multiplier",
+    "register"
+   ],
+   "summary": "This design is a compact 8-bit ECC processor that takes a scalar on ui_in and a point coordinate on uio_in and computes Result = (Scalar x Point) + Scalar on each clock edge, storing the result in an output register. It is a simplified demonstration of scalar multiplication rather than a real elliptic-curve implementation, and the documentation gives example input/output pairs. Testing requires only reset, clock, and the two input values, with no external hardware. The documentation is clear about the arithmetic but reports no silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ba7bfab4ffd4",
+   "tags": [
+    "crypto",
+    "ecc",
+    "scalar-multiplication",
+    "engine",
+    "arithmetic",
+    "multiplier",
+    "register"
+   ],
+   "summary": "This project is a compact 8-bit ECC scalar multiplication engine that accepts a scalar on ui_in and a point coordinate on uio_in and computes Q = k x P on each clock edge, registering the result on uo_out. Like the related ECC tiles, it demonstrates the concept of scalar multiplication in a simplified form rather than implementing real elliptic-curve arithmetic. Testing is done by applying reset, clock, and the two input values and observing the output, with no external hardware required. The documentation is brief and reports no silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7571,
+  "completion_tokens": 1845,
+  "total_tokens": 9416,
+  "cost": 0.002706956,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002706956,
+   "upstream_inference_prompt_cost": 0.001489256,
+   "upstream_inference_completions_cost": 0.0012177
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002706956,
+ "elapsed_s": 26.0
+}

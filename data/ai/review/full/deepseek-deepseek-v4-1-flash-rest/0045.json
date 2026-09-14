@@ -1,0 +1,270 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8f3d93598764",
+  "89ab5c3a6b6b",
+  "f3c81edb7614",
+  "f81bd618eb8d",
+  "b2a80fb3ac34",
+  "2dbeacf83ae0"
+ ],
+ "results": [
+  {
+   "key": "8f3d93598764",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "No compute acceleration hardware is described; it is a VGA visual effect."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is mentioned in the source."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "No pipelined datapath is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "Source explicitly calls it a demoscene-style visual effect."
+    }
+   ],
+   "notes": "Removed unsupported accelerator/alu/pipeline tags and corrected the summary, which described hardware not present in the source.",
+   "tags_before": [
+    "vga",
+    "accelerator",
+    "alu",
+    "graphics",
+    "display",
+    "video",
+    "pipeline"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "display",
+    "video",
+    "demoscene"
+   ],
+   "summary_before": "This project is a simple VGA GPU that uses an ALU pipeline to compute pixel colors based on the pixel's x/y coordinates and a few configurable registers. The design takes pixel coordinates as input and outputs a color, with parameters set via registers. The documentation is very sparse, with testing instructions only suggesting to read the Verilog code, indicating limited support for users.",
+   "summary": "This project generates a mesmerizing VGA display of hypnotic concentric rings that expand or contract from the center of the screen. It is designed as a demoscene-style visual effect for the Tiny Tapeout platform. The design takes speed and direction inputs and outputs RGB222 VGA signals with VSync and HSync. Testing requires connecting a Tiny VGA PMOD and a VGA monitor, then applying power and releasing reset.",
+   "summary_changed": true
+  },
+  {
+   "key": "89ab5c3a6b6b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "It is a safe/padlock code lock, not an interactive game design."
+    },
+    {
+     "tag": "debouncer",
+     "reason": "No debouncing is described in the source."
+    },
+    {
+     "tag": "edge-detector",
+     "reason": "No edge detection is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive seven-segment display segments a-g."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Code bits and set-code control are switch inputs."
+    }
+   ],
+   "notes": "Replaced invented game/debouncer/edge-detector tags and summary with the actual padlock functionality and partial silicon status.",
+   "tags_before": [
+    "game",
+    "debouncer",
+    "edge-detector",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "dip-switch"
+   ],
+   "summary_before": "This circuit is a game that uses a single input switch to control gameplay. The input is debounced and edge-triggered, with rising and falling edges converted to pulses. The game is designed to work better with a switch rather than a button. No silicon test report is provided, so its hardware behavior is not confirmed.",
+   "summary": "This circuit is a padlock that lets you set a code for a safe using pins 2 to 4 and pin 7. Pin 1 resets the safe, and the clock button is used to enter the code. The seven-segment display shows \"L\" for locked when pin 1 is on and the clock button is pressed. A partial silicon test report notes errors where the saved code inverts each clock cycle and the third code bit is ignored, so some invalid codes are accepted.",
+   "summary_changed": true
+  },
+  {
+   "key": "f3c81edb7614",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counting circuit is described; the design is two AND gates."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is built from AND gates."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The AND gate logic is purely combinational."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive seven-segment display segments."
+    }
+   ],
+   "notes": "Corrected the summary, which described an event accumulator not present in the source, and fixed tags.",
+   "tags_before": [
+    "counter",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "logic-gate",
+    "combinational",
+    "7-segment"
+   ],
+   "summary_before": "This design is a simple event accumulator that counts rising edges on an input pin and outputs a 4-bit activity value. It includes a clock and active-low reset, and can be tested in simulation by driving the input with pulses and observing the outputs. The design is minimal and intended to illustrate basic stream processing without complex control logic. The documentation is sparse but sufficient to understand the basic functionality.",
+   "summary": "This design connects inputs 0 and 1 to an AND gate whose output drives outputs 0, 2, 3, 5 and 6. Inputs 2 and 3 feed a second AND gate whose output drives output 4. Setting only the first two inputs to 1 should display the number five, while setting only inputs 2 and 3 lights the lower left segment. The documentation is sparse but sufficient to understand the basic functionality.",
+   "summary_changed": true
+  },
+  {
+   "key": "f81bd618eb8d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter is mentioned in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Source says it is currently just a bouncing cat and highly likely to change into another project."
+    }
+   ],
+   "notes": "Summary was rewritten to match the bouncing cat and planned TOTP feature instead of an invented test pattern.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "counter"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "incomplete"
+   ],
+   "summary_before": "This project generates a VGA video signal with a simple test pattern. It is designed to demonstrate VGA output on Tiny Tapeout and is tested by connecting a VGA monitor. The design uses a counter to generate the video timing and pixel data. It is notable for its simplicity and educational value.",
+   "summary": "This project currently displays a bouncing cat on VGA. It is planned to gain an SPI interface with time and an encrypted key for an ASIC to decrypt and reply with a TOTP code. The design outputs RGB222 VGA signals with VSync and HSync. There is no hardware yet, so testing instructions are not available.",
+   "summary_changed": true
+  },
+  {
+   "key": "b2a80fb3ac34",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design includes an AND gate on inputs a and b."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive a seven-segment display."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "A DIP switch is used to control the display."
+    }
+   ],
+   "notes": "Added missing canonical tags for the AND gate, seven-segment display and DIP switch.",
+   "tags_before": [
+    "education",
+    "wokwi",
+    "combinational"
+   ],
+   "tags": [
+    "education",
+    "wokwi",
+    "combinational",
+    "logic-gate",
+    "7-segment",
+    "dip-switch"
+   ],
+   "summary_before": "This design uses a DIP switch to control a seven-segment display, with an AND gate on inputs a and b producing output 0. External hardware includes a seven-segment display and DIP switch. The project is an educational demonstration of logic gates and display driving. The exact behavior is not fully described.",
+   "summary": "This design uses a DIP switch to control a seven-segment display, with an AND gate on inputs a and b producing output 0. External hardware includes a seven-segment display and DIP switch. The project is an educational demonstration of logic gates and display driving. The exact behavior is not fully described.",
+   "summary_changed": false
+  },
+  {
+   "key": "2dbeacf83ae0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "No evidence it is a boilerplate or starter template; it is a workshop submission with no described function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "Title indicates it was created as part of a Tiny Tapeout workshop."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with only 'poorly' and 'thoroughly' as descriptions."
+    }
+   ],
+   "notes": "Swapped template for workshop and insufficient-doc to match the source title and very thin documentation.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "placeholder"
+   ],
+   "tags": [
+    "wokwi",
+    "placeholder",
+    "workshop",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a placeholder with no specific functionality described. It is implemented in Wokwi and appears to be a template or educational exercise. The documentation is minimal, so no details about its operation, testing, or external hardware are available. It is notable only as a starting point for other designs.",
+   "summary": "This design is a placeholder with no specific functionality described. It is implemented in Wokwi and appears to be a workshop exercise. The documentation is minimal, so no details about its operation, testing, or external hardware are available. It is notable only as a starting point for other designs.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5856,
+  "completion_tokens": 1388,
+  "total_tokens": 7244,
+  "cost": 0.00148446,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3380,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00148446,
+   "upstream_inference_prompt_cost": 0.00056838,
+   "upstream_inference_completions_cost": 0.00091608
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00148446,
+ "elapsed_s": 16.2
+}

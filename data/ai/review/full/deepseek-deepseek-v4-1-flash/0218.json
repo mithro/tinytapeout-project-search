@@ -1,0 +1,211 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "0990910237f4",
+  "0ff961946ab3",
+  "071a5459dd20",
+  "c4560c275366",
+  "c147c2d0f78b",
+  "85ea5ce1ad82"
+ ],
+ "results": [
+  {
+   "key": "0990910237f4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "Only two configuration registers, not a multi-register file storage block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "register-file tag removed: design has only two configuration registers, not a register file.",
+   "tags_before": [
+    "pwm",
+    "signal-generator",
+    "register-file",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "verilog"
+   ],
+   "summary_before": "This design is a PWM generator with configurable period (12-bit) and duty cycle (7-bit, 1%-99% coverage). It contains two 12-bit registers for duty and period, selected via a sel signal and written when wr_en is high. Testing involves connecting the output to an oscilloscope to verify frequency and duty cycle. External hardware includes a microcontroller or pattern generator to set the inputs.",
+   "summary": "This design is a PWM generator with configurable period (12-bit) and duty cycle (7-bit, 1%-99% coverage). It contains two 12-bit registers for duty and period, selected via a sel signal and written when wr_en is high. Testing involves connecting the output to an oscilloscope to verify frequency and duty cycle. External hardware includes a microcontroller or pattern generator to set the inputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "0ff961946ab3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "education tag removed: no teaching intent stated in the source.",
+   "tags_before": [
+    "adder",
+    "wokwi",
+    "education",
+    "led"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "This project implements a 4-bit ripple carry adder using four full adders, with the first carry-in tied to ground. It adds two 4-bit numbers and outputs a 5-bit result. It is tested by setting inputs A0-A3 and B0-B3 and observing outputs S0-S3 and C_OUT. External hardware includes LEDs for outputs and switches for inputs. The documentation is clear and sufficient.",
+   "summary": "This project implements a 4-bit ripple carry adder using four full adders, with the first carry-in tied to ground. It adds two 4-bit numbers and outputs a 5-bit result. It is tested by setting inputs A0-A3 and B0-B3 and observing outputs S0-S3 and C_OUT. External hardware includes LEDs for outputs and switches for inputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "071a5459dd20",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "education tag removed: no teaching intent stated in the source.",
+   "tags_before": [
+    "alu",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "alu",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4-bit ALU that performs arithmetic and logical operations on two 4-bit inputs based on a 4-bit opcode. The result is up to 8 bits, with carry-out and overflow flags provided on bidirectional pins. It was designed by Richard Xu et al for the TT08 shuttle. Testing involves setting the inputs and opcode and observing the outputs.",
+   "summary": "This project is a 4-bit ALU that performs arithmetic and logical operations on two 4-bit inputs based on a 4-bit opcode. The result is up to 8 bits, with carry-out and overflow flags provided on bidirectional pins. It was designed by Richard Xu et al for the TT08 shuttle. Testing involves setting the inputs and opcode and observing the outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "c4560c275366",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog per the facts and source."
+    }
+   ],
+   "notes": "Added verilog tag; source language is Verilog.",
+   "tags_before": [
+    "cache",
+    "memory",
+    "cocotb"
+   ],
+   "tags": [
+    "cache",
+    "memory",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This project implements a simple direct-mapped cache memory controller that manages four cache blocks. It accepts an 8-bit address and a read/write signal on the input pins and returns 8-bit data on the output pins. The design is synchronous and includes simulation testbenches and cocotb tests for verification. It is notable for fitting a basic cache controller into a single Tiny Tapeout tile.",
+   "summary": "This project implements a simple direct-mapped cache memory controller that manages four cache blocks. It accepts an 8-bit address and a read/write signal on the input pins and returns 8-bit data on the output pins. The design is synchronous and includes simulation testbenches and cocotb tests for verification. It is notable for fitting a basic cache controller into a single Tiny Tapeout tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "c147c2d0f78b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes two external clock phases; it does not generate clocks."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is working per the author's test report."
+    }
+   ],
+   "notes": "clock-generator removed (design consumes clocks, does not generate them); silicon-tested added per working report.",
+   "tags_before": [
+    "clock-generator",
+    "scan-chain",
+    "flip-flop",
+    "game",
+    "7-segment",
+    "led",
+    "speaker",
+    "button"
+   ],
+   "tags": [
+    "scan-chain",
+    "flip-flop",
+    "game",
+    "7-segment",
+    "led",
+    "speaker",
+    "button",
+    "silicon-tested"
+   ],
+   "summary_before": "This project is an experiment in using two-phase nonoverlapping clocks to make a design immune to hold violations, implemented by patching the flip-flops of Simon's Caterpillar into pairs of latches. It adds a scan chain through every flip-flop for debugging and disables static timing analysis by marking all paths as false paths. The design drives a seven-segment display, LEDs and a speaker, and requires a Simon Says PMOD plus two 50 kHz clocks with 25 percent duty cycle at 0 and 180 degrees. Silicon testing by the author reports it works as intended, with a bring-up script provided for the two-phase clock setup.",
+   "summary": "This project is an experiment in using two-phase nonoverlapping clocks to make a design immune to hold violations, implemented by patching the flip-flops of Simon's Caterpillar into pairs of latches. It adds a scan chain through every flip-flop for debugging and disables static timing analysis by marking all paths as false paths. The design drives a seven-segment display, LEDs and a speaker, and requires a Simon Says PMOD plus two 50 kHz clocks with 25 percent duty cycle at 0 and 180 degrees. Silicon testing by the author reports it works as intended, with a bring-up script provided for the two-phase clock setup.",
+   "summary_changed": false
+  },
+  {
+   "key": "85ea5ce1ad82",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "audio",
+    "microphone",
+    "silicon-tested",
+    "verilog",
+    "sensor-interface"
+   ],
+   "tags": [
+    "audio",
+    "microphone",
+    "silicon-tested",
+    "verilog",
+    "sensor-interface"
+   ],
+   "summary_before": "This Verilog peripheral generates a bit clock for a PDM microphone and decodes the returned density signal into PCM words. It is configured through parameters for clock period and enable, and connects to the microphone via clock and data pins. Silicon testing with an MP34DT01-M breakout succeeded, capturing five seconds of audio while clocked from an RP2350 SPI interface. The design is notable for having a verified working silicon test report.",
+   "summary": "This Verilog peripheral generates a bit clock for a PDM microphone and decodes the returned density signal into PCM words. It is configured through parameters for clock period and enable, and connects to the microphone via clock and data pins. Silicon testing with an MP34DT01-M breakout succeeded, capturing five seconds of audio while clocked from an RP2350 SPI interface. The design is notable for having a verified working silicon test report.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7620,
+  "completion_tokens": 1046,
+  "total_tokens": 8666,
+  "cost": 0.001647246,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001647246,
+   "upstream_inference_prompt_cost": 0.000956886,
+   "upstream_inference_completions_cost": 0.00069036
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001647246,
+ "elapsed_s": 12.4
+}

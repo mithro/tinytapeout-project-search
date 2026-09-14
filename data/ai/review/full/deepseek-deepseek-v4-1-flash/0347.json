@@ -1,0 +1,227 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6ee3cc3e4c5d",
+  "0ee23125c57d",
+  "7bfccc1419ba",
+  "10818588cb78",
+  "9672946a632e",
+  "e398fa034586"
+ ],
+ "results": [
+  {
+   "key": "6ee3cc3e4c5d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The source says 'RISC-V inspired' with a custom ISA, not a RISC-V ISA implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pipeline",
+     "reason": "The source describes a 1-stage microprocessor datapath."
+    }
+   ],
+   "notes": "Removed risc-v because the ISA is custom and only RISC-V inspired; added pipeline for the stated single-stage datapath.",
+   "tags_before": [
+    "cpu",
+    "risc-v",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "education",
+    "pipeline"
+   ],
+   "summary_before": "The McCoy is a custom 8-bit microprocessor with a RISC-V-inspired custom ISA, containing an opcode decoder, an 8-bit ALU, seven general-purpose and three special-purpose 6-bit registers, and branch target selection in a single-stage pipeline. Reset must be held high for one clock cycle before instructions are fed in, and the program counter or x8 register is output depending on the clock phase. Example programs and a fuller explanation are provided in the testbench folder and readme. It requires an external source capable of driving and reading 16 GPIO pins, and the documentation is reasonably detailed.",
+   "summary": "The McCoy is a custom 8-bit microprocessor with a RISC-V-inspired custom ISA, containing an opcode decoder, an 8-bit ALU, seven general-purpose and three special-purpose 6-bit registers, and branch target selection in a single-stage pipeline. Reset must be held high for one clock cycle before instructions are fed in, and the program counter or x8 register is output depending on the clock phase. Example programs and a fuller explanation are provided in the testbench folder and readme. It requires an external source capable of driving and reading 16 GPIO pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "0ee23125c57d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "frequency-counter",
+    "7-segment",
+    "edge-detector",
+    "instrumentation",
+    "counter"
+   ],
+   "tags": [
+    "frequency-counter",
+    "7-segment",
+    "edge-detector",
+    "instrumentation",
+    "counter"
+   ],
+   "summary_before": "This design estimates the frequency of an input signal by XORing successive samples to detect edges, summing them over a window, and mapping the result to a digit from 0 to 9 representing ten-percent bands of the maximum frequency. The digit is shown on a seven-segment display, and the input signal can optionally be looped back to the output for a sanity check. Testing requires a clock and a test signal generator, and the clock frequency itself does not matter as long as timing constraints are met. The documentation is clear about the measurement approach and its coarse resolution.",
+   "summary": "This design estimates the frequency of an input signal by XORing successive samples to detect edges, summing them over a window, and mapping the result to a digit from 0 to 9 representing ten-percent bands of the maximum frequency. The digit is shown on a seven-segment display, and the input signal can optionally be looped back to the output for a sanity check. Testing requires a clock and a test signal generator, and the clock frequency itself does not matter as long as timing constraints are met. The documentation is clear about the measurement approach and its coarse resolution.",
+   "summary_changed": false
+  },
+  {
+   "key": "7bfccc1419ba",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a multiplier built from adders; no ALU is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "External hardware explicitly includes an 8-bit DIP switch for factor inputs."
+    }
+   ],
+   "notes": "Removed unsupported alu tag; added dip-switch from the stated external hardware.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "7-segment",
+    "cocotb",
+    "alu",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "7-segment",
+    "cocotb",
+    "education",
+    "dip-switch"
+   ],
+   "summary_before": "This project is a 4-bit multiplier built from single-bit full adders, with inputs registered and the 8-bit product displayed on a seven-segment display in two 4-bit halves alternating every 500 ms. Because only eight pins are available including clock and reset, only three bits of each factor are exposed and the fourth bit is tied to zero. The HDL is verified with cocotb tests covering the single-bit adder, 4-bit adder, 4-bit multiplier and top level. External hardware includes a clock divider to 2500 Hz, a seven-segment display with dot LED, and an 8-bit DIP switch.",
+   "summary": "This project is a 4-bit multiplier built from single-bit full adders, with inputs registered and the 8-bit product displayed on a seven-segment display in two 4-bit halves alternating every 500 ms. Because only eight pins are available including clock and reset, only three bits of each factor are exposed and the fourth bit is tied to zero. The HDL is verified with cocotb tests covering the single-bit adder, 4-bit adder, 4-bit multiplier and top level. External hardware includes a clock divider to 2500 Hz, a seven-segment display with dot LED, and an 8-bit DIP switch.",
+   "summary_changed": false
+  },
+  {
+   "key": "10818588cb78",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes only a floating-point multiplier, not an ALU."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu because the design is only a floating-point multiplier.",
+   "tags_before": [
+    "floating-point",
+    "multiplier",
+    "alu",
+    "dsp"
+   ],
+   "tags": [
+    "floating-point",
+    "multiplier",
+    "dsp"
+   ],
+   "summary_before": "This design implements an 8-bit floating-point multiplier using the E4M3 format, with a custom approximation of IEEE 754 that flushes denormals to zero and saturates overflows. It accepts two 8-bit operands serially through a 4-bit data bus and control signals, and outputs the 8-bit product continuously. The multiplier has been verified over all possible input pairs and includes round-to-nearest-even. It is notable for its compact size and complete verification, though it requires manual clocking and external control to load operands.",
+   "summary": "This design implements an 8-bit floating-point multiplier using the E4M3 format, with a custom approximation of IEEE 754 that flushes denormals to zero and saturates overflows. It accepts two 8-bit operands serially through a 4-bit data bus and control signals, and outputs the 8-bit product continuously. The multiplier has been verified over all possible input pairs and includes round-to-nearest-even. It requires manual clocking and external control to load operands.",
+   "summary_changed": true
+  },
+  {
+   "key": "9672946a632e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lookup-table",
+     "reason": "The source says combinational logic generates the digits; no lookup table is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described; the clock advances an index."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "The project is motivated by packing information into a 16x8 SRAM circuit."
+    }
+   ],
+   "notes": "Removed lookup-table and counter not supported by the source; added memory for the SRAM motivation.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "lookup-table",
+    "counter",
+    "combinational"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "combinational",
+    "memory"
+   ],
+   "summary_before": "This design generates the first 1024 decimal digits of Pi and displays them sequentially on a 7-segment display. It uses combinational logic to decode each digit and drive the segment outputs, with a clock advancing the digit index and a reset pin zeroing it. The project began as a study of how much information could be packed into a 16x8 SRAM circuit and evolved into a Pi digit demonstration. The design directly drives a 7-segment display and requires no external hardware beyond that.",
+   "summary": "This design generates the first 1024 decimal digits of Pi and displays them sequentially on a 7-segment display. It uses combinational logic to decode each digit and drive the segment outputs, with a clock advancing the digit index and a reset pin zeroing it. The project began as a study of how much information could be packed into a 16x8 SRAM circuit and evolved into a Pi digit demonstration. The design directly drives a 7-segment display and requires no external hardware beyond that.",
+   "summary_changed": false
+  },
+  {
+   "key": "e398fa034586",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The outputs are generic PWM channels, not specified as LEDs."
+    }
+   ],
+   "add": [],
+   "notes": "Removed led because the source only describes generic PWM output pins.",
+   "tags_before": [
+    "pwm",
+    "driver",
+    "counter",
+    "register-file",
+    "led"
+   ],
+   "tags": [
+    "pwm",
+    "driver",
+    "counter",
+    "register-file"
+   ],
+   "summary_before": "This design is a 3-bit 8-channel PWM driver with 8 PWM levels from 0 to 7. It uses a 3-bit counter to generate PWM signals on 8 output channels, each controlled by a dedicated 3-bit register. The PWM level for each channel is set via address and level pins, with the set pin latching the value. It is tested by setting PWM levels and observing the output pins oscillate.",
+   "summary": "This design is a 3-bit 8-channel PWM driver with 8 PWM levels from 0 to 7. It uses a 3-bit counter to generate PWM signals on 8 output channels, each controlled by a dedicated 3-bit register. The PWM level for each channel is set via address and level pins, with the set pin latching the value. It is tested by setting PWM levels and observing the output pins oscillate.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6767,
+  "completion_tokens": 1334,
+  "total_tokens": 8101,
+  "cost": 0.004538625,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004538625,
+   "upstream_inference_prompt_cost": 0.002537625,
+   "upstream_inference_completions_cost": 0.002001
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004538625,
+ "elapsed_s": 5.0
+}

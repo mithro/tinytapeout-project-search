@@ -1,0 +1,304 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7c9373b0ad61",
+  "f17e0c830ad6",
+  "9c489c0eb76a",
+  "ac21b173869e",
+  "95dee9ba1fc9",
+  "42c19fe4b313"
+ ],
+ "results": [
+  {
+   "key": "7c9373b0ad61",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rp2040",
+     "reason": "The RP2040 is only mentioned as an external SPI master used for testing, not as a paired/designed-for interface in the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "register-file",
+     "reason": "The design implements eight read/write and eight read-only 8-bit registers."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The first read/write register drives a 7-segment display."
+    }
+   ],
+   "notes": "Removed rp2040 because the RP2040 is only an external test host, not a designed-for interface.",
+   "tags_before": [
+    "spi",
+    "7-segment",
+    "register-file",
+    "rp2040",
+    "verilog"
+   ],
+   "tags": [
+    "spi",
+    "7-segment",
+    "register-file",
+    "verilog"
+   ],
+   "summary_before": "This design implements an SPI peripheral with eight read/write 8-bit registers and eight read-only 8-bit status registers, derived from the tt07_alu_74181 project. It is tested by connecting an RP2040 SPI master to the SPI pins and using MicroPython code to write and read registers, with the first register also driving a 7-segment display. The design improves on the original by using a single buffer counter and adding high-impedance control for MISO when chip select is high. No external hardware is required beyond the RP2040 and the 7-segment display.",
+   "summary": "This design implements an SPI peripheral with eight read/write 8-bit registers and eight read-only 8-bit status registers, derived from the tt07_alu_74181 project. It is tested by connecting an RP2040 SPI master to the SPI pins and using MicroPython code to write and read registers, with the first register also driving a 7-segment display. The design improves on the original by using a single buffer counter and adding high-impedance control for MISO when chip select is high. No external hardware is required beyond the RP2040 and the 7-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "f17e0c830ad6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "No clock division is described; the design counts seconds from the 20 MHz clock."
+    },
+    {
+     "tag": "education",
+     "reason": "The source calls it a first experiment, not an educational or teaching design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design is a decimal stopwatch counter that counts 0 to 9 and loops."
+    },
+    {
+     "tag": "timer",
+     "reason": "It measures ten-second increments, functioning as a simple timer."
+    }
+   ],
+   "notes": "Removed unsupported education and clock-divider tags; kept counter and timer.",
+   "tags_before": [
+    "counter",
+    "clock-divider",
+    "timer",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "counter",
+    "timer",
+    "verilog"
+   ],
+   "summary_before": "This design implements a decimal stopwatch that counts from 0 to 9 and loops, driven by the 20 MHz ASIC clock. It is a first Tiny Tapeout experiment with no external inputs or outputs required, and the documentation notes limited testing infrastructure. Testing can be done in simulation via a linked MakerChip sandbox or on a Tiny Tapeout demo board using an FPGA harness and dfu-util. The project is notable mainly as a simple educational counter with no silicon test results reported.",
+   "summary": "This design implements a decimal stopwatch that counts from 0 to 9 and loops, driven by the 20 MHz ASIC clock. It is a first Tiny Tapeout experiment with no external inputs or outputs required, and the documentation notes limited testing infrastructure. Testing can be done in simulation via a linked MakerChip sandbox or on a Tiny Tapeout demo board using an FPGA harness and dfu-util. The project is notable mainly as a simple counter with no silicon test results reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "9c489c0eb76a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The title says count to 4, but the source only describes dividing an input frequency to an output; no counting behavior is documented."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The source says 'Divide freq of input to putput', which is too vague to confirm a clock divider."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the external hardware section is an unfilled template placeholder."
+    },
+    {
+     "tag": "led",
+     "reason": "The single output pin is named Signal_to_led."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project language is Wokwi."
+    }
+   ],
+   "notes": "Removed counter and clock-divider because the source does not clearly document those functions.",
+   "tags_before": [
+    "counter",
+    "clock-divider",
+    "led",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a counter that counts to 4, as indicated by its title and one-line description. It divides the frequency of an input clock to produce an output signal that drives an LED. The design has a single output pin labeled 'Signal_to_led' and no inputs, suggesting it uses an internal clock or the clock is provided elsewhere. The documentation is very sparse, and the external hardware section is left as a template placeholder.",
+   "summary": "This project is a counter that counts to 4, as indicated by its title and one-line description. It divides the frequency of an input clock to produce an output signal that drives an LED. The design has a single output pin labeled 'Signal_to_led' and no inputs, suggesting it uses an internal clock or the clock is provided elsewhere. The documentation is very sparse, and the external hardware section is left as a template placeholder.",
+   "summary_changed": false
+  },
+  {
+   "key": "ac21b173869e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design is a stochastic integrator; no digital signal processing application is described."
+    },
+    {
+     "tag": "physics",
+     "reason": "No physics simulation or modeling is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "stochastic-computing",
+     "reason": "The design explicitly uses stochastic computing to implement integration."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed dsp and physics as unsupported; kept stochastic-computing and verilog.",
+   "tags_before": [
+    "stochastic-computing",
+    "dsp",
+    "physics",
+    "verilog"
+   ],
+   "tags": [
+    "stochastic-computing",
+    "verilog"
+   ],
+   "summary_before": "This Verilog project uses stochastic computing to implement an integrator based on Euler's definition of integration in the unipolar probability domain. Two serial input pins accept stochastic bit streams, and eight output pins expose several sequential, system and test integrator outputs. The suggested test is to hold one input high and the other low and observe the resulting equations on the outputs. An ADALM2000 is listed as the external hardware, and the documentation gives only a brief description of the internal structure.",
+   "summary": "This Verilog project uses stochastic computing to implement an integrator based on Euler's definition of integration in the unipolar probability domain. Two serial input pins accept stochastic bit streams, and eight output pins expose several sequential, system and test integrator outputs. The suggested test is to hold one input high and the other low and observe the resulting equations on the outputs. An ADALM2000 is listed as the external hardware, and the documentation gives only a brief description of the internal structure.",
+   "summary_changed": false
+  },
+  {
+   "key": "95dee9ba1fc9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spi",
+     "reason": "The pins are named sclk, n_cs, mosi and miso, but the source does not explicitly document an SPI interface."
+    },
+    {
+     "tag": "qspi",
+     "reason": "The memory interface uses four data lines, but the source does not explicitly call it QSPI."
+    },
+    {
+     "tag": "memory",
+     "reason": "The design does not implement memory; it has a memory interface to external memory."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "The design is a crypto accelerator."
+    },
+    {
+     "tag": "aes",
+     "reason": "The source states it does AES encryption/decryption."
+    },
+    {
+     "tag": "cipher",
+     "reason": "AES is a symmetric block cipher."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "The design is described as a crypto accelerator."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans 4x2 tiles."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed spi, qspi and memory because the source does not explicitly document those interfaces or an internal memory block.",
+   "tags_before": [
+    "crypto",
+    "aes",
+    "cipher",
+    "accelerator",
+    "spi",
+    "qspi",
+    "memory",
+    "verilog",
+    "multi-tile"
+   ],
+   "tags": [
+    "crypto",
+    "aes",
+    "cipher",
+    "accelerator",
+    "verilog",
+    "multi-tile"
+   ],
+   "summary_before": "This design is a crypto accelerator that performs AES encryption and decryption. It communicates over an SPI-style interface with sclk, chip select, and mosi/miso pins, and it also has a QSPI memory interface with four data lines plus clock and chip select for external memory. The documentation does not specify the required external hardware beyond the memory interface, and the testing instructions are limited to wiring it up. The provided documentation is extremely sparse and gives no detail on key handling, modes, or throughput.",
+   "summary": "This design is a crypto accelerator that performs AES encryption and decryption. It communicates over an SPI-style interface with sclk, chip select, and mosi/miso pins, and it also has a QSPI memory interface with four data lines plus clock and chip select for external memory. The documentation does not specify the required external hardware beyond the memory interface, and the testing instructions are limited to wiring it up. The provided documentation is extremely sparse and gives no detail on key handling, modes, or throughput.",
+   "summary_changed": false
+  },
+  {
+   "key": "42c19fe4b313",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "demoscene",
+     "reason": "The source does not describe a demoscene style showcase."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The design outputs a standard VGA signal with RGB, hsync and vsync."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The design renders a donut shape on screen."
+    },
+    {
+     "tag": "pmod",
+     "reason": "The design requires a TinyVGA PMOD connected to the output pins."
+    }
+   ],
+   "notes": "Removed demoscene as unsupported; added pmod because the TinyVGA PMOD is required.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "pmod"
+   ],
+   "summary_before": "The donut project displays a rendered donut on a VGA screen. It uses hand-crafted ellipses to create the donut shape and outputs a standard VGA signal with 2-bit RGB color, horizontal sync, and vertical sync. The design operates with a 50.35 MHz clock and requires a TinyVGA PMOD connected to the output pins for display. The documentation is sparse, providing only a brief description and testing instructions.",
+   "summary": "The donut project displays a rendered donut on a VGA screen. It uses hand-crafted ellipses to create the donut shape and outputs a standard VGA signal with 2-bit RGB color, horizontal sync, and vertical sync. The design operates with a 50.35 MHz clock and requires a TinyVGA PMOD connected to the output pins for display. The documentation is sparse, providing only a brief description and testing instructions.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6283,
+  "completion_tokens": 1990,
+  "total_tokens": 8273,
+  "cost": 0.0042729,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042729,
+   "upstream_inference_prompt_cost": 0.0018849,
+   "upstream_inference_completions_cost": 0.002388
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042729,
+ "elapsed_s": 15.2
+}

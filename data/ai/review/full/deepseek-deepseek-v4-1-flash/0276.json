@@ -1,0 +1,275 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a7b00e89e295",
+  "f829bd2cd8fc",
+  "b3b56020a2ea",
+  "b1addd91f939",
+  "2f4fa49dd7c6",
+  "6aad87e1dd1e"
+ ],
+ "results": [
+  {
+   "key": "a7b00e89e295",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "Documentation states Pmod JA/JB carry the SPI and step/dir signals on the Arty FPGA build."
+    },
+    {
+     "tag": "fpga",
+     "reason": "Documentation explicitly says the same sources build for the Arty A7-35 board."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Design uses signed 12-bit integer/fixed-point polynomial arithmetic."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Cubic polynomial sampling / difference engine is a signal-generation DSP function."
+    }
+   ],
+   "notes": "Added pmod/fpga/fixed-point/dsp tags supported by the documentation; summary unchanged.",
+   "tags_before": [
+    "spi",
+    "stepper-motor",
+    "motor-control",
+    "signal-generator"
+   ],
+   "tags": [
+    "spi",
+    "stepper-motor",
+    "motor-control",
+    "signal-generator",
+    "pmod",
+    "fpga",
+    "fixed-point",
+    "dsp"
+   ],
+   "summary_before": "This design is a cubic polynomial sampler (difference engine) with an SPI request interface and step/dir output, written in DSLX and compiled with Google XLS. It samples a cubic polynomial using forward differences and outputs step and direction signals for a stepper motor driver. The design accepts 64-bit requests over SPI containing polynomial coefficients and sample count. It requires an SPI master and optionally a stepper driver, and can also be built for an FPGA board.",
+   "summary": "This design is a cubic polynomial sampler (difference engine) with an SPI request interface and step/dir output, written in DSLX and compiled with Google XLS. It samples a cubic polynomial using forward differences and outputs step and direction signals for a stepper motor driver. The design accepts 64-bit requests over SPI containing polynomial coefficients and sample count. It requires an SPI master and optionally a stepper driver, and can also be built for an FPGA board.",
+   "summary_changed": false
+  },
+  {
+   "key": "f829bd2cd8fc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes a multiplier, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with only a pinout and brief description."
+    }
+   ],
+   "notes": "Removed unsupported alu tag and added insufficient-doc for very thin documentation.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "cocotb",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a variable-precision multiplier that supports 2-bit, 4-bit, and 8-bit multiplication modes, selected via mode pins. It accepts an 8-bit data input and produces an 8-bit product output. The design is intended to be tested with an automated Cocotb testbench, and no external hardware is required. The documentation is minimal, providing only the pinout and a brief description.",
+   "summary": "This design is a variable-precision multiplier that supports 2-bit, 4-bit, and 8-bit multiplication modes, selected via mode pins. It accepts an 8-bit data input and produces an 8-bit product output. The design is intended to be tested with an automated Cocotb testbench, and no external hardware is required. The documentation is minimal, providing only the pinout and a brief description.",
+   "summary_changed": false
+  },
+  {
+   "key": "b3b56020a2ea",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "timer",
+     "reason": "Uses MONTH strobes and internal clocks to time 12/18-month windows."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Risk-management model intended for institutional/desk use."
+    }
+   ],
+   "notes": "Added timer and industrial tags supported by the model's timing and intended use.",
+   "tags_before": [
+    "fsm",
+    "counter",
+    "verilog",
+    "cocotb"
+   ],
+   "tags": [
+    "fsm",
+    "counter",
+    "verilog",
+    "cocotb",
+    "timer",
+    "industrial"
+   ],
+   "summary_before": "The Fed Model is a hardware implementation of a Federal Reserve rate-cycle risk model that counts rate cuts and signals when to exit the market. It uses event strobes for rate cuts, hikes, and months, and outputs the investment decision along with internal state. The design supports two model variants (F1 and F2) selectable at runtime, with configurable cut threshold. It is tested via a cocotb suite against a Python reference model and requires no external hardware beyond strobe drivers.",
+   "summary": "The Fed Model is a hardware implementation of a Federal Reserve rate-cycle risk model that counts rate cuts and signals when to exit the market. It uses event strobes for rate cuts, hikes, and months, and outputs the investment decision along with internal state. The design supports two model variants (F1 and F2) selectable at runtime, with configurable cut threshold. It is tested via a cocotb suite against a Python reference model and requires no external hardware beyond strobe drivers.",
+   "summary_changed": false
+  },
+  {
+   "key": "b1addd91f939",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "timer",
+     "reason": "Measures clock-cycle latency between events, a timing/timer function."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Classifies measured latency against min/max bounds."
+    },
+    {
+     "tag": "reconfigurable",
+     "reason": "Contexts and arbitration policy are runtime-configurable."
+    }
+   ],
+   "notes": "Added timer, comparator, and reconfigurable tags supported by the latency-monitor description.",
+   "tags_before": [
+    "instrumentation",
+    "arbiter",
+    "verilog",
+    "cocotb"
+   ],
+   "tags": [
+    "instrumentation",
+    "arbiter",
+    "verilog",
+    "cocotb",
+    "timer",
+    "comparator",
+    "reconfigurable"
+   ],
+   "summary_before": "RTFCE is a multi-context temporal latency monitor that measures time between configurable start and end events and classifies each measurement as PASS, EARLY, or TIMEOUT. It supports three independent contexts sharing a single classification datapath via selectable fixed-priority or round-robin arbitration. The design includes a near-miss diagnostic and is fully configurable via a bidirectional bus. It is tested with a cocotb regression and requires no external hardware.",
+   "summary": "RTFCE is a multi-context temporal latency monitor that measures time between configurable start and end events and classifies each measurement as PASS, EARLY, or TIMEOUT. It supports three independent contexts sharing a single classification datapath via selectable fixed-priority or round-robin arbitration. The design includes a near-miss diagnostic and is fully configurable via a bidirectional bus. It is tested with a cocotb regression and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "2f4fa49dd7c6",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "Combines analog BGR/LDO with digital trim and enable inputs."
+    },
+    {
+     "tag": "silicon-art",
+     "reason": "Analog IP layout for Sky130 with decorative/artistic silicon intent."
+    }
+   ],
+   "notes": "Added mixed-signal and silicon-art tags supported by the analog IP description.",
+   "tags_before": [
+    "bandgap",
+    "ldo",
+    "voltage-reference",
+    "analog",
+    "power-management"
+   ],
+   "tags": [
+    "bandgap",
+    "ldo",
+    "voltage-reference",
+    "analog",
+    "power-management",
+    "mixed-signal",
+    "silicon-art"
+   ],
+   "summary_before": "This analog IP integrates a Banba current-mode bandgap reference (1.2V) and a folded-cascode low-dropout regulator (1.8V output) in Sky130. It includes digital trim inputs for calibration and enable signals for a sink and ring oscillator, with analog outputs for the reference and regulated voltage. The design is intended for on-chip voltage regulation and reference generation in mixed-signal systems. Documentation is sparse, providing only a basic overview without detailed testing or usage instructions.",
+   "summary": "This analog IP integrates a Banba current-mode bandgap reference (1.2V) and a folded-cascode low-dropout regulator (1.8V output) in Sky130. It includes digital trim inputs for calibration and enable signals for a sink and ring oscillator, with analog outputs for the reference and regulated voltage. The design is intended for on-chip voltage regulation and reference generation in mixed-signal systems. Documentation is sparse, providing only a basic overview without detailed testing or usage instructions.",
+   "summary_changed": false
+  },
+  {
+   "key": "6aad87e1dd1e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "calculator",
+     "reason": "Source describes a CORDIC sin/cos engine, not a general arithmetic calculator."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No DSP algorithm or signal-processing application is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and project is a Wokwi simulation."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output pins drive a 7-segment display."
+    },
+    {
+     "tag": "cordic",
+     "reason": "Implements a 4-iteration rotation-mode CORDIC."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "CORDIC computes fixed-point sin/cos values."
+    },
+    {
+     "tag": "display",
+     "reason": "Result is shown on a 7-segment display."
+    }
+   ],
+   "notes": "Removed unsupported calculator/dsp tags and added wokwi, 7-segment, cordic, fixed-point, and display tags.",
+   "tags_before": [
+    "cordic",
+    "7-segment",
+    "calculator",
+    "wokwi",
+    "dsp"
+   ],
+   "tags": [
+    "cordic",
+    "7-segment",
+    "wokwi",
+    "fixed-point",
+    "display"
+   ],
+   "summary_before": "This project implements a 4-iteration rotation mode CORDIC algorithm that computes the sine and cosine of a 6-bit angle. The angle is loaded via the input pins, and the result is displayed on a 7-segment display, with a DONE flag on the decimal point. It requires a 7-segment display for output and switches or a microcontroller to provide the input angle and start signal. The design is notable for fitting a CORDIC calculator into a single Tiny Tapeout tile.",
+   "summary": "This project implements a 4-iteration rotation mode CORDIC algorithm that computes the sine and cosine of a 6-bit angle. The angle is loaded via the input pins, and the result is displayed on a 7-segment display, with a DONE flag on the decimal point. It requires a 7-segment display for output and switches or a microcontroller to provide the input angle and start signal. The design is notable for fitting a CORDIC calculator into a single Tiny Tapeout tile.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9225,
+  "completion_tokens": 1567,
+  "total_tokens": 10792,
+  "cost": 0.0046479,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0046479,
+   "upstream_inference_prompt_cost": 0.0027675,
+   "upstream_inference_completions_cost": 0.0018804
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0046479,
+ "elapsed_s": 20.2
+}

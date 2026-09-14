@@ -1,0 +1,242 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "86f5c0c078dd",
+  "ead92043c72c",
+  "9b3a4161f79e",
+  "6efa36aac145",
+  "bff22e14dc33",
+  "b9af00044f5d"
+ ],
+ "results": [
+  {
+   "key": "86f5c0c078dd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes only a multiplier, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The documentation explicitly states partial products are summed using full adders and half adders."
+    }
+   ],
+   "notes": "Removed alu (only multiplication is implemented) and added adder, which the source explicitly mentions.",
+   "tags_before": [
+    "multiplier",
+    "combinational",
+    "alu",
+    "structural",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "structural",
+    "education",
+    "adder"
+   ],
+   "summary_before": "This is a 4x4 structural array multiplier written in Verilog that takes two 4-bit operands and produces an 8-bit product. It generates partial products with AND gates and sums them with full and half adders, following the classic array multiplier structure. The documentation describes simulation-based testing by applying input combinations and comparing the output to expected binary multiplication results. No external hardware is required, and the design is a straightforward educational arithmetic block.",
+   "summary": "This is a 4x4 structural array multiplier written in Verilog that takes two 4-bit operands and produces an 8-bit product. It generates partial products with AND gates and sums them with full and half adders, following the classic array multiplier structure. The documentation describes simulation-based testing by applying input combinations and comparing the output to expected binary multiplication results. No external hardware is required, and the design is a straightforward educational arithmetic block.",
+   "summary_changed": false
+  },
+  {
+   "key": "ead92043c72c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "arbiter",
+     "reason": "The design is a priority-encoded state machine, not a bus/resource arbiter; the title alone does not justify the tag."
+    },
+    {
+     "tag": "industrial",
+     "reason": "The proximity warning application is described as the author's motivation, not an industrial control application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "buzzer",
+     "reason": "The intended application drives three buzzers from the output ports."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "Inputs are intended to be driven by three LIDAR sensors."
+    }
+   ],
+   "notes": "Removed arbiter and industrial; added buzzer and kept sensor-interface for the documented LIDAR/buzzer application.",
+   "tags_before": [
+    "fsm",
+    "arbiter",
+    "priority-encoder",
+    "counter",
+    "sensor-interface",
+    "industrial"
+   ],
+   "tags": [
+    "fsm",
+    "priority-encoder",
+    "counter",
+    "sensor-interface",
+    "buzzer"
+   ],
+   "summary_before": "This Verilog design is a priority-encoded state machine with three enable inputs and three corresponding state outputs. Each input must remain asserted for 100000 clock cycles before its state is activated for 100000000 cycles, with priority given to state 1 over 2 over 3. It is intended as the core of a proximity warning system, where LIDAR sensors drive the inputs and buzzers are driven by the outputs. No external hardware is needed for basic testing, but the intended application requires three sensors and three buzzers.",
+   "summary": "This Verilog design is a priority-encoded state machine with three enable inputs and three corresponding state outputs. Each input must remain asserted for 100000 clock cycles before its state is activated for 100000000 cycles, with priority given to state 1 over 2 over 3. It is intended as the core of a proximity warning system, where LIDAR sensors drive the inputs and buzzers are driven by the outputs. No external hardware is needed for basic testing, but the intended application requires three sensors and three buzzers.",
+   "summary_changed": false
+  },
+  {
+   "key": "9b3a4161f79e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is digital ring oscillators and PWM; the text only hopes PWM may be filtered to look analog-like, not an analog circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "The documentation explicitly describes divided-down oscillator outputs (e.g., ring_501 divided by 16)."
+    }
+   ],
+   "notes": "Removed analog (digital PWM/ring oscillator design) and added clock-divider, which is explicitly documented.",
+   "tags_before": [
+    "ring-oscillator",
+    "pwm",
+    "oscillator",
+    "clock-generator",
+    "clock-divider",
+    "analog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "pwm",
+    "oscillator",
+    "clock-generator",
+    "clock-divider"
+   ],
+   "summary_before": "This Verilog project implements multiple ring oscillators of different lengths plus simple PWM experiments on a Tiny Tapeout tile. The raw oscillator outputs and divided-down versions are exposed on uo_out, while PWM outputs with selectable duty cycles appear on uio pins when driven by specific ui_in patterns. Testing is done by probing outputs with an oscilloscope and setting ui_in to select PWM duty cycles. The documentation notes that the fastest oscillators may be too fast to measure reliably and that PWM outputs may be noisy due to pad and mux characteristics.",
+   "summary": "This Verilog project implements multiple ring oscillators of different lengths plus simple PWM experiments on a Tiny Tapeout tile. The raw oscillator outputs and divided-down versions are exposed on uo_out, while PWM outputs with selectable duty cycles appear on uio pins when driven by specific ui_in patterns. Testing is done by probing outputs with an oscilloscope and setting ui_in to select PWM duty cycles. The documentation notes that the fastest oscillators may be too fast to measure reliably and that PWM outputs may be noisy due to pad and mux characteristics.",
+   "summary_changed": false
+  },
+  {
+   "key": "6efa36aac145",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is a digital ring oscillator with a counter; no analog circuit is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed analog; the design is purely digital ring oscillator and counter logic.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-divider",
+    "counter",
+    "clock-generator",
+    "analog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-divider",
+    "counter",
+    "clock-generator"
+   ],
+   "summary_before": "This is a resubmission of a ring oscillator design with externally selectable length, controlled by a 3-bit tap input. The raw oscillator output and a divide-by-128 counter output are brought out to pins, allowing frequency measurement with an oscilloscope. The tap input selects between ring lengths of 11 to 1001 inverters, with the shortest ring potentially producing frequencies too high for reliable measurement. The documentation warns that changing the tap while active may cause glitches and suggests setting the tap before activating the design.",
+   "summary": "This is a resubmission of a ring oscillator design with externally selectable length, controlled by a 3-bit tap input. The raw oscillator output and a divide-by-128 counter output are brought out to pins, allowing frequency measurement with an oscilloscope. The tap input selects between ring lengths of 11 to 1001 inverters, with the shortest ring potentially producing frequencies too high for reliable measurement. The documentation warns that changing the tap while active may cause glitches and suggests setting the tap before activating the design.",
+   "summary_changed": false
+  },
+  {
+   "key": "bff22e14dc33",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Only 4x4 multiplication is implemented; no arithmetic logic unit operations are described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu; the source describes only a multiplier with carry-save and carry-propagate adders.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "alu",
+    "structural",
+    "education",
+    "workshop"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "structural",
+    "education",
+    "workshop"
+   ],
+   "summary_before": "This class project implements a 4x4 unsigned array multiplier using carry-save adders followed by a carry-propagate adder. It takes an 8-bit input split into two 4-bit operands and produces an 8-bit product. Testing is done via a Verilog testbench with various input combinations, such as 3*3 and 15*15, comparing outputs to expected results. No external hardware is needed, and the design is a typical educational exercise in structural arithmetic.",
+   "summary": "This class project implements a 4x4 unsigned array multiplier using carry-save adders followed by a carry-propagate adder. It takes an 8-bit input split into two 4-bit operands and produces an 8-bit product. Testing is done via a Verilog testbench with various input combinations, such as 3*3 and 15*15, comparing outputs to expected results. No external hardware is needed, and the design is a typical educational exercise in structural arithmetic.",
+   "summary_changed": false
+  },
+  {
+   "key": "b9af00044f5d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design implements only 4x4 multiplication, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu; the source describes only a 4x4 array multiplier.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "structural",
+    "adder",
+    "education",
+    "workshop"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "education",
+    "workshop"
+   ],
+   "summary_before": "This project is a 4x4 array multiplier that multiplies two 4-bit numbers to produce an 8-bit result using partial products and full adders. The documentation describes the structure in detail, including the use of AND gates and full adders to sum partial products. Testing is performed with a testbench that applies various input combinations, including edge cases, and compares outputs to expected binary multiplication results. No external hardware is required, and the design is a standard educational implementation.",
+   "summary": "This project is a 4x4 array multiplier that multiplies two 4-bit numbers to produce an 8-bit result using partial products and full adders. The documentation describes the structure in detail, including the use of AND gates and full adders to sum partial products. Testing is performed with a testbench that applies various input combinations, including edge cases, and compares outputs to expected binary multiplication results. No external hardware is required, and the design is a standard educational implementation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8369,
+  "completion_tokens": 1335,
+  "total_tokens": 9704,
+  "cost": 0.002002766,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002002766,
+   "upstream_inference_prompt_cost": 0.001121666,
+   "upstream_inference_completions_cost": 0.0008811
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002002766,
+ "elapsed_s": 15.8
+}

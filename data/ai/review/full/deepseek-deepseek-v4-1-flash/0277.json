@@ -1,0 +1,244 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a72816a25a32",
+  "fe637d6935ab",
+  "83554003c644",
+  "51c72b1f9644",
+  "0ec1d8308b19",
+  "81cce33b149f"
+ ],
+ "results": [
+  {
+   "key": "a72816a25a32",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "Text describes shift registers as the I/O mechanism, not a shift-register circuit as the design function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "asic",
+     "reason": "Implemented as a Verilog ASIC design in the Tiny Tapeout flow."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Tag implies fabrication validation, but the given silicon status is no reports."
+    }
+   ],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "shift-register",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "7-segment",
+    "verilog",
+    "asic",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements the SIMON32/64 block cipher, a lightweight encryption algorithm that uses a 32-round Feistel network. Data and key are shifted in serially via a shift register interface, and the ciphertext is shifted out after 32 clock cycles. The design includes a 7-segment display output for debugging or status. It provides a compact hardware implementation of the SIMON cipher for educational or embedded cryptographic applications.",
+   "summary": "This project implements the SIMON32/64 block cipher, a lightweight encryption algorithm that uses a 32-round Feistel network. Data and key are shifted in serially via a shift register interface, and the ciphertext is shifted out after 32 clock cycles. The design includes a 7-segment display output for debugging or status. It provides a compact hardware implementation of the SIMON cipher for educational or embedded cryptographic applications.",
+   "summary_changed": false
+  },
+  {
+   "key": "fe637d6935ab",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "asic",
+     "reason": "Implemented as a Verilog ASIC design in the Tiny Tapeout flow."
+    }
+   ],
+   "notes": "",
+   "tags_before": [
+    "sram",
+    "memory",
+    "signal-generator",
+    "shift-register"
+   ],
+   "tags": [
+    "sram",
+    "memory",
+    "signal-generator",
+    "shift-register",
+    "asic"
+   ],
+   "summary_before": "This design implements a 16x8 SRAM with write, read, and streaming modes. It uses a temporary shift register to load 8-bit data in two 4-bit halves, and supports fast memory operations like memset. In streaming mode, it cycles through all memory values to act as a streaming signal generator. The design is tested via a Verilator testbench and requires no external hardware.",
+   "summary": "This design implements a 16x8 SRAM with write, read, and streaming modes. It uses a temporary shift register to load 8-bit data in two 4-bit halves, and supports fast memory operations like memset. In streaming mode, it cycles through all memory values to act as a streaming signal generator. The design is tested via a Verilator testbench and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "83554003c644",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "asic",
+     "reason": "Implemented as a Verilog ASIC design in the Tiny Tapeout flow."
+    }
+   ],
+   "notes": "",
+   "tags_before": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "display"
+   ],
+   "tags": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "display",
+    "asic"
+   ],
+   "summary_before": "This design converts a 4-bit BCD input into a hexadecimal 7-segment display output. It accepts four binary-coded decimal inputs and generates the corresponding segment signals, with an invert pin to support both common cathode and common anode displays. The decimal dot input is passed through to the dot output. It is tested by connecting the outputs to a 7-segment display and configuring the input value.",
+   "summary": "This design converts a 4-bit BCD input into a hexadecimal 7-segment display output. It accepts four binary-coded decimal inputs and generates the corresponding segment signals, with an invert pin to support both common cathode and common anode displays. The decimal dot input is passed through to the dot output. It is tested by connecting the outputs to a 7-segment display and configuring the input value.",
+   "summary_changed": false
+  },
+  {
+   "key": "51c72b1f9644",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "delay-line",
+     "reason": "Design is a power sequencing state machine, not a programmable or fixed signal delay line."
+    }
+   ],
+   "add": [
+    {
+     "tag": "asic",
+     "reason": "Implemented as a Verilog ASIC design in the Tiny Tapeout flow."
+    }
+   ],
+   "notes": "Removed delay-line tag since the design sequences channels rather than delaying a signal.",
+   "tags_before": [
+    "sequencer",
+    "counter",
+    "delay-line",
+    "power-management"
+   ],
+   "tags": [
+    "sequencer",
+    "counter",
+    "power-management",
+    "asic"
+   ],
+   "summary_before": "This design implements a power supply sequencer that sequentially enables and disables eight channels with configurable delays. It uses counters and registers to control the activation order, with a 5-bit delay input setting the counter threshold. Bringing enable high turns on channels from 0 to 7 sequentially, and bringing it low turns them off from 7 to 0. It is intended for applications like GaAs amplifiers that require sequenced power supplies and requires no external hardware.",
+   "summary": "This design implements a power supply sequencer that sequentially enables and disables eight channels with configurable delays. It uses counters and registers to control the activation order, with a 5-bit delay input setting the counter threshold. Bringing enable high turns on channels from 0 to 7 sequentially, and bringing it low turns them off from 7 to 0. It is intended for applications like GaAs amplifiers that require sequenced power supplies and has no external hardware requirement.",
+   "summary_changed": true
+  },
+  {
+   "key": "0ec1d8308b19",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "buzzer",
+     "reason": "External hardware is a piezo speaker, not a piezo buzzer; source says piezo speaker."
+    }
+   ],
+   "add": [
+    {
+     "tag": "synthesizer",
+     "reason": "Plays a ringtone tune via generated audio waveform."
+    },
+    {
+     "tag": "asic",
+     "reason": "Implemented as a Verilog ASIC design in the Tiny Tapeout flow."
+    }
+   ],
+   "notes": "Corrected clock rate to 3125 Hz and buzzer tag to speaker hardware.",
+   "tags_before": [
+    "music",
+    "audio",
+    "buzzer",
+    "pwm"
+   ],
+   "tags": [
+    "music",
+    "audio",
+    "pwm",
+    "synthesizer",
+    "asic"
+   ],
+   "summary_before": "This design plays the Super Mario theme tune on a piezo speaker connected across two output pins. It converts an RTTL ringtone into Verilog and uses differential PWM modulation to generate the sound wave. To operate, a 3 kHz clock is provided on the clock input, and a brief reset pulse starts playback. The only external hardware needed is a piezo speaker connected across the two outputs.",
+   "summary": "This design plays the Super Mario theme tune on a piezo speaker connected across two output pins. It converts an RTTL ringtone into Verilog and uses differential PWM modulation to generate the sound wave. To operate, a 3.125 kHz clock is provided on the clock input, and a brief reset pulse starts playback. The only external hardware needed is a piezo speaker connected across the two outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "81cce33b149f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit described; the design is a GCD computation using subtraction and shifting."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "Verified with ChiselTest, functionally similar testbench framework."
+    },
+    {
+     "tag": "asic",
+     "reason": "Implemented as a Chisel ASIC design in the Tiny Tapeout flow."
+    }
+   ],
+   "notes": "",
+   "tags_before": [
+    "scan-chain",
+    "chisel",
+    "alu",
+    "fsm"
+   ],
+   "tags": [
+    "scan-chain",
+    "chisel",
+    "cocotb",
+    "asic"
+   ],
+   "summary_before": "This project is a 16-bit greatest common divisor unit based on Knuth's binary GCD algorithm, written in Chisel. Operands are loaded and results are read back through a scan chain using the ld, u_bit, and v_bit pins, with a done signal indicating completion. The design is verified with ChiselTest unit tests run through sbt, and it requires no external hardware. Its notable feature is the use of scan chains for I/O, which conserves pins on the Tiny Tapeout tile.",
+   "summary": "This project is a 16-bit greatest common divisor unit based on Knuth's binary GCD algorithm, written in Chisel. Operands are loaded and results are read back through a scan chain using the ld, u_bit, and v_bit pins, with a done signal indicating completion. The design is verified with ChiselTest unit tests run through sbt, and it requires no external hardware. Its notable feature is the use of scan chains for I/O, which conserves pins on the Tiny Tapeout tile.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5961,
+  "completion_tokens": 1298,
+  "total_tokens": 7259,
+  "cost": 0.0033459,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033459,
+   "upstream_inference_prompt_cost": 0.0017883,
+   "upstream_inference_completions_cost": 0.0015576
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033459,
+ "elapsed_s": 6.8
+}

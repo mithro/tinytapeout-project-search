@@ -1,0 +1,328 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7ae35f265886",
+  "f25c45b0aaba",
+  "64760505d860",
+  "64190a2b2f26",
+  "abeb3e17ee23",
+  "ad02496217d6"
+ ],
+ "results": [
+  {
+   "key": "7ae35f265886",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "The source describes an LDO regulator, not a ring oscillator."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator is described; the design is a capless LDO."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock or timing signal generation is described."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock division circuitry is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ldo",
+     "reason": "The design is explicitly a low-dropout regulator."
+    },
+    {
+     "tag": "analog",
+     "reason": "Fully analog circuit in SKY130A with analog pins."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "Built from 16 FETs and 6 passives, no standard cells."
+    },
+    {
+     "tag": "opamp",
+     "reason": "Uses a two-stage Miller-compensated OTA as the error amplifier."
+    },
+    {
+     "tag": "voltage-reference",
+     "reason": "Regulates against an external 0.9 V reference with an on-chip divider."
+    }
+   ],
+   "notes": "Tags were entirely wrong (ring oscillator/clock tags) for an analog LDO; replaced with LDO, opamp, voltage-reference, analog and transistor-level tags.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "clock-divider",
+    "analog",
+    "transistor-level"
+   ],
+   "tags": [
+    "analog",
+    "transistor-level",
+    "ldo",
+    "opamp",
+    "voltage-reference"
+   ],
+   "summary_before": "This is a ring oscillator built from a chain of 21 SkullFET inverters running from the analog supply, with a buffer feeding both a level-shifted digital divider chain and an analog pad tap. The digital outputs provide the oscillator signal and divide-by-2, 4 and 8 versions, while the analog pin is a small-signal tap rather than a full-swing square wave. Silicon measurements on ttsky25b show the ring running at about 178-180 MHz, so only the divide-by-8 output at roughly 22 MHz is reliably observable through the GPIOs. Testing requires a scope or logic analyzer on the divide-by-8 output, and the analog tap is only a qualitative oscillation indicator.",
+   "summary": "This tile is a fully analog capless low-dropout regulator implemented in SKY130A with 16 FETs and 6 passives. A two-stage Miller-compensated OTA drives a super-source-follower buffer that controls a 2000 um / 0.15 um PMOS pass device, regulating the output to 1.5 V from the 1.8 V analog supply. An on-chip poly divider senses the output and compares it against an external 0.9 V reference, while a single external 10 uA bias current is mirrored on-chip. Driving ui_in[0] high enables an on-chip switched load that steps the load to roughly 2.8 mA for observing transient response.",
+   "summary_changed": true
+  },
+  {
+   "key": "f25c45b0aaba",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described; the design is a multiplier."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The project is a 4-bit multiplier."
+    },
+    {
+     "tag": "combinational",
+     "reason": "A 4-bit multiplier with direct input-to-output mapping is combinational logic."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is only the default prompt text with no implementation details."
+    }
+   ],
+   "notes": "Removed unsupported alu and education tags; added insufficient-doc because documentation is only placeholder text.",
+   "tags_before": [
+    "multiplier",
+    "combinational",
+    "alu",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a 4-bit Vedic multiplier, which multiplies two 4-bit numbers using a Vedic mathematics algorithm. The design is purely combinational, with inputs and outputs directly mapped to the chip pins. There is no documentation beyond the title and pin names, so the exact implementation details and testing procedures are unclear. It appears to be a simple educational or demonstration design.",
+   "summary": "This project implements a 4-bit Vedic multiplier that multiplies two 4-bit numbers. The design is purely combinational, with inputs and outputs directly mapped to the chip pins. There is no documentation beyond the title and pin names, so the exact implementation details and testing procedures are unclear. It appears to be a simple demonstration design.",
+   "summary_changed": true
+  },
+  {
+   "key": "64760505d860",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "template",
+     "reason": "The title and placeholder documentation indicate a copy of the Tiny Tapeout template."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is written in Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is only the default prompt text with no functional description."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added insufficient-doc for placeholder-only documentation.",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "template",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a copy of the Tiny Tapeout template with no functional description provided. The documentation is placeholder text, indicating it is likely a starting point for customization. It uses the Wokwi language and has a generic tile configuration. Without further details, the actual purpose and operation are unknown.",
+   "summary": "This project is a copy of the Tiny Tapeout template with no functional description provided. The documentation is placeholder text, indicating it is likely a starting point for customization. It uses the Wokwi language and has a generic tile configuration. Without further details, the actual purpose and operation are unknown.",
+   "summary_changed": false
+  },
+  {
+   "key": "64190a2b2f26",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The project is a first chip design from a school, not a template."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The project is written in Wokwi."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The description says the project is ongoing and documentation sections are default prompt text."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is essentially empty with no functionality described."
+    },
+    {
+     "tag": "workshop",
+     "reason": "Created as a first chip design mentored by Tiny Tapeout, indicating a class or workshop activity."
+    }
+   ],
+   "notes": "Removed template and education tags; added workshop, incomplete and insufficient-doc based on the school first-chip context and empty documentation.",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc",
+    "education",
+    "workshop"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc",
+    "workshop"
+   ],
+   "summary_before": "This single-tile Wokwi project is a first chip design from South Bank University Sixth Form, mentored by Tiny Tapeout. The description says only that it is the school's first chip design in association with Tiny Tapeout, and the how-it-works, testing and external hardware sections remain the default prompt text. No functionality, pin names or interface details are provided. The documentation is essentially empty, so nothing can be said about what the design actually implements.",
+   "summary": "This single-tile Wokwi project is a first chip design from South Bank University Sixth Form, mentored by Tiny Tapeout. The description says only that it is the school's first chip design in association with Tiny Tapeout, and the how-it-works, testing and external hardware sections remain the default prompt text. No functionality, pin names or interface details are provided. The documentation is essentially empty, so nothing can be said about what the design actually implements.",
+   "summary_changed": false
+  },
+  {
+   "key": "abeb3e17ee23",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The title and description do not indicate a template; it is an ongoing project."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The project is written in Wokwi."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The one-line description says 'My project ongoing'."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is only the default prompt text with no behaviour described."
+    }
+   ],
+   "notes": "Removed template and education tags; added incomplete and insufficient-doc based on the ongoing status and empty documentation.",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "Tiny Tapeout ISHA is a one-tile Wokwi design whose only description is 'My project ongoing'. The how-it-works, how-to-test and external-hardware sections are all left as the default explanatory text, so no behaviour is documented. No pins, interfaces or constraints are given. Because the documentation is essentially empty, the design's purpose cannot be determined.",
+   "summary": "Tiny Tapeout ISHA is a one-tile Wokwi design whose only description is 'My project ongoing'. The how-it-works, how-to-test and external-hardware sections are all left as the default explanatory text, so no behaviour is documented. No pins, interfaces or constraints are given. Because the documentation is essentially empty, the design's purpose cannot be determined.",
+   "summary_changed": false
+  },
+  {
+   "key": "ad02496217d6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pipeline",
+     "reason": "No pipelined datapath is described; the design is a combinational formula implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "music",
+     "reason": "The project generates bytebeat audio samples."
+    },
+    {
+     "tag": "audio",
+     "reason": "The output is 8-bit PCM audio samples."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "The design synthesizes audio tones from a bytebeat formula."
+    },
+    {
+     "tag": "dac",
+     "reason": "Requires an external 8-bit parallel DAC to convert samples to analog audio."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present but very thin, with only a formula and no implementation details."
+    }
+   ],
+   "notes": "Removed unsupported pipeline tag; added insufficient-doc because documentation is very thin despite the formula being present.",
+   "tags_before": [
+    "music",
+    "audio",
+    "synthesizer",
+    "dac",
+    "pipeline"
+   ],
+   "tags": [
+    "music",
+    "audio",
+    "synthesizer",
+    "dac",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a bytebeat formula in hardware, generating 8-bit PCM audio samples from four 4-bit parameters. It accepts parameters via input and bidirectional pins and outputs the PCM sample on the output pins. The design is written in XLS and can be easily modified to change the formula. It requires an external 8-bit parallel DAC to convert the digital samples to analog audio.",
+   "summary": "This design implements a bytebeat formula in hardware, generating 8-bit PCM audio samples from four 4-bit parameters. It accepts parameters via input and bidirectional pins and outputs the PCM sample on the output pins. The design is written in XLS and can be easily modified to change the formula. It requires an external 8-bit parallel DAC to convert the digital samples to analog audio.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6188,
+  "completion_tokens": 1923,
+  "total_tokens": 8111,
+  "cost": 0.004164,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004164,
+   "upstream_inference_prompt_cost": 0.0018564,
+   "upstream_inference_completions_cost": 0.0023076
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004164,
+ "elapsed_s": 10.2
+}

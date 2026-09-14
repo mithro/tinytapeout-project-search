@@ -1,0 +1,259 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "85b5d25a8e68",
+  "a2170a16792a",
+  "de5f23f39497",
+  "42190549c183",
+  "2776f35297cb",
+  "0e966a264a54"
+ ],
+ "results": [
+  {
+   "key": "85b5d25a8e68",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "The select-based output routing is a mux-like function but the source never describes a multiplexer; counter is the only clearly supported function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "gpio",
+     "reason": "Bidirectional pins are mirrored to outputs, i.e. general purpose digital IO behavior."
+    }
+   ],
+   "notes": "Removed unsupported education and multiplexer tags; added gpio for the mirrored bidirectional pins.",
+   "tags_before": [
+    "counter",
+    "multiplexer",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "counter",
+    "wokwi",
+    "gpio"
+   ],
+   "summary_before": "This design outputs either a counter value or mirrors the bidirectional pins to the output pins, depending on a select signal. When sel is high, a counter is output on both the output and bidirectional pins; when sel is low, the bidirectional pins are mirrored to the output pins. It is a simple utility design built in Wokwi. No external hardware is required. The documentation is clear but brief.",
+   "summary": "This design outputs either a counter value or mirrors the bidirectional pins to the output pins, depending on a select signal. When sel is high, a counter is output on both the output and bidirectional pins; when sel is low, the bidirectional pins are mirrored to the output pins. It is a simple utility design built in Wokwi. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "a2170a16792a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source states an educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design explicitly includes an inverter connecting IN0 to OUT0."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added logic-gate for the documented inverter.",
+   "tags_before": [
+    "adder",
+    "wokwi",
+    "combinational",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "combinational",
+    "logic-gate"
+   ],
+   "summary_before": "This project implements a 2-bit adder using combinational logic, with inputs IN1 through IN4 and outputs OUT1 through OUT3. An additional inverter connects IN0 to OUT0, which is not part of the adder. Testing involves toggling the inputs and observing the outputs to verify the addition. External hardware such as an LED display is needed to view the results. The design is a simple educational example created in the Wokwi environment.",
+   "summary": "This project implements a 2-bit adder using combinational logic, with inputs IN1 through IN4 and outputs OUT1 through OUT3. An additional inverter connects IN0 to OUT0, which is not part of the adder. Testing involves toggling the inputs and observing the outputs to verify the addition. External hardware such as an LED display is needed to view the results.",
+   "summary_changed": true
+  },
+  {
+   "key": "de5f23f39497",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "No evidence it is a boilerplate or starter template; it is a minimal LED test design."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Only dedicated outputs are used; no general purpose bidirectional IO is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting of one-line descriptions only."
+    }
+   ],
+   "notes": "Removed unsupported template and gpio tags; added insufficient-doc given the very thin documentation.",
+   "tags_before": [
+    "template",
+    "led",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "led",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design simply turns on one output pin, as described in its minimal documentation. It has no inputs and only eight output pins, all labeled A[0] through A[7]. The testing instructions state that no action is needed, and no external hardware is required. The project appears to be a basic template or test design with essentially no functionality beyond driving an output high.",
+   "summary": "This design simply turns on one output pin, as described in its minimal documentation. It has no inputs and only eight output pins, all labeled A[0] through A[7]. The testing instructions state that no action is needed, and no external hardware is required. The project is a minimal LED test with essentially no functionality beyond driving an output high.",
+   "summary_changed": true
+  },
+  {
+   "key": "42190549c183",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "No LED output is implemented; an LED display is only mentioned as optional external hardware."
+    },
+    {
+     "tag": "display",
+     "reason": "No display interface is implemented on-chip; the display is optional external hardware."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puzzle",
+     "reason": "Tic-tac-toe and rock-paper-scissors are puzzle/game logic implementations."
+    }
+   ],
+   "notes": "Removed led and display tags since no such on-chip output exists; added puzzle for the game logic.",
+   "tags_before": [
+    "tic-tac-toe",
+    "game",
+    "lfsr",
+    "led",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "tic-tac-toe",
+    "game",
+    "lfsr",
+    "verilog",
+    "puzzle"
+   ],
+   "summary_before": "This chip implements two games: tic-tac-toe (two-player) and rock-paper-scissors (player vs. machine). Game selection and moves are input via the ui pins, and outputs indicate game state, winner, or draw. The rock-paper-scissors opponent uses a 3-bit LFSR to generate pseudo-random choices. External hardware such as an LED display can be connected for easier viewing of the outputs.",
+   "summary": "This chip implements two games: tic-tac-toe (two-player) and rock-paper-scissors (player vs. machine). Game selection and moves are input via the ui pins, and outputs indicate game state, winner, or draw. The rock-paper-scissors opponent uses a 3-bit LFSR to generate pseudo-random choices. External hardware such as an LED display can be connected for easier viewing of the outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "2776f35297cb",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "microcontroller",
+     "reason": "An 8-bit programmable processor with UART and memory access is a microcontroller-style integrated design."
+    }
+   ],
+   "notes": "Added microcontroller tag for the programmable 8-bit processor with UART and memory.",
+   "tags_before": [
+    "cpu",
+    "uart",
+    "memory"
+   ],
+   "tags": [
+    "cpu",
+    "uart",
+    "memory",
+    "microcontroller"
+   ],
+   "summary_before": "SimProc is an 8-bit processor that can be programmed and read back via UART using 3-byte packets. It has a UART receive input, a UART transmit output, and flags for halt and done. The baud rate is set by driving the bidirectional pins UIO7-UIO0. External hardware needed is a USB-to-UART converter or any UART device. The documentation is brief but sufficient to understand the basic operation.",
+   "summary": "SimProc is an 8-bit processor that can be programmed and read back via UART using 3-byte packets. It has a UART receive input, a UART transmit output, and flags for halt and done. The baud rate is set by driving the bidirectional pins UIO7-UIO0. External hardware needed is a USB-to-UART converter or any UART device.",
+   "summary_changed": true
+  },
+  {
+   "key": "0e966a264a54",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The pinout shows only a single NAND gate, contradicting the counter description."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment interface appears in the pins; it is only described as external hardware."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is implemented on-chip; the display is external."
+    },
+    {
+     "tag": "bcd",
+     "reason": "BCD behavior is only assumed in the text and not reflected in the pins."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The pin names show a NAND gate, but the body text describes a counter system, so this tag is uncertain."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation contradicts the pinout, leaving the actual design unclear."
+    }
+   ],
+   "notes": "Source documentation contradicts the pinout (NAND gate pins vs. counter description); escalated for a second opinion.",
+   "tags_before": [
+    "wokwi",
+    "counter",
+    "7-segment",
+    "display",
+    "bcd",
+    "logic-gate",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design demonstrates a 4-bit binary counter that displays its decimal value on a 7-segment display, with manual clock and reset buttons. The counter increments on each button press and wraps from 9 back to 0, using a BCD counter and a BCD-to-7-segment decoder. External hardware includes two push buttons, a pull-down resistor, a 4-bit counter IC, an AND gate, a BCD decoder, and a common-cathode 7-segment display. The documentation is detailed but the pin names only show a single NAND gate, which does not match the described counter system.",
+   "summary": "The documentation describes a 4-bit binary counter that displays its decimal value on a 7-segment display, with manual clock and reset buttons. The counter increments on each button press and wraps from 9 back to 0, using a BCD counter and a BCD-to-7-segment decoder. External hardware includes two push buttons, a pull-down resistor, a 4-bit counter IC, an AND gate, a BCD decoder, and a common-cathode 7-segment display. However, the pin names only show a single NAND gate, which does not match the described counter system.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "42190549c183: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6122,
+  "completion_tokens": 1272,
+  "total_tokens": 7394,
+  "cost": 0.002065398,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002065398,
+   "upstream_inference_prompt_cost": 0.000767958,
+   "upstream_inference_completions_cost": 0.00129744
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002065398,
+ "elapsed_s": 41.1
+}

@@ -1,0 +1,269 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "98fb7b5497a5",
+  "0457004894a8",
+  "e41d9652935a",
+  "995f8bdf3345",
+  "2ad28c9aa83e",
+  "a4207e318a3c"
+ ],
+ "results": [
+  {
+   "key": "98fb7b5497a5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The design is described as a differential ring core with PFET loads, NFET tail sources and MOS capacitors; nothing states it is built from discrete transistors rather than standard cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The project is an analog VCO with analog control and bias pins."
+    },
+    {
+     "tag": "current-mirror",
+     "reason": "The bias circuit mirrors the external control current to set PFET load and NFET tail currents."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "The VCO generates buffered square-wave outputs at a controlled oscillation frequency."
+    }
+   ],
+   "notes": "Removed transistor-level because the source describes a standard analog VCO topology, not discrete-transistor construction.",
+   "tags_before": [
+    "vco",
+    "ring-oscillator",
+    "analog",
+    "oscillator",
+    "transistor-level",
+    "current-mirror"
+   ],
+   "tags": [
+    "vco",
+    "ring-oscillator",
+    "analog",
+    "oscillator",
+    "current-mirror",
+    "signal-generator"
+   ],
+   "summary_before": "This is a current-controlled 4-stage differential ring VCO in SKY130 with buffered rail-to-rail outputs providing four quadrature phases at 45 degree spacing. Frequency is set by an external control current mirrored into the PFET loads and NFET tail sources of each stage, with a tuning range of roughly 200 kHz to 3 MHz. One analog pin takes the control current and another exposes the internal bias voltage for monitoring. Testing requires a current source or resistor network plus an oscilloscope or frequency counter, and the design is based on a published reference circuit.",
+   "summary": "This is a current-controlled 4-stage differential ring VCO in SKY130 with buffered rail-to-rail outputs providing four quadrature phases at 45 degree spacing. Frequency is set by an external control current mirrored into the PFET loads and NFET tail sources of each stage, with a tuning range of roughly 200 kHz to 3 MHz. One analog pin takes the control current and another exposes the internal bias voltage for monitoring. Testing requires a current source or resistor network plus an oscilloscope or frequency counter, and the design is based on a published reference circuit.",
+   "summary_changed": false
+  },
+  {
+   "key": "0457004894a8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "education",
+    "cocotb"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "education",
+    "cocotb"
+   ],
+   "summary_before": "Basic8 is a minimal 8-bit CPU with 8 general-purpose registers, an ALU supporting arithmetic, logic, and shift operations, and branch and jump instructions. Instructions are 16 bits wide and are loaded in two cycles via the input pins, with the program counter output on the output pins to allow an external controller to feed instructions from a ROM. The design is tested with a cocotb testbench covering the full instruction set. No external hardware is required, as the CPU is driven entirely through the pins.",
+   "summary": "Basic8 is a minimal 8-bit CPU with 8 general-purpose registers, an ALU supporting arithmetic, logic, and shift operations, and branch and jump instructions. Instructions are 16 bits wide and are loaded in two cycles via the input pins, with the program counter output on the output pins to allow an external controller to feed instructions from a ROM. The design is tested with a cocotb testbench covering the full instruction set. No external hardware is required, as the CPU is driven entirely through the pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "e41d9652935a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The source describes an 8-bit LFSR for card randomness, not a general pseudo-random number generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puzzle",
+     "reason": "Blackjack is a card game with puzzle-like decision logic."
+    }
+   ],
+   "notes": "Removed prng because the source only documents an LFSR for card generation; added puzzle for the card-game logic.",
+   "tags_before": [
+    "game",
+    "fsm",
+    "lfsr",
+    "prng",
+    "7-segment",
+    "led",
+    "button"
+   ],
+   "tags": [
+    "game",
+    "fsm",
+    "lfsr",
+    "7-segment",
+    "led",
+    "button",
+    "puzzle"
+   ],
+   "summary_before": "This design implements a complete Blackjack card game in Verilog for a 1x1 Tiny Tapeout tile. It uses a finite state machine to manage game flow, an LFSR for card randomness, and outputs game status via LEDs and a 3-bit sum to a 7-segment display. The game is controlled by hit and stand buttons, with win/lose/push indicated by LEDs. External hardware needed includes a clock source, push buttons, LEDs, and a 7-segment display; button debouncing is optional.",
+   "summary": "This design implements a complete Blackjack card game in Verilog for a 1x1 Tiny Tapeout tile. It uses a finite state machine to manage game flow, an LFSR for card randomness, and outputs game status via LEDs and a 3-bit sum to a 7-segment display. The game is controlled by hit and stand buttons, with win/lose/push indicated by LEDs. External hardware needed includes a clock source, push buttons, LEDs, and a 7-segment display; button debouncing is optional.",
+   "summary_changed": false
+  },
+  {
+   "key": "995f8bdf3345",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The source describes game state and timers but does not explicitly document a finite state machine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "The one-line description identifies it as a university final project."
+    }
+   ],
+   "notes": "Removed fsm because no explicit finite state machine is documented; added workshop for the university final project origin.",
+   "tags_before": [
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "fsm",
+    "education",
+    "systemverilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "education",
+    "systemverilog",
+    "workshop"
+   ],
+   "summary_before": "TinyFarm is a hardware farming game implemented in SystemVerilog that maintains four fields with crops that grow, can be watered, and are harvested to fulfill customer orders. Player inputs select mode, field, and crop and trigger actions, while a VGA output in RGB222 format displays the farm grid and game status. The design needs a Tiny VGA PMOD and a monitor to view the output, plus buttons or switches for the control inputs. It originated as a university final project and is notable for fitting a small game with inventory and order logic into a single tile pair.",
+   "summary": "TinyFarm is a hardware farming game implemented in SystemVerilog that maintains four fields with crops that grow, can be watered, and are harvested to fulfill customer orders. Player inputs select mode, field, and crop and trigger actions, while a VGA output in RGB222 format displays the farm grid and game status. The design needs a Tiny VGA PMOD and a monitor to view the output, plus buttons or switches for the control inputs. It originated as a university final project and is notable for fitting a small game with inventory and order logic into a single tile pair.",
+   "summary_changed": false
+  },
+  {
+   "key": "2ad28c9aa83e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The source calls it RISC-V style but does not state that it implements the RISC-V ISA."
+    },
+    {
+     "tag": "alu",
+     "reason": "The source mentions an accumulator-based data path but does not document a separate ALU block."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "The source does not explicitly document instruction decode logic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The design is an 8-bit single-cycle processor."
+    },
+    {
+     "tag": "education",
+     "reason": "The source states it is designed for educational purposes."
+    },
+    {
+     "tag": "fpga",
+     "reason": "The source mentions small-scale FPGA implementations and using an FPGA to provide instructions."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project language is Verilog."
+    }
+   ],
+   "notes": "Removed risc-v because the source only says RISC-V style, not RISC-V ISA; removed alu and instruction-decoder as they are not explicitly documented.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "alu",
+    "instruction-decoder",
+    "education",
+    "fpga",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "education",
+    "fpga",
+    "verilog"
+   ],
+   "summary_before": "This project is a simple 8-bit, single-cycle processor with a RISC-V-style instruction set and an accumulator-based data path. It has no internal instruction memory; the 16-bit instruction is applied externally through the 8 input pins and 8 bidirectional pins. Testing requires driving those pins with switches, an MCU, or an FPGA, and the design is intended for educational use or small embedded control logic. The documentation notes that manual switch input is impractical, so an external microcontroller such as an ESP32 is recommended.",
+   "summary": "This project is a simple 8-bit, single-cycle processor with a RISC-V-style instruction set and an accumulator-based data path. It has no internal instruction memory; the 16-bit instruction is applied externally through the 8 input pins and 8 bidirectional pins. Testing requires driving those pins with switches, an MCU, or an FPGA, and the design is intended for educational use or small embedded control logic. The documentation notes that manual switch input is impractical, so an external microcontroller such as an ESP32 is recommended.",
+   "summary_changed": false
+  },
+  {
+   "key": "a4207e318a3c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "fsm",
+    "memory",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "fsm",
+    "memory",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This is a compact 8-bit teaching CPU with four general registers, a 24x8 data RAM, an 8-bit ALU and a 16-instruction ISA. Instructions are supplied externally on the eight input pins, with the destination register value on the outputs and PC, zero, carry and fetch-phase flags on the bidirectional pins for debugging. It is intended as an educational design, with unit tests for the ALU, control FSM, registers, memory and datapath, and it needs external memory to hold instructions. The design is configured for a 1x2 tile footprint and has no on-chip program ROM.",
+   "summary": "This is a compact 8-bit teaching CPU with four general registers, a 24x8 data RAM, an 8-bit ALU and a 16-instruction ISA. Instructions are supplied externally on the eight input pins, with the destination register value on the outputs and PC, zero, carry and fetch-phase flags on the bidirectional pins for debugging. It is intended as an educational design, with unit tests for the ALU, control FSM, registers, memory and datapath, and it needs external memory to hold instructions. The design is configured for a 1x2 tile footprint and has no on-chip program ROM.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9008,
+  "completion_tokens": 1622,
+  "total_tokens": 10630,
+  "cost": 0.003158328,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003158328,
+   "upstream_inference_prompt_cost": 0.001503888,
+   "upstream_inference_completions_cost": 0.00165444
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003158328,
+ "elapsed_s": 53.5
+}

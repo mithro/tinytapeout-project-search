@@ -1,0 +1,183 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "aa0274b885e8",
+  "1e69f9715a6e",
+  "6f94ee8ece23",
+  "866cad908e73",
+  "d5fb9a8d9802",
+  "00e3bd215f44",
+  "4886fb5096bd",
+  "c8c2e4235d33",
+  "f241842c341e",
+  "c93d7e290e7c"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "aa0274b885e8",
+   "tags": [
+    "timer",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "pwm"
+   ],
+   "summary": "This project is an analog re-implementation of the classic 555 timer IC on GF180mcu, with internal circuitry that differs from a CMOS 555 but is intended to behave identically. It exposes threshold, trigger, reset, control, output and discharge pins plus on-chip oscillator discharge and output pins. It is tested by recreating typical 555 datasheet circuits with external resistors and capacitors and observing the output on an oscilloscope. The design is notable for being a transistor-level analog recreation of a well-known part rather than a digital design.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "1e69f9715a6e",
+   "tags": [
+    "vco",
+    "oscillator",
+    "analog",
+    "transistor-level"
+   ],
+   "summary": "This is an analog four-stage differential delay voltage-controlled oscillator that uses a comparator tapping two stages to produce four single-ended quadrature outputs at 0, 90, 180 and 270 degrees. Its nominal target frequency is 240 MHz with an expected tuning range of roughly 120 MHz to 500 MHz, controlled by an analog control voltage. Testing requires a programmable precision voltage source and an oscilloscope to observe oscillation. The design is notable for providing quadrature phases from a compact analog VCO suitable for clock generation or PLL use.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "6f94ee8ece23",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "text",
+    "verilog"
+   ],
+   "summary": "This Verilog design drives a VGA display to show the text \"DESIGN YOUR OWN CHIP\" using the Tiny VGA pinout at a 25.175 MHz pixel clock. It outputs two bits each of red, green and blue along with horizontal and vertical sync on the eight outputs. It is used by connecting a VGA display through a Tiny VGA Pmod, with no other external hardware required. The project is a simple demonstration of generating a VGA signal from a Tiny Tapeout design.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "866cad908e73",
+   "tags": [
+    "uart",
+    "multiplexer",
+    "communication",
+    "verilog"
+   ],
+   "summary": "This Verilog design implements a bidirectional 6x6 bussbar switch that can route any of six UART receive inputs to one or more of six UART transmit outputs, with each output connected to at most one input at a time. Configuration is loaded through a serial data-in pin and an 18-bit shift register, with a latch signal to apply the configuration and an active-low reset. It is tested by driving the configuration stream from an external microcontroller and connecting UART interfaces to the TXD and RXD pins. No external hardware beyond UART connections is required, making it a compact programmable serial routing block.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "d5fb9a8d9802",
+   "tags": [
+    "adc",
+    "dac",
+    "analog",
+    "mixed-signal"
+   ],
+   "summary": "This analog design is an 8-bit binary-search analog-to-digital converter intended to digitize analog pixel signals for a CCDmos3D pixel. It generates its own test input signal, feeds it through the ADC, converts the digital result back with a DAC, and outputs both the original and reconstructed signals on two analog pins for comparison. Testing requires a power source for the chip and an oscilloscope to verify that the two analog outputs match. The design is notable for including a self-test path that exercises the ADC and DAC together.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "00e3bd215f44",
+   "tags": [
+    "pwm",
+    "biomedical",
+    "instrumentation",
+    "verilog"
+   ],
+   "summary": "This Verilog design generates a PWM signal whose frequency and duty cycle are set by an 8-bit duty ratio input and speed and mode selection pins, intended to model the pulse control of a TENS device. It supports a continuous mode and a burst mode that gates pulses into a 200 ms on, 800 ms off envelope. Testing is done by holding reset, setting the duty ratio, selecting continuous or burst mode, and observing the output on an oscilloscope. The documentation explicitly warns that the design has not been reviewed for safety and must not be used to drive electrical impulses into skin.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "4886fb5096bd",
+   "tags": [
+    "soc",
+    "cpu",
+    "spi",
+    "pwm",
+    "timer",
+    "rom",
+    "education",
+    "verilog"
+   ],
+   "summary": "This Verilog project is a small system on chip containing a 16-bit microprocessor, a 32-word boot ROM, RAM, an 8-bit PWM, an 8-bit timer, a UART and an SPI interface, all memory-mapped for the CPU. After reset the boot ROM runs a program that reads the 8-bit input port, writes it to the 8-bit output port, and exercises the supported instructions and the SPI, timer and PWM blocks. It is tested by powering the chip and observing the parallel output on a 7-segment display or LEDs, with SPI data appearing on the MOSI and related pins. The design is intended as a teaching vehicle for lectures and labs, and the documentation notes that external hardware such as a keypad and display is still to be decided.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "c8c2e4235d33",
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "dsp",
+    "alu",
+    "verilog",
+    "pipeline"
+   ],
+   "summary": "This Verilog design is an 8-bit signed fused multiply-add unit that computes z = a*b + c with a 16-bit internal product and sum, outputting the low 8 bits of the result. It uses a two-phase streaming protocol in which a and b are captured on even cycles and c on odd cycles, producing one result every two cycles with no separate valid signal. It is verified with cocotb tests covering reset, corner cases, 2000 randomized triples against a Python reference, and back-to-back streaming, plus a plain Verilog self-checking testbench. No external hardware is required, and the design is notable for its compact streaming arithmetic datapath.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "f241842c341e",
+   "tags": [
+    "dsp",
+    "machine-learning",
+    "sensor-interface",
+    "verilog"
+   ],
+   "summary": "This Verilog design is a zero-RAM streaming statistical co-processor that tracks a median and median absolute deviation baseline from an 8-bit input stream and classifies events using a temporal persistence engine. It outputs the tracked baseline on the eight outputs and an event code on three bidirectional pins, with a wake interrupt and debug and configuration pins. It is tested by applying an 8-bit signal and configuration pins, then injecting a one-cycle spike, a permanent baseline jump, a slow ramp, or a held value to obtain the corresponding glitch, shift, drift or stuck-sensor codes. The design is notable for distinguishing transient outliers from persistent baseline shifts without any memory buffers.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "c93d7e290e7c",
+   "tags": [
+    "ldo",
+    "comparator",
+    "analog",
+    "mixed-signal",
+    "transistor-level"
+   ],
+   "summary": "This is a custom analog test chip in SKY130 containing an LDO voltage regulator and a clocked dynamic comparator, occupying 2x2 Tiny Tapeout tiles with six analog connections. The LDO regulates an output near 1.0 V using an external reference, while the comparator evaluates differential inputs under the CLKB signal and exposes both outputs for characterization. Testing requires a Tiny Tapeout analog platform, current-limited supplies, a low-noise reference, programmable loads, a differential input source and clock generator, and low-capacitance probes for measurement. The documentation notes that the top-cell name tt_um_SAR_ADC does not imply a complete SAR ADC, and that several characterization details such as common-mode range and capacitor values are not fully specified.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9789,
+  "completion_tokens": 1863,
+  "total_tokens": 11652,
+  "cost": 0.0010677009,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0010677009,
+   "upstream_inference_prompt_cost": 0.0007090734,
+   "upstream_inference_completions_cost": 0.0003586275
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0010677009,
+ "elapsed_s": 37.8
+}

@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "c27d3bba422e",
+  "72cbfbc586f1",
+  "90885de90f43",
+  "81f33761b8f8",
+  "23b3353e196e",
+  "359c4b8dceab"
+ ],
+ "results": [
+  {
+   "key": "c27d3bba422e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence of discrete-transistor construction; level shifter is a typical analog cell."
+    },
+    {
+     "tag": "low-power",
+     "reason": "Source discusses low-voltage operation, not low-power optimization."
+    }
+   ],
+   "add": [],
+   "notes": "Removed incorrect transistor-level and low-power tags; reordered summary so design precedes testing.",
+   "tags_before": [
+    "level-shifter",
+    "analog",
+    "transistor-level",
+    "low-power"
+   ],
+   "tags": [
+    "level-shifter",
+    "analog"
+   ],
+   "summary_before": "This is an analog level shifter experiment that operates down to around 0.2V, designed by Sylvain Munaut. It is tested by applying an input signal and observing the output, requiring an adjustable power supply, a soldering iron to remove a resistor, and an oscilloscope. The design improves upon traditional level shifters that only work down to about 1V. The documentation includes a schematic and a graph showing a 0.2V input resulting in a full 1.8V swing output.",
+   "summary": "This is an analog level shifter experiment that operates down to around 0.2V, designed by Sylvain Munaut. The design improves upon traditional level shifters that only work down to about 1V. The documentation includes a schematic and a graph showing a 0.2V input resulting in a full 1.8V swing output. It is tested by applying an input signal and observing the output, requiring an adjustable power supply, a soldering iron to remove a resistor, and an oscilloscope.",
+   "summary_changed": true
+  },
+  {
+   "key": "72cbfbc586f1",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adc",
+    "dac",
+    "comparator",
+    "spi",
+    "mixed-signal",
+    "analog",
+    "education",
+    "sar-adc",
+    "r2r-dac"
+   ],
+   "tags": [
+    "adc",
+    "dac",
+    "comparator",
+    "spi",
+    "mixed-signal",
+    "analog",
+    "education",
+    "sar-adc",
+    "r2r-dac"
+   ],
+   "summary_before": "AICD Playground is a mixed-signal test project for the analog IC design course at Graz University of Technology. It integrates a digital 8-bit controller with analog IPs including level shifters, an R2R DAC, and a comparator, forming a simple SAR-ADC. The design is configured via SPI to load memory with a program, and then the CPU executes it to perform analog-to-digital conversion. No external hardware is necessary for basic operation.",
+   "summary": "AICD Playground is a mixed-signal test project for the analog IC design course at Graz University of Technology. It integrates a digital 8-bit controller with analog IPs including level shifters, an R2R DAC, and a comparator, forming a simple SAR-ADC. The design is configured via SPI to load memory with a program, and then the CPU executes it to perform analog-to-digital conversion. No external hardware is necessary for basic operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "90885de90f43",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "qspi",
+    "uart",
+    "spi",
+    "memory",
+    "lcd",
+    "pwm",
+    "microcontroller"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "qspi",
+    "uart",
+    "spi",
+    "memory",
+    "lcd",
+    "pwm",
+    "microcontroller"
+   ],
+   "summary_before": "This is a RISC-V SoC based on TinyQV, implementing the RV32EC instruction set with additional extensions. It uses QSPI flash for program storage and QSPI PSRAM for data memory, and includes peripherals such as UART, SPI, and PWM. The design is intended to be used with a QSPI Pmod containing flash and RAM, and can drive an ST7789 LCD display via SPI. Testing requires loading an image into flash and following a specific reset sequence, typically handled by MicroPython scripts on the demo board's RP2040.",
+   "summary": "This is a RISC-V SoC based on TinyQV, implementing the RV32EC instruction set with additional extensions. It uses QSPI flash for program storage and QSPI PSRAM for data memory, and includes peripherals such as UART, SPI, and PWM. The design is intended to be used with a QSPI Pmod containing flash and RAM, and can drive an ST7789 LCD display via SPI. Testing requires loading an image into flash and following a specific reset sequence, typically handled by MicroPython scripts on the demo board's RP2040.",
+   "summary_changed": false
+  },
+  {
+   "key": "81f33761b8f8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "Source describes a secure lock, not an interactive game."
+    }
+   ],
+   "add": [],
+   "notes": "Removed game tag; the design is a security lock, not a game.",
+   "tags_before": [
+    "wokwi",
+    "7-segment",
+    "security",
+    "fsm",
+    "game"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "security",
+    "fsm"
+   ],
+   "summary_before": "Padlock is a digital lock design implemented in Wokwi that stores a 7-bit secret code and indicates locked or unlocked status on a 7-segment display. The user sets the code via input pins and toggles a set pin to store it; entering the correct code unlocks the safe until reset. The design is tested by setting the clock to free-running mode and following a sequence of input changes. No external hardware is required.",
+   "summary": "Padlock is a digital lock design implemented in Wokwi that stores a 7-bit secret code and indicates locked or unlocked status on a 7-segment display. The user sets the code via input pins and toggles a set pin to store it; entering the correct code unlocks the safe until reset. The design is tested by setting the clock to free-running mode and following a sequence of input changes. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "23b3353e196e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design is a true random number generator, not a pseudo-random one."
+    },
+    {
+     "tag": "crypto",
+     "reason": "Source does not mention cryptographic use."
+    },
+    {
+     "tag": "cpu",
+     "reason": "No processor or CPU in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "UART TX pin and UART output described in source; missing canonical interface tag."
+    }
+   ],
+   "notes": "Removed prng, crypto, cpu; added uart interface tag supported by pin and text.",
+   "tags_before": [
+    "trng",
+    "ring-oscillator",
+    "prng",
+    "uart",
+    "crypto",
+    "cpu"
+   ],
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "uart"
+   ],
+   "summary_before": "This project implements a true random number generator using three ring oscillators of different lengths (6, 12, and 24 inverters) whose outputs are XORed to produce a chaotic bitstream. A Von Neumann corrector debiases the stream, and 32-bit random numbers are output via UART at 9600 baud. The raw oscillator outputs are also available on pins for monitoring. A UART-to-USB adapter is required to view the generated numbers.",
+   "summary": "This project implements a true random number generator using three ring oscillators of different lengths (6, 12, and 24 inverters) whose outputs are XORed to produce a chaotic bitstream. A Von Neumann corrector debiases the stream, and 32-bit random numbers are output via UART at 9600 baud. The raw oscillator outputs are also available on pins for monitoring. A UART-to-USB adapter is required to view the generated numbers.",
+   "summary_changed": false
+  },
+  {
+   "key": "359c4b8dceab",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog",
+    "asic"
+   ],
+   "summary_before": "This project implements a PQN model in Verilog that can generate Class 1 and Class 2 neuron firing patterns, selectable via a mode pin. It accepts a 12-bit input current and outputs a 16-bit membrane potential. The design was verified against Julia simulations using provided test vectors, with outputs updated every 180 clock cycles. External hardware requires only a PCB board for testing.",
+   "summary": "This project implements a PQN model in Verilog that can generate Class 1 and Class 2 neuron firing patterns, selectable via a mode pin. It accepts a 12-bit input current and outputs a 16-bit membrane potential. The design was verified against Julia simulations using provided test vectors, with outputs updated every 180 clock cycles. External hardware requires only a PCB board for testing.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7328,
+  "completion_tokens": 1173,
+  "total_tokens": 8501,
+  "cost": 0.003606,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003606,
+   "upstream_inference_prompt_cost": 0.0021984,
+   "upstream_inference_completions_cost": 0.0014076
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003606,
+ "elapsed_s": 7.6
+}

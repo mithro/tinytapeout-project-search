@@ -1,0 +1,206 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1ebaf3b4c468",
+  "c1018314fd52",
+  "112a7bc47f73",
+  "8f4c77be6fd5",
+  "2442797dd388",
+  "8262438deafb"
+ ],
+ "results": [
+  {
+   "key": "1ebaf3b4c468",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "decoder",
+    "7-segment",
+    "logic-gate",
+    "sequential-logic",
+    "wokwi"
+   ],
+   "tags": [
+    "counter",
+    "decoder",
+    "7-segment",
+    "logic-gate",
+    "sequential-logic",
+    "wokwi"
+   ],
+   "summary_before": "This design is a 4-bit synchronous counter with a fully decoded hex output for a 7-segment display. It uses 29 2-input NAND gates for decoding, based on a minimized design from Kim Oyhus. The counter has an active-high enable and asynchronous reset, and counts on the positive clock edge. It requires no external hardware beyond the standard demo board.",
+   "summary": "This design is a 4-bit synchronous counter with a fully decoded hex output for a 7-segment display. It uses 29 2-input NAND gates for decoding, based on a minimized design from Kim Oyhus. The counter has an active-high enable and asynchronous reset, and counts on the positive clock edge. It requires no external hardware beyond the standard demo board.",
+   "summary_changed": false
+  },
+  {
+   "key": "c1018314fd52",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is placeholder text ('It does stuff (testing)') and the design is clearly unfinished."
+    }
+   ],
+   "notes": "Added 'incomplete' because the source documentation is placeholder text and the design is unfinished.",
+   "tags_before": [
+    "dsp",
+    "audio",
+    "microphone",
+    "i2s",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "audio",
+    "microphone",
+    "i2s",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "The design is a 16-microphone delay-and-sum beamformer that processes PDM inputs and outputs beamformed audio via I2S. It expects a 3.072 MHz bit clock and 48 kHz LR clock, and can use up to 16 digital microphones. Documentation is minimal placeholder text, so the internal beamforming details and test procedure are not described. The project is notable for targeting a high microphone count in a small digital design.",
+   "summary": "The design is a 16-microphone delay-and-sum beamformer that processes PDM inputs and outputs beamformed audio via I2S. It expects a 3.072 MHz bit clock and 48 kHz LR clock, and can use up to 16 digital microphones. Documentation is minimal placeholder text, so the internal beamforming details and test procedure are not described. The project is notable for targeting a high microphone count in a small digital design.",
+   "summary_changed": false
+  },
+  {
+   "key": "112a7bc47f73",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "power-gating",
+     "reason": "The design does not implement power gating; it merely warns about removing an analog supply resistor."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'power-gating' because the source only warns about a destructive supply connection, not a power-gating technique.",
+   "tags_before": [
+    "counter",
+    "analog",
+    "power-gating",
+    "power-management"
+   ],
+   "tags": [
+    "counter",
+    "analog",
+    "power-management"
+   ],
+   "summary_before": "This design allows an analog supply to power a digital counter, with the warning that the analog supply resistor must be removed before enabling to avoid destroying the digital logic. It is tested by connecting a variable power supply to the analog supply and observing the counter outputs. External hardware includes a variable PSU. The documentation is minimal and emphasizes the destructive risk if misused.",
+   "summary": "This design allows an analog supply to power a digital counter, with the warning that the analog supply resistor must be removed before enabling to avoid destroying the digital logic. It is tested by connecting a variable power supply to the analog supply and observing the counter outputs. External hardware includes a variable PSU. The documentation is minimal and emphasizes the destructive risk if misused.",
+   "summary_changed": false
+  },
+  {
+   "key": "8f4c77be6fd5",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "nco",
+    "signal-generator",
+    "audio",
+    "dac",
+    "r2r-dac",
+    "lookup-table"
+   ],
+   "tags": [
+    "nco",
+    "signal-generator",
+    "audio",
+    "dac",
+    "r2r-dac",
+    "lookup-table"
+   ],
+   "summary_before": "This is an 8-bit direct digital synthesizer (DDS) that generates a digitized sine wave with user-defined frequency. The frequency is set by an 8-bit phase increment loaded via input pins, and the output is an 8-bit amplitude sample updated every clock cycle. An external R-2R ladder DAC is required to convert the digital output to an analog sine wave. The design is based on standard DDS principles and can produce frequencies up to about 33 MHz at a 66 MHz clock.",
+   "summary": "This is an 8-bit direct digital synthesizer (DDS) that generates a digitized sine wave with user-defined frequency. The frequency is set by an 8-bit phase increment loaded via input pins, and the output is an 8-bit amplitude sample updated every clock cycle. An external R-2R ladder DAC is required to convert the digital output to an analog sine wave. The design is based on standard DDS principles and can produce frequencies up to about 33 MHz at a 66 MHz clock.",
+   "summary_changed": false
+  },
+  {
+   "key": "2442797dd388",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'partial' with inconclusive results, not a validated silicon test."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'silicon-tested' because the silicon status is only partial and inconclusive.",
+   "tags_before": [
+    "voltage-reference",
+    "bandgap",
+    "analog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "voltage-reference",
+    "bandgap",
+    "analog"
+   ],
+   "summary_before": "This analog project implements a voltage reference that compensates for temperature and supply voltage variations. It is designed by the LPCAS lab at IIT Gandhinagar. Testing requires precise temperature control using a TEC module and measurement of output voltages with high-impedance probes. Silicon test reports indicate partial success: one reference produced expected voltage but startup was sometimes strange, while the second reference appeared stuck at a low voltage.",
+   "summary": "This analog project implements a voltage reference that compensates for temperature and supply voltage variations. It is designed by the LPCAS lab at IIT Gandhinagar. Testing requires precise temperature control using a TEC module and measurement of output voltages with high-impedance probes. Silicon test reports indicate partial success: one reference produced expected voltage but startup was sometimes strange, while the second reference appeared stuck at a low voltage.",
+   "summary_changed": false
+  },
+  {
+   "key": "8262438deafb",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "vga",
+    "audio",
+    "pwm",
+    "gamepad",
+    "retro",
+    "demoscene",
+    "video",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "audio",
+    "pwm",
+    "gamepad",
+    "retro",
+    "demoscene",
+    "video",
+    "verilog"
+   ],
+   "summary_before": "Spacewar is a scaled-down version of the classic Spacewar game written in Verilog, targeting VGA video output and audio. It reads a SNES-style gamepad over a clocked serial interface and also provides a PWM audio output and XY scope outputs. The pinout matches the Tiny VGA, TT Audio and Gamepad PMOD conventions, so external VGA, audio, SNES controller and scope hardware are required. The documentation is thin: testing is listed as 'Cocotb coming soon' and no silicon results are reported.",
+   "summary": "Spacewar is a scaled-down version of the classic Spacewar game written in Verilog, targeting VGA video output and audio. It reads a SNES-style gamepad over a clocked serial interface and also provides a PWM audio output and XY scope outputs. The pinout matches the Tiny VGA, TT Audio and Gamepad PMOD conventions, so external VGA, audio, SNES controller and scope hardware are required. The documentation is thin: testing is listed as 'Cocotb coming soon' and no silicon results are reported.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6519,
+  "completion_tokens": 1042,
+  "total_tokens": 7561,
+  "cost": 0.0032061,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032061,
+   "upstream_inference_prompt_cost": 0.0019557,
+   "upstream_inference_completions_cost": 0.0012504
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032061,
+ "elapsed_s": 9.5
+}

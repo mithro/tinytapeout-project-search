@@ -1,0 +1,242 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2950542a7bf3",
+  "dc8a8a67b43f",
+  "6214232a1c0a",
+  "1e04aa64a407",
+  "128a00c602fc",
+  "491e6e876c00"
+ ],
+ "results": [
+  {
+   "key": "2950542a7bf3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is described as an analog SAR ADC with digital logic, but the source does not explicitly present it as a combined analog/digital mixed-signal design; the language is Analog and no mixed-signal claim is made."
+    }
+   ],
+   "add": [
+    {
+     "tag": "comparator-analog",
+     "reason": "The source explicitly describes a comparator that compares the DAC output to the sampled analog input."
+    }
+   ],
+   "notes": "Removed mixed-signal because the source does not explicitly claim a mixed analog/digital design; added comparator-analog for the described analog comparator.",
+   "tags_before": [
+    "adc",
+    "sar-adc",
+    "analog",
+    "mixed-signal",
+    "comparator"
+   ],
+   "tags": [
+    "adc",
+    "sar-adc",
+    "analog",
+    "comparator",
+    "comparator-analog"
+   ],
+   "summary_before": "This project implements an 8-bit successive-approximation-register (SAR) ADC in an analog process, converting an analog input voltage to an 8-bit digital output. It includes a sample-and-hold circuit, a comparator, and a digital SAR logic block, with enable and calibration inputs for the comparator. The design currently lacks full rail-to-rail detection without precise timing and accurately converts only above approximately 0.8V; it requires two clock signals, one for the digital logic and a slower one for sampling. External hardware such as a signal generator and oscilloscope is needed for testing.",
+   "summary": "This project implements an 8-bit successive-approximation-register (SAR) ADC in an analog process, converting an analog input voltage to an 8-bit digital output. It includes a sample-and-hold circuit, a comparator, and a digital SAR logic block, with enable and calibration inputs for the comparator. The design currently lacks full rail-to-rail detection without precise timing and accurately converts only above approximately 0.8V; it requires two clock signals, one for the digital logic and a slower one for sampling. External hardware such as a signal generator and oscilloscope is needed for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "dc8a8a67b43f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    },
+    {
+     "tag": "led",
+     "reason": "An LED is only mentioned as external test hardware, not as an output interface of the design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education and led because neither is supported by the source; the LED is only external test equipment.",
+   "tags_before": [
+    "flip-flop",
+    "sequential-logic",
+    "education",
+    "wokwi",
+    "led"
+   ],
+   "tags": [
+    "flip-flop",
+    "sequential-logic",
+    "wokwi"
+   ],
+   "summary_before": "This is a T flip-flop that toggles its output state when the T input is high and a clock pulse is received, providing both Q and inverted Q outputs. It is tested by applying the truth table combinations and observing the outputs. An external LED is suggested for testing. The documentation is clear and includes a truth table, making it a straightforward sequential logic example.",
+   "summary": "This is a T flip-flop that toggles its output state when the T input is high and a clock pulse is received, providing both Q and inverted Q outputs. It is tested by applying the truth table combinations and observing the outputs. An external LED is suggested for testing. The documentation is clear and includes a truth table, making it a straightforward sequential logic example.",
+   "summary_changed": false
+  },
+  {
+   "key": "6214232a1c0a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The design is specifically a ring counter, and the generic counter tag is redundant and less precise."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "The source describes using LEDs to visualize the 16 outputs on the demo board or with external LEDs."
+    }
+   ],
+   "notes": "Removed redundant counter tag and added led because the source explicitly uses LEDs for output visualization.",
+   "tags_before": [
+    "ring-counter",
+    "counter",
+    "shift-register",
+    "sequential-logic",
+    "verilog"
+   ],
+   "tags": [
+    "ring-counter",
+    "shift-register",
+    "sequential-logic",
+    "verilog",
+    "led"
+   ],
+   "summary_before": "This project is a 16-bit one-hot ring counter that sequentially activates its outputs at the clock rate, with a single high bit shifting through 16 outputs. The first 8 outputs are on dedicated output pins, and the next 8 are on bidirectional pins configured as outputs. It requires only a clock source and reset button, with LEDs for visual feedback; the Tiny Tapeout demo board provides these. The design is simple and useful for educational demonstrations of shift registers and one-hot encoding. No silicon test results are provided.",
+   "summary": "This project is a 16-bit one-hot ring counter that sequentially activates its outputs at the clock rate, with a single high bit shifting through 16 outputs. The first 8 outputs are on dedicated output pins, and the next 8 are on bidirectional pins configured as outputs. It requires only a clock source and reset button, with LEDs for visual feedback; the Tiny Tapeout demo board provides these. The design is simple and useful for educational demonstrations of shift registers and one-hot encoding. No silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "1e04aa64a407",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "framebuffer",
+     "reason": "The source describes a character ROM and bitmap shifter, not a pixel framebuffer."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The source describes shifting in data and clocking out columns, but does not explicitly describe a shift register."
+    }
+   ],
+   "add": [
+    {
+     "tag": "text",
+     "reason": "The design stores and outputs ASCII characters, providing textual output."
+    }
+   ],
+   "notes": "Removed framebuffer and shift-register as unsupported; added text because the design handles ASCII character output.",
+   "tags_before": [
+    "rom",
+    "framebuffer",
+    "led",
+    "display",
+    "ascii",
+    "verilog",
+    "shift-register"
+   ],
+   "tags": [
+    "rom",
+    "led",
+    "display",
+    "ascii",
+    "verilog",
+    "text"
+   ],
+   "summary_before": "This design provides a character ROM and bitmap shifter intended for persistence-of-vision (POV) displays. It accepts serial input to load ASCII characters or bitmap columns, and outputs columns of the stored characters or bitmaps to drive LEDs. The design is controlled by a clock and a 7-bit data input, with modes selected by the input pattern. It requires external pink LEDs for display.",
+   "summary": "This design provides a character ROM and bitmap shifter intended for persistence-of-vision (POV) displays. It accepts serial input to load ASCII characters or bitmap columns, and outputs columns of the stored characters or bitmaps to drive LEDs. The design is controlled by a clock and a 7-bit data input, with modes selected by the input pattern. It requires external pink LEDs for display.",
+   "summary_changed": false
+  },
+  {
+   "key": "128a00c602fc",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "signal-generator",
+    "ring-oscillator",
+    "frequency-synthesizer",
+    "verilog"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "signal-generator",
+    "ring-oscillator",
+    "frequency-synthesizer",
+    "verilog"
+   ],
+   "summary_before": "This is a programmable sound generator with two square-wave voices, one sawtooth voice, and one noise channel, and it can also serve as a general-purpose frequency generator. Tone generation divides a ring-oscillator-derived internal clock by a programmable divisor, producing a 6-bit digital sample that can be converted to analog with a resistor chain. Programming is done through a 4-bit data bus with address and write strobe pins, and a documented register sequence produces a roughly 440 Hz tone. External hardware includes a DAC or resistor network and a microcontroller or microprocessor to program the device.",
+   "summary": "This is a programmable sound generator with two square-wave voices, one sawtooth voice, and one noise channel, and it can also serve as a general-purpose frequency generator. Tone generation divides a ring-oscillator-derived internal clock by a programmable divisor, producing a 6-bit digital sample that can be converted to analog with a resistor chain. Programming is done through a 4-bit data bus with address and write strobe pins, and a documented register sequence produces a roughly 440 Hz tone. External hardware includes a DAC or resistor network and a microcontroller or microprocessor to program the device.",
+   "summary_changed": false
+  },
+  {
+   "key": "491e6e876c00",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The source says the worm travels along a pseudo-random path, but does not describe a pseudo-random number generator circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "maze",
+     "reason": "The project is titled 'Worm in a Maze' and the worm travels through a maze-like path."
+    }
+   ],
+   "notes": "Removed prng because the source only mentions a pseudo-random path, not a PRNG circuit; added maze based on the title and described behavior.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "prng",
+    "clock-divider"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "clock-divider",
+    "maze"
+   ],
+   "summary_before": "This project displays an animation of a segmented worm traveling along a pseudo-random path on a seven-segment LED display. It includes controls for disabling auto-reset, manual reset, and a turbo mode that bypasses a clock divider. The number of worm segments can be set to two or three. The design is a simple animation demo and requires only the default PCB for use.",
+   "summary": "This project displays an animation of a segmented worm traveling along a pseudo-random path on a seven-segment LED display. It includes controls for disabling auto-reset, manual reset, and a turbo mode that bypasses a clock divider. The number of worm segments can be set to two or three. The design is a simple animation demo and requires only the default PCB for use.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "6214232a1c0a: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6579,
+  "completion_tokens": 1456,
+  "total_tokens": 8035,
+  "cost": 0.0021894,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0021894,
+   "upstream_inference_prompt_cost": 0.0013158,
+   "upstream_inference_completions_cost": 0.0008736
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0021894,
+ "elapsed_s": 38.1
+}

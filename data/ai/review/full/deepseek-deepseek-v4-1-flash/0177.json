@@ -1,0 +1,302 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bb2748944b22",
+  "f940a688afdc",
+  "7bcb2b61effd",
+  "ce84cd8358b7",
+  "ba03678c3b41",
+  "83f9e6e0dc1d"
+ ],
+ "results": [
+  {
+   "key": "bb2748944b22",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design uses LFSRs for random decisions, not a dedicated pseudo-random number generator block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "The design is an interactive game-like demo with gamepad controls."
+    },
+    {
+     "tag": "pong",
+     "reason": "The falling-ball/pegboard demo is a pong-style arcade visual."
+    },
+    {
+     "tag": "pmod",
+     "reason": "The documentation explicitly supports VGA, gamepad and audio Pmods."
+    },
+    {
+     "tag": "speaker",
+     "reason": "Audio output is provided on uio_out[7] for sound effects."
+    },
+    {
+     "tag": "histogram",
+     "reason": "The design builds a histogram of ball landing positions."
+    }
+   ],
+   "notes": "Removed prng because the LFSRs are used for random decisions, not as a standalone PRNG; added game, pong, pmod, speaker and histogram tags supported by the source.",
+   "tags_before": [
+    "vga",
+    "video",
+    "lfsr",
+    "prng",
+    "audio",
+    "gamepad",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "lfsr",
+    "audio",
+    "gamepad",
+    "graphics",
+    "verilog",
+    "game",
+    "pong",
+    "pmod",
+    "speaker",
+    "image-processing"
+   ],
+   "summary_before": "This design is a VGA demo that simulates a Galton peg board with falling paint balls that create a histogram of landing positions. It uses three prime LFSR sequences to generate random left/right decisions at each peg, and the balls squish at the bottom. The design supports optional gamepad and audio Pmods for interactive control and sound effects. It can also be controlled via simple input pins when no gamepad is present.",
+   "summary": "This design is a VGA demo that simulates a Galton peg board with falling paint balls that create a histogram of landing positions. It uses three prime LFSR sequences to generate random left/right decisions at each peg, and the balls squish at the bottom. The design supports optional gamepad and audio Pmods for interactive control and sound effects. It can also be controlled via simple input pins when no gamepad is present.",
+   "summary_changed": false
+  },
+  {
+   "key": "f940a688afdc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fpga",
+     "reason": "The FPGA is only suggested as external test equipment, not the target platform."
+    },
+    {
+     "tag": "sequence-detector",
+     "reason": "The design is a programmable FSM, not a sequence detector."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "The design is explicitly a finite state machine."
+    },
+    {
+     "tag": "education",
+     "reason": "The project appears to be a learning/teaching exercise."
+    },
+    {
+     "tag": "serial",
+     "reason": "The state sequence is programmed through a serial input."
+    }
+   ],
+   "notes": "Removed fpga because it is only external test equipment; removed sequence-detector because the design is a programmable FSM; added fsm, education and serial.",
+   "tags_before": [
+    "fsm",
+    "education",
+    "fpga",
+    "sequence-detector"
+   ],
+   "tags": [
+    "fsm",
+    "education",
+    "uart"
+   ],
+   "summary_before": "FSM_LAT is a finite state machine whose state sequence can be reprogrammed through a serial input, with each state advancing when its associated input is high. The documentation is in Spanish and describes loading the state sequence using a clock synchronized with the serial programming data, and an external FPGA is suggested to generate that clock and serial stream. The pin names are generic and give no additional detail about the state encoding or transition logic. Because the documentation is minimal and partly unclear, the tags and summary are inferred from the title and description.",
+   "summary": "FSM_LAT is a finite state machine whose state sequence can be reprogrammed through a serial input, with each state advancing when its associated input is high. The documentation is in Spanish and describes loading the state sequence using a clock synchronized with the serial programming data, and an external FPGA is suggested to generate that clock and serial stream. The pin names are generic and give no additional detail about the state encoding or transition logic. Because the documentation is minimal and partly unclear, the tags and summary are inferred from the title and description.",
+   "summary_changed": false
+  },
+  {
+   "key": "7bcb2b61effd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source does not describe an arithmetic logic unit."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The source does not describe a finite state machine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The design is explicitly a basic 8-bit CPU."
+    },
+    {
+     "tag": "register-file",
+     "reason": "The CPU has registers initialized in ascending address order."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "The CPU decodes opcode and register address bits from its input pins."
+    },
+    {
+     "tag": "risc-v",
+     "reason": "The author's tags describe it as RISC, but the source does not state RISC-V."
+    }
+   ],
+   "notes": "Removed alu and fsm because they are not supported by the source; added cpu, register-file and instruction-decoder; risc-v is not supported by the source.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "fsm"
+   ],
+   "tags": [
+    "cpu",
+    "register-file",
+    "instruction-decoder",
+    "risc-v"
+   ],
+   "summary_before": "HiddenCPU is a basic 8-bit CPU that executes each instruction in a single clock cycle, taking opcode and register address bits on its input pins and presenting an 8-bit result or program counter on its outputs. After reset the registers initialize to ascending values starting from 0, which provides a simple way to verify operation. The design has no absolute external hardware requirements, though the documentation notes that external memory and addressing hardware would be useful. The author's own tags describe it as an ALU, microprocessor and RISC design.",
+   "summary": "HiddenCPU is a basic 8-bit CPU that executes each instruction in a single clock cycle, taking opcode and register address bits on its input pins and presenting an 8-bit result or program counter on its outputs. After reset the registers initialize to ascending values starting from 0, which provides a simple way to verify operation. The design has no absolute external hardware requirements, though the documentation notes that external memory and addressing hardware would be useful. The author's own tags describe it as an ALU, microprocessor and RISC design.",
+   "summary_changed": false
+  },
+  {
+   "key": "ce84cd8358b7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not indicate an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplexer",
+     "reason": "The design is explicitly a 5-to-1 multiplexer."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The output pins drive a seven-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    }
+   ],
+   "notes": "Removed education because the source does not indicate an educational purpose; added multiplexer, 7-segment and wokwi.",
+   "tags_before": [
+    "multiplexer",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "multiplexer",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a 5-to-1 multiplexer that selects one of five inputs based on three select lines and displays the selected input on a seven-segment display. The select lines are labeled S1, S2 and S3, with S3 also connected to the clock pin. Testing involves applying different select combinations such as 000 for I1, 100 for I2, 001 for I3, 101 for I4 and 111 for I5. The documentation is brief and the select encoding is not fully consistent with a standard 5-to-1 mux.",
+   "summary": "This project implements a 5-to-1 multiplexer that selects one of five inputs based on three select lines and displays the selected input on a seven-segment display. The select lines are labeled S1, S2 and S3, with S3 also connected to the clock pin. Testing involves applying different select combinations such as 000 for I1, 100 for I2, 001 for I3, 101 for I4 and 111 for I5. The documentation is brief and the select encoding is not fully consistent with a standard 5-to-1 mux.",
+   "summary_changed": false
+  },
+  {
+   "key": "ba03678c3b41",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The design is a loopback test, not general-purpose I/O."
+    }
+   ],
+   "add": [
+    {
+     "tag": "factory-test",
+     "reason": "The design is a loopback test module for the Tiny Tapeout shuttle."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The outputs are simple combinational mirrors and an AND of inputs."
+    }
+   ],
+   "notes": "Removed gpio because the design is a loopback test; added factory-test and combinational.",
+   "tags_before": [
+    "factory-test",
+    "gpio",
+    "combinational"
+   ],
+   "tags": [
+    "factory-test",
+    "combinational"
+   ],
+   "summary_before": "This is a simple loopback test module that mirrors input 0 to outputs 0 through 6, and outputs the logical AND of inputs 4 through 7 on output 7. It is used to verify signal integrity and timing by toggling input 0 and measuring the delay until the corresponding outputs change. The design requires no external hardware beyond the input signals. It serves as a basic infrastructure test for the Tiny Tapeout 3.5 shuttle.",
+   "summary": "This is a simple loopback test module that mirrors input 0 to outputs 0 through 6, and outputs the logical AND of inputs 4 through 7 on output 7. It is used to verify signal integrity and timing by toggling input 0 and measuring the delay until the corresponding outputs change. The design requires no external hardware beyond the input signals. It serves as a basic infrastructure test for the Tiny Tapeout 3.5 shuttle.",
+   "summary_changed": false
+  },
+  {
+   "key": "83f9e6e0dc1d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not indicate an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The design is explicitly a 4-bit adder with carry."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The result is displayed on a seven-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    }
+   ],
+   "notes": "Removed education because the source does not indicate an educational purpose; added adder, 7-segment and wokwi.",
+   "tags_before": [
+    "adder",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a 4-bit adder with carry that displays the result on a 7-segment display. The two input numbers are set using switches, with the first number on switches 4 to 1 and the second on switches 8 to 5. The display can only show results up to 15 in decimal, so larger sums cause an overflow. The documentation is minimal and does not explain how the circuit works or how to test it.",
+   "summary": "This project implements a 4-bit adder with carry that displays the result on a 7-segment display. The two input numbers are set using switches, with the first number on switches 4 to 1 and the second on switches 8 to 5. The display can only show results up to 15 in decimal, so larger sums cause an overflow. The documentation is minimal and does not explain how the circuit works or how to test it.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6643,
+  "completion_tokens": 1845,
+  "total_tokens": 8488,
+  "cost": 0.0042069,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042069,
+   "upstream_inference_prompt_cost": 0.0019929,
+   "upstream_inference_completions_cost": 0.002214
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042069,
+ "elapsed_s": 16.4
+}

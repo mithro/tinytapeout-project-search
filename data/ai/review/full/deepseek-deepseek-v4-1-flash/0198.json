@@ -1,0 +1,220 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6954b46c9e15",
+  "a4264e9b5b21",
+  "5f788a5a9289",
+  "3bce7a234629",
+  "efa97b000994",
+  "2fa62edccfc5"
+ ],
+ "results": [
+  {
+   "key": "6954b46c9e15",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes only a 4-bit adder, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is sparse and the description is tentative ('hopefully this will add some numbers'), with no output pin details."
+    }
+   ],
+   "notes": "Removed unsupported alu tag; added incomplete for the tentative, output-less documentation.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "wokwi",
+    "combinational",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "combinational",
+    "education",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a 4-bit adder that takes two 4-bit numbers as inputs and produces their sum. The documentation is sparse, with no details on the output pins or the exact behavior, and the testing suggestion is to use a truth table. No external hardware is specified, and the description is tentative, indicating it is a work in progress. The design appears to be a basic arithmetic exercise.",
+   "summary": "This project implements a 4-bit adder that takes two 4-bit numbers as inputs and produces their sum. The documentation is sparse, with no details on the output pins or the exact behavior, and the testing suggestion is to use a truth table. No external hardware is specified, and the description is tentative, indicating it is a work in progress. The design appears to be a basic arithmetic exercise.",
+   "summary_changed": false
+  },
+  {
+   "key": "a4264e9b5b21",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "game",
+    "graphics",
+    "display",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "game",
+    "graphics",
+    "display",
+    "button",
+    "verilog"
+   ],
+   "summary_before": "This design implements a simplified version of the Chrome Dino game on a VGA display, where a dinosaur jumps over obstacles and cannot lose. It is used by connecting a button to input pin 0 and a VGA display to the outputs, then pressing the button to make the dinosaur jump. External hardware required includes a VGA display and a button with a power source. The documentation is brief and does not mention any testing or silicon results.",
+   "summary": "This design implements a simplified version of the Chrome Dino game on a VGA display, where a dinosaur jumps over obstacles and cannot lose. It is used by connecting a button to input pin 0 and a VGA display to the outputs, then pressing the button to make the dinosaur jump. External hardware required includes a VGA display and a button with a power source. The documentation is brief and does not mention any testing or silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "5f788a5a9289",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This circuit takes eight digital inputs, passes some through NOT, XOR and AND gates, and drives eight outputs connected to a 7-segment display. Inputs IN0, IN1 and IN2 are tied together as a single signal A that feeds three NOT gates driving OUT0 to OUT2, while IN3 to IN5 pass through directly and IN5 with IN6 feed an XOR and IN6 with IN7 feed an AND. The documentation gives a full output logic table for testing, though the external hardware section is left as an unfilled template. Despite the title RandomNum, the described behaviour is combinational logic rather than a random number generator.",
+   "summary": "This circuit takes eight digital inputs, passes some through NOT, XOR and AND gates, and drives eight outputs connected to a 7-segment display. Inputs IN0, IN1 and IN2 are tied together as a single signal A that feeds three NOT gates driving OUT0 to OUT2, while IN3 to IN5 pass through directly and IN5 with IN6 feed an XOR and IN6 with IN7 feed an AND. The documentation gives a full output logic table for testing, though the external hardware section is left as an unfilled template. Despite the title RandomNum, the described behaviour is combinational logic rather than a random number generator.",
+   "summary_changed": false
+  },
+  {
+   "key": "3bce7a234629",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "summary_before": "This Wokwi design displays the letter P on a 7-segment display when a secret code is entered on its eight switches. The author started from the template and customised the segment outputs, and the documentation deliberately withholds the code so that users can try to discover it. No external hardware is required beyond the display. The project is a first Wokwi design and is presented as a learning exercise, with the pin names still carrying the template's default labels.",
+   "summary": "This Wokwi design displays the letter P on a 7-segment display when a secret code is entered on its eight switches. The author started from the template and customised the segment outputs, and the documentation deliberately withholds the code so that users can try to discover it. No external hardware is required beyond the display. The project is a first Wokwi design and is presented as a learning exercise, with the pin names still carrying the template's default labels.",
+   "summary_changed": false
+  },
+  {
+   "key": "efa97b000994",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "Source describes a rotating display pattern, not a counting circuit."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design divides an existing clock rather than generating one; clock-divider is the accurate tag."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "Text explicitly says the 10 kHz clock is slowed to a lower frequency."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Title is WIP and the target frequency is left as an unspecified placeholder."
+    }
+   ],
+   "notes": "Replaced counter/clock-generator with clock-divider and incomplete to match the source.",
+   "tags_before": [
+    "7-segment",
+    "clock-generator",
+    "counter",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "display",
+    "clock-divider",
+    "incomplete"
+   ],
+   "summary_before": "This work-in-progress Wokwi design slows the 10 kHz clock to a lower frequency and shows a rotation of the outer columns on a 7-segment display. Eight switch inputs are exposed alongside eight segment outputs, and the intended test is simply to observe the 7-segment display. The documentation is incomplete, with the target frequency left as an unspecified placeholder and the title still marked WIP. It requires an external 7-segment display to be useful.",
+   "summary": "This work-in-progress Wokwi design slows the 10 kHz clock to a lower frequency and shows a rotation of the outer columns on a 7-segment display. Eight switch inputs are exposed alongside eight segment outputs, and the intended test is simply to observe the 7-segment display. The documentation is incomplete, with the target frequency left as an unspecified placeholder and the title still marked WIP. It requires an external 7-segment display to be useful.",
+   "summary_changed": false
+  },
+  {
+   "key": "2fa62edccfc5",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Only two input pins are declared despite the text claiming a 4-bit input, and the external hardware section is an unfilled template."
+    }
+   ],
+   "notes": "Added incomplete because the pin list contradicts the claimed 4-bit input and hardware docs are unfilled.",
+   "tags_before": [
+    "7-segment",
+    "decoder",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "decoder",
+    "display",
+    "wokwi",
+    "education",
+    "incomplete"
+   ],
+   "summary_before": "This design decodes a 4-bit input into a decimal number displayed on a 7-segment display. It takes four input pins and drives the segments accordingly. The project requires an external 7-segment display. It is a basic educational design created in Wokwi, with limited documentation.",
+   "summary": "This design decodes a 4-bit input into a decimal number displayed on a 7-segment display. It takes four input pins and drives the segments accordingly. The project requires an external 7-segment display. It is a basic educational design created in Wokwi, with limited documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6320,
+  "completion_tokens": 1089,
+  "total_tokens": 7409,
+  "cost": 0.001929228,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001929228,
+   "upstream_inference_prompt_cost": 0.000818448,
+   "upstream_inference_completions_cost": 0.00111078
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001929228,
+ "elapsed_s": 22.5
+}

@@ -1,0 +1,279 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d9a7759e8d35",
+  "1e58867c36ee",
+  "4faa35fb5785",
+  "c3fff59c6ace",
+  "713edc171ccb",
+  "30027dd8c7fc"
+ ],
+ "results": [
+  {
+   "key": "d9a7759e8d35",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The four I2C registers are a control interface to the memory, not a multi-register storage block; the design's storage is instruction memory."
+    }
+   ],
+   "add": [
+    {
+     "tag": "i2c",
+     "reason": "Already present; I2C slave port is the core interface."
+    },
+    {
+     "tag": "memory",
+     "reason": "Already present; it programs instruction memory."
+    }
+   ],
+   "notes": "Removed register-file: the four I2C registers are a control interface, not a register-file storage block.",
+   "tags_before": [
+    "i2c",
+    "risc-v",
+    "memory",
+    "register-file",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "i2c",
+    "risc-v",
+    "memory",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "This design implements an I2C slave port that can read and write the instruction memory of a RISC-V processor. It exposes four registers: one to set the memory address, one to read the current value, one to write a new value, and one unused register. The I2C interface uses external SDA and SCL pins, with an additional reset and chip-select input, and provides open-drain control for SDA. Testing requires an external I2C master to issue the documented read and write transactions.",
+   "summary": "This design implements an I2C slave port that can read and write the instruction memory of a RISC-V processor. It exposes four registers: one to set the memory address, one to read the current value, one to write a new value, and one unused register. The I2C interface uses external SDA and SCL pins, with an additional reset and chip-select input, and provides open-drain control for SDA. Testing requires an external I2C master to issue the documented read and write transactions.",
+   "summary_changed": false
+  },
+  {
+   "key": "1e58867c36ee",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator circuit is described; the design generates a stepped sine approximation from the clock."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation is described; the output frequency depends on the input clock."
+    },
+    {
+     "tag": "dac",
+     "reason": "No digital-to-analog converter is described; the design is an analog sine synthesizer."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Language is Analog and no digital portion is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "Already present; it generates a stepwise sine waveform."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "Already present; it is a sine wave synthesizer."
+    }
+   ],
+   "notes": "Removed oscillator, clock-generator, dac and mixed-signal: none are supported by the analog sine synthesizer documentation.",
+   "tags_before": [
+    "analog",
+    "oscillator",
+    "signal-generator",
+    "synthesizer",
+    "dac",
+    "mixed-signal",
+    "clock-generator"
+   ],
+   "tags": [
+    "analog",
+    "signal-generator",
+    "synthesizer"
+   ],
+   "summary_before": "This analog design generates a stepwise approximation of a sine wave, with the output frequency depending on the clock. It is intended as a sine wave synthesizer and uses analog pins for bias and current outputs. Testing requires a 1 kΩ resistor from the output pins to ground. The documentation is brief and does not provide detailed specifications or test results.",
+   "summary": "This analog design generates a stepwise approximation of a sine wave, with the output frequency depending on the clock. It is intended as a sine wave synthesizer and uses analog pins for bias and current outputs. Testing requires a 1 kΩ resistor from the output pins to ground. The documentation is brief and does not provide detailed specifications or test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "4faa35fb5785",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational intent; it is a JKU course project but no teaching purpose is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "Project name jku-tt06 indicates it was created as part of a university class activity."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; outputs are encoded for 7-segment displays."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Already present; outputs are serialized through external 8-bit shift registers."
+    }
+   ],
+   "notes": "Replaced education with workshop since the source only shows a class/course origin, not a teaching purpose.",
+   "tags_before": [
+    "counter",
+    "up-down-counter",
+    "7-segment",
+    "shift-register",
+    "button",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "up-down-counter",
+    "7-segment",
+    "shift-register",
+    "button",
+    "workshop"
+   ],
+   "summary_before": "This is a multi-digit counter with configurable maximum values and carry-over behavior, built from modified 2-bit up/down counters. It supports two digits, with outputs serialized for 7-segment displays via external 8-bit shift registers such as the HC595. Operation requires three push buttons for digit control and limit refresh, plus three switches for mode selection, and it provides shift-clock outputs for the shift registers. The design is intended for educational use and includes no silicon test results.",
+   "summary": "This is a multi-digit counter with configurable maximum values and carry-over behavior, built from modified 2-bit up/down counters. It supports two digits, with outputs serialized for 7-segment displays via external 8-bit shift registers such as the HC595. Operation requires three push buttons for digit control and limit refresh, plus three switches for mode selection, and it provides shift-clock outputs for the shift registers. The design was created as part of a university class activity and includes no silicon test results.",
+   "summary_changed": true
+  },
+  {
+   "key": "c3fff59c6ace",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ps2",
+    "encoder",
+    "audio",
+    "buzzer",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "ps2",
+    "encoder",
+    "audio",
+    "buzzer",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This project converts PS/2 keyboard input into Morse code output, supporting alphanumeric characters. It provides separate outputs for dits and dahs, a combined Morse output, and a 600Hz square wave for a buzzer. The design has two modes: one triggered by Enter and another by Space, and it generates Morse at approximately 15 WPM. Silicon testing confirmed it works at 1MHz, and it requires a PS/2 keyboard and an optional buzzer or speaker.",
+   "summary": "This project converts PS/2 keyboard input into Morse code output, supporting alphanumeric characters. It provides separate outputs for dits and dahs, a combined Morse output, and a 600Hz square wave for a buzzer. The design has two modes: one triggered by Enter and another by Space, and it generates Morse at approximately 15 WPM. Silicon testing confirmed it works at 1MHz, and it requires a PS/2 keyboard and an optional buzzer or speaker.",
+   "summary_changed": false
+  },
+  {
+   "key": "713edc171ccb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is purely analog; no digital portion is documented."
+    },
+    {
+     "tag": "full-custom",
+     "reason": "No full-custom layout is described; it is a simple R2R DAC."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation, though brief, describes the design and its test procedure sufficiently."
+    }
+   ],
+   "add": [
+    {
+     "tag": "r2r-dac",
+     "reason": "Already present; the design is explicitly a 4-bit R2R DAC."
+    },
+    {
+     "tag": "dac",
+     "reason": "Already present; it converts a 4-bit input to an analog output."
+    }
+   ],
+   "notes": "Removed mixed-signal, full-custom and insufficient-doc: the source documents a purely analog R2R DAC with an adequate test procedure.",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "mixed-signal",
+    "full-custom",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "analog"
+   ],
+   "summary_before": "A 4-bit R2R digital-to-analog converter that converts a 4-bit input signal to an analog output voltage. The design is implemented in analog and has one analog output pin. It requires an external signal source (e.g., ADALM2000 in digital mode) to provide the 4-bit input. The documentation is very brief, describing it as similar to an example design.",
+   "summary": "A 4-bit R2R digital-to-analog converter that converts a 4-bit input signal to an analog output voltage. The design is implemented in analog and has one analog output pin. It requires an external signal source (e.g., ADALM2000 in digital mode) to provide the 4-bit input. The documentation is very brief, describing it as similar to an example design.",
+   "summary_changed": false
+  },
+  {
+   "key": "30027dd8c7fc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "register-file",
+     "reason": "Already present; the design is an 8-location 8-bit register bank with read/write addressing."
+    },
+    {
+     "tag": "memory",
+     "reason": "Already present; it is a small register memory block."
+    }
+   ],
+   "notes": "Removed education: the source does not state any teaching or learning purpose.",
+   "tags_before": [
+    "register-file",
+    "memory",
+    "education",
+    "systemverilog"
+   ],
+   "tags": [
+    "register-file",
+    "memory",
+    "systemverilog"
+   ],
+   "summary_before": "This project implements an 8-bit register bank with eight storage locations, addressed by separate 3-bit write and read pointers. Data is written when the write-enable signal is asserted and read back when the read-enable signal is asserted, with 8-bit data in and out on the dedicated pins. It is a simple educational design that needs no external hardware. The documentation is brief and does not describe any silicon test results or notable implementation details.",
+   "summary": "This project implements an 8-bit register bank with eight storage locations, addressed by separate 3-bit write and read pointers. Data is written when the write-enable signal is asserted and read back when the read-enable signal is asserted, with 8-bit data in and out on the dedicated pins. It is a simple design that needs no external hardware. The documentation is brief and does not describe any silicon test results or notable implementation details.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6600,
+  "completion_tokens": 1367,
+  "total_tokens": 7967,
+  "cost": 0.002284188,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002284188,
+   "upstream_inference_prompt_cost": 0.000889848,
+   "upstream_inference_completions_cost": 0.00139434
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002284188,
+ "elapsed_s": 48.1
+}

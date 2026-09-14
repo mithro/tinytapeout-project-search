@@ -1,0 +1,258 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "112f0e7a10f1",
+  "b643d8fff198",
+  "9aa7511cfe67",
+  "d75f459303e5",
+  "a1299087cd98",
+  "fa0a9dd961df"
+ ],
+ "results": [
+  {
+   "key": "112f0e7a10f1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pmod",
+     "reason": "The design uses a VGA PMOD and optional audio PMOD, but the pmod tag is for Digilent Pmod connector interface; the pinout is Tiny VGA/TT Audio, and the source only mentions PMOD as external hardware, so this is borderline; however the pinout detection lists Tiny VGA and TT Audio, not pmod."
+    }
+   ],
+   "add": [
+    {
+     "tag": "scoreboard",
+     "reason": "The source explicitly says the game state signals can be used to add external hardware such as a scoreboard."
+    }
+   ],
+   "notes": "Removed pmod tag since detected pinouts are Tiny VGA and TT Audio, not a Pmod interface; added scoreboard as the source explicitly mentions it.",
+   "tags_before": [
+    "game",
+    "snake-game",
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "button",
+    "pmod",
+    "systemverilog"
+   ],
+   "tags": [
+    "game",
+    "snake-game",
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "button",
+    "systemverilog",
+    "scoreboard"
+   ],
+   "summary_before": "This design implements the classic Snake game, where the player controls a snake to eat food and grow while avoiding collisions with walls and itself. The game state is displayed on a VGA monitor, and the player uses four directional buttons plus optional pause and restart buttons. It provides a PWM audio output and exposes game state signals such as failure, success, eat, and tick for external hardware like a scoreboard. The design requires a VGA PMOD, optional audio PMOD, and buttons, and is notable for being a complete game implementation on a Tiny Tapeout tile.",
+   "summary": "This design implements the classic Snake game, where the player controls a snake to eat food and grow while avoiding collisions with walls and itself. The game state is displayed on a VGA monitor, and the player uses four directional buttons plus optional pause and restart buttons. It provides a PWM audio output and exposes game state signals such as failure, success, eat, and tick for external hardware like a scoreboard. The design requires a VGA PMOD, optional audio PMOD, and buttons, and is notable for being a complete game implementation on a Tiny Tapeout tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "b643d8fff198",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source says full custom but does not state the SRAM is built from discrete transistors rather than standard cells; full-custom SRAM is typically standard-cell-like bitcells, and the text does not support transistor-level construction."
+    }
+   ],
+   "add": [],
+   "notes": "Removed transistor-level tag as the source does not state discrete transistor construction.",
+   "tags_before": [
+    "sram",
+    "memory",
+    "full-custom",
+    "transistor-level"
+   ],
+   "tags": [
+    "sram",
+    "memory",
+    "full-custom"
+   ],
+   "summary_before": "TTSKY-SPSRAM-direct is a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins. It provides address, write enable, data input, and data output signals, and performs read or write operations on each clock edge. The design is full custom and operates at 66 MHz, allowing it to be used as a standalone memory block. Testing involves writing data to an address and reading it back to verify functionality.",
+   "summary": "TTSKY-SPSRAM-direct is a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins. It provides address, write enable, data input, and data output signals, and performs read or write operations on each clock edge. The design is full custom and operates at 66 MHz, allowing it to be used as a standalone memory block. Testing involves writing data to an address and reading it back to verify functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "9aa7511cfe67",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "The design is a PLL clock generator for smartcard timing experiments; the source does not describe any hardware security focus."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The source explicitly states the design is verified with a cocotb testbench."
+    }
+   ],
+   "notes": "Removed security tag as no security focus is described; added cocotb since the source explicitly mentions cocotb verification.",
+   "tags_before": [
+    "pll",
+    "clock-generator",
+    "security",
+    "vco",
+    "charge-pump",
+    "divider"
+   ],
+   "tags": [
+    "pll",
+    "clock-generator",
+    "vco",
+    "charge-pump",
+    "divider",
+    "cocotb"
+   ],
+   "summary_before": "This Verilog project models an enable-controlled PLL clock generator intended for smartcard timing experiments. It accepts a reference clock and provides configuration inputs for feedback divider ratio and charge pump gain, with outputs for the PLL clock, divided clocks, and lock status. The design is verified through cocotb simulation tests that check enable, disable, and lock behavior. No external hardware is required for RTL verification, and the design is notable for exposing internal PLL signals for monitoring.",
+   "summary": "This Verilog project models an enable-controlled PLL clock generator intended for smartcard timing experiments. It accepts a reference clock and provides configuration inputs for feedback divider ratio and charge pump gain, with outputs for the PLL clock, divided clocks, and lock status. The design is verified through cocotb simulation tests that check enable, disable, and lock behavior. No external hardware is required for RTL verification, and the design is notable for exposing internal PLL signals for monitoring.",
+   "summary_changed": false
+  },
+  {
+   "key": "d75f459303e5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "standard-cell",
+     "reason": "The source explicitly says the design was built from the transistor level using a CMOS analog design flow, not from standard cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design implements three 2-input AND gates, which are basic logic gates."
+    }
+   ],
+   "notes": "Removed standard-cell tag as the source explicitly states transistor-level construction; logic-gate was already present in the proposed tags, so no add is needed.",
+   "tags_before": [
+    "analog",
+    "transistor-level",
+    "logic-gate",
+    "latch",
+    "standard-cell"
+   ],
+   "tags": [
+    "analog",
+    "transistor-level",
+    "logic-gate",
+    "latch"
+   ],
+   "summary_before": "This project contains two analog CMOS designs: three independent 2-input AND gates equivalent to the 7408, and an SR latch built from two cross-coupled NOR gates. The AND gates are constructed at the transistor level rather than from a digital library, while the latch sets, resets, or holds its state based on the s and r inputs. Testing the AND gates requires push buttons or DIP switches for inputs and LEDs on the outputs, whereas the latch needs no external hardware and can be verified by simulation or by observing q and qb. The design relies on the Tiny Tapeout padring for ESD protection and operates from the 1.8V VDPWR rail.",
+   "summary": "This project contains two analog CMOS designs: three independent 2-input AND gates equivalent to the 7408, and an SR latch built from two cross-coupled NOR gates. The AND gates are constructed at the transistor level rather than from a digital library, while the latch sets, resets, or holds its state based on the s and r inputs. Testing the AND gates requires push buttons or DIP switches for inputs and LEDs on the outputs, whereas the latch needs no external hardware and can be verified by simulation or by observing q and qb. The design relies on the Tiny Tapeout padring for ESD protection and operates from the 1.8V VDPWR rail.",
+   "summary_changed": false
+  },
+  {
+   "key": "a1299087cd98",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "phase-detector",
+     "reason": "The design generates phase-shifted square waves but does not implement a phase detector circuit."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "The design is for metastability experiments but does not implement a clock domain crossing synchronizer."
+    },
+    {
+     "tag": "encoder",
+     "reason": "The source mentions a rotary encoder as external hardware, but the canonical tag is rotary-encoder, not encoder; encoder means signal-to-code encoding circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rotary-encoder",
+     "reason": "The source explicitly uses a Digilent PModEnc rotary encoder for interactive control."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "The design is a square wave signal generator; this tag was already proposed, so no add needed."
+    }
+   ],
+   "notes": "Removed phase-detector and synchronizer as unsupported; replaced encoder with rotary-encoder; signal-generator was already present.",
+   "tags_before": [
+    "signal-generator",
+    "spi",
+    "phase-detector",
+    "synchronizer",
+    "latch",
+    "instrumentation",
+    "pmod",
+    "encoder"
+   ],
+   "tags": [
+    "signal-generator",
+    "spi",
+    "latch",
+    "instrumentation",
+    "pmod",
+    "rotary-encoder"
+   ],
+   "summary_before": "This design generates two square waves: channel 0 with independently programmable high and low times, and channel 1 as a phase-shifted replica with a programmable delay. It is controlled over SPI by an external master such as an RP2350, which writes configuration registers; an encoder can also be used for fast-scan adjustments. The outputs are intended to be observed on an oscilloscope and can drive an SR latch for metastability experiments by bringing the two edges arbitrarily close. The design is notable for its specific focus on metastability exploration and its use of a Digilent PModEnc for interactive control.",
+   "summary": "This design generates two square waves: channel 0 with independently programmable high and low times, and channel 1 as a phase-shifted replica with a programmable delay. It is controlled over SPI by an external master such as an RP2350, which writes configuration registers; an encoder can also be used for fast-scan adjustments. The outputs are intended to be observed on an oscilloscope and can drive an SR latch for metastability experiments by bringing the two edges arbitrarily close. The design is notable for its specific focus on metastability exploration and its use of a Digilent PModEnc for interactive control.",
+   "summary_changed": false
+  },
+  {
+   "key": "fa0a9dd961df",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synchronizer",
+     "reason": "The source describes an asynchronous FIFO but does not explicitly mention synchronizer circuitry; the FIFO itself handles clock domain crossing."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fifo",
+     "reason": "The design is an asynchronous FIFO; this tag was already proposed, so no add needed."
+    }
+   ],
+   "notes": "Removed synchronizer as the source does not describe synchronizer circuitry; fifo was already present.",
+   "tags_before": [
+    "fifo",
+    "asynchronous",
+    "clock-domain-crossing",
+    "synchronizer"
+   ],
+   "tags": [
+    "fifo",
+    "asynchronous",
+    "clock-domain-crossing"
+   ],
+   "summary_before": "This design implements a small asynchronous FIFO with separate write and read clocks. It uses 3-bit data width and provides full and empty flags to indicate status. The FIFO rejects writes when full and returns invalid data when read while empty. It is tested by running both clocks and asserting write and read enables with varying clock ratios, and requires no external hardware.",
+   "summary": "This design implements a small asynchronous FIFO with separate write and read clocks. It uses 3-bit data width and provides full and empty flags to indicate status. The FIFO rejects writes when full and returns invalid data when read while empty. It is tested by running both clocks and asserting write and read enables with varying clock ratios, and requires no external hardware.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8426,
+  "completion_tokens": 1599,
+  "total_tokens": 10025,
+  "cost": 0.002189546,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002189546,
+   "upstream_inference_prompt_cost": 0.001134206,
+   "upstream_inference_completions_cost": 0.00105534
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002189546,
+ "elapsed_s": 17.5
+}

@@ -1,0 +1,193 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "fad86c1e6b19",
+  "3b91855ec3f3",
+  "fbe8f1ae1075",
+  "e7b2bc8ab341",
+  "42f8161fb201",
+  "047898cc787f",
+  "ada07391f6f8",
+  "d5689f913a5f",
+  "691fce92884c",
+  "497656d98182"
+ ],
+ "results": [
+  {
+   "key": "fad86c1e6b19",
+   "tags": [
+    "alu",
+    "7-segment",
+    "display",
+    "arithmetic",
+    "8-bit",
+    "verilog"
+   ],
+   "summary": "This project is an 8-bit ALU that implements eight operations. The outputs drive the segments of a 7-segment display, with the eight uo pins mapped to segments a through g and the decimal point. The documentation consists only of placeholder text, so the specific operations, input mapping and test procedure are not described. It is a small 1x1 tile design written in Verilog, but little else can be confirmed from the provided material.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "3b91855ec3f3",
+   "tags": [
+    "fsm",
+    "password",
+    "state-machine",
+    "security",
+    "serial",
+    "acknowledge"
+   ],
+   "summary": "This design is a finite state machine that checks a hard-coded password entered by the user. Four input pins carry the data nibble, one pin is a send strobe and one is a clock enable, while the eight outputs present an acknowledge byte. The documentation states that the password is 3044238, which is the only test instruction given. It is a small 1x1 Verilog project, and no external hardware beyond the input switches and output observation is described.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fbe8f1ae1075",
+   "tags": [
+    "cpu",
+    "8-bit",
+    "processor",
+    "memory",
+    "write",
+    "address",
+    "data-bus"
+   ],
+   "summary": "This project is a simple 8-bit CPU based on 8bitworkshop. Eight input pins form the data input bus, eight bidirectional pins carry a write strobe and a seven-bit address, and eight output pins provide the data output bus. The documentation is limited to a one-line description and a note that testing is a brief explanation, so the instruction set and memory interface are not detailed. It is a 1x1 Verilog tile with no further test or hardware information provided.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e7b2bc8ab341",
+   "tags": [
+    "fsm",
+    "robotics",
+    "motor-control",
+    "pwm",
+    "sensor",
+    "h-bridge",
+    "timer"
+   ],
+   "summary": "This design is a finite state machine that controls the direction of a micro-robot based on front, left and right sensors. Motor direction is driven by four outputs intended for an H-bridge, and an 8-bit PWM resolution value is loaded from the bidirectional pins while reset is active, with the PWM signal appearing on an output pin. The documentation notes that the pinout matches the TT Audio template and that testing involves changing inputs to observe state and motor direction changes. It is a 1x1 Verilog design aimed at simple micro-robot navigation experiments.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "42f8161fb201",
+   "tags": [
+    "frequency-counter",
+    "clock",
+    "7-segment",
+    "display",
+    "measurement",
+    "input"
+   ],
+   "summary": "This project is a frequency meter that measures an input signal and displays the result. A single input pin receives the signal to be measured, and three output pins drive a multiplexed 7-segment display through segment, digit-select and segment-select lines. The documentation is placeholder text, so the measurement method, range and test procedure are not described. It is a 1x1 Verilog design whose capabilities can only be inferred from the title and pin names.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "047898cc787f",
+   "tags": [
+    "hamming-code",
+    "encoder",
+    "decoder",
+    "uart",
+    "error-correction",
+    "serial",
+    "communication",
+    "parity"
+   ],
+   "summary": "This project implements a (11,7) Hamming code encoder and decoder that communicate over a UART protocol. The encoder adds four parity bits to parallel data and the UART transmitter serialises it, while the receiver converts serial data back to parallel and the decoder corrects up to one bit error before outputting the original message. A mode pin switches between encoder and decoder functions, and the shared input/output ports are used for both. Testing involves feeding parallel data to the encoder and checking the serial coded output, or feeding serial coded data with at most one bit error to the decoder.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ada07391f6f8",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "rv32e",
+    "spi",
+    "uart",
+    "sram",
+    "processor",
+    "gpio",
+    "7-segment"
+   ],
+   "summary": "This is a minimal RV32E bit-serial processor that uses an external SPI RAM for both instructions and data, with the SPI RAM and UART connected to the bidirectional pins. It has no caches and runs at roughly clock speed divided by 32, with registers x3 and x4 hardcoded for cheap access to RAM and peripherals, and no support for ebreak or interrupts. The eight inputs and eight outputs are general-purpose GPIO, and the outputs can also drive a 7-segment display; the UART runs at clock speed divided by 128 with simple status bits and no FIFOs. Silicon testing by the author confirmed the design works, and programs can be built with the nanoV-sdk and tested against an SPI RAM or an RP2040-based emulator.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d5689f913a5f",
+   "tags": [
+    "led",
+    "animation",
+    "lfsr",
+    "pseudo-random",
+    "pattern-generator",
+    "clock-divider",
+    "sequencer",
+    "counter"
+   ],
+   "summary": "This project is a multi-pattern LED sequencer that drives eight LEDs with thirty-one selectable patterns plus a demo mode that cycles through all of them. Pattern selection is set by five input pins, and two further pins choose between 1 Hz, 2 Hz, 5 Hz and 50 Hz clock rates derived from the 10 MHz input by an internal divider. Patterns are generated using counters, feedback loops and an LFSR for pseudo-random sequences, and the design is split into a PLL/divider module and the main MPLS module. Testing is done through Icarus Verilog testbenches, with a full-pattern simulation and a longer PLL simulation that can produce very large VCD files.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "691fce92884c",
+   "tags": [
+    "clock",
+    "7-segment",
+    "display",
+    "rtc",
+    "timekeeping",
+    "adjust"
+   ],
+   "summary": "This project is a clock that displays the time on a multiplexed 7-segment display. Input pins select display type, format, programming mode and time adjustment, while outputs provide an AM/PM indicator plus segment, digit-select and segment-select lines. The documentation is placeholder text, so the timekeeping source, programming procedure and test method are not described. It is a 1x1 Verilog design whose functionality is inferred mainly from the title and pin names.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "497656d98182",
+   "tags": [
+    "clock-divider",
+    "frequency-divider",
+    "counter",
+    "7-segment",
+    "signal-generator",
+    "modulo"
+   ],
+   "summary": "This design is a clock frequency divider that generates several divided clock signals from a user-selected modulo value. Eight input pins set the modulo M, and the bidirectional pins output clocks divided by 2, 4, 8, 16, 32, 64 and 128 along with the raw modulo M pulse, while the eight outputs drive a 7-segment display. Internally a counter counts to M-1 and its terminal signal clocks a 7-bit counter whose stages provide the divided outputs. Testing only requires setting the modulo value on the dedicated input switches.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5580,
+  "completion_tokens": 1731,
+  "total_tokens": 7311,
+  "cost": 0.00318852,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00318852,
+   "upstream_inference_prompt_cost": 0.0014229,
+   "upstream_inference_completions_cost": 0.00176562
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00318852,
+ "elapsed_s": 42.3
+}

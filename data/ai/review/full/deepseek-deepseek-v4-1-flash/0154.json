@@ -1,0 +1,256 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "fb7d35d6854a",
+  "edbe4b219923",
+  "516405b8aa62",
+  "38db74aaa78e",
+  "8e065b59096d",
+  "505977150e70"
+ ],
+ "results": [
+  {
+   "key": "fb7d35d6854a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes an approximate adder/multiplier unit, not an ALU with logic operations."
+    },
+    {
+     "tag": "adder",
+     "reason": "Addition is only one selectable mode of the approximate unit; the design is not primarily an adder."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Multiplication is only one selectable mode; the design is not primarily a multiplier."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, giving only a two-line description with no approximation scheme or error details."
+    }
+   ],
+   "notes": "Removed alu/adder/multiplier since the source only describes an approximate add-or-multiply unit; added insufficient-doc.",
+   "tags_before": [
+    "approximate-computing",
+    "alu",
+    "adder",
+    "multiplier",
+    "asic",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "approximate-computing",
+    "asic",
+    "combinational",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design accepts two 8-bit numbers and produces an approximate 8-bit result, with one input bit selecting between addition and multiplication. It is a purely combinational block with no external hardware required, and its outputs can be wired to LEDs for validation. The documentation is very thin and does not describe the approximation scheme, error characteristics, or any silicon test results. It is notable only as an ASIC implementation of an approximate arithmetic unit.",
+   "summary": "This design accepts two 8-bit numbers and produces an approximate 8-bit result, with one input bit selecting between addition and multiplication. It is a purely combinational block with no external hardware required, and its outputs can be wired to LEDs for validation. The documentation is very thin and does not describe the approximation scheme, error characteristics, or any silicon test results. It is implemented in Verilog as an ASIC approximate arithmetic unit.",
+   "summary_changed": true
+  },
+  {
+   "key": "edbe4b219923",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation circuitry is described; the design consumes an external 25.2 MHz clock."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is mentioned in the source; timekeeping source is explicitly undocumented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "The design is a wall-clock display, i.e. a timekeeping/clock-face application."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator and counter tags; added rtc for the wall-clock application.",
+   "tags_before": [
+    "vga",
+    "display",
+    "graphics",
+    "clock-generator",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "graphics",
+    "verilog",
+    "rtc"
+   ],
+   "summary_before": "This design generates a wall-clock-style display on a standard 640x480 at 60 Hz VGA output. It is used by running the clock at 25.2 MHz, connecting a Tiny VGA Pmod, and applying a reset pulse. The only external hardware required is the Tiny VGA Pmod. The documentation is minimal and does not describe the clock face, timekeeping source, or any configuration options.",
+   "summary": "This design generates a wall-clock-style display on a standard 640x480 at 60 Hz VGA output. It is used by running the clock at 25.2 MHz, connecting a Tiny VGA Pmod, and applying a reset pulse. The only external hardware required is the Tiny VGA Pmod. The documentation is minimal and does not describe the clock face, timekeeping source, or any configuration options.",
+   "summary_changed": false
+  },
+  {
+   "key": "516405b8aa62",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "floating-point",
+     "reason": "GF16 is a project-specific custom format, not standard floating-point arithmetic; the source does not claim IEEE or generic FP support."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "The core function is a four-element dot-product MAC datapath, a signal-processing primitive."
+    },
+    {
+     "tag": "trng",
+     "reason": "The design includes a hardware random number generator LFSR, i.e. a random source."
+    }
+   ],
+   "notes": "Removed floating-point (GF16 is a custom format); added dsp and trng for the dot-product and HWRNG blocks.",
+   "tags_before": [
+    "mac-unit",
+    "floating-point",
+    "multiplier",
+    "rom",
+    "lfsr",
+    "verilog"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "rom",
+    "lfsr",
+    "verilog",
+    "dsp",
+    "trng"
+   ],
+   "summary_before": "TRI-1 Phi is a single-tile design that computes a four-element dot product in a custom GF16 floating-point format using four parallel multipliers and a tree of adders. On reset it drives the canonical value 0x47C0, representing dot4(1,2,3,4) = 30.0, onto the output pins as a cross-die anchor shared with its sibling designs. It also includes a Lucas ROM, a hardware random number generator LFSR, a restraint controller and a friend-foe handshake, with input pins to select modes and probe the ROM. No external hardware is required, and the documentation is detailed but uses project-specific terminology.",
+   "summary": "TRI-1 Phi is a single-tile design that computes a four-element dot product in a custom GF16 format using four parallel multipliers and a tree of adders. On reset it drives the canonical value 0x47C0, representing dot4(1,2,3,4) = 30.0, onto the output pins as a cross-die anchor shared with its sibling designs. It also includes a Lucas ROM, a hardware random number generator LFSR, a restraint controller and a friend-foe handshake, with input pins to select modes and probe the ROM. No external hardware is required, and the documentation is detailed but uses project-specific terminology.",
+   "summary_changed": true
+  },
+  {
+   "key": "38db74aaa78e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "memory",
+    "instruction-decoder",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "memory",
+    "instruction-decoder",
+    "verilog"
+   ],
+   "summary_before": "This is an 8-bit RISC CPU with an ALU, registers, and data memory, designed to execute 16-bit instructions provided externally. The instruction bits are mapped to the input pins, and the CPU's 8-bit output is presented on the output pins. The design is implemented in Verilog and runs on a 5 MHz clock. No documentation on testing or external hardware is provided, and silicon results are not mentioned.",
+   "summary": "This is an 8-bit RISC CPU with an ALU, registers, and data memory, designed to execute 16-bit instructions provided externally. The instruction bits are mapped to the input pins, and the CPU's 8-bit output is presented on the output pins. The design is implemented in Verilog and runs on a 5 MHz clock. No documentation on testing or external hardware is provided, and silicon results are not mentioned.",
+   "summary_changed": false
+  },
+  {
+   "key": "8e065b59096d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "The source says a foundry test is implemented with minimal memory resources, but the design is a teaching CPU; the tag overstates a self-test structure."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "The CPU implements a 120-instruction set, requiring instruction decode logic."
+    },
+    {
+     "tag": "register-file",
+     "reason": "A CPU architecture with registers is described."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The SPI programming interface is intended for external master control, consistent with the RP2040-based Tiny Tapeout setup."
+    }
+   ],
+   "notes": "Removed factory-test (design is a teaching CPU, not a self-test structure); added instruction-decoder, register-file and rp2040.",
+   "tags_before": [
+    "cpu",
+    "spi",
+    "memory",
+    "education",
+    "factory-test",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "spi",
+    "memory",
+    "education",
+    "verilog",
+    "instruction-decoder",
+    "register-file",
+    "rp2040"
+   ],
+   "summary_before": "Nano-120 is a small 8-bit CPU with a 120-instruction set intended as a teaching resource, where both code and data memory use generic RAM. A slave SPI block lets an external master load programs and inspect data before and after execution, with a MODE pin selecting programming or run and a RUN pin starting execution. The eight outputs expose selected internal buses under OUT_CTRL control, and eight bidirectional pins provide extra control, interrupt sources and SPI MISO. It is designed for foundry testing with minimal memory resources and includes only limited documentation of the ISA itself.",
+   "summary": "Nano-120 is a small CPU with a 120-instruction set intended as a teaching resource, where both code and data memory use generic RAM. A slave SPI block lets an external master load programs and inspect data before and after execution, with a MODE pin selecting programming or run and a RUN pin starting execution. The eight outputs expose selected internal buses under OUT_CTRL control, and eight bidirectional pins provide extra control, interrupt sources and SPI MISO. It is designed for foundry testing with minimal memory resources and includes only limited documentation of the ISA itself.",
+   "summary_changed": true
+  },
+  {
+   "key": "505977150e70",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "spinalhdl",
+    "rs232"
+   ],
+   "tags": [
+    "uart",
+    "spinalhdl",
+    "rs232"
+   ],
+   "summary_before": "The UART project is a UART data terminal equipment (DTE) implementation in SpinalHDL. It provides standard UART signals such as TxD, RxD, RTS, CTS, DSR, DCD, DTR, and RI, along with interrupt outputs. The design is intended to connect to a standard Tiny Tapeout PCB and interface with an RP2040's UART. Documentation is minimal, with only pin mappings and a brief note that docs are to follow.",
+   "summary": "The UART project is a UART data terminal equipment (DTE) implementation in SpinalHDL. It provides standard UART signals such as TxD, RxD, RTS, CTS, DSR, DCD, DTR, and RI, along with interrupt outputs. The design is intended to connect to a standard Tiny Tapeout PCB and interface with an RP2040's UART. Documentation is minimal, with only pin mappings and a brief note that docs are to follow.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7646,
+  "completion_tokens": 1423,
+  "total_tokens": 9069,
+  "cost": 0.002608038,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002608038,
+   "upstream_inference_prompt_cost": 0.001156578,
+   "upstream_inference_completions_cost": 0.00145146
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002608038,
+ "elapsed_s": 43.9
+}

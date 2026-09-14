@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "21893235f055",
+  "390ae8e7f98c",
+  "3a36ad1bbb2c",
+  "3cc632bc2310",
+  "02676e2c4578",
+  "65d5e09de339"
+ ],
+ "results": [
+  {
+   "key": "21893235f055",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "No game element; it is a graphics demo, not interactive game design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports exist (working/partial) confirming fabrication validation."
+    }
+   ],
+   "notes": "Removed unsupported 'game' tag and added 'silicon-tested' to match the reported silicon status.",
+   "tags_before": [
+    "demoscene",
+    "graphics",
+    "vga",
+    "verilog",
+    "game"
+   ],
+   "tags": [
+    "demoscene",
+    "graphics",
+    "vga",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design attempts to render metaballs on a VGA display. It outputs RGB and sync signals compatible with the Tiny VGA PMOD. Silicon tests show partial functionality: one ball moves as expected, but the other exhibits erratic behavior, and results vary across chips. The documentation is minimal and the design is described as rushed.",
+   "summary": "This design attempts to render metaballs on a VGA display. It outputs RGB and sync signals compatible with the Tiny VGA PMOD. Silicon tests show partial functionality: one ball moves as expected, but the other exhibits erratic behavior, and results vary across chips. The documentation is minimal and the design is described as rushed.",
+   "summary_changed": false
+  },
+  {
+   "key": "390ae8e7f98c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "Text mentions finite state machines and temporary values, so it is not purely combinational."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "Description explicitly states two finite state machines are used."
+    }
+   ],
+   "notes": "Removed unsupported combinational and education tags; added fsm since the source explicitly mentions finite state machines.",
+   "tags_before": [
+    "alu",
+    "adder",
+    "combinational",
+    "education"
+   ],
+   "tags": [
+    "alu",
+    "adder",
+    "fsm"
+   ],
+   "summary_before": "This is a 2-bit ALU built around a ripple-carry adder that can perform sixteen different operations selected by four ALU_Sel bits. The description mentions finite state machines and temporary values feeding into the basic ALU calculations, but the exact operation set is not documented. The testing section is marked TODO, so no verification procedure is given. The documentation is too thin to confirm the full behavior, and no external hardware is described.",
+   "summary": "This is a 2-bit ALU built around a ripple-carry adder that can perform sixteen different operations selected by four ALU_Sel bits. The description mentions finite state machines and temporary values feeding into the basic ALU calculations, but the exact operation set is not documented. The testing section is marked TODO, so no verification procedure is given. The documentation is too thin to confirm the full behavior, and no external hardware is described.",
+   "summary_changed": false
+  },
+  {
+   "key": "3a36ad1bbb2c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sound-generator",
+     "reason": "'sound-generator' denotes a programmable sound generator chip replica; this is a simple melody player, not a chip replica."
+    }
+   ],
+   "add": [],
+   "notes": "Removed sound-generator (chip replica meaning not supported); reworded final sentence to avoid unsupported 'notable' claim.",
+   "tags_before": [
+    "music",
+    "audio",
+    "speaker",
+    "sound-generator",
+    "verilog"
+   ],
+   "tags": [
+    "music",
+    "audio",
+    "speaker",
+    "verilog"
+   ],
+   "summary_before": "The Melody Generator plays a preloaded melody (Jingle Bells) and is re-programmable. It outputs a melody signal on a single pin, and is controlled by reload and restart inputs, with a programming interface for loading new melodies. To test, a speaker is connected to the output and the reload and restart signals are set. The design is notable for its programmability and compact implementation.",
+   "summary": "The Melody Generator plays a preloaded melody (Jingle Bells) and is re-programmable. It outputs a melody signal on a single pin, and is controlled by reload and restart inputs, with a programming interface for loading new melodies. To test, a speaker is connected to the output and the reload and restart signals are set. The design is a compact, re-programmable melody player.",
+   "summary_changed": true
+  },
+  {
+   "key": "3cc632bc2310",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "No evidence of hardware security focus; the title is a joke, not a security design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed security tag as unsupported; the project is intentionally undocumented rather than security-focused.",
+   "tags_before": [
+    "insufficient-doc",
+    "gpio",
+    "security"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "gpio"
+   ],
+   "summary_before": "This project is titled 'Secret File' and provides no meaningful documentation; the one-line description says 'Nothing to see here' and the how-it-works section states 'Leving it alone works'. The design has a clock input and eight output bits, but no explanation of their function. The test instructions say 'Don't test me' and the external hardware requirement is a shredder, indicating a humorous or intentionally undocumented design. There is insufficient information to determine what the design actually does.",
+   "summary": "This project is titled 'Secret File' and provides no meaningful documentation; the one-line description says 'Nothing to see here' and the how-it-works section states 'Leving it alone works'. The design has a clock input and eight output bits, but no explanation of their function. The test instructions say 'Don't test me' and the external hardware requirement is a shredder, indicating a humorous or intentionally undocumented design. There is insufficient information to determine what the design actually does.",
+   "summary_changed": false
+  },
+  {
+   "key": "02676e2c4578",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fixed-point",
+     "reason": "Source says 4-bit signed integers and 6-bit complex outputs; no fixed-point format is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed fixed-point tag since the source only describes signed integers, not a fixed-point format.",
+   "tags_before": [
+    "fft",
+    "dsp",
+    "fixed-point",
+    "verilog"
+   ],
+   "tags": [
+    "fft",
+    "dsp",
+    "verilog"
+   ],
+   "summary_before": "This design computes a small FFT, taking four 4-bit signed real inputs and producing four 6-bit complex outputs. Data is written using a write-enable signal and read back from the data output pins, with an rd_idx_zero output indicating the read index. The documentation is brief and does not specify the transform length, scaling, or ordering beyond the input and output widths. No external hardware is mentioned, and the design is intended as a compact DSP building block.",
+   "summary": "This design computes a small FFT, taking four 4-bit signed real inputs and producing four 6-bit complex outputs. Data is written using a write-enable signal and read back from the data output pins, with an rd_idx_zero output indicating the read index. The documentation is brief and does not specify the transform length, scaling, or ordering beyond the input and output widths. No external hardware is mentioned, and the design is intended as a compact DSP building block.",
+   "summary_changed": false
+  },
+  {
+   "key": "65d5e09de339",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The CPU requires external RAM; no on-chip memory block is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "A basic 8-bit CPU with external RAM/ROM is a retro-style computing design."
+    }
+   ],
+   "notes": "Removed memory tag (RAM is external, not on-chip); added retro for the 8-bit CPU style.",
+   "tags_before": [
+    "cpu",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "verilog",
+    "retro"
+   ],
+   "summary_before": "ezm_cpu is a basic 8-bit CPU implemented in Verilog. It provides a program counter output and six input pins, and it requires external hardware such as RAM and a decoder or an FPGA with a programmed ROM to function. The documentation is very sparse, giving only a brief description and no details on the instruction set or architecture. Testing requires connecting the external memory and decoder as described.",
+   "summary": "ezm_cpu is a basic 8-bit CPU implemented in Verilog. It provides a program counter output and six input pins, and it requires external hardware such as RAM and a decoder or an FPGA with a programmed ROM to function. The documentation is very sparse, giving only a brief description and no details on the instruction set or architecture. Testing requires connecting the external memory and decoder as described.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5849,
+  "completion_tokens": 1084,
+  "total_tokens": 6933,
+  "cost": 0.001804023,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001804023,
+   "upstream_inference_prompt_cost": 0.000698343,
+   "upstream_inference_completions_cost": 0.00110568
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001804023,
+ "elapsed_s": 33.4
+}

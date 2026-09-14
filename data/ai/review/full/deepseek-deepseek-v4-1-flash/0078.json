@@ -1,0 +1,415 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "c2b691a460de",
+  "8df467d8980b",
+  "d57da3759e45",
+  "662a21f70ac5",
+  "64a6b817a833",
+  "a18132da8406"
+ ],
+ "results": [
+  {
+   "key": "c2b691a460de",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The design is an approximate inverse square root unit, not a linear feedback shift register."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generation is described."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptographic function is implemented."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The source language is SystemVerilog, not Verilog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systemverilog",
+     "reason": "The design is written in SystemVerilog."
+    },
+    {
+     "tag": "floating-point",
+     "reason": "It processes IEEE-754 single-precision FP32 operands."
+    },
+    {
+     "tag": "approximate-computing",
+     "reason": "The datapath is explicitly approximate and not fully rounded."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "A cocotb testbench is provided and used for verification."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The design uses an FSM and byte-serial input/output, so it is sequential."
+    }
+   ],
+   "notes": "Replaced incorrect LFSR/PRNG/crypto tags with tags matching the FP32 approximate inverse square root design.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "crypto",
+    "sequential-logic",
+    "verilog"
+   ],
+   "tags": [
+    "sequential-logic",
+    "systemverilog",
+    "floating-point",
+    "approximate-computing",
+    "cocotb"
+   ],
+   "summary_before": "This project implements a 16-bit non-linear feedback shift register with two selectable non-linear feedback functions for cryptographic pseudo-random number generation. The mode select input switches between a high algebraic degree function and a chaotic variant, with the 16-bit state output on dedicated and bidirectional pins. It is seeded with 0xACE1 and requires only a clock and reset to operate, making it self-contained for testing with a logic analyzer. The design is intended for cryptographic primitives and demonstrates programmable non-linear feedback.",
+   "summary": "This project implements BRISQ, an approximate IEEE-754 single-precision inverse square root unit. It receives one 32-bit FP32 operand over an 8-bit byte-serial input bus, performs one Newton-Raphson refinement using a Quake-style integer seed, and returns a 32-bit FP32 result over an 8-bit byte-serial output bus. The datapath uses a truncated positive-magnitude FP32-style multiplier and a parametric subtractor, with a default precision of 11 high fraction bits, and is explicitly not a fully rounded IEEE-754 FPU. The design is verified with a self-checking cocotb RTL vector test and a sweep test, and requires no external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "8df467d8980b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "The I2C master controller is a sequential design with START/STOP generation and BUSY/DONE status."
+    },
+    {
+     "tag": "lookup-table",
+     "reason": "No lookup-table based logic is described."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "No cocotb testbench is mentioned in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "i2c",
+     "reason": "The design implements an I2C master controller with SDA and SCL."
+    },
+    {
+     "tag": "communication",
+     "reason": "It is a serial communication protocol controller."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The controller sequences START, byte transmission, and STOP, implying a finite state machine."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Replaced unrelated combinational/lookup-table/education/cocotb tags with I2C, communication, FSM, and Verilog tags.",
+   "tags_before": [
+    "combinational",
+    "lookup-table",
+    "education",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "i2c",
+    "communication",
+    "fsm"
+   ],
+   "summary_before": "This design checks whether an 8-bit input value is a Fibonacci number. It compares the input against the Fibonacci numbers that fit in 8 bits and sets an output high if a match is found. The design is purely combinational and requires no external hardware. It is tested with a cocotb testbench that applies known Fibonacci and non-Fibonacci values.",
+   "summary": "This project implements a simple I2C master controller that transmits one byte to a fixed slave address (0x50). When the START input is asserted, it serially sends an 8-bit data value over SDA while generating SCL, and it produces START and STOP conditions. The BUSY output indicates an active transfer, and DONE and ACK status outputs are also provided. Testing involves applying reset, placing an 8-bit value on ui_in, asserting START, and observing SCL and SDA activity with an I2C slave device, logic analyzer, or oscilloscope.",
+   "summary_changed": true
+  },
+  {
+   "key": "d57da3759e45",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The design is a ring oscillator PUF, not an LFSR."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generation is described."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puf",
+     "reason": "The design is explicitly a Physical Unclonable Function."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "The core is a programmable-length ring oscillator."
+    },
+    {
+     "tag": "security",
+     "reason": "It is intended for hardware security applications."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "It includes control, sampling, and telemetry logic."
+    },
+    {
+     "tag": "asynchronous",
+     "reason": "The ring oscillator operates asynchronously from the system clock."
+    },
+    {
+     "tag": "pmod",
+     "reason": "The documentation mentions attaching a microcontroller or FPGA board via PMOD."
+    }
+   ],
+   "notes": "Replaced incorrect LFSR/PRNG/shift-register tags with PUF, ring-oscillator, security, and related implementation tags.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "sequential-logic",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "sequential-logic",
+    "verilog",
+    "puf",
+    "ring-oscillator",
+    "security",
+    "asynchronous",
+    "pmod"
+   ],
+   "summary_before": "This is an 8-bit linear-feedback shift register (LFSR) circuit implemented in Verilog, serving as a sequential pseudo-random number generator. The design has no documented inputs or control signals; it only provides eight output bits from the LFSR state. There is no documentation on how to use or test the design, and no external hardware is specified. The project appears to be a minimal demonstration of an LFSR, but the lack of documentation limits its practical application.",
+   "summary": "This project implements a programmable-length ring oscillator designed as a Physical Unclonable Function for hardware security. The inverter chain delay path can be dynamically configured using sel_mux_0, sel_mux_1, and n_inv, and the circuit oscillates at a device-specific frequency due to process variations in the GF180MCU process. An integrated control path monitors sample capture events and triggers telemetry when output is ready, with debug and valid outputs on the dedicated pins. Testing involves reset, challenge selection, enabling the oscillator, setting tx_ready to acquire data, and then disabling the oscillator to save power; an oscilloscope, logic analyzer, or PMOD-connected microcontroller/FPGA can be used for validation.",
+   "summary_changed": true
+  },
+  {
+   "key": "662a21f70ac5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ethernet",
+     "reason": "No Ethernet interface or functionality is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "The design is a current mirror test structure, not a counter."
+    },
+    {
+     "tag": "communication",
+     "reason": "No data communication protocol is implemented."
+    },
+    {
+     "tag": "timer",
+     "reason": "No timer functionality is described."
+    },
+    {
+     "tag": "fpga",
+     "reason": "No FPGA target or port is mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The design is an analog current mirror test structure."
+    },
+    {
+     "tag": "current-mirror",
+     "reason": "It is explicitly described as current mirror loads."
+    },
+    {
+     "tag": "factory-test",
+     "reason": "It is a factory test structure for GF180MCU analog support."
+    },
+    {
+     "tag": "characterization",
+     "reason": "It is used to measure power rail voltage drop and VGND raise."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "It is a measurement/test structure requiring a current source and multimeter."
+    }
+   ],
+   "notes": "Replaced unrelated Ethernet/counter/communication/timer/FPGA tags with analog current-mirror factory-test tags.",
+   "tags_before": [
+    "ethernet",
+    "counter",
+    "communication",
+    "timer",
+    "fpga"
+   ],
+   "tags": [
+    "analog",
+    "current-mirror",
+    "factory-test",
+    "characterization",
+    "instrumentation"
+   ],
+   "summary_before": "This design counts continuously and broadcasts the counter value every second over 100Mbps Ethernet using an application-specific Ethernet type. It reuses the Teapot Ethernet accelerator wrapper and requires an external Ethernet PHY PMOD with a LAN8720A and a 50MHz oscillator. The design autonomously sends packets, and testing involves connecting it to a local network and monitoring the packets. The project humorously aims to count until the heat death of the universe.",
+   "summary": "This project provides test structures for GF180MCU analog support, consisting of a couple of large current mirror loads. A reference current is input on iref, multiplied internally by about 50x, and drawn from a selected power rail via enable pins. Sense wires are routed out to measure both the voltage drop of the power rails and the voltage raise of the VGND rail. Testing requires providing a test current to iref, toggling the appropriate enable pin, and using a programmable current source and precision multimeter.",
+   "summary_changed": true
+  },
+  {
+   "key": "64a6b817a833",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sram",
+     "reason": "The design is an analog voltage buffer, not an SRAM."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory storage is described."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file is implemented."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The design is an analog buffer, not digital sequential logic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The design is an analog voltage buffer."
+    },
+    {
+     "tag": "opamp",
+     "reason": "It is a biased amplifier/buffer circuit."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "It is intended to drive an off-chip probe for measurement."
+    },
+    {
+     "tag": "driver",
+     "reason": "It buffers and drives an off-chip probe."
+    }
+   ],
+   "notes": "Replaced incorrect SRAM/memory/register-file/sequential-logic tags with analog buffer tags.",
+   "tags_before": [
+    "sram",
+    "memory",
+    "register-file",
+    "sequential-logic"
+   ],
+   "tags": [
+    "analog",
+    "opamp",
+    "instrumentation",
+    "driver"
+   ],
+   "summary_before": "This design is a 256x8 SRAM intended for testing purposes, though only the top 128 entries are addressable. It has 6 address bits, 8 write data bits, and 8 read data bits, with a write enable signal. The SRAM is cleared on reset, and inputs and outputs are flopped once. No external hardware is required, and testing involves writing and reading data according to the provided pin functions.",
+   "summary": "This project is an analog test buffer that buffers a voltage signal and drives an off-chip probe. It has an input pin, a bias pin, and an output pin. Testing involves biasing the amplifier with a 5uA current from the bias pin, applying a test signal to the input pin, and measuring the buffered signal at the output pin. External hardware such as an oscilloscope and function generator, or a voltage source and multimeter, is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "a18132da8406",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fpga",
+     "reason": "The design is an SRAM, not an FPGA fabric."
+    },
+    {
+     "tag": "lookup-table",
+     "reason": "No lookup-table based logic is described."
+    },
+    {
+     "tag": "reconfigurable",
+     "reason": "No runtime reconfigurable logic is described."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "No cocotb testbench is mentioned."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "The SRAM uses parallel 8-bit data, not bit-serial processing."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sram",
+     "reason": "The design is explicitly a 256x8 SRAM."
+    },
+    {
+     "tag": "memory",
+     "reason": "It is a memory storage block."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "It includes flopped inputs and outputs and synchronous write/read behavior."
+    }
+   ],
+   "notes": "Replaced incorrect FPGA/LUT/reconfigurable/education/cocotb/bit-serial tags with SRAM and memory tags.",
+   "tags_before": [
+    "fpga",
+    "lookup-table",
+    "reconfigurable",
+    "education",
+    "cocotb",
+    "bit-serial"
+   ],
+   "tags": [
+    "sram",
+    "memory",
+    "verilog",
+    "sequential-logic"
+   ],
+   "summary_before": "Tiny FABulous FPGA is a small FPGA fabric with 64 LUT4+FF logic cells, configurable via a bitbang interface, and designed for use with Yosys and nextpnr. It provides 26 I/O buffers, global buffers, and a system reset, and can implement simple Tiny Tapeout designs directly. The bitstream is uploaded while reset is applied, and no external hardware is required. The design is notable for being a fully open-source FPGA fabric on a Tiny Tapeout tile.",
+   "summary": "This project implements a 256x8 SRAM for testing, though only the top 128 entries are addressable. It has 6 address bits, 8 write data bits, and 8 read data bits, with a gwen signal that must be de-asserted to write and otherwise puts the SRAM in read mode. The SRAM is entirely cleared on reset, and incoming data, write enable, and address are flopped once before the SRAM, with outgoing data flopped once before reaching the uo_out pins. No external hardware is required, and testing follows the pin functions described above.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6985,
+  "completion_tokens": 2566,
+  "total_tokens": 9551,
+  "cost": 0.0051747,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0051747,
+   "upstream_inference_prompt_cost": 0.0020955,
+   "upstream_inference_completions_cost": 0.0030792
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0051747,
+ "elapsed_s": 24.8
+}

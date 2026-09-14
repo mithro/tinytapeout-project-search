@@ -1,0 +1,283 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ecbad8aa9697",
+  "d54bfb09a845",
+  "78442f01f8cd",
+  "583878a791d7",
+  "bb5e1f62bad6",
+  "497656d98182"
+ ],
+ "results": [
+  {
+   "key": "ecbad8aa9697",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning; it is a simple demo."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "Three AND gates driving segments is purely combinational logic."
+    },
+    {
+     "tag": "button",
+     "reason": "Inputs are described as buttons pressed to select the display."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added combinational and button tags supported by the source.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "combinational",
+    "button"
+   ],
+   "summary_before": "This design uses three AND gates to drive a 7-segment display so that pressing the first four input buttons displays the letter 'M'. The outputs correspond to the seven segments plus a dot, and the inputs are four buttons. It is intended for the Wokwi simulator and serves as a simple demonstration of combinational logic. No silicon test results are provided.",
+   "summary": "This design uses three AND gates to drive a 7-segment display so that pressing the first four input buttons displays the letter 'M'. The outputs correspond to the seven segments plus a dot, and the inputs are four buttons. It is built for the Wokwi simulator and demonstrates simple combinational logic. No silicon test results are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "d54bfb09a845",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asynchronous",
+     "reason": "The design is described as using a clock input and flip-flops triggered by count signals, not clockless asynchronous logic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The documentation states a DIP switch is used to provide count signals."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The counter is built from flip-flops and is sequential logic."
+    }
+   ],
+   "notes": "Removed asynchronous tag as the design uses a clock and flip-flops; added dip-switch and sequential-logic.",
+   "tags_before": [
+    "counter",
+    "asynchronous",
+    "flip-flop",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "counter",
+    "flip-flop",
+    "7-segment",
+    "wokwi",
+    "dip-switch",
+    "sequential-logic"
+   ],
+   "summary_before": "This project is an asynchronous 3-bit down counter that counts through a specific sequence: 7, 3, 5, 1, 6, 2, 4, 0. It uses three flip-flops and asynchronous inputs to trigger each flip-flop in sequence. The counter value is displayed on a 7-segment display, and a DIP switch is used to provide count signals. The design is implemented in Wokwi and includes a reset input.",
+   "summary": "This project is a 3-bit down counter that counts through the sequence 7, 3, 5, 1, 6, 2, 4, 0. It uses three flip-flops and count signals to trigger each flip-flop in sequence. The counter value is displayed on a 7-segment display, and a DIP switch is used to provide count signals. The design is implemented in Wokwi and includes a reset input.",
+   "summary_changed": true
+  },
+  {
+   "key": "78442f01f8cd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "RXD and TXD pins exist but the documentation does not describe a UART protocol implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "The CDP1802 is a classic 1970s microprocessor architecture, so this recreates retro computing hardware."
+    },
+    {
+     "tag": "qspi",
+     "reason": "The design uses a Q-SPI interface for external ROM and RAM chips."
+    }
+   ],
+   "notes": "Removed unsupported uart tag; added retro and qspi tags supported by the source.",
+   "tags_before": [
+    "cpu",
+    "qspi",
+    "memory",
+    "rom",
+    "uart",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "qspi",
+    "memory",
+    "rom",
+    "verilog",
+    "retro"
+   ],
+   "summary_before": "AS1802 is an implementation of the CDP1802 microprocessor architecture with a Q-SPI memory interface. It supports external ROM and RAM chips for program and data storage, and includes UART and general-purpose I/O. The design is tested by connecting a W25Q-series ROM preloaded with a program that blinks the Q output. It is notable for being a complete CPU with external memory support.",
+   "summary": "AS1802 is an implementation of the CDP1802 microprocessor architecture with a Q-SPI memory interface. It supports external ROM and RAM chips for program and data storage, and includes general-purpose I/O. The design is tested by connecting a W25Q-series ROM preloaded with a program that blinks the Q output. It is notable for being a CPU with external memory support.",
+   "summary_changed": true
+  },
+  {
+   "key": "583878a791d7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "The control unit is described as a 2-cycle FSM."
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "All registers are connected via one large scan chain."
+    },
+    {
+     "tag": "spi",
+     "reason": "The processor is programmed and controlled through an external microcontroller's SPI interface."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added fsm, scan-chain and spi tags supported by the source.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "scan-chain",
+    "spi",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "scan-chain",
+    "spi",
+    "verilog",
+    "fsm"
+   ],
+   "summary_before": "QTCore-A1 is an accumulator-based 8-bit microprocessor with a Von Neumann architecture, designed for Tiny Tapeout 3.5. It includes a control unit, program counter, instruction register, accumulator, and 19 bytes of memory, all accessible via a scan chain. The processor is programmed and controlled through an external microcontroller's SPI interface, using the SPI clock to drive both the scan chain and the processor. Notably, all functional Verilog was generated by GPT-4 through conversation, with human-written testbenches used for validation.",
+   "summary": "QTCore-A1 is an accumulator-based 8-bit microprocessor with a Von Neumann architecture, designed for Tiny Tapeout 3.5. It includes a control unit, program counter, instruction register, accumulator, and 19 bytes of memory, all accessible via a scan chain. The processor is programmed and controlled through an external microcontroller's SPI interface, using the SPI clock to drive both the scan chain and the processor. Notably, all functional Verilog was generated by GPT-4 through conversation, with human-written testbenches used for validation.",
+   "summary_changed": false
+  },
+  {
+   "key": "bb5e1f62bad6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design displays a clock on VGA; it does not generate a clock signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "The design implements a clock showing hours, minutes and seconds."
+    },
+    {
+     "tag": "spinalhdl",
+     "reason": "The Verilog is generated from a SpinalHDL project."
+    }
+   ],
+   "notes": "Removed clock-generator as the design is a clock display, not a clock signal generator; added rtc and spinalhdl.",
+   "tags_before": [
+    "vga",
+    "clock-generator",
+    "display",
+    "video",
+    "spinalhdl"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "video",
+    "spinalhdl",
+    "rtc"
+   ],
+   "summary_before": "This design generates a 5-pin VGA signal from a 25 MHz clock, displaying a clock with three bars whose heights represent hours, minutes, and seconds. It is tested on an FPGA and requires a VGA screen connected to the pins. The Verilog is generated from a SpinalHDL project and manually adapted to the TT03p5 requirements. The design uses only one digital pin per color channel, limiting color depth.",
+   "summary": "This design generates a 5-pin VGA signal from a 25 MHz clock, displaying a clock with three bars whose heights represent hours, minutes, and seconds. It is tested on an FPGA and requires a VGA screen connected to the pins. The Verilog is generated from a SpinalHDL project and manually adapted to the TT03p5 requirements. The design uses only one digital pin per color channel, limiting color depth.",
+   "summary_changed": false
+  },
+  {
+   "key": "497656d98182",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design divides an input clock rather than generating arbitrary waveforms."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "The design divides the input clock by powers of two."
+    },
+    {
+     "tag": "counter",
+     "reason": "The design uses counters to produce the divided clocks."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The outputs drive a 7-segment display."
+    }
+   ],
+   "notes": "Removed signal-generator; added clock-divider, counter and 7-segment tags supported by the source.",
+   "tags_before": [
+    "clock-divider",
+    "counter",
+    "7-segment",
+    "signal-generator",
+    "divider",
+    "verilog"
+   ],
+   "tags": [
+    "clock-divider",
+    "counter",
+    "7-segment",
+    "divider",
+    "verilog"
+   ],
+   "summary_before": "This design is a clock frequency divider that generates several divided clock signals from a user-selected modulo value. Eight input pins set the modulo M, and the bidirectional pins output clocks divided by 2, 4, 8, 16, 32, 64 and 128 along with the raw modulo M pulse, while the eight outputs drive a 7-segment display. Internally a counter counts to M-1 and its terminal signal clocks a 7-bit counter whose stages provide the divided outputs. Testing only requires setting the modulo value on the dedicated input switches.",
+   "summary": "This design is a clock frequency divider that generates several divided clock signals from a user-selected modulo value. Eight input pins set the modulo M, and the bidirectional pins output clocks divided by 2, 4, 8, 16, 32, 64 and 128 along with the raw modulo M pulse, while the eight outputs drive a 7-segment display. Internally a counter counts to M-1 and its terminal signal clocks a 7-bit counter whose stages provide the divided outputs. Testing only requires setting the modulo value on the dedicated input switches.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10448,
+  "completion_tokens": 1477,
+  "total_tokens": 11925,
+  "cost": 0.003377628,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003377628,
+   "upstream_inference_prompt_cost": 0.001871088,
+   "upstream_inference_completions_cost": 0.00150654
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003377628,
+ "elapsed_s": 48.8
+}

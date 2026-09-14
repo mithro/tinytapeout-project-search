@@ -1,0 +1,212 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "07b093530c51",
+  "8b0f39272cb2",
+  "29351e202b4b",
+  "6e37c135ac0b",
+  "0d98f4ff71c0",
+  "5f01f14028dc"
+ ],
+ "results": [
+  {
+   "key": "07b093530c51",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design uses external SPI RAM but does not implement a memory block itself."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "The CPU performs instruction fetch/execute cycles, implying instruction decode logic."
+    }
+   ],
+   "notes": "Removed memory tag because the design uses external SPI RAM rather than implementing memory; added instruction-decoder as core CPU logic.",
+   "tags_before": [
+    "cpu",
+    "spi",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "spi",
+    "verilog",
+    "instruction-decoder"
+   ],
+   "summary_before": "CORA-16 is a 16-bit CPU that uses external SPI memory for instruction fetch and execution. It features a byte-wide general-purpose input and output bus, and supports single-stepping for debugging via a step pin. Status pins indicate busy, halt, and trap conditions, with trap recovery possible by stepping. The design requires an external SPI RAM, such as a Raspberry Pi acting as an emulator, to load and run programs.",
+   "summary": "CORA-16 is a 16-bit CPU that uses external SPI memory for instruction fetch and execution. It features a byte-wide general-purpose input and output bus, and supports single-stepping for debugging via a step pin. Status pins indicate busy, halt, and trap conditions, with trap recovery possible by stepping. The design requires an external SPI RAM, such as a Raspberry Pi acting as an emulator, to load and run programs.",
+   "summary_changed": false
+  },
+  {
+   "key": "8b0f39272cb2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "driver",
+     "reason": "The design is a UART communication module, not a generic peripheral driver output stage."
+    }
+   ],
+   "add": [],
+   "notes": "Removed driver tag as the UART is a communication interface, not a generic driver output stage.",
+   "tags_before": [
+    "uart",
+    "fifo",
+    "communication",
+    "systemverilog",
+    "driver"
+   ],
+   "tags": [
+    "uart",
+    "fifo",
+    "communication",
+    "systemverilog"
+   ],
+   "summary_before": "This project is a general-purpose UART with FIFO buffers, developed by Purdue's SoCET team. It supports standard UART signals (rx, tx, cts, rts) and includes FIFO buffers for both transmit and receive paths. The design allows configuration of baud rate and operation mode (idle, transmit, receive, buffer clear) through control pins. It can be tested by connecting to another UART or a USB-to-serial adapter, and it provides error and buffer status flags.",
+   "summary": "This project is a general-purpose UART with FIFO buffers, developed by Purdue's SoCET team. It supports standard UART signals (rx, tx, cts, rts) and includes FIFO buffers for both transmit and receive paths. The design allows configuration of baud rate and operation mode (idle, transmit, receive, buffer clear) through control pins. It can be tested by connecting to another UART or a USB-to-serial adapter, and it provides error and buffer status flags.",
+   "summary_changed": false
+  },
+  {
+   "key": "29351e202b4b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag because the design is a dedicated multiplier, not a general ALU.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4x4 array multiplier that takes two 4-bit unsigned numbers and outputs their 8-bit product. It is built from 12 full adders and 16 AND gates, following a structural array multiplier architecture. Testing is done by applying two 4-bit inputs via the ui_in pins and reading the product on the uo_out pins. No external hardware is required, and the design is a typical class project for learning digital arithmetic.",
+   "summary": "This project is a 4x4 array multiplier that takes two 4-bit unsigned numbers and outputs their 8-bit product. It is built from 12 full adders and 16 AND gates, following a structural array multiplier architecture. Testing is done by applying two 4-bit inputs via the ui_in pins and reading the product on the uo_out pins. No external hardware is required, and the design is a typical class project for learning digital arithmetic.",
+   "summary_changed": false
+  },
+  {
+   "key": "6e37c135ac0b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag because the design is a dedicated multiplier, not a general ALU.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers to produce an 8-bit result. It generates 16 partial products using AND gates and sums them with full adders. The design is tested by applying various 4-bit inputs in a simulation environment and verifying the product. No external hardware is needed, and the project is a standard educational implementation of an array multiplier.",
+   "summary": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers to produce an 8-bit result. It generates 16 partial products using AND gates and sums them with full adders. The design is tested by applying various 4-bit inputs in a simulation environment and verifying the product. No external hardware is needed, and the project is a standard educational implementation of an array multiplier.",
+   "summary_changed": false
+  },
+  {
+   "key": "0d98f4ff71c0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag because the design is a dedicated multiplier, not a general ALU.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit array multiplier that computes the product of two 4-bit unsigned numbers, outputting an 8-bit result. It uses partial product generation with AND gates and summation with full adders. Testing is done by applying an 8-bit input representing two 4-bit numbers and checking the 8-bit output. No external hardware is required, and the design is a straightforward educational example of a structural multiplier.",
+   "summary": "This project implements a 4-bit array multiplier that computes the product of two 4-bit unsigned numbers, outputting an 8-bit result. It uses partial product generation with AND gates and summation with full adders. Testing is done by applying an 8-bit input representing two 4-bit numbers and checking the 8-bit output. No external hardware is required, and the design is a straightforward educational example of a structural multiplier.",
+   "summary_changed": false
+  },
+  {
+   "key": "5f01f14028dc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag because the design is a dedicated multiplier, not a general ALU.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This is a 4x4 array multiplier that multiplies two 4-bit unsigned binary numbers to produce an 8-bit product. It is implemented structurally using logic gates and 1-bit full adders, following a partial product and addition approach. The design can be tested via an automatic testbench or by building the circuit from provided schematics. No external hardware is used, and the project is a class assignment for a digital logic course.",
+   "summary": "This is a 4x4 array multiplier that multiplies two 4-bit unsigned binary numbers to produce an 8-bit product. It is implemented structurally using logic gates and 1-bit full adders, following a partial product and addition approach. The design can be tested via an automatic testbench or by building the circuit from provided schematics. No external hardware is used, and the project is a class assignment for a digital logic course.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7856,
+  "completion_tokens": 1194,
+  "total_tokens": 9050,
+  "cost": 0.004737,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004737,
+   "upstream_inference_prompt_cost": 0.002946,
+   "upstream_inference_completions_cost": 0.001791
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004737,
+ "elapsed_s": 4.7
+}

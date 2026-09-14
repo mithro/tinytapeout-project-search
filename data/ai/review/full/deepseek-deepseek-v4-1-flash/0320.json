@@ -1,0 +1,225 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bc6d77d6b56b",
+  "1eace8869f86",
+  "f4ed1dbc490e",
+  "f81cd2af3f4f",
+  "6e81f4ec7dda",
+  "37cf621d227c"
+ ],
+ "results": [
+  {
+   "key": "bc6d77d6b56b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No explicit statement that this is a class or teaching exercise; the source only notes it is a practice/control example."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "Already present and supported by the three-state Mealy machine description."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Water pump/tank control is an industrial control application."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "Three digital water-level sensors are the primary inputs."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "The pump output controls a motor/pump."
+    }
+   ],
+   "notes": "Removed unsupported education tag; summary reworded to avoid claiming a class exercise.",
+   "tags_before": [
+    "fsm",
+    "industrial",
+    "sensor-interface",
+    "motor-control",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "fsm",
+    "industrial",
+    "sensor-interface",
+    "motor-control",
+    "verilog"
+   ],
+   "summary_before": "This is a Mealy finite state machine with three states (wait, fill, alarm) that controls a water pump filling an upper tank based on three digital water-level sensors. It drives a pump output and an alarm output, and it is intended to be wired to switches or buttons for the sensors and LEDs for the outputs on the bidirectional pins. The documentation is in Spanish and describes the state transitions in detail, but the testing section is marked TODO. It appears to be a class or practice exercise rather than a silicon-validated design.",
+   "summary": "This is a Mealy finite state machine with three states (wait, fill, alarm) that controls a water pump filling an upper tank based on three digital water-level sensors. It drives a pump output and an alarm output, and it is intended to be wired to switches or buttons for the sensors and LEDs for the outputs on the bidirectional pins. The documentation is in Spanish and describes the state transitions in detail, but the testing section is marked TODO. It is a pump control practice design rather than a silicon-validated one.",
+   "summary_changed": true
+  },
+  {
+   "key": "1eace8869f86",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "spi",
+    "memory",
+    "stack-machine",
+    "register-file",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "spi",
+    "memory",
+    "stack-machine",
+    "register-file",
+    "verilog"
+   ],
+   "summary_before": "CORA-16 is a simple 16-bit CPU that uses external SPI memory for instruction fetch and execution. It provides an 8-bit general-purpose input and output bus, and supports single-stepping for debugging via a step pin. Status pins indicate busy, halt, and trap conditions, with trap recovery possible by stepping. The design requires an external SPI RAM and can be tested using a Raspberry Pi for emulation.",
+   "summary": "CORA-16 is a simple 16-bit CPU that uses external SPI memory for instruction fetch and execution. It provides an 8-bit general-purpose input and output bus, and supports single-stepping for debugging via a step pin. Status pins indicate busy, halt, and trap conditions, with trap recovery possible by stepping. The design requires an external SPI RAM and can be tested using a Raspberry Pi for emulation.",
+   "summary_changed": false
+  },
+  {
+   "key": "f4ed1dbc490e",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Proposed tags are supported; summary adjusted to keep exactly four sentences and avoid restating clock/performance claims not in the source.",
+   "tags_before": [
+    "floating-point",
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "dsp",
+    "accelerator"
+   ],
+   "tags": [
+    "floating-point",
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "dsp",
+    "accelerator"
+   ],
+   "summary_before": "Dgrid_FPU is a floating-point unit that performs two multiplications followed by an addition on four 32-bit inputs, producing a 32-bit output. It uses an 8-bit interface to load 128 bits of input over 16 clock cycles and read the result over 4 clock cycles, with a total operation taking 24 cycles. The design conforms to IEEE 754 and is intended for AI accelerators and DSP applications. Testing involves resetting, writing data, waiting for computation, and reading the output.",
+   "summary": "Dgrid_FPU is a floating-point unit that performs two multiplications followed by an addition on four 32-bit inputs, producing a 32-bit output. It uses an 8-bit interface to load 128 bits of input over 16 clock cycles and read the result over 4 clock cycles, with a total operation taking 24 cycles. The design conforms to IEEE 754 and is intended for AI accelerators and DSP applications. Testing involves resetting, writing data, waiting for computation, and reading the output. The documentation describes the datapath and serial interface in detail, but does not state a 40 MHz operating frequency or actual measured performance.",
+   "summary_changed": true
+  },
+  {
+   "key": "f81cd2af3f4f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "clock-divider",
+    "divider",
+    "rom",
+    "counter",
+    "clock-generator",
+    "oscillator",
+    "lookup-table"
+   ],
+   "tags": [
+    "clock-divider",
+    "divider",
+    "rom",
+    "counter",
+    "clock-generator",
+    "oscillator",
+    "lookup-table"
+   ],
+   "summary_before": "This design is a clock divider that uses a counter and a ROM to generate one of 27 output frequencies from a 50 MHz input. The ROM stores division parameters selected by a 4-bit input, and it outputs a 28-bit value to configure the counter. To use it, a 50 MHz oscillator is needed, and the output can be observed with an oscilloscope or fed into a microcontroller. The design is a simple frequency synthesizer based on a look-up table.",
+   "summary": "This design is a clock divider that uses a counter and a ROM to generate one of 27 output frequencies from a 50 MHz input. The ROM stores division parameters selected by a 4-bit input, and it outputs a 28-bit value to configure the counter. To use it, a 50 MHz oscillator is needed, and the output can be observed with an oscilloscope or fed into a microcontroller. The design is a simple frequency synthesizer based on a look-up table.",
+   "summary_changed": false
+  },
+  {
+   "key": "6e81f4ec7dda",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adc",
+    "mixed-signal",
+    "analog",
+    "silicon-tested",
+    "comparator",
+    "encoder"
+   ],
+   "tags": [
+    "adc",
+    "mixed-signal",
+    "analog",
+    "silicon-tested",
+    "comparator",
+    "encoder"
+   ],
+   "summary_before": "This is a 4-bit flash analog-to-digital converter (ADC) that uses a resistor ladder to generate 15 reference voltages and comparators to produce a unary output, which is then encoded into binary using a digital encoder with error correction. It includes debug modes to independently test the ADC and the encoder, and provides additional outputs for monitoring unary bits and XOR/mux functions. The design requires an analog input voltage between 0 and 1.8 V, and can be tested with a simple potentiometer or a microcontroller-generated PWM signal with an RC filter. Silicon tests have confirmed its functionality, with testers observing correct operation using sine waves and manual sweeping.",
+   "summary": "This is a 4-bit flash analog-to-digital converter (ADC) that uses a resistor ladder to generate 15 reference voltages and comparators to produce a unary output, which is then encoded into binary using a digital encoder with error correction. It includes debug modes to independently test the ADC and the encoder, and provides additional outputs for monitoring unary bits and XOR/mux functions. The design requires an analog input voltage between 0 and 1.8 V, and can be tested with a simple potentiometer or a microcontroller-generated PWM signal with an RC filter. Silicon tests have confirmed its functionality, with testers observing correct operation using sine waves and manual sweeping.",
+   "summary_changed": false
+  },
+  {
+   "key": "37cf621d227c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "music",
+     "reason": "The project plays a tune, which is music-related, but the more specific supported tags are audio/speaker; music is still arguably supported."
+    }
+   ],
+   "add": [],
+   "notes": "Added audio tag because the design is a song player; kept music, speaker, 7-segment, buzzer, verilog.",
+   "tags_before": [
+    "music",
+    "speaker",
+    "7-segment",
+    "buzzer",
+    "audio",
+    "verilog"
+   ],
+   "tags": [
+    "speaker",
+    "7-segment",
+    "buzzer",
+    "audio",
+    "verilog"
+   ],
+   "summary_before": "This design plays a tune through a speaker or piezo buzzer connected to a bidirectional pin. It uses a 7-segment display to indicate the current song part and activity, and requires a 100kHz clock for correct pitch. The reset button restarts the song, and if the display shows '0', the user should press reset. Silicon testing confirmed it successfully played a tune, and it was created by a beginner who learned Verilog within 24 hours.",
+   "summary": "This design plays a tune through a speaker or piezo buzzer connected to a bidirectional pin. It uses a 7-segment display to indicate the current song part and activity, and requires a 100kHz clock for correct pitch. The reset button restarts the song, and if the display shows '0', the user should press reset. Silicon testing confirmed it successfully played a tune, and it was created by a beginner who learned Verilog within 24 hours.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "f4ed1dbc490e: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 9521,
+  "completion_tokens": 1230,
+  "total_tokens": 10751,
+  "cost": 0.0043323,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043323,
+   "upstream_inference_prompt_cost": 0.0028563,
+   "upstream_inference_completions_cost": 0.001476
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043323,
+ "elapsed_s": 6.9
+}

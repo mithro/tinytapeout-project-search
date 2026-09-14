@@ -1,0 +1,206 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "38cb9113134b",
+  "241fd9ed5e38",
+  "26705ef71c81",
+  "5c734fd28aeb",
+  "39ad004e542e",
+  "4242d16482fc",
+  "112f0e7a10f1",
+  "8c64066c0641",
+  "c58f2d646d37",
+  "95fc1ca13fbf"
+ ],
+ "results": [
+  {
+   "key": "38cb9113134b",
+   "tags": [
+    "trng",
+    "puf",
+    "ring-oscillator",
+    "security",
+    "random-number-generator",
+    "crypto",
+    "analog",
+    "process-variation"
+   ],
+   "summary": "This design implements two physical security primitives, a ring-oscillator physical unclonable function (RO-PUF) and a true random number generator (TRNG), using a bank of eight ring oscillators. It is controlled through a parallel interface with write, read, start, mode select, and address clear signals, and provides an 8-bit data output along with busy and done status signals. The security properties emerge from manufacturing process variation, making each chip unique without requiring a cryptographic algorithm. No external hardware is needed, and the design is notable for leveraging intrinsic silicon variation for hardware security.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "241fd9ed5e38",
+   "tags": [
+    "spi",
+    "ram",
+    "memory",
+    "driver",
+    "master",
+    "serial",
+    "rp2040",
+    "pmod"
+   ],
+   "summary": "This design is an SPI Mode 0 master driver intended to control an emulated SPI RAM on the RP2040 chip. It supports READ and WRITE commands with a 16-bit address space and 8-bit data transfers, using a 32-bit transaction frame. After reset, it immediately performs a hardcoded WRITE transaction, and READ functionality can be tested by driving MISO data synchronized to SCK. External hardware includes an SPI RAM module such as the 23LC512 or an RP2040 emulating an SPI RAM slave, connected via the bidirectional pins.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "26705ef71c81",
+   "tags": [
+    "adder",
+    "saturating",
+    "arithmetic",
+    "alu",
+    "signed",
+    "unsigned",
+    "8-bit"
+   ],
+   "summary": "This is an 8-bit saturated adder that performs addition and subtraction for both signed and unsigned integers, preventing wrap-around by clamping results to the maximum or minimum representable value. The operation is selected via two bits on the bidirectional pins, with the first operand on the dedicated inputs and the second operand on the lower six bidirectional pins. The 8-bit result is output on the dedicated output pins. The documentation is somewhat thin, particularly regarding the exact encoding of the select bits and the handling of the second operand width, but the core functionality is clear.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5c734fd28aeb",
+   "tags": [
+    "template",
+    "demo",
+    "chisel",
+    "blinking",
+    "7-segment",
+    "education"
+   ],
+   "summary": "This project is an undecided design that currently only contains the Tiny Tapeout template demo. It has a few input and output pins, and the documentation states that one segment will blink. There is no external hardware required. The documentation is essentially minimal, providing no real information about the intended functionality beyond the template.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "39ad004e542e",
+   "tags": [
+    "synthesizer",
+    "sid",
+    "audio",
+    "pwm",
+    "music",
+    "sound",
+    "lfsr",
+    "adsr",
+    "ring-modulation",
+    "sync-modulation"
+   ],
+   "summary": "This design is a triple-voice SID (MOS 6581-inspired) synthesizer without the analog filters, featuring a flat memory-mapped parallel interface for control and an 8-bit PWM audio output. It implements three voices with 24-bit phase accumulators, four waveform types (sawtooth, triangle, pulse, noise), ADSR envelopes, and sync/ring modulation. A host microcontroller writes registers to set frequency, pulse width, ADSR, and waveform parameters, and the PWM output requires an external RC low-pass filter to recover analog audio. Notable limitations include the removal of the filter chain and the use of a single PWM output for the mixed audio.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4242d16482fc",
+   "tags": [
+    "silicon-art",
+    "gds",
+    "custom-gds",
+    "canary-token",
+    "microscope",
+    "art",
+    "metal",
+    "pixel-art"
+   ],
+   "summary": "This is a silicon art project that places a pixel pig artwork and canary token text directly on the metal layers of the chip using a custom GDS workflow. The design includes a decorative border and density fill to meet metal coverage requirements, and all digital outputs are tied to ground. The art is visible under an optical microscope after fabrication, and no external hardware is required. The project is notable for being purely decorative and for demonstrating the custom GDS capabilities of the Tiny Tapeout IHP process.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "112f0e7a10f1",
+   "tags": [
+    "game",
+    "snake",
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "buttons",
+    "pmod",
+    "systemverilog"
+   ],
+   "summary": "This design implements the classic Snake game, where the player controls a snake to eat food and grow while avoiding collisions with walls and itself. The game state is displayed on a VGA monitor, and the player uses four directional buttons plus optional pause and restart buttons. It provides a PWM audio output and exposes game state signals such as failure, success, eat, and tick for external hardware like a scoreboard. The design requires a VGA PMOD, optional audio PMOD, and buttons, and is notable for being a complete game implementation on a Tiny Tapeout tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8c64066c0641",
+   "tags": [
+    "spi",
+    "aggregator",
+    "adc",
+    "serializer",
+    "mcp3201",
+    "quad",
+    "interface",
+    "fpga"
+   ],
+   "summary": "This design aggregates four SPI mode 0 ADC inputs and serializes them into a single faster SPI output stream. It includes configuration pins for bit depth, null bits, and clock divider, and outputs a frame containing the concatenated ADC samples. The receiver, such as an FPGA, samples the output using TX_CS_N and TX_SCLK. External hardware includes four SPI ADCs like the MCP3201 and an SPI-capable receiver, and the design is notable for enabling efficient readout of multiple ADCs through a single interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c58f2d646d37",
+   "tags": [
+    "crypto",
+    "hash",
+    "spongent",
+    "accelerator",
+    "post-quantum",
+    "winternitz",
+    "signature",
+    "lightweight"
+   ],
+   "summary": "This chip is a hardware accelerator for the Spongent-88/80/8 lightweight hash function, intended as the cryptographic primitive for Winternitz One-Time Signatures (W-OTS), a post-quantum secure signature scheme. It communicates through the standard Tiny Tapeout pin interface with data input, data output, busy, out_valid, and address/strobe signals. No external hardware is required, but for W-OTS use, a host microcontroller handles key generation, storage, and protocol logic. The design is notable for providing a compact hardware implementation of a hash function suitable for post-quantum cryptography.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "95fc1ca13fbf",
+   "tags": [
+    "quadratic-sieve",
+    "factoring",
+    "crypto",
+    "spi",
+    "memory",
+    "pipeline",
+    "number-theory",
+    "accelerator"
+   ],
+   "summary": "This design implements a quadratic sieve algorithm for factoring large integers, based on a pipeline architecture. It performs sieving operations over a factor base, updating a memory array and reporting when a threshold is exceeded. The chip interfaces via SPI and requires external SPI RAM for the sieve memory. Testing involves initializing the memory, running the sieve, and reading out addresses that likely factor completely. The design is notable for accelerating an integer factorization algorithm in hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "95fc1ca13fbf: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 7856,
+  "completion_tokens": 1944,
+  "total_tokens": 9800,
+  "cost": 0.0046896,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0046896,
+   "upstream_inference_prompt_cost": 0.0023568,
+   "upstream_inference_completions_cost": 0.0023328
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0046896,
+ "elapsed_s": 16.5
+}

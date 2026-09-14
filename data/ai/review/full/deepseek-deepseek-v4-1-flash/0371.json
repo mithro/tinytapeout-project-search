@@ -1,0 +1,207 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "0ace3280a83e",
+  "6e93fb975405",
+  "cc3be620a640",
+  "135a1329066c",
+  "a194efe554a7",
+  "4cbf18f0feab"
+ ],
+ "results": [
+  {
+   "key": "0ace3280a83e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement in the source indicates this is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag; source gives no teaching or learning intent.",
+   "tags_before": [
+    "multiplier",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit array multiplier that takes two 4-bit inputs and produces an 8-bit product. The design is purely combinational and is described as breaking an 8-bit input into two 4-bit arrays for multiplication. Testing involves applying various input combinations to verify the multiplicative values. No external hardware is required.",
+   "summary": "This project implements a 4-bit array multiplier that takes two 4-bit inputs and produces an 8-bit product. The design is purely combinational and is described as breaking an 8-bit input into two 4-bit arrays for multiplication. Testing involves applying various input combinations to verify the multiplicative values. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "6e93fb975405",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "The DPU is described only as reading, operating on, and writing back SRAM data; no dedicated compute acceleration is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design was tested and working on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported accelerator tag and added silicon-tested based on the working silicon report.",
+   "tags_before": [
+    "sram",
+    "memory",
+    "uart",
+    "accelerator",
+    "verilog"
+   ],
+   "tags": [
+    "sram",
+    "memory",
+    "uart",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project is a test harness for an OpenRAM SRAM macro (32x16) that communicates via UART, with separate address and data phases for read and write operations. It includes a DPU that can read, operate on, and write back data in the SRAM. Testing requires sending UART commands, ensuring the first command is sent only when uart_ready is high. Silicon tests confirmed random read/write functionality at 25 MHz and up to 75 MHz, with errors appearing at 100 MHz.",
+   "summary": "This project is a test harness for an OpenRAM SRAM macro (32x16) that communicates via UART, with separate address and data phases for read and write operations. It includes a DPU that can read, operate on, and write back data in the SRAM. Testing requires sending UART commands, ensuring the first command is sent only when uart_ready is high. Silicon tests confirmed random read/write functionality at 25 MHz and up to 75 MHz, with errors appearing at 100 MHz.",
+   "summary_changed": false
+  },
+  {
+   "key": "cc3be620a640",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag; the source describes only a multiplier.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This design is a structural 4x4 array multiplier that takes two 4-bit unsigned factors, m and q, on ui_in and produces their 8-bit product p on uo_out. It works by generating partial products and summing them with full adders in a classic array arrangement. Testing is suggested with a testbench of ten varying 4-bit factor pairs compared against their expected products. No external hardware is needed, and the design is a simple educational arithmetic block.",
+   "summary": "This design is a structural 4x4 array multiplier that takes two 4-bit unsigned factors, m and q, on ui_in and produces their 8-bit product p on uo_out. It works by generating partial products and summing them with full adders in a classic array arrangement. Testing is suggested with a testbench of ten varying 4-bit factor pairs compared against their expected products. No external hardware is needed, and the design is a simple educational arithmetic block.",
+   "summary_changed": false
+  },
+  {
+   "key": "135a1329066c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is an analog inverter pair, not a basic digital logic gate implementation."
+    },
+    {
+     "tag": "driver",
+     "reason": "No generic peripheral driver output stage is described; it is an analog inverter pair."
+    }
+   ],
+   "add": [],
+   "notes": "Removed logic-gate and driver tags; the source describes an analog inverter pair, not digital logic or a driver stage.",
+   "tags_before": [
+    "logic-gate",
+    "analog",
+    "transistor-level",
+    "driver"
+   ],
+   "tags": [
+    "analog",
+    "transistor-level"
+   ],
+   "summary_before": "This analog design is a pair of inverters wired between two analog pins, with a small inverter driving a larger one to form a buffer. A signal is applied to ua[1] and the inverted output is observed on ua[0], with simulated rise time under 4 ns. Testing requires a signal generator and an oscilloscope. The design is a minimal transistor-level analog building block with limited documentation beyond its basic function.",
+   "summary": "This analog design is a pair of inverters wired between two analog pins, with a small inverter driving a larger one to form a buffer. A signal is applied to ua[1] and the inverted output is observed on ua[0], with simulated rise time under 4 ns. Testing requires a signal generator and an oscilloscope. The design is a minimal transistor-level analog building block with limited documentation beyond its basic function.",
+   "summary_changed": false
+  },
+  {
+   "key": "a194efe554a7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag; the source describes only a multiplier.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This is a 4x4 structural array multiplier that multiplies two 4-bit unsigned binary numbers to produce an 8-bit product. It uses an array of AND gates and full adders to generate and sum partial products. The design is tested by applying two 4-bit inputs and observing the 8-bit output. No external hardware is needed, and the project appears to be a class assignment for a digital logic course.",
+   "summary": "This is a 4x4 structural array multiplier that multiplies two 4-bit unsigned binary numbers to produce an 8-bit product. It uses an array of AND gates and full adders to generate and sum partial products. The design is tested by applying two 4-bit inputs and observing the 8-bit output. No external hardware is needed, and the project appears to be a class assignment for a digital logic course.",
+   "summary_changed": false
+  },
+  {
+   "key": "4cbf18f0feab",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "adder",
+    "combinational"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "combinational"
+   ],
+   "summary_before": "This design implements a 4x4 array multiplier using structural logic, taking two 4-bit inputs m and q and producing an 8-bit product p. It uses a grid of AND gates and full adders to sum the partial products along diagonals. The design is purely combinational and is tested by applying an 8-bit input where the lower four bits are m and the upper four bits are q, then observing the product on the outputs. No external hardware is required.",
+   "summary": "This design implements a 4x4 array multiplier using structural logic, taking two 4-bit inputs m and q and producing an 8-bit product p. It uses a grid of AND gates and full adders to sum the partial products along diagonals. The design is purely combinational and is tested by applying an 8-bit input where the lower four bits are m and the upper four bits are q, then observing the product on the outputs. No external hardware is required.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6213,
+  "completion_tokens": 1158,
+  "total_tokens": 7371,
+  "cost": 0.0032535,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032535,
+   "upstream_inference_prompt_cost": 0.0018639,
+   "upstream_inference_completions_cost": 0.0013896
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032535,
+ "elapsed_s": 4.7
+}

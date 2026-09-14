@@ -1,0 +1,235 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "99b7e1b8f666",
+  "5df23afa7370",
+  "90856697413c",
+  "48c2bf335915",
+  "30ce1908b084",
+  "df43fc0c4f5d"
+ ],
+ "results": [
+  {
+   "key": "99b7e1b8f666",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "The design decodes opcodes into control signals via a LUT; it is a control block, not an instruction decode logic block per se, though arguably close. Safer to remove as unsupported by explicit text."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sequential-logic",
+     "reason": "Uses a 6-stage sequential counter for micro-instruction sequencing."
+    }
+   ],
+   "notes": "Removed instruction-decoder as the block is a control unit; added sequential-logic for the micro-instruction counter.",
+   "tags_before": [
+    "cpu",
+    "instruction-decoder",
+    "fsm",
+    "lookup-table",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "fsm",
+    "lookup-table",
+    "education",
+    "verilog",
+    "sequential-logic"
+   ],
+   "summary_before": "This design implements the control block for an 8-bit CPU based on the SAP-1 architecture. It uses a 6-stage sequential counter and a lookup table to generate control signals from a 4-bit opcode, with outputs for various register and memory control lines as well as a halt signal. Testing involves applying opcodes and monitoring the control signal outputs, optionally using a logic analyzer or slowing the clock. The project is part of a course (ECE 298A) and is intended to be integrated with other CPU sub-blocks.",
+   "summary": "This design implements the control block for an 8-bit CPU based on the SAP-1 architecture. It uses a 6-stage sequential counter and a lookup table to generate control signals from a 4-bit opcode, with outputs for various register and memory control lines as well as a halt signal. Testing involves applying opcodes and monitoring the control signal outputs, optionally using a logic analyzer or slowing the clock. The project is part of a course (ECE 298A) and is intended to be integrated with other CPU sub-blocks.",
+   "summary_changed": false
+  },
+  {
+   "key": "5df23afa7370",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a single adder, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "Documentation states it is a class exercise (title 'test_friday2', one-line 'class')."
+    }
+   ],
+   "notes": "Removed alu (single adder only); added workshop for the class context.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "adder",
+    "education",
+    "verilog",
+    "workshop"
+   ],
+   "summary_before": "This project implements an 8-bit Kogge-Stone adder in Verilog. It takes two 8-bit inputs and produces their sum, but lacks a carry-out so sums above 255 are not representable. The design is intended as a class exercise and includes a testbench that iterates through all input combinations, skipping cases where overflow would occur. No external hardware is required beyond the chip itself.",
+   "summary": "This project implements an 8-bit Kogge-Stone adder in Verilog. It takes two 8-bit inputs and produces their sum, but lacks a carry-out so sums above 255 are not representable. The design is intended as a class exercise and includes a testbench that iterates through all input combinations, skipping cases where overflow would occur. No external hardware is required beyond the chip itself.",
+   "summary_changed": false
+  },
+  {
+   "key": "90856697413c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "driver",
+     "reason": "No generic peripheral driver output stage is described; it directly drives 7-segment segments."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "Documentation links a Digilent Pmod SSD seven-segment display for testing."
+    }
+   ],
+   "notes": "Removed driver (no driver stage); added pmod for the linked Pmod SSD display; reworded final sentence to avoid unsupported 'notable' claim.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "driver",
+    "latch",
+    "systemverilog"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "latch",
+    "systemverilog",
+    "pmod"
+   ],
+   "summary_before": "This design drives a two-digit 7-segment display to show the hexadecimal representation of an 8-bit input byte. The byte is latched on a rising clock edge when the write enable signal is high, and the display is continuously driven with segment outputs and a digit select signal. Testing requires connecting a 7-segment display and manipulating the input and write enable pins to verify latching and display updates. The project is notable for its simple interface and use of a standard 7-segment display.",
+   "summary": "This design drives a two-digit 7-segment display to show the hexadecimal representation of an 8-bit input byte. The byte is latched on a rising clock edge when the write enable signal is high, and the display is continuously driven with segment outputs and a digit select signal. Testing requires connecting a 7-segment display and manipulating the input and write enable pins to verify latching and display updates. The project uses a simple interface with a standard 7-segment display.",
+   "summary_changed": true
+  },
+  {
+   "key": "48c2bf335915",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "No industrial control application is stated; it is a simulation/demo."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "The elevator has moving up, moving down, and idle states, indicating a state machine."
+    }
+   ],
+   "notes": "Removed industrial (no industrial application stated); added fsm for the elevator state machine.",
+   "tags_before": [
+    "industrial",
+    "7-segment",
+    "display",
+    "fsm",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "fsm",
+    "education"
+   ],
+   "summary_before": "This project simulates an elevator control system that displays floor numbers on a 7-segment display based on switch inputs. The user selects a floor using the board switches, and the display increments or decrements according to the elevator's state (moving up, moving down, or idle). Testing involves using the switches to select floors and observing the display, which requires an external LED display. The design is a simple state machine demonstration with no additional hardware beyond the display.",
+   "summary": "This project simulates an elevator control system that displays floor numbers on a 7-segment display based on switch inputs. The user selects a floor using the board switches, and the display increments or decrements according to the elevator's state (moving up, moving down, or idle). Testing involves using the switches to select floors and observing the display, which requires an external LED display. The design is a simple state machine demonstration with no additional hardware beyond the display.",
+   "summary_changed": false
+  },
+  {
+   "key": "30ce1908b084",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design outputs a PWM signal, not a general waveform/signal generator; the triangular reference is internal only."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "One-line description states PWM for LED control and an LED is suggested for visual feedback."
+    }
+   ],
+   "notes": "Removed signal-generator (PWM only); added led per the stated LED-control purpose.",
+   "tags_before": [
+    "pwm",
+    "led",
+    "signal-generator"
+   ],
+   "tags": [
+    "pwm",
+    "led"
+   ],
+   "summary_before": "This design is a basic PWM controller that generates a pulse-width modulated output on uo[7] when enabled by ui[7]. The six-bit input ui[5:0] sets the duty cycle in manual mode, or the frequency of an internally generated triangular reference when ui[6] is high, producing a breathing effect. It is tested by enabling the output and observing the PWM signal on uo[7] while flipping the input switches. No external hardware is required, though an LED and resistor are suggested for visual feedback.",
+   "summary": "This design is a basic PWM controller that generates a pulse-width modulated output on uo[7] when enabled by ui[7]. The six-bit input ui[5:0] sets the duty cycle in manual mode, or the frequency of an internally generated triangular reference when ui[6] is high, producing a breathing effect. It is tested by enabling the output and observing the PWM signal on uo[7] while flipping the input switches. No external hardware is required, though an LED and resistor are suggested for visual feedback.",
+   "summary_changed": false
+  },
+  {
+   "key": "df43fc0c4f5d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a 2 MHz clock; it does not generate one."
+    }
+   ],
+   "add": [
+    {
+     "tag": "charge-pump",
+     "reason": "Already present; no addition needed."
+    }
+   ],
+   "notes": "Removed clock-generator (clock is an input, not generated); charge-pump already present.",
+   "tags_before": [
+    "charge-pump",
+    "analog",
+    "power-management",
+    "clock-generator"
+   ],
+   "tags": [
+    "charge-pump",
+    "analog",
+    "power-management"
+   ],
+   "summary_before": "This is a 3-stage Dickson charge pump that boosts the input voltage to approximately 9.6 V, with the output divided by two and available on the analog pin ua[0]. It requires a 2 MHz clock signal to operate. In the TT09 shuttle, the analog pin voltage is limited to VDDIO/VDDA, so the output is divided by three instead. The design is tested by applying a clock and measuring the divided output voltage.",
+   "summary": "This is a 3-stage Dickson charge pump that boosts the input voltage to approximately 9.6 V, with the output divided by two and available on the analog pin ua[0]. It requires a 2 MHz clock signal to operate. In the TT09 shuttle, the analog pin voltage is limited to VDDIO/VDDA, so the output is divided by three instead. The design is tested by applying a clock and measuring the divided output voltage.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6967,
+  "completion_tokens": 1351,
+  "total_tokens": 8318,
+  "cost": 0.001704886,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001704886,
+   "upstream_inference_prompt_cost": 0.000813226,
+   "upstream_inference_completions_cost": 0.00089166
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001704886,
+ "elapsed_s": 14.5
+}

@@ -1,0 +1,190 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "32aebd7586b8",
+  "d46aac4f38d4",
+  "21b8967d29b6",
+  "4e89ace5ad5b",
+  "a589bba5c486",
+  "68743f029795",
+  "7f815e593a8d",
+  "abd1109e01fe",
+  "d5da10927d9d",
+  "0ef6b39aba25"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "32aebd7586b8",
+   "summary": "This design implements a stochastic multiplier, adder and self-multiplier using serial bit streams, with an LFSR-based stochastic number generator and a digital quadratic integrate-and-fire neuron as an application. Numbers are entered as two repeating 9-bit serial streams and results are read out serially on separate output pins. Testing requires an ADALM2000 to generate and capture the serial streams. The documentation is largely a reference list with images, so the exact internal architecture is only partly described.",
+   "tags": [
+    "stochastic-computing",
+    "multiplier",
+    "adder",
+    "lfsr",
+    "neural-network"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "d46aac4f38d4",
+   "summary": "This is an 8.5-bit retro game console combining a tile-and-sprite PPU that outputs VGA with a multi-voice wavetable synthesizer that produces 96 kHz samples. It is driven by an external RP2040 acting as a RAM emulator over UART, which loads VRAM and synth parameters and receives audio samples. A Tiny VGA Pmod is required for video, while sound output is left to the RP2040 and is still to be determined. The RAM emulator source code is not yet published, so full testing is not currently possible from the documentation alone.",
+   "tags": [
+    "game",
+    "retro",
+    "vga",
+    "graphics",
+    "sprite",
+    "synthesizer",
+    "audio",
+    "uart",
+    "rp2040"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "21b8967d29b6",
+   "summary": "This is a simple VGA tennis game where four input pins move the left and right paddles and additional inputs reset the score and select the ball speed. It outputs VGA signals through a Pmod, with a pin option selecting between mole99 and Digilent VGA pinouts. The design needs a VGA Pmod and a monitor plus buttons to play. The documentation is brief and does not describe the internal game logic in detail.",
+   "tags": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "display"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "d46aac4f38d4",
+   "summary": "This design is a simple UART transmitter that continuously sends a fixed set of strings on four separate output pins. The clock input is used directly to set the baud rate, so applying a 115200 Hz clock yields 115200 baud. It is tested by connecting one of the outputs to an asynchronous serial receiver. No external hardware beyond a serial port is required, and the documentation is very short.",
+   "tags": [
+    "uart",
+    "communication",
+    "text"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "a589bba5c486",
+   "summary": "This design is an asynchronous multiplier that emits the sequence r = x^2 + x for x = 0, 1, 2, ... using a four-phase bundled-data handshake. Internally it uses 26-bit precision but folds the result down to 15 output bits with r ^ (r >> 15). It is tested by tying ack to req for free-running operation and observing the outputs, optionally with a logic analyzer or RP2040. The author notes that timing analysis is still in progress and the inserted delays are likely oversized.",
+   "tags": [
+    "multiplier",
+    "asynchronous",
+    "alu"
+   ],
+   "sentences": 5
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "68743f029795",
+   "summary": "This SystemVerilog design produces an 800x600 60 Hz SVGA output with a background and a single 12x12 sprite, internally rendered at 100x75 and scaled up. An SPI receiver accepts commands to replace sprite data, change colors, set the background and move the sprite, with the Tiny Tapeout logo shown by default. It requires a Tiny VGA Pmod for output and an SPI master for configuration. The design is deliberately limited to one sprite, as the name suggests.",
+   "tags": [
+    "vga",
+    "sprite",
+    "display",
+    "spi",
+    "video",
+    "graphics",
+    "systemverilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "7f815e593a8d",
+   "summary": "This is a configurable ring oscillator built from up to 3853 inverters, with taps at chain lengths of 1, 3, 5, 7, 11, 21, 51, 101, 201, 501, 1001, 2001, 3001 and 3853. The ring is enabled by connecting one of the tap outputs back to the ring_in input, and the resulting frequency is measured externally. A scope or logic analyzer is needed to measure the output frequency and the delay between different points in the chain. The design is intended for characterizing inverter delay and oscillator behavior on the process.",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "logic-gate",
+    "delay-line",
+    "instrumentation",
+    "standard-cell"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "abd1109e01fe",
+   "summary": "This is a Simon Says memory game where the player repeats an ever-growing sequence of colors shown on four LEDs, each with a corresponding tone, and the current level is shown on a two-digit seven-segment display. It uses four buttons, four LEDs, an optional speaker and a multiplexed seven-segment display, and can be tested with a dedicated Simon Says Pmod or with discrete components. A Wokwi simulation with wiring diagram is provided. Silicon testing confirmed it works as expected with the Pmod when the design is reset after selection.",
+   "tags": [
+    "game",
+    "led",
+    "7-segment",
+    "audio",
+    "speaker",
+    "wokwi",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "d5da10927d9d",
+   "summary": "SPELL is a hardware implementation of a minimal stack-based programming language created for The Skull CTF, with 256 bytes of program memory, a 32-byte stack and 32 bytes of data memory. Programs and internal registers are loaded and inspected through a serial shift-register interface controlled by run, step, load, dump and register-select pins. It also exposes eight bidirectional and eight output-only pins as I/O ports. No external hardware is required, and the design is notable for implementing a complete esoteric language interpreter in hardware.",
+   "tags": [
+    "cpu",
+    "stack-machine",
+    "esoteric",
+    "security",
+    "shift-register"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "0ef6b39aba25",
+   "summary": "This design is a controller and test harness for a foundry-provided 1024x8 SRAM macro, allowing single-byte reads and writes through 10 address lines, 8 data lines and a write-enable. The lower six address bits are direct inputs while the upper four are held in an address bank register selected by bank_sel. It is tested by writing and reading back values across addresses, and silicon testing passed with all values at a few addresses and random values over 2M cycles. No external hardware is needed.",
+   "tags": [
+    "sram",
+    "memory",
+    "factory-test"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "4e89ace5ad5b: key echoed as 'd46aac4f38d4', matched by index",
+  "a589bba5c486: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 11403,
+  "completion_tokens": 1759,
+  "total_tokens": 13162,
+  "cost": 0.0016700956,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0016700956,
+   "upstream_inference_prompt_cost": 0.0011986836,
+   "upstream_inference_completions_cost": 0.000471412
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0016700956,
+ "elapsed_s": 13.3
+}

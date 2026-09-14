@@ -1,0 +1,196 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ac48ebb14e36",
+  "81d043463bc7",
+  "3c035713c0ac",
+  "abd4ff1c31e5",
+  "88f3d7ced1ae",
+  "e12887ef091f",
+  "3f4c44596c3f",
+  "c63b167cbba8",
+  "c820e3fad6e6",
+  "fc5a7e0279a3"
+ ],
+ "results": [
+  {
+   "key": "ac48ebb14e36",
+   "tags": [
+    "random-number-generator",
+    "lfsr",
+    "prng",
+    "led",
+    "seed",
+    "bitstream"
+   ],
+   "summary": "This design generates a pseudo-random bit stream using an LFSR whose behaviour is selected by a mode input and seeded by four input bits. The eight output bits can be observed on LEDs or a display connected to the chip. Testing consists of varying the seed and mode and watching the output bits change. The documentation is very brief and does not describe the modes or the LFSR polynomial in detail.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "81d043463bc7",
+   "tags": [
+    "random-number-generator",
+    "trng",
+    "test",
+    "nist",
+    "monobit",
+    "statistics"
+   ],
+   "summary": "This design samples an incoming bit stream and runs the NIST 800.22 Monobit test to decide whether the source appears random. It asserts a valid output every 65536 cycles, and the is_random result should only be sampled while valid is high. The only external requirement is a clock and a bit source on the epsilon input. The documentation is short and does not describe configuration options or how the test threshold is chosen.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3c035713c0ac",
+   "tags": [
+    "nco",
+    "oscillator",
+    "sine",
+    "square",
+    "sawtooth",
+    "dac",
+    "phase-accumulator",
+    "signal-generator"
+   ],
+   "summary": "This is a numerically controlled oscillator that produces an unsigned 8-bit waveform selected by two mode pins: sine from a lookup table, or square and sawtooth from the phase accumulator. The 16-bit frequency word is loaded in two halves using the update-enable bidirectional pins together with the input byte. Testing is done by setting the mode and frequency word and observing the output waveform. The design is small and the documentation covers the pin protocol but not the output sample rate or table depth.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "abd4ff1c31e5",
+   "tags": [
+    "uart",
+    "adc",
+    "spi",
+    "serial",
+    "tlv2556",
+    "vhdl",
+    "interface",
+    "terminal"
+   ],
+   "summary": "This VHDL design bridges a TI TLV2556 ADC to a UART, letting a host request conversions and read back human-readable values. A single hexadecimal character selects a channel, while a carriage return or line feed enters continuous mode that cycles through all channels. It needs a 48 MHz clock, a TLV2556 wired to the SPI-like pins, and a UART connection at 230400 baud 8N1, with CTS and RTS inverted for direct connection to a CH340. The ADC settings are fixed and the project is presented as a VHDL test exercise.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "88f3d7ced1ae",
+   "tags": [
+    "game",
+    "dice",
+    "i2c",
+    "pwm",
+    "7-segment",
+    "led",
+    "gpio",
+    "peripheral"
+   ],
+   "summary": "This design rolls tabletop RPG dice for d4 through d20 and d100, driving a multiplexed two-digit 7-segment display and also exposing a simple I2C slave and a PWM-capable GPIO. Buttons select the die type, and configuration pins set button, segment and common polarity so both common-anode and common-cathode displays can be used. Multi-digit dice need an external two-digit LED display and transistor drivers for the common pins, while single-digit dice work on the demo board. Silicon reports conflict: the author reports the dice, I2C and PWM all working, but an independent tester saw no activity on the demo board LED.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e12887ef091f",
+   "tags": [
+    "cpu",
+    "sap-1",
+    "alu",
+    "multiplier",
+    "divider",
+    "memory",
+    "state-machine",
+    "education",
+    "oscilloscope"
+   ],
+   "summary": "This is an implementation of the Malvino and Brown SAP-1 simple computer, forked from another Tiny Tapeout design, with an 8-bit bus connecting a program counter, registers, adder, multiplier, divider, memory, instruction register and controller. It has no data inputs and runs autonomously from the clock, executing a six-stage instruction cycle that can add and subtract. The only documented way to observe the bus is with an oscilloscope, and the author suggests adding a 7-segment display driver as future work. The design is notable as an educational reproduction of the well-known breadboard computer architecture.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3f4c44596c3f",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "fixed-point",
+    "neuron",
+    "sci",
+    "fpga",
+    "debug",
+    "accelerator"
+   ],
+   "summary": "This design implements a single neuron using fixed-point arithmetic, with control and status exchanged over a custom SCI interface. The core clock and reset come from an external FPGA through input pins, while the on-board RP2040 clock is used only for debug and mirrored to an output. The FPGA also drives the SCI handshake signals, so the design cannot run standalone on the demo board. The documentation describes the clocking and interface but not the neuron's arithmetic details or how to verify its output.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c63b167cbba8",
+   "tags": [
+    "7-segment",
+    "display",
+    "animation",
+    "counter",
+    "led",
+    "buttons"
+   ],
+   "summary": "This project drives a 7-segment display with a set of selectable animations and a counter whose speed can be adjusted. Four buttons increment or decrement the animation index and the speed, and the default behaviour cycles the digits 0 to 9 once per second. It needs a breadboard, buttons and a 7-segment display for full use. Two silicon testers report it working, though one could not observe any effect from the speed buttons and the author notes some minor bugs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c820e3fad6e6",
+   "tags": [
+    "pwm",
+    "motor-control",
+    "led",
+    "debounce",
+    "duty-cycle",
+    "counter"
+   ],
+   "summary": "This Verilog module generates a 5 MHz PWM signal from a 50 MHz clock, with the duty cycle adjusted in 10 percent steps between 0 and 90 percent by two debounced buttons. The design includes D flip-flop debouncing logic and slow clock enables for the button inputs. It is intended for applications such as motor speed control or LED brightness adjustment, and was checked with the OpenROAD flow. A silicon tester confirmed that input 0 increases and input 1 decreases the duty cycle, but noted the published pinout description is incorrect.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fc5a7e0279a3",
+   "tags": [
+    "multiplier",
+    "baugh-wooley",
+    "signed",
+    "unsigned",
+    "arithmetic",
+    "ripple-carry-adder",
+    "combinational"
+   ],
+   "summary": "This combinational multiplier takes a 4-bit multiplicand and 4-bit multiplier and produces an 8-bit product, switchable between unsigned and signed operation via a bidirectional control pin. The unsigned mode uses a 4x4 array of AND-gate and full-adder cells, while signed mode applies the Modified Baugh-Wooley algorithm with NAND gates and correction bits in the final ripple-carry adder. It can be tested on a demo board by setting the input switches and reading the product on the 7-segment display. A silicon tester confirmed operation with several input combinations and the signed-mode control pin.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4965,
+  "completion_tokens": 1716,
+  "total_tokens": 6681,
+  "cost": 0.002048496,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002048496,
+   "upstream_inference_prompt_cost": 0.000915936,
+   "upstream_inference_completions_cost": 0.00113256
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002048496,
+ "elapsed_s": 20.3
+}

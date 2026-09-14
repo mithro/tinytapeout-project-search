@@ -1,0 +1,223 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6be5d333e8ef",
+  "819ec492ad87",
+  "904f009971ee",
+  "14bb7b659a2b",
+  "14e3f2f71bb1",
+  "6876eb315f85"
+ ],
+ "results": [
+  {
+   "key": "6be5d333e8ef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a multiply-accumulate unit, not an arithmetic logic unit; no ALU operations are described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag; the source describes only multiply-accumulate, not general ALU operations.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "dsp",
+    "fixed-point",
+    "alu"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "dsp",
+    "fixed-point"
+   ],
+   "summary_before": "This is an 8-bit sequential multiply-accumulate unit designed for DSP applications, multiplying two Q0.7 fixed-point numbers and adding the result to an accumulator. It requires two 8-bit inputs, and the accumulated result is available as an 8-bit output. No external hardware has been used for testing so far. The documentation is brief and does not provide detailed usage instructions.",
+   "summary": "This is an 8-bit sequential multiply-accumulate unit designed for DSP applications, multiplying two Q0.7 fixed-point numbers and adding the result to an accumulator. It requires two 8-bit inputs, and the accumulated result is available as an 8-bit output. No external hardware has been used for testing so far. The documentation is brief and does not provide detailed usage instructions.",
+   "summary_changed": false
+  },
+  {
+   "key": "819ec492ad87",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a floating-point multiplier, not an arithmetic logic unit; no ALU operations are described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag; the source describes only a floating-point multiplier, not an ALU.",
+   "tags_before": [
+    "floating-point",
+    "multiplier",
+    "dsp",
+    "alu"
+   ],
+   "tags": [
+    "floating-point",
+    "multiplier",
+    "dsp"
+   ],
+   "summary_before": "This is an 8-bit sign-exponent-mantissa floating-point multiplier with handling for NaN and zero inputs. It multiplies two 8-bit floating-point numbers and produces an 8-bit result, and it is fully self-contained with no external hardware required. The design is purely digital and operates on a 50 MHz clock. The documentation is minimal, providing only the pinout and a brief description.",
+   "summary": "This is an 8-bit sign-exponent-mantissa floating-point multiplier with handling for NaN and zero inputs. It multiplies two 8-bit floating-point numbers and produces an 8-bit result, and it is fully self-contained with no external hardware required. The design is purely digital and operates on a 50 MHz clock. The documentation is minimal, providing only the pinout and a brief description.",
+   "summary_changed": false
+  },
+  {
+   "key": "904f009971ee",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "low-power",
+     "reason": "Subthreshold operation is mentioned, but the source does not state a low-power optimization goal."
+    }
+   ],
+   "add": [],
+   "notes": "Removed low-power tag; subthreshold operation is described but low-power optimization is not claimed.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "analog",
+    "mixed-signal",
+    "low-power",
+    "spi"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "analog",
+    "mixed-signal",
+    "spi"
+   ],
+   "summary_before": "This analog design implements an adaptive exponential integrate-and-fire neuron using DPI circuits in the subthreshold regime. It is configured through analog bias voltages that are set by an SPI register, allowing tuning of neuron parameters. The neuron communicates via request and acknowledge handshake signals (NN_req and NN_ack) and includes a multiplexer for selecting internal signals. Documentation is minimal, providing only a brief description without detailed testing procedures or measured results.",
+   "summary": "This analog design implements an adaptive exponential integrate-and-fire neuron using DPI circuits in the subthreshold regime. It is configured through analog bias voltages that are set by an SPI register, allowing tuning of neuron parameters. The neuron communicates via request and acknowledge handshake signals (NN_req and NN_ack) and includes a multiplexer for selecting internal signals. Documentation is minimal, providing only a brief description without detailed testing procedures or measured results.",
+   "summary_changed": false
+  },
+  {
+   "key": "14bb7b659a2b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "The pin c_ring_en and c_ring_ao suggest a ring structure, but the source does not state it is a ring oscillator."
+    },
+    {
+     "tag": "power-gating",
+     "reason": "The source mentions clock-gating structures, not power gating."
+    }
+   ],
+   "add": [],
+   "notes": "Removed ring-oscillator and power-gating tags; source only supports asynchronous primitives and clock-gating.",
+   "tags_before": [
+    "chisel",
+    "asynchronous",
+    "fifo",
+    "arbiter",
+    "ring-oscillator",
+    "latch",
+    "power-gating"
+   ],
+   "tags": [
+    "chisel",
+    "asynchronous",
+    "fifo",
+    "arbiter",
+    "latch"
+   ],
+   "summary_before": "This Chisel design tests several asynchronous primitives, including a ring oscillator, a FIFO, an arbiter, and various latch and clock-gating structures. The pins expose control and data signals for each primitive, such as launch_arbiter, fifo_in_req, and c_ring_en, with outputs for the ring, gate, and arbiter test results. The project is intended as a test vehicle for asynchronous circuit building blocks rather than a complete application. No external hardware is required beyond the standard Tiny Tapeout demo board, and the documentation is limited to pin names and a one-line description.",
+   "summary": "This Chisel design tests several asynchronous primitives, including a ring oscillator, a FIFO, an arbiter, and various latch and clock-gating structures. The pins expose control and data signals for each primitive, such as launch_arbiter, fifo_in_req, and c_ring_en, with outputs for the ring, gate, and arbiter test results. The project is intended as a test vehicle for asynchronous circuit building blocks rather than a complete application. No external hardware is required beyond the standard Tiny Tapeout demo board, and the documentation is limited to pin names and a one-line description.",
+   "summary_changed": false
+  },
+  {
+   "key": "14e3f2f71bb1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a modular arithmetic accelerator for a prime field, not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu tag; the source describes a modular arithmetic accelerator, not an ALU.",
+   "tags_before": [
+    "crypto",
+    "accelerator",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "accelerator",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design is a hardware accelerator for modular arithmetic over the Mersenne-31 prime field, targeting ZK-STARK and Plonky3 applications. It accepts operands and opcodes through the input pins and provides results on the output pins, with a command enable and busy signal on the bidirectional pins. A microcontroller such as an RP2040 or ESP32 can be used to load operands, execute operations, and display or benchmark results, but no external hardware is strictly required. The design is notable for implementing finite-field arithmetic in hardware for cryptographic proof systems.",
+   "summary": "This Verilog design is a hardware accelerator for modular arithmetic over the Mersenne-31 prime field, targeting ZK-STARK and Plonky3 applications. It accepts operands and opcodes through the input pins and provides results on the output pins, with a command enable and busy signal on the bidirectional pins. A microcontroller such as an RP2040 or ESP32 can be used to load operands, execute operations, and display or benchmark results, but no external hardware is strictly required. The design is notable for implementing finite-field arithmetic in hardware for cryptographic proof systems.",
+   "summary_changed": false
+  },
+  {
+   "key": "6876eb315f85",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asynchronous",
+     "reason": "The design uses handshake signals but is not described as asynchronous or clockless logic."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "The source describes a neuromorphic neuron tile, not a generic artificial neural network."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "On-chip learning is mentioned, but the source does not describe machine-learning inference or training hardware."
+    }
+   ],
+   "add": [],
+   "notes": "Removed asynchronous, neural-network, and machine-learning tags; source supports only neuromorphic and spiking-neural-network.",
+   "tags_before": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "asynchronous",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "tags": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "summary_before": "The Neuromorphic Tile is an event-driven neuromorphic neuron tile with selectable modes and on-chip learning capabilities. It uses a handshake interface for input and output events, and configuration pins to set operational parameters. The tile outputs event data with type and valid signals. The documentation is minimal, providing only pin descriptions and a brief one-line summary, so specific implementation details and testing procedures are not described.",
+   "summary": "The Neuromorphic Tile is an event-driven neuromorphic neuron tile with selectable modes and on-chip learning capabilities. It uses a handshake interface for input and output events, and configuration pins to set operational parameters. The tile outputs event data with type and valid signals. The documentation is minimal, providing only pin descriptions and a brief one-line summary, so specific implementation details and testing procedures are not described.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6317,
+  "completion_tokens": 1321,
+  "total_tokens": 7638,
+  "cost": 0.0034803,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034803,
+   "upstream_inference_prompt_cost": 0.0018951,
+   "upstream_inference_completions_cost": 0.0015852
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034803,
+ "elapsed_s": 21.1
+}

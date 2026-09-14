@@ -1,0 +1,215 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5361f8403e60",
+  "a3bcc74f5253",
+  "39414dd5d81d",
+  "d43f013407e8",
+  "e778d841cd2c",
+  "edca4a9a4551"
+ ],
+ "results": [
+  {
+   "key": "5361f8403e60",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cocotb",
+     "reason": "The source mentions testbenches but does not state they use cocotb."
+    }
+   ],
+   "add": [],
+   "notes": "Removed cocotb tag because the source only says testbenches are provided, not that they use cocotb.",
+   "tags_before": [
+    "axi",
+    "communication",
+    "cocotb"
+   ],
+   "tags": [
+    "axi",
+    "communication"
+   ],
+   "summary_before": "This design implements an AXI4-Lite master and slave with a simplified interface for testing memory-mapped transactions. It allows the user to initiate read and write operations using simple input signals and provides a done flag on completion. Testbenches are provided to verify functionality. The module hides the complexity of the full AXI4-Lite protocol.",
+   "summary": "This design implements an AXI4-Lite master and slave with a simplified interface for testing memory-mapped transactions. It allows the user to initiate read and write operations using simple input signals and provides a done flag on completion. Testbenches are provided to verify functionality. The module hides the complexity of the full AXI4-Lite protocol.",
+   "summary_changed": false
+  },
+  {
+   "key": "a3bcc74f5253",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "error-correction",
+     "reason": "The design detects and signals errors but does not correct them."
+    }
+   ],
+   "add": [],
+   "notes": "Removed error-correction because the design only detects and signals errors, it does not correct them.",
+   "tags_before": [
+    "text",
+    "encoder",
+    "decoder",
+    "error-correction",
+    "verilog"
+   ],
+   "tags": [
+    "text",
+    "encoder",
+    "decoder",
+    "verilog"
+   ],
+   "summary_before": "This design implements hardware logic to convert Unicode code points between UTF-8, UTF-16, and UTF-32 encodings. It detects and signals errors such as overlong encodings, out-of-range code points, and invalid byte sequences, with an option to disable range checking for the original UTF-8 specification. The design is tested via a Python test suite covering a comprehensive set of cases, and it is intended for use in any device that processes Unicode text. The documentation is thorough, describing the error signals and test methodology.",
+   "summary": "This design implements hardware logic to convert Unicode code points between UTF-8, UTF-16, and UTF-32 encodings. It detects and signals errors such as overlong encodings, out-of-range code points, and invalid byte sequences, with an option to disable range checking for the original UTF-8 specification. The design is tested via a Python test suite covering a comprehensive set of cases, and it is intended for use in any device that processes Unicode text. The documentation is thorough, describing the error signals and test methodology.",
+   "summary_changed": false
+  },
+  {
+   "key": "39414dd5d81d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    },
+    {
+     "tag": "display",
+     "reason": "The pins indicate a 7-segment display, making the generic display tag redundant."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The how-it-works and how-to-test sections are unfilled template text."
+    }
+   ],
+   "notes": "Removed unsupported education and redundant display tags, added insufficient-doc, and removed the unsupported educational claim from the summary.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "education",
+    "verilog",
+    "sequential-logic"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "verilog",
+    "sequential-logic",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is described in Spanish as a counter from 0 to 16 with load capability, implemented in Verilog. The pin names indicate a clock, reset, an initialisation or load input, an enable input, and outputs for a 7-segment display including segments b through g and the dot. However, the how-it-works and how-to-test sections are still the unfilled template text, so the exact counting behaviour, load mechanism and display encoding cannot be confirmed. The design is likely a simple educational counter driving a 7-segment display, but the documentation is too thin to describe it in detail.",
+   "summary": "This project is described in Spanish as a counter from 0 to 16 with load capability, implemented in Verilog. The pin names indicate a clock, reset, an initialisation or load input, an enable input, and outputs for a 7-segment display including segments b through g and the dot. However, the how-it-works and how-to-test sections are still the unfilled template text, so the exact counting behaviour, load mechanism and display encoding cannot be confirmed. The design is likely a simple counter driving a 7-segment display, but the documentation is too thin to describe it in detail.",
+   "summary_changed": true
+  },
+  {
+   "key": "d43f013407e8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "standard-cell",
+    "shift-register",
+    "ring-oscillator",
+    "cocotb",
+    "verilog",
+    "factory-test"
+   ],
+   "tags": [
+    "standard-cell",
+    "shift-register",
+    "ring-oscillator",
+    "cocotb",
+    "verilog",
+    "factory-test"
+   ],
+   "summary_before": "This project includes a sky130-compatible standard cell generator, several demo cells, and a Tiny Tapeout design for testing them. The test design compares factory-provided cells with custom-generated cells (mux2i_2, maj3_2, dlrtp_1, dfrtp_1) using input pins for simple tests, and also supports advanced tests with a shift register, ring oscillator, and trigger pin. The documentation is sparse, with a 'TODO' for how it works, but the testing procedure is described in detail. The project is notable for combining cell generation with on-chip testing and includes cocotb tests.",
+   "summary": "This project includes a sky130-compatible standard cell generator, several demo cells, and a Tiny Tapeout design for testing them. The test design compares factory-provided cells with custom-generated cells (mux2i_2, maj3_2, dlrtp_1, dfrtp_1) using input pins for simple tests, and also supports advanced tests with a shift register, ring oscillator, and trigger pin. The documentation is sparse, with a 'TODO' for how it works, but the testing procedure is described in detail. The project is notable for combining cell generation with on-chip testing and includes cocotb tests.",
+   "summary_changed": false
+  },
+  {
+   "key": "e778d841cd2c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The source does not mention digital signal processing."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dsp because the source does not mention digital signal processing.",
+   "tags_before": [
+    "reconfigurable",
+    "accelerator",
+    "communication",
+    "dsp",
+    "pipeline",
+    "verilog"
+   ],
+   "tags": [
+    "reconfigurable",
+    "accelerator",
+    "communication",
+    "pipeline",
+    "verilog"
+   ],
+   "summary_before": "This project is a minimal coarse-grained reconfigurable array inspired by AMD's AI engine architecture, containing a 2x2 array of compute tiles connected by a simplified packet-switched network-on-chip. Two interface tiles connect the array to external memory and a host, and packets are routed through the NoC and processed in a pipelined manner. Eight data inputs, eight debug outputs and eight data outputs are exposed on the pins. The documentation does not describe a concrete test procedure, so how the design is exercised on silicon is unclear.",
+   "summary": "This project is a minimal coarse-grained reconfigurable array inspired by AMD's AI engine architecture, containing a 2x2 array of compute tiles connected by a simplified packet-switched network-on-chip. Two interface tiles connect the array to external memory and a host, and packets are routed through the NoC and processed in a pipelined manner. Eight data inputs, eight debug outputs and eight data outputs are exposed on the pins. The documentation does not describe a concrete test procedure, so how the design is exercised on silicon is unclear.",
+   "summary_changed": false
+  },
+  {
+   "key": "edca4a9a4551",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "oscillator",
+     "reason": "The design uses ring oscillators, making the generic oscillator tag redundant."
+    }
+   ],
+   "add": [],
+   "notes": "Removed redundant oscillator tag since ring-oscillator is already present.",
+   "tags_before": [
+    "ring-oscillator",
+    "prng",
+    "oscillator",
+    "flip-flop",
+    "wokwi"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "prng",
+    "flip-flop",
+    "wokwi"
+   ],
+   "summary_before": "This design proposes a pseudo random generator built from two ring oscillators whose outputs are sampled by a D flip-flop at a 10 kHz clock. OUT0 and OUT1 are described as complementary random outputs. The documentation says only that power should be connected and that the oscillators will in theory start oscillating. No external hardware is required, but the design is speculative and no silicon results are reported.",
+   "summary": "This design proposes a pseudo random generator built from two ring oscillators whose outputs are sampled by a D flip-flop at a 10 kHz clock. OUT0 and OUT1 are described as complementary random outputs. The documentation says only that power should be connected and that the oscillators will in theory start oscillating. No external hardware is required, but the design is speculative and no silicon results are reported.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6607,
+  "completion_tokens": 1272,
+  "total_tokens": 7879,
+  "cost": 0.0035085,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035085,
+   "upstream_inference_prompt_cost": 0.0019821,
+   "upstream_inference_completions_cost": 0.0015264
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035085,
+ "elapsed_s": 16.6
+}

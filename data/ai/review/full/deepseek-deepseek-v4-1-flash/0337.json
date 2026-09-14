@@ -1,0 +1,202 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3950954d6c9e",
+  "262c8baa7eee",
+  "d72afbb7be30",
+  "5ff0cc23ef17",
+  "53e5ccfb0e14",
+  "dad4ab3c85f0"
+ ],
+ "results": [
+  {
+   "key": "3950954d6c9e",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Summary is accurate; no tag changes needed.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8-bit linear feedback shift register that produces a pseudo-random sequence. It is used by reading the output pins, which change on each clock cycle, and can be seeded by setting the write enable pin high while providing a seed on the input pins. No external hardware is needed other than a way to read the output pins. The design is a straightforward LFSR implementation with no notable limitations mentioned.",
+   "summary": "This project implements an 8-bit linear feedback shift register that produces a pseudo-random sequence. It is used by reading the output pins, which change on each clock cycle, and can be seeded by setting the write enable pin high while providing a seed on the input pins. No external hardware is needed other than a way to read the output pins. The design is a straightforward LFSR implementation with no notable limitations mentioned.",
+   "summary_changed": false
+  },
+  {
+   "key": "262c8baa7eee",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "power-management",
+     "reason": "The source describes a voltage booster, not a power supply management application."
+    }
+   ],
+   "add": [],
+   "notes": "Removed power-management tag; the design is a charge pump, not a power management application.",
+   "tags_before": [
+    "charge-pump",
+    "analog",
+    "power-management"
+   ],
+   "tags": [
+    "charge-pump",
+    "analog"
+   ],
+   "summary_before": "This project implements a 3-stage Dickson charge pump that boosts voltage. It is tested by applying a 2 MHz clock signal to the clk input and measuring the output voltage on ua[0], which should rise to approximately 3.2 V. No external hardware is specified beyond a clock source and a voltage measurement device. The design is a simple analog voltage booster with minimal documentation.",
+   "summary": "This project implements a 3-stage Dickson charge pump that boosts voltage. It is tested by applying a 2 MHz clock signal to the clk input and measuring the output voltage on ua[0], which should rise to approximately 3.2 V. No external hardware is specified beyond a clock source and a voltage measurement device. The design is a simple analog voltage booster with minimal documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "d72afbb7be30",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "frequency-counter",
+    "instrumentation",
+    "verilog"
+   ],
+   "tags": [
+    "frequency-counter",
+    "instrumentation",
+    "verilog"
+   ],
+   "summary_before": "This project is a simple frequency meter that measures the frequency of an external square wave input. It outputs an 8-bit result in kHz. The input signal must be at least 10 times slower than the system clock. Testing requires an external oscillator or wave generator and a logic analyzer to verify the results.",
+   "summary": "This project is a simple frequency meter that measures the frequency of an external square wave input. It outputs an 8-bit result in kHz. The input signal must be at least 10 times slower than the system clock. Testing requires an external oscillator or wave generator and a logic analyzer to verify the results.",
+   "summary_changed": false
+  },
+  {
+   "key": "5ff0cc23ef17",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vco",
+     "reason": "The design is all-digital and uses a DCO; the external VCO is test equipment, not part of the design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed vco tag; the design uses a DCO and the VCO is external test equipment.",
+   "tags_before": [
+    "pll",
+    "vco",
+    "clock-generator",
+    "verilog"
+   ],
+   "tags": [
+    "pll",
+    "clock-generator",
+    "verilog"
+   ],
+   "summary_before": "This is an all-digital phase-locked loop (PLL) implemented in RTL, operating at 2 MHz with a 50 MHz sampling clock and programmable parameters. It includes a digitally controlled oscillator (DCO) and provides outputs for lock detection and sign. Testing involves stepping the frequency and measuring lock time and jitter, requiring a function generator, oscilloscope, and external VCO. The design is notable for being fully digital and programmable.",
+   "summary": "This is an all-digital phase-locked loop (PLL) implemented in RTL, operating at 2 MHz with a 50 MHz sampling clock and programmable parameters. It includes a digitally controlled oscillator (DCO) and provides outputs for lock detection and sign. Testing involves stepping the frequency and measuring lock time and jitter, requiring a function generator, oscilloscope, and external VCO. The design is notable for being fully digital and programmable.",
+   "summary_changed": false
+  },
+  {
+   "key": "53e5ccfb0e14",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "filter-analog",
+     "reason": "The band-pass filter is part of the planned test setup, not the design itself."
+    },
+    {
+     "tag": "full-custom",
+     "reason": "The source does not state that the layout is full-custom."
+    }
+   ],
+   "add": [],
+   "notes": "Removed filter-analog and full-custom tags; the filter is test setup and full-custom is not stated.",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "filter-analog",
+    "full-custom"
+   ],
+   "tags": [
+    "opamp",
+    "analog"
+   ],
+   "summary_before": "This project is a fully differential two-stage operational amplifier using a folded cascode followed by a common source stage. It has analog inputs for the differential signal, analog outputs for the differential output, a common-mode input pin, and two digital inputs to select between self-bias and external current source biasing. Testing is planned with an AD03 board to build a band-pass filter and measure linearity, offset voltage and current, CMRR, and PSRR. The design requires either a resistor for self-bias or an external current source, depending on the chosen biasing method.",
+   "summary": "This project is a fully differential two-stage operational amplifier using a folded cascode followed by a common source stage. It has analog inputs for the differential signal, analog outputs for the differential output, a common-mode input pin, and two digital inputs to select between self-bias and external current source biasing. Testing is planned with an AD03 board to build a band-pass filter and measure linearity, offset voltage and current, CMRR, and PSRR. The design requires either a resistor for self-bias or an external current source, depending on the chosen biasing method.",
+   "summary_changed": false
+  },
+  {
+   "key": "dad4ab3c85f0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The design is a CPU with instruction decoding and control, not primarily an FSM."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The CPU is based on Post's machine but is a practical teaching CPU, not an esoteric programming language or novelty computation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "The one-line description says 'A simple RISC CPU', but the source does not specify RISC-V; this tag should not be added."
+    }
+   ],
+   "notes": "Removed fsm and esoteric tags; the design is a CPU, not an FSM or esoteric computation.",
+   "tags_before": [
+    "cpu",
+    "spi",
+    "education",
+    "fsm",
+    "rom",
+    "memory",
+    "esoteric"
+   ],
+   "tags": [
+    "cpu",
+    "spi",
+    "education",
+    "rom",
+    "memory",
+    "risc-v"
+   ],
+   "summary_before": "This is a small CPU based on an enhanced version of Emil Post's machine, with an eight-instruction set, a 256x4-bit code ROM and a 256x1-bit data RAM in a Harvard arrangement. Programs and data are loaded and read back over a slave SPI interface, and a MODE pin selects programming versus execution while RUN starts the program. The design exposes internal buses on OUT8B and OUT3B under control of a three-bit selector, and it is intended as a teaching resource for computer architecture. The documentation is detailed, including instruction encoding, SPI word format and timing diagrams.",
+   "summary": "This is a small CPU based on an enhanced version of Emil Post's machine, with an eight-instruction set, a 256x4-bit code ROM and a 256x1-bit data RAM in a Harvard arrangement. Programs and data are loaded and read back over a slave SPI interface, and a MODE pin selects programming versus execution while RUN starts the program. The design exposes internal buses on OUT8B and OUT3B under control of a three-bit selector, and it is intended as a teaching resource for computer architecture. The documentation is detailed, including instruction encoding, SPI word format and timing diagrams.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8069,
+  "completion_tokens": 1164,
+  "total_tokens": 9233,
+  "cost": 0.001823906,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001823906,
+   "upstream_inference_prompt_cost": 0.001055666,
+   "upstream_inference_completions_cost": 0.00076824
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001823906,
+ "elapsed_s": 13.4
+}

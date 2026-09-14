@@ -1,0 +1,473 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a5a2b551e161",
+  "414041c1b8aa",
+  "4b555ab369a6",
+  "77ee8e42abe7",
+  "3cf1383f4703",
+  "857db247b2c6"
+ ],
+ "results": [
+  {
+   "key": "a5a2b551e161",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synthesizer",
+     "reason": "Source describes a simple ALU with registers, not an audio synthesizer."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio output or audio functionality is described."
+    },
+    {
+     "tag": "dac",
+     "reason": "No digital-to-analog converter is mentioned or implied by the pins."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is present in the pinout or documentation."
+    },
+    {
+     "tag": "waveform-generator",
+     "reason": "No waveform generation is described; the design is an ALU."
+    },
+    {
+     "tag": "music",
+     "reason": "No music generation or playback is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "Title and description explicitly state it is a simple ALU."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Description says it has embedded registers."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the 'How it works' text contradicts the title."
+    }
+   ],
+   "notes": "Tags and summary were about an audio synthesizer, but the source describes a simple ALU with registers; documentation is contradictory.",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "dac",
+    "spi",
+    "waveform-generator",
+    "music"
+   ],
+   "tags": [
+    "alu",
+    "register-file",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a digital synthesizer that generates audio waveforms and outputs them via a DAC. It uses an SPI interface for control and can produce various tones or waveforms. The design is intended for music generation and is notable for its waveform generation capabilities. It is implemented in digital logic and requires external audio hardware.",
+   "summary": "This project is a simple ALU with embedded registers, implemented in Verilog. It has 8 data input pins, 8 data output pins, and bidirectional pins for immediate and opcode fields. The documentation is very thin and the 'How it works' section describes a counter driving a 7-segment display, which contradicts the title and pinout. No external hardware is specified.",
+   "summary_changed": true
+  },
+  {
+   "key": "414041c1b8aa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "Source describes a tensor core accelerator, not a game."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output is present."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "No gamepad input is present."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio functionality is described."
+    },
+    {
+     "tag": "retro",
+     "reason": "No retro computing or gaming style is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "It is a hardware accelerator for matrix multiplication used in ML."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Explicitly described as a hardware accelerator."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "The core is a combinational MAC array for matrix multiplication."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Contains a multiply-accumulate array."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "Design spans 1x2 TinyTapeout tiles."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Operates on 5-bit signed and 12-bit signed integer values."
+    }
+   ],
+   "notes": "Tags and summary were about a VGA game, but the source is a tensor core matrix multiplier.",
+   "tags_before": [
+    "game",
+    "vga",
+    "gamepad",
+    "graphics",
+    "audio",
+    "retro"
+   ],
+   "tags": [
+    "machine-learning",
+    "accelerator",
+    "systolic-array",
+    "mac-unit",
+    "verilog",
+    "multi-tile",
+    "fixed-point"
+   ],
+   "summary_before": "This design is a game that uses VGA output and gamepad input. It features graphics and audio. The game is implemented in a retro style. It is tested using a standard Tiny Tapeout board with VGA and gamepad connections.",
+   "summary": "TinyTensorCore is a hardware accelerator for 3x3 integer matrix multiplication, fitting in a 1x2 TinyTapeout tile. It accepts two 3x3 matrices of 5-bit signed operands and produces a 3x3 matrix of 12-bit signed results. The design uses a 10-bit instruction bus and streams operands and results via burst operations. It was verified with a 26-test suite in Cadence Xcelium, with bit-exact RTL and gate-level results.",
+   "summary_changed": true
+  },
+  {
+   "key": "4b555ab369a6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "Source describes a Kalman filter, not a neural network."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "Kalman filter is not machine learning inference or training hardware."
+    },
+    {
+     "tag": "perceptron",
+     "reason": "No perceptron is described."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "No bit-serial datapath is described."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display output is present."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "accelerator",
+     "reason": "Explicitly described as a fixed-function hardware accelerator."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Kalman filter is a digital signal processing algorithm."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Kalman filter measurement update typically uses fixed-point arithmetic; implied by byte-select and register interface."
+    }
+   ],
+   "notes": "Tags and summary were about a perceptron neural network, but the source is a Kalman filter accelerator.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "perceptron",
+    "bit-serial",
+    "7-segment",
+    "uart"
+   ],
+   "tags": [
+    "accelerator",
+    "dsp",
+    "systemverilog",
+    "fixed-point"
+   ],
+   "summary_before": "This project implements a perceptron-based neural network classifier. It uses bit-serial processing and includes a 7-segment display for output. The design is notable for its esoteric approach to neural network implementation and its use of a UART interface for communication. It is intended for machine learning inference tasks.",
+   "summary": "This project implements the Kalman filter measurement-update step as a fixed-function hardware accelerator in a 1x1 Tiny Tapeout tile. It uses a register interface with write data, address, byte select, write enable, reset, and start signals, and provides 8-bit read data. The design targets the sky130 HD standard-cell library and requires no external hardware. It is implemented in SystemVerilog.",
+   "summary_changed": true
+  },
+  {
+   "key": "77ee8e42abe7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface is present; pins are SPI."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "No gamepad input is present."
+    },
+    {
+     "tag": "qspi",
+     "reason": "No QSPI interface is present; pins are standard SPI."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described."
+    },
+    {
+     "tag": "game",
+     "reason": "No game functionality is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "Pins include CS_N, MOSI, MISO, SCLK and pinout matches SPI Pmod."
+    },
+    {
+     "tag": "fir-filter",
+     "reason": "Title and description state it is a 12-bit 36-tap FIR filter."
+    },
+    {
+     "tag": "dsp",
+     "reason": "FIR filter is a digital signal processing function."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Pinout matches SPI Pmod connector."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "Design spans 2x2 TinyTapeout tiles."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin."
+    }
+   ],
+   "notes": "Tags and summary were about a VGA game, but the source is an SPI-programmable FIR filter.",
+   "tags_before": [
+    "vga",
+    "gamepad",
+    "qspi",
+    "graphics",
+    "game"
+   ],
+   "tags": [
+    "spi",
+    "fir-filter",
+    "dsp",
+    "verilog",
+    "pmod",
+    "multi-tile",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design outputs VGA graphics and reads gamepad inputs via a serial protocol. It is likely a game that uses the gamepad for control and the VGA for display. The design may also interface with QSPI flash or PSRAM for graphics data. The documentation is sparse, but the tags suggest a game with VGA output.",
+   "summary": "This design is an SPI-programmable 12-bit 36-tap FIR filter implemented in Verilog. It uses a standard SPI Pmod pinout with CS_N, MOSI, MISO, and SCLK, and has a FIR_MODE input. The design spans a 2x2 Tiny Tapeout tile and requires external SPI hardware for programming. The documentation is very thin, providing only the title and pinout.",
+   "summary_changed": true
+  },
+  {
+   "key": "3cf1383f4703",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is mentioned or implied by the source."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No decoder functionality is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no functional description."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The documentation fields are unfilled placeholders."
+    }
+   ],
+   "notes": "Tags and summary invented a seven-segment decoder; source is placeholder documentation for a Wokwi project.",
+   "tags_before": [
+    "wokwi",
+    "7-segment",
+    "display",
+    "decoder"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "summary_before": "This design is a 6-7 flipper, likely a seven-segment display decoder or driver, with eight input pins and eight output pins labeled for segments. It is implemented in Wokwi and requires no external hardware according to the placeholder documentation. The documentation is minimal, so the exact functionality and testing method are not described.",
+   "summary": "This project is titled 'Shrimp' and is implemented in Wokwi. The documentation is placeholder text with no description of functionality, testing, or external hardware. The design has no pinout information available. Its purpose and operation are not described.",
+   "summary_changed": true
+  },
+  {
+   "key": "857db247b2c6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "No RISC-V processor is described."
+    },
+    {
+     "tag": "cpu",
+     "reason": "No CPU is described."
+    },
+    {
+     "tag": "soc",
+     "reason": "No system-on-chip integration is described."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is present."
+    },
+    {
+     "tag": "qspi",
+     "reason": "No QSPI interface is present; pins are standard SPI."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory block is described."
+    },
+    {
+     "tag": "gpio",
+     "reason": "No general-purpose GPIO is described beyond the SPI and VGA pins."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display output is present."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "No cocotb testbench is mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Pins are labeled TinyVGA and pinout matches Tiny VGA."
+    },
+    {
+     "tag": "spi",
+     "reason": "Pins include spi_miso, spi_cs_n, spi_clk, spi_mosi."
+    },
+    {
+     "tag": "video",
+     "reason": "Outputs VGA video signals."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Uses Tiny VGA PMOD external hardware."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "It is a video mode tester for experimenting with timing parameters."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "Allows setting pixel clock to 25 MHz for VGA timing."
+    }
+   ],
+   "notes": "Tags and summary were about a RISC-V SoC, but the source is a VGA timing parameter tester.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "spi",
+    "uart",
+    "qspi",
+    "memory",
+    "gpio",
+    "7-segment",
+    "cocotb"
+   ],
+   "tags": [
+    "spi",
+    "vga",
+    "video",
+    "verilog",
+    "pmod",
+    "instrumentation",
+    "clock-generator"
+   ],
+   "summary_before": "The project is a RISC-V based system-on-chip that includes SPI, UART, and QSPI interfaces. It is verified to access the full 16 MB of SPI RAM and can drive a 7-segment display via GPIO. The design is notable for its integration of multiple peripherals and memory interfaces. It is implemented in Verilog and tested with a cocotb testbench.",
+   "summary": "This project is a video mode tester that allows experimenting with different VGA timing parameters. It provides a TinyVGA output and an SPI interface for configuring horizontal and vertical visible pixels, front porch, sync pulse, and back porch registers. The design is implemented in Verilog and requires a Tiny VGA PMOD connected to the Tiny Tapeout board. It supports setting the pixel clock to 25 MHz to produce a 640x480 @ 60 Hz test pattern.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6593,
+  "completion_tokens": 2539,
+  "total_tokens": 9132,
+  "cost": 0.0050247,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0050247,
+   "upstream_inference_prompt_cost": 0.0019779,
+   "upstream_inference_completions_cost": 0.0030468
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0050247,
+ "elapsed_s": 38.9
+}

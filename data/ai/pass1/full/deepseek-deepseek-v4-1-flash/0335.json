@@ -1,0 +1,200 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "64b6872938d0",
+  "6e3c331e396a",
+  "e461f414ad67",
+  "8daeccb41a35",
+  "a7b00e89e295",
+  "e3b29b07efcf",
+  "cbf1987e9229",
+  "ae2c15c81315",
+  "41a9d08b3ac2",
+  "c048eacbe459"
+ ],
+ "results": [
+  {
+   "key": "64b6872938d0",
+   "tags": [
+    "power-management",
+    "supervisor",
+    "spi",
+    "watchdog",
+    "fault",
+    "overcurrent",
+    "overtemperature",
+    "power-gating",
+    "industrial"
+   ],
+   "summary": "This design is a programmable all-digital smart power-management and supervision ASIC. It monitors overcurrent, overtemperature and watchdog inputs, and controls four power rails and three loads, with an SPI interface for configuration and status. It can force shutdown externally and reports faults. The design is fully digital and requires no external analog components, though it is intended to supervise external power hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6e3c331e396a",
+   "tags": [
+    "compute-in-rom",
+    "ternary",
+    "mac",
+    "matrix-multiply",
+    "memory",
+    "rom",
+    "digital",
+    "neural-network",
+    "machine-learning"
+   ],
+   "summary": "This design reads a mask-programmed ternary compute-in-ROM array fully digitally and computes matrix-vector products on die. It uses a 64x32 1T NOR array with ternary weights, and a digital sampling scheme that replaces analog comparators. The tile includes an on-die ternary MAC that accumulates results in 12-bit accumulators. It is a controlled experiment comparing digital readout to an analog version on the same shuttle, and requires no external hardware beyond a host to stream activations and compare against a golden model.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e461f414ad67",
+   "tags": [
+    "risc",
+    "cpu",
+    "16-bit",
+    "multicycle",
+    "ram",
+    "serial",
+    "bootloader"
+   ],
+   "summary": "This is a 16-bit multicycle RISC CPU with 32x16 on-chip RAM. It is boot-loaded over a 2-pin serial link by the demo board RP2040, then runs standalone. The design includes observation pins for debugging. The documentation is minimal, with placeholder text for how it works and how to test, so details of the instruction set and operation are not provided.",
+   "confidence": "medium",
+   "insufficient_docs": true
+  },
+  {
+   "key": "8daeccb41a35",
+   "tags": [
+    "adc",
+    "sar",
+    "analog",
+    "ecg",
+    "heart-monitor",
+    "silicon-art",
+    "sensor",
+    "analog-frontend"
+   ],
+   "summary": "This design is a 12-bit ~500 SPS SAR ADC intended for heart monitoring, with decorative silicon art. It includes an analog front-end for ECG signals and a digital interface compatible with an SNN neuron tile. The ADC output is provided on a bus with a sample enable signal. It requires an external ECG front-end and can be tested with lab instruments or connected to a neural network tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a7b00e89e295",
+   "tags": [
+    "dslx",
+    "difference-engine",
+    "polynomial",
+    "spi",
+    "stepper",
+    "motor-control",
+    "step-dir"
+   ],
+   "summary": "This design is a cubic polynomial sampler (difference engine) with an SPI request interface and step/dir output, written in DSLX and compiled with Google XLS. It samples a cubic polynomial using forward differences and outputs step and direction signals for a stepper motor driver. The design accepts 64-bit requests over SPI containing polynomial coefficients and sample count. It requires an SPI master and optionally a stepper driver, and can also be built for an FPGA board.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e3b29b07efcf",
+   "tags": [
+    "systolic",
+    "mac",
+    "multiply-accumulate",
+    "mixed-precision",
+    "neural-network",
+    "machine-learning",
+    "matrix-multiply",
+    "dsp"
+   ],
+   "summary": "This design is a 2x2 weight-stationary systolic multiply-accumulate array with configurable 4-bit/2-bit precision and zero-operand skip. Activations stream through the array while weights are preloaded, and partial sums are output alternately for each column. The design is purely digital and requires no external hardware. It is intended for neural network and DSP acceleration.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cbf1987e9229",
+   "tags": [
+    "oscillator",
+    "uart",
+    "axi4",
+    "digital",
+    "waveform",
+    "serial"
+   ],
+   "summary": "This design is a digital oscillator that outputs a 500 Hz waveform via UART at 115200 bps. It uses an AXI4-Lite interface for internal communication between the oscillator and the UART transmitter. The design requires no external hardware beyond a UART connection to a PC. The documentation is brief and does not provide detailed testing instructions beyond observing the output waveform.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ae2c15c81315",
+   "tags": [
+    "game",
+    "vga",
+    "tamagotchi",
+    "dragon",
+    "animation",
+    "state-machine",
+    "display",
+    "education"
+   ],
+   "summary": "This design is a dragon-themed tamagotchi game rendered live to a VGA monitor. The player feeds, waters, sleeps, and plays with a virtual dragon, with mechanics based on variety of actions and a treasure chest gamble. It outputs VGA signals and game state on bidirectional pins, and requires a TinyVGA PMOD, a VGA monitor (rotated 90 degrees), and eight push buttons. The design is notable for its extensive cocotb test suite and visual sprite testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "41a9d08b3ac2",
+   "tags": [
+    "uart",
+    "fifo",
+    "apb",
+    "csr",
+    "serial",
+    "communication",
+    "protocol",
+    "debug"
+   ],
+   "summary": "This design is a configurable, FIFO-buffered UART with an AMBA-APB register block, hardened to silicon on SkyWater SKY130. It supports 8N1 framing with optional parity, 16-deep FIFOs on transmit and receive, and runtime configuration via a serial CSR interface. The tile can self-test using an internal loopback, and for real links it requires a USB-to-serial adapter. The design is notable for its robust synchronization and error handling.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c048eacbe459",
+   "tags": [
+    "counter",
+    "7-segment",
+    "display",
+    "education",
+    "wokwi",
+    "clock"
+   ],
+   "summary": "This design is a simple 8-bit counter that displays its value on a 7-segment display. The counter reset value is set by input switches, and the lower 4 bits are converted to a hexadecimal symbol. It is intended as a workshop project and is expected to be improved in the future. The design requires no external hardware beyond the display and switches.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8555,
+  "completion_tokens": 1706,
+  "total_tokens": 10261,
+  "cost": 0.005767125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.005767125,
+   "upstream_inference_prompt_cost": 0.003208125,
+   "upstream_inference_completions_cost": 0.002559
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.005767125,
+ "elapsed_s": 7.4
+}

@@ -1,0 +1,220 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "31a4726ace87",
+  "8e9fd5e9d724",
+  "9f77a37dca1f",
+  "b5fe0567e8df",
+  "28ed514ce5f7",
+  "8e8c22693da9"
+ ],
+ "results": [
+  {
+   "key": "31a4726ace87",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design requires external memory on the RP2040; it does not implement a memory block itself."
+    },
+    {
+     "tag": "display",
+     "reason": "VGA is the actual output interface; generic display tag is redundant/unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "ui pins are described as move/spin controls, i.e. pushbutton inputs."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Text states the external memory was implemented on the RP2040."
+    },
+    {
+     "tag": "retro",
+     "reason": "Recreates a classic arcade game in hardware."
+    }
+   ],
+   "notes": "Removed memory/display tags not supported by the design; added button, rp2040 and retro.",
+   "tags_before": [
+    "game",
+    "tetris",
+    "vga",
+    "video",
+    "display",
+    "memory",
+    "systemverilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "game",
+    "tetris",
+    "vga",
+    "video",
+    "systemverilog",
+    "silicon-tested",
+    "button",
+    "rp2040",
+    "retro"
+   ],
+   "summary_before": "This design implements the game Tetris in hardware, using VGA outputs for video and buttons for moving and rotating pieces. It requires an external memory connected over the bidirectional pins, which the author implemented on an RP2040 based on existing Teensy code. Silicon testing reported that the design works great. The documentation sections for how it works and how to test are otherwise placeholders.",
+   "summary": "This design implements the game Tetris in hardware, using VGA outputs for video and buttons for moving and rotating pieces. It requires an external memory connected over the bidirectional pins, which the author implemented on an RP2040 based on existing Teensy code. Silicon testing reported that the design works great. The documentation sections for how it works and how to test are otherwise placeholders.",
+   "summary_changed": false
+  },
+  {
+   "key": "8e9fd5e9d724",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "calculator",
+    "esoteric",
+    "alu"
+   ],
+   "tags": [
+    "calculator",
+    "esoteric",
+    "alu"
+   ],
+   "summary_before": "This project is a balanced ternary calculator that supports addition, subtraction, and multiplication with negative numbers. It uses binary-encoded ternary inputs and outputs, with function selection via one of the input pins. The documentation is essentially missing, with only placeholder text for how it works and how to test. It requires no external hardware according to the description.",
+   "summary": "This project is a balanced ternary calculator that supports addition, subtraction, and multiplication with negative numbers. It uses binary-encoded ternary inputs and outputs, with function selection via one of the input pins. The documentation is essentially missing, with only placeholder text for how it works and how to test. It requires no external hardware according to the description.",
+   "summary_changed": false
+  },
+  {
+   "key": "9f77a37dca1f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a 4-bit S-box for the SKINNY cipher algorithm. It takes four input bits and produces four output bits according to the S-box mapping. The documentation is essentially empty, providing no explanation of how it works or how to test it. It is implemented in Wokwi and lacks any silicon test results.",
+   "summary": "This project implements a 4-bit S-box for the SKINNY cipher algorithm. It takes four input bits and produces four output bits according to the S-box mapping. The documentation is essentially empty, providing no explanation of how it works or how to test it. It is implemented in Wokwi and lacks any silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "b5fe0567e8df",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements an 8-bit S-box for the SKINNY cipher algorithm. It takes eight input bits and produces eight output bits according to the S-box mapping. The documentation is essentially empty, providing no explanation of how it works or how to test it. It is implemented in Wokwi and lacks any silicon test results.",
+   "summary": "This project implements an 8-bit S-box for the SKINNY cipher algorithm. It takes eight input bits and produces eight output bits according to the S-box mapping. The documentation is essentially empty, providing no explanation of how it works or how to test it. It is implemented in Wokwi and lacks any silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "28ed514ce5f7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is thin but the pin names and title do describe the design; the tag is not clearly warranted."
+    }
+   ],
+   "add": [
+    {
+     "tag": "register-file",
+     "reason": "Provides 6-bit data paths to and from a master, i.e. a small register/data block."
+    }
+   ],
+   "notes": "Removed insufficient-doc; added register-file based on the 6-bit data path pins.",
+   "tags_before": [
+    "i2c",
+    "communication",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "i2c",
+    "communication",
+    "register-file"
+   ],
+   "summary_before": "This project implements an I2C slave with address 0x04, as indicated by the title and pin names. It provides 6-bit data paths to and from a master, along with control signals, but the documentation is essentially empty, so its exact functionality and usage cannot be determined. External hardware would likely include an I2C master to communicate with the device. The project is notable only for its sparse documentation and minimal description.",
+   "summary": "This project implements an I2C slave with address 0x04, as indicated by the title and pin names. It provides 6-bit data paths to and from a master, along with control signals, but the documentation is essentially empty, so its exact functionality and usage cannot be determined. External hardware would likely include an I2C master to communicate with the device. The project is notable only for its sparse documentation and minimal description.",
+   "summary_changed": false
+  },
+  {
+   "key": "8e8c22693da9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "No evidence of waveform generation; the module is named reciprocal."
+    },
+    {
+     "tag": "alu",
+     "reason": "No evidence of arithmetic logic unit functionality."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lookup-table",
+     "reason": "Author's tags mention piecewise-linear (pwl), consistent with a lookup-table based reciprocal function."
+    }
+   ],
+   "notes": "Removed unsupported signal-generator and alu tags; added lookup-table based on the pwl author tag.",
+   "tags_before": [
+    "divider",
+    "signal-generator",
+    "alu"
+   ],
+   "tags": [
+    "divider",
+    "lookup-table"
+   ],
+   "summary_before": "This project is a module named reciprocal, but the documentation is a placeholder with no explanation of how it works or how to test it. The pin names indicate a single input and a single output, suggesting a combinational function. The author's tags mention inverse and piecewise-linear, but no further details are given. No external hardware or testing details are provided.",
+   "summary": "This project is a module named reciprocal, but the documentation is a placeholder with no explanation of how it works or how to test it. The pin names indicate a single input and a single output, suggesting a combinational function. The author's tags mention inverse and piecewise-linear, but no further details are given. No external hardware or testing details are provided.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5650,
+  "completion_tokens": 959,
+  "total_tokens": 6609,
+  "cost": 0.00241893,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00241893,
+   "upstream_inference_prompt_cost": 0.00144075,
+   "upstream_inference_completions_cost": 0.00097818
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00241893,
+ "elapsed_s": 37.2
+}

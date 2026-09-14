@@ -1,0 +1,187 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "6d41335c90da",
+  "2b24df316d2c",
+  "6876eb315f85",
+  "a44ea8d256d5",
+  "0e7f66221f21",
+  "e0ce53fb809a",
+  "261227332fe5",
+  "a7012b979d42",
+  "aaaa3f791aed",
+  "28eb4f26172d"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "6d41335c90da",
+   "summary": "The design implements the Canright S-box for the AES block cipher, with both unmasked and masked versions to resist side-channel attacks. It is controlled through a command interface on the bidirectional pins, allowing loading of data, key, mask, and pseudo-random values, and selection of which S-box to evaluate. The outputs provide the S-box result or the mask output, depending on the command. The design is verified using cocotb test vectors, and it is notable for including a masked S-box implementation in a small footprint.",
+   "tags": [
+    "aes",
+    "cipher",
+    "crypto",
+    "side-channel",
+    "security",
+    "cocotb",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "2b24df316d2c",
+   "summary": "This design computes the modular multiplicative inverse over the secp256k1 prime field using the Bernstein-Yang divstep algorithm, accepting a 256-bit input and producing the inverse. It uses a byte-serial interface with ready, valid, write, and read signals, and includes a TRNG based on ring oscillators that requires the enable signal to be held high. The computation typically takes around 335 clock cycles, and the design supports pipelined operation by allowing the next input to be loaded while the current result is being read. External hardware such as a microcontroller or FPGA is needed to drive the serial interface and provide the clock.",
+   "tags": [
+    "crypto",
+    "accelerator",
+    "trng",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "6876eb315f85",
+   "summary": "The Neuromorphic Tile is an event-driven neuromorphic neuron tile with selectable modes and on-chip learning capabilities. It uses a handshake interface for input and output events, and configuration pins to set operational parameters. The tile outputs event data with type and valid signals. The documentation is minimal, providing only pin descriptions and a brief one-line summary, so specific implementation details and testing procedures are not described.",
+   "tags": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "asynchronous",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "a44ea8d256d5",
+   "summary": "This design plays two songs, 'Never Gonna Give You Up' and 'Imperial March', on a piezo buzzer using PWM output. The song selection and pause are controlled by two input pins, and the output is a single PWM signal that drives the buzzer. The design stores note sequences and uses the clock to generate the correct frequencies and durations. It requires an external piezo buzzer connected to the output pin, and the clock should be set to 50 MHz for correct playback.",
+   "tags": [
+    "music",
+    "buzzer",
+    "pwm",
+    "audio",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "0e7f66221f21",
+   "summary": "This design implements a digital flight control mixer for a delta wing aircraft, processing control inputs and generating PWM signals for elevon and rudder actuators. It uses a command-based protocol on the 8-bit input bus to load control registers, and outputs time-multiplexed actuator commands on the 8-bit output bus, with a 3-bit channel tag and 5-bit PWM value. The design is fully digital and does not require external hardware to operate, but for practical use, the output can be connected to a microcontroller or servo drivers. The documentation describes the command protocol and output format, but does not provide details on the stabilization logic or testing procedures.",
+   "tags": [
+    "robotics",
+    "pwm",
+    "multiplexer",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "2b24df316d2c",
+   "summary": "This project is a programmable 8-bit CPU based on the SAP-1 architecture, featuring a 4-bit address space for 16 memory locations. It operates in two modes: programming mode, where instructions and data are loaded via switches, and execution mode, where the program runs and outputs results to LEDs and a UART transmitter. External hardware such as DIP switches, toggle switches, LEDs, and a USB-to-serial adapter are recommended for full interaction. The design is educational, illustrating basic computer architecture principles.",
+   "tags": [
+    "cpu",
+    "education",
+    "uart",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "261227332fe5",
+   "summary": "The E-Beam Inspection Pixel Core processes 8-bit pixel data at one pixel per cycle, computing a running mean using an IIR filter, local contrast, and edge magnitude. It outputs defect flags and a 4-bit magnitude nibble, and can be configured via a tiny SPI interface. The core is designed for integration into larger inspection systems and requires no external hardware for basic operation. The documentation describes the functionality and interface but does not provide specific testing procedures or silicon results.",
+   "tags": [
+    "image-processing",
+    "iir-filter",
+    "edge-detector",
+    "spi",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "a7012b979d42",
+   "summary": "Tiny_ECC implements scalar point multiplication on a binary elliptic curve over GF(2^8), deriving a public key from a private key. It uses a byte-load protocol with control signals for loading the private key and base point coordinates, and status outputs for done, busy, and error. The design requires no external hardware for computation, but for chip-level testing, a logic analyzer or microcontroller is needed to drive the interface and poll the done flag. The documentation is brief and does not provide detailed testing procedures or performance metrics.",
+   "tags": [
+    "crypto",
+    "verilog",
+    "accelerator"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "aaaa3f791aed",
+   "summary": "This design displays bouncing text 'EMBEDDEDINN' with a parallax starfield on a VGA monitor at 640x480 @ 60Hz. It uses a generative font and allows the user to change speed, palette, and toggle scanlines via input pins. The design requires a TinyVGA PMOD and a VGA monitor to operate. The cocotb tests verify VGA timing compliance and proper frame generation.",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "text",
+    "graphics",
+    "demoscene",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "28eb4f26172d",
+   "summary": "This is the second version of a 2x2 systolic array with DFT infrastructure, incorporating bfloat16 floating-point arithmetic and a DFT scan chain. It accepts 8-bit data inputs and control signals, and outputs results on 8 pins. The design includes a scan chain for test and debug, with tck, tdi, tms, and tdo signals. The documentation is minimal, providing only pin names and a brief description, so specific functionality and testing details are not described.",
+   "tags": [
+    "systolic-array",
+    "scan-chain",
+    "floating-point",
+    "accelerator",
+    "verilog"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "e0ce53fb809a: key echoed as '2b24df316d2c', matched by index"
+ ],
+ "usage": {
+  "prompt_tokens": 9644,
+  "completion_tokens": 1738,
+  "total_tokens": 11382,
+  "cost": 0.001492736,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001492736,
+   "upstream_inference_prompt_cost": 0.001006096,
+   "upstream_inference_completions_cost": 0.00048664
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001492736,
+ "elapsed_s": 21.4
+}

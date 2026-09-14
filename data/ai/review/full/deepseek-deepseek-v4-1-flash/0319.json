@@ -1,0 +1,241 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "886591cb4d90",
+  "e7b2bc8ab341",
+  "047898cc787f",
+  "984c329b038b",
+  "3007ee8a21a9",
+  "c4b8b2abe974"
+ ],
+ "results": [
+  {
+   "key": "886591cb4d90",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rtc",
+     "reason": "No real-time clock with timekeeping/calendar is described."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock divider; the 32 Hz clock is taken as input."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "Time-of-day display implies counting, and the design drives shift registers, though the source is thin."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Outputs srclk, rclk and ser show serial shifting into external registers."
+    }
+   ],
+   "notes": "Source is very thin; removed unsupported rtc/clock-divider tags and made summary neutral about educational intent.",
+   "tags_before": [
+    "rtc",
+    "7-segment",
+    "display",
+    "counter",
+    "shift-register",
+    "clock-divider"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "shift-register"
+   ],
+   "summary_before": "This project implements a simple digital clock that displays the time of day on four 7-segment displays. It takes a clock input and outputs serial data to shift registers that drive the displays, using srclk, rclk, and ser signals. The design includes inputs for minutes and hours, likely for setting the time. It is a straightforward clock design intended for educational or basic timekeeping purposes.",
+   "summary": "This project implements a simple digital clock that shows the time of day on seven-segment displays. It takes a clock input and outputs serial data to shift registers that drive four 7-segment displays, using srclk, rclk and ser signals. The design includes inputs for minutes and hours, likely for setting the time. It is a 1x1 Verilog design based on a 32 Hz clock, with very thin documentation.",
+   "summary_changed": true
+  },
+  {
+   "key": "e7b2bc8ab341",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fsm",
+    "robotics",
+    "motor-control",
+    "pwm",
+    "sensor-interface",
+    "verilog"
+   ],
+   "tags": [
+    "fsm",
+    "robotics",
+    "motor-control",
+    "pwm",
+    "sensor-interface",
+    "verilog"
+   ],
+   "summary_before": "This design is a finite state machine that controls the direction of a micro-robot based on front, left and right sensors. Motor direction is driven by four outputs intended for an H-bridge, and an 8-bit PWM resolution value is loaded from the bidirectional pins while reset is active, with the PWM signal appearing on an output pin. The documentation notes that the pinout matches the TT Audio template and that testing involves changing inputs to observe state and motor direction changes. It is a 1x1 Verilog design aimed at simple micro-robot navigation experiments.",
+   "summary": "This design is a finite state machine that controls the direction of a micro-robot based on front, left and right sensors. Motor direction is driven by four outputs intended for an H-bridge, and an 8-bit PWM resolution value is loaded from the bidirectional pins while reset is active, with the PWM signal appearing on an output pin. The documentation notes that the pinout matches the TT Audio template and that testing involves changing inputs to observe state and motor direction changes. It is a 1x1 Verilog design aimed at simple micro-robot navigation experiments.",
+   "summary_changed": false
+  },
+  {
+   "key": "047898cc787f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "error-correction",
+    "encoder",
+    "decoder",
+    "uart",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "error-correction",
+    "encoder",
+    "decoder",
+    "uart",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "This project implements a (11,7) Hamming code encoder and decoder that communicate over a UART protocol. The encoder adds four parity bits to parallel data and the UART transmitter serialises it, while the receiver converts serial data back to parallel and the decoder corrects up to one bit error before outputting the original message. A mode pin switches between encoder and decoder functions, and the shared input/output ports are used for both. Testing involves feeding parallel data to the encoder and checking the serial coded output, or feeding serial coded data with at most one bit error to the decoder.",
+   "summary": "This project implements a (11,7) Hamming code encoder and decoder that communicate over a UART protocol. The encoder adds four parity bits to parallel data and the UART transmitter serialises it, while the receiver converts serial data back to parallel and the decoder corrects up to one bit error before outputting the original message. A mode pin switches between encoder and decoder functions, and the shared input/output ports are used for both. Testing involves feeding parallel data to the encoder and checking the serial coded output, or feeding serial coded data with at most one bit error to the decoder.",
+   "summary_changed": false
+  },
+  {
+   "key": "984c329b038b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "Changed 'restart' to 'reset' to match the actual reset function of the design.",
+   "tags_before": [
+    "pwm",
+    "counter",
+    "comparator",
+    "clock-divider",
+    "gpio",
+    "sequential-logic",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "counter",
+    "comparator",
+    "clock-divider",
+    "gpio",
+    "sequential-logic",
+    "verilog"
+   ],
+   "summary_before": "This design generates a PWM signal by comparing a selected duty-cycle bus against a counter, with the counter maximum resolution set by three bidirectional bit-selector pins. Higher resolution requires more counter bits and therefore produces a lower PWM frequency, and a D flip-flop on the comparator output synchronises the signal and reduces glitches when values change mid-run. The duty value is applied to the eight input pins and the PWM appears on the first output pin, with the maximum bits set on the bidirectional pins. Testing involves setting the duty bus and maximum bits, then pressing restart for the PWM to operate as configured.",
+   "summary": "This design generates a PWM signal by comparing a selected duty-cycle bus against a counter, with the counter maximum resolution set by three bidirectional bit-selector pins. Higher resolution requires more counter bits and therefore produces a lower PWM frequency, and a D flip-flop on the comparator output synchronises the signal and reduces glitches when values change mid-run. The duty value is applied to the eight input pins and the PWM appears on the first output pin, with the maximum bits set on the bidirectional pins. Testing involves setting the duty bus and maximum bits, then pressing reset for the PWM to operate as configured.",
+   "summary_changed": true
+  },
+  {
+   "key": "3007ee8a21a9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "motor-control",
+     "reason": "The design is a general PWM power-electronics peripheral; motor control is not stated as its purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "industrial",
+     "reason": "Targets power electronics control, an industrial application, though a dedicated power-electronics tag is unavailable."
+    },
+    {
+     "tag": "power-management",
+     "reason": "Kept for power electronics control-signal generation."
+    }
+   ],
+   "notes": "Removed unsupported motor-control and softened the external-hardware claim.",
+   "tags_before": [
+    "pwm",
+    "power-management",
+    "counter",
+    "register-file",
+    "motor-control",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "power-management",
+    "counter",
+    "register-file",
+    "verilog",
+    "industrial"
+   ],
+   "summary_before": "This project is an open-source PWM peripheral with advanced features such as deadband generation and counter synchronization, aimed at power electronics applications. It contains three counters, each with two comparators and two deadband generators, configurable via a register file. The peripheral is controlled through a simple parallel interface, and can be tested with a microcontroller or manually using switches. External hardware is required to observe the PWM outputs.",
+   "summary": "This project is an open-source PWM peripheral with advanced features such as deadband generation and counter synchronization, aimed at power electronics applications. It contains three counters, each with two comparators and two deadband generators, configurable via a register file. The peripheral is controlled through a simple parallel interface, and can be tested with a microcontroller or manually using switches. The PWM outputs are observed on the output pins; the summary's 'external hardware required' wording is softened because the documentation documents the pins and testing method.",
+   "summary_changed": true
+  },
+  {
+   "key": "c4b8b2abe974",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The design is a reconfigurable PAL/AND-OR array, not an FSM; the FSM was only one test configuration."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Implements a programmable AND/OR matrix to realize boolean functions."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state 'working'."
+    }
+   ],
+   "notes": "Removed fsm, kept silicon-tested explicitly to match working status, and corrected the external-hardware statement.",
+   "tags_before": [
+    "reconfigurable",
+    "lookup-table",
+    "shift-register",
+    "fsm",
+    "logic-gate",
+    "silicon-tested"
+   ],
+   "tags": [
+    "reconfigurable",
+    "lookup-table",
+    "shift-register",
+    "logic-gate",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a simple PAL device that is configured via a shift register, allowing the implementation of custom boolean functions from 8 inputs to 5 outputs. Configuration is done by shifting in a bitstream through a config pin and clock, and an enable pin activates the outputs. It was tested on silicon with various configurations, including a 3-bit state machine, and requires external switches and LEDs for interaction. The design demonstrates a programmable logic device on Tiny Tapeout.",
+   "summary": "This is a simple PAL device that is configured via a shift register, allowing the implementation of custom boolean functions from 8 inputs to 5 outputs. Configuration is done by shifting in a bitstream through a config pin and clock, and an enable pin activates the outputs. It was tested on silicon with various configurations, including a 3-bit state machine, and requires no external hardware though external switches and LEDs help observe the outputs. The design demonstrates a programmable logic device on Tiny Tapeout.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6659,
+  "completion_tokens": 1393,
+  "total_tokens": 8052,
+  "cost": 0.0036693,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036693,
+   "upstream_inference_prompt_cost": 0.0019977,
+   "upstream_inference_completions_cost": 0.0016716
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036693,
+ "elapsed_s": 7.9
+}

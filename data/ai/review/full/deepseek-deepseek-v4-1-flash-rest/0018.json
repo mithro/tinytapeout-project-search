@@ -1,0 +1,487 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8742da4cbc22",
+  "887957f27450",
+  "955eea1d8467",
+  "c70f90e6af86",
+  "054ab8ef3a41",
+  "43a0881cb015"
+ ],
+ "results": [
+  {
+   "key": "8742da4cbc22",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "no VGA interface; design is an analog ECG front end"
+    },
+    {
+     "tag": "video",
+     "reason": "no video output in pins or text"
+    },
+    {
+     "tag": "graphics",
+     "reason": "no graphics rendering in this analog design"
+    },
+    {
+     "tag": "display",
+     "reason": "no display output; only analog OUT pin"
+    },
+    {
+     "tag": "verilog",
+     "reason": "language is Analog, not Verilog"
+    },
+    {
+     "tag": "art",
+     "reason": "no artistic intent stated"
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "analog folded-cascode ECG front end"
+    },
+    {
+     "tag": "biomedical",
+     "reason": "ECG (electrocardiogram) measurement front end"
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "measurement front end for electrode signals"
+    },
+    {
+     "tag": "opamp",
+     "reason": "folded cascode amplifier architecture"
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "analog front end with reference/bias pins"
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated VGA project; replaced with analog ECG front-end content.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "verilog",
+    "art"
+   ],
+   "tags": [
+    "analog",
+    "biomedical",
+    "instrumentation",
+    "opamp",
+    "mixed-signal"
+   ],
+   "summary_before": "This design generates a VGA video signal that animates columns of pink hearts transitioning on and off the screen. It is implemented in Verilog using the VGA Playground environment and is intended to be tested by running the simulation and observing the output. The design requires a VGA monitor connected to the Tiny VGA PMOD pinout. The project is a playful visual demonstration rather than a practical application.",
+   "summary": "This project implements an ECG front end for measuring electrocardiogram signals using a folded cascode based architecture. The analog inputs INp and INm receive the electrode signal, while ref and Vref are biased at 0.9 V or from an offset compensation circuit. The output is observed at the OUT pin, and OUTDRL connects to the right leg of the body via another electrode. Testing requires an oscilloscope to observe the output signal.",
+   "summary_changed": true
+  },
+  {
+   "key": "887957f27450",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "no VGA pins or video output; pins are I2C/SPI/oscillator inputs"
+    },
+    {
+     "tag": "audio",
+     "reason": "no audio output or audio function described"
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "no sigma-delta modulator in the design"
+    },
+    {
+     "tag": "video",
+     "reason": "no video signal generated"
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "design measures oscillator frequencies, it does not generate signals"
+    }
+   ],
+   "add": [
+    {
+     "tag": "frequency-counter",
+     "reason": "9-channel oscillator frequency measurement"
+    },
+    {
+     "tag": "i2c",
+     "reason": "I2C control interface on ui[0]/uio[0]"
+    },
+    {
+     "tag": "spi",
+     "reason": "SPI DAC and ADC interfaces on ui/uo pins"
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "frequency measurement instrument with DAC/ADC sampling"
+    },
+    {
+     "tag": "dac",
+     "reason": "SPI-controlled DAC output channels"
+    },
+    {
+     "tag": "adc",
+     "reason": "external 12-bit SPI ADC sampling"
+    },
+    {
+     "tag": "verilog",
+     "reason": "design written in Verilog"
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated VGA/audio design; replaced with the frequency counter's actual interfaces.",
+   "tags_before": [
+    "vga",
+    "audio",
+    "sigma-delta",
+    "video",
+    "signal-generator"
+   ],
+   "tags": [
+    "frequency-counter",
+    "i2c",
+    "spi",
+    "instrumentation",
+    "dac",
+    "adc",
+    "verilog"
+   ],
+   "summary_before": "This project is a VGA 640x480 @ 60 Hz display controller that outputs a 1-bit sigma-delta modulated audio signal. It generates a test pattern on the VGA output and produces a simple tone through the audio output. The design is intended for testing VGA and audio interfaces. It is notable for its simple implementation of video and audio generation.",
+   "summary": "This project implements a 9-channel oscillator frequency measurement ASIC with programmable gate time, SPI-controlled DAC outputs, and SPI-based ADC sampling. Each oscillator input is counted over a programmable time window derived from the 50 MHz system clock, and the counts are latched into a snapshot register bank accessible via I2C. Two DAC channels are programmed via I2C and transmitted over SPI, while an external 12-bit SPI ADC is periodically sampled and included in the snapshot stream. Testing requires a 50 MHz clock source, an I2C master, up to nine oscillator sources, and external SPI DAC and ADC devices.",
+   "summary_changed": true
+  },
+  {
+   "key": "955eea1d8467",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "no seven-segment display in this analog PLL"
+    },
+    {
+     "tag": "shift-register",
+     "reason": "no shift register; design is an analog PLL"
+    },
+    {
+     "tag": "industrial",
+     "reason": "no industrial control application stated"
+    },
+    {
+     "tag": "bcd",
+     "reason": "no BCD logic in an analog PLL"
+    },
+    {
+     "tag": "buzzer",
+     "reason": "no buzzer output"
+    },
+    {
+     "tag": "fsm",
+     "reason": "no finite state machine described"
+    }
+   ],
+   "add": [
+    {
+     "tag": "pll",
+     "reason": "phase locked loop frequency synthesizer"
+    },
+    {
+     "tag": "analog",
+     "reason": "analog design with charge pump and BGR"
+    },
+    {
+     "tag": "rf",
+     "reason": "2.4 GHz targeted output frequency"
+    },
+    {
+     "tag": "frequency-synthesizer",
+     "reason": "targeted 2.4 GHz frequency synthesis"
+    },
+    {
+     "tag": "charge-pump",
+     "reason": "charge pump component with bandgap reference"
+    },
+    {
+     "tag": "bandgap",
+     "reason": "BGR circuit for the charge pump"
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "generates an output clock/frequency"
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated Lambda Clock; replaced with the analog PLL content.",
+   "tags_before": [
+    "clock-generator",
+    "7-segment",
+    "shift-register",
+    "industrial",
+    "bcd",
+    "buzzer",
+    "fsm"
+   ],
+   "tags": [
+    "clock-generator",
+    "pll",
+    "analog",
+    "rf",
+    "frequency-synthesizer",
+    "charge-pump",
+    "bandgap"
+   ],
+   "summary_before": "The Lambda Clock is a highly-optimized full digital calendar and clock built for a 10-digit 7-segment multiplexed display architecture using three cascaded 74HC595 shift registers. It includes a BCD-native limit handling to avoid binary-to-BCD resource explosion. The design features a buzzer output and is controlled via a finite state machine. It is notable for its efficient BCD-based timekeeping and display driving.",
+   "summary": "This project is an analog PLL targeted for a 2.4 GHz output, with a bandgap reference circuit for the charge pump component. Testing starts by connecting OUT_FREQ to a multimeter, where the initial control voltage of 0 V should naturally produce a 2.18 GHz signal. A 20 MHz reference signal with 1.8 V peak-to-peak is applied to REF_FREQ, and the output should converge to 2.4 GHz within a 3 us settling time. The author notes the output may not reach 2.4 GHz exactly, in which case the input frequency may need to be increased.",
+   "summary_changed": true
+  },
+  {
+   "key": "c70f90e6af86",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "calculator",
+     "reason": "no calculator functionality; design renders a wave lattice"
+    },
+    {
+     "tag": "keypad",
+     "reason": "no keypad input; all input pins are unused"
+    },
+    {
+     "tag": "7-segment",
+     "reason": "no seven-segment display output"
+    },
+    {
+     "tag": "fsm",
+     "reason": "no finite state machine described"
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Tiny VGA pinout with HSYNC/VSYNC and RGB outputs"
+    },
+    {
+     "tag": "video",
+     "reason": "VGA video signal output"
+    },
+    {
+     "tag": "graphics",
+     "reason": "renders a 40x30 dot lattice"
+    },
+    {
+     "tag": "art",
+     "reason": "visual sketch ported from a browser artwork"
+    },
+    {
+     "tag": "demoscene",
+     "reason": "visual showcase effect in pure logic"
+    },
+    {
+     "tag": "physics",
+     "reason": "simulates interfering radial wave sources"
+    },
+    {
+     "tag": "verilog",
+     "reason": "design written in Verilog"
+    },
+    {
+     "tag": "combinational",
+     "reason": "no CPU or memory, pure logic datapath"
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated calculator; replaced with the VGA wave-lattice content.",
+   "tags_before": [
+    "calculator",
+    "keypad",
+    "7-segment",
+    "fsm"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "art",
+    "demoscene",
+    "physics",
+    "verilog",
+    "combinational"
+   ],
+   "summary_before": "This project is a hardware implementation of a simple calculator with a keypad input and a 7-segment display output. It supports basic arithmetic operations such as addition, subtraction, multiplication, and division. The design uses a finite state machine to manage the calculation process. It is notable for its compact implementation of a calculator on a chip.",
+   "summary": "Wave Lattice is a port of Taylor Troesh's browser sketch to pure silicon logic, drawing a 40x30 grid of dots over VGA. Two radial wave sources interfere across the screen, displacing each dot so the regular lattice warps into compression rings around the sources. A virtual pointer traces a Lissajous figure with a 3:5 frequency ratio, completing one woven cycle every ~17 seconds, with source A at the pointer and source B at its point-mirror. Testing requires a TinyVGA Pmod and a 50.35 MHz clock, after which white dots on black should warp around the two source centres.",
+   "summary_changed": true
+  },
+  {
+   "key": "054ab8ef3a41",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "no BCD logic; design is a binary adder"
+    },
+    {
+     "tag": "7-segment",
+     "reason": "no seven-segment display output"
+    },
+    {
+     "tag": "decoder",
+     "reason": "no decoder; it is an adder"
+    },
+    {
+     "tag": "display",
+     "reason": "no display output"
+    },
+    {
+     "tag": "factory-test",
+     "reason": "no factory self-test structure described"
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "4-bit adder with A, B, Cin inputs and S, Cout outputs"
+    },
+    {
+     "tag": "combinational",
+     "reason": "purely combinational sum and carry logic"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "created using the Wokwi simulator"
+    },
+    {
+     "tag": "education",
+     "reason": "EDS workshop example project"
+    },
+    {
+     "tag": "workshop",
+     "reason": "created as part of an EDS workshop"
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "half-adder style gate-level logic"
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated BCD-to-7-segment decoder; replaced with the workshop adder content.",
+   "tags_before": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "display",
+    "factory-test"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "education",
+    "workshop",
+    "logic-gate"
+   ],
+   "summary_before": "This project is a BCD to 7-segment decoder with factory-test support. It is designed to drive seven-segment displays and includes a test mode for manufacturing. The design is a combinational logic block that converts binary-coded decimal to display segments. It is likely used in digital clocks or counters.",
+   "summary": "This project is a 4-bit adder example created for an EDS workshop, with inputs A, B, and Cin and outputs S and Cout. The half adder adds two single binary digits A and B, producing a sum (S) and a carry (C). Testing consists of setting the inputs and checking whether the outputs match the provided truth table. It is a simple combinational logic example intended for learning digital design.",
+   "summary_changed": true
+  },
+  {
+   "key": "43a0881cb015",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "no VGA interface; outputs drive LEDs"
+    },
+    {
+     "tag": "video",
+     "reason": "no video signal generated"
+    },
+    {
+     "tag": "graphics",
+     "reason": "no graphics rendering"
+    },
+    {
+     "tag": "display",
+     "reason": "outputs are discrete LED signals, not a display interface"
+    },
+    {
+     "tag": "game",
+     "reason": "no game design; it is a traffic light controller"
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "traffic light controller implemented as a finite state machine"
+    },
+    {
+     "tag": "timer",
+     "reason": "phase durations controlled by an internal timer module"
+    },
+    {
+     "tag": "led",
+     "reason": "eight LED outputs for the light phases"
+    },
+    {
+     "tag": "verilog",
+     "reason": "design written in Verilog"
+    },
+    {
+     "tag": "button",
+     "reason": "pedestrian button input on ui[0]"
+    },
+    {
+     "tag": "industrial",
+     "reason": "traffic light control application"
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated VGA graphics design; replaced with the traffic light FSM content.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "game"
+   ],
+   "tags": [
+    "fsm",
+    "timer",
+    "led",
+    "verilog",
+    "button",
+    "industrial"
+   ],
+   "summary_before": "This project generates a VGA video output with a simple graphics display. It uses a two-process finite state machine structure, consisting of an 8-bit counter and an 8-bit comparator. The design outputs video signals for a VGA monitor. It is suitable for displaying simple graphics or text.",
+   "summary": "This project is a digital traffic light controller implemented as a finite state machine in Verilog. The design cycles through RED, YELLOW, and GREEN phases with durations controlled by an internal timer module. It implements five states (S0-S4) controlling three sets of lights: main road, side road, and pedestrian, with a pedestrian button input. Testing requires eight LEDs connected to the output signals with appropriate current-limiting resistors, such as 330 ohm.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6691,
+  "completion_tokens": 2436,
+  "total_tokens": 9127,
+  "cost": 0.002360266,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002360266,
+   "upstream_inference_prompt_cost": 0.000752506,
+   "upstream_inference_completions_cost": 0.00160776
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002360266,
+ "elapsed_s": 34.6
+}

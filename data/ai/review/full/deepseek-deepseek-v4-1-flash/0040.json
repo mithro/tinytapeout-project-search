@@ -1,0 +1,339 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a1984b5d1858",
+  "522dda1db850",
+  "3d202c5527b4",
+  "bd414873abff",
+  "d9d3b4670d33",
+  "1363c1f6d14a"
+ ],
+ "results": [
+  {
+   "key": "a1984b5d1858",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "flip-flop",
+     "reason": "No evidence of a flip-flop in the source; the title mentions it but the documentation is placeholder text."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The one-line description mentions logic gates, but the documentation is entirely placeholder text and no gate implementation is described."
+    },
+    {
+     "tag": "education",
+     "reason": "No statement that the project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "All documentation sections contain placeholder text, so the design cannot be described."
+    }
+   ],
+   "notes": "Removed flip-flop, logic-gate and education tags that are not supported by the placeholder documentation; added insufficient-doc.",
+   "tags_before": [
+    "flip-flop",
+    "logic-gate",
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a basic logic-gate circuit built from the Tiny Tapeout template, described as a flip-flop and titled \"Circuitos basicos con puertas logicas\". All documentation sections contain placeholder text, so the gate arrangement and flip-flop behavior are not described. A 10 kHz clock is specified, but no pins or external hardware are listed. It appears to be a simple educational exercise with no further detail available.",
+   "summary": "This project is a Tiny Tapeout template submission with the title \"Tiny Tapeout Template flip flop\" and the one-line description \"Circuito basico con puertas logicas\". All documentation sections contain placeholder text, so neither the gate arrangement nor any flip-flop behavior is described. A 10 kHz clock is specified, but no pins or external hardware are listed. The design is effectively undocumented beyond its title and one-line description.",
+   "summary_changed": true
+  },
+  {
+   "key": "522dda1db850",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The one-line description says \"7-Segment\" but no pins or documentation confirm a seven-segment display interface."
+    },
+    {
+     "tag": "display",
+     "reason": "No display interface or output is described in the source."
+    },
+    {
+     "tag": "education",
+     "reason": "No statement that the project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "All documentation sections contain placeholder text, so the design cannot be described."
+    }
+   ],
+   "notes": "Removed 7-segment and display tags not supported by pins or documentation; added insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a copy of the Tiny Tapeout template with the one-line description \"7-Segment\", indicating an intent to drive a seven-segment display. All documentation sections contain placeholder text, so the segment mapping and driving logic are not described. No pins, clock frequency, or external hardware are specified. The only concrete information is the intent to drive a seven-segment display.",
+   "summary": "This project is a copy of the Tiny Tapeout template with the one-line description \"7-Segment\", indicating an intent to drive a seven-segment display. All documentation sections contain placeholder text, so the segment mapping and driving logic are not described. No pins, clock frequency, or external hardware are specified. The only concrete information is the intent to drive a seven-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "3d202c5527b4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "opamp",
+     "reason": "No opamp or amplifier circuit is described; the source describes a quadratic integrate-and-fire neuron."
+    },
+    {
+     "tag": "biomedical",
+     "reason": "No biomedical or health monitoring application is stated."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "No measurement or instrumentation application is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neuromorphic",
+     "reason": "The design models a QIF spiking neuron, a brain-inspired neuromorphic circuit."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The source explicitly describes a spiking neuron model."
+    },
+    {
+     "tag": "analog",
+     "reason": "The language is Analog and the design uses analog pins."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "The neuron spikes and resets, producing rhythmic output characteristic of an oscillator circuit."
+    }
+   ],
+   "notes": "Replaced incorrect instrumentation-amplifier tags and summary with the actual QIF spiking neuron content from the source.",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "biomedical",
+    "instrumentation"
+   ],
+   "tags": [
+    "analog",
+    "neuromorphic",
+    "spiking-neural-network",
+    "oscillator"
+   ],
+   "summary_before": "This analog project implements an instrumentation amplifier for electrocardiogram signal acquisition, using a three-opamp array to extract low differential signals from noisy common-mode environments. The differential gain is digitally selectable via two input bits, providing 0 dB, 26 dB, or 46 dB gain, with a common-mode rejection ratio of 120 dB. Testing requires a balun, vector network analyzer, and power supplies to measure differential and common responses. The design includes a sense circuit to stabilize the analog ground and is intended for biomedical applications.",
+   "summary": "This analog project models a quadratic integrate-and-fire (QIF) spiking neuron, where the output spikes and resets to a known value when the input crosses a threshold voltage. It uses five analog pins for differential input and output signals and is based on a published compact digital implementation of a QIF neuron. Testing involves applying an 8-bit digital signal and observing whether the output spikes when the voltage crosses the threshold. External hardware listed is an ADLAM2000.",
+   "summary_changed": true
+  },
+  {
+   "key": "bd414873abff",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design detects clock edges to create pulses but does not generate a clock signal as its primary function."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "The design captures data with flops, but the project is a timing/aperture test structure rather than a flip-flop implementation."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "No measurement or instrumentation application is described; it is a characterization test structure."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "The project is a DDR throughput and flop aperture test used to characterize timing behavior."
+    },
+    {
+     "tag": "edge-detector",
+     "reason": "The design uses positive edge detectors on the clock and its complement."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    }
+   ],
+   "notes": "Adjusted tags to characterization and edge-detector; removed unsupported clock-generator, flip-flop and instrumentation tags.",
+   "tags_before": [
+    "edge-detector",
+    "clock-generator",
+    "flip-flop",
+    "verilog",
+    "instrumentation"
+   ],
+   "tags": [
+    "edge-detector",
+    "verilog",
+    "characterization"
+   ],
+   "summary_before": "This is a test structure that captures data on both edges of a clock using pulse generators of varying widths, with outputs for each width and a normal flop. It is intended to explore DDR throughput and flop aperture using Analog Discovery 3 hardware. The documentation is minimal and self-deprecating, stating the design is probably bad. It is a process/timing experiment rather than a functional block.",
+   "summary": "This is a test structure that captures data on both edges of a clock using pulse generators of varying widths, with outputs for each width and a normal flop. It is intended to explore DDR throughput and flop aperture using Analog Discovery 3 hardware. The documentation is minimal and self-deprecating, stating the design is probably bad. It is a timing characterization experiment rather than a functional block.",
+   "summary_changed": true
+  },
+  {
+   "key": "d9d3b4670d33",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The source does not state that the neurons are spiking; it only says two neuron modules interact with a synapse module."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No generic neural network design is described beyond the title."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "Rhythmic oscillations are mentioned, but no oscillator circuit is described in the documentation."
+    },
+    {
+     "tag": "counter",
+     "reason": "A second counter appears in pin names, but the documentation does not describe a counter design."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Seven-segment segment pins are present, but the documentation does not describe a seven-segment display function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neuromorphic",
+     "reason": "The title and one-line description state it is a brain-inspired oscillatory network of neuron and synapse modules."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The how-it-works and how-to-test sections are literally marked as to be filled in later."
+    }
+   ],
+   "notes": "Removed spiking-neural-network, neural-network, oscillator, counter and 7-segment tags not supported by the thin documentation; added neuromorphic, verilog and insufficient-doc.",
+   "tags_before": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "neural-network",
+    "oscillator",
+    "7-segment",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "neuromorphic",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design connects two neuron modules through a synapse module to produce rhythmic oscillations, according to its one-line description. The pin names match those of a threshold comparator and counter design, with compare bits on the inputs, a second counter on the bidirectional pins and seven-segment display segments on the outputs. The how-it-works and how-to-test sections are both literally marked as to be filled in later, so no usable description of the internal behaviour or test procedure exists. The design is effectively undocumented beyond its title and pin list.",
+   "summary": "This design connects two neuron modules through a synapse module to produce rhythmic oscillations, according to its one-line description. The pin names match those of a threshold comparator and counter design, with compare bits on the inputs, a second counter on the bidirectional pins and seven-segment display segments on the outputs. The how-it-works and how-to-test sections are both literally marked as to be filled in later, so no usable description of the internal behaviour or test procedure exists. The design is effectively undocumented beyond its title and pin list.",
+   "summary_changed": false
+  },
+  {
+   "key": "1363c1f6d14a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "No interactive game design is described; the source only mentions a snake demo."
+    },
+    {
+     "tag": "display",
+     "reason": "No display interface is described beyond the seven-segment pins."
+    },
+    {
+     "tag": "template",
+     "reason": "The project is not described as a template or boilerplate."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "The title and one-line description explicitly state it is a shift register snake demo."
+    },
+    {
+     "tag": "snake-game",
+     "reason": "The title and one-line description explicitly reference a snake demo."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The pins are the standard seven-segment display outputs."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The language is Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is placeholder text only."
+    }
+   ],
+   "notes": "Removed game, display and template tags not supported by the source; added shift-register, snake-game, 7-segment, wokwi and insufficient-doc.",
+   "tags_before": [
+    "shift-register",
+    "snake-game",
+    "game",
+    "wokwi",
+    "7-segment",
+    "display",
+    "template",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "shift-register",
+    "snake-game",
+    "wokwi",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a shift register snake demo, as indicated by its title and one-line description. The documentation is placeholder text only, with no explanation of how the snake logic works or how to test it. The pins are the standard 7-segment display outputs, suggesting the snake may be shown on a 7-segment display, but this is not confirmed. The documentation is essentially empty, so the design cannot be evaluated in detail.",
+   "summary": "This project is a shift register snake demo, as indicated by its title and one-line description. The documentation is placeholder text only, with no explanation of how the snake logic works or how to test it. The pins are the standard 7-segment display outputs, suggesting the snake may be shown on a 7-segment display, but this is not confirmed. The documentation is essentially empty, so the design cannot be evaluated in detail.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5406,
+  "completion_tokens": 2107,
+  "total_tokens": 7513,
+  "cost": 0.00518775,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00518775,
+   "upstream_inference_prompt_cost": 0.00202725,
+   "upstream_inference_completions_cost": 0.0031605
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00518775,
+ "elapsed_s": 5.8
+}

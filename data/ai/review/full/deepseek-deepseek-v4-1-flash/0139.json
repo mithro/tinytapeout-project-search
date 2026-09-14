@@ -1,0 +1,238 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "59670f0bd35e",
+  "9dc19a00be8f",
+  "415d5ae4268d",
+  "2c798d4136b0",
+  "0e7f66221f21",
+  "f1deab7cf49c"
+ ],
+ "results": [
+  {
+   "key": "59670f0bd35e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source; the design is described only as a timing/coincidence detector."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sensor-interface",
+     "reason": "Already present in the proposed tags; retained because the inputs are explicitly described as sensor signals."
+    }
+   ],
+   "notes": "Removed fsm because the source does not describe a finite state machine; the other tags and summary are supported.",
+   "tags_before": [
+    "sensor-interface",
+    "timer",
+    "sequence-detector",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "sensor-interface",
+    "timer",
+    "sequence-detector",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design monitors three input signals and asserts an alarm output when all three are active within the same time window of about six seconds at 100 MHz. The three sensor inputs are on the lower input pins and the single response output is on the first output pin. External sensors, buttons or similar sources drive the inputs, and the output can be connected to an LED, display or sounder. The documentation is very short and gives no detail on the timing logic or any test results.",
+   "summary": "This Verilog design monitors three input signals and asserts an alarm output when all three are active within the same time window of about six seconds at 100 MHz. The three sensor inputs are on the lower input pins and the single response output is on the first output pin. External sensors, buttons or similar sources drive the inputs, and the output can be connected to an LED, display or sounder. The documentation is very short and gives no detail on the timing logic or any test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "9dc19a00be8f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "led-matrix",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "led-matrix",
+    "button",
+    "verilog"
+   ],
+   "summary_before": "Lights-Out is a puzzle game implemented with a 3x3 multiplexed LED matrix and three row buttons. The design drives three LED row outputs, three column outputs, and a DONE signal, while reading three button inputs for the rows. It requires an external breakout board, for which the repository link is provided, to connect the LEDs and buttons. The documentation is brief and gives no test results or detailed gameplay description beyond the title and pin names.",
+   "summary": "Lights-Out is a puzzle game implemented with a 3x3 multiplexed LED matrix and three row buttons. The design drives three LED row outputs, three column outputs, and a DONE signal, while reading three button inputs for the rows. It requires an external breakout board, for which the repository link is provided, to connect the LEDs and buttons. The documentation is brief and gives no test results or detailed gameplay description beyond the title and pin names.",
+   "summary_changed": false
+  },
+  {
+   "key": "415d5ae4268d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "instrumentation",
+    "uart",
+    "verilog"
+   ],
+   "tags": [
+    "instrumentation",
+    "uart",
+    "verilog"
+   ],
+   "summary_before": "Quickscope is a small logic analyzer that samples eight input pins and the bidirectional pins and streams the captured values over UART. It triggers when ui[0] goes high and sends data at 115200 baud on uo[0], where a host client converts it into a VCD file viewable in Surfer. Testing requires connecting a UART adapter and the signals to be analyzed. The documentation refers to an external blog post for details, so the on-chip implementation is not described in the project text.",
+   "summary": "Quickscope is a small logic analyzer that samples eight input pins and the bidirectional pins and streams the captured values over UART. It triggers when ui[0] goes high and sends data at 115200 baud on uo[0], where a host client converts it into a VCD file viewable in Surfer. Testing requires connecting a UART adapter and the signals to be analyzed. The documentation refers to an external blog post for details, so the on-chip implementation is not described in the project text.",
+   "summary_changed": false
+  },
+  {
+   "key": "2c798d4136b0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "filter-analog",
+     "reason": "The design is a digital serial-bitstream filter, not an analog filter circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fir-filter",
+     "reason": "Already present in the proposed tags; retained because the source describes a low-pass/high-pass digital filter over a 16-bit sample stream."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Already present in the proposed tags; retained because the design performs digital filtering of a serial sample stream."
+    },
+    {
+     "tag": "chisel",
+     "reason": "Already present in the proposed tags; retained because the language is Chisel."
+    }
+   ],
+   "notes": "Removed filter-analog because the source describes a digital serial filter, not an analog filter circuit.",
+   "tags_before": [
+    "fir-filter",
+    "filter-analog",
+    "dsp",
+    "chisel"
+   ],
+   "tags": [
+    "fir-filter",
+    "dsp",
+    "chisel"
+   ],
+   "summary_before": "This Chisel design receives a 1-bit serial input stream, collects 16 bits into a sample, and applies either a low-pass or high-pass filter selected by a control pin. The filtered sample is shifted out serially on the output pin after a pipeline delay. The project is described as a first ASIC design, and the documentation gives only a brief explanation of the data flow and test procedure. No external hardware is required, but the filter coefficients and exact behavior are not documented.",
+   "summary": "This Chisel design receives a 1-bit serial input stream, collects 16 bits into a sample, and applies either a low-pass or high-pass filter selected by a control pin. The filtered sample is shifted out serially on the output pin after a pipeline delay. The project is described as a first ASIC design, and the documentation gives only a brief explanation of the data flow and test procedure. No external hardware is required, but the filter coefficients and exact behavior are not documented.",
+   "summary_changed": false
+  },
+  {
+   "key": "0e7f66221f21",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "robotics",
+     "reason": "The source describes an aircraft flight-control mixer, not a robotics control application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "Already present in the proposed tags; retained because the output encodes PWM values for actuator commands."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "Already present in the proposed tags; retained because the three actuator signals are time-multiplexed onto one output bus."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present in the proposed tags; retained because the language is Verilog."
+    }
+   ],
+   "notes": "Removed robotics because the source describes an aircraft flight-control mixer rather than a robotics application.",
+   "tags_before": [
+    "robotics",
+    "pwm",
+    "multiplexer",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "multiplexer",
+    "verilog"
+   ],
+   "summary_before": "This design implements a digital flight control mixer for a delta wing aircraft, processing control inputs and generating PWM signals for elevon and rudder actuators. It uses a command-based protocol on the 8-bit input bus to load control registers, and outputs time-multiplexed actuator commands on the 8-bit output bus, with a 3-bit channel tag and 5-bit PWM value. The design is fully digital and does not require external hardware to operate, but for practical use, the output can be connected to a microcontroller or servo drivers. The documentation describes the command protocol and output format, but does not provide details on the stabilization logic or testing procedures.",
+   "summary": "This design implements a digital flight control mixer for a delta wing aircraft, processing control inputs and generating PWM signals for elevon and rudder actuators. It uses a command-based protocol on the 8-bit input bus to load control registers, and outputs time-multiplexed actuator commands on the 8-bit output bus, with a 3-bit channel tag and 5-bit PWM value. The design is fully digital and does not require external hardware to operate, but for practical use, the output can be connected to a microcontroller or servo drivers. The documentation describes the command protocol and output format, but does not provide details on the stabilization logic or testing procedures.",
+   "summary_changed": false
+  },
+  {
+   "key": "f1deab7cf49c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes a specialized accumulator generated from an MLIR loop pattern, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "floating-point",
+     "reason": "Already present in the proposed tags; retained because the source describes bfloat16 floating-point multiply/add accumulation."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Already present in the proposed tags; retained because the design is a specialized arithmetic core generated for a loop pattern."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The language is SystemVerilog/MLIR and the generated hardware is SystemVerilog."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The project occupies a 3x2 tile area."
+    }
+   ],
+   "notes": "Removed alu because the source describes a specialized MLIR-generated accumulator, not a general ALU; added systemverilog and multi-tile from the stated language and tile count.",
+   "tags_before": [
+    "floating-point",
+    "alu",
+    "accelerator"
+   ],
+   "tags": [
+    "floating-point",
+    "accelerator",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "summary_before": "This design provides a streaming byte-fed accumulator generated from an MLIR for-loop pattern, implementing a specialized S3FDP accumulator for bfloat16 multiplication and addition. It is part of a toolflow that detects loop patterns and emits optimized arithmetic circuits instead of generic floating-point datapaths. The design has a byte-wide input and output interface and requires no external hardware. It is notable for being generated automatically from MLIR and for its use of the Kulisch accumulator architecture.",
+   "summary": "This design provides a streaming byte-fed accumulator generated from an MLIR for-loop pattern, implementing a specialized S3FDP accumulator for bfloat16 multiplication and addition. It is part of a toolflow that detects loop patterns and emits optimized arithmetic circuits instead of generic floating-point datapaths. The design has a byte-wide input and output interface and requires no external hardware. It is notable for being generated automatically from MLIR and for its use of the Kulisch accumulator architecture.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6413,
+  "completion_tokens": 1617,
+  "total_tokens": 8030,
+  "cost": 0.001632,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001632,
+   "upstream_inference_prompt_cost": 0.0006618,
+   "upstream_inference_completions_cost": 0.0009702
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001632,
+ "elapsed_s": 36.6
+}

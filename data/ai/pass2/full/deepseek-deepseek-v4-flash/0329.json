@@ -1,0 +1,186 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "3322fccea8e2",
+  "8b79cacd1406",
+  "a9a47d1c1678",
+  "2dbc2a3200ca",
+  "8098b5c10cd7",
+  "7c66b92ee4c1",
+  "ab9bac3f697a",
+  "8dbd43109017",
+  "b24ad5409916",
+  "31625b58493e"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "3322fccea8e2",
+   "summary": "This design implements an 8-bit unidirectional SPI configuration register intended for external configuration of future analog/mixed-signal designs. It consists of a shift register and an output latch, shifting in data MSB-first on MOSI when chip select is low, and updating the parallel output when chip select goes high. An active-high asynchronous clear resets the register to a default value of 0xAA. The design is tested by writing to the register via SPI and observing the parallel output pins.",
+   "tags": [
+    "spi",
+    "shift-register",
+    "register-file",
+    "analog",
+    "mixed-signal",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "8b79cacd1406",
+   "summary": "This project implements a compact 4-bit microcoded CPU that fetches and executes instructions from an external SPI RAM, such as a 23LC512 chip or an RP2040 emulating it. The CPU uses the SPI Pmod interface for program storage and provides 8-bit output and a CPU_VALID signal. It is designed for the TinyTapeout GF180MCU platform and verified using cocotb with Icarus Verilog. The design requires external SPI RAM hardware for operation.",
+   "tags": [
+    "cpu",
+    "spi",
+    "memory",
+    "pmod",
+    "cocotb",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "a9a47d1c1678",
+   "summary": "This design implements an 8-bit full-duplex SPI communication system with both master and slave controllers. The master accepts 8-bit parallel data and, when started, shifts it out via MOSI while generating SCLK and CS signals, with a DONE signal indicating completion. The slave receives the data and outputs it on SLAVE_RX0, while the master's received data appears on MASTER_RX0. Testing involves applying reset, loading data, asserting START, and observing the SPI signals and received data.",
+   "tags": [
+    "spi",
+    "communication",
+    "fsm",
+    "shift-register",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "2dbc2a3200ca",
+   "summary": "This design implements an industry-grade SPI slave peripheral with an internal 8-byte register file, targeting the GlobalFoundries 180nm platform. It uses a synchronous FSM to decode SPI transactions on SCLK, MOSI, and CS_N, supporting read and write commands with a 1-byte command phase followed by a 1-byte data phase. Register 0's content is continuously driven to the output pins for real-time monitoring. Testing involves sending SPI commands to write data and verifying the output pins update accordingly.",
+   "tags": [
+    "spi",
+    "register-file",
+    "communication",
+    "fsm",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "8098b5c10cd7",
+   "summary": "This project is a network-connected accelerator wrapper that interfaces with a custom bfloat16 multiplier via a 100Mbps Ethernet PHY. It uses a LAN8720A PHY and a 50MHz oscillator on an Ethernet Pmod, and responds to application packets with EtherType 0x88b5. Testing requires connecting the ASIC to a local network and running a provided packet sender/receiver tool. The documentation is incomplete (how-it-works is TODO), but the testing procedure and external hardware are described.",
+   "tags": [
+    "ethernet",
+    "accelerator",
+    "floating-point",
+    "multiplier",
+    "communication",
+    "pmod",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "7c66b92ee4c1",
+   "summary": "This design implements a UART receiver that verifies a firmware signature using a secure hash comparison module. It continuously samples serial data on ui_in[0], shifting in bits and after 7 bits transfers the data to an output register and asserts a done signal. The received data appears on uo_out[6:0], and the design includes a verified output and status LED. Testing involves sending serial data and observing the output and done signal.",
+   "tags": [
+    "uart",
+    "hash",
+    "security",
+    "shift-register",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "ab9bac3f697a",
+   "summary": "This project implements a simple vehicle-to-vehicle (V2X) collision warning system in Verilog. It takes 4-bit inputs representing two vehicles and outputs a collision warning signal. The documentation is very thin, stating only that the module should be placed in both cars and they should communicate. No details are provided on the communication protocol, testing procedure, or external hardware beyond a generic PCB.",
+   "tags": [
+    "automotive",
+    "communication",
+    "insufficient-doc",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "8dbd43109017",
+   "summary": "This project implements an 8-bit Weightless Neural Network (WNN) for pattern recognition using pattern matching. It takes an 8-bit input and produces a pattern match result along with individual bit comparison outputs. The documentation is minimal, describing only that the circuit processes inputs and generates outputs according to designed functionality, with no details on the neural network architecture or training. Testing involves applying inputs and observing outputs, and no external hardware is required.",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "comparator",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "b24ad5409916",
+   "summary": "This project is a binary-to-hexadecimal decoder that drives a seven-segment LED display, taking a 4-bit input (A-D) and outputting the corresponding hexadecimal digit (0-9, A-F). It was designed in Wokwi using combinational logic, with color-coded truth tables and K-maps for clarity. Testing involves toggling the inputs to change the displayed character. No external hardware is required.",
+   "tags": [
+    "decoder",
+    "7-segment",
+    "display",
+    "wokwi",
+    "combinational",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "31625b58493e",
+   "summary": "This project is an open-source silicon realization of a 74HCT00 quad 2-input NAND gate on the GlobalFoundries gf180mcuD process at 3.3V. Each gate uses a skewed-inverter/NOR2/output-buffer chain to achieve TTL-compatible input thresholds and ±4mA drive, with outputs routed to analog pins for direct measurement. Gate 1's A input is brought out on an analog pin to allow characterization of the HCT input window without digital pad interference. Testing involves applying power, verifying the NAND truth table, and performing a DC ramp to check the input thresholds.",
+   "tags": [
+    "analog",
+    "logic-gate",
+    "transistor-level",
+    "verilog"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8949,
+  "completion_tokens": 1690,
+  "total_tokens": 10639,
+  "cost": 0.001035636,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001035636,
+   "upstream_inference_prompt_cost": 0.000751716,
+   "upstream_inference_completions_cost": 0.00028392
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001035636,
+ "elapsed_s": 29.9
+}

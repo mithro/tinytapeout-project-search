@@ -1,0 +1,218 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "012f548e1e18",
+  "d57da3759e45",
+  "ce8279d93fd5",
+  "0f9d7a4e2ea8",
+  "bed5fb479397",
+  "2e14e815d903",
+  "b65c6e582fd9",
+  "96bfdb78ca5a",
+  "36d4618667c0",
+  "a79fd87c3e50"
+ ],
+ "results": [
+  {
+   "key": "012f548e1e18",
+   "tags": [
+    "can",
+    "spi",
+    "robotics",
+    "motor-control",
+    "reflex",
+    "safety",
+    "mcp2515",
+    "state-machine",
+    "industrial"
+   ],
+   "summary": "This design is the decision and relay core of a robot-arm reflex system that forwards normal joint commands to a CAN bus via an external MCP2515 controller and, upon a danger trigger, blocks the normal stream and injects a reflex pose. It includes two SPI ports: a slave for host configuration and frame relay, and a master for driving the MCP2515. The reflex behavior is programmable through a rule table with priority and debounce, supporting actions such as freeze, home, and flinch. It requires external hardware including an MCP2515, a CAN transceiver, a DIP switch, and an FSR sensor connected to an FPGA XADC. The design is notable for its black-box-free debugging via MCP2515 register read-back and its integration test with a reference Verilog testbench.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d57da3759e45",
+   "tags": [
+    "puf",
+    "ring-oscillator",
+    "security",
+    "hardware-security",
+    "oscillator",
+    "programmable",
+    "gf180",
+    "analog"
+   ],
+   "summary": "This project implements a programmable-length ring oscillator designed as a physical unclonable function (PUF) for hardware security. The oscillator's delay path is dynamically configurable via digital selection signals, allowing different feedback loops and inverter stages to produce unique frequencies based on process variations. It includes a control path for sampling and telemetry, with a gated input to prevent excessive power consumption. Testing involves configuring the challenge, enabling the oscillator, and observing frequency signatures on output pins, optionally with external measurement equipment. The design is notable for its use of sub-nanosecond delays and its potential as a silicon fingerprint.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ce8279d93fd5",
+   "tags": [
+    "lfsr",
+    "prng",
+    "random-number-generator",
+    "sequential",
+    "counter",
+    "shift-register"
+   ],
+   "summary": "This is an 8-bit linear-feedback shift register (LFSR) circuit implemented in Verilog, serving as a sequential pseudo-random number generator. The design has no documented inputs or control signals; it only provides eight output bits from the LFSR state. There is no documentation on how to use or test the design, and no external hardware is specified. The project appears to be a minimal demonstration of an LFSR, but the lack of documentation limits its practical application.",
+   "confidence": "medium",
+   "insufficient_docs": true
+  },
+  {
+   "key": "0f9d7a4e2ea8",
+   "tags": [
+    "aer",
+    "spike-router",
+    "neuromorphic",
+    "spi",
+    "fifo",
+    "handshake",
+    "routing-table",
+    "gf180",
+    "communication"
+   ],
+   "summary": "This design is a 4-input, 4-output asynchronous address-event-representation (AER) spike router implemented in GF180mcuD digital logic. It uses a 4-phase bundled-data REQ/ACK handshake, double-flop synchronised into a single clock domain, and routes events through a 16-entry routing table or bypasses them unchanged. Incoming events are queued in a 4-deep FIFO and emitted with another handshake. It requires external AER-compliant sources and sinks, and is programmable via SPI. The design is notable for its robust handshake synchronisation and its application in neuromorphic systems.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "bed5fb479397",
+   "tags": [
+    "compute-in-memory",
+    "bist",
+    "fault-map",
+    "spi",
+    "dot-product",
+    "memory",
+    "gf180",
+    "test",
+    "neural-network"
+   ],
+   "summary": "This design is a compute-in-memory (CIM) peripheral featuring an 8x8 1-bit cell array with built-in self-test (BIST) and a 64-bit sticky fault map. It performs a 16-bit dot-product accumulation over user-programmable row activations, configurable via SPI. The BIST supports march, checkerboard, and diagonal patterns, and an external trigger can start the test. It requires an SPI master for programming and reading results, and provides status outputs such as busy, done, and fault flags. The design is notable for integrating memory, computation, and testability in a single block.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2e14e815d903",
+   "tags": [
+    "puf",
+    "lfsr",
+    "arbiter",
+    "memristor",
+    "security",
+    "hardware-security",
+    "spi",
+    "gf180",
+    "random-number-generator"
+   ],
+   "summary": "This design is a digital physical unclonable function (PUF) that uses eight distinct-tap maximal-length 10-bit LFSRs as virtual ring oscillators. A 6-bit challenge selects a pair of LFSRs, and an arbiter compares their popcounts over a programmable window to produce a response bit. 64 challenges accumulate into a 64-bit response, which can be XORed with a host-loaded memristor vector for dual-entropy mode. It is SPI-programmable and requires no external hardware, though an SPI master is needed for configuration. The design is notable for avoiding non-synthesizable ring oscillators and for its memristor XOR feature.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b65c6e582fd9",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "winner-take-all",
+    "lif",
+    "spi",
+    "neural-network",
+    "gf180",
+    "inference",
+    "machine-learning"
+   ],
+   "summary": "This design is a 4-neuron digital spiking neural network (SNN) inference engine with hard winner-take-all lateral inhibition. Each neuron accumulates a MAC of its bias, input currents, and synaptic weights, with programmable threshold, leak, and refractory parameters. It is SPI-configurable and provides spike outputs, winner ID, and status flags. It requires an SPI master for programming and an input pattern generator, with optional oscilloscope for spike capture. The design is notable for its deterministic single-cycle neuron update and its use of hard WTA for competitive learning.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "96bfdb78ca5a",
+   "tags": [
+    "spike-codec",
+    "neuromorphic",
+    "encoder",
+    "decoder",
+    "lfsr",
+    "delta-sigma",
+    "spi",
+    "gf180",
+    "communication"
+   ],
+   "summary": "This design is a neuromorphic spike codec that combines three encoders (rate, latency, delta) and three symmetric decoders (rate, latency, delta) in a single SPI-programmable block. The encoders convert values to spike trains using methods such as LFSR-based rate coding, time-to-first-spike, and delta modulation, while the decoders reconstruct values from spike trains. It operates on a shared window counter and provides status flags and an IRQ output. It requires an SPI master for configuration and a spike source for decoding, and can be paired with an SNN inference core. The design is notable for its flexibility and symmetry between encoding and decoding.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "36d4618667c0",
+   "tags": [
+    "aes",
+    "s-box",
+    "crypto",
+    "encryption",
+    "lookup-table",
+    "combinational",
+    "sky130",
+    "security"
+   ],
+   "summary": "This project implements an AES S-Box accelerator in Verilog, providing a combinational lookup table that maps an 8-bit input to its AES substitution value. The design uses the 8-bit input pins and 8-bit output pins, with no clocked logic required. It is fully self-contained and requires no external hardware, making it easy to test by applying input values and observing the corresponding outputs. The design demonstrates a hardware implementation of a cryptographic primitive widely used in secure communication systems.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a79fd87c3e50",
+   "tags": [
+    "mandelbrot",
+    "fractal",
+    "fixed-point",
+    "bit-serial",
+    "multiplier",
+    "graphics",
+    "video",
+    "fpga",
+    "demo"
+   ],
+   "summary": "This design is an interactive fixed-point Mandelbrot renderer that iterates z = z² + c in Q4.28 format and outputs the iteration count for each pixel. It uses a single sequential bit-serial shift-add multiplier shared across three products per iteration to reduce area. The host sends view packets containing the top-left corner, step size, and maximum iterations, and the chip outputs a pixel stream with valid, frame start, and line end strobes. It requires an RP2040 or similar microcontroller to bridge the parallel bus to USB for display, and a host viewer to compute view packets. The design is notable for its bit-serial multiplier and its ability to render a full 320x240 raster.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "012f548e1e18: 5 sentences",
+  "d57da3759e45: 5 sentences",
+  "0f9d7a4e2ea8: 5 sentences",
+  "bed5fb479397: 5 sentences",
+  "2e14e815d903: 5 sentences",
+  "b65c6e582fd9: 5 sentences",
+  "96bfdb78ca5a: 5 sentences",
+  "a79fd87c3e50: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 9338,
+  "completion_tokens": 2197,
+  "total_tokens": 11535,
+  "cost": 0.0031858,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0031858,
+   "upstream_inference_prompt_cost": 0.0018676,
+   "upstream_inference_completions_cost": 0.0013182
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0031858,
+ "elapsed_s": 131.4
+}

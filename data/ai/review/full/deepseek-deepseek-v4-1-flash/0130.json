@@ -1,0 +1,235 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "0bd310b93221",
+  "7f35b87debb3",
+  "a9d0545aaf0c",
+  "25de5870b4ee",
+  "c7d7cee1c02f",
+  "8b46baadbebf"
+ ],
+ "results": [
+  {
+   "key": "0bd310b93221",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Summary corrected: the regular-modulator mode is described in the source as internal timing controlled by the reset signal, not an internal reset signal, and the unsupported claim that testing details are not provided was dropped.",
+   "tags_before": [
+    "sigma-delta",
+    "dsp",
+    "fir-filter",
+    "adc"
+   ],
+   "tags": [
+    "sigma-delta",
+    "dsp",
+    "fir-filter",
+    "adc"
+   ],
+   "summary_before": "This Verilog design implements a decimation filter for both incremental and regular delta-sigma modulators, reducing oversampled data while preserving signal accuracy. It supports two modes: for incremental modulators, the output updates after 16 samples; for regular modulators, the output rate is controlled by an internal reset signal. The filter provides a 16-bit decimated output and operates at a 50 MHz clock. Testing details are not provided, but the design is notable for its adaptive output rate and application in ADC signal processing.",
+   "summary": "This Verilog design implements a decimation filter for both incremental and regular delta-sigma modulators, reducing oversampled data while preserving signal accuracy. For incremental modulators the output updates after accumulating 16 input samples, while for regular modulators the output update is controlled by the reset signal. The filter provides a 16-bit decimated output and is clocked at 50 MHz. No silicon test reports are included, but the design targets ADC signal processing by converting a high oversampled data rate into a lower downsampled rate.",
+   "summary_changed": true
+  },
+  {
+   "key": "7f35b87debb3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "audio",
+    "graphics",
+    "music",
+    "sigma-delta",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "graphics",
+    "music",
+    "sigma-delta",
+    "verilog"
+   ],
+   "summary_before": "This design displays the classic Nyan Cat animation on a VGA monitor with accompanying music. It uses a 2x2 Bayer dithering matrix for color rendition and generates sound from a MIDI file using square waves with exponential decay envelopes, a low-pass filter, and a sigma-delta DAC. It requires a 25.175 MHz clock, a Tiny VGA Pmod for video, and a Tiny Tapeout Audio Pmod or simple RC filter for audio. Silicon tests confirm it works, and it was originally intended for one tile but expanded to two.",
+   "summary": "This design displays the classic Nyan Cat animation on a VGA monitor with accompanying music. It uses a 2x2 Bayer dithering matrix for color rendition and generates sound from a MIDI file using square waves with exponential decay envelopes, a low-pass filter, and a sigma-delta DAC. It requires a 25.175 MHz clock, a Tiny VGA Pmod for video, and a Tiny Tapeout Audio Pmod or simple RC filter for audio. Silicon tests confirm it works, and it was originally intended for one tile but expanded to two.",
+   "summary_changed": false
+  },
+  {
+   "key": "a9d0545aaf0c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The source documentation is present and points to I2C configuration and test files, so it is not too sparse to describe the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "controller",
+     "reason": "The design is explicitly a configurable PID control block."
+    }
+   ],
+   "notes": "Added controller as the central function and removed insufficient-doc because the design purpose and pinout are described; the sparse configuration details are already reflected in the summary.",
+   "tags_before": [
+    "industrial",
+    "i2c",
+    "7-segment",
+    "display",
+    "gpio",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "industrial",
+    "i2c",
+    "7-segment",
+    "display",
+    "gpio",
+    "verilog"
+   ],
+   "summary_before": "This is a configurable PID control block intended to be configured over I2C, with six bidirectional GPIO pins used for error and control signals and two pins used as SDA and SCL. It also drives a 7-segment display through eight output pins. The description notes it was meant to be a final project but was undercut, and the how-to-test section refers to I2C files for the register addresses and an I2C test file for an example. The documentation is sparse and does not specify the PID parameters, fixed-point format or control loop details.",
+   "summary": "This is a configurable PID control block intended to be configured over I2C, with six bidirectional GPIO pins used for error and control signals and two pins used as SDA and SCL. It also drives a 7-segment display through eight output pins. The description notes it was meant to be a final project but was undercut, and the how-to-test section refers to I2C files for the register addresses and an I2C test file for an example. The documentation does not specify the PID parameters, fixed-point format or control loop details.",
+   "summary_changed": true
+  },
+  {
+   "key": "25de5870b4ee",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is implemented; the design performs stochastic multiply and add operations on bit streams."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The design includes a stochastic adder alongside the multipliers."
+    }
+   ],
+   "notes": "Summary corrected to match the stated no-reports silicon status, and tags adjusted to remove the unsupported ALU while keeping the adder.",
+   "tags_before": [
+    "stochastic-computing",
+    "multiplier",
+    "adder",
+    "alu",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "stochastic-computing",
+    "multiplier",
+    "adder",
+    "dsp",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design implements a stochastic multiplier, adder and self-multiplier that operate on serial probability-coded bit streams. Binary-weighted two's-complement inputs are converted to stochastic streams, combined, and converted back to a serial binary-weighted output. Two serial input pins feed the computation and four output pins carry the multiply, add, self-multiply and counter-reset signals. Testing requires an ADALM2000 and Python to generate and analyse the serial streams, and the documentation is otherwise sparse.",
+   "summary": "This Verilog design implements a stochastic multiplier, adder and self-multiplier that operate on serial probability-coded bit streams. Binary-weighted two's-complement inputs are converted to stochastic streams, combined, and converted back to a serial binary-weighted output. Two serial input pins feed the computation and four output pins carry the multiply, add, self-multiply and counter-reset signals. Testing requires an ADALM2000 and Python to generate and analyse the serial streams, and no silicon test results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "c7d7cee1c02f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "A counter is only mentioned indirectly in the one-line description and is not otherwise documented."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The submission is an unfinished template rather than a documented design with missing detail."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lcd",
+     "reason": "The one-line description states the project is an LCD counter."
+    },
+    {
+     "tag": "display",
+     "reason": "The project implies a character LCD display output."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The how-it-works, how-to-test and external-hardware sections are default template text."
+    }
+   ],
+   "notes": "Reproduced the documented summary exactly, but corrected the tags: insufficient-doc was replaced by placeholder because the submission is an unfinished template, counter was removed as unsupported beyond the one-line description, and lcd/display were added from that description.",
+   "tags_before": [
+    "counter",
+    "lcd",
+    "display",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "lcd",
+    "display",
+    "wokwi",
+    "incomplete",
+    "placeholder"
+   ],
+   "summary_before": "training_project_kaylem is a one-tile Wokwi project described as an LCD counter, suggesting a counter whose value is shown on a character LCD. The how-it-works, how-to-test and external-hardware sections were left as default placeholder text and no pins are listed, so the counting behaviour and the LCD interface are undocumented. Use would likely require an external LCD module, but this is not stated in the submission. Apart from the one-line description, there is not enough documentation to confirm the details.",
+   "summary": "training_project_kaylem is a one-tile Wokwi project described as an LCD counter, suggesting a counter whose value is shown on a character LCD. The how-it-works, how-to-test and external-hardware sections were left as default placeholder text and no pins are listed, so the counting behaviour and the LCD interface are undocumented. Use would likely require an external LCD module, but this is not stated in the submission. Apart from the one-line description, there is not enough documentation to confirm the details.",
+   "summary_changed": false
+  },
+  {
+   "key": "8b46baadbebf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cipher",
+     "reason": "No symmetric or block cipher is implemented; the finite-field blocks are for the PRNG, not an encryption cipher."
+    }
+   ],
+   "add": [],
+   "notes": "Removed the unsupported cipher tag; the design is a masked PRNG, not an encryption cipher, and the rest of the tags and summary are consistent with the source.",
+   "tags_before": [
+    "prng",
+    "crypto",
+    "cipher",
+    "verilog"
+   ],
+   "tags": [
+    "prng",
+    "crypto",
+    "verilog"
+   ],
+   "summary_before": "This design implements a Boolean function based pseudo random number generator using finite field arithmetic, with linear mappings, GF(2^4) multipliers, an inverter, and a square scaler. It takes five input bytes as seeds and produces three output shares, using masking with fresh randomness to prevent leakage. The documentation provides a detailed mathematical description of the three phases and a worked example, and testing involves loading input shares, toggling the enable signal, and reading the output ready flag and shares. The design is notable for its cryptographic masking approach and is implemented in a 1x2 tile configuration.",
+   "summary": "This design implements a Boolean function based pseudo random number generator using finite field arithmetic, with linear mappings, GF(2^4) multipliers, an inverter, and a square scaler. It takes five input bytes as seeds and produces three output shares, using masking with fresh randomness to prevent leakage. The documentation provides a detailed mathematical description of the three phases and a worked example, and testing involves loading input shares, toggling the enable signal, and reading the output ready flag and shares. The design is notable for its cryptographic masking approach and is implemented in a 1x2 tile configuration.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "a9d0545aaf0c: reviewer added non-canonical tag 'controller'"
+ ],
+ "usage": {
+  "prompt_tokens": 7816,
+  "completion_tokens": 1523,
+  "total_tokens": 9339,
+  "cost": 0.0041724,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041724,
+   "upstream_inference_prompt_cost": 0.0023448,
+   "upstream_inference_completions_cost": 0.0018276
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041724,
+ "elapsed_s": 9.3
+}

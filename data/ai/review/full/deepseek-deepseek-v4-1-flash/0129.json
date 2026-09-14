@@ -1,0 +1,325 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "579fdecc350c",
+  "4a573892ee17",
+  "b846d6afe81d",
+  "c610d977f456",
+  "ca95202af192",
+  "42dd52bba171"
+ ],
+ "results": [
+  {
+   "key": "579fdecc350c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spi",
+     "reason": "The source describes an SPI-like bit-per-byte scheme but does not implement or expose an SPI interface; no SPI pins are present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "scan-chain",
+     "reason": "The design is explicitly a scan chain for the IHP PDK."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "The scan chain cells are built from standard cells such as sg13g2_a21o_1."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The scan chain is a shift-register-based structure."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed SPI tag because the design only uses an SPI-like bit-per-byte scheme and does not expose an SPI interface.",
+   "tags_before": [
+    "scan-chain",
+    "standard-cell",
+    "shift-register",
+    "spi",
+    "verilog"
+   ],
+   "tags": [
+    "scan-chain",
+    "standard-cell",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "TinyScanChain is a low-footprint scan chain design for the IHP PDK, using custom cells built from standard cells to reduce area. It is used by connecting a microcontroller or CPU to the scan chain pins and clocking data in and out in bursts of 8 pulses per bit. External hardware includes a microcontroller, likely a Raspberry Pi, to drive the scan chain. The design is notable for its compact size and use of a simple SPI-like protocol, but no silicon results are reported.",
+   "summary": "TinyScanChain is a low-footprint scan chain design for the IHP PDK, using custom cells built from standard cells to reduce area. It is used by connecting a microcontroller or CPU to the scan chain pins and clocking data in and out in bursts of 8 pulses per bit. External hardware includes a microcontroller, likely a Raspberry Pi, to drive the scan chain. The design is notable for its compact size and use of a simple SPI-like protocol, but no silicon results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "4a573892ee17",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display or interface is mentioned or present in the pins."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The project implements basic logic gate functions."
+    },
+    {
+     "tag": "education",
+     "reason": "The project is a simple educational exercise demonstrating logic gates."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The design was created using the Wokwi simulator."
+    }
+   ],
+   "notes": "Removed 7-segment tag because no seven-segment display is mentioned or supported by the pins.",
+   "tags_before": [
+    "logic-gate",
+    "7-segment",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "logic-gate",
+    "education",
+    "wokwi"
+   ],
+   "summary_before": "This design implements a set of logic gates that produce a pattern resembling a small capital 'L' with a dot, likely on a seven-segment display or LED array. The truth tables provided show the relationships between input pairs and outputs, including NAND and XOR-like functions. To test it, users set the inputs according to the tables and check the outputs. The project is a simple educational exercise created in Wokwi, demonstrating basic logic gates and display patterns.",
+   "summary": "This design implements a set of logic gates that produce a pattern resembling a small capital 'L' with a dot, likely on a seven-segment display or LED array. The truth tables provided show the relationships between input pairs and outputs, including NAND and XOR-like functions. To test it, users set the inputs according to the tables and check the outputs. The project is a simple educational exercise created in Wokwi, demonstrating basic logic gates and display patterns.",
+   "summary_changed": false
+  },
+  {
+   "key": "b846d6afe81d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The bidirectional pins are used for NES controller signals, not general-purpose I/O."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pong",
+     "reason": "The project implements a Pong game."
+    },
+    {
+     "tag": "game",
+     "reason": "The project is an interactive game."
+    },
+    {
+     "tag": "vga",
+     "reason": "The design outputs a VGA-compatible video signal."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "The design uses NES controllers as gamepad input."
+    },
+    {
+     "tag": "video",
+     "reason": "The design produces a video output signal."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed gpio tag because the bidirectional pins are dedicated to NES controller signals.",
+   "tags_before": [
+    "pong",
+    "game",
+    "vga",
+    "gamepad",
+    "video",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "pong",
+    "game",
+    "vga",
+    "gamepad",
+    "video",
+    "verilog"
+   ],
+   "summary_before": "The design implements a two-player Pong game that uses two NES controllers for input and outputs a VGA video signal.",
+   "summary": "The design implements a two-player Pong game that uses two NES controllers for input and outputs a VGA video signal.",
+   "summary_changed": false
+  },
+  {
+   "key": "c610d977f456",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The design is a 4x4 array multiplier."
+    },
+    {
+     "tag": "structural",
+     "reason": "The multiplier is described as structural."
+    },
+    {
+     "tag": "adder",
+     "reason": "The design uses full adders to sum partial products."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The multiplier is purely combinational logic."
+    }
+   ],
+   "notes": "Removed education tag because the source does not state an educational purpose.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "adder",
+    "education",
+    "verilog",
+    "combinational"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "verilog",
+    "combinational"
+   ],
+   "summary_before": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers to produce an 8-bit product. It uses partial products and full adders to sum them, with carry propagation between stages. The design is verified with a Verilog testbench and Python script, and no external hardware is required.",
+   "summary": "This is a 4x4 structural array multiplier that multiplies two 4-bit binary numbers to produce an 8-bit product. It uses partial products and full adders to sum them, with carry propagation between stages. The design is verified with a Verilog testbench and Python script, and no external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "ca95202af192",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "The source describes a coprocessor for vector calculations, not a dedicated compute accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The design implements a temporal adder."
+    },
+    {
+     "tag": "coprocessor",
+     "reason": "The design is intended to work as a coprocessor for vector calculations."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The design was tested using cocotb."
+    }
+   ],
+   "notes": "Removed accelerator tag because the source describes a coprocessor, not a dedicated compute accelerator.",
+   "tags_before": [
+    "adder",
+    "coprocessor",
+    "accelerator",
+    "verilog"
+   ],
+   "tags": [
+    "adder",
+    "coprocessor",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This Verilog design implements a temporal adder, where addition is performed over time with an enable signal. It takes 8 input bits and produces 8 output bits, and is intended to be used as a coprocessor for vector calculations driven by an RP2040. The design was tested using cocotb. No external hardware is required beyond the driving microcontroller.",
+   "summary": "This Verilog design implements a temporal adder, where addition is performed over time with an enable signal. It takes 8 input bits and produces 8 output bits, and is intended to be used as a coprocessor for vector calculations driven by an RP2040. The design was tested using cocotb. No external hardware is required beyond the driving microcontroller.",
+   "summary_changed": false
+  },
+  {
+   "key": "42dd52bba171",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "communication",
+     "reason": "The design implements communication protocols."
+    },
+    {
+     "tag": "uart",
+     "reason": "The design includes a UART interface."
+    },
+    {
+     "tag": "spi",
+     "reason": "The design includes an SPI interface."
+    },
+    {
+     "tag": "i2c",
+     "reason": "The design includes an I2C interface."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Added missing canonical tags for the implemented communication protocols and language.",
+   "tags_before": [
+    "communication",
+    "uart",
+    "spi",
+    "i2c",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "uart",
+    "spi",
+    "i2c",
+    "verilog"
+   ],
+   "summary_before": "Comm_IC combines UART, SPI, and I2C communication protocols into a single design that is selected via input data bits.",
+   "summary": "Comm_IC combines UART, SPI, and I2C communication protocols into a single design that is selected via input data bits.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "b846d6afe81d: 1 sentences after review",
+  "c610d977f456: 3 sentences after review",
+  "42dd52bba171: 1 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6963,
+  "completion_tokens": 1726,
+  "total_tokens": 8689,
+  "cost": 0.005200125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.005200125,
+   "upstream_inference_prompt_cost": 0.002611125,
+   "upstream_inference_completions_cost": 0.002589
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.005200125,
+ "elapsed_s": 6.1
+}

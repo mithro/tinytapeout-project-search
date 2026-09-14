@@ -1,0 +1,296 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "09fc1d3981b9",
+  "a7380e10a940",
+  "fd5d452585a9",
+  "71dd885af9bc",
+  "8900dfdd218f",
+  "3a3ac33f071a"
+ ],
+ "results": [
+  {
+   "key": "09fc1d3981b9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "generic display tag is redundant; the pins are specifically 7-segment segments"
+    }
+   ],
+   "add": [
+    {
+     "tag": "template",
+     "reason": "placeholder 'Explain how your project works' text indicates a starter/boilerplate submission"
+    }
+   ],
+   "notes": "Removed redundant generic display tag and added template because the documentation is placeholder boilerplate.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "insufficient-doc",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "insufficient-doc",
+    "wokwi",
+    "template"
+   ],
+   "summary_before": "The project is titled 'Logic Circuit 1' and described as a 'Logic Circuit Timing Test. Serial 1'. It has eight outputs intended to drive the segments of a 7-segment display, but the documentation does not explain the internal logic or how the timing test is performed. The 'How it works' and 'How to test' sections contain only placeholder text, so the design's functionality cannot be determined from the provided information. No external hardware requirements or silicon results are mentioned.",
+   "summary": "The project is titled 'Logic Circuit 1' and described as a 'Logic Circuit Timing Test. Serial 1'. It has eight outputs intended to drive the segments of a 7-segment display, but the documentation does not explain the internal logic or how the timing test is performed. The 'How it works' and 'How to test' sections contain only placeholder text, so the design's functionality cannot be determined from the provided information. No external hardware requirements or silicon results are mentioned.",
+   "summary_changed": false
+  },
+  {
+   "key": "a7380e10a940",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "no game functionality in the SPI register file / delta-sigma design"
+    },
+    {
+     "tag": "pmod",
+     "reason": "no PMOD connector is mentioned or required"
+    },
+    {
+     "tag": "7-segment",
+     "reason": "no 7-segment display in the design"
+    },
+    {
+     "tag": "led",
+     "reason": "no LED output described"
+    },
+    {
+     "tag": "speaker",
+     "reason": "no speaker output; audio is only via an external RC filter on the modulator output"
+    },
+    {
+     "tag": "button",
+     "reason": "no button input described"
+    },
+    {
+     "tag": "education",
+     "reason": "no evidence the design is intended for teaching"
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "implements a mini SPI shift register with SCLK/MOSI/MISO/CS pins"
+    },
+    {
+     "tag": "register-file",
+     "reason": "16-bit serial shift register storing loaded data"
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "includes a 1st/2nd order delta-sigma modulator"
+    },
+    {
+     "tag": "dac",
+     "reason": "delta-sigma modulator output is used as a DAC with external RC filter"
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "LUT-based sine generator drives the modulator input"
+    },
+    {
+     "tag": "verilog",
+     "reason": "design is written in Verilog"
+    }
+   ],
+   "notes": "Replaced unrelated game/PMOD/display tags with tags supported by the SPI, register-file, sigma-delta and sine-generator documentation.",
+   "tags_before": [
+    "game",
+    "pmod",
+    "7-segment",
+    "led",
+    "speaker",
+    "button",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "spi",
+    "register-file",
+    "sigma-delta",
+    "dac",
+    "signal-generator"
+   ],
+   "summary_before": "Simon's Caterpillar is a port of the Caterpillar Logic game to the Simon Says PMOD. The game has 20 levels where players deduce secret rules about color sequences. It uses a 7-segment display, LEDs, buttons, and a speaker for interaction. The design requires the Simon Says PMOD and runs at 50 kHz. Silicon testing by the author confirmed it works as expected.",
+   "summary": "This project implements a simple serial 16-bit register (mini SPI) with magic cookie detection, plus a 16-bit delta-sigma modulator that can be configured for 1st or 2nd order. A LUT-based sine generator with programmable frequency can be selected to drive the modulator input. Testing involves serially loading the shift register, checking the magic cookie detection, inspecting the low and high output bytes, and monitoring the delta-sigma modulator's DC or sine output through an external RC low-pass filter. Only a way to set digital inputs is needed, with a scope or voltmeter useful for observing the outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "fd5d452585a9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "the design is a 4-bit multiplier, not a processor"
+    },
+    {
+     "tag": "uart",
+     "reason": "no serial port in the design"
+    },
+    {
+     "tag": "bootloader",
+     "reason": "no bootloader logic present"
+    },
+    {
+     "tag": "soc",
+     "reason": "no system-on-chip integration"
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "implements a 4-bit by 4-bit multiplier producing an 8-bit product"
+    },
+    {
+     "tag": "structural",
+     "reason": "built from AND gates and 1-bit full adders in a manual structural style"
+    },
+    {
+     "tag": "adder",
+     "reason": "uses 1-bit full adder modules to sum partial products"
+    },
+    {
+     "tag": "education",
+     "reason": "created for NYU's digital logic course Lab 4"
+    },
+    {
+     "tag": "verilog",
+     "reason": "design is written in Verilog"
+    }
+   ],
+   "notes": "The proposed summary described an unrelated GUS16 CPU; replaced with the actual 4-bit multiplier and corrected tags.",
+   "tags_before": [
+    "cpu",
+    "uart",
+    "bootloader",
+    "soc"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "adder",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project is a 16-bit experimental CPU called GUS16 with a serial port, PWM output, general purpose I/O and an external memory interface, with memory provided off-chip. It includes a bootloader that loads programs over the serial port, and the documented basic test is to connect at 115200 baud, 8N1, and send an 'L', which should be echoed back. More complete testing requires an external board with SRAM and address latches attached to the user PMOD connectors, and that memory board is noted as still pending design. The design is documented in an accompanying PDF and occupies a 1x2 tile area.",
+   "summary": "This project is a 4-bit multiplier that takes two 4-bit integers, m and q, and outputs their 8-bit product p. It was created using a manual structural design in which AND gates form the partial products and 1-bit full adders sum them while handling carries. The partial products are aligned diagonally to mimic manual binary multiplication. Testing is done by editing test.py in the test folder to add custom test cases, and no external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "71dd885af9bc",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "design is written in Verilog"
+    },
+    {
+     "tag": "neuromorphic",
+     "reason": "documentation states the input is treated as current injection to a LIF neuron"
+    }
+   ],
+   "notes": "Added verilog and neuromorphic tags supported by the language fact and the LIF neuron description.",
+   "tags_before": [
+    "encoder",
+    "decoder",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "encoder",
+    "decoder",
+    "insufficient-doc",
+    "verilog",
+    "neuromorphic"
+   ],
+   "summary_before": "This project implements an 8-bit frequency encoder and decoder for a 1-bit frequency channel, with a selector pin to choose between encoding and decoding modes. The documentation also mentions that it treats an 8-bit input voltage as a current injection to a leaky integrate-and-fire (LIF) neuron, but the connection between the two functions is unclear. Testing instructions are minimal, stating only 'Do something', and no external hardware is specified. The design appears to be a mixed-signal or neuromorphic experiment with incomplete documentation.",
+   "summary": "This project implements an 8-bit frequency encoder and decoder for a 1-bit frequency channel, with a selector pin to choose between encoding and decoding modes. The documentation also mentions that it treats an 8-bit input voltage as a current injection to a leaky integrate-and-fire (LIF) neuron, but the connection between the two functions is unclear. Testing instructions are minimal, stating only 'Do something', and no external hardware is specified. The design appears to be a mixed-signal or neuromorphic experiment with incomplete documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "8900dfdd218f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "wokwi",
+    "led",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "led",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled 'gta6' and involves guessing a pin that lights an LED. It is tested by picking a pin and seeing if it lights up. No external hardware is required. The documentation is extremely sparse and does not describe any actual game functionality.",
+   "summary": "This project is titled 'gta6' and involves guessing a pin that lights an LED. It is tested by picking a pin and seeing if it lights up. No external hardware is required. The documentation is extremely sparse and does not describe any actual game functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "3a3ac33f071a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "audio",
+    "pwm",
+    "graphics",
+    "demoscene",
+    "art",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "pwm",
+    "graphics",
+    "demoscene",
+    "art",
+    "verilog"
+   ],
+   "summary_before": "Flame demo displays a flame animation on a VGA monitor and plays simple 1-bit PWM audio. It requires a TinyVGA PMOD for video and either Mike's audio PMOD or a basic RC filter for sound, and it runs at a 25 MHz clock with a reset pulse. Silicon testing by two independent testers confirmed that both audio and video work as expected, with good use of color and dithering. The design is a compact demoscene-style demo suitable for the Tiny Tapeout demo competition.",
+   "summary": "Flame demo displays a flame animation on a VGA monitor and plays simple 1-bit PWM audio. It requires a TinyVGA PMOD for video and either Mike's audio PMOD or a basic RC filter for sound, and it runs at a 25 MHz clock with a reset pulse. Silicon testing by two independent testers confirmed that both audio and video work as expected, with good use of color and dithering. The design is a compact demoscene-style demo suitable for the Tiny Tapeout demo competition.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "09fc1d3981b9: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6543,
+  "completion_tokens": 1518,
+  "total_tokens": 8061,
+  "cost": 0.001721826,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001721826,
+   "upstream_inference_prompt_cost": 0.000719946,
+   "upstream_inference_completions_cost": 0.00100188
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001721826,
+ "elapsed_s": 14.3
+}

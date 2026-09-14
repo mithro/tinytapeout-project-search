@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e943a939d2ac",
+  "a6e5b71dad58",
+  "a4207e318a3c",
+  "694ea4ce05e4",
+  "8a52f65bdd02",
+  "0bdb7d55e329",
+  "30ade2c59ee1",
+  "fbe8353ff597",
+  "4635e78ff7ef",
+  "516405b8aa62"
+ ],
+ "results": [
+  {
+   "key": "e943a939d2ac",
+   "tags": [
+    "3d-graphics",
+    "vga",
+    "graphics",
+    "renderer",
+    "cube",
+    "rotation",
+    "tiny-vga",
+    "pipeline"
+   ],
+   "summary": "Tiny3D is a hardware 3D graphics pipeline that renders the vertices of a rotating cube to a VGA display. Six input pins select rotation directions for the cube around its axes, and a reset returns it to its initial orientation. It requires a Tiny Tapeout VGA Pmod and six buttons with pull-down resistors to drive the directional inputs. The design is notable for claiming to be the smallest 3D graphics engine, fitting a vertex pipeline into a 1x2 tile footprint.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a6e5b71dad58",
+   "tags": [
+    "cpu",
+    "spi",
+    "8-bit",
+    "program-load",
+    "instruction-memory",
+    "processor",
+    "serial"
+   ],
+   "summary": "This is an 8-bit CPU that loads 16-bit instructions over SPI into internal program memory and then executes them autonomously. A RUN input starts execution, while PROGRAM_LOADED, HALTED and RUN_ECHO pins report status, and the eight outputs expose the CPU result byte. The final stable version uses ten instruction slots and an enriched ISA, though the documentation does not list the instruction set. No external hardware beyond an SPI host is described.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a4207e318a3c",
+   "tags": [
+    "cpu",
+    "8-bit",
+    "alu",
+    "register-file",
+    "education",
+    "state-machine",
+    "ram",
+    "debug"
+   ],
+   "summary": "This is a compact 8-bit teaching CPU with four general registers, a 24x8 data RAM, an 8-bit ALU and a 16-instruction ISA. Instructions are supplied externally on the eight input pins, with the destination register value on the outputs and PC, zero, carry and fetch-phase flags on the bidirectional pins for debugging. It is intended as an educational design, with unit tests for the ALU, control FSM, registers, memory and datapath, and it needs external memory to hold instructions. The design is configured for a 1x2 tile footprint and has no on-chip program ROM.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "694ea4ce05e4",
+   "tags": [
+    "cgra",
+    "systolic-array",
+    "processing-element",
+    "serial-config",
+    "mesh",
+    "alu",
+    "reconfigurable"
+   ],
+   "summary": "tinyCGRA 2x2 is a 2x2 coarse-grained reconfigurable array where each processing element selects two of four neighbour inputs and applies a 2-bit ALU operation. Configuration is shifted in serially as a 24-bit bitstream, and a latched input byte is broadcast to the north and west edges while the output pins show one selected PE result or an XOR of all four. The repository also includes generic 3x3 and multi-context variants for area studies. It is tested through a Tiny Tapeout top regression and separate area-top regressions.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8a52f65bdd02",
+   "tags": [
+    "henon-map",
+    "chaos",
+    "fixed-point",
+    "serializer",
+    "dynamical-system",
+    "math"
+   ],
+   "summary": "This design computes the Henon map, a discrete-time chaotic dynamical system, in 10-bit signed Q2.8 fixed-point arithmetic. It serialises the resulting x and y samples as raw bit streams on separate output pins, each with its own enable and end-of-sequence flag, and asserts done_henon once the first valid sample is available. The documentation describes the three sub-blocks and the arithmetic format but the external hardware section is empty. It is a compact 1x1 implementation of a mathematical recurrence rather than a general-purpose processor.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0bdb7d55e329",
+   "tags": [
+    "mips",
+    "cpu",
+    "16-bit",
+    "single-cycle",
+    "processor",
+    "alu",
+    "instruction-load"
+   ],
+   "summary": "This is a complete 16-bit MIPS single-cycle processor that loads 16-bit instructions through the 8-bit Tiny Tapeout input pins. A mode pin selects load or run, address bits and a byte-select pin choose where each byte is written, and in run mode the ALU result is driven onto the outputs and upper bidirectional pins. The documentation consists mainly of pin descriptions, with no instruction set listing or test procedure. It is a 1x1 design that requires an external host to feed instruction bytes during load mode.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "30ade2c59ee1",
+   "tags": [
+    "systolic-array",
+    "matrix-multiply",
+    "mac",
+    "spi",
+    "neural-network",
+    "tpu",
+    "accelerator"
+   ],
+   "summary": "Mini TPU v2 is a 3x3 systolic array of processing elements that performs multiply-accumulate operations for matrix multiplication. Inputs and weights are fetched externally over SPI, and the eight-bit result is presented on the output pins. The design is a compact 1x1 accelerator built with IEEE funding, and the documentation is limited to the one-line description and pin names. No test procedure or external hardware details beyond the SPI host are given.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fbe8353ff597",
+   "tags": [
+    "traffic-light",
+    "fsm",
+    "state-machine",
+    "controller",
+    "sensor",
+    "emergency",
+    "7-segment"
+   ],
+   "summary": "This design implements a seven-state Moore finite state machine controlling a two-road traffic intersection with N/S and E/W signals. Vehicle sensors on each road allow adaptive green-phase extension, and emergency-vehicle inputs on either axis trigger a hardware priority override. Outputs drive the green and yellow lamps for each road, an emergency-active flag, and three FSM state bits for 7-segment debug display. The documentation describes the state machine at a high level but does not detail the timing or override behaviour.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4635e78ff7ef",
+   "tags": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "lif",
+    "mesh",
+    "die-to-die",
+    "gf16",
+    "rom",
+    "lfsr",
+    "matrix-multiply"
+   ],
+   "summary": "TRI-1 Gamma is a 32-tile neuromorphic design combining eight cortical columns with leaky-integrate-and-fire dynamics and ternary MLP layers, a 20-PE GF16 mesh, and 24 supporting modules including ROMs, matrix multipliers, a Blake3 anchor and monitors. It includes a four-port die-to-die router for multi-chip spike propagation, and on reset it drives the canonical constant 0x47C0 onto the output pins. The design uses a custom GF16 floating-point format with shift-and-add mantissa multiplication, and no external hardware is required for single-die testing. The documentation is dense and uses unusual terminology, so the exact function of many blocks is hard to verify from the text alone.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "516405b8aa62",
+   "tags": [
+    "dot-product",
+    "gf16",
+    "floating-point",
+    "multiplier",
+    "lucas-rom",
+    "lfsr",
+    "crypto",
+    "post"
+   ],
+   "summary": "TRI-1 Phi is a single-tile design that computes a four-element dot product in a custom GF16 floating-point format using four parallel multipliers and a tree of adders. On reset it drives the canonical value 0x47C0, representing dot4(1,2,3,4) = 30.0, onto the output pins as a cross-die anchor shared with its sibling designs. It also includes a Lucas ROM, a hardware random number generator LFSR, a restraint controller and a friend-foe handshake, with input pins to select modes and probe the ROM. No external hardware is required, and the documentation is detailed but uses project-specific terminology.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7158,
+  "completion_tokens": 1786,
+  "total_tokens": 8944,
+  "cost": 0.002577156,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002577156,
+   "upstream_inference_prompt_cost": 0.001398396,
+   "upstream_inference_completions_cost": 0.00117876
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002577156,
+ "elapsed_s": 23.9
+}

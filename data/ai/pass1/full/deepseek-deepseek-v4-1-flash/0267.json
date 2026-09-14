@@ -1,0 +1,199 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b42c9d56699f",
+  "d17f27ea563f",
+  "967f6083f46c",
+  "29e44f5d8bac",
+  "5635c431fb3a",
+  "226f403f2ad7",
+  "e084652aa7ea",
+  "7491b50bea11",
+  "24a13448d214",
+  "20fa52adb42c"
+ ],
+ "results": [
+  {
+   "key": "b42c9d56699f",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "clock",
+    "transistor-level",
+    "experiment"
+   ],
+   "summary": "This analog block implements a very slow ring oscillator whose output is brought out on two analog pins. It is used by powering the board at 1.8 V and observing the signal on analog pins 0 and 1. No external hardware is required. The documentation is extremely thin, giving only a one-line description and no schematic, frequency measurement, or test results, so the exact topology and performance are unclear.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "d17f27ea563f",
+   "tags": [
+    "fpga",
+    "lut",
+    "yosys",
+    "nextpnr",
+    "bitstream",
+    "carry-chain",
+    "education",
+    "wokwi"
+   ],
+   "summary": "This design is a tiny FABulous FPGA fabric containing 128 LUT4+flip-flop logic cells with a vertical carry chain, plus 26 I/O buffers and four global buffers. User designs are synthesized with Yosys and placed and routed with nextpnr, then loaded through a bit-banged serial interface on ui[1] and ui[0] while reset is asserted. The I/O structure mirrors the Tiny Tapeout interface, so simple Tiny Tapeout designs can be mapped directly onto the fabric. No external hardware is needed, and the documentation is detailed enough to describe the resource table and configuration procedure.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "967f6083f46c",
+   "tags": [
+    "fft",
+    "dsp",
+    "radix-2",
+    "sdf",
+    "dif",
+    "asic",
+    "synchronous",
+    "bit-reversal"
+   ],
+   "summary": "This ASIC implements a 64-point radix-2 single-delay-feedback decimation-in-frequency FFT in a 6x2 tile footprint. It accepts 64 real 8-bit input samples on ui_in after a 0xAA sync marker and produces 8-bit real and imaginary outputs on uo_out and uio_out over the following 64 cycles. An external controller such as an FPGA or microcontroller must generate the trigger sequence, provide a 10 MHz clock, and optionally reorder the output bins by bit-reversing their indices. The design is purely synchronous digital and requires no analog or mixed-signal peripherals.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "29e44f5d8bac",
+   "tags": [
+    "fibonacci",
+    "counter",
+    "bcd",
+    "7-segment",
+    "display",
+    "double-dabble",
+    "multiplexer",
+    "education"
+   ],
+   "summary": "This design is a 16-bit Fibonacci counter that advances on an external pulse and converts the binary value to five BCD digits using the double-dabble algorithm. A ring counter multiplexes the five digits onto a shared 7-segment bus, with a ready flag indicating the 17-cycle conversion time. It requires a slow clock around 1 kHz and external hardware consisting of a 5-digit common-cathode 7-segment display with transistor drivers on the digit enables. The design includes input synchronisation and edge detection for a mechanical step button.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5635c431fb3a",
+   "tags": [
+    "coincidence-detector",
+    "comparator",
+    "state-machine",
+    "synchronous",
+    "single-bit",
+    "logic"
+   ],
+   "summary": "This module is a single-bit temporal coincidence detector that samples two inputs, X1 and X2, on each rising clock edge while enabled. It classifies the relationship as only X2 high, only X1 high, or both high, driving registered outputs A, B, C1, and C2 accordingly. Reset clears all outputs, and deasserting enable holds the last value. No external hardware is required, and the documentation provides a complete truth table and test procedure.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "226f403f2ad7",
+   "tags": [
+    "fingerprint",
+    "uart",
+    "fsm",
+    "asic",
+    "security",
+    "biometric",
+    "protocol",
+    "sensor"
+   ],
+   "summary": "FinSec-1 is a hardware-only AS-68M fingerprint verification ASIC that implements the complete UART command protocol as a 14-state deterministic finite state machine, with no microcontroller or CPU in the trusted path. It communicates with an AS-68M sensor over UART at 57600 baud and provides status outputs for match, no-match, error, sensor readiness, finger detection, UART busy, and a heartbeat. The design targets 50 MHz and reports zero DRC, LVS, and antenna violations with 1.153 mW power across nine PVT corners. External hardware is limited to the AS-68M sensor and its connections.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e084652aa7ea",
+   "tags": [
+    "game-of-life",
+    "cellular-automaton",
+    "vga",
+    "video",
+    "display",
+    "demoscene",
+    "animation"
+   ],
+   "summary": "This project is a demoscene implementation of Conway's Game of Life intended to display on a VGA board. The documentation states only that it shows the Game of Life on the VGA board, with no details on resolution, timing, or control interface. The test procedure is explicitly unknown, and the required external hardware is not currently available. As a result, the design's capabilities and usage cannot be fully determined from the provided information.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "7491b50bea11",
+   "tags": [
+    "vga",
+    "video",
+    "plasma",
+    "demoscene",
+    "clash",
+    "haskell",
+    "animation",
+    "interactive"
+   ],
+   "summary": "This design renders an interactive triangle-wave plasma effect on a VGA display at 640x480 resolution and 60 Hz, using a 25 MHz pixel clock. It is authored in Clash HDL, a Haskell-based hardware description language, and compiled to Verilog. Eight input pins provide real-time controls for pause, pattern selection, speed, colour inversion, and palette selection. It requires a Tiny Tapeout VGA PMOD board and a VGA monitor, with optional buttons or switches for interaction, and includes a simulation testbench.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "24a13448d214",
+   "tags": [
+    "vga",
+    "video",
+    "plasma",
+    "demoscene",
+    "spade",
+    "animation",
+    "interactive",
+    "xor"
+   ],
+   "summary": "This design renders an interactive XOR plasma effect on a VGA display at 640x480 resolution and 60 Hz, using a 25 MHz pixel clock. It is authored in Spade HDL and compiled to SystemVerilog. Eight input pins provide real-time controls for pause, pattern selection, speed, colour inversion, and colour rotation. It requires a Tiny Tapeout VGA PMOD board and a VGA monitor, with optional buttons or switches for interaction, and includes a simulation testbench.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "20fa52adb42c",
+   "tags": [
+    "floating-point",
+    "dot-product",
+    "multiplier",
+    "dsp",
+    "gf16",
+    "accelerator",
+    "booth-encoding",
+    "fpga"
+   ],
+   "summary": "This design computes a 4-element dot product in GF16 format, a 16-bit floating-point representation with 1 sign, 6 exponent, and 9 mantissa bits. It uses four parallel GF16 multipliers and a three-adder tree, with the default computation of dot4([1,2,3,4],[1,2,3,4]) = 30.0 producing 0x47C0 on the output pins. The design is validated on an FPGA at 323 MHz and is part of a silicon roadmap toward TRL 7. No external hardware is required, and the result is directly observable on uo_out and uio_out.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6534,
+  "completion_tokens": 1960,
+  "total_tokens": 8494,
+  "cost": 0.00412404,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 640,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00412404,
+   "upstream_inference_prompt_cost": 0.00177204,
+   "upstream_inference_completions_cost": 0.002352
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00412404,
+ "elapsed_s": 37.2
+}

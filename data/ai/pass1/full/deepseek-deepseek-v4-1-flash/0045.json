@@ -1,0 +1,193 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "aef3df1be629",
+  "5315e8cd5c7e",
+  "0a5ce81cdf1b",
+  "2334e67bc350",
+  "da39420676f9",
+  "cc8fbf7b4dfb",
+  "f22d116eef31",
+  "ca4117216279",
+  "217375c34187",
+  "d93c974951b8"
+ ],
+ "results": [
+  {
+   "key": "aef3df1be629",
+   "tags": [
+    "alu",
+    "arithmetic",
+    "logic",
+    "4-bit",
+    "instruction-set",
+    "bcd",
+    "decoder",
+    "education"
+   ],
+   "summary": "This project implements a 4-bit arithmetic logic unit with 13 selectable operations, including addition, subtraction, multiplication, division, bitwise logic, shifts, and modulo. The two 4-bit operands are provided on the eight input pins, while three bidirectional pins select the operation and the eight output pins present the 8-bit result. The design is intended for educational use and requires external digital logic such as buttons or sensors to provide inputs and observe outputs. The documentation is clear but contains a contradictory testing note about a counter, which appears to be a copy-paste error.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5315e8cd5c7e",
+   "tags": [
+    "stopwatch",
+    "timer",
+    "7-segment",
+    "counter",
+    "education",
+    "university-project"
+   ],
+   "summary": "This design implements a stopwatch with start, stop, soft reset, and increment/decrement controls, displaying minutes and seconds on a multiplexed 7-segment display. It was originally developed and verified on a Basys 3 FPGA board and later ported to Tiny Tapeout. The design requires external hardware: a common-anode 7-segment display and several buttons and switches for control. Silicon testing by the author confirmed full functionality with a breadboarded display, though the provided test report is truncated.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0a5ce81cdf1b",
+   "tags": [
+    "spigot-algorithm",
+    "math",
+    "bcd",
+    "7-segment",
+    "shift-register",
+    "memory",
+    "experiment"
+   ],
+   "summary": "This project implements a bounded spigot algorithm to compute 31 digits of Euler's number (e) in BCD format. The digits are output on the bidirectional and output pins, requiring external BCD-to-7-segment decoders (such as 7447) to display them. The design uses a ring of gated shift registers for storage and shares calculation hardware across iterations to fit within a single tile. It is notable for its low memory footprint and the use of SpinalHDL, but it only produces a fixed number of digits and requires a slow clock (below 500 Hz) to observe the output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2334e67bc350",
+   "tags": [
+    "clock",
+    "rtc",
+    "7-segment",
+    "shift-register",
+    "serial",
+    "timer",
+    "education"
+   ],
+   "summary": "This project is a digital desk clock that displays hours, minutes, and seconds in 24-hour format on six 7-segment displays. Because of limited output pins, the time data is shifted out serially to external 74xx596 shift registers that drive the displays. The time can be set using buttons, with fast and slow increment modes, and pressing both set buttons clears the seconds. Silicon testing by the author using a logic analyzer confirmed correct operation of the serial output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "da39420676f9",
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "endless-runner",
+    "dino",
+    "graphics",
+    "tiny-vga"
+   ],
+   "summary": "This project implements an endless-runner game similar to the Chrome Dino game, rendered on a VGA monitor. The game uses four input buttons for jump, halt, debug, and mode control, and outputs VGA signals compatible with the Tiny VGA PMOD. Multiple silicon test reports confirm that the design works well and is playable, though some testers noted occasional screen tearing at higher speeds. The documentation is minimal, consisting mainly of a brief description and pinout, but the test reports provide evidence of functionality.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cc8fbf7b4dfb",
+   "tags": [
+    "i2c",
+    "bert",
+    "alu",
+    "test",
+    "error-rate",
+    "peripheral",
+    "7-segment",
+    "spi"
+   ],
+   "summary": "This design is an I2C peripheral that implements an 8-bit ALU to perform pattern testing and accumulate results, functioning as a bit error rate tester (BERT). It connects to an I2C controller (such as an RP2040) via the bidirectional pins and can be configured for different clocking modes and bus types through input pins. The design outputs results on a 7-segment display and includes power-on-reset configuration options. The documentation is somewhat technical and notes that further updates are planned, but it provides sufficient detail for operation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f22d116eef31",
+   "tags": [
+    "factory-test",
+    "test",
+    "counter",
+    "scan-chain",
+    "debug",
+    "summary"
+   ],
+   "summary": "This is a factory test module designed to verify the Tiny Tapeout chip infrastructure. When the select pin is high, it outputs an 8-bit counter on both the output and bidirectional pins; when low, it mirrors the bidirectional inputs to the outputs. The design is used to test the chip's I/O and clock performance, with silicon results showing correct counting up to 154 MHz with 4 mA drive and 202 MHz with 8 mA drive. It is a simple, high-speed utility block with no external hardware requirements beyond basic connectivity.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ca4117216279",
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "flappy-bird",
+    "graphics",
+    "tiny-vga",
+    "button"
+   ],
+   "summary": "This project is a clone of the Flappy Bird game, rendered on a 640x480 VGA display with a single button input for flapping. The game state is updated each frame, and the score is output in binary on the bidirectional pins. It requires a 25 MHz clock, a debounced active-low button, and a VGA adapter compatible with the Tiny VGA PMOD. Multiple silicon test reports confirm that the design works and is playable, though several testers found it challenging.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "217375c34187",
+   "tags": [
+    "encoder",
+    "decoder",
+    "frequency",
+    "pll",
+    "timer",
+    "7-segment",
+    "test"
+   ],
+   "summary": "This design encodes input data into frequency variations and then decodes it back to the original data, using a phase-locked loop (PLL) for clock generation. It interfaces with switches for input and 7-segment displays for output, and includes a second counter whose lower bits are available on bidirectional pins. The documentation describes the general operation but lacks specific implementation details and test results, making it difficult to assess its practical use. It appears to be an experimental design for frequency-based encoding and decoding.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d93c974951b8",
+   "tags": [
+    "frequency-counter",
+    "sensor",
+    "7-segment",
+    "state-machine",
+    "timer",
+    "debug"
+   ],
+   "summary": "This project measures the frequency of an input signal by counting transitions over a configurable period and displays the result on a 7-segment display. It includes a debouncer, a state machine that divides the count by ten, and a debug mode that outputs internal signals on the bidirectional pins. The count period can be set via input pins to match the clock frequency for accurate measurements. The design is a utility block that requires an external signal source and a 7-segment display for output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5949,
+  "completion_tokens": 1863,
+  "total_tokens": 7812,
+  "cost": 0.00383214,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 640,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00383214,
+   "upstream_inference_prompt_cost": 0.00159654,
+   "upstream_inference_completions_cost": 0.0022356
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00383214,
+ "elapsed_s": 29.2
+}

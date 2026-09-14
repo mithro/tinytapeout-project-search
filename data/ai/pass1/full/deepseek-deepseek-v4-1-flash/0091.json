@@ -1,0 +1,194 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6f61a2a85c0d",
+  "e778d841cd2c",
+  "6c3afd27dc5b",
+  "9dee7bf03658",
+  "2661ea30363a",
+  "3435f00efaa6",
+  "a4aab9682993",
+  "3e2e02900a0f",
+  "fee196f57eac",
+  "3b5c8aee0515"
+ ],
+ "results": [
+  {
+   "key": "6f61a2a85c0d",
+   "tags": [
+    "dac",
+    "comparator",
+    "analog",
+    "standard-cells",
+    "counter",
+    "transistor-level",
+    "test",
+    "oscillator"
+   ],
+   "summary": "This design implements two digital-to-analog converters and three analog comparators using only standard logic cells, based on published work by Sala et al. and Yang et al. Two 5-bit counters drive the DACs to generate analog ramp signals that exercise the comparators. A SEL pin selects whether the counters operate together for a 10-bit sequence or independently. An oscilloscope is required to observe the DAC and comparator outputs, and the design is notable for being fully synthesizable from standard cells rather than custom analog blocks.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e778d841cd2c",
+   "tags": [
+    "cgra",
+    "neural-network",
+    "noc",
+    "accelerator",
+    "matrix-multiply",
+    "dsp",
+    "packet-switched",
+    "debug"
+   ],
+   "summary": "This project is a minimal coarse-grained reconfigurable array inspired by AMD's AI engine architecture, containing a 2x2 array of compute tiles connected by a simplified packet-switched network-on-chip. Two interface tiles connect the array to external memory and a host, and packets are routed through the NoC and processed in a pipelined manner. Eight data inputs, eight debug outputs and eight data outputs are exposed on the pins. The documentation does not describe a concrete test procedure, so how the design is exercised on silicon is unclear.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6c3afd27dc5b",
+   "tags": [
+    "pulse-generator",
+    "mixed-signal",
+    "pwm",
+    "analog",
+    "timer",
+    "counter"
+   ],
+   "summary": "This mixed-signal block generates pulses whose period, duty percentage and count are configured through digital input pins. It exposes analog input and output lines alongside PWM outputs and several analog voltage outputs. The documentation is extremely thin, stating only that a pulse is generated when an input is given and that testing consists of providing an input. No external hardware is listed, but the sparse description makes the exact behavior and intended use difficult to determine.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "9dee7bf03658",
+   "tags": [
+    "bandgap",
+    "analog",
+    "transistor-level",
+    "voltage-reference",
+    "dtmos",
+    "temperature-sensor"
+   ],
+   "summary": "This analog block implements a bandgap voltage reference using only MOSFETs, with a second output for a DTMOS variant. The documentation points to an external paper for the operating principle and provides no further explanation of the circuit. Testing requires a multimeter to measure the bandgap outputs and a hot air gun to heat the chip and observe temperature behavior. The design is notable for being a transistor-level analog reference submitted to a digital-oriented shuttle.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2661ea30363a",
+   "tags": [
+    "multiplier",
+    "booth",
+    "dadda",
+    "carry-lookahead",
+    "arithmetic",
+    "signed",
+    "dsp"
+   ],
+   "summary": "This design multiplies two 8-bit signed numbers to produce a 16-bit product using a modified Booth encoding algorithm. The Booth-recoded bits feed a Dadda multiplier tree, and the partial products are summed in a carry-lookahead adder. The multiplicand is applied on the eight input pins while the product is split across the output and bidirectional pins. No external hardware is required, and the design is a straightforward arithmetic accelerator with no reported silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3435f00efaa6",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "state-machine",
+    "shift-register",
+    "multiplier",
+    "accelerator",
+    "education"
+   ],
+   "summary": "This project implements a reusable neural network of four neurons whose weights and biases are loaded serially through a shift register under state-machine control. An 8-bit input is captured, four inputs are shifted in, and twenty parameters per layer are fed in a defined order, with neuron outputs fed back to the next layer. The state machine cycles through input, buffer and output states, and the finished state exposes the four neuron outputs on the output pins. Testing is intended with an FPGA to feed weights correctly, and the weights must first be trained externally in Python or Matlab; the documentation is detailed but the design appears to be a class project.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a4aab9682993",
+   "tags": [
+    "multiplier",
+    "microcode",
+    "shift-add",
+    "arithmetic",
+    "education",
+    "bcd"
+   ],
+   "summary": "This design is a microcode-based shift-and-add multiplier that takes two 4-bit inputs and produces an 8-bit product. The documentation is minimal, describing only that the inputs are supplied and the product returned, with a reset required before operation. Switches and LEDs are suggested as external hardware for driving inputs and observing outputs. The very low 1 kHz clock and sparse description suggest an educational demonstration rather than a high-performance arithmetic unit.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3e2e02900a0f",
+   "tags": [
+    "pll",
+    "vco",
+    "phase-detector",
+    "analog",
+    "transistor-level",
+    "oscillator",
+    "test"
+   ],
+   "summary": "This analog test circuit contains a transmission-gate VCO with on-chip capacitors for linearization, plus a phase detector and a second VCO forming parts of a phase-locked loop. Six analog pins expose the VCO outputs, control inputs, PLL VCO output and differential PLL filter nodes. Testing requires a typical experimental PLL or VCO bench setup, and no digital control pins are provided. The design is notable as a transistor-level analog exploration of PLL building blocks on a shared shuttle.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fee196f57eac",
+   "tags": [
+    "pll",
+    "vco",
+    "phase-frequency-detector",
+    "analog",
+    "oscillator",
+    "test"
+   ],
+   "summary": "This project exposes a VCO and a phase-frequency detector as building blocks of a phase-locked loop, with analog control and output pins plus digital select and clock inputs. An oscilloscope, function generator and bench power supply are suggested but not required for testing. A silicon test report confirms the VCO works, producing 13 kHz to 66 MHz, though the usable control range was 0.4 V to 1.0 V rather than the documented 1.0 V to 1.8 V. The phase-frequency detector was not tested by the reporter, and the design is notable for including measured silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3b5c8aee0515",
+   "tags": [
+    "fifo",
+    "clock-domain-crossing",
+    "synchronizer",
+    "gray-code",
+    "dual-port-ram",
+    "memory",
+    "asynchronous"
+   ],
+   "summary": "This SystemVerilog design implements a 4-bit asynchronous FIFO that buffers data between independent write and read clock domains. It uses a dual-port RAM for storage, with binary-to-gray and gray-to-binary converters plus synchronizers to safely pass pointers across domains. Write and read operations are controlled by increment pulses, with full and empty flags indicating status, and resets are held low during initialization. No external hardware is required, and the design is a standard clock-domain-crossing building block with clear usage instructions.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "6f61a2a85c0d: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 4861,
+  "completion_tokens": 1658,
+  "total_tokens": 6519,
+  "cost": 0.002930715,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002930715,
+   "upstream_inference_prompt_cost": 0.001239555,
+   "upstream_inference_completions_cost": 0.00169116
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002930715,
+ "elapsed_s": 39.0
+}

@@ -1,0 +1,214 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8766f72ace6c",
+  "2891e3890ebc",
+  "2cf26e0e88de",
+  "c7f75257558d",
+  "6bdf5212b09c",
+  "5fb98c1d8402"
+ ],
+ "results": [
+  {
+   "key": "8766f72ace6c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "arbiter",
+     "reason": "The design services requests in order from a queue; no arbitration logic is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed arbiter tag because the design only services queued requests in order and does not implement arbitration.",
+   "tags_before": [
+    "memory",
+    "arbiter",
+    "systemverilog",
+    "cocotb"
+   ],
+   "tags": [
+    "memory",
+    "systemverilog",
+    "cocotb"
+   ],
+   "summary_before": "This project is a simplified memory controller that simulates DRAM read/write behavior with request queuing, bank-row-column address decoding, and a fake memory. It services requests from a testbench CPU in order, using a bank table to track open rows, though the final design includes only one bank, two rows, and two columns to reduce area. The controller runs at 50 MHz and has a defined interface for read and write transactions. Testing was done with SystemVerilog testbenches and cocotb, and no external hardware is needed.",
+   "summary": "This project is a simplified memory controller that simulates DRAM read/write behavior with request queuing, bank-row-column address decoding, and a fake memory. It services requests from a testbench CPU in order, using a bank table to track open rows, though the final design includes only one bank, two rows, and two columns to reduce area. The controller runs at 50 MHz and has a defined interface for read and write transactions. Testing was done with SystemVerilog testbenches and cocotb, and no external hardware is needed.",
+   "summary_changed": false
+  },
+  {
+   "key": "2891e3890ebc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The source describes an ALU with an instruction set and accumulator, not a general-purpose processor core."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed cpu and education tags because the source describes an ALU with an instruction set, not a CPU, and does not state an educational intent.",
+   "tags_before": [
+    "crypto",
+    "alu",
+    "lfsr",
+    "pipeline",
+    "cpu",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "alu",
+    "lfsr",
+    "pipeline",
+    "verilog"
+   ],
+   "summary_before": "TinyCrypto-8 is an 8-bit pipelined ALU with hardware cryptography support, featuring a 12-bit instruction set that includes arithmetic, logic, shift, and LFSR-based crypto operations. Instructions are loaded serially through three input pins, and the 8-bit accumulator result is output on eight pins. The design is verified with a testbench that exercises ALU operations, flag updates, and crypto functions, and it requires no external hardware for basic operation. It is intended for educational or integration purposes, with optional microcontroller-based testing.",
+   "summary": "TinyCrypto-8 is an 8-bit pipelined ALU with hardware cryptography support, featuring a 12-bit instruction set that includes arithmetic, logic, shift, and LFSR-based crypto operations. Instructions are loaded serially through three input pins, and the 8-bit accumulator result is output on eight pins. The design is verified with a testbench that exercises ALU operations, flag updates, and crypto functions, and it requires no external hardware for basic operation. It is intended for educational or integration purposes, with optional microcontroller-based testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "2cf26e0e88de",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "clock-divider",
+    "clock-generator",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "clock-divider",
+    "clock-generator",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This design is an 8-channel programmable clock router that generates divided clock signals from a 50 MHz system clock. Each output channel can be independently configured via a 3-bit address, 4-bit division value, and a write strobe to select one of 16 counter bits as the clock source. The outputs are directly observable with a logic analyzer or oscilloscope, and no external hardware is required. The design is a straightforward utility for clock management in digital systems.",
+   "summary": "This design is an 8-channel programmable clock router that generates divided clock signals from a 50 MHz system clock. Each output channel can be independently configured via a 3-bit address, 4-bit division value, and a write strobe to select one of 16 counter bits as the clock source. The outputs are directly observable with a logic analyzer or oscilloscope, and no external hardware is required. The design is a straightforward utility for clock management in digital systems.",
+   "summary_changed": false
+  },
+  {
+   "key": "c7f75257558d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "puf",
+    "ring-oscillator",
+    "lfsr",
+    "security",
+    "counter",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "puf",
+    "ring-oscillator",
+    "lfsr",
+    "security",
+    "counter",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This project implements a ring oscillator physical unclonable function (RO-PUF) using 16 toggle flip-flops driven by an LFSR to create unique oscillators. Eight 12-bit counter pairs measure frequency variations over a 1000-cycle window, and a three-state FSM manages the measurement cycle, producing a single-bit response and a done flag. The design requires no external hardware and outputs debug information on six pins. It is notable for exploiting silicon manufacturing variation for hardware security primitives.",
+   "summary": "This project implements a ring oscillator physical unclonable function (RO-PUF) using 16 toggle flip-flops driven by an LFSR to create unique oscillators. Eight 12-bit counter pairs measure frequency variations over a 1000-cycle window, and a three-state FSM manages the measurement cycle, producing a single-bit response and a done flag. The design requires no external hardware and outputs debug information on six pins. It is notable for exploiting silicon manufacturing variation for hardware security primitives.",
+   "summary_changed": false
+  },
+  {
+   "key": "6bdf5212b09c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cellular-automaton",
+     "reason": "The source describes a falling-sand physics simulation, not a cellular automaton."
+    },
+    {
+     "tag": "display",
+     "reason": "The design outputs VGA video, so the generic display tag is redundant and less specific."
+    }
+   ],
+   "add": [],
+   "notes": "Removed cellular-automaton and display tags because the design is a falling-sand physics simulation with VGA output, not a cellular automaton or generic display.",
+   "tags_before": [
+    "physics",
+    "cellular-automaton",
+    "vga",
+    "qspi",
+    "graphics",
+    "display",
+    "systemverilog"
+   ],
+   "tags": [
+    "physics",
+    "vga",
+    "qspi",
+    "graphics",
+    "systemverilog"
+   ],
+   "summary_before": "SandSim is a SystemVerilog physics engine that simulates falling sand on a 36x48 binary grid, computing the next state for pairs of rows with a compute kernel. It outputs a 640x480-style VGA signal through the Tiny VGA pinout and stores data in external QSPI flash and RAM. Users drive any of the eight ui pins high to spawn a grain of sand at the top of the grid. It requires a TinyVGA Pmod and a TinyQSPI Pmod to operate.",
+   "summary": "SandSim is a SystemVerilog physics engine that simulates falling sand on a 36x48 binary grid, computing the next state for pairs of rows with a compute kernel. It outputs a 640x480-style VGA signal through the Tiny VGA pinout and stores data in external QSPI flash and RAM. Users drive any of the eight ui pins high to spawn a grain of sand at the top of the grid. It requires a TinyVGA Pmod and a TinyQSPI Pmod to operate.",
+   "summary_changed": false
+  },
+  {
+   "key": "5fb98c1d8402",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "uart",
+    "alu",
+    "lfsr",
+    "sequencer",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "uart",
+    "alu",
+    "lfsr",
+    "sequencer",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "This is a UART-controlled smart I/O hub built around a 64-channel PWM engine, with channels divided into banks of eight selected by ui_in[6:4]. UART commands can write duty cycles, set a prescaler, and load internal modulation registers, while the upper eight channels are driven by a phase counter, an LFSR-style pattern source and an add/multiply datapath. A status page can be shown on uio_out when ui_in[7] is asserted, and a sequencer enable and clear-registers input are provided. It requires a USB-to-UART adapter or microcontroller and an oscilloscope or logic analyzer, and the pinout matches the TT Audio recommendation.",
+   "summary": "This is a UART-controlled smart I/O hub built around a 64-channel PWM engine, with channels divided into banks of eight selected by ui_in[6:4]. UART commands can write duty cycles, set a prescaler, and load internal modulation registers, while the upper eight channels are driven by a phase counter, an LFSR-style pattern source and an add/multiply datapath. A status page can be shown on uio_out when ui_in[7] is asserted, and a sequencer enable and clear-registers input are provided. It requires a USB-to-UART adapter or microcontroller and an oscilloscope or logic analyzer, and the pinout matches the TT Audio recommendation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8725,
+  "completion_tokens": 1260,
+  "total_tokens": 9985,
+  "cost": 0.0041295,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041295,
+   "upstream_inference_prompt_cost": 0.0026175,
+   "upstream_inference_completions_cost": 0.001512
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041295,
+ "elapsed_s": 15.2
+}

@@ -1,0 +1,221 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8d93c902cdd8",
+  "317f468ea347",
+  "53a863c8ce88",
+  "451715b4986a",
+  "5672b53c1d17",
+  "9c21f22eb135"
+ ],
+ "results": [
+  {
+   "key": "8d93c902cdd8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "The 'decoder' tag is a type tag for code-to-signal decoding circuits; here it is a PS/2 protocol decoder, and the ps2 interface tag already covers it."
+    }
+   ],
+   "add": [
+    {
+     "tag": "keyboard",
+     "reason": "Not in vocabulary; closest canonical is ps2, already present."
+    }
+   ],
+   "notes": "Removed 'decoder' because it is a type tag for code-to-signal decoding, not a PS/2 protocol decoder; no canonical replacement exists.",
+   "tags_before": [
+    "ps2",
+    "decoder",
+    "fifo",
+    "retro",
+    "verilog"
+   ],
+   "tags": [
+    "ps2",
+    "fifo",
+    "retro",
+    "verilog"
+   ],
+   "summary_before": "This PS2 decoder reads scan codes from a PS2 keyboard, debounces and synchronizes the signals, and outputs the data byte along with valid, interrupt, and data-ready signals. It includes a FIFO to queue received bytes, and the host can read data by asserting chip select. It requires a PS2 keyboard and level shifting from 5V to 3.3V, and is intended for interfacing with retro computers. The design is a straightforward implementation of the PS2 protocol.",
+   "summary": "This PS2 decoder reads scan codes from a PS2 keyboard, debounces and synchronizes the signals, and outputs the data byte along with valid, interrupt, and data-ready signals. It includes a FIFO to queue received bytes, and the host can read data by asserting chip select. It requires a PS2 keyboard and level shifting from 5V to 3.3V, and is intended for interfacing with retro computers. The design is a straightforward implementation of the PS2 protocol.",
+   "summary_changed": false
+  },
+  {
+   "key": "317f468ea347",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "sequential-logic",
+    "verilog"
+   ],
+   "tags": [
+    "counter",
+    "sequential-logic",
+    "verilog"
+   ],
+   "summary_before": "This project implements a synchronous 4-bit counter with control signals for counting, loading, and output enable. The counter increments on each clock cycle when the count enable is asserted, can load a 4-bit value when the load enable is asserted, and can be disabled to put the output in high-impedance. It includes a reset that clears the counter to zero. The design is tested by observing the output on dedicated pins while manipulating the control signals to verify counting, pausing, loading, and output disabling.",
+   "summary": "This project implements a synchronous 4-bit counter with control signals for counting, loading, and output enable. The counter increments on each clock cycle when the count enable is asserted, can load a 4-bit value when the load enable is asserted, and can be disabled to put the output in high-impedance. It includes a reset that clears the counter to zero. The design is tested by observing the output on dedicated pins while manipulating the control signals to verify counting, pausing, loading, and output disabling.",
+   "summary_changed": false
+  },
+  {
+   "key": "53a863c8ce88",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source describes experimentation purposes but does not state it is intended for teaching or learning digital design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'education' because the source only says experimentation, not teaching or learning.",
+   "tags_before": [
+    "vga",
+    "video",
+    "pattern-generator",
+    "display",
+    "education"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "pattern-generator",
+    "display"
+   ],
+   "summary_before": "This design is a configurable VGA signal generator that allows full control over display timings, sync polarities, and test patterns. It can be programmed via a register interface using ui_in and uio pins to set parameters such as visible width, porches, and sync widths, and it includes 32 test patterns like checkerboards, grids, and color bars. Testing involves connecting a VGA monitor through a TinyVGA Pmod and using the inputs to select patterns or modify timing registers. The design is notable for its flexibility and educational value in experimenting with VGA signal generation, requiring only the TinyVGA Pmod as external hardware.",
+   "summary": "This design is a configurable VGA signal generator that allows full control over display timings, sync polarities, and test patterns. It can be programmed via a register interface using ui_in and uio pins to set parameters such as visible width, porches, and sync widths, and it includes 32 test patterns like checkerboards, grids, and color bars. Testing involves connecting a VGA monitor through a TinyVGA Pmod and using the inputs to select patterns or modify timing registers. The design is notable for its flexibility in experimenting with VGA signal generation, requiring only the TinyVGA Pmod as external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "451715b4986a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design reads from external QSPI flash; it does not implement a memory storage block."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "The source mentions Bad Apple playback but does not describe a demoscene-style showcase."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state 'working (the author)'."
+    }
+   ],
+   "notes": "Removed 'memory' and 'demoscene' as unsupported; added 'silicon-tested' to match the working silicon report.",
+   "tags_before": [
+    "video",
+    "vga",
+    "qspi",
+    "memory",
+    "compression",
+    "demoscene",
+    "display",
+    "spi",
+    "verilog"
+   ],
+   "tags": [
+    "video",
+    "vga",
+    "qspi",
+    "compression",
+    "display",
+    "spi",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design reads run-length encoded video data from a QSPI flash memory and outputs it to a 640x480 VGA display, suitable for playing the Bad Apple music video. It requires external QSPI and VGA PMODs, and the SPI read latency is configurable via input pins. The design operates at 25.175 MHz and was successfully tested on silicon, playing Bad Apple, though there were minor issues with short back-to-back runs that the author believes are fixed in a later version.",
+   "summary": "This design reads run-length encoded video data from a QSPI flash memory and outputs it to a 640x480 VGA display, suitable for playing the Bad Apple music video. It requires external QSPI and VGA PMODs, and the SPI read latency is configurable via input pins. The design operates at 25.175 MHz and was successfully tested on silicon, playing Bad Apple, though there were minor issues with short back-to-back runs that the author believes are fixed in a later version. The documentation notes the flash must support the h6B Fast Read Quad Output command with 8 dummy cycles.",
+   "summary_changed": true
+  },
+  {
+   "key": "5672b53c1d17",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "The source does not state an industrial control application."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is digital and interfaces to external converters; it does not combine analog and digital on-chip."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'industrial' and 'mixed-signal' because the source does not support an industrial application or on-chip analog/digital combination.",
+   "tags_before": [
+    "industrial",
+    "spi",
+    "adc",
+    "dac",
+    "shift-register",
+    "mixed-signal"
+   ],
+   "tags": [
+    "spi",
+    "adc",
+    "dac",
+    "shift-register"
+   ],
+   "summary_before": "TinyPID implements a configurable PID controller that reads a process variable from an external shift register or ADC and writes a control output to an external shift register or DAC. Configuration parameters (setpoint, kp, ki) are loaded over an SPI-like configuration channel and are zero at startup. The design is tested by shifting in configuration, then shifting in process variable values and observing the resulting output. It requires external shift registers or converter chips for both the input and output paths, and the documentation is brief but sufficient to describe the interface.",
+   "summary": "TinyPID implements a configurable PID controller that reads a process variable from an external shift register or ADC and writes a control output to an external shift register or DAC. Configuration parameters (setpoint, kp, ki) are loaded over an SPI-like configuration channel and are zero at startup. The design is tested by shifting in configuration, then shifting in process variable values and observing the resulting output. It requires external shift registers or converter chips for both the input and output paths, and the documentation is brief but sufficient to describe the interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "9c21f22eb135",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "communication",
+    "error-correction",
+    "encoder",
+    "shift-register"
+   ],
+   "tags": [
+    "communication",
+    "error-correction",
+    "encoder",
+    "shift-register"
+   ],
+   "summary_before": "This project implements a convolutional encoder for digital communication, using two fourth-order polynomials and a 5-bit shift register to produce an encoded output bit from each input bit. Input data is accepted when a data-valid signal is asserted, and the codeword is computed by XORing the polynomial-masked shift register contents. Testing is done by applying clock, reset, data valid and input data and comparing the output against hand calculations. No external hardware is required, and the documentation is minimal but describes the encoding scheme.",
+   "summary": "This project implements a convolutional encoder for digital communication, using two fourth-order polynomials and a 5-bit shift register to produce an encoded output bit from each input bit. Input data is accepted when a data-valid signal is asserted, and the codeword is computed by XORing the polynomial-masked shift register contents. Testing is done by applying clock, reset, data valid and input data and comparing the output against hand calculations. No external hardware is required, and the documentation is minimal but describes the encoding scheme.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8072,
+  "completion_tokens": 1361,
+  "total_tokens": 9433,
+  "cost": 0.0018102,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0018102,
+   "upstream_inference_prompt_cost": 0.0009936,
+   "upstream_inference_completions_cost": 0.0008166
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0018102,
+ "elapsed_s": 40.5
+}

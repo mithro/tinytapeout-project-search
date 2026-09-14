@@ -1,0 +1,221 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "fb7d7ff81571",
+  "84d438b43662",
+  "cf3ddbb4a214",
+  "a42aae307977",
+  "370db7c061a3",
+  "3be5b5ab5515"
+ ],
+ "results": [
+  {
+   "key": "fb7d7ff81571",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pattern-generator",
+     "reason": "The source lists static display patterns, not a digital test pattern generator circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the testing section is an unfilled placeholder."
+    }
+   ],
+   "notes": "Removed pattern-generator as the source shows static display patterns, not a test pattern generator; added insufficient-doc for the placeholder testing section.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "pattern-generator",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design displays four different patterns on an 8-panel 7-segment display: a figure 8, the letters CHS, the word CUSHIng, and the word roboticS. The patterns are shown sequentially or selected by some means not described. The documentation is very thin, only listing the patterns and leaving the testing method as a placeholder. It is implemented in Wokwi.",
+   "summary": "This design displays four different patterns on a 7-segment display: a figure 8, the letters CHS, the word CUSHIng, and the word roboticS. The pins map the eight outputs to the seven segments and the dot of the display. The documentation is very thin, only listing the patterns and leaving the testing method as a placeholder. It is implemented in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "84d438b43662",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is partial, not a full validated silicon test."
+    },
+    {
+     "tag": "timer",
+     "reason": "The design is a counter, not a programmable timer block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "up-down-counter",
+     "reason": "The source explicitly supports up count and down count inputs."
+    }
+   ],
+   "notes": "Removed silicon-tested because only partial silicon testing is reported; replaced timer with up-down-counter to match the documented up/down counting.",
+   "tags_before": [
+    "counter",
+    "silicon-tested",
+    "timer"
+   ],
+   "tags": [
+    "counter",
+    "up-down-counter"
+   ],
+   "summary_before": "This design is an 8-bit synchronous binary counter with asynchronous reset that can count up, count down, or hold based on input pins. It provides binary, hexadecimal, and decimal outputs. It was tested in simulation and briefly on silicon, where the reset polarity was found to be active-high instead of active-low. The design is a straightforward counter and does not require external hardware beyond the Tiny Tapeout board.",
+   "summary": "This design is an 8-bit synchronous binary counter with asynchronous reset that can count up, count down, or hold based on input pins. It provides binary, hexadecimal, and decimal outputs. It was tested in simulation and partially on silicon, where the reset polarity was found to be active-high instead of active-low. The design is a straightforward counter and does not require external hardware beyond the Tiny Tapeout board.",
+   "summary_changed": true
+  },
+  {
+   "key": "cf3ddbb4a214",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "Addition is only one of several ALU operations, so the adder tag is too specific."
+    }
+   ],
+   "add": [],
+   "notes": "Removed adder because addition is only one of several documented ALU operations.",
+   "tags_before": [
+    "alu",
+    "uart",
+    "adder",
+    "register-file"
+   ],
+   "tags": [
+    "alu",
+    "uart",
+    "register-file"
+   ],
+   "summary_before": "SumLatchUART_System is a 4-bit arithmetic system that stores input data in register A or B, applies an operation selected by a 4-bit opcode, and sends the result over a UART transmitter. The design includes addition, subtraction, and bitwise logic operations, with control pins for clock, reset, register saves, and UART transmit enable. External hardware includes a UART receiver, two pull-up push buttons, an LED for the busy indicator, and a 50MHz oscillator or function generator. The documentation describes the intended flow but does not report any silicon test results or measured behavior.",
+   "summary": "SumLatchUART_System is a 4-bit arithmetic system that stores input data in register A or B, applies an operation selected by a 4-bit opcode, and sends the result over a UART transmitter. The design includes addition, subtraction, and bitwise logic operations, with control pins for clock, reset, register saves, and UART transmit enable. External hardware includes a UART receiver, two pull-up push buttons, an LED for the busy indicator, and a 50MHz oscillator or function generator. The documentation describes the intended flow but does not report any silicon test results or measured behavior.",
+   "summary_changed": false
+  },
+  {
+   "key": "a42aae307977",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "multi-tile",
+     "reason": "The design occupies a 1x2 tile area."
+    }
+   ],
+   "notes": "Added multi-tile because the design spans a 1x2 tile area.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "standard-cell",
+    "instrumentation",
+    "power-gating",
+    "systemverilog"
+   ],
+   "tags": [
+    "time-to-digital-converter",
+    "standard-cell",
+    "instrumentation",
+    "power-gating",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "summary_before": "This is a tiny time-to-digital converter (TDC) constructed entirely from standard cells, using a Skywater130 FA-2 delay element. It measures the time between launch and capture clocks and outputs a 7-bit hardware value along with a valid signal. The design includes power-gating control signals and is intended to be tested using VCS simulation with gate-level netlists. External hardware is not required beyond connecting the pins, and the design is notable for its all-standard-cell implementation and inclusion of power-gating features.",
+   "summary": "This is a tiny time-to-digital converter (TDC) constructed entirely from standard cells, using a Skywater130 FA-2 delay element. It measures the time between launch and capture clocks and outputs a 7-bit hardware value along with a valid signal. The design includes power-gating control signals and is intended to be tested using VCS simulation with gate-level netlists. External hardware is not required beyond connecting the pins, and the design is notable for its all-standard-cell implementation and inclusion of power-gating features.",
+   "summary_changed": false
+  },
+  {
+   "key": "370db7c061a3",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "multi-tile",
+     "reason": "The design occupies a 1x2 tile area."
+    }
+   ],
+   "notes": "Added multi-tile because the design spans a 1x2 tile area.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "standard-cell",
+    "instrumentation",
+    "power-gating",
+    "systemverilog"
+   ],
+   "tags": [
+    "time-to-digital-converter",
+    "standard-cell",
+    "instrumentation",
+    "power-gating",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "summary_before": "This is a tiny time-to-digital converter (TDC) constructed entirely from standard cells, using a Skywater130 AND-2 delay element. It measures the time between launch and capture clocks and outputs a 7-bit hardware value along with a valid signal. The design includes power-gating control signals and is intended to be tested using VCS simulation with gate-level netlists. External hardware is not required beyond connecting the pins, and the design is notable for its all-standard-cell implementation and inclusion of power-gating features.",
+   "summary": "This is a tiny time-to-digital converter (TDC) constructed entirely from standard cells, using a Skywater130 AND-2 delay element. It measures the time between launch and capture clocks and outputs a 7-bit hardware value along with a valid signal. The design includes power-gating control signals and is intended to be tested using VCS simulation with gate-level netlists. External hardware is not required beyond connecting the pins, and the design is notable for its all-standard-cell implementation and inclusion of power-gating features.",
+   "summary_changed": false
+  },
+  {
+   "key": "3be5b5ab5515",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "multi-tile",
+     "reason": "The design occupies a 1x2 tile area."
+    }
+   ],
+   "notes": "Added multi-tile because the design spans a 1x2 tile area.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "standard-cell",
+    "instrumentation",
+    "power-gating",
+    "systemverilog"
+   ],
+   "tags": [
+    "time-to-digital-converter",
+    "standard-cell",
+    "instrumentation",
+    "power-gating",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "summary_before": "This is a tiny time-to-digital converter (TDC) constructed entirely from standard cells, using a Skywater130 MUX2x1 delay element. It measures the time between launch and capture clocks and outputs a 7-bit hardware value along with a valid signal. The design includes power-gating control signals and is intended to be tested using VCS simulation with gate-level netlists. External hardware is not required beyond connecting the pins, and the design is notable for its all-standard-cell implementation and inclusion of power-gating features.",
+   "summary": "This is a tiny time-to-digital converter (TDC) constructed entirely from standard cells, using a Skywater130 MUX2x1 delay element. It measures the time between launch and capture clocks and outputs a 7-bit hardware value along with a valid signal. The design includes power-gating control signals and is intended to be tested using VCS simulation with gate-level netlists. External hardware is not required beyond connecting the pins, and the design is notable for its all-standard-cell implementation and inclusion of power-gating features.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5921,
+  "completion_tokens": 1341,
+  "total_tokens": 7262,
+  "cost": 0.0033855,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033855,
+   "upstream_inference_prompt_cost": 0.0017763,
+   "upstream_inference_completions_cost": 0.0016092
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033855,
+ "elapsed_s": 49.1
+}

@@ -1,0 +1,208 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6775b7fe1951",
+  "0dda6ea4a832",
+  "694ea4ce05e4",
+  "9c7611907331",
+  "885b197df0be",
+  "a90ab41cc7e0"
+ ],
+ "results": [
+  {
+   "key": "6775b7fe1951",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "No signal processing function is described; the design is a chaotic RNG."
+    },
+    {
+     "tag": "stochastic-computing",
+     "reason": "No stochastic bitstream computation is described; it is a chaotic-map RNG."
+    }
+   ],
+   "add": [
+    {
+     "tag": "prng",
+     "reason": "Already present and supported: the design generates random bits from a chaotic map."
+    }
+   ],
+   "notes": "Removed dsp and stochastic-computing; the source describes a chaotic-map RNG, not DSP or stochastic computing.",
+   "tags_before": [
+    "prng",
+    "dsp",
+    "stochastic-computing"
+   ],
+   "tags": [
+    "prng",
+    "dsp",
+    "stochastic-computing"
+   ],
+   "summary_before": "This project implements a programmable chaotic random number generator based on a 3D double-scroll chaotic map. It uses three 32-bit state variables updated each clock cycle with arithmetic feedback and nonlinear functions, producing an 8-bit random output. The chaotic parameters are partially programmable via input pins, allowing configuration of the nonlinear function. No external hardware is required, and the design is documented with details on its internal state and programmability.",
+   "summary": "This project implements a programmable chaotic random number generator based on a 3D double-scroll chaotic map. It uses three 32-bit state variables updated each clock cycle with arithmetic feedback and nonlinear functions, producing an 8-bit random output. The chaotic parameters are partially programmable via input pins, allowing configuration of the nonlinear function. No external hardware is required, and the design is documented with details on its internal state and programmability.",
+   "summary_changed": false
+  },
+  {
+   "key": "0dda6ea4a832",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "The source describes a tetrahedral oscillator from coupled inverter pairs, not a ring oscillator."
+    },
+    {
+     "tag": "full-custom",
+     "reason": "The layout is semi-custom Magic using SKY130 standard-cell inverters and buffers, not full-custom."
+    }
+   ],
+   "add": [
+    {
+     "tag": "oscillator",
+     "reason": "Already present and supported: the design is an oscillator."
+    },
+    {
+     "tag": "analog",
+     "reason": "Already present and supported: it is an analog SKY130 design."
+    }
+   ],
+   "notes": "Removed ring-oscillator and full-custom; the source specifies a tetrahedral oscillator and semi-custom standard-cell layout.",
+   "tags_before": [
+    "oscillator",
+    "analog",
+    "ring-oscillator",
+    "full-custom"
+   ],
+   "tags": [
+    "oscillator",
+    "analog"
+   ],
+   "summary_before": "This project is a tetrahedral-style oscillator built from coupled CMOS inverter pairs with MIM capacitors as load elements, implemented in the SKY130 process. It provides four buffered observation outputs that oscillate around 12 MHz when powered from a 1.8 V supply. The design is tested by probing the outputs with a high-impedance oscilloscope or frequency counter, and no external passives or bias sources are needed. Post-layout extracted simulation was performed to verify oscillation.",
+   "summary": "This project is a tetrahedral-style oscillator built from coupled CMOS inverter pairs with MIM capacitors as load elements, implemented in the SKY130 process. It provides four buffered observation outputs that oscillate around 12 MHz when powered from a 1.8 V supply. The design is tested by probing the outputs with a high-impedance oscilloscope or frequency counter, and no external passives or bias sources are needed. Post-layout extracted simulation was performed to verify oscillation.",
+   "summary_changed": false
+  },
+  {
+   "key": "694ea4ce05e4",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "reconfigurable",
+    "accelerator",
+    "alu",
+    "systemverilog"
+   ],
+   "tags": [
+    "reconfigurable",
+    "accelerator",
+    "alu",
+    "systemverilog"
+   ],
+   "summary_before": "tinyCGRA 2x2 is a 2x2 coarse-grained reconfigurable array where each processing element selects two of four neighbour inputs and applies a 2-bit ALU operation. Configuration is shifted in serially as a 24-bit bitstream, and a latched input byte is broadcast to the north and west edges while the output pins show one selected PE result or an XOR of all four. The repository also includes generic 3x3 and multi-context variants for area studies. It is tested through a Tiny Tapeout top regression and separate area-top regressions.",
+   "summary": "tinyCGRA 2x2 is a 2x2 coarse-grained reconfigurable array where each processing element selects two of four neighbour inputs and applies a 2-bit ALU operation. Configuration is shifted in serially as a 24-bit bitstream, and a latched input byte is broadcast to the north and west edges while the output pins show one selected PE result or an XOR of all four. The repository also includes generic 3x3 and multi-context variants for area studies. It is tested through a Tiny Tapeout top regression and separate area-top regressions.",
+   "summary_changed": false
+  },
+  {
+   "key": "9c7611907331",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multi-tile",
+     "reason": "The design uses 2x2 tiles, which is a single Tiny Tapeout tile group, not multiple tiles."
+    }
+   ],
+   "add": [],
+   "notes": "Removed multi-tile; 2x2 tiles is a single tile group, not multiple tiles.",
+   "tags_before": [
+    "ethernet",
+    "communication",
+    "verilog",
+    "multi-tile"
+   ],
+   "tags": [
+    "ethernet",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "This is an unmanaged 3-port 100 Mbps Ethernet switch implemented in Verilog, using RMII interfaces to connect to external PHYs. It performs cut-through switching between the three ports, with two ports on dedicated pins and one on bidirectional pins. The design requires external Ethernet PHY hardware, such as LAN8720A modules, and a 50 MHz oscillator. It is a complex networking design that fits in a 2x2 tile area and is intended for hardware testing with real network traffic.",
+   "summary": "This is an unmanaged 3-port 100 Mbps Ethernet switch implemented in Verilog, using RMII interfaces to connect to external PHYs. It performs cut-through switching between the three ports, with two ports on dedicated pins and one on bidirectional pins. The design requires external Ethernet PHY hardware, such as LAN8720A modules, and a 50 MHz oscillator. It is a complex networking design that fits in a 2x2 tile area and is intended for hardware testing with real network traffic.",
+   "summary_changed": false
+  },
+  {
+   "key": "885b197df0be",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "verilog"
+   ],
+   "summary_before": "This design implements the LEA-128 block cipher using an iterative approach. It loads a 128-bit key and data block serially through an input handshake protocol, then performs encryption or decryption based on control signals, and outputs the result serially through an output handshake. The design is implemented in Verilog and occupies a 2x2 tile area. Testing uses a test vector sourced from Wikipedia, but no external hardware is mentioned.",
+   "summary": "This design implements the LEA-128 block cipher using an iterative approach. It loads a 128-bit key and data block serially through an input handshake protocol, then performs encryption or decryption based on control signals, and outputs the result serially through an output handshake. The design is implemented in Verilog and occupies a 2x2 tile area. Testing uses a test vector sourced from Wikipedia, but no external hardware is mentioned.",
+   "summary_changed": false
+  },
+  {
+   "key": "a90ab41cc7e0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mac-unit",
+     "reason": "The design is a fused multiply-add unit, not a multiply-accumulate unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed mac-unit; the source describes a fused multiply-add, not a multiply-accumulate unit.",
+   "tags_before": [
+    "floating-point",
+    "pipeline",
+    "systemverilog",
+    "mac-unit"
+   ],
+   "tags": [
+    "floating-point",
+    "pipeline",
+    "systemverilog"
+   ],
+   "summary_before": "This project implements a single-rounded bfloat16 fused multiply-add (FMA) unit with a byte-serial I/O interface. It uses a six-stage pipeline to reduce the critical path delay, which is particularly useful because the limited I/O requires three clock cycles to load each set of operands. The design handles special values such as zero, infinity, and NaN, and rounds results using round-to-nearest, ties-to-even. It is intended for integration into larger systems and requires no external hardware beyond the Tiny Tapeout interface.",
+   "summary": "This project implements a single-rounded bfloat16 fused multiply-add (FMA) unit with a byte-serial I/O interface. It uses a six-stage pipeline to reduce the critical path delay, which is particularly useful because the limited I/O requires three clock cycles to load each set of operands. The design handles special values such as zero, infinity, and NaN, and rounds results using round-to-nearest, ties-to-even. It is intended for integration into larger systems and requires no external hardware beyond the Tiny Tapeout interface.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "6775b7fe1951: only 1 tags after review; keeping pass-two tags"
+ ],
+ "usage": {
+  "prompt_tokens": 7620,
+  "completion_tokens": 1307,
+  "total_tokens": 8927,
+  "cost": 0.0029136,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0029136,
+   "upstream_inference_prompt_cost": 0.0013452,
+   "upstream_inference_completions_cost": 0.0015684
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0029136,
+ "elapsed_s": 14.4
+}

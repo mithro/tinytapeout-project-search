@@ -1,0 +1,218 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a2928fc5a1c7",
+  "a6dc8d7ed6f8",
+  "5db616613933",
+  "26dd9342d1ed",
+  "8f50d5ada95f",
+  "ecc2a665a86c"
+ ],
+ "results": [
+  {
+   "key": "a2928fc5a1c7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "no evidence the design is intended for teaching or learning"
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "documentation is extremely sparse and the gate function is never explained"
+    }
+   ],
+   "notes": "Removed unsupported education tag and added incomplete for the near-empty documentation.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project is described as an XAND gate, using inputs and outputs. It is tested by running the simulation. External logic gates are mentioned as hardware, though the description is unclear. The documentation is extremely sparse and does not explain the gate's function or provide any test results.",
+   "summary": "This project is described as an XAND gate, using inputs and outputs. It is tested by running the simulation. External logic gates are mentioned as hardware, though the description is unclear. The documentation is extremely sparse and does not explain the gate's function or provide any test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "a6dc8d7ed6f8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "no evidence the design is intended for teaching or learning"
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "design is described only as 'supposed to light up and hopefully flashes' with no working logic documented"
+    }
+   ],
+   "notes": "Removed unsupported education tag and added incomplete for the vague, unfinished description.",
+   "tags_before": [
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This design is intended to light up LEDs and produce a flashing pattern on the output pins. The description says it is supposed to light up and hopefully flash, and testing is described as running a simulation and retrying. An LED display is mentioned as external hardware. The documentation is vague and does not describe the actual logic or whether the design works, so little can be confirmed beyond the intent to drive LEDs.",
+   "summary": "This design is intended to light up LEDs and produce a flashing pattern on the output pins. The description says it is supposed to light up and hopefully flash, and testing is described as running a simulation and retrying. An LED display is mentioned as external hardware. The documentation is vague and does not describe the actual logic or whether the design works, so little can be confirmed beyond the intent to drive LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "5db616613933",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "no evidence of educational intent in the source"
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "documentation is very thin, with no instruction set or operation details"
+    }
+   ],
+   "notes": "Removed unsupported education tag, added incomplete, and removed the invented educational-purpose sentence.",
+   "tags_before": [
+    "cpu",
+    "bit-serial",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "bit-serial",
+    "incomplete"
+   ],
+   "summary_before": "This is a 16-bit bit-serial CPU with an 8-bit instruction input and 8 LED outputs. The documentation is very brief, providing only pin names and no details on the instruction set or operation. It appears to be a simple processor for educational purposes.",
+   "summary": "This is a 16-bit bit-serial CPU with an 8-bit instruction input and 8 LED outputs. The documentation is very brief, providing only pin names and no details on the instruction set or operation. It appears to be a simple processor, though the source does not state its intended use. No test results or silicon reports are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "26dd9342d1ed",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "no evidence the design is intended for teaching or learning"
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; summary otherwise accurate.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate"
+   ],
+   "summary_before": "This design performs simple logic operations: ANDing the first two inputs, ORing the next two, passing a fifth input directly to multiple outputs, and mapping two inputs directly to outputs. The documentation explains the connections but does not specify how to test it or what external hardware is needed. The project is essentially a collection of basic logic gates and direct connections.",
+   "summary": "This design performs simple logic operations: ANDing the first two inputs, ORing the next two, passing a fifth input directly to multiple outputs, and mapping two inputs directly to outputs. The documentation explains the connections but does not specify how to test it or what external hardware is needed. The project is essentially a collection of basic logic gates and direct connections. It is a first design submitted through the Wokwi simulator.",
+   "summary_changed": true
+  },
+  {
+   "key": "8f50d5ada95f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "usb",
+    "communication",
+    "silicon-tested",
+    "verilog"
+   ],
+   "tags": [
+    "usb",
+    "communication",
+    "silicon-tested",
+    "verilog"
+   ],
+   "summary_before": "This design implements a USB to Serial bridge using the USB CDC protocol, allowing a computer to communicate with the chip as a virtual serial port. It uses a 48 MHz clock and connects to USB D+ and D- pins, requiring a 1.5k ohm pull-up resistor on D+ for device detection. Data received from the USB host appears on the rx output pins, and data can be transmitted by setting the tx input pins and asserting tx_valid. A silicon test report confirms both RX and TX work as expected, and the design is based on an open-source USB serial core.",
+   "summary": "This design implements a USB to Serial bridge using the USB CDC protocol, allowing a computer to communicate with the chip as a virtual serial port. It uses a 48 MHz clock and connects to USB D+ and D- pins, requiring a 1.5k ohm pull-up resistor on D+ for device detection. Data received from the USB host appears on the rx output pins, and data can be transmitted by setting the tx input pins and asserting tx_valid. A silicon test report confirms both RX and TX work as expected, and the design is based on an open-source USB serial core.",
+   "summary_changed": false
+  },
+  {
+   "key": "ecc2a665a86c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "the design is a wall clock, not a clock/timing signal generator circuit"
+    },
+    {
+     "tag": "counter",
+     "reason": "no counting circuit is described in the source"
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "the design implements a wall clock with time and alarm setting"
+    },
+    {
+     "tag": "button",
+     "reason": "three button inputs (up, down, center) are present in the pinout"
+    }
+   ],
+   "notes": "Replaced clock-generator/counter with rtc and button to match the actual wall-clock design.",
+   "tags_before": [
+    "clock-generator",
+    "7-segment",
+    "display",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "verilog",
+    "rtc",
+    "button"
+   ],
+   "summary_before": "This design is a wall clock with an alarm feature, using an 8-digit 7-segment display multiplexed via time-division. It includes three buttons for setting the time and alarm. The documentation is very sparse, providing only a brief description and no detailed testing instructions. It requires external hardware such as a 7-segment display and buttons.",
+   "summary": "This design is a wall clock with an alarm feature, using an 8-digit 7-segment display multiplexed via time-division. It includes three buttons for setting the time and alarm. The documentation is very sparse, providing only a brief description and no detailed testing instructions. It requires external hardware such as a 7-segment display and buttons.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5931,
+  "completion_tokens": 1095,
+  "total_tokens": 7026,
+  "cost": 0.001308006,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001308006,
+   "upstream_inference_prompt_cost": 0.000585306,
+   "upstream_inference_completions_cost": 0.0007227
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001308006,
+ "elapsed_s": 11.1
+}

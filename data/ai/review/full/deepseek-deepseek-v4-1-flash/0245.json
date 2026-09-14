@@ -1,0 +1,312 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "c048eacbe459",
+  "851ac2caf3e9",
+  "3e57c60e72aa",
+  "417b3316be5b",
+  "f6c9c6b897e9",
+  "be8720cef43e"
+ ],
+ "results": [
+  {
+   "key": "c048eacbe459",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Source says workshop project, not explicitly teaching/learning; workshop tag covers it"
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "already present"
+    },
+    {
+     "tag": "7-segment",
+     "reason": "already present"
+    },
+    {
+     "tag": "display",
+     "reason": "already present"
+    },
+    {
+     "tag": "workshop",
+     "reason": "already present"
+    },
+    {
+     "tag": "incomplete",
+     "reason": "documentation states 'Will be improved in the future' and title says WIP"
+    }
+   ],
+   "notes": "Removed education (not stated), added incomplete (WIP per title and text).",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "education",
+    "workshop"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "display",
+    "workshop",
+    "incomplete"
+   ],
+   "summary_before": "This design is a simple 8-bit counter that displays its value on a 7-segment display. The counter reset value is set by input switches, and the lower 4 bits are converted to a hexadecimal symbol. It is intended as a workshop project and is expected to be improved in the future. The design requires no external hardware beyond the display and switches.",
+   "summary": "This design is a simple 8-bit counter that displays its value on a 7-segment display. The counter reset value is set by input switches, and the lower 4 bits are converted to a hexadecimal symbol. It is a work-in-progress Online Workshop 2026 project that is expected to be improved in the future. The design requires no external hardware beyond the display and switches.",
+   "summary_changed": true
+  },
+  {
+   "key": "851ac2caf3e9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Source does not state educational intent; it is a SAP-1-based CPU design"
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "16-byte memory module described"
+    },
+    {
+     "tag": "register-file",
+     "reason": "already present"
+    },
+    {
+     "tag": "alu",
+     "reason": "already present"
+    },
+    {
+     "tag": "cpu",
+     "reason": "already present"
+    },
+    {
+     "tag": "verilog",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed education tag (not stated in source); added memory tag for the 16-byte RAM.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "counter",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "counter",
+    "verilog",
+    "memory"
+   ],
+   "summary_before": "This project is a basic 8-bit CPU based on the SAP-1 architecture, using a 6-stage counter and LUT for control sequencing. It includes a program counter, instruction register, 16-byte memory, MAR, 8-bit ripple-carry adder with flags, accumulator, B register, and output register, all connected via an 8-bit tri-state bus. The design is tested by providing opcode inputs and verifying that the correct output bits are asserted. Notable features include support for conditional operation using carry and zero flags, and the design originates from a simplified educational CPU model.",
+   "summary": "This project is a basic 8-bit CPU based on the SAP-1 architecture, using a 6-stage counter and LUT for control sequencing. It includes a program counter, instruction register, 16-byte memory, MAR, 8-bit ripple-carry adder with flags, accumulator, B register, and output register, all connected via an 8-bit tri-state bus. The design is tested by providing opcode inputs and verifying that the correct output bits are asserted. Notable features include support for conditional operation using carry and zero flags, and the design originates from a simplified educational CPU model.",
+   "summary_changed": false
+  },
+  {
+   "key": "3e57c60e72aa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "Design uses Goertzel/DFT, not an FIR filter"
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "already present"
+    },
+    {
+     "tag": "audio",
+     "reason": "already present"
+    },
+    {
+     "tag": "communication",
+     "reason": "already present"
+    },
+    {
+     "tag": "decoder",
+     "reason": "already present"
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "Text explicitly mentions bit-serial multiplier"
+    }
+   ],
+   "notes": "Removed fir-filter (Goertzel DFT, not FIR); added bit-serial per documentation.",
+   "tags_before": [
+    "decoder",
+    "dsp",
+    "audio",
+    "communication",
+    "fir-filter"
+   ],
+   "tags": [
+    "decoder",
+    "dsp",
+    "audio",
+    "communication",
+    "bit-serial"
+   ],
+   "summary_before": "This project implements a DTMF (Touch-Tone) decoder that identifies telephone keypad tones using the Goertzel algorithm to perform a discrete Fourier transform. It accepts 8-bit audio samples at 44.1 kHz via a ready-valid handshake and outputs the detected row and column indices after processing 1024 samples. The design requires an external audio source and a clock of 50 MHz, and it uses a bit-serial multiplier that may introduce latency between samples. It is a specialized DSP application for decoding standard DTMF signals.",
+   "summary": "This project implements a DTMF (Touch-Tone) decoder that identifies telephone keypad tones using the Goertzel algorithm to perform a discrete Fourier transform. It accepts 8-bit audio samples at 44.1 kHz via a ready-valid handshake and outputs the detected row and column indices after processing 1024 samples. The design requires an external audio source and a clock of 50 MHz, and it uses a bit-serial multiplier that may introduce latency between samples. It is a specialized DSP application for decoding standard DTMF signals.",
+   "summary_changed": false
+  },
+  {
+   "key": "417b3316be5b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "audio",
+    "graphics",
+    "synthesizer",
+    "sigma-delta",
+    "verilog"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "audio",
+    "graphics",
+    "synthesizer",
+    "sigma-delta",
+    "verilog"
+   ],
+   "summary_before": "This is a standalone VGA and sound demo that fits in two tiles, developed for the Tiny Tapeout demo competition. It generates a 640x480@60Hz VGA signal with a non-standard 1220-pixel horizontal resolution and RGB222 dithered graphics, plus 3-channel synthesized audio via a 16-bit sigma-delta DAC on a single pin. It requires a 48 MHz clock, a Tiny VGA Pmod for video, and a Tiny Tapeout Audio Pmod or simple RC filter for sound. Silicon tests confirm both graphics and sound work as expected, matching FPGA simulations.",
+   "summary": "This is a standalone VGA and sound demo that fits in two tiles, developed for the Tiny Tapeout demo competition. It generates a 640x480@60Hz VGA signal with a non-standard 1220-pixel horizontal resolution and RGB222 dithered graphics, plus 3-channel synthesized audio via a 16-bit sigma-delta DAC on a single pin. It requires a 48 MHz clock, a Tiny VGA Pmod for video, and a Tiny Tapeout Audio Pmod or simple RC filter for sound. Silicon tests confirm both graphics and sound work as expected, matching FPGA simulations.",
+   "summary_changed": false
+  },
+  {
+   "key": "f6c9c6b897e9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "rom",
+    "education",
+    "systemverilog"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "rom",
+    "education",
+    "systemverilog"
+   ],
+   "summary_before": "This project is a minimalistic SoC featuring the schoolRISCV educational CPU and a ROM containing a program that computes Fibonacci numbers. The CPU was designed for introductory Verilog and FPGA classes and is based on a textbook. The design outputs the CPU register a0 and program counter bits for observation, along with test pass/fail signals. It requires only LEDs as external hardware.",
+   "summary": "This project is a minimalistic SoC featuring the schoolRISCV educational CPU and a ROM containing a program that computes Fibonacci numbers. The CPU was designed for introductory Verilog and FPGA classes and is based on a textbook. The design outputs the CPU register a0 and program counter bits for observation, along with test pass/fail signals. It requires only LEDs as external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "be8720cef43e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": "External comparator is hardware, not an on-chip interface; tag not supported by pins"
+    },
+    {
+     "tag": "adc",
+     "reason": "The 1-bit ADC is external comparator, not an on-chip ADC"
+    }
+   ],
+   "add": [
+    {
+     "tag": "radio",
+     "reason": "already present"
+    },
+    {
+     "tag": "demodulator",
+     "reason": "already present"
+    },
+    {
+     "tag": "nco",
+     "reason": "already present"
+    },
+    {
+     "tag": "spi",
+     "reason": "already present"
+    },
+    {
+     "tag": "verilog",
+     "reason": "already present"
+    },
+    {
+     "tag": "pwm",
+     "reason": "uo[1] is PWM output"
+    },
+    {
+     "tag": "rf",
+     "reason": "AM radio reception and RF amplifier mentioned"
+    }
+   ],
+   "notes": "Removed comparator/adc (external components, not on-chip); added pwm and rf tags.",
+   "tags_before": [
+    "radio",
+    "demodulator",
+    "nco",
+    "spi",
+    "comparator",
+    "adc",
+    "verilog"
+   ],
+   "tags": [
+    "radio",
+    "demodulator",
+    "nco",
+    "spi",
+    "verilog",
+    "pwm",
+    "rf"
+   ],
+   "summary_before": "This is a software-defined radio core for AM reception that uses an external comparator as a 1-bit ADC and performs digital bandpass filtering and envelope detection. It is configured via a SPI interface to set the demodulation frequency and gain, and outputs a PWM signal representing the demodulated audio. External hardware includes a comparator, resistor bias network, RC network, SPI microcontroller, and an RF amplifier. The design is notable for its compact 1x2 tile size, trading off selectivity compared to a previous larger implementation.",
+   "summary": "This is a software-defined radio core for AM reception that uses an external comparator as a 1-bit ADC and performs digital bandpass filtering and envelope detection. It is configured via a SPI interface to set the demodulation frequency and gain, and outputs a PWM signal representing the demodulated audio. External hardware includes a comparator, resistor bias network, RC network, SPI microcontroller, and an RF amplifier. The design is notable for its compact 1x2 tile size, trading off selectivity compared to a previous larger implementation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7948,
+  "completion_tokens": 1426,
+  "total_tokens": 9374,
+  "cost": 0.002688108,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002688108,
+   "upstream_inference_prompt_cost": 0.001233588,
+   "upstream_inference_completions_cost": 0.00145452
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002688108,
+ "elapsed_s": 36.8
+}

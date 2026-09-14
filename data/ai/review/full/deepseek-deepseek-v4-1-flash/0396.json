@@ -1,0 +1,202 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2970cb210fca",
+  "ec3fc1fac9bb",
+  "bc4089ccccb2",
+  "3a7df7c805fa",
+  "d1b11632ab17",
+  "01845ce0efff"
+ ],
+ "results": [
+  {
+   "key": "2970cb210fca",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "uart",
+    "fsm",
+    "counter",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "uart",
+    "fsm",
+    "counter",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "This design is a UART-controlled seven-channel PWM generator that receives 8N1 serial commands on ui_in[0]. A two-byte command format selects a channel (0-6) and sets its duty cycle (0-255), with a shared 8-bit counter compared against each duty register to produce the PWM outputs. The UART transmitter returns 0xAA as an acknowledgment for every received byte, and an enable pin gates operation. It needs a USB-to-UART adapter or microcontroller and an oscilloscope or logic analyzer to observe the outputs.",
+   "summary": "This design is a UART-controlled seven-channel PWM generator that receives 8N1 serial commands on ui_in[0]. A two-byte command format selects a channel (0-6) and sets its duty cycle (0-255), with a shared 8-bit counter compared against each duty register to produce the PWM outputs. The UART transmitter returns 0xAA as an acknowledgment for every received byte, and an enable pin gates operation. It needs a USB-to-UART adapter or microcontroller and an oscilloscope or logic analyzer to observe the outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "ec3fc1fac9bb",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "power-management",
+    "latch",
+    "combinational",
+    "sequential-logic",
+    "wokwi"
+   ],
+   "tags": [
+    "power-management",
+    "latch",
+    "combinational",
+    "sequential-logic",
+    "wokwi"
+   ],
+   "summary_before": "This design is a universal bypass manager with hysteresis intended to protect lithium batteries by isolating them when fully charged and powering the device directly from the charger. It uses a combinational stage to monitor charger presence and battery limits, and an SR latch to implement hysteresis, preventing rapid charging cycles. The chip outputs charge and bypass signals that would drive external power MOSFETs or solid-state relays. It requires external sensors and power components for real-world use, such as voltage comparators and MOSFETs.",
+   "summary": "This design is a universal bypass manager with hysteresis intended to protect lithium batteries by isolating them when fully charged and powering the device directly from the charger. It uses a combinational stage to monitor charger presence and battery limits, and an SR latch to implement hysteresis, preventing rapid charging cycles. The chip outputs charge and bypass signals that would drive external power MOSFETs or solid-state relays. It requires external sensors and power components for real-world use, such as voltage comparators and MOSFETs.",
+   "summary_changed": false
+  },
+  {
+   "key": "bc4089ccccb2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "The design includes sequential elements like the I/O latch and ready/trigger signaling, and the source does not state it is purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "gpio",
+     "reason": "Uses general purpose digital I/O pins (uio data bus and ui control pins) for its memory-mapped interface."
+    }
+   ],
+   "notes": "Removed unsupported combinational tag and added gpio to reflect the explicit pin-based I/O interface.",
+   "tags_before": [
+    "crypto",
+    "aes",
+    "cipher",
+    "verilog",
+    "combinational"
+   ],
+   "tags": [
+    "crypto",
+    "aes",
+    "cipher",
+    "verilog",
+    "gpio"
+   ],
+   "summary_before": "This project implements AES forward S-Box circuits using direct computation rather than lookup tables, and also includes the PRESENT cipher S-Box. It provides a memory-mapped interface with 6 address pins, a read/write mode pin, an I/O latch, and an 8-bit bidirectional data bus for accessing the S-Boxes. The design is used by following specific I/O sequences detailed in the test script. No external hardware is required, and the design is notable for avoiding lookup tables in the AES S-Box implementation.",
+   "summary": "This project implements AES forward S-Box circuits using direct computation rather than lookup tables, and also includes the PRESENT cipher S-Box. It provides a memory-mapped interface with 6 address pins, a read/write mode pin, an I/O latch, and an 8-bit bidirectional data bus for accessing the S-Boxes. The design is used by following specific I/O sequences detailed in the test script. No external hardware is required, and the design is notable for avoiding lookup tables in the AES S-Box implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "3a7df7c805fa",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "sigma-delta",
+    "signal-generator",
+    "power-management",
+    "motor-control",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "sigma-delta",
+    "signal-generator",
+    "power-management",
+    "motor-control",
+    "verilog"
+   ],
+   "summary_before": "This is a digital PWM generator with selectable resolution (5-9 bits), dyadic modulation, and dithering modes. It produces complementary high-side and low-side outputs with dead-time, plus a sync clock. The design is configured via a register file written over the pins, and it defaults to 8-bit normal PWM after reset. It is intended for power electronics applications such as buck converters or class-D stages, and requires no external hardware for bench testing.",
+   "summary": "This is a digital PWM generator with selectable resolution (5-9 bits), dyadic modulation, and dithering modes. It produces complementary high-side and low-side outputs with dead-time, plus a sync clock. The design is configured via a register file written over the pins, and it defaults to 8-bit normal PWM after reset. It is intended for power electronics applications such as buck converters or class-D stages, and requires no external hardware for bench testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "d1b11632ab17",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "trng",
+    "prng",
+    "ring-oscillator",
+    "verilog",
+    "crypto"
+   ],
+   "tags": [
+    "trng",
+    "prng",
+    "ring-oscillator",
+    "verilog",
+    "crypto"
+   ],
+   "summary_before": "This design implements a lightweight xoroshiro64+ random number generator with ring oscillator noise injection to provide entropy. It maintains two 32-bit states, generates a 32-bit random word per enabled clock cycle, and serializes it out with a valid pulse. The design can be seeded through an 8-bit interface and requires an external 1-bit ring oscillator noise source. It is notable for combining a PRNG with true randomness from an RO.",
+   "summary": "This design implements a lightweight xoroshiro64+ random number generator with ring oscillator noise injection to provide entropy. It maintains two 32-bit states, generates a 32-bit random word per enabled clock cycle, and serializes it out with a valid pulse. The design can be seeded through an 8-bit interface and requires an external 1-bit ring oscillator noise source. It is notable for combining a PRNG with true randomness from an RO.",
+   "summary_changed": false
+  },
+  {
+   "key": "01845ce0efff",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source describes a minimal CPU but never states it is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag and last sentence claimed an intended educational purpose not present in the source.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "rom",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "rom",
+    "verilog"
+   ],
+   "summary_before": "This is a minimal 4-bit accumulator-driven CPU implemented in Verilog. It fetches instructions from an internal ROM, decodes them, and performs ALU operations (ADD, SUB, AND, OR) on the accumulator with an immediate value. The design has eight input pins for data and opcode, and eight output pins for data and ALU results. It is intended as an educational example of a simple CPU architecture.",
+   "summary": "This is a minimal 4-bit accumulator-driven CPU implemented in Verilog. It fetches instructions from an internal ROM, decodes them, and performs ALU operations (ADD, SUB, AND, OR) on the accumulator with an immediate value. The design has eight input pins for data and opcode, and eight output pins for data and ALU results. It uses a clock to advance the program counter through the instruction sequence.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8567,
+  "completion_tokens": 1083,
+  "total_tokens": 9650,
+  "cost": 0.0038697,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0038697,
+   "upstream_inference_prompt_cost": 0.0025701,
+   "upstream_inference_completions_cost": 0.0012996
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0038697,
+ "elapsed_s": 6.2
+}

@@ -1,0 +1,272 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "26077f6ea856",
+  "48978bc88104",
+  "93c13a3f98e0",
+  "107d04c29124",
+  "e20e041bda0e",
+  "8032cc8bb9fa"
+ ],
+ "results": [
+  {
+   "key": "26077f6ea856",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "No multiplication logic is described; the design is a switch-combination light."
+    },
+    {
+     "tag": "adder",
+     "reason": "No addition logic is described."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The 7-segment display is listed only as external hardware, not as an output interface in the pins or design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design uses OR and NOT gates to combine switch inputs."
+    },
+    {
+     "tag": "led",
+     "reason": "The stated purpose is to turn on an LED light."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "The inputs are described as switches used to set a combination."
+    }
+   ],
+   "notes": "Removed unsupported arithmetic and display tags; added logic-gate, led, and dip-switch based on the switch-combination light description.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "7-segment",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "education",
+    "wokwi",
+    "logic-gate",
+    "led",
+    "dip-switch"
+   ],
+   "summary_before": "This design implements a compact arithmetic and display exercise built in Wokwi. It includes multiplier and adder logic along with a 7-segment display output. The project is educational and demonstrates basic digital arithmetic. The documentation is minimal but sufficient to identify the main components.",
+   "summary": "This design turns on a light when the correct combination of switches is set. It combines switch inputs using OR and NOT gates and drives the result to outputs. The project is built in Wokwi and is intended as a simple educational exercise. The documentation is minimal but sufficient to identify the main function.",
+   "summary_changed": true
+  },
+  {
+   "key": "48978bc88104",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Corrected the title in the summary to match the source; tags are supported.",
+   "tags_before": [
+    "7-segment",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled \"TT05 Submission\" and its description states the author does not yet know what it does. The documentation consists only of the default placeholder text for how it works and how to test it. The pin names map the outputs to 7-segment display segments, but nothing indicates what is driven onto them. There is essentially no information about the design's function or usage.",
+   "summary": "This project is titled \"IDK WHAT TO DO\" and its description asks for help. The documentation consists only of the default placeholder text for how it works and how to test it. The pin names map the outputs to 7-segment display segments, but nothing indicates what is driven onto them. There is essentially no information about the design's function or usage.",
+   "summary_changed": true
+  },
+  {
+   "key": "93c13a3f98e0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled \"TT05 Submission\" and its description states the author does not yet know what it does. The documentation consists only of the default placeholder text for how it works and how to test it. The pin names map the outputs to 7-segment display segments, but nothing indicates what is driven onto them. There is essentially no information about the design's function or usage.",
+   "summary": "This project is titled \"TT05 Submission\" and its description states the author does not yet know what it does. The documentation consists only of the default placeholder text for how it works and how to test it. The pin names map the outputs to 7-segment display segments, but nothing indicates what is driven onto them. There is essentially no information about the design's function or usage.",
+   "summary_changed": false
+  },
+  {
+   "key": "107d04c29124",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "i2c",
+     "reason": "No I2C protocol or interface is mentioned in the source."
+    },
+    {
+     "tag": "pmod",
+     "reason": "No Pmod connector is mentioned in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design measures input skew and capture reliability."
+    },
+    {
+     "tag": "characterization",
+     "reason": "It is used to characterize timing behavior of the IHP process."
+    },
+    {
+     "tag": "counter",
+     "reason": "It includes a second counter counting up to 10."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The outputs drive 7-segment display segments."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The design is an IHP loopback tile intended for fabricated silicon testing."
+    }
+   ],
+   "notes": "Replaced unsupported I2C/Pmod tags with instrumentation, characterization, counter, 7-segment, Verilog, and silicon-tested based on the source.",
+   "tags_before": [
+    "communication",
+    "i2c",
+    "pmod"
+   ],
+   "tags": [
+    "communication",
+    "instrumentation",
+    "characterization",
+    "counter",
+    "7-segment",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a communication interface that uses the I2C protocol over a Pmod connector. It is intended for connecting to external I2C devices. The pinout matches the I2C Pmod standard. The design is likely a simple I2C controller or bridge.",
+   "summary": "This design is an IHP loopback tile with input skew measurement, based on a TT05 loopback project. It counts up to 10 one second at a time and drives a 7-segment display. The inputs are compare bits and the bidirectional pins expose the second counter bits. It is written in Verilog and intended to examine flip-flop capture reliability with a skewable clock and data source.",
+   "summary_changed": true
+  },
+  {
+   "key": "e20e041bda0e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "No PWM functionality is described in the source."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon status is no reports, so this claim is unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "education",
+     "reason": "The project is a simple switch-based exercise likely intended for learning."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The behavior is described by combinations of switch inputs producing digits."
+    }
+   ],
+   "notes": "Removed unsupported PWM and silicon-tested tags; added education and logic-gate based on the switch-combination digit display.",
+   "tags_before": [
+    "pwm",
+    "7-segment",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "education",
+    "logic-gate"
+   ],
+   "summary_before": "This design implements a 4-channel PWM generator with programmable frequency, duty cycle, and phase offset for channels 2-4. It uses an 8-bit input bus to load control registers, with a 7-segment display showing the current register address, and outputs PWM signals on four bidirectional pins. The design is built using the Wokwi simulator and is intended for educational purposes. It has been tested on fabricated silicon.",
+   "summary": "This design displays the digits 6, 7, or 8 based on combinations of four switch inputs. Pressing the first four switches in certain patterns makes the numbers appear. It is built in Wokwi and is a simple educational exercise. The documentation is thin but describes the switch-to-digit behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "8032cc8bb9fa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The 7-segment display is only mentioned as external hardware, not as an output interface in the pins or design."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is implemented in the design; the display is external hardware."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "The design does nothing and the documentation is default placeholder text."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The project is unfinished and does not implement a described function."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment, display, and education tags; added placeholder and incomplete based on the do-nothing description.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "placeholder"
+   ],
+   "summary_before": "This design drives a 7-segment display to show the letters M, a, r, v, i, and n based on a 3-bit input selection. The outputs are connected to specific output pins, and the documentation describes how to test by setting inputs to see patterns on a 7-segment display. The design is simple and educational, likely built with Wokwi. It is incomplete as the documentation does not fully explain the internal logic.",
+   "summary": "This project is titled \"Hello tinyTapout\" and its description says it does nothing fancy. The documentation states that it does nothing and jokingly warns not to test it. The pins map eight inputs directly to eight outputs, but no internal logic is described. It is built in Wokwi and appears to be an incomplete or placeholder submission.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5540,
+  "completion_tokens": 1492,
+  "total_tokens": 7032,
+  "cost": 0.0034524,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034524,
+   "upstream_inference_prompt_cost": 0.001662,
+   "upstream_inference_completions_cost": 0.0017904
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034524,
+ "elapsed_s": 21.1
+}

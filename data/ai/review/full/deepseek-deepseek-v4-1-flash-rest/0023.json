@@ -1,0 +1,340 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7be546498892",
+  "c7fd6c1548aa",
+  "bae373b2d2a7",
+  "c178cce4696b",
+  "3a1957465d25",
+  "7bcae3685844"
+ ],
+ "results": [
+  {
+   "key": "7be546498892",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "Source never mentions random number generation; the proposed summary invented a 'Random' title that does not match the actual title 'Mini Calculator v1'."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of teaching intent in the source."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Pins are calculator inputs and display segment outputs, not general purpose IO."
+    },
+    {
+     "tag": "factory-test",
+     "reason": "No self-test structure described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "calculator",
+     "reason": "Title 'Mini Calculator v1' and description 'adds up 1 and 2' with input pins and display segment outputs."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output pins are labelled display segments."
+    },
+    {
+     "tag": "adder",
+     "reason": "Description states it adds two numbers."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "How-it-works, how-to-test and external hardware are all TBD."
+    }
+   ],
+   "notes": "Proposed summary described a different project ('Random'); tags prng/gpio/factory-test unsupported.",
+   "tags_before": [
+    "prng",
+    "wokwi",
+    "education",
+    "gpio",
+    "factory-test"
+   ],
+   "tags": [
+    "wokwi",
+    "calculator",
+    "7-segment",
+    "adder",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled 'Random' and its one-line description says 'I have no idea.' The how-it-works section says 'It's very interesting how it works.' and the how-to-test section says 'By testing.' The external hardware is not specified. The design may be a random number generator based on the title, but the documentation is too vague to confirm its functionality.",
+   "summary": "This project is titled 'Mini Calculator v1' and its one-line description says it adds up 1 and 2. The input pins are labelled as two numbers and the output pins drive display segments. The how-it-works, how-to-test and external hardware sections are all marked TBD, so the implementation is not documented. The design appears to be a small calculator or adder driving a seven-segment display, but the documentation is too thin to confirm details.",
+   "summary_changed": true
+  },
+  {
+   "key": "c7fd6c1548aa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "Source describes binary addition of two 4-bit numbers, not binary-coded decimal."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counting circuit is described."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No display or segment outputs are mentioned; outputs are r0-r3 and carry."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation is described; the design is combinational addition."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Title and description state it adds two four-bit numbers."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Half-adder logic gates with no clocked elements described."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "How-it-works says the half adder uses simple logic gates."
+    }
+   ],
+   "notes": "Proposed tags and summary described a BCD counter with 7-segment display, which is not in the source.",
+   "tags_before": [
+    "bcd",
+    "counter",
+    "7-segment",
+    "clock-generator",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "adder",
+    "combinational",
+    "logic-gate"
+   ],
+   "summary_before": "This project implements a BCD counter that drives a 7-segment display. It is implemented in Wokwi and uses standard board switches and LEDs for testing. The design includes a clock generator and counter logic. It demonstrates binary-coded decimal counting.",
+   "summary": "This project takes two four-bit numbers and adds them. The half adder is built from simple logic gates. Input bits 0-3 are the first number and bits 4-7 the second, with output bits 0-3 the sum and bit 4 the carry, all in little-endian format. It is implemented in Wokwi and tested by applying the input bits and observing the sum and carry outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "bae373b2d2a7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "error-correction",
+     "reason": "No error-correction coding is described; the design sets railway signal lamps."
+    },
+    {
+     "tag": "encoder",
+     "reason": "No signal-to-code encoding is described."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register or shifting operation appears in the source."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive individual coloured LEDs, not a seven-segment display."
+    }
+   ],
+   "add": [
+    {
+     "tag": "industrial",
+     "reason": "Railway signalling control application."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs drive discrete coloured signal lamps."
+    },
+    {
+     "tag": "button",
+     "reason": "External hardware lists 9 buttons as inputs."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Signal states are switched based on track and control inputs."
+    }
+   ],
+   "notes": "Proposed tags and summary described an error-correction encoder unrelated to this railway signalling design.",
+   "tags_before": [
+    "error-correction",
+    "encoder",
+    "shift-register",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "industrial",
+    "led",
+    "button",
+    "fsm"
+   ],
+   "summary_before": "This project implements an error-correction encoder that loads a 6-bit input and shifts it out while encoding the bits for transmission. The write_not_shift control selects between loading and shifting, and the encoded bits are shown one at a time on an 8-segment display. It is tested using the standard Tiny Tapeout board with DIP switches and a display. The design demonstrates error-correction encoding and shift register operation.",
+   "summary": "This project sets KS-Signal railway signal aspects based on track information. Inputs include track1_free, track2_free, pre_signal, allow shunting, Vorsicht and shorter breaking distance, and the outputs drive green, orange, red, yellow and white signal lamps. It simply switches lamps on and off on toggle, and is tested by connecting the clock and buttons as inputs and the LEDs as outputs in the documented order. The design is implemented in Wokwi and requires a clock, nine buttons and a set of coloured LEDs as external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "c178cce4696b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate implementation is described."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock division is described."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit teaching intent stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "Output pins are labelled LED1-LED4."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin with only a one-line German description."
+    },
+    {
+     "tag": "workshop",
+     "reason": "Title indicates an HTL Leonding school exercise."
+    }
+   ],
+   "notes": "Proposed summary invented seven-segment display and gate/clock-divider details not present in the source.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "led",
+    "insufficient-doc",
+    "workshop"
+   ],
+   "summary_before": "This project is a simple test of basic gates and clock division, likely a first Wokwi exercise. It is explicitly a simple test of basic gates and clock division, likely a first Wokwi exercise. The documentation is very thin, with a one-line description in German and no real explanation of the mapping between inputs and segments. It requires an external seven-segment display, and testing is described only as using it for a seven-segment display.",
+   "summary": "This project is titled 'Lauflicht_Erweiteung_HTL_LEONDING' with the one-line description 'Lauflicht'. It drives four LEDs on outputs uo[0] to uo[3]. The how-it-works section only says 'Lauflicht erweitung', and testing is described as turning it on and watching the LEDs. The documentation is very thin, but the design appears to be a running-light LED pattern implemented in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "3a1957465d25",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "No truth table or combinational function is given; the proposed summary invented one."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching intent stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and largely nonsensical."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "Title 'Test', description 'no', and non-functional documentation suggest a placeholder submission."
+    }
+   ],
+   "notes": "Proposed summary invented a truth table and combinational function not present in the source.",
+   "tags_before": [
+    "combinational",
+    "wokwi",
+    "education",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "summary_before": "This project appears to be a test design with eight inputs and eight outputs, but the documentation is largely nonsensical and incomplete. The only concrete information is a truth table that defines the expected output for each input combination, suggesting a combinational logic function. No external hardware or testing procedure is described beyond checking outputs against the truth table. The design is notable only as a poorly documented test structure.",
+   "summary": "This project is titled 'Test' with the one-line description 'no'. It has eight input pins and eight output pins, all labelled 1 through 8. The how-it-works section says 'I dont now maan!' and the how-to-test section says 'mayby it is broken', with 'TNT' listed as external hardware. The documentation is too sparse and unclear to determine what the design does.",
+   "summary_changed": true
+  },
+  {
+   "key": "7bcae3685844",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counting behaviour is described; the source says it is not yet working."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching intent stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "How-it-works states 'not yet working'."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin with no functional description."
+    },
+    {
+     "tag": "led",
+     "reason": "Output pins are labelled 'output led 1' and 'output led 2'."
+    }
+   ],
+   "notes": "Proposed summary invented an edge-counting accumulator and 4-bit output not present in the source.",
+   "tags_before": [
+    "counter",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc",
+    "led"
+   ],
+   "summary_before": "This design is a simple event accumulator that counts rising edges on an input pin and outputs a 4-bit activity value. It includes a clock and active-low reset, and can be tested in simulation by driving the input with pulses and observing the outputs. The design is minimal and intended to illustrate basic stream processing without complex control logic. The documentation is sparse but sufficient to understand the basic functionality.",
+   "summary": "This project is titled 'test' with the one-line description 'test'. It has two inputs labelled 'input a' and 'input b' and two outputs labelled 'output led 1' and 'output led 2'. The how-it-works section says 'not yet working' and testing is described as 'please don't', with an LED display listed as external hardware. The documentation is too sparse to determine the intended function of the design.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5420,
+  "completion_tokens": 1871,
+  "total_tokens": 7291,
+  "cost": 0.001707746,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001707746,
+   "upstream_inference_prompt_cost": 0.000472886,
+   "upstream_inference_completions_cost": 0.00123486
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001707746,
+ "elapsed_s": 20.2
+}

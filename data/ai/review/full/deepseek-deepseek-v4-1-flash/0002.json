@@ -1,0 +1,350 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "917d2e25fce9",
+  "cbf1987e9229",
+  "e03c99573197",
+  "6ada42f44a65",
+  "14a023658bd2",
+  "cec599ca047c"
+ ],
+ "results": [
+  {
+   "key": "917d2e25fce9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "No random number generator is described anywhere in the source."
+    },
+    {
+     "tag": "calculator",
+     "reason": "No keypad or numeric input/calculator behavior is documented."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Only a single 'dot' pin is given; a full 7-segment display interface is not evidenced."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "Title explicitly states a 2-bit ALU."
+    },
+    {
+     "tag": "game",
+     "reason": "Title explicitly includes a dice game element."
+    },
+    {
+     "tag": "display",
+     "reason": "Description says it translates binary code into a single-digit display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is placeholder text with no technical detail."
+    }
+   ],
+   "notes": "Removed unsupported prng/calculator/7-segment tags; kept only tags evidenced by title and pins.",
+   "tags_before": [
+    "alu",
+    "prng",
+    "game",
+    "7-segment",
+    "display",
+    "wokwi",
+    "calculator",
+    "incomplete"
+   ],
+   "tags": [
+    "alu",
+    "game",
+    "display",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project combines a 2-bit ALU and a dice function, and can translate binary code into a single-digit display. The documentation is mostly placeholder text, with no explanation of how the ALU or dice operate or how to test them. The only pin listed is the decimal point of a 7-segment display, suggesting the output is shown on such a display. The design is described as 'extremely professional' and 'Steve Jobs approves', but lacks technical details.",
+   "summary": "This project combines a 2-bit ALU and a dice function, and can translate binary code into a single-digit display. The documentation is mostly placeholder text, with no explanation of how the ALU or dice operate or how to test them. The only pin listed is the decimal point of a display, suggesting the output is shown on a single-digit display. The design is described as 'extremely professional' and 'Steve Jobs approves', but lacks technical details.",
+   "summary_changed": true
+  },
+  {
+   "key": "cbf1987e9229",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "No game is described; the design is a digital oscillator."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output is present."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "oscillator",
+     "reason": "Title and description state it is a digital oscillator."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "It outputs a 500 Hz waveform."
+    },
+    {
+     "tag": "uart",
+     "reason": "Outputs via UART at 115200 bps 8n1."
+    },
+    {
+     "tag": "axi",
+     "reason": "Internal communication uses AXI4-Lite."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated dragon tamagotchi VGA game; replaced with oscillator/UART/AXI tags matching the source.",
+   "tags_before": [
+    "game",
+    "vga",
+    "graphics",
+    "display",
+    "fsm"
+   ],
+   "tags": [
+    "oscillator",
+    "signal-generator",
+    "uart",
+    "axi",
+    "verilog"
+   ],
+   "summary_before": "This design is a dragon-themed tamagotchi game rendered live to a VGA monitor. The player feeds, waters, sleeps, and plays with a virtual dragon, with mechanics based on variety of actions and a treasure chest gamble. It outputs VGA signals and game state on bidirectional pins, and requires a TinyVGA PMOD, a VGA monitor (rotated 90 degrees), and eight push buttons. The design is notable for its extensive cocotb test suite and visual sprite testing.",
+   "summary": "This project is a simple digital oscillator that outputs a 500 Hz waveform via UART at 115200 bps 8n1. It has an asynchronous reset assertion with synchronous deassertion. Internal communication between the oscillator and the TX115 block uses AXI4-Lite. Testing consists of clocking the circuit after reset and checking whether the output is a sinusoid with a 2 ms period.",
+   "summary_changed": true
+  },
+  {
+   "key": "e03c99573197",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Pin names and description give enough interface detail; documentation is vague but the design is identifiable."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "Title states it is a clock divider with lag correction."
+    },
+    {
+     "tag": "audio",
+     "reason": "It processes and outputs PCM audio."
+    },
+    {
+     "tag": "i2s",
+     "reason": "Bit clock and LR clock pins indicate an I2S interface."
+    },
+    {
+     "tag": "microphone",
+     "reason": "PDM microphone inputs are present."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Beamforming of microphone signals is digital signal processing."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed insufficient-doc since pin names and description adequately identify the design; kept the rest.",
+   "tags_before": [
+    "clock-divider",
+    "audio",
+    "i2s",
+    "microphone",
+    "dsp",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "clock-divider",
+    "audio",
+    "i2s",
+    "microphone",
+    "dsp",
+    "verilog"
+   ],
+   "summary_before": "This design is a clock divider with lag correction that interfaces with PDM microphones and an I2S receiver. It takes bit clock and LR clock inputs, along with PDM data from up to eight microphones, and outputs PCM audio for each microphone plus a beamformed PCM output. The documentation is too vague to describe its exact operation.",
+   "summary": "This design is a clock divider with lag correction that interfaces with PDM microphones and an I2S receiver. It takes bit clock and LR clock inputs, along with PDM data from up to eight microphones, and outputs PCM audio for each microphone plus a beamformed PCM output. Delay-select inputs on the bidirectional pins configure the design. The documentation is too vague to describe its exact operation.",
+   "summary_changed": true
+  },
+  {
+   "key": "6ada42f44a65",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "The design operates at RF/IF, not audio frequencies."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "A mixer is not a demodulator; no demodulation is described."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The quadrature divider is not described as a clock frequency divider."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Language is Analog and the block is an analog mixer."
+    },
+    {
+     "tag": "rf",
+     "reason": "It takes an RF input and mixes to an IF output."
+    },
+    {
+     "tag": "radio",
+     "reason": "It is an RF mixer/quadrature divider for radio applications."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "It combines analog RF/IF paths with digital LO and clock inputs."
+    }
+   ],
+   "notes": "Removed audio/demodulator/clock-divider tags not supported by the source; added mixed-signal for the analog-digital combination.",
+   "tags_before": [
+    "analog",
+    "rf",
+    "radio",
+    "audio",
+    "demodulator",
+    "clock-divider"
+   ],
+   "tags": [
+    "analog",
+    "rf",
+    "radio",
+    "mixed-signal"
+   ],
+   "summary_before": "This analog block is a double balanced mixer that takes an RF input with DC bias and a digital local-oscillator signal to produce a differential intermediate-frequency output. It also includes a quadrature divider that generates I and Q phase outputs from a clock input. The design was simulated at 7 MHz, and the documentation gives no test procedure or external hardware beyond the RF and LO sources implied by the pins. No silicon test results are provided, so the summary is based mainly on the title and pin names.",
+   "summary": "This analog block is a double balanced mixer that takes an RF input with DC bias and a digital local-oscillator signal to produce a differential intermediate-frequency output. It also includes a quadrature divider that generates I and Q phase outputs from a clock input. The design was simulated at 7 MHz, and the documentation gives no test procedure or external hardware beyond the RF and LO sources implied by the pins. No silicon test results are provided, so the summary is based mainly on the title and pin names.",
+   "summary_changed": false
+  },
+  {
+   "key": "14a023658bd2",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "No dedicated compute acceleration is described beyond a small matrix-vector multiplier."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Title and description state it multiplies a 2x2 matrix by a 2x1 vector."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is contradictory and too thin to describe the design reliably."
+    }
+   ],
+   "notes": "Source is self-contradictory (matrix-vector multiplier vs LIF neuron); escalated for a second opinion.",
+   "tags_before": [
+    "accelerator",
+    "multiplier",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "multiplier",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design multiplies a 2x2 matrix by a 2x1 vector, with 2-bit elements, producing a 2-element output vector. Matrix elements are supplied on ui_in, the input vector on uio_in, and the output vector is split across uo_out and uio_out. The documentation is inconsistent: the 'How it works' section describes treating inputs as current injection into a LIF neuron, which does not match the title or pin descriptions, and the test section only says 'Test it'. External hardware is listed as 'Possibly', and the documentation is too thin and contradictory to describe the design reliably.",
+   "summary": "This design multiplies a 2x2 matrix by a 2x1 vector, with 2-bit elements, producing a 2-element output vector. Matrix elements are supplied on ui_in, the input vector on uio_in, and the output vector is split across uo_out and uio_out. The documentation is inconsistent: the 'How it works' section describes treating inputs as current injection into a LIF neuron, which does not match the title or pin descriptions, and the test section only says 'Test it'. External hardware is listed as 'Possibly', and the documentation is too thin and contradictory to describe the design reliably.",
+   "summary_changed": false
+  },
+  {
+   "key": "cec599ca047c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "Only the title mentions a Dino game; the documentation is entirely placeholders and gives no game details."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation consists entirely of placeholders."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed game tag since only the title hints at a game and no gameplay is documented; kept insufficient-doc and verilog.",
+   "tags_before": [
+    "game",
+    "insufficient-doc",
+    "verilog"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "verilog"
+   ],
+   "summary_before": "UW ASIC - Optimized Dino is described as a Dino game compressed into only two tiles. The documentation consists entirely of placeholders, so the actual controls, video output format and testing method are not stated. The pin names are generic and give no further detail about the interface. There is essentially no usable documentation for this project.",
+   "summary": "UW ASIC - Optimized Dino is described as a Dino game compressed into only two tiles. The documentation consists entirely of placeholders, so the actual controls, video output format and testing method are not stated. The pin names are generic and give no further detail about the interface. There is essentially no usable documentation for this project.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6153,
+  "completion_tokens": 1872,
+  "total_tokens": 8025,
+  "cost": 0.00258918,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00258918,
+   "upstream_inference_prompt_cost": 0.00135366,
+   "upstream_inference_completions_cost": 0.00123552
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00258918,
+ "elapsed_s": 20.3
+}

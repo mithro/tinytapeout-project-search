@@ -1,0 +1,227 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ce7ff93d814f",
+  "2ed916d86cbc",
+  "c6a2a5d2deb3",
+  "5db969937593",
+  "fe369931ceab",
+  "a84708ec4d36"
+ ],
+ "results": [
+  {
+   "key": "ce7ff93d814f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fpga",
+     "reason": "The design is an ASIC USB device controller; FPGA is only mentioned as an external host/driver platform, not the target."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The documentation explicitly states cocotb tests cover many features."
+    },
+    {
+     "tag": "asic",
+     "reason": "The design was modified and optimized for ASIC implementation in Tiny Tapeout."
+    },
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "The design uses a 48 MHz controller clock and a separate 48 MHz PHY clock interface."
+    }
+   ],
+   "notes": "Removed fpga tag because the design targets ASIC, not FPGA; added cocotb, asic, and clock-domain-crossing based on explicit documentation.",
+   "tags_before": [
+    "usb",
+    "wishbone",
+    "spinalhdl",
+    "communication",
+    "fpga",
+    "multi-tile"
+   ],
+   "tags": [
+    "usb",
+    "wishbone",
+    "spinalhdl",
+    "communication",
+    "multi-tile",
+    "cocotb",
+    "asic",
+    "clock-domain-crossing"
+   ],
+   "summary_before": "This is a USB FullSpeed/LowSpeed device controller implemented in SpinalHDL, designed to be controlled by a CPU over a Wishbone bus. It includes a TT2WB Wishbone bridge to fit the limited Tiny Tapeout I/O. The design supports up to 4 endpoints with 52 bytes of buffer, which may be insufficient for some USB classes. It requires external USB connector hardware and an FPGA or RP2040 for testing and demonstration.",
+   "summary": "This is a USB FullSpeed/LowSpeed device controller implemented in SpinalHDL, designed to be controlled by a CPU over a Wishbone bus. It includes a TT2WB Wishbone bridge to fit the limited Tiny Tapeout I/O. The design supports up to 4 endpoints with 52 bytes of buffer, which may be insufficient for some USB classes. It requires external USB connector hardware and an FPGA or RP2040 for testing and demonstration.",
+   "summary_changed": false
+  },
+  {
+   "key": "2ed916d86cbc",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "signal-generator",
+    "debouncer",
+    "button",
+    "instrumentation"
+   ],
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "debouncer",
+    "button",
+    "instrumentation"
+   ],
+   "summary_before": "This project is a simple PWM generator with a variable duty cycle controlled by two buttons. It includes debounce logic for the buttons and uses a 4-bit counter to generate the PWM signal. The duty cycle can be increased or decreased by pressing the respective buttons. External hardware includes two push buttons with pull-down resistors and an oscilloscope to observe the PWM output.",
+   "summary": "This project is a simple PWM generator with a variable duty cycle controlled by two buttons. It includes debounce logic for the buttons and uses a 4-bit counter to generate the PWM signal. The duty cycle can be increased or decreased by pressing the respective buttons. External hardware includes two push buttons with pull-down resistors and an oscilloscope to observe the PWM output.",
+   "summary_changed": false
+  },
+  {
+   "key": "c6a2a5d2deb3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The design outputs PWM signals, not discrete LED drive; the LED is external hardware."
+    },
+    {
+     "tag": "rgb-led",
+     "reason": "No RGB LED interface is present; the design only provides three PWM outputs."
+    }
+   ],
+   "add": [],
+   "notes": "Removed led and rgb-led tags because the design only outputs PWM signals and does not directly drive LEDs.",
+   "tags_before": [
+    "pwm",
+    "rotary-encoder",
+    "led",
+    "rgb-led",
+    "debouncer"
+   ],
+   "tags": [
+    "pwm",
+    "rotary-encoder",
+    "debouncer"
+   ],
+   "summary_before": "This project uses three rotary encoders to control three PWM generators, intended for mixing RGB LED colors. Each encoder is debounced and adjusts the duty cycle of its corresponding PWM output. The design provides three PWM outputs on the first three output pins. External hardware includes three digital rotary encoders and an RGB LED or other PWM-driven device.",
+   "summary": "This project uses three rotary encoders to control three PWM generators, intended for mixing RGB LED colors. Each encoder is debounced and adjusts the duty cycle of its corresponding PWM output. The design provides three PWM outputs on the first three output pins. External hardware includes three digital rotary encoders and an RGB LED or other PWM-driven device.",
+   "summary_changed": false
+  },
+  {
+   "key": "5db969937593",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fpga",
+    "reconfigurable",
+    "lookup-table",
+    "scan-chain",
+    "spinalhdl",
+    "asic"
+   ],
+   "tags": [
+    "fpga",
+    "reconfigurable",
+    "lookup-table",
+    "scan-chain",
+    "spinalhdl",
+    "asic"
+   ],
+   "summary_before": "Grain-Flex-FPGA is a small field-programmable gate array with one configurable logic block (CLB) containing four 4-input look-up tables, each with an optional output flip-flop. The CLB has four inputs and four outputs that can be routed to any of eight IO buffers, and each LUT input can be connected to any CLB input or any LUT output. The device is programmed through a scan chain using dedicated clock, reset, enable, and data-in pins, with data-out on a single pin. The SpinalHDL project includes examples for generating bitstreams, but no silicon test results are provided, and the documentation notes that VTR support is still forthcoming.",
+   "summary": "Grain-Flex-FPGA is a small field-programmable gate array with one configurable logic block (CLB) containing four 4-input look-up tables, each with an optional output flip-flop. The CLB has four inputs and four outputs that can be routed to any of eight IO buffers, and each LUT input can be connected to any CLB input or any LUT output. The device is programmed through a scan chain using dedicated clock, reset, enable, and data-in pins, with data-out on a single pin. The SpinalHDL project includes examples for generating bitstreams, but no silicon test results are provided, and the documentation notes that VTR support is still forthcoming.",
+   "summary_changed": false
+  },
+  {
+   "key": "fe369931ceab",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is mentioned or implied by the documentation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed shift-register tag because the documentation does not describe a shift register.",
+   "tags_before": [
+    "uart",
+    "wokwi",
+    "7-segment",
+    "ascii",
+    "communication",
+    "shift-register"
+   ],
+   "tags": [
+    "uart",
+    "wokwi",
+    "7-segment",
+    "ascii",
+    "communication"
+   ],
+   "summary_before": "This Wokwi design transmits a fixed string of ASCII characters, specifically 'tiny tapeout', over a UART serial interface. It supports uppercase ASCII characters from 0x40 to 0x5F and uses switches to control load/transmit and output enable, with a seven-segment display showing segment outputs. Testing is performed in the Wokwi simulator by setting the baud rate to 300 and toggling the switches; garbage characters may appear on initialization. The design is notable for being a simple UART transmitter that operates at a very low clock frequency of 1 Hz.",
+   "summary": "This Wokwi design transmits a fixed string of ASCII characters, specifically 'tiny tapeout', over a UART serial interface. It supports uppercase ASCII characters from 0x40 to 0x5F and uses switches to control load/transmit and output enable, with a seven-segment display showing segment outputs. Testing is performed in the Wokwi simulator by setting the baud rate to 300 and toggling the switches; garbage characters may appear on initialization. The design is notable for being a simple UART transmitter that operates at a very low clock frequency of 1 Hz.",
+   "summary_changed": false
+  },
+  {
+   "key": "a84708ec4d36",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sram",
+     "reason": "The design uses flip-flops, not SRAM cells; the documentation explicitly says it is not a full SRAM."
+    }
+   ],
+   "add": [],
+   "notes": "Removed sram tag because the design is flip-flop based and the documentation states it is not a full SRAM.",
+   "tags_before": [
+    "memory",
+    "sram",
+    "flip-flop",
+    "wokwi",
+    "7-segment",
+    "education"
+   ],
+   "tags": [
+    "memory",
+    "flip-flop",
+    "wokwi",
+    "7-segment",
+    "education"
+   ],
+   "summary_before": "This Wokwi project implements a 4x4 memory using 16 flip-flops, with switches to select lines and set bits, and a read/write control. The outputs show the stored values on a seven-segment display and additional inverted bits. Testing is done by setting switches to store data and observing the display, and the design includes a truth table for operation. The documentation is adapted from an SRAM cell structure, but it is a simple educational memory test rather than a full SRAM.",
+   "summary": "This Wokwi project implements a 4x4 memory using 16 flip-flops, with switches to select lines and set bits, and a read/write control. The outputs show the stored values on a seven-segment display and additional inverted bits. Testing is done by setting switches to store data and observing the display, and the design includes a truth table for operation. The documentation is adapted from an SRAM cell structure, but it is a simple educational memory test rather than a full SRAM.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8536,
+  "completion_tokens": 1272,
+  "total_tokens": 9808,
+  "cost": 0.0024704,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0024704,
+   "upstream_inference_prompt_cost": 0.0017072,
+   "upstream_inference_completions_cost": 0.0007632
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0024704,
+ "elapsed_s": 81.8
+}

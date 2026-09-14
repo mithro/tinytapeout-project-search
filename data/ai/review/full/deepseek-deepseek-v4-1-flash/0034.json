@@ -1,0 +1,232 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "66be2e544bb1",
+  "4374b877d143",
+  "0790473226b1",
+  "c346832e233c",
+  "ebcda0c1c7bc",
+  "28c2e72d9420"
+ ],
+ "results": [
+  {
+   "key": "66be2e544bb1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "Only an analog output pin is documented; no digital portion is described, so mixed-signal is unsupported."
+    }
+   ],
+   "add": [],
+   "notes": "Removed mixed-signal: no digital circuitry is documented, only an analog output pin.",
+   "tags_before": [
+    "adc",
+    "analog",
+    "mixed-signal",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "adc",
+    "analog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is an analog/mixed-signal design intended to contain a simple ADC, with a single analog output pin ua[0]. The documentation states only that it is planned to contain a simple ADC, with testing and external hardware both marked 'TBC'. There is essentially no usable documentation describing the implementation, pin functions, or test procedure. As a result, the design cannot be evaluated beyond its stated intent.",
+   "summary": "This project is an analog design planned to contain a simple ADC, with a single analog output pin ua[0]. The documentation states only that it is planned to contain a simple ADC, with testing and external hardware both marked 'TBC'. There is essentially no usable documentation describing the implementation, pin functions, or test procedure. As a result, the design cannot be evaluated beyond its stated intent.",
+   "summary_changed": true
+  },
+  {
+   "key": "4374b877d143",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source states an educational or teaching intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive a seven-segment display per the description."
+    },
+    {
+     "tag": "display",
+     "reason": "The decoded value is shown on a seven-segment display."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added 7-segment and display output tags.",
+   "tags_before": [
+    "decoder",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "decoder",
+    "wokwi",
+    "7-segment",
+    "display"
+   ],
+   "summary_before": "This design decodes a four-bit binary value into the seven-segment control signals needed to show the corresponding decimal digit. Inputs zero through three represent the binary number, and the outputs drive a common seven-segment display. No external hardware other than the display itself is required, and it is a straightforward educational decoder design.",
+   "summary": "This design decodes a four-bit binary value into the seven-segment control signals needed to show the corresponding decimal digit. Inputs zero through three represent the binary number, and the outputs drive a seven-segment display. No external hardware other than the display itself is required. It is a straightforward binary-to-seven-segment decoder built in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "0790473226b1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not describe it as a template or starter project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "The documentation is a generic placeholder with no real design content."
+    }
+   ],
+   "notes": "Replaced template with placeholder; the source is a generic placeholder submission.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "summary_before": "This is a simple test project described as just experimenting a bit. It has two inputs and three outputs, but the documentation states that twiddling the inputs causes something arbitrary to happen at the outputs. No specific function or external hardware is described. The design is not intended for any particular application.",
+   "summary": "This is a simple test project described as just experimenting a bit. It has two inputs and three outputs, but the documentation states that twiddling the inputs causes something arbitrary to happen at the outputs. No specific function or external hardware is described. The design is not intended for any particular application.",
+   "summary_changed": false
+  },
+  {
+   "key": "c346832e233c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "No waveform/signal generation beyond PWM is described; the PWM tag already covers it."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "How-it-works, testing and external hardware are all 'Will add later'."
+    }
+   ],
+   "notes": "Added insufficient-doc; removed signal-generator as redundant with pwm.",
+   "tags_before": [
+    "pwm",
+    "spi",
+    "signal-generator",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "spi",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is an SPI-connected PWM generator with eight outputs, featuring two independent generators and four total PWM channels. The documentation is essentially empty, with no explanation of how it works, how to test it, or what external hardware is needed. The pin names indicate SPI communication and PWM outputs, but no further details are provided. It is not possible to describe the design's operation or testing from the available information.",
+   "summary": "This design is an SPI-connected PWM generator with eight outputs, featuring two independent generators and four total PWM channels. The documentation is essentially empty, with no explanation of how it works, how to test it, or what external hardware is needed. The pin names indicate SPI communication and PWM outputs, but no further details are provided. It is not possible to describe the design's operation or testing from the available information.",
+   "summary_changed": false
+  },
+  {
+   "key": "ebcda0c1c7bc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "The source describes pulse-count-proportional output current, not pulse-width modulation."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is present and describes the design's operation, clock and I/O."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "It is a digital implementation of an analog OTA function."
+    }
+   ],
+   "notes": "Removed unsupported pwm and insufficient-doc; added analog for the OTA function.",
+   "tags_before": [
+    "opamp",
+    "pwm",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "opamp",
+    "wokwi",
+    "analog"
+   ],
+   "summary_before": "DigOTA is described as a digital implementation of an operational transconductance amplifier that requires a 50 kHz clock and two input signals, producing three outputs. The output current is said to be proportional to the number of pulses in the output stages, suggesting a pulse-density or switched scheme rather than a true analog OTA. The documentation does not specify the input or output voltage/current ranges, nor any external components needed. It is a Wokwi design with very thin documentation, so most operational details cannot be verified.",
+   "summary": "DigOTA is described as a digital implementation of an operational transconductance amplifier that requires a 50 kHz clock and two input signals, producing three outputs. The output current is said to be proportional to the number of pulses in the output stages, suggesting a pulse-density or switched scheme rather than a true analog OTA. The documentation does not specify the input or output voltage/current ranges, nor any external components needed. It is a Wokwi design, so most operational details cannot be verified.",
+   "summary_changed": true
+  },
+  {
+   "key": "28c2e72d9420",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not describe it as a template or starter project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no design content."
+    }
+   ],
+   "notes": "Replaced template with insufficient-doc; source is an unfinished placeholder.",
+   "tags_before": [
+    "incomplete",
+    "placeholder",
+    "wokwi",
+    "template"
+   ],
+   "tags": [
+    "incomplete",
+    "placeholder",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is explicitly titled \"in progress\" and its description says only that it \"does something.\" The test instructions and external hardware sections are placeholders that promise details later. No function, interface, or implementation is described, so nothing concrete can be said about the design. It appears to be an unfinished Wokwi template.",
+   "summary": "This project is explicitly titled \"in progress\" and its description says only that it \"does something.\" The test instructions and external hardware sections are placeholders that promise details later. No function, interface, or implementation is described, so nothing concrete can be said about the design. It appears to be an unfinished Wokwi submission.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "28c2e72d9420: 3 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 5407,
+  "completion_tokens": 1167,
+  "total_tokens": 6574,
+  "cost": 0.001240246,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001240246,
+   "upstream_inference_prompt_cost": 0.000470026,
+   "upstream_inference_completions_cost": 0.00077022
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001240246,
+ "elapsed_s": 15.3
+}

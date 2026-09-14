@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "84b18b311077",
+  "417b3316be5b",
+  "7f35b87debb3",
+  "db583f2f2c09",
+  "4a017a798cd5",
+  "ad9291aa95a4",
+  "637462aa2611",
+  "8d93c902cdd8",
+  "082567f1fae0",
+  "c635d43ffc96"
+ ],
+ "results": [
+  {
+   "key": "84b18b311077",
+   "tags": [
+    "alu",
+    "arithmetic",
+    "logic",
+    "4-bit",
+    "opcode",
+    "carry",
+    "overflow",
+    "combinational"
+   ],
+   "summary": "This project implements a 4-bit ALU that performs arithmetic and logical operations on two 4-bit inputs, selected by a 4-bit opcode. The 8-bit result is output on the uo pins and the lower four bidirectional pins, while carry-out and overflow flags appear on two of the bidirectional pins. Testing involves setting the a and b inputs and the opcode, then observing the result and status flags. No external hardware is required, and the design is a straightforward combinational ALU.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "417b3316be5b",
+   "tags": [
+    "vga",
+    "audio",
+    "demo",
+    "demoscene",
+    "graphics",
+    "sound",
+    "synth",
+    "dithering",
+    "sigma-delta"
+   ],
+   "summary": "This is a standalone VGA and sound demo that fits in two tiles, developed for the Tiny Tapeout demo competition. It generates a 640x480@60Hz VGA signal with a non-standard 1220-pixel horizontal resolution and RGB222 dithered graphics, plus 3-channel synthesized audio via a 16-bit sigma-delta DAC on a single pin. It requires a 48 MHz clock, a Tiny VGA Pmod for video, and a Tiny Tapeout Audio Pmod or simple RC filter for sound. Silicon tests confirm both graphics and sound work as expected, matching FPGA simulations.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7f35b87debb3",
+   "tags": [
+    "vga",
+    "audio",
+    "animation",
+    "nyan-cat",
+    "music",
+    "dithering",
+    "sigma-delta",
+    "midi"
+   ],
+   "summary": "This design displays the classic Nyan Cat animation on a VGA monitor with accompanying music. It uses a 2x2 Bayer dithering matrix for color rendition and generates sound from a MIDI file using square waves with exponential decay envelopes, a low-pass filter, and a sigma-delta DAC. It requires a 25.175 MHz clock, a Tiny VGA Pmod for video, and a Tiny Tapeout Audio Pmod or simple RC filter for audio. Silicon tests confirm it works, and it was originally intended for one tile but expanded to two.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "db583f2f2c09",
+   "tags": [
+    "vga",
+    "3d",
+    "raymarching",
+    "cordic",
+    "graphics",
+    "demo",
+    "dithering",
+    "torus"
+   ],
+   "summary": "This project renders a 3D torus (donut) on a VGA display using a raymarching technique with a CORDIC unit to calculate distances. It runs at a non-standard 1220x480 resolution and uses spatial and temporal dithering to improve appearance despite low horizontal resolution. It requires a 48 MHz clock and a Tiny VGA Pmod for video output. Silicon tests show it works but may have minor glitches at 48 MHz; running at 45 MHz avoids them.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4a017a798cd5",
+   "tags": [
+    "ring-oscillator",
+    "analog",
+    "oscillator",
+    "clock",
+    "5mhz",
+    "transistor-level"
+   ],
+   "summary": "This is a simple analog ring oscillator that outputs a nominal 5 MHz clock signal on a single analog pin. It requires no external hardware and is automatically enabled when selected on the evaluation board. Silicon tests show it oscillates at around 4.5-4.6 MHz with an amplitude of about 0.6-1.6 V, depending on the setup. The design is notable for its simplicity and use of analog circuitry.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ad9291aa95a4",
+   "tags": [
+    "vga",
+    "dac",
+    "analog",
+    "current-steering",
+    "segmented",
+    "test",
+    "video",
+    "transistor-level"
+   ],
+   "summary": "This project implements rough 24-bit VGA DACs with a digital control block for testing various patterns. It includes current-steering DACs for red and green channels and a segmented current-switching DAC for blue, with analog outputs on ua pins. It requires a 25 MHz clock, a VGA monitor, and external op-amp circuits to convert the analog outputs to the 0-0.7V range required by VGA. Silicon tests confirm the digital output works and the analog outputs show good rise/fall times, but external buffering is needed for direct VGA connection.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "637462aa2611",
+   "tags": [
+    "factory-test",
+    "analog",
+    "test",
+    "test-structures",
+    "loopback",
+    "bias"
+   ],
+   "summary": "This project provides test structures for Tiny Tapeout analog support, including bias generation, power supply sensing, and loopback connections. The documentation is incomplete, with sections marked as FIXME, so the exact functionality and usage are not fully described. It appears to be intended for factory testing of analog infrastructure. No external hardware or testing procedure is specified in the available documentation.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "8d93c902cdd8",
+   "tags": [
+    "ps2",
+    "keyboard",
+    "decoder",
+    "fifo",
+    "interface",
+    "retro",
+    "input"
+   ],
+   "summary": "This PS2 decoder reads scan codes from a PS2 keyboard, debounces and synchronizes the signals, and outputs the data byte along with valid, interrupt, and data-ready signals. It includes a FIFO to queue received bytes, and the host can read data by asserting chip select. It requires a PS2 keyboard and level shifting from 5V to 3.3V, and is intended for interfacing with retro computers. The design is a straightforward implementation of the PS2 protocol.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "082567f1fae0",
+   "tags": [
+    "morse",
+    "keyer",
+    "cw",
+    "radio",
+    "7-segment",
+    "audio",
+    "paddle",
+    "iambic"
+   ],
+   "summary": "This Morse code keyer converts paddle or straight-key inputs into Morse code outputs, including an auxiliary Morse output, a buzzer tone, and a 7-segment display showing the last character. It supports iambic keying types A and B, and adjustable speed from about 7 to 110 WPM via dip switches. It requires a 12 MHz clock and external hardware such as a PS2 PMOD for level shifting and a companion PCB for radio interfacing. The design is notable for its comprehensive feature set and warning against using the auxiliary output directly for radio transmission.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c635d43ffc96",
+   "tags": [
+    "bandgap",
+    "analog",
+    "voltage-reference",
+    "temperature-sensor",
+    "skywater",
+    "transistor-level"
+   ],
+   "summary": "This project is a bandgap voltage reference designed in Skywater 130nm CMOS to provide a stable 1.17V output over a 0-80°C temperature range. It includes a startup circuit and operates from a 1.8V supply, consuming 0.35 mW. Testing requires a temperature chamber, power supply, and measurement equipment to verify temperature stability, line and load regulation, and power consumption. Silicon tests show it can be unstable depending on load, sometimes latching to 0.46V instead of 1.17V.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8289,
+  "completion_tokens": 1893,
+  "total_tokens": 10182,
+  "cost": 0.0027936,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0027936,
+   "upstream_inference_prompt_cost": 0.0016578,
+   "upstream_inference_completions_cost": 0.0011358
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0027936,
+ "elapsed_s": 87.0
+}

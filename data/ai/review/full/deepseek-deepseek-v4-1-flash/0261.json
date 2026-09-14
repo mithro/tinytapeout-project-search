@@ -1,0 +1,231 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "466e428b3570",
+  "bfb24516c209",
+  "a0259321c551",
+  "ebb6bf3412cd",
+  "ade38227636c",
+  "c509dc6e069d"
+ ],
+ "results": [
+  {
+   "key": "466e428b3570",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "keypad",
+     "reason": "No keypad interface is documented; pins are individual arithmetic/control inputs, not a matrix keypad."
+    },
+    {
+     "tag": "display",
+     "reason": "No display interface is documented; the serial/control outputs are generic driver signals, not a display interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "The summary and pin names indicate button-style inputs for arithmetic operations."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The o_WL/o_SER/o_SRCLK/o_RCLK/o_OE_n pins suggest a shift-register display driver, consistent with a seven-segment output."
+    }
+   ],
+   "notes": "Removed unsupported keypad/display interface tags and added button and 7-segment based on pin evidence.",
+   "tags_before": [
+    "calculator",
+    "alu",
+    "driver",
+    "systemverilog",
+    "keypad",
+    "display"
+   ],
+   "tags": [
+    "calculator",
+    "alu",
+    "driver",
+    "systemverilog",
+    "button",
+    "7-segment"
+   ],
+   "summary_before": "Tiny Calculator is a calculator chip with built-in I/O drivers, implemented in SystemVerilog. It provides arithmetic operations (addition, subtraction, multiplication, division) and supports input from buttons and output to a display via serial and control signals. The pin names indicate connections for a keypad and a seven-segment or LCD display. Documentation is minimal, so the exact usage and external hardware requirements are not fully described.",
+   "summary": "Tiny Calculator is a calculator chip with built-in I/O drivers, implemented in SystemVerilog. It provides arithmetic operations (addition, subtraction, multiplication, division) and supports input from buttons and output via serial and control signals. The pin names indicate connections for a keypad and a seven-segment or LCD display. Documentation is minimal, so the exact usage and external hardware requirements are not fully described.",
+   "summary_changed": true
+  },
+  {
+   "key": "bfb24516c209",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source does not state the design is built from discrete transistors rather than standard cells."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "A multimeter is only suggested for testing; the design itself is not a measurement/instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design combines analog opamp/DAC circuitry with digital control pins."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level and instrumentation tags; added mixed-signal for the analog/digital combination.",
+   "tags_before": [
+    "opamp",
+    "r2r-dac",
+    "dac",
+    "analog",
+    "memory",
+    "level-shifter",
+    "transistor-level",
+    "instrumentation"
+   ],
+   "tags": [
+    "opamp",
+    "r2r-dac",
+    "dac",
+    "analog",
+    "memory",
+    "level-shifter",
+    "mixed-signal"
+   ],
+   "summary_before": "This analog design combines a simple opamp powered at 3.3V with a DRAM cell and an 8-bit R2R DAC. The opamp inputs are shared with the DRAM bit lines, and digital control pins select write and read operations. The 3.3V output is achieved with level shifting drivers, and the design is intended to be tested by measuring the output voltage on analog pin 0 with a multimeter. The documentation is brief and does not explain the DRAM cell operation or the exact role of the bias control pins.",
+   "summary": "This analog design combines a simple opamp powered at 3.3V with a DRAM cell and an 8-bit R2R DAC. The opamp inputs are shared with the DRAM bit lines, and digital control pins select write and read operations. The 3.3V output is achieved with level shifting drivers, and the design is intended to be tested by measuring the output voltage on analog pin 0 with a multimeter. The documentation is brief and does not explain the DRAM cell operation or the exact role of the bias control pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "a0259321c551",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The source does not describe a finite state machine; it only describes encrypt/decrypt operation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed fsm tag not supported by the source.",
+   "tags_before": [
+    "cipher",
+    "crypto",
+    "fsm"
+   ],
+   "tags": [
+    "cipher",
+    "crypto"
+   ],
+   "summary_before": "The EnDecoder encrypts or decrypts a 4-bit code using a 4-bit key, with the mode selected by an input pin. A done output pulses when the operation completes, and the result appears on a 4-bit output. Testing involves feeding a code and key in encrypt mode, then feeding the result back in decrypt mode to recover the original code. No external hardware is required, but the documentation does not specify the encryption algorithm.",
+   "summary": "The EnDecoder encrypts or decrypts a 4-bit code using a 4-bit key, with the mode selected by an input pin. A done output pulses when the operation completes, and the result appears on a 4-bit output. Testing involves feeding a code and key in encrypt mode, then feeding the result back in decrypt mode to recover the original code. No external hardware is required, but the documentation does not specify the encryption algorithm.",
+   "summary_changed": false
+  },
+  {
+   "key": "ebb6bf3412cd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The source does not describe a finite state machine; it describes vote counting and a vote_over signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "Each candidate has a dedicated input button for voting."
+    }
+   ],
+   "notes": "Removed unsupported fsm tag and added button interface based on documented candidate buttons.",
+   "tags_before": [
+    "counter",
+    "fsm",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "education",
+    "button"
+   ],
+   "summary_before": "The Electronic Voting Machine counts votes for three candidates, with each candidate having a dedicated input button. When the vote_over signal is asserted, voting stops and the results for all three candidates are output as 6-bit binary values. A reset signal clears all counts for a new session. The design is tested with a testbench that simulates button presses and dumps waveforms, but no external hardware is specified.",
+   "summary": "The Electronic Voting Machine counts votes for three candidates, with each candidate having a dedicated input button. When the vote_over signal is asserted, voting stops and the results for all three candidates are output as 6-bit binary values. A reset signal clears all counts for a new session. The design is tested with a testbench that simulates button presses and dumps waveforms, but no external hardware is specified.",
+   "summary_changed": false
+  },
+  {
+   "key": "ade38227636c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fir-filter",
+    "dsp",
+    "vhdl"
+   ],
+   "tags": [
+    "fir-filter",
+    "dsp",
+    "vhdl"
+   ],
+   "summary_before": "This is a 5-tap FIR filter implemented in VHDL that computes a filtered output from the last five input samples. Filter coefficients can be loaded serially over five clock cycles and updated with a load signal. The design requires no external hardware and is tested by feeding coefficients and then applying input samples while observing the filtered output. The documentation provides a clear explanation of the filter operation and testing method.",
+   "summary": "This is a 5-tap FIR filter implemented in VHDL that computes a filtered output from the last five input samples. Filter coefficients can be loaded serially over five clock cycles and updated with a load signal. The design requires no external hardware and is tested by feeding coefficients and then applying input samples while observing the filtered output. The documentation provides a clear explanation of the filter operation and testing method.",
+   "summary_changed": false
+  },
+  {
+   "key": "c509dc6e069d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose; it is a minimal logic gate test design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The documentation consists only of placeholder text and does not describe the design."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added incomplete due to placeholder-only documentation.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a set of basic logic gates (AND, OR, NAND) on a Tiny Tapeout tile. It is built in Wokwi and takes eight input pins, producing outputs that reflect the gate operations. The documentation is minimal, consisting only of placeholder text, so the exact mapping of inputs to outputs is not fully described. It appears to be an educational or test design, but the lack of detail limits its usefulness.",
+   "summary": "This project implements a set of basic logic gates (AND, OR, NAND) on a Tiny Tapeout tile. It is built in Wokwi and takes eight input pins, producing outputs that reflect the gate operations. The documentation is minimal, consisting only of placeholder text, so the exact mapping of inputs to outputs is not fully described. It appears to be an educational or test design, but the lack of detail limits its usefulness.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5990,
+  "completion_tokens": 1336,
+  "total_tokens": 7326,
+  "cost": 0.0034002,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034002,
+   "upstream_inference_prompt_cost": 0.001797,
+   "upstream_inference_completions_cost": 0.0016032
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034002,
+ "elapsed_s": 15.1
+}

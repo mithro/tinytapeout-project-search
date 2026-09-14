@@ -1,0 +1,204 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "49904ea32b0d",
+  "7c4aad821cfb",
+  "8bc711117876",
+  "6974b63903a3",
+  "2a106f72a2e6",
+  "368a0db1e974"
+ ],
+ "results": [
+  {
+   "key": "49904ea32b0d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "waveform-generator",
+     "reason": "The design displays a waveform representation of its audio on VGA; it is not a general-purpose arbitrary waveform generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working on fabricated silicon."
+    }
+   ],
+   "notes": "Removed waveform-generator (not a general waveform generator) and added silicon-tested per the working test report.",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "audio",
+    "pwm",
+    "waveform-generator",
+    "prng",
+    "verilog"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "audio",
+    "pwm",
+    "prng",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "The project generates a pseudo-random soundtrack via PWM and displays a waveform on a VGA monitor.",
+   "summary": "This demoscene competition entry generates a pseudo-random soundtrack via PWM and displays a waveform on a VGA monitor. It uses the Tiny VGA Pmod on uo_out and Mike's audio Pmod on uio_out[7]. The design is written in Verilog and runs from a 50 MHz clock with asynchronous reset. A silicon test report confirms the design is working.",
+   "summary_changed": true
+  },
+  {
+   "key": "7c4aad821cfb",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "alu",
+    "decoder",
+    "gray-code",
+    "7-segment",
+    "multiplexer",
+    "education"
+   ],
+   "tags": [
+    "alu",
+    "decoder",
+    "gray-code",
+    "7-segment",
+    "multiplexer",
+    "education"
+   ],
+   "summary_before": "This combinational design implements a 3-bit ALU supporting subtraction, addition, XOR, and AND, with its output routed to both an octal decoder and a Gray code decoder for display on two 7-segment displays. A selector chooses the ALU operation and another selects whether the octal or Gray decoder drives the displays, with the Gray decoder specially mapped to decimal for the displays. Testing requires setting the two 3-bit numbers and the selectors, then observing the result on the external displays. External hardware includes two common-cathode 7-segment displays, fourteen 330-ohm resistors, and a DC power source.",
+   "summary": "This combinational design implements a 3-bit ALU supporting subtraction, addition, XOR, and AND, with its output routed to both an octal decoder and a Gray code decoder for display on two 7-segment displays. A selector chooses the ALU operation and another selects whether the octal or Gray decoder drives the displays, with the Gray decoder specially mapped to decimal for the displays. Testing requires setting the two 3-bit numbers and the selectors, then observing the result on the external displays. External hardware includes two common-cathode 7-segment displays, fourteen 330-ohm resistors, and a DC power source.",
+   "summary_changed": false
+  },
+  {
+   "key": "8bc711117876",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The source explicitly describes the design as an experiment, matching the unfinished/experimental nature of the incomplete tag."
+    }
+   ],
+   "notes": "Added incomplete because the source explicitly frames the design as an experiment.",
+   "tags_before": [
+    "shift-register",
+    "latch",
+    "verilog"
+   ],
+   "tags": [
+    "shift-register",
+    "latch",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "This experiment implements a 512-bit shift register using D latches instead of flip-flops, with a single pulse rippling through the register to perform the shift.",
+   "summary": "This experiment implements a 512-bit shift register using D latches instead of flip-flops, with a single pulse rippling through the register to perform the shift. It has one input, one output, and an edge-triggered control signal that updates the shift on either a rising or falling edge. Testing involves shifting zeros in until the register is empty, then shifting in a pattern and observing it appear on the output after 512 control transitions. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "6974b63903a3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "A random number generator for a dice display is not an interactive game design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and pin names are all labeled '1', giving no usable interface detail."
+    }
+   ],
+   "notes": "Removed game (not an interactive game) and added insufficient-doc for the very thin documentation.",
+   "tags_before": [
+    "prng",
+    "ring-oscillator",
+    "systemverilog",
+    "game"
+   ],
+   "tags": [
+    "prng",
+    "ring-oscillator",
+    "systemverilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This SystemVerilog design generates a random number from 0 to F when a button is pressed, using an inverter ring as the entropy source. It outputs the result on 8 output pins, intended for a 2-digit LED display. The design runs at 50 MHz and requires external hardware for the button and display. The documentation is sparse, with pin names all labeled '1', but the basic function is clear.",
+   "summary": "This SystemVerilog design generates a random number from 0 to F when a button is pressed, using an inverter ring as the entropy source. It outputs the result on its output pins, intended for a 2-digit LED display. The design runs at 50 MHz and requires external hardware for the button and display. The documentation is very thin, with pin names all labeled '1', so the exact interface is unclear.",
+   "summary_changed": true
+  },
+  {
+   "key": "2a106f72a2e6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "arbiter",
+    "asynchronous",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "arbiter",
+    "asynchronous",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements an asynchronous locking unit that accepts eight request signals and provides eight grant signals, ensuring that only one grant is active at a time. It functions as a mutual exclusion arbiter for asynchronous systems. The documentation is brief and does not describe the arbitration policy or testing methodology. No external hardware is specified.",
+   "summary": "This design implements an asynchronous locking unit that accepts eight request signals and provides eight grant signals, ensuring that only one grant is active at a time. It functions as a mutual exclusion arbiter for asynchronous systems. The documentation is brief and does not describe the arbitration policy or testing methodology. No external hardware is specified.",
+   "summary_changed": false
+  },
+  {
+   "key": "368a0db1e974",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project blinks the letter A on a 7-segment display, with each output pin driving one segment plus the decimal point. The documentation consists only of placeholder text, so the internal logic and intended test procedure are not described. It needs only a 7-segment display connected to the eight outputs. A silicon test report confirms that it did blink an A, but the lack of documentation makes the design's details unclear.",
+   "summary": "This project blinks the letter A on a 7-segment display, with each output pin driving one segment plus the decimal point. The documentation consists only of placeholder text, so the internal logic and intended test procedure are not described. It needs only a 7-segment display connected to the eight outputs. A silicon test report confirms that it did blink an A, but the lack of documentation makes the design's details unclear.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5945,
+  "completion_tokens": 1089,
+  "total_tokens": 7034,
+  "cost": 0.0018424,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0018424,
+   "upstream_inference_prompt_cost": 0.001189,
+   "upstream_inference_completions_cost": 0.0006534
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0018424,
+ "elapsed_s": 33.7
+}

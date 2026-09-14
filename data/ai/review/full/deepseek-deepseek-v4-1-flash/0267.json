@@ -1,0 +1,242 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "28eb4f26172d",
+  "ea8ecd2d1f6e",
+  "151e4d5bebd6",
+  "14524911d8f9",
+  "aaa32a8f0a99",
+  "a715280389e3"
+ ],
+ "results": [
+  {
+   "key": "28eb4f26172d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "systolic-array",
+    "scan-chain",
+    "floating-point",
+    "accelerator",
+    "verilog"
+   ],
+   "tags": [
+    "systolic-array",
+    "scan-chain",
+    "floating-point",
+    "accelerator",
+    "verilog"
+   ],
+   "summary_before": "This is the second version of a 2x2 systolic array with DFT infrastructure, incorporating bfloat16 floating-point arithmetic and a DFT scan chain. It accepts 8-bit data inputs and control signals, and outputs results on 8 pins. The design includes a scan chain for test and debug, with tck, tdi, tms, and tdo signals. The documentation is minimal, providing only pin names and a brief description, so specific functionality and testing details are not described.",
+   "summary": "This is the second version of a 2x2 systolic array with DFT infrastructure, incorporating bfloat16 floating-point arithmetic and a DFT scan chain. It accepts 8-bit data inputs and control signals, and outputs results on 8 pins. The design includes a scan chain for test and debug, with tck, tdi, tms, and tdo signals. The documentation is minimal, providing only pin names and a brief description, so specific functionality and testing details are not described.",
+   "summary_changed": false
+  },
+  {
+   "key": "ea8ecd2d1f6e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pattern-generator",
+     "reason": "no test-pattern-generation purpose described; output is decorative VGA motion"
+    }
+   ],
+   "add": [
+    {
+     "tag": "pong",
+     "reason": "moving-block VGA motion showcase, the canonical pong/arcade-style VGA demo tag"
+    }
+   ],
+   "notes": "Replaced unsupported pattern-generator with pong for the moving-block VGA demo, and dropped the unverified 'purely combinational' claim.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "pattern-generator"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "pong"
+   ],
+   "summary_before": "VGABlock generates moving colored blocks on a 640x480 VGA display, with a green and blue checkerboard drifting toward the top right and larger red blocks moving left. It is a purely combinational Verilog design clocked at 25.175 MHz that drives the standard Tiny VGA pinout (R1/G1/B1, R0/G0/B0, HSync, VSync). Testing requires only connecting the chip to a VGA monitor and observing the motion. The documentation is minimal and gives no detail on internal structure or any silicon results.",
+   "summary": "VGABlock draws moving colored blocks on a 640x480 VGA screen, with a green and blue checkerboard drifting toward the top right and larger red blocks moving left. It is a 1x1 Verilog design clocked at 25.175 MHz that drives the standard Tiny VGA pinout (R1/G1/B1, R0/G0/B0, HSync, VSync). Testing consists of connecting the chip to a VGA monitor and observing the pattern move as described. The documentation is short and gives no information on internal implementation or any silicon results.",
+   "summary_changed": true
+  },
+  {
+   "key": "151e4d5bebd6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "text",
+     "reason": "only a re-tiled single character is displayed; no text/string rendering is documented"
+    },
+    {
+     "tag": "pattern-generator",
+     "reason": "output is a bouncing-character demo, not a test pattern generator"
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "bouncing-character animated-color VGA showcase matches the demoscene category"
+    }
+   ],
+   "notes": "Removed text and pattern-generator (unsupported) and added demoscene for the bouncing-character VGA visual demo.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "text",
+    "pattern-generator"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "demoscene"
+   ],
+   "summary_before": "Demoscreen full of RICH displays a bouncing character on a VGA monitor with animated color, driven by a 25.175 MHz clock and the Tiny VGA pinout. Two input pins configure the behavior: ui[0] tiles the character across the screen and ui[1] selects a solid color instead of a golden and red mix. Testing consists of connecting a monitor and toggling those two inputs. The documentation is very short and provides no information on internal implementation or silicon results.",
+   "summary": "Demoscreen full of RICH displays a bouncing character on a VGA monitor with animated color, driven by a 25.175 MHz clock and the Tiny VGA pinout. Two input pins configure the behavior: ui[0] tiles the character across the screen and ui[1] selects a solid color instead of a golden and red mix. Testing consists of connecting a monitor and toggling those two inputs. The documentation is very short and provides no information on internal implementation or silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "14524911d8f9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "source does not state a teaching or learning purpose; the 'test' title alone doesn't establish an education domain"
+    }
+   ],
+   "add": [],
+   "notes": "Removed education (not stated in the source) and dropped the unsupported claim that the inputs are 4-bit as stated, since only a, b, select and d are named pins.",
+   "tags_before": [
+    "logic-gate",
+    "multiplexer",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "multiplexer",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This design feeds inputs a and b into AND, NAND and OR gates and routes the selected result to the output through control logic, with the state shown on a 7-segment display. A multiplexer select input chooses which logic result is presented, and a truth table in the documentation lists the expected AND, NAND and OR values for each input combination. Testing consists of setting the inputs and verifying the outputs against that table. The project is titled simply test and reads as a basic logic-gate exercise.",
+   "summary": "This design feeds inputs a and b into AND, NAND and OR gates and routes the selected result to the output through control logic, with the state shown on a 7-segment display. A multiplexer select input chooses which logic result is presented, and a truth table in the documentation lists the expected AND, NAND and OR values for each input combination. Testing consists of setting the inputs and verifying the outputs against that table. The project is titled simply test and implements a basic logic-gate exercise.",
+   "summary_changed": true
+  },
+  {
+   "key": "aaa32a8f0a99",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "source describes only clock division, not generating a clock source"
+    },
+    {
+     "tag": "education",
+     "reason": "no teaching or learning purpose stated in the source"
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "outputs drive 7-segment segments G and DP as discrete LED indicators"
+    }
+   ],
+   "notes": "Removed clock-generator and education (not supported); kept clock-divider, flip-flop, wokwi, 7-segment for the two toggled segment outputs.",
+   "tags_before": [
+    "clock-divider",
+    "clock-generator",
+    "flip-flop",
+    "wokwi",
+    "7-segment",
+    "education"
+   ],
+   "tags": [
+    "clock-divider",
+    "flip-flop",
+    "wokwi",
+    "7-segment",
+    "led"
+   ],
+   "summary_before": "This is a very simple clock divider that toggles two outputs, out6 and out7, at a divided rate from the 100 Hz input clock. The documentation gives no detail on the division ratio or internal structure beyond calling it primitive. It is tested by applying a 100 Hz clock and releasing reset, with the outputs intended to drive segment G and the decimal point of a digit indicator. The design requires an external 7-segment display and is a basic educational Wokwi project.",
+   "summary": "This is a very simple clock divider that toggles two outputs, out6 and out7, at a divided rate from the 100 Hz input clock. The documentation gives no detail on the division ratio or internal structure beyond calling it primitive. It is tested by applying a 100 Hz clock and releasing reset, with the outputs intended to drive segment G and the decimal point of a digit indicator. The design targets a Wokwi simulation and drives a digit indicator's segment G and decimal point.",
+   "summary_changed": true
+  },
+  {
+   "key": "a715280389e3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "no teaching or learning intent stated in the source"
+    },
+    {
+     "tag": "bcd",
+     "reason": "no BCD encoding logic mentioned in the documentation"
+    },
+    {
+     "tag": "decoder",
+     "reason": "no decoder structure is described; inputs are said to drive segments through AND gates"
+    }
+   ],
+   "add": [],
+   "notes": "Removed education, bcd and decoder (unsupported); kept counter and 7-segment while acknowledging the contradictory 'counting' vs 'switches-through-AND-gates' documentation.",
+   "tags_before": [
+    "7-segment",
+    "counter",
+    "bcd",
+    "decoder",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "wokwi"
+   ],
+   "summary_before": "This Wokwi design counts upwards from 0 to 9 and loops back, driving a 7-segment display through its eight output pins. The documentation states that input switches are connected to the segment display using AND gates, with the lowest input toggling the display, though the description is incomplete and partly garbled. No testing procedure has been written yet, as the how-to-test section is marked as a future addition. The project is a simple educational counter with thin documentation and no external hardware specified.",
+   "summary": "This Wokwi design is described as counting upwards from 0 to 9 and looping back, driving a 7-segment display through its eight output pins. The documentation states that input switches are connected to the segment display using AND gates, with the lowest input toggling the display, though the description is incomplete and partly garbled. No testing procedure has been written yet, as the how-to-test section is marked as a future addition. The project is a simple counter with thin documentation and no external hardware specified.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5682,
+  "completion_tokens": 1460,
+  "total_tokens": 7142,
+  "cost": 0.0034566,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034566,
+   "upstream_inference_prompt_cost": 0.0017046,
+   "upstream_inference_completions_cost": 0.001752
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034566,
+ "elapsed_s": 24.2
+}

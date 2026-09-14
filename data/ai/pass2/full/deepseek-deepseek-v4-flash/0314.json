@@ -1,0 +1,209 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "b6467ddd8b41",
+  "8f18b8a756ef",
+  "849e2228cb34",
+  "66e2751569ef",
+  "234cdea31cdf",
+  "d0134b27edc3",
+  "c81e117f2669",
+  "dc44d77b5bcb",
+  "96908af63c5c",
+  "20b4e3949f08"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "b6467ddd8b41",
+   "summary": "This design is a digital bioimpedance demodulator that processes a 1-bit sigma-delta ADC input through eight cascaded I/Q stages, each halving the clock frequency, to produce 128 bits of I and Q data. The results are stored in a register and can be read either via a UART transmitter at 9600 baud on uio[0] or through a 16-to-1 multiplexer selected by ui[1:4] and output on uo[0:7]. It requires an external 1-bit signal source, such as a sigma-delta ADC, and a USB-UART adapter for serial readout. The design is notable for its very low resource implementation of bioimpedance analysis in GF180 technology, though no silicon test results are provided.",
+   "tags": [
+    "biomedical",
+    "demodulator",
+    "uart",
+    "adc",
+    "dsp",
+    "sigma-delta",
+    "multiplexer",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "8f18b8a756ef",
+   "summary": "This project displays a bouncing ball on a 640x480 VGA screen, with position and velocity controlled via SPI commands. The SPI receiver decodes one-byte commands where the upper two bits select the parameter and the lower six bits provide the value, with velocity clamped to -10 to 10 and position updated every six video frames. It is tested using a cocotb testbench that sends SPI commands and checks movement, clamping, reset, and edge rebound behavior. The design requires a TinyVGA-style PMOD for output and an SPI master for command input, and it is notable for its simple physics engine and live pixel rendering without a framebuffer.",
+   "tags": [
+    "vga",
+    "spi",
+    "physics",
+    "cocotb",
+    "pmod",
+    "game",
+    "graphics",
+    "display",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "849e2228cb34",
+   "summary": "Dino-7 is a minimalist endless runner game inspired by the Chrome Dinosaur game, rendered on a single 7-segment display. It uses a finite state machine with idle, run, jump, hit, and score-display states, pseudo-random obstacle generation via a 32-bit LFSR, a hardware difficulty selector, and a retained high score. The game is controlled by a jump button on ui[0] and a reset button on ui[1], with optional switches for difficulty and LFSR seed selection. It requires a common-cathode 7-segment display and push buttons, and is notable for fitting a complete game into a single tile with a high-score memory.",
+   "tags": [
+    "game",
+    "7-segment",
+    "lfsr",
+    "fsm",
+    "scoreboard",
+    "button",
+    "display",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "66e2751569ef",
+   "summary": "This project implements a custom system-on-chip using the SERV processor core under the RV32e instruction set. It provides GPIO inputs and outputs, a UART interface for serial communication, and SPI/QSPI interfaces for external flash and RAM memory. The design requires an external SPI Flash/RAM memory module, such as the QPMOD, and a USB-to-serial converter to interact with the system. It is notable for being a compact RISC-V SoC that fits within a 3x2 tile area and has been proven with external QSPI memory hardware.",
+   "tags": [
+    "risc-v",
+    "soc",
+    "uart",
+    "spi",
+    "qspi",
+    "gpio",
+    "memory",
+    "verilog",
+    "microcontroller"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "234cdea31cdf",
+   "summary": "This project displays a FER logo on a VGA screen and plays music, with the logo bouncing and its direction controllable via four buttons. The VGA output uses the Tiny VGA PMOD pinout, and audio is output on uio[0]. It requires a VGA monitor connected to the VGA PMOD and uses inputs 2-5 for left, right, up, and down control. The documentation is very thin, providing only a one-line description and basic pin information, so details about the music generation and logo animation are limited.",
+   "tags": [
+    "vga",
+    "audio",
+    "music",
+    "graphics",
+    "button",
+    "display",
+    "education",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 6,
+   "key": "d0134b27edc3",
+   "summary": "This module provides a PWM generator on output pin 7 and a PWM reader on input pin 7, with the generator duty cycle set by input pins [6:0] and the reader output reflected on output pins [6:0]. The PWM period is assumed to be 20 ms with duty cycle adjustable between 1 ms and 2 ms, suitable for servo control. An SPI interface allows configuration and read/write operations when enabled, and the design can be tested by looping back the generated PWM signal to the input. It requires a development kit and optionally an oscilloscope and signal generator for testing, and is notable for combining PWM input and output with SPI configurability.",
+   "tags": [
+    "pwm",
+    "spi",
+    "servo",
+    "gpio",
+    "motor-control",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 7,
+   "key": "c81e117f2669",
+   "summary": "This project is a digital companion tile for a future local memristive AI chip, implementing the digital control contract around a symbolic memristive update without real memristors. It loads target and current values, runs a bounded write-verify loop, emits pulse_up or pulse_down events, and finishes with verify_ok or fault based on an attempt budget. The design is tested with cocotb scenarios and Yosys formal contract checks, and no external hardware is required for logic testing. It is notable for its symbolic approach to memristive control and the inclusion of formal verification for the public output contract.",
+   "tags": [
+    "memristor",
+    "fsm",
+    "cocotb",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "dc44d77b5bcb",
+   "summary": "This project is a UART/SPI-controlled ASIC lab for exploring true-random number generation and PUF-style hardware entropy sources, using a bank of ring oscillators as the entropy source. A host can send ASCII commands over UART to configure internal registers, control the oscillator network, and read back raw entropy samples, with status and data also available over SPI. It requires an external UART adapter for interaction, and the design is intended for cryptographic and security applications. It is notable for providing a hands-on platform for evaluating hardware entropy sources, though no silicon test results are included.",
+   "tags": [
+    "trng",
+    "puf",
+    "ring-oscillator",
+    "uart",
+    "spi",
+    "security",
+    "crypto",
+    "education",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "96908af63c5c",
+   "summary": "This chip is an SPI-controlled 8-channel LED driver with a 16-register file, where eight BRIGHT registers set the PWM brightness of eight LED outputs. Each SPI transaction is 16 bits, with the first byte selecting a register address and direction and the second byte carrying data, and the PWM uses a shared 8-bit counter with a prescaler for flicker-free refresh. It is tested through a recommended bring-up sequence that verifies SPI communication, address decoding, read/write loopback, read-only protection, enable control, and LED output. The design requires a Pmod 8LD with eight discrete LEDs connected to the output Pmod header, and is notable for its robust SPI interface with synchronizers and a clear register map.",
+   "tags": [
+    "spi",
+    "led",
+    "pwm",
+    "register-file",
+    "driver",
+    "pmod",
+    "systemverilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "20b4e3949f08",
+   "summary": "This project renders a 16x16 smiley sprite bouncing around a 640x480 VGA screen, with each pixel computed live from the beam position and ball coordinates without a framebuffer. The smiley blinks every approximately two seconds and its eyes shift toward the direction of motion. It is tested by plugging the TT VGA PMOD into the output PMOD and connecting a 640x480 at 60 Hz monitor, with no input controls. The design is notable for its live pixel computation and simple animation, requiring only the VGA PMOD and a compatible monitor.",
+   "tags": [
+    "vga",
+    "sprite",
+    "graphics",
+    "display",
+    "art",
+    "pmod",
+    "verilog"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10454,
+  "completion_tokens": 2115,
+  "total_tokens": 12569,
+  "cost": 0.001439032,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001439032,
+   "upstream_inference_prompt_cost": 0.001024492,
+   "upstream_inference_completions_cost": 0.00041454
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001439032,
+ "elapsed_s": 99.4
+}

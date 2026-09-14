@@ -1,0 +1,273 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "5395b8394eaa",
+  "574c9d944577",
+  "e03c99573197",
+  "6ada42f44a65",
+  "990861dc1d34",
+  "14a023658bd2"
+ ],
+ "results": [
+  {
+   "key": "5395b8394eaa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated in the source."
+    },
+    {
+     "tag": "template",
+     "reason": "No template or starter content is indicated."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Pins are segment outputs, not general-purpose digital IO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is essentially empty and does not describe the design."
+    }
+   ],
+   "notes": "Removed unsupported education/template/gpio tags and added insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "template",
+    "gpio"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled 'numbers' and appears to be a seven-segment display driver based on its pin names, which include segment labels such as top, topr, botr, bot, botl, topl, mid, and dot. The documentation is essentially empty: the one-line description says 'nothing so far', the how-it-works section says 'i do not know yet', and the how-to-test section says 'i do not know yet'. No external hardware is listed, though a seven-segment display would be required to use the outputs. The design is likely a simple educational template, but the lack of documentation prevents a clear understanding of its functionality.",
+   "summary": "This project is titled 'numbers' and appears to be a seven-segment display driver based on its pin names, which include segment labels such as top, topr, botr, bot, botl, topl, mid, and dot. The documentation is essentially empty: the one-line description says 'nothing so far', the how-it-works section says 'i do not know yet', and the how-to-test section says 'i do not know yet'. No external hardware is listed, though a seven-segment display would be required to use the outputs. The lack of documentation prevents a clear understanding of its functionality.",
+   "summary_changed": true
+  },
+  {
+   "key": "574c9d944577",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "trng",
+     "reason": "No true random number generator is described in the source."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "No ring oscillator is mentioned in the source."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator is described."
+    },
+    {
+     "tag": "analog",
+     "reason": "The source is Verilog and does not describe analog circuitry."
+    },
+    {
+     "tag": "vco",
+     "reason": "No voltage-controlled oscillator is mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "The title explicitly includes 'ALU 4 bits'."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not explain the ALU or PWM operation."
+    }
+   ],
+   "notes": "Replaced unsupported random/analog tags with ALU and insufficient-doc.",
+   "tags_before": [
+    "trng",
+    "ring-oscillator",
+    "prng",
+    "analog",
+    "pwm",
+    "vco"
+   ],
+   "tags": [
+    "pwm",
+    "alu",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design generates a random bit with a variable probability using a ring oscillator-based true random number generator. It employs seven 7-stage ring oscillators with a NAND gate, an inverter bias system controlled by a DAC, and flip-flops to sample the output. The design is intended for cryptographic or security applications. It is notable for its use of analog bias control to vary the output probability.",
+   "summary": "This project is titled '4-bits 1-channel PWM and ALU 4 bits' and is described as a 4-bit, 1-channel PWM module. The documentation states only that ui_in[7:0] is used as input and uo_out should be read to get the output. No details are provided about the ALU or PWM behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "e03c99573197",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "i2s",
+     "reason": "The source mentions an I2S receiver as external hardware, but the design itself is not described as an I2S interface."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Beamforming is implied by a beamformed PCM output, but no DSP operation is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pdm",
+     "reason": "The design takes PDM microphone inputs and produces PCM outputs, indicating PDM-to-PCM conversion."
+    }
+   ],
+   "notes": "Removed unsupported i2s/dsp tags and added pdm based on PDM microphone inputs.",
+   "tags_before": [
+    "clock-divider",
+    "audio",
+    "i2s",
+    "microphone",
+    "dsp",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "clock-divider",
+    "audio",
+    "microphone",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a clock divider with lag correction that interfaces with PDM microphones and an I2S receiver. It takes bit clock and LR clock inputs, along with PDM data from up to eight microphones, and outputs PCM audio for each microphone plus a beamformed PCM output. The documentation is too vague to describe its exact operation.",
+   "summary": "This design is a clock divider with lag correction that interfaces with PDM microphones and an I2S receiver. It takes bit clock and LR clock inputs, along with PDM data from up to eight microphones, and outputs PCM audio for each microphone plus a beamformed PCM output. The documentation is too vague to describe its exact operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "6ada42f44a65",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "No audio application is stated; the mixer is for RF/IF signals."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "The design is a mixer, not a demodulator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixer",
+     "reason": "The title and description explicitly identify a double balanced mixer."
+    }
+   ],
+   "notes": "Removed unsupported audio/demodulator tags and added mixer.",
+   "tags_before": [
+    "analog",
+    "rf",
+    "radio",
+    "audio",
+    "demodulator",
+    "clock-divider"
+   ],
+   "tags": [
+    "analog",
+    "rf",
+    "radio",
+    "clock-divider",
+    "audio"
+   ],
+   "summary_before": "This analog block is a double balanced mixer that takes an RF input with DC bias and a digital local-oscillator signal to produce a differential intermediate-frequency output. It also includes a quadrature divider that generates I and Q phase outputs from a clock input. The design was simulated at 7 MHz, and the documentation gives no test procedure or external hardware beyond the RF and LO sources implied by the pins. No silicon test results are provided, so the summary is based mainly on the title and pin names.",
+   "summary": "This analog block is a double balanced mixer that takes an RF input with DC bias and a digital local-oscillator signal to produce a differential intermediate-frequency output. It also includes a quadrature divider that generates I and Q phase outputs from a clock input. The design was simulated at 7 MHz, and the documentation gives no test procedure or external hardware beyond the RF and LO sources implied by the pins. No silicon test results are provided, so the summary is based mainly on the title and pin names.",
+   "summary_changed": false
+  },
+  {
+   "key": "990861dc1d34",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not indicate a template or starter project."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported template tag.",
+   "tags_before": [
+    "template",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled test001 and is described only as a test Tiny Tapeout design. The documentation consists of placeholder text asking how the project works and how to test it, with no actual explanation. The pin names map the eight outputs to the segments and dot of a 7-segment display, but nothing states what is driven onto them. There is not enough information to determine the design's function or how it should be used.",
+   "summary": "This project is titled test001 and is described only as a test Tiny Tapeout design. The documentation consists of placeholder text asking how the project works and how to test it, with no actual explanation. The pin names map the eight outputs to the segments and dot of a 7-segment display, but nothing states what is driven onto them. There is not enough information to determine the design's function or how it should be used.",
+   "summary_changed": false
+  },
+  {
+   "key": "14a023658bd2",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "No dedicated compute acceleration hardware is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neuromorphic",
+     "reason": "The how-it-works section describes LIF neuron behavior, suggesting a neuromorphic design."
+    }
+   ],
+   "notes": "Escalated because the source is contradictory about whether this is a matrix-vector multiplier or a LIF neuron circuit.",
+   "tags_before": [
+    "accelerator",
+    "multiplier",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "multiplier",
+    "verilog",
+    "insufficient-doc",
+    "neuromorphic"
+   ],
+   "summary_before": "This design multiplies a 2x2 matrix by a 2x1 vector, with 2-bit elements, producing a 2-element output vector. Matrix elements are supplied on ui_in, the input vector on uio_in, and the output vector is split across uo_out and uio_out. The documentation is inconsistent: the 'How it works' section describes treating inputs as current injection into a LIF neuron, which does not match the title or pin descriptions, and the test section only says 'Test it'. External hardware is listed as 'Possibly', and the documentation is too thin and contradictory to describe the design reliably.",
+   "summary": "This design multiplies a 2x2 matrix by a 2x1 vector, with 2-bit elements, producing a 2-element output vector. Matrix elements are supplied on ui_in, the input vector on uio_in, and the output vector is split across uo_out and uio_out. The documentation is inconsistent: the 'How it works' section describes treating inputs as current injection into a LIF neuron, which does not match the title or pin descriptions, and the test section only says 'Test it'. External hardware is listed as 'Possibly', and the documentation is too thin and contradictory to describe the design reliably.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "574c9d944577: 3 sentences after review",
+  "e03c99573197: 3 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6154,
+  "completion_tokens": 1460,
+  "total_tokens": 7614,
+  "cost": 0.01390488,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.01390488,
+   "upstream_inference_prompt_cost": 0.00812328,
+   "upstream_inference_completions_cost": 0.0057816
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.01390488,
+ "elapsed_s": 18.4
+}

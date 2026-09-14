@@ -1,0 +1,267 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "785ec57a6dad",
+  "ce871c0c922a",
+  "5d24f0dceda1",
+  "2ef2ca153898",
+  "768a5e94af23",
+  "2161d0dc062b"
+ ],
+ "results": [
+  {
+   "key": "785ec57a6dad",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The design is a counter/comparator with a 7-segment display; the documentation describes no spiking neural network hardware, only the title's claim of modeling a LIF neuron."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The clock division is incidental to the counter; the core described function is counting and comparison, and the tag is not clearly supported as a design feature."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design is explicitly a 24-bit counter incremented once per second."
+    },
+    {
+     "tag": "comparator",
+     "reason": "The design compares the counter against a programmable 24-bit compare register."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs uo[0..7] are labeled segment a-g and dot, driving a 7-segment display."
+    },
+    {
+     "tag": "timer",
+     "reason": "The counter with programmable compare acts as a programmable timer."
+    }
+   ],
+   "notes": "Removed spiking-neural-network and clock-divider tags not supported by the documented counter/comparator behavior; summary rewritten to match the source.",
+   "tags_before": [
+    "spiking-neural-network",
+    "timer",
+    "counter",
+    "7-segment",
+    "clock-divider"
+   ],
+   "tags": [
+    "timer",
+    "counter",
+    "7-segment",
+    "comparator"
+   ],
+   "summary_before": "This project models a leaky integrate-and-fire neuron using a counter and comparator to generate spikes. It includes a clock divider and a 7-segment display driver to show the counter value, with the lower 8 bits of the counter available on bidirectional pins. The design can be tested by observing the counter increment every second with a 10 MHz clock, and the counting speed can be adjusted via input pins. The documentation is clear but the neuron model is simplified and lacks detailed biological realism.",
+   "summary": "This project uses a 24-bit counter and a programmable compare register to generate a periodic event, with the counter value shown on a 7-segment display. The lower 8 bits of the counter are also available on the bidirectional pins. With all inputs low the compare is set to 10,000,000, so the counter increments once per second at a 10 MHz clock, and setting the inputs programs bits 11 to 18 of the compare value to change the rate. The design can be tested by observing the counter increment every second and experimenting with the input pins to change the counting speed.",
+   "summary_changed": true
+  },
+  {
+   "key": "ce871c0c922a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "The source describes registers made from D-flip flops and multiplexers, not a shift register."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "Multiplexers are mentioned only as implementation detail of the register, not a notable design feature."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "The UART transmitter is built from D-flip flops."
+    },
+    {
+     "tag": "education",
+     "reason": "It is an edited version of a digital design guide example, used for teaching serial communication."
+    }
+   ],
+   "notes": "Removed unsupported shift-register and multiplexer tags; kept flip-flop and education which are supported.",
+   "tags_before": [
+    "uart",
+    "communication",
+    "wokwi",
+    "education",
+    "shift-register",
+    "flip-flop",
+    "multiplexer"
+   ],
+   "tags": [
+    "uart",
+    "communication",
+    "wokwi",
+    "education",
+    "flip-flop"
+   ],
+   "summary_before": "This project implements a UART transmitter using registers made from D-flip flops and multiplexers, based on an example from a digital design guide. It continuously sends the characters QSM when enabled. To use it, a clock signal must be connected, and the Load and Output Enable pins must be toggled in a specific sequence. An external UART receiver is required to observe the transmitted data. The design is a simple educational example of serial communication.",
+   "summary": "This project implements a UART transmitter using registers made from D-flip flops and multiplexers, based on an example from a digital design guide. It continuously sends the characters QSM when enabled. To use it, a clock signal must be connected, and the Load and Output Enable pins must be toggled in a specific sequence. An external UART receiver is required to observe the transmitted data.",
+   "summary_changed": true
+  },
+  {
+   "key": "5d24f0dceda1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design contains an analog inverter, not a digital logic gate implementation."
+    },
+    {
+     "tag": "opamp",
+     "reason": "The source describes an analog inverter that can be used as an amplifier, but does not document an operational amplifier circuit."
+    },
+    {
+     "tag": "full-custom",
+     "reason": "The source does not state that the design uses full-custom layout."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The design is an analog circuit with programmable resistors and an analog inverter."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The design is intended for measurement experiments with signal generators and oscilloscopes."
+    }
+   ],
+   "notes": "Removed logic-gate, opamp, and full-custom tags not supported by the source; added analog and instrumentation.",
+   "tags_before": [
+    "analog",
+    "logic-gate",
+    "opamp",
+    "full-custom"
+   ],
+   "tags": [
+    "analog",
+    "instrumentation"
+   ],
+   "summary_before": "This analog design consists of an inverter and a programmable resistor that can connect one of 16 58.218 kΩ resistors between pin ua[0] and ground via analog switches controlled by digital inputs. The inverter uses pins ua[4] and ua[5] and can be used as an amplifier. Testing involves applying signals and measuring currents with an ammeter or oscilloscope. External hardware includes a signal generator and measurement equipment, and the design is intended for experiments with analog building blocks.",
+   "summary": "This analog design consists of an inverter and a programmable resistor that can connect one of 16 58.218 kΩ resistors between pin ua[0] and ground via analog switches controlled by digital inputs. The inverter uses pins ua[4] and ua[5] and can be used as an amplifier. Testing involves applying signals and measuring currents with an ammeter or oscilloscope. External hardware includes a signal generator and measurement equipment, and the design is intended for experiments with analog building blocks.",
+   "summary_changed": false
+  },
+  {
+   "key": "2ef2ca153898",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "alu",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This is a 4-bit ALU implementing the Cornell University ECE2300 instruction set, with operations including addition, subtraction, shifts, AND, and OR. It takes two 4-bit inputs (A and B) and a 3-bit function select, and outputs a 4-bit result along with carry, overflow, negative, and zero flags. The design requires no external hardware beyond input and output connections. It is an educational project from a university course.",
+   "summary": "This is a 4-bit ALU implementing the Cornell University ECE2300 instruction set, with operations including addition, subtraction, shifts, AND, and OR. It takes two 4-bit inputs (A and B) and a 3-bit function select, and outputs a 4-bit result along with carry, overflow, negative, and zero flags. The design requires no external hardware beyond input and output connections. It is an educational project from a university course.",
+   "summary_changed": false
+  },
+  {
+   "key": "768a5e94af23",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "The design implements a Sobel edge filter, not a finite impulse response filter."
+    },
+    {
+     "tag": "edge-detector",
+     "reason": "The edge-detector tag refers to detecting signal edges on an input, not image edge detection."
+    }
+   ],
+   "add": [
+    {
+     "tag": "image-processing",
+     "reason": "The design performs grayscale conversion and Sobel edge detection on image pixels."
+    },
+    {
+     "tag": "spi",
+     "reason": "Pixel data is received via an SPI interface on ui[0..2]."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "An internal LFSR block can generate test pixels."
+    },
+    {
+     "tag": "dsp",
+     "reason": "The grayscale and Sobel processing is a digital signal processing algorithm."
+    }
+   ],
+   "notes": "Removed fir-filter and edge-detector tags that misdescribe the image processing; added image-processing, spi, lfsr, and dsp.",
+   "tags_before": [
+    "image-processing",
+    "spi",
+    "edge-detector",
+    "lfsr",
+    "fir-filter",
+    "dsp"
+   ],
+   "tags": [
+    "image-processing",
+    "spi",
+    "lfsr",
+    "dsp"
+   ],
+   "summary_before": "This design performs grayscale conversion and Sobel edge detection on an image. It receives pixel data via an SPI interface and can be configured for bypass, grayscale, Sobel, or combined processing. An internal LFSR can generate test pixels. The output is a single processed pixel per input, and external hardware such as a Raspberry Pi is needed to send data over SPI.",
+   "summary": "This design performs grayscale conversion and Sobel edge detection on an image. It receives pixel data via an SPI interface and can be configured for bypass, grayscale, Sobel, or combined processing. An internal LFSR can generate test pixels. The output is a single processed pixel per input, and external hardware such as a Raspberry Pi is needed to send data over SPI.",
+   "summary_changed": false
+  },
+  {
+   "key": "2161d0dc062b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "time-to-digital-converter",
+    "delay-line",
+    "instrumentation",
+    "silicon-tested"
+   ],
+   "tags": [
+    "time-to-digital-converter",
+    "delay-line",
+    "instrumentation",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a synthesized time-to-digital converter (TDC) that measures the time delay between a start signal and the clock using an interleaved delay line. The captured result is muxed out byte by byte via output pins. It requires two external signal generators to provide the start signal and clock with a known delay. Silicon testing showed partial functionality, with bits changing when a ~7ns delay was applied.",
+   "summary": "This is a synthesized time-to-digital converter (TDC) that measures the time delay between a start signal and the clock using an interleaved delay line. The captured result is muxed out byte by byte via output pins. It requires two external signal generators to provide the start signal and clock with a known delay. Silicon testing showed partial functionality, with bits changing when a ~7ns delay was applied.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7702,
+  "completion_tokens": 1573,
+  "total_tokens": 9275,
+  "cost": 0.002775318,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002775318,
+   "upstream_inference_prompt_cost": 0.001170858,
+   "upstream_inference_completions_cost": 0.00160446
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002775318,
+ "elapsed_s": 36.0
+}

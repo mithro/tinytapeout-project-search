@@ -1,0 +1,208 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "175892f212c9",
+  "8e1abd3ce005",
+  "3d8c41d94e01",
+  "c2a40dfe5512",
+  "7d1dc5d28e5c",
+  "c90a3ba0193b"
+ ],
+ "results": [
+  {
+   "key": "175892f212c9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design is a PWM generator, not a general waveform/signal generator."
+    },
+    {
+     "tag": "waveform-generator",
+     "reason": "The design only produces a PWM waveform, not arbitrary waveforms."
+    }
+   ],
+   "add": [],
+   "notes": "Removed signal-generator and waveform-generator because the source only describes a PWM generator, not a general waveform/signal generator.",
+   "tags_before": [
+    "pwm",
+    "counter",
+    "signal-generator",
+    "waveform-generator",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This design generates a pulse-width modulated (PWM) waveform with a duty cycle set by a 7-bit input. An internal counter is compared against the duty cycle value to produce a high output while the counter is below the threshold. Testing requires a clock signal and an oscilloscope or logic analyzer to observe the output waveform. The design is a straightforward PWM generator with no external hardware beyond measurement equipment.",
+   "summary": "This design generates a pulse-width modulated (PWM) waveform with a duty cycle set by a 7-bit input. An internal counter is compared against the duty cycle value to produce a high output while the counter is below the threshold. Testing requires a clock signal and an oscilloscope or logic analyzer to observe the output waveform. The design is a straightforward PWM generator with no external hardware beyond measurement equipment.",
+   "summary_changed": false
+  },
+  {
+   "key": "8e1abd3ce005",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes a 4-bit Brent-Kung adder, not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu because the source only documents a 4-bit Brent-Kung adder, not an ALU.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "combinational"
+   ],
+   "tags": [
+    "adder",
+    "combinational"
+   ],
+   "summary_before": "This project implements a 4-bit Brent-Kung adder that takes two 4-bit inputs and a carry-in, producing a 5-bit sum output. The design is combinational and can be tested using a provided Verilog testbench with Icarus Verilog and GTKWave. No external hardware is required for operation. The project is notable for being a quick implementation of a parallel prefix adder, likely created in a short time frame.",
+   "summary": "This project implements a 4-bit Brent-Kung adder that takes two 4-bit inputs and a carry-in, producing a 5-bit sum output. The design is combinational and can be tested using a provided Verilog testbench with Icarus Verilog and GTKWave. No external hardware is required for operation. The project is notable for being a quick implementation of a parallel prefix adder, likely created in a short time frame.",
+   "summary_changed": false
+  },
+  {
+   "key": "3d8c41d94e01",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "barrel-shifter",
+     "reason": "The source mentions bit rotation but does not describe a barrel shifter."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The source does not state that the design is purely combinational."
+    }
+   ],
+   "add": [],
+   "notes": "Removed barrel-shifter and combinational because the source does not describe a barrel shifter or state that the design is purely combinational.",
+   "tags_before": [
+    "alu",
+    "npu",
+    "neural-network",
+    "barrel-shifter",
+    "priority-encoder",
+    "gray-code",
+    "combinational"
+   ],
+   "tags": [
+    "alu",
+    "npu",
+    "neural-network",
+    "priority-encoder",
+    "gray-code"
+   ],
+   "summary_before": "This project implements a custom arithmetic logic unit (ALU) that also supports neural-inspired operations in a separate NPU mode. It takes two 4-bit operands and a 4-bit opcode plus a mode bit to select from operations such as addition, subtraction, multiplication, division, bitwise logic, rotation, priority encoding, gray code conversion, majority, and various neural computations. The 8-bit output includes the result and error, sign, carry, and zero flags. The design is purely combinational and requires no external hardware.",
+   "summary": "This project implements a custom arithmetic logic unit (ALU) that also supports neural-inspired operations in a separate NPU mode. It takes two 4-bit operands and a 4-bit opcode plus a mode bit to select from operations such as addition, subtraction, multiplication, division, bitwise logic, rotation, priority encoding, gray code conversion, majority, and various neural computations. The 8-bit output includes the result and error, sign, carry, and zero flags. The design requires no external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "c2a40dfe5512",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The source describes image processing, not general digital signal processing."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dsp because the source describes image processing rather than general digital signal processing.",
+   "tags_before": [
+    "image-processing",
+    "spi",
+    "lfsr",
+    "dsp"
+   ],
+   "tags": [
+    "image-processing",
+    "spi",
+    "lfsr"
+   ],
+   "summary_before": "This SystemVerilog design performs grayscale conversion and Sobel edge detection on pixel data streamed in over SPI. A two-bit select input chooses bypass, grayscale, Sobel, or grayscale-plus-Sobel processing, and an enable pin gates the Sobel stage. An internal LFSR can generate test pixels instead of external data, and the processed result appears on a single output pin. The design needs an SPI-capable host such as a Raspberry Pi to feed pixels, and the documentation explains the pin mapping and processing modes.",
+   "summary": "This SystemVerilog design performs grayscale conversion and Sobel edge detection on pixel data streamed in over SPI. A two-bit select input chooses bypass, grayscale, Sobel, or grayscale-plus-Sobel processing, and an enable pin gates the Sobel stage. An internal LFSR can generate test pixels instead of external data, and the processed result appears on a single output pin. The design needs an SPI-capable host such as a Raspberry Pi to feed pixels, and the documentation explains the pin mapping and processing modes.",
+   "summary_changed": false
+  },
+  {
+   "key": "7d1dc5d28e5c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asic",
+     "reason": "The source describes a factory test module, not an application-specific integrated circuit implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed asic because the source describes a factory test module rather than an ASIC implementation.",
+   "tags_before": [
+    "factory-test",
+    "counter",
+    "gpio",
+    "asic"
+   ],
+   "tags": [
+    "factory-test",
+    "counter",
+    "gpio"
+   ],
+   "summary_before": "This is a factory test module hardened with LibreLane 3.0.0.dev38. It provides three modes: mirroring input pins to outputs, mirroring bidirectional pins to outputs, and outputting an 8-bit counter on both output and bidirectional pins. The mode is selected by rst_n and sel signals. It is used to verify the connectivity and functionality of all I/O pins on the ASIC.",
+   "summary": "This is a factory test module hardened with LibreLane 3.0.0.dev38. It provides three modes: mirroring input pins to outputs, mirroring bidirectional pins to outputs, and outputting an 8-bit counter on both output and bidirectional pins. The mode is selected by rst_n and sel signals. It is used to verify the connectivity and functionality of all I/O pins on the ASIC.",
+   "summary_changed": false
+  },
+  {
+   "key": "c90a3ba0193b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "video",
+    "gamepad",
+    "demoscene",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "gamepad",
+    "demoscene",
+    "verilog"
+   ],
+   "summary_before": "A VGA screensaver that displays a bouncing logo with an animated color gradient, similar to the classic DVD screensaver. It supports a tiling mode and solid color mode via input pins, and can optionally be controlled with a Gamepad Pmod. The design outputs VGA signals for a 640x480 display and requires a TinyVGA Pmod for connection to a monitor. It is a fun visual demo with minimal external hardware.",
+   "summary": "A VGA screensaver that displays a bouncing logo with an animated color gradient, similar to the classic DVD screensaver. It supports a tiling mode and solid color mode via input pins, and can optionally be controlled with a Gamepad Pmod. The design outputs VGA signals for a 640x480 display and requires a TinyVGA Pmod for connection to a monitor. It is a fun visual demo with minimal external hardware.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7296,
+  "completion_tokens": 1229,
+  "total_tokens": 8525,
+  "cost": 0.0045795,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0045795,
+   "upstream_inference_prompt_cost": 0.002736,
+   "upstream_inference_completions_cost": 0.0018435
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0045795,
+ "elapsed_s": 4.9
+}

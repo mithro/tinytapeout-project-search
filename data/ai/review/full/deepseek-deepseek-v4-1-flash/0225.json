@@ -1,0 +1,241 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "07ae8fbb3f41",
+  "4030333aacd8",
+  "4e91b577c1eb",
+  "2a92ff9bfb68",
+  "025aa0c0f54c",
+  "15ac5489e4f1"
+ ],
+ "results": [
+  {
+   "key": "07ae8fbb3f41",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "Output is SVGA via Pmod pins (VS/HS/RGB), not a VGA interface tag; the design uses SPI Pmod pinout and SVGA timing, so vga is unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working status on fabricated silicon."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Pins match the SPI Pmod pinout and external hardware is a Tiny VGA PMOD."
+    }
+   ],
+   "notes": "Removed vga (SVGA over Pmod, not VGA) and added silicon-tested and pmod based on pins and test reports.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "sprite",
+    "graphics",
+    "spi",
+    "systemverilog"
+   ],
+   "tags": [
+    "video",
+    "display",
+    "sprite",
+    "graphics",
+    "spi",
+    "systemverilog",
+    "silicon-tested",
+    "pmod"
+   ],
+   "summary_before": "This design produces an 800x600 60 Hz SVGA output with a background and a single 12x12 sprite, rendered internally at 100x75 so each sprite pixel is 8x8 screen pixels. The sprite is initialized with a pixelated Tiny Tapeout logo that moves around the screen, and an SPI receiver accepts commands to replace sprite data, change colors, set the background and control the sprite position. It can run at either a 40 MHz or 10 MHz pixel clock selected by a configuration bit, and it needs an external Tiny VGA PMOD for display. Silicon tests report that the logo bounces around and the SPI interface works, with some glitching when moving the sprite.",
+   "summary": "This design produces an 800x600 60 Hz SVGA output with a background and a single 12x12 sprite, rendered internally at 100x75 so each sprite pixel is 8x8 screen pixels. The sprite is initialized with a pixelated Tiny Tapeout logo that moves around the screen, and an SPI receiver accepts commands to replace sprite data, change colors, set the background and control the sprite position. It can run at either a 40 MHz or 10 MHz pixel clock selected by a configuration bit, and it needs an external Tiny VGA PMOD for display. Silicon tests report that the logo bounces around and the SPI interface works, with some glitching when moving the sprite.",
+   "summary_changed": false
+  },
+  {
+   "key": "4030333aacd8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "text",
+     "reason": "Output is a 7-segment display, not a textual display; text tag is unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working status on fabricated silicon."
+    }
+   ],
+   "notes": "Removed text (7-segment output only) and added silicon-tested per test reports.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "decoder",
+    "text",
+    "wokwi",
+    "dip-switch"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "decoder",
+    "wokwi",
+    "dip-switch",
+    "silicon-tested"
+   ],
+   "summary_before": "This design displays a user-selectable Latin character on a 7-segment display based on a 6-bit binary value entered on DIP switches. It drives the display one segment at a time, so a high clock rate is needed to see the full character. The character set covers a-z plus space, underscore, hyphen, period, exclamation mark and quote. Silicon tests report it working, and it is notable as a simple character generator with a documented mapping table.",
+   "summary": "This design displays a user-selectable Latin character on a 7-segment display based on a 6-bit binary value entered on DIP switches. It drives the display one segment at a time, so a high clock rate is needed to see the full character. The character set covers a-z plus space, underscore, hyphen, period, exclamation mark and quote. Silicon tests report it working, and it is notable as a simple character generator with a documented mapping table.",
+   "summary_changed": false
+  },
+  {
+   "key": "4e91b577c1eb",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "prng",
+    "lfsr",
+    "7-segment",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "prng",
+    "lfsr",
+    "7-segment",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This design emulates a six-sided die by generating a pseudo-random number from 1 to 6 using a linear-feedback shift register. When the ROLL input is pulsed, the 7-segment display rapidly cycles through numbers before settling on a final value, and the decimal point lights up to indicate completion. It requires an external 7-segment display, such as the one on the Tiny Tapeout demo board, and is controlled by a clock and reset signal. The project is notable for its simple, self-contained implementation of a familiar game element on a single tile.",
+   "summary": "This design emulates a six-sided die by generating a pseudo-random number from 1 to 6 using a linear-feedback shift register. When the ROLL input is pulsed, the 7-segment display rapidly cycles through numbers before settling on a final value, and the decimal point lights up to indicate completion. It requires an external 7-segment display, such as the one on the Tiny Tapeout demo board, and is controlled by a clock and reset signal. The project is notable for its simple, self-contained implementation of a familiar game element on a single tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "2a92ff9bfb68",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "No dedicated compute acceleration hardware is described; it is an experimental processor node, not an accelerator."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Source explicitly states it is a work in progress that does not do very much yet."
+    },
+    {
+     "tag": "cpu",
+     "reason": "Describes an asynchronous parallel processor with processing nodes."
+    }
+   ],
+   "notes": "Removed accelerator and education (unsupported) and added incomplete and cpu based on the source description.",
+   "tags_before": [
+    "asynchronous",
+    "accelerator",
+    "fsm",
+    "7-segment",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "asynchronous",
+    "fsm",
+    "7-segment",
+    "verilog",
+    "incomplete",
+    "cpu"
+   ],
+   "summary_before": "This circuit is an early investigation into an asynchronous parallel processor, where each processing node waits for valid data, computes a result from four 4-bit inputs, signals its neighbours, and then makes the result available. Inputs are loaded into buffers via dedicated load pins, and the result is displayed on seven-segment outputs with a data-ready dot. The design is explicitly described as a work in progress that does not do very much yet, with future plans for programmable nodes, a multi-node array, and a clockless version. Testing consists of resetting, loading input values, and observing the outputs.",
+   "summary": "This circuit is an early investigation into an asynchronous parallel processor, where each processing node waits for valid data, computes a result from four 4-bit inputs, signals its neighbours, and then makes the result available. Inputs are loaded into buffers via dedicated load pins, and the result is displayed on seven-segment outputs with a data-ready dot. The design is explicitly described as a work in progress that does not do very much yet, with future plans for programmable nodes, a multi-node array, and a clockless version. Testing consists of resetting, loading input values, and observing the outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "025aa0c0f54c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "neural-network",
+    "neuromorphic",
+    "spiking-neural-network",
+    "machine-learning",
+    "accelerator",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "neuromorphic",
+    "spiking-neural-network",
+    "machine-learning",
+    "accelerator",
+    "verilog"
+   ],
+   "summary_before": "This design is a Field Programmable Neural Array (FPNA) consisting of 50 interconnected configurable neuron blocks (CNBs) that simulate leaky neurons. Each CNB has four inputs with 3-bit weights, a configurable decay rate, and fires when its membrane potential reaches a threshold, sending pulses to neighboring neurons. Configuration is done via a bitstream shifted in through dedicated pins, and the network can be trained using the accompanying naxon tool. The design is intended for neuromorphic computing research and requires external clocking and configuration data to operate.",
+   "summary": "This design is a Field Programmable Neural Array (FPNA) consisting of 50 interconnected configurable neuron blocks (CNBs) that simulate leaky neurons. Each CNB has four inputs with 3-bit weights, a configurable decay rate, and fires when its membrane potential reaches a threshold, sending pulses to neighboring neurons. Configuration is done via a bitstream shifted in through dedicated pins, and the network can be trained using the accompanying naxon tool. The design is intended for neuromorphic computing research and requires external clocking and configuration data to operate.",
+   "summary_changed": false
+  },
+  {
+   "key": "15ac5489e4f1",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "temperature-sensor",
+    "spi",
+    "sensor-interface",
+    "industrial",
+    "adc",
+    "verilog"
+   ],
+   "tags": [
+    "temperature-sensor",
+    "spi",
+    "sensor-interface",
+    "industrial",
+    "adc",
+    "verilog"
+   ],
+   "summary_before": "This block converts digitized thermocouple ADC counts into a temperature value using piecewise linear approximation and interpolation. It communicates over a 16-bit SPI interface, supports type-J and type-K thermocouples, and can optionally pass the SPI master straight through to the ADC for configuration. The output is a 16-bit centi-Celsius value pre-divided by four, giving 0.4 C granularity, and the thermocouple type and passthrough mode are set through configuration writes. It requires an external thermocouple analog front-end with compatible ranging, and the documentation gives worked numeric examples for the transfer function.",
+   "summary": "This block converts digitized thermocouple ADC counts into a temperature value using piecewise linear approximation and interpolation. It communicates over a 16-bit SPI interface, supports type-J and type-K thermocouples, and can optionally pass the SPI master straight through to the ADC for configuration. The output is a 16-bit centi-Celsius value pre-divided by four, giving 0.4 C granularity, and the thermocouple type and passthrough mode are set through configuration writes. It requires an external thermocouple analog front-end with compatible ranging, and the documentation gives worked numeric examples for the transfer function.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7995,
+  "completion_tokens": 1233,
+  "total_tokens": 9228,
+  "cost": 0.002503233,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002503233,
+   "upstream_inference_prompt_cost": 0.001245573,
+   "upstream_inference_completions_cost": 0.00125766
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002503233,
+ "elapsed_s": 47.9
+}

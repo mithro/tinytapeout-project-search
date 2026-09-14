@@ -1,0 +1,358 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3be7a1ab2a0f",
+  "d35d98395955",
+  "6f3693e85803",
+  "9ab31cbecda3",
+  "15250abbdfdc",
+  "ad6b3fc256a6"
+ ],
+ "results": [
+  {
+   "key": "3be7a1ab2a0f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the project is intended for teaching; documentation is placeholder text."
+    },
+    {
+     "tag": "template",
+     "reason": "Nothing in the source indicates it is a boilerplate/starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no description of the design."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "One-line description says 'subject to change' and docs are unfilled."
+    },
+    {
+     "tag": "adder",
+     "reason": "The one-line description states it is a full adder."
+    }
+   ],
+   "notes": "Removed unsupported education/template tags and added adder based on the stated full adder description.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "template",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc",
+    "adder"
+   ],
+   "summary_before": "The documentation is placeholder text, so the exact implementation, testing procedure, and any external hardware requirements are not described. It appears to be an educational project with insufficient documentation to determine its specific behavior.",
+   "summary": "The documentation consists of placeholder text, so the implementation details, testing procedure, and external hardware requirements are not described. The one-line description states that the design is a full adder, but notes it is subject to change. No pinout information is provided in the source. The project is therefore too sparsely documented to describe its behavior in detail.",
+   "summary_changed": true
+  },
+  {
+   "key": "d35d98395955",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source."
+    },
+    {
+     "tag": "counter",
+     "reason": "Counters are not mentioned in the source documentation."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation circuit is described."
+    },
+    {
+     "tag": "video",
+     "reason": "Redundant with vga and not specifically supported beyond the VGA output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "i2s",
+     "reason": "Pins include INMP441 mic I2S l/r, ws, sck, sd."
+    },
+    {
+     "tag": "microphone",
+     "reason": "An INMP441 microphone is used as input."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "A TM1638-based 7-segment display module is driven."
+    },
+    {
+     "tag": "audio",
+     "reason": "The design performs sound recognition on microphone audio."
+    },
+    {
+     "tag": "workshop",
+     "reason": "Prepared for a Verilog Meetup at Cal Poly in October 2025."
+    },
+    {
+     "tag": "fpga",
+     "reason": "Described as an ASIC project compatible with an FPGA project from BGM infrastructure."
+    }
+   ],
+   "notes": "Replaced unsupported FSM/counter/clock-generator tags with tags supported by the pinout and description.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "fsm",
+    "counter",
+    "clock-generator"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "systemverilog",
+    "i2s",
+    "microphone",
+    "7-segment",
+    "audio",
+    "workshop",
+    "fpga"
+   ],
+   "summary_before": "This project is a VGA color test image generator that outputs a test pattern to a VGA display. It uses a finite state machine and counters to generate the necessary timing signals and pixel data. The design is implemented in Verilog and is intended for educational purposes. It demonstrates basic VGA signal generation and display output.",
+   "summary": "This project receives sound level data from an INMP441 microphone and runs sound recognition on it. It displays the recognized note on a 7-segment display of a TM1638-based interface module. It also draws color patterns on a VGA screen using the Tiny VGA interface. The design is written in SystemVerilog and was prepared as a test for the Verilog Meetup variant of the Tiny Tapeout Verilog Project Template.",
+   "summary_changed": true
+  },
+  {
+   "key": "6f3693e85803",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The source describes a VGA animation of a rocket orbiting the moon, not a game."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "No gamepad input is present in the pins or documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "graphics",
+     "reason": "The design renders a real-time VGA animation with shapes and colors."
+    },
+    {
+     "tag": "art",
+     "reason": "It is a decorative visual animation of NASA's Space Launch System."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "It is a real-time visual animation showcase in the demoscene style."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "A Minsky circle oscillator updates the rocket's position each frame."
+    }
+   ],
+   "notes": "Removed game/gamepad tags not supported by the source and added graphics/art/demoscene/oscillator tags.",
+   "tags_before": [
+    "game",
+    "vga",
+    "video",
+    "graphics",
+    "gamepad"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "art",
+    "demoscene",
+    "oscillator"
+   ],
+   "summary_before": "This project implements a simple game that outputs a VGA video signal and uses a gamepad for input. It renders graphics on a VGA display and includes game logic for player interaction. The design is notable for its use of a gamepad interface and VGA output, making it a complete interactive gaming experience. It is intended for educational or recreational purposes.",
+   "summary": "This project generates a real-time VGA animation of NASA's Space Launch System orbiting a crescent moon against a star-filled background. A compact Minsky circle oscillator updates the rocket's position once per video frame, while simple counters animate the flickering engine flames. The design outputs VGA signals through the Tiny VGA pinout and is written in Verilog. It is intended to be viewed on a VGA-compatible monitor or capture device.",
+   "summary_changed": true
+  },
+  {
+   "key": "9ab31cbecda3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "esoteric",
+     "reason": "No esoteric programming language or novelty computation is described."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "No systolic array is mentioned or implied."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "No dedicated compute acceleration hardware is described."
+    },
+    {
+     "tag": "display",
+     "reason": "Redundant with vga and graphics; the source only mentions VGA output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "graphics",
+     "reason": "It displays a moving checkered pattern, which is rendered graphics output."
+    },
+    {
+     "tag": "pattern-generator",
+     "reason": "It generates a moving checkered test pattern."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting of a single sentence."
+    }
+   ],
+   "notes": "Removed fabricated esoteric/systolic-array/accelerator tags and added graphics/pattern-generator/insufficient-doc.",
+   "tags_before": [
+    "esoteric",
+    "systolic-array",
+    "accelerator",
+    "vga",
+    "display",
+    "graphics"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "pattern-generator",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is an esoteric computing design that outputs to a VGA display. It uses a systolic array for computation and generates graphics output. The design is implemented in Verilog and targets the Tiny Tapeout platform. The documentation is sparse, but it appears to be a novelty or artistic project.",
+   "summary": "This project displays a moving checkered pattern on a VGA display. The code was pulled from VGA Playground and is implemented in Verilog. It outputs VGA signals through the Tiny VGA pinout. The documentation is very thin, providing only a brief description of the behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "15250abbdfdc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "No PWM generator is described; the source describes letter cycling on a 7-segment display."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'no reports', so no silicon test claim is supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "art",
+     "reason": "It is a decorative design celebrating a marriage covenant."
+    },
+    {
+     "tag": "button",
+     "reason": "A button is used as a clock to cycle through letters."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Dip switches drive a single letter state."
+    },
+    {
+     "tag": "text",
+     "reason": "It displays the text sequence JONANDANgIE on the 7-segment display."
+    }
+   ],
+   "notes": "Removed unsupported PWM and silicon-tested tags and added art/button/dip-switch/text.",
+   "tags_before": [
+    "pwm",
+    "7-segment",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "art",
+    "button",
+    "dip-switch",
+    "text"
+   ],
+   "summary_before": "This project implements a 4-channel PWM generator with programmable frequency, duty cycle, and phase offset for channels 2-4. It uses an 8-bit input bus to load control registers, with a 7-segment display showing the current register address, and outputs PWM signals on four bidirectional pins. The design is built using the Wokwi simulator and is intended for educational purposes. It has been tested on fabricated silicon.",
+   "summary": "This project celebrates a marriage covenant by displaying the letters JONANDANgIE on a seven-segment display. It has two modes of operation: dip switches can drive a single letter state, or a button can be used as a clock to cycle through the letters in order. It is built using the Wokwi simulator. The design is intended to be tested by pressing the clock button and reading the seven-segment display.",
+   "summary_changed": true
+  },
+  {
+   "key": "ad6b3fc256a6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "The design drives SR and D flip-flops as stated in the title and description."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "Outputs include MUX-A and MUX-B, indicating multiplexer functions."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Two configurable gates drive the flip-flops."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The configurable gate logic is combinational."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added flip-flop/multiplexer/logic-gate/combinational tags.",
+   "tags_before": [
+    "education",
+    "wokwi",
+    "logic-gate"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "flip-flop",
+    "multiplexer",
+    "combinational"
+   ],
+   "summary_before": "This design is a simple educational project built with Wokwi. It demonstrates basic digital logic concepts and is intended for learning purposes. The design uses a clock input and drives outputs based on the logic. The documentation is minimal but sufficient to understand the configuration options.",
+   "summary": "This design uses two configurable gates to drive SR and D flip-flops, enabling a variety of complex flip-flop functions. It is built with the Wokwi simulator. When SEL and INV are low, the 0 inputs directly drive the flip-flops, and A-0 can be connected to the clock for use with the D flip-flop. The outputs include multiplexer and XOR results as well as the flip-flop Q and Q# signals.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5815,
+  "completion_tokens": 1670,
+  "total_tokens": 7485,
+  "cost": 0.002393073,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002393073,
+   "upstream_inference_prompt_cost": 0.000689673,
+   "upstream_inference_completions_cost": 0.0017034
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002393073,
+ "elapsed_s": 33.6
+}

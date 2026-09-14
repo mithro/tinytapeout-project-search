@@ -1,0 +1,302 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "dd72f7cc09b9",
+  "fa6cc5e68ca6",
+  "2df477d222b8",
+  "a8b067f681f1",
+  "2993b90dfd3a",
+  "40e7034f4579"
+ ],
+ "results": [
+  {
+   "key": "dd72f7cc09b9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "The source describes gates driving LEDs to form the letter A, not an 8x3 encoder despite the one-line description."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Gates are used but the design is not a basic logic gate implementation; the tag is not the primary type."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "Outputs drive LEDs as stated in the documentation."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "Simple switch/LED exercise consistent with teaching use."
+    }
+   ],
+   "notes": "Removed encoder tag because the source describes a gate/LED display, not an 8x3 encoder.",
+   "tags_before": [
+    "encoder",
+    "led",
+    "logic-gate",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "led",
+    "education",
+    "wokwi"
+   ],
+   "summary_before": "This design is an 8x3 encoder that uses NOT, MUX, and AND gates to control LEDs based on switch inputs, with the goal of forming the letter 'A' when switches are set correctly. It is a simple educational project built in Wokwi. Testing involves toggling switches and observing the LED pattern. The documentation is sparse and does not provide a detailed schematic or truth table.",
+   "summary": "This design uses NOT, MUX, and AND gates to control LEDs based on switch inputs, with the goal of forming the letter 'A' when switches are set correctly. It is a simple project built in Wokwi. Testing involves toggling switches and observing the LED pattern. The documentation is sparse and does not provide a detailed schematic or truth table.",
+   "summary_changed": true
+  },
+  {
+   "key": "fa6cc5e68ca6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes an external bit clock and LR clock; it does not generate clocks itself."
+    }
+   ],
+   "add": [
+    {
+     "tag": "i2s",
+     "reason": "I2S output pin and external I2S receiver are documented."
+    },
+    {
+     "tag": "microphone",
+     "reason": "Up to 16 PDM digital microphones are the input source."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Delay-and-sum beamforming is a digital signal processing function."
+    },
+    {
+     "tag": "audio",
+     "reason": "Produces I2S audio output."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed clock-generator because the design receives clocks rather than generating them.",
+   "tags_before": [
+    "dsp",
+    "audio",
+    "microphone",
+    "i2s",
+    "clock-generator",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "audio",
+    "microphone",
+    "i2s",
+    "verilog"
+   ],
+   "summary_before": "This design implements a fixed zero-delay delay-and-sum beamformer that accepts up to 16 PDM digital microphones and produces an I2S audio output. It requires an external clock generator to supply a 3.072 MHz bit clock and 48 kHz LR clock, plus 16 digital microphones and an I2S receiver such as a Raspberry Pi. The documentation is largely placeholder text, so the internal signal processing and configuration details cannot be verified from the provided material. The pin names and external hardware list are the main evidence for its function.",
+   "summary": "This design implements a fixed zero-delay delay-and-sum beamformer that accepts up to 16 PDM digital microphones and produces an I2S audio output. It requires an external clock generator to supply a 3.072 MHz bit clock and 48 kHz LR clock, plus 16 digital microphones and an I2S receiver such as a Raspberry Pi. The documentation is largely placeholder text, so the internal signal processing and configuration details cannot be verified from the provided material. The pin names and external hardware list are the main evidence for its function.",
+   "summary_changed": false
+  },
+  {
+   "key": "2df477d222b8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "calculator",
+     "reason": "No numeric display or keypad is documented; only switches and LEDs are mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "Title and description state it is a simple ALU."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "button",
+     "reason": "A push button selects the operation."
+    },
+    {
+     "tag": "led",
+     "reason": "LEDs are listed as the output hardware."
+    },
+    {
+     "tag": "education",
+     "reason": "Basic arithmetic design with limited documentation, consistent with a learning exercise."
+    }
+   ],
+   "notes": "Removed calculator tag because no numeric display or keypad is documented.",
+   "tags_before": [
+    "alu",
+    "calculator",
+    "button",
+    "education",
+    "led",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "button",
+    "education",
+    "led",
+    "verilog"
+   ],
+   "summary_before": "This is a simple Verilog ALU that uses a push button to switch between addition, subtraction, multiplication, and division operations. It expects switches for inputs and LEDs for outputs as external hardware. The documentation does not explain the pin mapping or how the operation selection works in detail, and the testing instructions are absent. It appears to be a basic educational arithmetic design with limited documentation.",
+   "summary": "This is a simple Verilog ALU that uses a push button to switch between addition, subtraction, multiplication, and division operations. It expects switches for inputs and LEDs for outputs as external hardware. The documentation does not explain the pin mapping or how the operation selection works in detail, and the testing instructions are absent. It appears to be a basic educational arithmetic design with limited documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "a8b067f681f1",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "divider",
+    "analog",
+    "mixed-signal",
+    "verilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "divider",
+    "analog",
+    "mixed-signal",
+    "verilog"
+   ],
+   "summary_before": "This design implements a ring oscillator operating in the GHz range, followed by a divider to produce a lower-frequency output in the 20 MHz range. It includes test and debug modes to verify divider functionality at low frequencies, and can be disabled via an enable signal. Testing requires an oscilloscope, power supply, and function generator, as described in the documentation. Silicon verification results are not provided.",
+   "summary": "This design implements a ring oscillator operating in the GHz range, followed by a divider to produce a lower-frequency output in the 20 MHz range. It includes test and debug modes to verify divider functionality at low frequencies, and can be disabled via an enable signal. Testing requires an oscilloscope, power supply, and function generator, as described in the documentation. Silicon verification results are not provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "2993b90dfd3a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "oscillator",
+     "reason": "Redundant with ring-oscillator and not separately supported as a distinct tag."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "Two ring oscillators are the core of the design."
+    },
+    {
+     "tag": "prng",
+     "reason": "The design is described as a pseudo random generator."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "A D flip-flop samples the oscillator output."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed redundant oscillator tag; core tags ring-oscillator, prng, flip-flop, wokwi are supported.",
+   "tags_before": [
+    "ring-oscillator",
+    "prng",
+    "oscillator",
+    "flip-flop",
+    "wokwi"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "prng",
+    "flip-flop",
+    "wokwi"
+   ],
+   "summary_before": "This project uses two ring oscillators whose outputs are sampled by a D flip-flop at a 10 kHz clock to produce a pseudo-random bit and its complement on two output pins. It is operated simply by applying power, after which the oscillators are expected to run and the sampled random outputs appear on OUT0 and OUT1. No external hardware is required. The documentation is thin and the design is a Wokwi simulation with no tiles, so no silicon behavior is reported.",
+   "summary": "This project uses two ring oscillators whose outputs are sampled by a D flip-flop at a 10 kHz clock to produce a pseudo-random bit and its complement on two output pins. It is operated simply by applying power, after which the oscillators are expected to run and the sampled random outputs appear on OUT0 and OUT1. No external hardware is required. The documentation is thin and the design is a Wokwi simulation with no tiles, so no silicon behavior is reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "40e7034f4579",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Not clearly stated in the source; the project is a simple mux/LED demo but education is not explicitly claimed."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplexer",
+     "reason": "The design uses a multiplexer to select between LED and display outputs."
+    },
+    {
+     "tag": "led",
+     "reason": "An LED is driven by the multiplexer."
+    },
+    {
+     "tag": "display",
+     "reason": "A display module is also driven by the multiplexer."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed education tag because it is not explicitly supported by the source.",
+   "tags_before": [
+    "multiplexer",
+    "led",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "multiplexer",
+    "led",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This Wokwi project uses a multiplexer to control an LED and a display module based on input signals. The design is tested by toggling input 7 and inputs 4 and 6 to observe the lighting behavior. It requires external hardware including an LED display and an LED diode. The documentation is minimal and the project appears to be a simple educational exercise.",
+   "summary": "This Wokwi project uses a multiplexer to control an LED and a display module based on input signals. The design is tested by toggling input 7 and inputs 4 and 6 to observe the lighting behavior. It requires external hardware including an LED display and an LED diode. The documentation is minimal and the project appears to be a simple exercise.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6017,
+  "completion_tokens": 1520,
+  "total_tokens": 7537,
+  "cost": 0.002291583,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002291583,
+   "upstream_inference_prompt_cost": 0.000741183,
+   "upstream_inference_completions_cost": 0.0015504
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002291583,
+ "elapsed_s": 72.0
+}

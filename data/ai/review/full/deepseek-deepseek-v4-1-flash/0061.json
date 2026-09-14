@@ -1,0 +1,190 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3569280d1da9",
+  "6676ec95ee98",
+  "9de75975b07c",
+  "3a98945a3e56",
+  "404bfc2e1aea",
+  "89dadc60512c"
+ ],
+ "results": [
+  {
+   "key": "3569280d1da9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The 7-segment pin names are an artifact of the Tiny Tapeout pinout; the design's output is the sorted 2-bit values, not a display driver."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 7-segment tag: the segment labels are pinout metadata, not the design's function.",
+   "tags_before": [
+    "pipeline",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "pipeline",
+    "verilog"
+   ],
+   "summary_before": "This design sorts four 2-bit input values using an odd-even sorting network and outputs the sorted values. The inputs are provided on ui_in[7:0] and the sorted results appear on uo_out[7:0], which are also mapped to 7-segment display segments. The sorting operation is pipelined through internal registers, requiring an external clock. The documentation is minimal, providing only a basic description and test instructions, with no silicon test results.",
+   "summary": "This design sorts four 2-bit input values using odd-even sorting logic and outputs the sorted values. The four input values are provided on ui_in[7:0], and the sorted results appear on uo_out[7:0]. The sorting operation passes through four internal pipeline registers, so an external clock is required. The documentation is minimal, providing only a basic description and test instructions, with no silicon test results.",
+   "summary_changed": true
+  },
+  {
+   "key": "6676ec95ee98",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "retro",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "cpu",
+    "retro",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a Verilog implementation of the Intel 4004, a 4-bit microprocessor, designed for the TinyTapeout platform. It requires external hardware, specifically an MCS4 memory system, to function. The documentation is minimal, providing only a link to a Japanese Wikipedia page and no testing instructions. The design's operation and verification are not detailed in the provided documentation.",
+   "summary": "This project is a Verilog implementation of the Intel 4004, a 4-bit microprocessor, designed for the Tiny Tapeout platform. It requires external hardware, specifically an MCS4 memory system, to function. The documentation is minimal, providing only a link to a Japanese Wikipedia page and no testing instructions. The design's operation and verification are not detailed in the provided documentation.",
+   "summary_changed": true
+  },
+  {
+   "key": "9de75975b07c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing functionality is claimed; CDR is communication/serial link circuitry."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dsp: the CDR is link communication circuitry, not signal-processing design.",
+   "tags_before": [
+    "communication",
+    "phase-detector",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "phase-detector",
+    "verilog"
+   ],
+   "summary_before": "This design is a baud-rate clock and data recovery circuit for PAM4 signals, using a Mueller-Muller phase detector, a proportional-integral loop filter, and a digitally controlled oscillator. It accepts an 8-bit data input and produces recovered sample outputs X[4:7], status bits S[0:2], and a Sample_en strobe on the outputs. The documentation consists only of the title, pin names, and a one-line description, so the exact interface timing and configuration are not explained. No test procedure, external hardware, or silicon results are given, leaving the design's operation largely inferred from the pin names.",
+   "summary": "This design is a baud-rate clock and data recovery circuit for PAM4 signals, using a Mueller-Muller phase detector, a proportional-integral loop filter, and a digitally controlled oscillator. It accepts an 8-bit data input and produces recovered sample outputs X[4:7], status bits S[0:2], and a Sample_en strobe on the outputs. The documentation consists only of the title, pin names, and a one-line description, so the exact interface timing and configuration are not explained. No test procedure, external hardware, or silicon results are given, leaving the design's operation largely inferred from the pin names.",
+   "summary_changed": false
+  },
+  {
+   "key": "3a98945a3e56",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "trng",
+    "ring-oscillator",
+    "verilog"
+   ],
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "verilog"
+   ],
+   "summary_before": "This design implements a true random number generator using a ring oscillator as the entropy source. The oscillating signal is sampled by a clock, and the sampled bits are checked by a health checker to detect repeated patterns. Post-processing improves randomness and generates the final random output bits. The project is tested in simulation using Icarus Verilog and GTKWave, but no silicon test results are provided.",
+   "summary": "This design implements a true random number generator using a ring oscillator as the entropy source. The oscillating signal is sampled by a clock, and the sampled bits are checked by a health checker to detect repeated patterns. Post-processing improves randomness and generates the final random output bits. The project is tested in simulation using Icarus Verilog and GTKWave, but no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "404bfc2e1aea",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "delay-line",
+    "logic-gate",
+    "wokwi"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "delay-line",
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This design consists of a string of inverters intended to function as a delay line or ring oscillator, with an XOR gate on the bidirectional pins that could be used as a mixer. The outputs are derived from the inputs according to a specific logic function: OUT1 = IN3 ? (IN0 & IN1) : IN2, and OUT0 and OUT2 are the inverse of OUT1. Testing requires basic DC logic signals on the input pins, and no specific external hardware is needed beyond switches or digital inputs. The documentation is brief and the design appears to be an experiment.",
+   "summary": "This design consists of a string of inverters intended to function as a delay line or ring oscillator, with an XOR gate on the bidirectional pins that could be used as a mixer. The outputs are derived from the inputs according to a specific logic function: OUT1 = IN3 ? (IN0 & IN1) : IN2, and OUT0 and OUT2 are the inverse of OUT1. Testing requires basic DC logic signals on the input pins, and no specific external hardware is needed beyond switches or digital inputs. The documentation is brief and the design appears to be an experiment.",
+   "summary_changed": false
+  },
+  {
+   "key": "89dadc60512c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "All three summary sentences are supported; only the stated VGA mode is discussed, so the interface tag misattributes the design's primary function as image generation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed vga: VGA is only described as an optional output mode for the Mandelbrot image generator.",
+   "tags_before": [
+    "image-processing",
+    "vga",
+    "video",
+    "framebuffer",
+    "graphics",
+    "rp2040",
+    "verilog"
+   ],
+   "tags": [
+    "image-processing",
+    "video",
+    "framebuffer",
+    "graphics",
+    "rp2040",
+    "verilog"
+   ],
+   "summary_before": "This design generates a Mandelbrot set image and outputs it via a VGA driver, using an external RP2040 to emulate a framebuffer. It includes a serial interface for configuration and control, and the VGA output follows the Tiny VGA pinout. The design requires a Tiny VGA PMOD for display and an RP2040 for framebuffer emulation. The documentation is brief and lacks details on the serial protocol and exact operation, but the core function is clear.",
+   "summary": "This design generates a Mandelbrot set image and outputs it via a VGA driver, using an external RP2040 to emulate a framebuffer. It includes a serial interface for configuration and control, and the VGA output follows the Tiny VGA pinout. The design requires a Tiny VGA PMOD for display and an RP2040 for framebuffer emulation. The documentation is brief and lacks details on the serial protocol and exact operation, but the core function is clear.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "404bfc2e1aea: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6207,
+  "completion_tokens": 1116,
+  "total_tokens": 7323,
+  "cost": 0.0032013,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032013,
+   "upstream_inference_prompt_cost": 0.0018621,
+   "upstream_inference_completions_cost": 0.0013392
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032013,
+ "elapsed_s": 7.3
+}

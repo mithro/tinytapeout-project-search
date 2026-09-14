@@ -1,0 +1,287 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f65921bae3c9",
+  "9f4c488560fe",
+  "e00eb91ddf2d",
+  "7b284b105e0d",
+  "000e14c32926",
+  "6565d25eaca2"
+ ],
+ "results": [
+  {
+   "key": "f65921bae3c9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "7-segment already covers the display; generic display tag unsupported beyond the segment pins"
+    }
+   ],
+   "add": [
+    {
+     "tag": "text",
+     "reason": "shows initials and a date as characters on the 7-segment display"
+    }
+   ],
+   "notes": "Removed generic display tag; added text since the display shows characters.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "insufficient-doc",
+    "text"
+   ],
+   "summary_before": "This project controls a 7-segment display to show the author's initials and a date (10/28). The documentation is essentially a template with no explanation of how the circuit works or how to test it. The only provided information is the pin mapping for the segments and decimal point. It appears to be a static display project, but no further details are available.",
+   "summary": "This project controls a 7-segment display to show the author's initials and a date (10/28). The documentation is essentially a template with no explanation of how the circuit works or how to test it. The only provided information is the pin mapping for the segments and decimal point. It appears to be a static display project, but no further details are available.",
+   "summary_changed": false
+  },
+  {
+   "key": "9f4c488560fe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "only the one-line description mentions BCD; no documentation supports BCD logic"
+    },
+    {
+     "tag": "template",
+     "reason": "placeholder text is better captured by insufficient-doc; template implies a starter project"
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "documentation is only unfilled template text with no design content"
+    }
+   ],
+   "notes": "Swapped unsupported bcd/template tags for placeholder.",
+   "tags_before": [
+    "bcd",
+    "wokwi",
+    "template",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "summary_before": "This project is titled hello and its one-line description mentions BCD, but the documentation consists only of placeholder template text. There is no explanation of how the design works, how to test it, or what external hardware it needs. The design cannot be described beyond the hint that it may involve binary-coded decimal. The documentation is effectively absent.",
+   "summary": "This project is titled hello and its one-line description mentions BCD, but the documentation consists only of placeholder template text. There is no explanation of how the design works, how to test it, or what external hardware it needs. The design cannot be described beyond the hint that it may involve binary-coded decimal. The documentation is effectively absent.",
+   "summary_changed": false
+  },
+  {
+   "key": "e00eb91ddf2d",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "documentation is present and describes a real counter, not a template"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation is present and explains operation and testing"
+    },
+    {
+     "tag": "display",
+     "reason": "7-segment already covers the display"
+    }
+   ],
+   "add": [
+    {
+     "tag": "timer",
+     "reason": "author's tags and the compare-based one-second counter support a timer"
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "registers divide the 10 MHz clock down to a one-second tick"
+    }
+   ],
+   "notes": "Title and documentation contradict each other; needs a second opinion on which is authoritative.",
+   "tags_before": [
+    "counter",
+    "clock-divider",
+    "7-segment",
+    "display",
+    "template",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "counter",
+    "clock-divider",
+    "7-segment",
+    "timer"
+   ],
+   "summary_before": "This project claims to implement the Hodgkin-Huxley neuron model, but the documentation describes a clock divider and binary-to-decimal counter for a 7-segment display, with no mention of neuron behavior. The inputs set a compare value to control counting speed, and the bottom 8 bits of the counter are output on bidirectional pins. The documentation appears to be copied from a template and does not match the title. It is likely that the actual neuron implementation is missing or undocumented.",
+   "summary": "This project is titled Hodgkin-Huxley Chip Design, but the documentation describes a clock divider and binary-to-decimal counter driving a 7-segment display, with no mention of neuron behavior. The inputs set a 24-bit compare value that controls counting speed, and the bottom 8 bits of the counter are output on bidirectional pins. With all inputs zero the compare is 10,000,000, giving one increment per second at 10 MHz. The documentation does not match the title, so the actual neuron implementation is unclear.",
+   "summary_changed": true
+  },
+  {
+   "key": "7b284b105e0d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "no statement that the project is for teaching or learning"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation is present and describes operation and testing"
+    },
+    {
+     "tag": "led",
+     "reason": "the display is a seven-segment unit, already covered by 7-segment"
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "eight switches in a single package are used as inputs"
+    },
+    {
+     "tag": "button",
+     "reason": "two tactile push buttons are listed as external hardware"
+    }
+   ],
+   "notes": "Removed unsupported education/led/insufficient-doc; added button for the listed tactile switches.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "led",
+    "dip-switch",
+    "education",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "dip-switch",
+    "wokwi",
+    "button"
+   ],
+   "summary_before": "This project connects switches to a seven-segment display that is described as an analog clock, with each switch controlling a specific segment. It is tested by toggling the numbered switches and observing which parts of the clock light up. External hardware includes a seven-segment LED display, a set of eight switches, and two tactile push buttons. The documentation is minimal and the description of the clock behavior is vague.",
+   "summary": "This project connects switches to a seven-segment display that is described as an analog clock, with each switch controlling a specific segment. It is tested by toggling the numbered switches and observing which parts of the clock light up. External hardware includes a seven-segment LED display, a set of eight switches, and two tactile push buttons. The documentation is minimal and the description of the clock behavior is vague.",
+   "summary_changed": false
+  },
+  {
+   "key": "000e14c32926",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "only an 'LED digital number' is mentioned, not a seven-segment display"
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "switches are mentioned but not identified as DIP switches"
+    },
+    {
+     "tag": "education",
+     "reason": "no statement that the project is for teaching or learning"
+    },
+    {
+     "tag": "display",
+     "reason": "no display interface is documented beyond an LED number"
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "the design lights an LED and an LED digital number"
+    },
+    {
+     "tag": "placeholder",
+     "reason": "documentation is essentially a placeholder with no design detail"
+    }
+   ],
+   "notes": "Trimmed tags to what the thin documentation actually supports.",
+   "tags_before": [
+    "led",
+    "7-segment",
+    "wokwi",
+    "dip-switch",
+    "display",
+    "education",
+    "placeholder"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "placeholder"
+   ],
+   "summary_before": "This Wokwi project is described only as a microchip that lights an LED digital number and an LED, controlled by flicking switches in the simulation. No pin functions, logic details or external hardware requirements are documented. Testing is limited to starting the Wokwi simulation and toggling switches. The documentation is essentially a placeholder, so the design's actual behaviour cannot be determined.",
+   "summary": "This Wokwi project is described only as a microchip that lights an LED digital number and an LED, controlled by flicking switches in the simulation. No pin functions, logic details or external hardware requirements are documented. Testing is limited to starting the Wokwi simulation and toggling switches. The documentation is essentially a placeholder, so the design's actual behaviour cannot be determined.",
+   "summary_changed": false
+  },
+  {
+   "key": "6565d25eaca2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "no statement that the project is for teaching or learning"
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation is extremely sparse with every pin named 'a'"
+    }
+   ],
+   "notes": "Removed unsupported education tag; added insufficient-doc for the sparse pin documentation.",
+   "tags_before": [
+    "wokwi",
+    "calculator",
+    "adder",
+    "7-segment",
+    "button",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "calculator",
+    "adder",
+    "7-segment",
+    "button",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a calculator that adds numbers, using the input, bidirectional and output pins to enter and display values. It is tested by connecting a seven-segment display and eight input buttons. The documentation is extremely sparse, with every pin simply named a, so the exact encoding and arithmetic width are unclear. It appears to be a beginner exercise with little supporting detail.",
+   "summary": "This design is a calculator that adds numbers, using the input, bidirectional and output pins to enter and display values. It is tested by connecting a seven-segment display and eight input buttons. The documentation is extremely sparse, with every pin simply named a, so the exact encoding and arithmetic width are unclear. It appears to be a beginner exercise with little supporting detail.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5877,
+  "completion_tokens": 1394,
+  "total_tokens": 7271,
+  "cost": 0.001493466,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001493466,
+   "upstream_inference_prompt_cost": 0.000573426,
+   "upstream_inference_completions_cost": 0.00092004
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001493466,
+ "elapsed_s": 16.4
+}

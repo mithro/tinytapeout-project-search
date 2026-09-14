@@ -1,0 +1,282 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "76bf876c0e04",
+  "979eab734275",
+  "6a65482ff4b3",
+  "abe6e741ed18",
+  "c9ce0dce4fcf",
+  "444bae70d28d"
+ ],
+ "results": [
+  {
+   "key": "76bf876c0e04",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "A 2x2-bit dot product is a tiny arithmetic unit, not a signal processing design; no DSP evidence in source."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is a 7-segment display; the specific 7-segment tag suffices and generic display is redundant."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Already proposed but keep; the design performs multiplications of 2-bit integers."
+    },
+    {
+     "tag": "adder",
+     "reason": "The dot product sums the two products, requiring an adder."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The computation is purely combinational from inputs to segments."
+    }
+   ],
+   "notes": "Removed dsp and generic display; added adder and combinational to match the arithmetic-only design.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "dsp",
+    "wokwi",
+    "7-segment",
+    "display"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "wokwi",
+    "7-segment",
+    "adder",
+    "combinational"
+   ],
+   "summary_before": "This design computes the dot product of two 2-element vectors, each element being a 2-bit integer. The inputs are packed into the 8 input pins, and the result is displayed on a seven-segment display. The documentation provides a test example: setting input to 11011010 yields an output of 00001000. The design is a simple arithmetic unit implemented in Wokwi.",
+   "summary": "This design computes the dot product of two 2-element vectors, each element being a 2-bit integer. The inputs are packed into the 8 input pins, and the result is displayed on a seven-segment display. The documentation provides a test example: setting input to 11011010 yields an output of 00001000. The design is a simple arithmetic unit implemented in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "979eab734275",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The source describes a survive/die decision cell, not a finite state machine with documented states."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is a 7-segment display; the specific 7-segment tag suffices."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The survive/die decision is a combinational function of neighbour count and current state."
+    }
+   ],
+   "notes": "Removed unsupported fsm and redundant display; added combinational for the decision logic.",
+   "tags_before": [
+    "game-of-life",
+    "cellular-automaton",
+    "wokwi",
+    "7-segment",
+    "display",
+    "fsm"
+   ],
+   "tags": [
+    "game-of-life",
+    "cellular-automaton",
+    "wokwi",
+    "7-segment",
+    "combinational"
+   ],
+   "summary_before": "This design implements a single cell of Conway's Game of Life, calculating whether the cell survives or dies based on the number of neighbours and its current state. It uses five inputs to represent up to nine neighbours in two stages, with a half-select signal to switch between stages. The output is shown on a seven-segment display, and an inverted clock is provided. External hardware is needed to supply the neighbour states and reroute the current state.",
+   "summary": "This design implements a single cell of Conway's Game of Life, calculating whether the cell survives or dies based on the number of neighbours and its current state. It uses five inputs to represent up to nine neighbours in two stages, with a half-select signal to switch between stages. The output is shown on a seven-segment display, and an inverted clock is provided. External hardware is needed to supply the neighbour states and reroute the current state.",
+   "summary_changed": false
+  },
+  {
+   "key": "6a65482ff4b3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational intent; it is a functional decoder."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is a 7-segment display; the specific 7-segment tag suffices."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education (not stated) and redundant display tag; summary last sentence adjusted to drop the unsupported educational claim.",
+   "tags_before": [
+    "bcd",
+    "decoder",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "bcd",
+    "decoder",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This design is a BCD to 7-segment decoder that accepts four binary-coded decimal inputs, a decimal dot passthrough, and an output invert control, and drives seven segment lines plus a dot output. It is tested by connecting the segment outputs to a 7-segment display and configuring the inputs as weights 1, 2, 4, and 8 so the input value appears on the display. The only external hardware needed is a 7-segment display. The documentation is brief but sufficient to understand the function, and the design is a straightforward educational decoder.",
+   "summary": "This design is a BCD to 7-segment decoder that accepts four binary-coded decimal inputs, a decimal dot passthrough, and an output invert control, and drives seven segment lines plus a dot output. It is tested by connecting the segment outputs to a 7-segment display and configuring the inputs as weights 1, 2, 4, and 8 so the input value appears on the display. The only external hardware needed is a 7-segment display. The documentation is brief but sufficient to understand the function, and the design is a straightforward decoder.",
+   "summary_changed": true
+  },
+  {
+   "key": "abe6e741ed18",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "Output is a 7-segment display; the specific 7-segment tag suffices."
+    }
+   ],
+   "add": [
+    {
+     "tag": "decoder",
+     "reason": "The design hex-decodes nibbles to 7-segment patterns."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Already proposed but keep; core is an 8-bit shift register."
+    }
+   ],
+   "notes": "Removed redundant display tag; added decoder for the hex-to-7-segment decode function.",
+   "tags_before": [
+    "shift-register",
+    "latch",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "shift-register",
+    "latch",
+    "7-segment",
+    "wokwi",
+    "decoder"
+   ],
+   "summary_before": "This design is an 8-bit shift register with an optional latch and hex decode that displays alternating high and low nibbles on a 7-segment display. It provides controls for display clock, shift in, shift clock, latch, cycle display, nibble selection, latch usage, and MSB/LSB order, and outputs the seven segments plus a high/low nibble indicator. Testing involves clocking in 8 bits, optionally latching them, and observing the alternating nibbles, with switches and a 7-segment display as external hardware. The documentation is clear about the control signals and behavior, making it a useful educational shift-register demonstration.",
+   "summary": "This design is an 8-bit shift register with an optional latch and hex decode that displays alternating high and low nibbles on a 7-segment display. It provides controls for display clock, shift in, shift clock, latch, cycle display, nibble selection, latch usage, and MSB/LSB order, and outputs the seven segments plus a high/low nibble indicator. Testing involves clocking in 8 bits, optionally latching them, and observing the alternating nibbles, with switches and a 7-segment display as external hardware. The documentation is clear about the control signals and behavior, making it a useful shift-register demonstration.",
+   "summary_changed": true
+  },
+  {
+   "key": "c9ce0dce4fcf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The source describes a 4-state machine from two flip-flops, not a counting circuit."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is a 7-segment display; the specific 7-segment tag suffices."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "The design is explicitly built from two flip-flops."
+    },
+    {
+     "tag": "text",
+     "reason": "It scrolls the text 'ctag' across the display."
+    }
+   ],
+   "notes": "Removed counter (not a counter) and redundant display; added flip-flop and text tags.",
+   "tags_before": [
+    "7-segment",
+    "fsm",
+    "counter",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "fsm",
+    "wokwi",
+    "flip-flop",
+    "text"
+   ],
+   "summary_before": "This design scrolls the text 'ctag' across a 7-segment display using a 4-state machine built from two flip-flops. It is controlled by a clock and reset input, and the outputs directly drive the seven segment lines. The design is intended for the Wokwi simulator, where the clock can be set to a button to step through the states. It is a minimal demonstration of a scrolling marquee on a 7-segment display.",
+   "summary": "This design scrolls the text 'ctag' across a 7-segment display using a 4-state machine built from two flip-flops. It is controlled by a clock and reset input, and the outputs directly drive the seven segment lines. The design is intended for the Wokwi simulator, where the clock can be set to a button to step through the states. It is a minimal demonstration of a scrolling marquee on a 7-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "444bae70d28d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "Output is a 7-segment display; the specific 7-segment tag suffices."
+    }
+   ],
+   "add": [
+    {
+     "tag": "text",
+     "reason": "The design renders the text 'H-E-L-L-O' on the display."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "Already proposed but keep; a configurable clock divider is central."
+    },
+    {
+     "tag": "rom",
+     "reason": "Already proposed but keep; a character generator ROM is used."
+    }
+   ],
+   "notes": "Removed redundant display tag; added text tag for the letter rendering.",
+   "tags_before": [
+    "7-segment",
+    "rom",
+    "clock-divider",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "7-segment",
+    "rom",
+    "clock-divider",
+    "verilog",
+    "text"
+   ],
+   "summary_before": "This design flashes the letters 'H-E-L-L-O' on a 7-segment display by using a configurable clock divider and a character generator ROM. It includes a debug mode that allows direct indexing of the character ROM and sourcing the slow clock from input pins. The design requires no external hardware beyond a 7-segment display. It is notable for its built-in test harness and configurable flashing behavior.",
+   "summary": "This design flashes the letters 'H-E-L-L-O' on a 7-segment display by using a configurable clock divider and a character generator ROM. It includes a debug mode that allows direct indexing of the character ROM and sourcing the slow clock from input pins. The design requires no external hardware beyond a 7-segment display. It is notable for its built-in test harness and configurable flashing behavior.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6626,
+  "completion_tokens": 1425,
+  "total_tokens": 8051,
+  "cost": 0.002349978,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002349978,
+   "upstream_inference_prompt_cost": 0.000896478,
+   "upstream_inference_completions_cost": 0.0014535
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002349978,
+ "elapsed_s": 28.1
+}

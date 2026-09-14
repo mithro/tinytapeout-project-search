@@ -1,0 +1,222 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "53d03ef03e4a",
+  "54a8e7b38d0a",
+  "dbef06c360fe",
+  "bce30e633aae",
+  "995f14d1e849",
+  "70b5e8b7fe3a"
+ ],
+ "results": [
+  {
+   "key": "53d03ef03e4a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning purpose."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag because the source does not describe a teaching or learning purpose.",
+   "tags_before": [
+    "esoteric",
+    "cpu",
+    "fsm",
+    "education"
+   ],
+   "tags": [
+    "esoteric",
+    "cpu",
+    "fsm"
+   ],
+   "summary_before": "Potato-1 is the control logic for a Brainfuck CPU, decoding the eight Brainfuck instructions plus HALT and NOP into register increment/decrement and memory read/write control signals. It reads instruction, zero flag and IO wait inputs on each rising clock edge and updates its output pins on the falling edge, pausing on Put/Get until IO wait is released. Using it requires external hardware: three bidirectional counters for program counter, data pointer and value, a ROM for instructions, a RAM for data, and TTL gates for write control. The design is deliberately minimal and slow, and the documentation notes it is only the control portion of a CPU rather than a complete processor.",
+   "summary": "Potato-1 is the control logic for a Brainfuck CPU, decoding the eight Brainfuck instructions plus HALT and NOP into register increment/decrement and memory read/write control signals. It reads instruction, zero flag and IO wait inputs on each rising clock edge and updates its output pins on the falling edge, pausing on Put/Get until IO wait is released. Using it requires external hardware: three bidirectional counters for program counter, data pointer and value, a ROM for instructions, a RAM for data, and TTL gates for write control. The design is deliberately minimal and slow, and the documentation notes it is only the control portion of a CPU rather than a complete processor.",
+   "summary_changed": false
+  },
+  {
+   "key": "54a8e7b38d0a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The design is a program counter and radix converter, not a processor core."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "The source states the design was tested on a Basys3 FPGA."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The source says the design uses both synchronous and asynchronous logic."
+    }
+   ],
+   "notes": "Removed cpu because this is a program counter and converter, and added fpga and mixed-signal based on the source.",
+   "tags_before": [
+    "esoteric",
+    "counter",
+    "cpu"
+   ],
+   "tags": [
+    "esoteric",
+    "counter",
+    "fpga",
+    "mixed-signal"
+   ],
+   "summary_before": "This design implements a 4-trit balanced ternary program counter with up, down, and hold counting modes, as well as jump/load capability. It also includes a 3-trit asynchronous balanced ternary radix converter that converts to signed binary and back. The design is written in MRCS and tests the capabilities of the MRCS Verilog generator and Tiny Tapeout's bidirectional pins. It is verified on an FPGA with a provided testbench, and the ASIC version is functionally similar.",
+   "summary": "This design implements a 4-trit balanced ternary program counter with up, down, and hold counting modes, as well as jump/load capability. It also includes a 3-trit asynchronous balanced ternary radix converter that converts to signed binary and back. The design is written in MRCS and tests the capabilities of the MRCS Verilog generator and Tiny Tapeout's bidirectional pins. It is verified on an FPGA with a provided testbench, and the ASIC version is functionally similar.",
+   "summary_changed": false
+  },
+  {
+   "key": "dbef06c360fe",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "led-matrix",
+    "uart",
+    "display",
+    "led"
+   ],
+   "tags": [
+    "led-matrix",
+    "uart",
+    "display",
+    "led"
+   ],
+   "summary_before": "This circuit drives a 16x16 P10 LED panel, initially displaying the string 'TT03P5'. It accepts a 1.2 Mbaud UART input to paint pixels, erase pixels, clear the display, and change the displayed color, but resource limitations restrict it to a single color at a time and no double buffering. A mode pin allows selection between two clocking patterns to accommodate different panel wiring. External hardware includes an LED panel and a level converter to 5V logic.",
+   "summary": "This circuit drives a 16x16 P10 LED panel, initially displaying the string 'TT03P5'. It accepts a 1.2 Mbaud UART input to paint pixels, erase pixels, clear the display, and change the displayed color, but resource limitations restrict it to a single color at a time and no double buffering. A mode pin allows selection between two clocking patterns to accommodate different panel wiring. External hardware includes an LED panel and a level converter to 5V logic.",
+   "summary_changed": false
+  },
+  {
+   "key": "bce30e633aae",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spi",
+    "qspi",
+    "memory",
+    "rom",
+    "prng",
+    "7-segment",
+    "rp2040"
+   ],
+   "tags": [
+    "spi",
+    "qspi",
+    "memory",
+    "rom",
+    "prng",
+    "7-segment",
+    "rp2040"
+   ],
+   "summary_before": "The design implements an SPI peripheral with an 8-byte RAM, 324-byte ROM, and a random source, supporting standard and quad SPI read/write commands. It is intended to be used as a ROM for an RP2040, allowing it to boot from the ROM, and also provides debug access via switches and a 7-segment display. Silicon testing showed that the SPI RAM works and the RP2040 boots from the ROM, but writes to the RAM were not functioning and the random source distribution is non-uniform. The project requires a custom RP2040 board and a PIO-based SPI master for full testing.",
+   "summary": "The design implements an SPI peripheral with an 8-byte RAM, 324-byte ROM, and a random source, supporting standard and quad SPI read/write commands. It is intended to be used as a ROM for an RP2040, allowing it to boot from the ROM, and also provides debug access via switches and a 7-segment display. Silicon testing showed that the SPI RAM works and the RP2040 boots from the ROM, but writes to the RAM were not functioning and the random source distribution is non-uniform. The project requires a custom RP2040 board and a PIO-based SPI master for full testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "995f14d1e849",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "driver",
+     "reason": "The design reads and displays SPI flash data; it is not a generic peripheral driver output stage."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon status is working, with a tester reporting graphics on the screen."
+    }
+   ],
+   "notes": "Removed driver because the design is a display/readout experiment, and added silicon-tested based on the working silicon report.",
+   "tags_before": [
+    "vga",
+    "spi",
+    "qspi",
+    "memory",
+    "rom",
+    "display",
+    "driver"
+   ],
+   "tags": [
+    "vga",
+    "spi",
+    "qspi",
+    "memory",
+    "rom",
+    "display",
+    "silicon-tested"
+   ],
+   "summary_before": "This project reads data from an SPI flash ROM and displays it on a VGA monitor, supporting two resolutions and two line modes for buffered and direct display. It includes a loopback test and requires external hardware such as an SPI flash chip and a VGA DAC. Silicon testing showed that it displayed graphics on the screen, but the SPI ROM functionality was not fully tested. The documentation is detailed but notes that some aspects are still to be confirmed.",
+   "summary": "This project reads data from an SPI flash ROM and displays it on a VGA monitor, supporting two resolutions and two line modes for buffered and direct display. It includes a loopback test and requires external hardware such as an SPI flash chip and a VGA DAC. Silicon testing showed that it displayed graphics on the screen, but the SPI ROM functionality was not fully tested. The documentation is detailed but notes that some aspects are still to be confirmed.",
+   "summary_changed": false
+  },
+  {
+   "key": "70b5e8b7fe3a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning purpose."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag because the source does not describe a teaching or learning purpose.",
+   "tags_before": [
+    "alu",
+    "adder",
+    "multiplier",
+    "comparator",
+    "barrel-shifter",
+    "combinational",
+    "vhdl"
+   ],
+   "tags": [
+    "alu",
+    "adder",
+    "multiplier",
+    "comparator",
+    "barrel-shifter",
+    "combinational",
+    "vhdl"
+   ],
+   "summary_before": "This is a fully combinational 4-bit ALU containing a ripple-carry adder, a carry-lookahead adder, a matrix multiplier, a Wallace-tree multiplier, a comparator and a barrel-shifter, selected by a 3-bit opcode on the bidirectional pins. The two 4-bit operands come from the input pins, and the 8-bit result appears on the outputs, with the barrel-shifter using b[1:0] for shift width and b[2] for direction. No clock is required, and a silicon test report confirms the adder was verified on the bringup stream. It is a compact educational ALU demonstrating several arithmetic architectures in one tile.",
+   "summary": "This is a fully combinational 4-bit ALU containing a ripple-carry adder, a carry-lookahead adder, a matrix multiplier, a Wallace-tree multiplier, a comparator and a barrel-shifter, selected by a 3-bit opcode on the bidirectional pins. The two 4-bit operands come from the input pins, and the 8-bit result appears on the outputs, with the barrel-shifter using b[1:0] for shift width and b[2] for direction. No clock is required, and a silicon test report confirms the adder was verified on the bringup stream. It is a compact educational ALU demonstrating several arithmetic architectures in one tile.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9032,
+  "completion_tokens": 1315,
+  "total_tokens": 10347,
+  "cost": 0.0042876,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042876,
+   "upstream_inference_prompt_cost": 0.0027096,
+   "upstream_inference_completions_cost": 0.001578
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042876,
+ "elapsed_s": 8.7
+}

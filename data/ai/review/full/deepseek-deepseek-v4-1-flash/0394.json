@@ -1,0 +1,260 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6005e0d24fb2",
+  "24e90f0f6208",
+  "1f074f92558d",
+  "c2a96258133f",
+  "7d0e0da01e2c",
+  "17de3946373f"
+ ],
+ "results": [
+  {
+   "key": "6005e0d24fb2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "motor-control",
+     "reason": "The design only emits a servo control pulse; the servo is external and no motor drive stage is present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "servo",
+     "reason": "Already proposed; keep."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Already proposed; keep."
+    }
+   ],
+   "notes": "Removed motor-control because the design only outputs a servo control waveform and does not drive a motor.",
+   "tags_before": [
+    "uart",
+    "pwm",
+    "servo",
+    "motor-control",
+    "communication",
+    "cocotb"
+   ],
+   "tags": [
+    "uart",
+    "pwm",
+    "servo",
+    "communication",
+    "cocotb"
+   ],
+   "summary_before": "UART Positioning PWM Interface receives UART commands and generates a 20 ms servo control frame with pulse widths from about 1.0 ms to 2.0 ms. Commands select minimum, center, maximum, digit presets, or sweep mode, and dedicated pins can force the three preset positions directly. Status outputs report command acknowledgement, preset code, failsafe activation, and sweep mode, and the design returns to center after inactivity. It needs a 25 MHz clock, a USB-to-UART adapter or microcontroller TX line, and an externally powered hobby servo or a logic analyzer, and it includes a cocotb regression.",
+   "summary": "UART Positioning PWM Interface receives UART commands and generates a 20 ms servo control frame with pulse widths from about 1.0 ms to 2.0 ms. Commands select minimum, center, maximum, digit presets, or sweep mode, and dedicated pins can force the three preset positions directly. Status outputs report command acknowledgement, preset code, failsafe activation, and sweep mode, and the design returns to center after inactivity. It needs a 25 MHz clock, a USB-to-UART adapter or microcontroller TX line, and an externally powered hobby servo or a logic analyzer, and it includes a cocotb regression.",
+   "summary_changed": false
+  },
+  {
+   "key": "24e90f0f6208",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rgb-led",
+     "reason": "The output is a VGA video signal, not an addressable RGB LED interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "demoscene",
+     "reason": "It is a visual VGA ring animation demo, matching the demoscene showcase category."
+    }
+   ],
+   "notes": "Removed rgb-led (VGA video, not addressable LEDs) and added demoscene for the visual animation showcase.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "rgb-led"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "demoscene"
+   ],
+   "summary_before": "This project generates RGB VGA rings with variable speed and color selection controlled by the input pins. The input byte selects the ring speed, reverses direction, and disables individual red, green, or blue color channels. It outputs standard VGA signals on the Tiny VGA pinout and requires an external VGA display and connector. The design is a simple visual demo that fits in a single tile and is configured by tying input pins high or low.",
+   "summary": "This project generates RGB VGA rings with variable speed and color selection controlled by the input pins. The input byte selects the ring speed, reverses direction, and disables individual red, green, or blue color channels. It outputs standard VGA signals on the Tiny VGA pinout and requires an external VGA display and connector. The design is a simple visual demo that fits in a single tile and is configured by tying input pins high or low.",
+   "summary_changed": false
+  },
+  {
+   "key": "1f074f92558d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a multiply-accumulate unit, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fixed-point",
+     "reason": "Already proposed; keep."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Already proposed; keep."
+    }
+   ],
+   "notes": "Removed alu because the block is a MAC unit rather than a general ALU.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "alu",
+    "dsp",
+    "fixed-point"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "dsp",
+    "fixed-point"
+   ],
+   "summary_before": "This project implements a dual-mode multiply-accumulate unit supporting both linear and logarithmic number systems. It uses a time-division multiplexed interface to ingest two 8-bit operands over two clock cycles and serialize a 32-bit accumulation result over four cycles. Linear mode processes signed 8-bit integers into a signed 32-bit sum, while logarithmic mode uses a Q3.4 format for inputs and produces a Q5.26 fixed-point output. The design is notable for offering two implementations of a logarithmic accumulator and for fitting a high-precision MAC into the constrained 8-bit I/O of Tiny Tapeout.",
+   "summary": "This project implements a dual-mode multiply-accumulate unit supporting both linear and logarithmic number systems. It uses a time-division multiplexed interface to ingest two 8-bit operands over two clock cycles and serialize a 32-bit accumulation result over four cycles. Linear mode processes signed 8-bit integers into a signed 32-bit sum, while logarithmic mode uses a Q3.4 format for inputs and produces a Q5.26 fixed-point output. The design is notable for offering two implementations of a logarithmic accumulator and for fitting a high-precision MAC into the constrained 8-bit I/O of Tiny Tapeout.",
+   "summary_changed": false
+  },
+  {
+   "key": "c2a96258133f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The counter output is decoded with AND, OR and NOT gates to form the display pattern."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added logic-gate for the AND/OR/NOT decoding logic.",
+   "tags_before": [
+    "wokwi",
+    "7-segment",
+    "counter",
+    "display",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "counter",
+    "display",
+    "logic-gate"
+   ],
+   "summary_before": "This Wokwi project displays the reversed word 'sabba' on a 7-segment display using a binary up counter and combinational logic. It runs at a 1 Hz clock, cycling through the letters. Testing involves running the system at 1 Hz and observing the output sequence. The design requires an external 7-segment display and is a simple educational example of counter-driven display patterns.",
+   "summary": "This Wokwi project displays the reversed word 'sabba' on a 7-segment display using a binary up counter and combinational logic. It runs at a 1 Hz clock, cycling through the letters. Testing involves running the system at 1 Hz and observing the output sequence. The design requires an external 7-segment display and is a simple counter-driven display pattern.",
+   "summary_changed": true
+  },
+  {
+   "key": "7d0e0da01e2c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "driver",
+     "reason": "No peripheral driver output stage is described; the buffers are simple delay paths."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Already proposed; keep."
+    },
+    {
+     "tag": "counter",
+     "reason": "Already proposed; keep."
+    }
+   ],
+   "notes": "Removed driver because the buffer paths are delay-chain integrity checks, not a peripheral driver stage.",
+   "tags_before": [
+    "counter",
+    "logic-gate",
+    "driver",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "counter",
+    "logic-gate",
+    "education",
+    "wokwi"
+   ],
+   "summary_before": "This project combines a 4-bit asynchronous hexadecimal up-counter and a programmable logic gate validator in a single tile. The counter increments on each clock rising edge and outputs a 4-bit binary count, while the logic validator evaluates AND, OR, XOR, or NOT functions on two data bits based on two control bits, with optional inversion and enable. Two signal buffers route inputs through delay chains to verify path integrity. The design is intended for educational purposes and requires external components such as a 7-segment decoder, LEDs, DIP switches, and a clock source for testing.",
+   "summary": "This project combines a 4-bit asynchronous hexadecimal up-counter and a programmable logic gate validator in a single tile. The counter increments on each clock rising edge and outputs a 4-bit binary count, while the logic validator evaluates AND, OR, XOR, or NOT functions on two data bits based on two control bits, with optional inversion and enable. Two signal buffers route inputs through delay chains to verify path integrity. The design is intended for educational purposes and requires external components such as a 7-segment decoder, LEDs, DIP switches, and a clock source for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "17de3946373f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated adder, not a general arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Already proposed; keep."
+    },
+    {
+     "tag": "structural",
+     "reason": "Already proposed; keep."
+    }
+   ],
+   "notes": "Removed alu because the block is a dedicated ripple carry adder rather than a general ALU.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "combinational",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project is a structural 4-bit ripple carry adder built from one half adder and three full adders, producing a 5-bit sum from two 4-bit unsigned inputs. The eight input pins carry operands A and B, and the five low output pins carry the sum and final carry-out, with the upper outputs tied low. It is purely combinational, with clock, reset and enable tied off internally to satisfy the synthesis flow. No external hardware is required beyond the demoboard switches and LEDs, and the documentation is clear and complete.",
+   "summary": "This project is a structural 4-bit ripple carry adder built from one half adder and three full adders, producing a 5-bit sum from two 4-bit unsigned inputs. The eight input pins carry operands A and B, and the five low output pins carry the sum and final carry-out, with the upper outputs tied low. It is purely combinational, with clock, reset and enable tied off internally to satisfy the synthesis flow. No external hardware is required beyond the demoboard switches and LEDs, and the documentation is clear and complete.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7599,
+  "completion_tokens": 1275,
+  "total_tokens": 8874,
+  "cost": 0.001793766,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001793766,
+   "upstream_inference_prompt_cost": 0.000952266,
+   "upstream_inference_completions_cost": 0.0008415
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001793766,
+ "elapsed_s": 17.4
+}

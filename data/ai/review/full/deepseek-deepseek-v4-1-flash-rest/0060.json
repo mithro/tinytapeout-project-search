@@ -1,0 +1,355 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8da9eb556139",
+  "a07324134500",
+  "bed4b41c7ec3",
+  "a41b54ec8e99",
+  "4ecfb16bd3ee",
+  "2d45af51bda8"
+ ],
+ "results": [
+  {
+   "key": "8da9eb556139",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "No PWM is described; the design outputs digital waveform samples, not pulse-width modulation."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described; the design uses LUT-based phase reconstruction."
+    },
+    {
+     "tag": "comparator",
+     "reason": "No comparator is described in the source."
+    },
+    {
+     "tag": "timer",
+     "reason": "No timer block is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "Source explicitly describes a digital waveform synthesis engine generating multiple waveforms."
+    },
+    {
+     "tag": "nco",
+     "reason": "Source explicitly mentions NCO-style waveform generation."
+    },
+    {
+     "tag": "lookup-table",
+     "reason": "Source explicitly describes LUT-based trigonometric reconstruction and quarter-wave LUT optimization."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "Design synthesizes multiple audio-style waveforms from phase inputs."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Source states a cocotb-based verification environment is included."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Source language is Verilog."
+    }
+   ],
+   "notes": "Corrected tags and summary; original invented PWM tremolo guitar-pedal functionality unsupported by source.",
+   "tags_before": [
+    "pwm",
+    "signal-generator",
+    "counter",
+    "comparator",
+    "timer"
+   ],
+   "tags": [
+    "signal-generator",
+    "nco",
+    "lookup-table",
+    "synthesizer",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This design is a digital tremolo modulation controller intended for guitar pedal applications, generating a PWM signal that can be filtered into an analog control voltage. It uses a counter and comparator to produce the PWM waveform. The modulation rate is controlled by the input pins. It is notable for its simple implementation of a classic audio effect.",
+   "summary": "PolyTrig is a compact ASIC-oriented digital waveform synthesis core implemented in Verilog. It generates multiple waveform types including sine, cosine, tangent and cotangent approximations, triangle, sawtooth, square and rectified sine using LUT-based signal reconstruction. The architecture uses quarter-wave LUT optimization with symmetry and phase transformations, and supports NCO-style waveform generation. Waveform selection and runtime configuration are controlled through the TinyTapeout input interface, and a cocotb verification environment is included.",
+   "summary_changed": true
+  },
+  {
+   "key": "a07324134500",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Summary corrected to remove unsupported FPGA/BGM and Tiny Tapeout claims.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "bit-serial",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "bit-serial",
+    "verilog",
+    "asic"
+   ],
+   "summary_before": "This project is a minimal 32-bit RV32I RISC-V processor core based on the bit-serial SERV architecture, which trades throughput for very small area by processing one bit per clock cycle. It is designed for low-resource applications and is compatible with an FPGA project from BGM infrastructure. The core is implemented in Verilog and is intended for ASIC implementation. It is notable for its extremely compact design suitable for Tiny Tapeout.",
+   "summary": "This project implements a minimal 32-bit RISC-V processor core (RV32I) using the bit-serial SERV architecture, processing one bit per clock cycle. It is optimized for area efficiency in ASIC implementation. The core connects to external SPI flash memory for program storage and can drive optional LEDs on GPIO pins. It is implemented in Verilog.",
+   "summary_changed": true
+  },
+  {
+   "key": "bed4b41c7ec3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "No RISC-V implementation is described; TeenySPU uses a custom spatial instruction set."
+    },
+    {
+     "tag": "sram",
+     "reason": "No SRAM is described in the source."
+    },
+    {
+     "tag": "analog",
+     "reason": "Design is digital with 4-bit digital buses; no analog circuits described."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "Source mentions geoAI processing but no ML hardware implementation is described."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "Only a brief geoAI mention; no edge AI inference hardware is described."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "No bit-serial architecture is described."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "No multiply-accumulate unit is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "accelerator",
+     "reason": "Described as a spatial processing unit accelerating raster, vector and geoAI operations."
+    },
+    {
+     "tag": "coprocessor",
+     "reason": "Functions as an auxiliary processing unit controlled via opcode and data mux inputs."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Source language is Verilog."
+    }
+   ],
+   "notes": "Original summary described an unrelated TinyMOA design; tags and summary corrected to match source.",
+   "tags_before": [
+    "risc-v",
+    "sram",
+    "analog",
+    "machine-learning",
+    "edge-ai",
+    "bit-serial",
+    "accelerator",
+    "mac-unit"
+   ],
+   "tags": [
+    "accelerator",
+    "coprocessor",
+    "verilog"
+   ],
+   "summary_before": "TinyMOA is a RISC-V CPU based on TinyQV with an integrated SRAM-based compute-in-memory accelerator for analog matrix multiplications. It is designed for edge AI inference, combining a bit-serial processor with analog MAC operations. The accelerator uses SRAM cells for analog computation, and the CPU controls data flow and results. No silicon test results are provided.",
+   "summary": "TeenySPU is a 4-bit spatial processing unit implemented in Verilog that uses a spatial instruction set architecture. Operation codes are provided on the high four input bits and data loading multiplexer codes on the low four input bits. Its 4-bit inputs, bidirectional pins and outputs carry Q values, operation codes, accumulator bits, board data and output values N and M. A testbench covering all programmed operations is included with the source.",
+   "summary_changed": true
+  },
+  {
+   "key": "a41b54ec8e99",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "Design is a digital FSM-based processor; no analog circuits described."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "No transistor-level implementation is described."
+    },
+    {
+     "tag": "opamp",
+     "reason": "No operational amplifier is described."
+    },
+    {
+     "tag": "current-mirror",
+     "reason": "No current mirror is described."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Source describes a MiniRISC processor with fetch, decode, execute and write-back."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The control unit is explicitly an FSM stepping through the instruction cycle."
+    },
+    {
+     "tag": "education",
+     "reason": "Stated goal is to demonstrate how a minimal RISC-like processor can be built and verified."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The testbench uses Icarus Verilog and cocotb as stated in the source."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Source language is Verilog."
+    }
+   ],
+   "notes": "Replaced unrelated analog tags and summary with content supported by the documented MiniRISC-FSM design.",
+   "tags_before": [
+    "analog",
+    "transistor-level",
+    "education",
+    "opamp",
+    "current-mirror",
+    "shift-register"
+   ],
+   "tags": [
+    "education",
+    "cpu",
+    "fsm",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This project is an analog prototyping platform that includes an opamp, current mirror, and shift register. It is designed for educational use, allowing users to experiment with analog circuits. The design is implemented at the transistor level, providing a hands-on learning experience. The programming file generation is still a work in progress.",
+   "summary": "This project implements a simple MiniRISC processor using an FSM-based control unit. It fetches instructions from the ui_in pins and steps through fetch, decode, execute and write-back phases, with an accumulator register holding intermediate results and uo_out reflecting the ACC value or operation result. The design is intended to demonstrate a minimal RISC-like processor synthesized for Tiny Tapeout and verified through simulation and hardware testing. A cocotb testbench is provided for verification.",
+   "summary_changed": true
+  },
+  {
+   "key": "4ecfb16bd3ee",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is described; outputs are logic gate results."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No decoder is described; the design implements basic gates."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Design implements NOT, OR, XNOR and XOR gates."
+    },
+    {
+     "tag": "combinational",
+     "reason": "All gates are purely combinational logic."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Project language is Wokwi and it is built in that simulator."
+    },
+    {
+     "tag": "education",
+     "reason": "Simple gate-level project illustrating basic logic and testing."
+    }
+   ],
+   "notes": "Original summary invented an unrelated 7-segment display project; corrected to match the documented logic gates.",
+   "tags_before": [
+    "7-segment",
+    "decoder",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "logic-gate",
+    "combinational"
+   ],
+   "summary_before": "This Wokwi project uses four input switches to control a 7-segment display, showing digits 6, 7, or 8 based on the switch states. The design includes a decoder that maps the switch combinations to the appropriate segment patterns. The project is built using the Wokwi simulator and serves as an educational example of decoder and display interfacing. No external hardware is required beyond the simulator's switches and 7-segment display.",
+   "summary": "This Wokwi project implements a small combinational logic block. NOT gates are connected to inputs a and b, an OR gate to inputs c and d, an XNOR gate to inputs e and f, and an XOR gate to inputs g and h. Its outputs on uo[0], uo[1], uo[5], uo[6] and uo[7] reflect these gate results. It is tested by setting the inputs and checking the outputs against expected combinations.",
+   "summary_changed": true
+  },
+  {
+   "key": "2d45af51bda8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "Design is a D-flip-flop frequency divider, not a counter."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated; documentation is very thin."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "Explicitly a frequency divider built from D flip-flops."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Project language is Wokwi."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "Explicitly uses D flip-flops."
+    }
+   ],
+   "notes": "Replaced unsupported counter/education tags; summary corrected from unrelated event-accumulator description.",
+   "tags_before": [
+    "counter",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "clock-divider",
+    "flip-flop"
+   ],
+   "summary_before": "This design is a simple event accumulator that counts rising edges on an input pin and outputs a 4-bit activity value. It includes a clock and active-low reset, and can be tested in simulation by driving the input with pulses and observing the outputs. The design is minimal and intended to illustrate basic stream processing without complex control logic. The documentation is sparse but sufficient to understand the basic functionality.",
+   "summary": "This design is a small frequency divider built from D flip-flops. It is activated by driving input0 high. The output produces a lower frequency than the input, dividing the 10 kHz clock. It is implemented in Wokwi and can be tested by observing the output frequency.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6507,
+  "completion_tokens": 1998,
+  "total_tokens": 8505,
+  "cost": 0.0043497,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043497,
+   "upstream_inference_prompt_cost": 0.0019521,
+   "upstream_inference_completions_cost": 0.0023976
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043497,
+ "elapsed_s": 11.8
+}

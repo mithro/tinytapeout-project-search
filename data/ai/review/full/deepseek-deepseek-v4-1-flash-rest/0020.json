@@ -1,0 +1,394 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a7a504fc7a87",
+  "7cc57047b3b9",
+  "eba7f9515dda",
+  "86e37508f276",
+  "66c6aa26a7c1",
+  "6ed4cc0f34bf"
+ ],
+ "results": [
+  {
+   "key": "a7a504fc7a87",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "No factory self-test structure is described; the design is a counter for a 7-segment display."
+    },
+    {
+     "tag": "current-mirror",
+     "reason": "No analog current mirror is mentioned or implied by the pins or text."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design is explicitly a counter that shows its count on a 7-segment display."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The output drives a 7-segment display, as stated in the description and external hardware."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "A 1 Hz clock is used to drive the counter, implying clock division from the system clock."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The author states 'I have no idea yet!' and the documentation is very thin, indicating an unfinished design."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is implemented in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported factory-test and current-mirror tags; added counter, 7-segment, clock-divider, incomplete, and verilog tags; corrected summary to match the thin documentation.",
+   "tags_before": [
+    "factory-test",
+    "gpio",
+    "counter",
+    "current-mirror"
+   ],
+   "tags": [
+    "gpio",
+    "counter",
+    "7-segment",
+    "clock-divider",
+    "incomplete",
+    "verilog"
+   ],
+   "summary_before": "This design is a factory test structure that includes a counter and GPIO interface. It is intended for testing the chip's functionality. The design includes a current mirror for analog testing. It is implemented in Verilog and targets the Tiny Tapeout platform.",
+   "summary": "This design is a Verilog-based counter that displays its count on a 7-segment display. It uses a 1 Hz clock to drive the counting logic. The design is incomplete, as the author states they have no idea yet how it will work. It requires an external 7-segment display for testing.",
+   "summary_changed": true
+  },
+  {
+   "key": "7cc57047b3b9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "hardware-trojan",
+     "reason": "The documentation does not describe a hardware trojan; the one-line description says 'triple or gate'."
+    },
+    {
+     "tag": "security",
+     "reason": "No security-related functionality is described."
+    },
+    {
+     "tag": "comparator",
+     "reason": "The pin names are for 7-segment segments, not a comparator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The one-line description says 'triple or gate', indicating a logic gate implementation."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The design is built using the Wokwi simulator."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The output pins are labeled for 7-segment display segments."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is placeholder text with no real explanation of the design."
+    }
+   ],
+   "notes": "Removed unsupported hardware-trojan, security, and comparator tags; added logic-gate, wokwi, 7-segment, and insufficient-doc tags; corrected summary to reflect the placeholder documentation.",
+   "tags_before": [
+    "hardware-trojan",
+    "security",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "comparator"
+   ],
+   "tags": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is described as a test for a hardware trojan, but the documentation does not explain what the trojan does or how it is triggered. The pin names suggest a comparator-like function, but no details are given. The design is built with Wokwi and appears to be an educational example. There is not enough information to determine the actual behavior or testing procedure.",
+   "summary": "This design is described as a 'triple or gate' and is built with Wokwi. The output pins are labeled for a 7-segment display, but the documentation does not explain how the gate connects to the display. The documentation is placeholder text, providing no details on functionality or testing. There is not enough information to determine the actual behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "eba7f9515dda",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The documentation mentions NAND and NOT gates but the design is not clearly a logic gate implementation; it is a Wokwi project with unclear function."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The design is built using the Wokwi simulator."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is contradictory and does not clearly describe the design."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is uncertain and the design appears unfinished."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and education tags; added wokwi, insufficient-doc, and incomplete tags; corrected summary to reflect the contradictory documentation.",
+   "tags_before": [
+    "logic-gate",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi design implements four basic logic gates: an inverter, an AND gate, an OR gate, and an XOR gate. It has seven input pins and four output pins, with the gates presumably connected to specific inputs. The documentation is very brief and does not specify the exact input-output mapping or any external hardware requirements. The design is intended for educational purposes.",
+   "summary": "This Wokwi design is described as a tiny TDC and a MOSFET, but the documentation is contradictory and unclear. It mentions switches IN1-7 causing reactions on lights OUT1-7, and possibly using NAND and NOT gates to create an initial. The documentation is very brief and does not specify the exact functionality or testing procedure. There is not enough information to determine the actual behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "86e37508f276",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate functionality is described; the design is for a 7-segment display."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock division is mentioned."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The design is built using the Wokwi simulator."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The design drives a 7-segment display, as stated in the description and external hardware."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is very thin, with only a one-line description in German."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate, clock-divider, and education tags; added wokwi, 7-segment, and insufficient-doc tags; corrected summary to match the thin documentation.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a simple test of basic gates and clock division, likely a first Wokwi exercise. It is explicitly a simple test of basic gates and clock division, likely a first Wokwi exercise. The documentation is very thin, with a one-line description in German and no real explanation of the mapping between inputs and segments. It requires an external seven-segment display, and testing is described only as using it for a seven-segment display.",
+   "summary": "This Wokwi design drives a 7-segment display based on input switches. The documentation is very thin, with a one-line description in German and no real explanation of the mapping between inputs and segments. It requires an external 7-segment display, and testing is described only as using it for a 7-segment display. There is not enough information to determine the exact functionality.",
+   "summary_changed": true
+  },
+  {
+   "key": "66c6aa26a7c1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "frequency-counter",
+     "reason": "The design is a PUF, not a frequency counter."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "No instrumentation application is described."
+    },
+    {
+     "tag": "industrial",
+     "reason": "No industrial control application is described."
+    },
+    {
+     "tag": "i2c",
+     "reason": "The interface is SPI, not I2C."
+    },
+    {
+     "tag": "dac",
+     "reason": "No DAC is present."
+    },
+    {
+     "tag": "adc",
+     "reason": "No ADC is present."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puf",
+     "reason": "The design is explicitly a Physically Unclonable Function based on ring oscillators."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "The design contains 16 ring oscillators."
+    },
+    {
+     "tag": "spi",
+     "reason": "The result is read out over an SPI slave interface."
+    },
+    {
+     "tag": "security",
+     "reason": "PUFs are used for hardware security and chip identification."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is implemented in Verilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The design has been fabricated and tested on silicon, as indicated by the silicon status."
+    }
+   ],
+   "notes": "Removed unsupported tags; added puf, ring-oscillator, spi, security, verilog, and silicon-tested tags; corrected summary to accurately describe the PUF design.",
+   "tags_before": [
+    "frequency-counter",
+    "instrumentation",
+    "industrial",
+    "i2c",
+    "spi",
+    "dac",
+    "adc",
+    "oscillator",
+    "sensor-interface"
+   ],
+   "tags": [
+    "spi",
+    "oscillator",
+    "puf",
+    "ring-oscillator",
+    "security",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a 9-channel oscillator frequency counter with programmable gate time, controlled over I2C and supplemented by SPI DAC outputs and SPI ADC sampling. It measures the frequency of up to nine external oscillators and provides analog output via a DAC and digital input via an ADC. The design is intended for instrumentation and industrial monitoring applications. It is notable for its multi-channel measurement capability and flexible control interface.",
+   "summary": "This design is a Physically Unclonable Function (PUF) based on ring oscillator frequency comparisons. It contains 16 ring oscillators and generates a 49-bit Lehmer code from pairwise comparisons. The result is read out over an SPI slave interface, with busy and done signals indicating status. It is implemented in Verilog and has been validated on fabricated silicon.",
+   "summary_changed": true
+  },
+  {
+   "key": "6ed4cc0f34bf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The output is for a 7-segment display, not discrete LEDs."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described."
+    },
+    {
+     "tag": "pattern-generator",
+     "reason": "No pattern generator is described."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock divider is described."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The design is built using the Wokwi simulator."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is described as 'just an and gate'."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The output drives a 7-segment display."
+    },
+    {
+     "tag": "button",
+     "reason": "The design uses two buttons as inputs."
+    },
+    {
+     "tag": "education",
+     "reason": "The design is a simple educational example of an AND gate."
+    }
+   ],
+   "notes": "Removed unsupported tags; added wokwi, logic-gate, 7-segment, button, and education tags; corrected summary to match the simple AND gate design.",
+   "tags_before": [
+    "led",
+    "shift-register",
+    "pattern-generator",
+    "clock-divider",
+    "wokwi",
+    "graphics",
+    "counter"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "7-segment",
+    "button",
+    "education"
+   ],
+   "summary_before": "This design generates LED patterns using a shift register and a clock divider, built with Wokwi. It is intended for educational purposes and demonstrates sequential logic. The design uses a clock input and drives LEDs on its outputs. The documentation is minimal but sufficient to understand the configuration options.",
+   "summary": "This design is a simple AND gate built with Wokwi. It uses two buttons as inputs and drives a 7-segment display to show the letter L when both buttons are pressed. The documentation is minimal but sufficient to understand the functionality. It is an educational example of basic logic.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5837,
+  "completion_tokens": 2257,
+  "total_tokens": 8094,
+  "cost": 0.0044595,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044595,
+   "upstream_inference_prompt_cost": 0.0017511,
+   "upstream_inference_completions_cost": 0.0027084
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044595,
+ "elapsed_s": 75.7
+}

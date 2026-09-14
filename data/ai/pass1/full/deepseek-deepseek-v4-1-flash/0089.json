@@ -1,0 +1,210 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7fe39d38c91b",
+  "3ae253dfef08",
+  "73efa1ae3e03",
+  "5054f5c40ac4",
+  "421650ee179f",
+  "6aff4abf7081",
+  "ebdc861825e6",
+  "8ea9456f84b6",
+  "822df97e088d",
+  "f9bb265e2b7e"
+ ],
+ "results": [
+  {
+   "key": "7fe39d38c91b",
+   "tags": [
+    "cpu",
+    "dac",
+    "8-bit",
+    "register-file",
+    "rom",
+    "analog",
+    "r2r",
+    "audio",
+    "flash",
+    "sram"
+   ],
+   "summary": "DJ8 is an 8-bit CPU with an 8x8-bit register file, a 15-bit address bus, an 8-bit data bus, and an integrated 8-bit R-2R DAC. It includes a built-in 256-byte demo ROM with two demos selected via DIP switches at reset, one of which drives a speaker through the DAC. External hardware can include a parallel Flash ROM and optional SRAM for larger programs, plus a speaker and amplifier for the audio demo. The design is notable for combining a full CPU with an analog DAC on a single Tiny Tapeout tile and for having prior VHDL and Verilog implementations.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3ae253dfef08",
+   "tags": [
+    "cpu",
+    "8-bit",
+    "education",
+    "breadboard",
+    "ram",
+    "programmable",
+    "microcontroller",
+    "clock"
+   ],
+   "summary": "This project recreates Ben Eater's 8-bit breadboard computer as a Tiny Tapeout ASIC in SystemVerilog. It is programmed through a dedicated prog_mode pin, four address bits, and eight bidirectional data lines, with a 4-bit address space limiting internal RAM to 16 bytes. An RP2040 or similar microcontroller is needed to load programs, and an external output register on a breadboard connects to the 8-bit I/O lines. The design is notable as an educational ASIC implementation of a well-known instructional computer.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "73efa1ae3e03",
+   "tags": [
+    "dac",
+    "r2r",
+    "analog",
+    "mismatch-shaping",
+    "segmented",
+    "encoder",
+    "dither",
+    "resistor-ladder",
+    "8-bit"
+   ],
+   "summary": "This is an 8-bit segmented mismatch-shaping R2R DAC encoder implemented in Verilog. It accepts 8-bit digital input and produces a segmented output that must be summed by an external resistor ladder to create the analog voltage, with optional buffering and retiming recommended for best performance. The output swing is 0.25 to 0.75 of the IO supply, and resistor mismatch appears as first-order shaped noise removable by lowpass filtering. The design is notable for using mismatch-shaping and dithering techniques to achieve 8-bit linearity without precise resistor matching.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5054f5c40ac4",
+   "tags": [
+    "gpu",
+    "vga",
+    "spi",
+    "rasterizer",
+    "graphics",
+    "polygon",
+    "display",
+    "microcontroller",
+    "video"
+   ],
+   "summary": "badGPU is a basic GPU that rasterizes up to four triangles at 640x480 60Hz with 6-bit color, controlled by a host microcontroller over SPI. It supports a programmable background color and uses polygon ordering instead of a Z-buffer, with vertices limited to 80 X and 60 Y positions. The design requires a Tiny VGA PMOD, a VGA screen, and an SPI-capable microcontroller, and it asserts an interrupt during blanking to accept new commands. It is notable for fitting a simple polygon rasterizer into a 4x2 tile Tiny Tapeout design.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "421650ee179f",
+   "tags": [
+    "clock",
+    "rtc",
+    "7-segment",
+    "display",
+    "usb",
+    "digital-tube",
+    "pcb"
+   ],
+   "summary": "This project is a clock design intended to drive a USB digital tube display. It exposes an 8-bit address input and an 8-bit data output, suggesting a memory-mapped interface to external display hardware. The documentation is very thin, stating only that it is a clock and that a PCB and 3D shell will be published separately. External hardware includes the PCB, shell, and digital tube, but no further implementation details are provided.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "6aff4abf7081",
+   "tags": [
+    "raycasting",
+    "voxel",
+    "qspi",
+    "psram",
+    "spi",
+    "display",
+    "graphics",
+    "silice",
+    "terrain",
+    "game"
+   ],
+   "summary": "Explorer implements a 2D voxel raycasting terrain renderer in hardware, based on the 1992 Voxel Space algorithm used in Comanche. It is written in Silice and interfaces with a QSPI PSRAM for terrain data and an SPI ST7789V screen for output, with four buttons as inputs. Terrain data must be uploaded to the PSRAM before operation, planned from an RP2040 on the PCB, and the design has been tested successfully at 17MHz. It is notable for bringing a classic software rendering algorithm into a hardware implementation on Tiny Tapeout.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ebdc861825e6",
+   "tags": [
+    "factory-test",
+    "test",
+    "io",
+    "counter",
+    "mirror",
+    "scan-chain",
+    "bring-up"
+   ],
+   "summary": "The TinyTapeout 7 Factory Test module is a simple design for testing all I/O pins of the ASIC. It has three modes selected by rst_n and sel: mirroring input pins to outputs, mirroring bidirectional pins to outputs, or outputting an 8-bit counter on both output and bidirectional pins. No external hardware is required, and the design has been reported working by multiple testers. It is notable as a dedicated factory test and bring-up utility rather than a functional application.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8ea9456f84b6",
+   "tags": [
+    "floating-point",
+    "mac",
+    "fp8",
+    "multiplier",
+    "adder",
+    "chisel",
+    "dsp",
+    "systolic-array",
+    "accelerator"
+   ],
+   "summary": "This is a simple FP8 multiply-accumulate module implemented in Chisel, taking two 8-bit floating-point inputs and producing an 8-bit result after three clock cycles. It includes a partial register at address 0x00 as the starting value and is intended as a building block for systolic arrays and hardware accelerators. The design is self-contained and requires only an output buffer to store partial products and results. Testing is done by running make in the test directory, and the documentation is otherwise brief.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "822df97e088d",
+   "tags": [
+    "analog",
+    "resistor-network",
+    "pass-gate",
+    "dac",
+    "r2r",
+    "matrix",
+    "transistor-level",
+    "programmable",
+    "latches"
+   ],
+   "summary": "The Field Programmable Resistor Network is an analog design consisting of resistors and pass-gate switches arranged in a matrix, with latches that hold the configuration. Cells are selected via H_GATE and V_GATE inputs, and the network can be configured as a makeshift DAC by controlling the bitstream. The output voltage is measured externally at the analog pin, requiring a multimeter or microcontroller ADC. Silicon tests confirmed the R2R DAC mode works after cutting a 10k pulldown resistor on the demoboard, and the design is notable for its transistor-level analog configurability.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f9bb265e2b7e",
+   "tags": [
+    "fractran",
+    "esoteric",
+    "turing-complete",
+    "clash",
+    "prime-factorization",
+    "stream",
+    "accumulator",
+    "hardware-language"
+   ],
+   "summary": "fractran-tt is a hardware implementation of John Conway's esoteric Turing-complete language Fractran, written in Clash. It operates on streams of prime factor degrees, using an 8-bit accumulator stream and fraction stream as inputs and producing a factorized result stream, with sentinel values for STOP and HALT. The internal logic is small and requires external support circuitry such as a fraction counter, degree pointer, fraction ROM, and banked accumulator RAM. The design is notable for implementing an unusual mathematical language directly in hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7545,
+  "completion_tokens": 1811,
+  "total_tokens": 9356,
+  "cost": 0.002678796,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002678796,
+   "upstream_inference_prompt_cost": 0.001483536,
+   "upstream_inference_completions_cost": 0.00119526
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002678796,
+ "elapsed_s": 20.0
+}

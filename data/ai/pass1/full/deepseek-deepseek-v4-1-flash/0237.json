@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ea8ecd2d1f6e",
+  "151e4d5bebd6",
+  "2feca292b59f",
+  "5deb154934a6",
+  "a1ad66d1b7f5",
+  "9a3a02ade466",
+  "aa06c1fe1fcb",
+  "98159fefe7c0",
+  "c0120960ce1c",
+  "0eb298a9d65e"
+ ],
+ "results": [
+  {
+   "key": "ea8ecd2d1f6e",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "animation",
+    "demo",
+    "pattern-generator"
+   ],
+   "summary": "VGABlock generates moving colored blocks on a 640x480 VGA display, with a green and blue checkerboard drifting toward the top right and larger red blocks moving left. It is a purely combinational Verilog design clocked at 25.175 MHz that drives the standard Tiny VGA pinout (R1/G1/B1, R0/G0/B0, HSync, VSync). Testing requires only connecting the chip to a VGA monitor and observing the motion. The documentation is minimal and gives no detail on internal structure or any silicon results.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "151e4d5bebd6",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "animation",
+    "demo",
+    "character",
+    "pattern-generator"
+   ],
+   "summary": "Demoscreen full of RICH displays a bouncing character on a VGA monitor with animated color, driven by a 25.175 MHz clock and the Tiny VGA pinout. Two input pins configure the behavior: ui[0] tiles the character across the screen and ui[1] selects a solid color instead of a golden and red mix. Testing consists of connecting a monitor and toggling those two inputs. The documentation is very short and provides no information on internal implementation or silicon results.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2feca292b59f",
+   "tags": [
+    "fpga",
+    "lut",
+    "fabric",
+    "yosys",
+    "nextpnr",
+    "bitstream",
+    "carry-chain",
+    "clock-domain"
+   ],
+   "summary": "Tiny FABulous FPGA implements a small FPGA fabric with 168 LUT4+flip-flop logic cells arranged in a 9x5 tile grid, with 26 I/O buffers and 4 global buffers, targeting the IHP26a process. User designs are synthesized with Yosys and placed and routed with nextpnr, then loaded as a big-endian bitstream through a bitbang interface on ui[0] and ui[1] while reset is asserted. The I/O layout mirrors the Tiny Tapeout interface so simple Tiny Tapeout designs can be mapped directly onto the fabric, and a vertical carry chain supports additions up to 23 bits. No external hardware is required, and the documentation is unusually thorough, including resource tables and cocotb test guidance.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5deb154934a6",
+   "tags": [
+    "audio",
+    "visualizer",
+    "spi",
+    "oled",
+    "pwm",
+    "led",
+    "display",
+    "pattern-generator",
+    "encoder"
+   ],
+   "summary": "Infinity Core is a hardware audio visualizer that takes a digital beat pulse and drives both an SPI OLED display and PWM-controlled infinity mirror LEDs. It contains a 24-bit heartbeat counter, a PWM comparator engine, and a hardware SPI serializer that pushes pixel data without any CPU or RAM. Two rotary encoders adjust brightness, density, and decay speed, and an external comparator circuit provides analog sensitivity control. It requires an SSD1306-compatible 128x64 SPI OLED, encoders, and high-brightness LEDs, and the documentation is detailed about architecture and wiring.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a1ad66d1b7f5",
+   "tags": [
+    "dsp",
+    "filter",
+    "fir",
+    "uart",
+    "audio",
+    "dac",
+    "saturation",
+    "fixed-point"
+   ],
+   "summary": "This design is a 2-tap direct-form FIR filter with runtime-configurable Q7 coefficients loaded over a 9600 8N1 UART, operating on 8-bit signed samples with saturating output. Samples are presented on ui_in with a sample_valid strobe on uio[2], and the filtered result appears on uo_out with out_valid and coeff_we status pins. It can be exercised with DIP switches and LEDs, a Python UART script, an Arduino sine source viewed on a scope, or an R-2R DAC ladder driving a speaker. External hardware is optional but includes a USB-UART adapter, buttons, and a DAC, and the documentation is clear and complete.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9a3a02ade466",
+   "tags": [
+    "counter",
+    "template",
+    "education",
+    "wokwi",
+    "clock",
+    "reset"
+   ],
+   "summary": "tinyTapeVerilog_out is a minimal example design that implements a simple 8-bit counter, intended to demonstrate the IHP Tiny Tapeout workflow. It takes a clock, an active-low reset, and an enable on ui[0..2], and outputs the counter value on uo[0]. Testing is done by running the provided testbench in the test folder, and no external hardware is needed. The documentation is essentially a template with almost no detail beyond the counter description.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "aa06c1fe1fcb",
+   "tags": [
+    "floating-point",
+    "multiplier",
+    "dsp",
+    "pipeline",
+    "vhdl",
+    "e4m3",
+    "arithmetic"
+   ],
+   "summary": "float_synth synthesizes the VHDL-2008 IEEE.float_pkg into an 8-bit E4M3 floating-point multiplier computing y = a * b with a six-clock pipeline latency. Input a comes from ui_in, b from uio_in, and the truncated, saturating result appears on uo_out, with subnormals handled and no infinity or NaN support. It can be driven from DIP switches, a PMOD, or the TT Commander, and the result is best observed on PMOD or TT Commander rather than the seven-segment display. The project is notable for retiming lazily written HDL to achieve a very high clock frequency, though the author cautions that 400 MHz is unlikely to work in practice.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "98159fefe7c0",
+   "tags": [
+    "timecode",
+    "ltc",
+    "i2c",
+    "audio",
+    "video",
+    "synchronization",
+    "biphase-mark",
+    "7-segment",
+    "debug"
+   ],
+   "summary": "This project generates Linear Timecode (LTC) for audio and video synchronization, using counters to track time and frame count and emitting 80-bit biphase-mark-coded frames on a single pin. It adds I2C control for setting timecode and user bits, with framerate, drop-frame, color-frame, and background-format flags on ui[2..7], and debug outputs including a seven-segment framerate display. It is designed to work with the Tiny Tapeout Audio PMOD for line-level output, and I2C requires pull-ups and a host such as a Bus Pirate. This is a v2 revision of a design previously taped out on several shuttles, and the documentation is detailed about wiring and testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c0120960ce1c",
+   "tags": [
+    "fpga",
+    "lut",
+    "crossbar",
+    "bitstream",
+    "shift-register",
+    "education"
+   ],
+   "summary": "This project implements a tiny FPGA consisting of a crossbar connecting 8 inputs, 8 LUTs, and 4 output ports, with no routing fabric beyond the crossbar. Configuration is loaded serially through Program Data and Program Enable pins into a shift register, and a Virtual Reset pin must be held high at power-up to avoid combinatorial loops. Once configured, the design can implement simple combinatorial logic, output toggling, or a 4-bit counter, as shown in the testbench. No external hardware is required, and the documentation is brief but sufficient to use the device.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0eb298a9d65e",
+   "tags": [
+    "alu",
+    "multiplier",
+    "serial",
+    "nibble",
+    "arithmetic",
+    "comparison",
+    "shifter",
+    "protocol"
+   ],
+   "summary": "tt_gian_alu is a 32-bit ALU supporting arithmetic, logic, shift, comparison, and multiplication operations selected by a 6-bit function field. Operands and results are transferred over a nibble-based synchronous serial interface using ui[4..7] for input data, uo[4..7] for output data, and control/status pins for transaction start, result valid, frame error, and busy. It is driven synchronously with the 50 MHz clock and can be controlled by a microcontroller, requiring no external hardware. The documentation lists the supported operations and interface but gives little detail on timing or verification results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6841,
+  "completion_tokens": 1917,
+  "total_tokens": 8758,
+  "cost": 0.003494163,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 896,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003494163,
+   "upstream_inference_prompt_cost": 0.001538823,
+   "upstream_inference_completions_cost": 0.00195534
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003494163,
+ "elapsed_s": 73.0
+}

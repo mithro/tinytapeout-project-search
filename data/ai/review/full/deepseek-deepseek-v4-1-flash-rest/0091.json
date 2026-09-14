@@ -1,0 +1,280 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ed3c14d0a962",
+  "3aad5c90b7f2",
+  "93d6cfd41281",
+  "1da890d20397",
+  "b2e6ea41ec3d",
+  "c77fd00c6b50"
+ ],
+ "results": [
+  {
+   "key": "ed3c14d0a962",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source describes a multiplier and testing method but never states it is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag because the source does not state a teaching or learning intent.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4x4 array multiplier that takes two 4-bit inputs and produces an 8-bit product using full adders to sum partial products. It is a combinational circuit with no clock, and testing can be done by applying input values and comparing the output to the expected product, either through a provided test script or by internal debugging. The design is educational and includes a schematic diagram, with no external hardware required.",
+   "summary": "This project is a 4x4 array multiplier that takes two 4-bit inputs and produces an 8-bit product using full adders to sum partial products. It is a combinational circuit with no clock, and testing can be done by applying input values and comparing the output to the expected product, either through a provided test script or by internal debugging. The design includes a schematic diagram and requires no external hardware. The documentation explains the partial-product and full-adder structure of the multiplier.",
+   "summary_changed": true
+  },
+  {
+   "key": "3aad5c90b7f2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "voltage-reference",
+     "reason": "The PTAT core is a bias current generator, not a bandgap or reference voltage generator."
+    },
+    {
+     "tag": "full-custom",
+     "reason": "The source describes translinear NPN loops and an analog macro but does not state a full-custom layout."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design combines continuous-time analog EML cells with digital scan-chain configuration and readback."
+    },
+    {
+     "tag": "current-mirror",
+     "reason": "The translinear NPN loops and PTAT bias core are current-mode analog building blocks."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The design includes a test cell and PTAT trim bits for observing analog behavior."
+    }
+   ],
+   "notes": "Corrected voltage-reference and full-custom tags; added mixed-signal, current-mirror and characterization based on the analog current-mode and test-cell content.",
+   "tags_before": [
+    "analog",
+    "transistor-level",
+    "voltage-reference",
+    "scan-chain",
+    "full-custom"
+   ],
+   "tags": [
+    "analog",
+    "transistor-level",
+    "scan-chain",
+    "mixed-signal",
+    "current-mirror",
+    "characterization"
+   ],
+   "summary_before": "This is an analog design that includes a voltage reference and scan-chain test structures. It is built at the transistor level, indicating a full-custom layout. The design is likely used for characterizing analog process parameters. The documentation is sparse, but the tags suggest a focus on analog building blocks.",
+   "summary": "This is an analog computing tile that implements a chain of two EML cells, each computing exp(u) minus ln(v) in current mode using translinear NPN loops. The chain is configured through a 29-bit scan chain and biased from an on-chip PTAT core with a trimmed reference resistor. The design is built at the transistor level and includes a test cell, with only the final output observable through the analog pins. Testing requires a source-measure unit and attention to the slow PTAT start-up at cold corners.",
+   "summary_changed": true
+  },
+  {
+   "key": "93d6cfd41281",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a four-bit adder, not a basic logic gate implementation."
+    },
+    {
+     "tag": "led",
+     "reason": "The pins are digital outputs representing a binary sum; no LED output is documented."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The design sums four input bits using half adders and full adders."
+    },
+    {
+     "tag": "counter",
+     "reason": "The output is the binary count of how many inputs are on."
+    }
+   ],
+   "notes": "Replaced unsupported logic-gate, led and education tags with adder and counter, which match the documented four-bit summing behavior.",
+   "tags_before": [
+    "logic-gate",
+    "combinational",
+    "wokwi",
+    "education",
+    "led"
+   ],
+   "tags": [
+    "combinational",
+    "wokwi",
+    "adder",
+    "counter"
+   ],
+   "summary_before": "This project is a simple logic gate test that uses four switches to control outputs that light up LEDs. The design appears to be a basic educational experiment with combinational logic. It is implemented in Wokwi and uses LEDs for output. The documentation is minimal but the functionality is straightforward.",
+   "summary": "This project is a four-bit adder that outputs the number of inputs that are on as a binary value. It combines the inputs using half adders and full adders to produce the sum. The design is implemented in Wokwi and is purely combinational, with no clock. Testing is done by setting the inputs on or off and checking that the output represents their sum in binary.",
+   "summary_changed": true
+  },
+  {
+   "key": "1da890d20397",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design is described as a true random number generator, not a pseudo random number generator."
+    },
+    {
+     "tag": "crypto",
+     "reason": "The source does not state a cryptographic application or algorithm."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "The design is an RO-based TRNG and exposes an RO output."
+    },
+    {
+     "tag": "uart",
+     "reason": "The design uses RX_Serial and TX_Serial pins and is tested through a UART terminal."
+    }
+   ],
+   "notes": "Removed prng and crypto tags; added ring-oscillator and uart, which are directly supported by the pins and description.",
+   "tags_before": [
+    "trng",
+    "prng",
+    "ring-oscillator",
+    "uart",
+    "crypto"
+   ],
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "uart"
+   ],
+   "summary_before": "This design is a trial implementation of a lightweight all-digital true random number generator based on ring oscillators. It outputs random data via a UART serial interface, and also provides ring oscillator and random generator outputs for observation. The design is intended for testing and evaluation of TRNG concepts. It uses ring oscillators to generate entropy.",
+   "summary": "This design is a trial implementation of a lightweight all-digital true random number generator based on ring oscillators. It outputs random data via a UART serial interface, and also provides ring oscillator and random generator outputs for observation. The design is intended for testing and evaluation of TRNG concepts. It uses ring oscillators to generate entropy.",
+   "summary_changed": false
+  },
+  {
+   "key": "b2e6ea41ec3d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "placeholder",
+    "power-gating",
+    "incomplete"
+   ],
+   "tags": [
+    "placeholder",
+    "power-gating",
+    "incomplete"
+   ],
+   "summary_before": "This project is a placeholder for a power-gated test design that was intended as preliminary work for supporting power-gated designs on later IHP shuttles. The documentation states that the pins and behavior are to be filled in later, and the author's silicon report confirms that the power gating experiments did not end up on the shuttle. No functional design was implemented, so there is nothing to test or use. The project is notable only as a reserved but unused slot.",
+   "summary": "This project is a placeholder for a power-gated test design that was intended as preliminary work for supporting power-gated designs on later IHP shuttles. The documentation states that the pins and behavior are to be filled in later, and the author's silicon report confirms that the power gating experiments did not end up on the shuttle. No functional design was implemented, so there is nothing to test or use. The project is notable only as a reserved but unused slot.",
+   "summary_changed": false
+  },
+  {
+   "key": "c77fd00c6b50",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "power-gating",
+     "reason": "The source describes a loop breaker and scan-chain configuration, not power gating."
+    },
+    {
+     "tag": "latch",
+     "reason": "Latches store configuration, but the design is not primarily a latch circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "The design is a port of the ROTFPGA reconfigurable logic fabric."
+    },
+    {
+     "tag": "reconfigurable",
+     "reason": "The tiles are individually rotated or reflected according to FPGA configuration."
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "Configuration and reset are performed using a routing-efficient scan chain."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans a 1x2 Tiny Tapeout tile area."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The author's silicon test report states the design works as expected."
+    },
+    {
+     "tag": "gate-level",
+     "reason": "The tiles were rewritten as hand-optimized gate-level Verilog."
+    }
+   ],
+   "notes": "Removed unsupported power-gating and latch tags; added fpga, reconfigurable, scan-chain, multi-tile, silicon-tested and gate-level based on the source and silicon report.",
+   "tags_before": [
+    "latch",
+    "fpga",
+    "scan-chain",
+    "reconfigurable",
+    "multi-tile",
+    "power-gating"
+   ],
+   "tags": [
+    "fpga",
+    "scan-chain",
+    "reconfigurable",
+    "multi-tile",
+    "silicon-tested",
+    "gate-level"
+   ],
+   "summary_before": "This project is a latch-based design that was originally intended for FPGA implementation but was later adapted for a multi-tile ASIC. It includes a scan-chain for testing, a reconfigurable logic block, and a power-gating feature. The design is not fully verified and the documentation is sparse. The project is notable for its use of latches and power-gating techniques.",
+   "summary": "This project is a reconfigurable logic circuit built from identical rotatable tiles, each containing a NAND gate, a D flip-flop and a buffer. It is a port of the original ROTFPGA from Caravel to TinyTapeout, reduced to an 8x8 tile fabric with 8 inputs and 8 outputs. Configuration and reset use a scan chain, and the design was rewritten as hand-optimized gate-level Verilog. The author's silicon test report states that it works as expected.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6958,
+  "completion_tokens": 1702,
+  "total_tokens": 8660,
+  "cost": 0.0041298,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041298,
+   "upstream_inference_prompt_cost": 0.0020874,
+   "upstream_inference_completions_cost": 0.0020424
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041298,
+ "elapsed_s": 87.3
+}

@@ -1,0 +1,238 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "36d4618667c0",
+  "b24ad5409916",
+  "e3b29b07efcf",
+  "bd2b9ab6ca0b",
+  "5fa97b37513d",
+  "250ac644cc29"
+ ],
+ "results": [
+  {
+   "key": "36d4618667c0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "aes",
+    "cipher",
+    "crypto",
+    "lookup-table",
+    "combinational",
+    "security",
+    "verilog"
+   ],
+   "tags": [
+    "aes",
+    "cipher",
+    "crypto",
+    "lookup-table",
+    "combinational",
+    "security",
+    "verilog"
+   ],
+   "summary_before": "This project implements an AES S-Box accelerator in Verilog, providing a combinational lookup table that maps an 8-bit input to its AES substitution value. The design uses the 8-bit input pins and 8-bit output pins, with no clocked logic required. It is fully self-contained and requires no external hardware, making it easy to test by applying input values and observing the corresponding outputs. The design demonstrates a hardware implementation of a cryptographic primitive widely used in secure communication systems.",
+   "summary": "This project implements an AES S-Box accelerator in Verilog, providing a combinational lookup table that maps an 8-bit input to its AES substitution value. The design uses the 8-bit input pins and 8-bit output pins, with no clocked logic required. It is fully self-contained and requires no external hardware, making it easy to test by applying input values and observing the corresponding outputs. The design demonstrates a hardware implementation of a cryptographic primitive widely used in secure communication systems.",
+   "summary_changed": false
+  },
+  {
+   "key": "b24ad5409916",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent; it is a personal decoder design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag; the documentation describes a personal decoder project with no stated teaching purpose.",
+   "tags_before": [
+    "decoder",
+    "7-segment",
+    "display",
+    "wokwi",
+    "combinational",
+    "education"
+   ],
+   "tags": [
+    "decoder",
+    "7-segment",
+    "display",
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This project is a binary-to-hexadecimal decoder that drives a seven-segment LED display, taking a 4-bit input (A-D) and outputting the corresponding hexadecimal digit (0-9, A-F). It was designed in Wokwi using combinational logic, with color-coded truth tables and K-maps for clarity. Testing involves toggling the inputs to change the displayed character. No external hardware is required.",
+   "summary": "This project is a binary-to-hexadecimal decoder that drives a seven-segment LED display, taking a 4-bit input (A-D) and outputting the corresponding hexadecimal digit (0-9, A-F). It was designed in Wokwi using combinational logic, with color-coded truth tables and K-maps for clarity. Testing involves toggling the inputs to change the displayed character. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "e3b29b07efcf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The source never mentions neural networks; it only describes a systolic MAC array."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning inference or training is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fixed-point",
+     "reason": "The design performs 4-bit/2-bit integer multiply-accumulate arithmetic."
+    }
+   ],
+   "notes": "Removed neural-network and machine-learning tags not supported by the source; added fixed-point for the integer MAC arithmetic.",
+   "tags_before": [
+    "systolic-array",
+    "mac-unit",
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "dsp"
+   ],
+   "tags": [
+    "systolic-array",
+    "mac-unit",
+    "accelerator",
+    "dsp",
+    "fixed-point"
+   ],
+   "summary_before": "This design is a 2x2 weight-stationary systolic multiply-accumulate array with configurable 4-bit/2-bit precision and zero-operand skip. Activations stream through the array while weights are preloaded, and partial sums are output alternately for each column. The design is purely digital and requires no external hardware. It is intended for neural network and DSP acceleration.",
+   "summary": "This design is a 2x2 weight-stationary systolic multiply-accumulate array with configurable 4-bit/2-bit precision and zero-operand skip. Activations stream through the array while weights are preloaded, and partial sums are output alternately for each column. The design is purely digital and requires no external hardware. It implements a systolic MAC datapath with operand isolation for zero-skip.",
+   "summary_changed": true
+  },
+  {
+   "key": "bd2b9ab6ca0b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "The 2-bit opcode selects operations but there is no instruction decode logic described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed instruction-decoder tag; the source describes an opcode-controlled MAC unit, not instruction decode logic.",
+   "tags_before": [
+    "neural-network",
+    "mac-unit",
+    "accelerator",
+    "fixed-point",
+    "instruction-decoder",
+    "edge-ai",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "mac-unit",
+    "accelerator",
+    "fixed-point",
+    "edge-ai",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4-bit neural network MAC accelerator with ReLU activation, supporting LOAD_BIAS, MAC, and ACTIVATE operations via a 2-bit opcode. It uses an 11-bit accumulator to prevent overflow and outputs a 4-bit quantized result after applying a right-shift and ReLU, clamped to [0,7]. Testing involves resetting the accumulator, loading a bias, performing MAC operations with 4-bit signed weights and features, and then activating to read the result. No external hardware is required, and the design is intended as a minimal building block for quantized neural network inference.",
+   "summary": "This project is a 4-bit neural network MAC accelerator with ReLU activation, supporting LOAD_BIAS, MAC, and ACTIVATE operations via a 2-bit opcode. It uses an 11-bit accumulator to prevent overflow and outputs a 4-bit quantized result after applying a right-shift and ReLU, clamped to [0,7]. Testing involves resetting the accumulator, loading a bias, performing MAC operations with 4-bit signed weights and features, and then activating to read the result. No external hardware is required, and the design is intended as a minimal building block for quantized neural network inference.",
+   "summary_changed": false
+  },
+  {
+   "key": "5fa97b37513d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "systolic-array",
+     "reason": "The source describes a single processing element, not a full systolic array."
+    }
+   ],
+   "add": [],
+   "notes": "Removed systolic-array tag; the design is a single processing element, not an array.",
+   "tags_before": [
+    "neural-network",
+    "systolic-array",
+    "mac-unit",
+    "pipeline",
+    "fixed-point",
+    "accelerator",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "mac-unit",
+    "pipeline",
+    "fixed-point",
+    "accelerator",
+    "verilog"
+   ],
+   "summary_before": "This design is a weight-stationary systolic processing element that multiplies a stored int8 weight by an int8 activation, accumulates the product and applies bias and Leaky ReLU before saturating back to int8. It is controlled through an 8-bit time-multiplexed data bus and four control signals for loading weights, loading bias, accumulating and resetting, with output_valid and overflow status outputs. A three-stage pipeline separates the MAC, bias addition and activation so that each stage has a short critical path; the accumulator is saturated to int16 using a wider intermediate sum. It was prototyped on a Terasic MAX10 DE10-Lite and would be used as a building block for a larger array.",
+   "summary": "This design is a weight-stationary processing element that multiplies a stored int8 weight by an int8 activation, accumulates the product and applies bias and Leaky ReLU before saturating back to int8. It is controlled through an 8-bit time-multiplexed data bus and four control signals for loading weights, loading bias, accumulating and resetting, with output_valid and overflow status outputs. A three-stage pipeline separates the MAC, bias addition and activation so that each stage has a short critical path; the accumulator is saturated to int16 using a wider intermediate sum. It was prototyped on a Terasic MAX10 DE10-Lite and would be used as a building block for a larger array.",
+   "summary_changed": true
+  },
+  {
+   "key": "250ac644cc29",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a measurement instrument reporting distance and bearing."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans a 2x2 tile area."
+    }
+   ],
+   "notes": "Added instrumentation and multi-tile tags supported by the measurement application and 2x2 tile size.",
+   "tags_before": [
+    "dsp",
+    "sensor-interface",
+    "microphone",
+    "uart",
+    "cordic",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "sensor-interface",
+    "microphone",
+    "uart",
+    "cordic",
+    "verilog",
+    "instrumentation",
+    "multi-tile"
+   ],
+   "summary_before": "This digital sonar processor drives a 40 kHz ultrasonic transducer and demodulates echoes from two PDM microphones using square-wave I/Q correlators. It computes echo distance and bearing via CORDIC atan2 and a lookup table, reporting results on parallel pins and a 115200 baud UART. It supports single-shot and automatic measurements, single-microphone operation, and UART-tunable thresholds. External hardware includes a custom PCB with microphones and a transducer.",
+   "summary": "This digital sonar processor drives a 40 kHz ultrasonic transducer and demodulates echoes from two PDM microphones using square-wave I/Q correlators. It computes echo distance and bearing via CORDIC atan2 and a lookup table, reporting results on parallel pins and a 115200 baud UART. It supports single-shot and automatic measurements, single-microphone operation, and UART-tunable thresholds. External hardware includes a custom PCB with microphones and a transducer.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9029,
+  "completion_tokens": 1222,
+  "total_tokens": 10251,
+  "cost": 0.002073386,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002073386,
+   "upstream_inference_prompt_cost": 0.001266866,
+   "upstream_inference_completions_cost": 0.00080652
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002073386,
+ "elapsed_s": 12.9
+}

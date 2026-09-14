@@ -1,0 +1,195 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bc7c93eff2c3",
+  "05f3fb720dfe",
+  "8c43f220faa4",
+  "f731e7a056b0",
+  "829ce7ec0190",
+  "f1deab7cf49c",
+  "43ce04403210",
+  "e2a4c3422dd1",
+  "dfa70fc144d8",
+  "356f73c8375c"
+ ],
+ "results": [
+  {
+   "key": "bc7c93eff2c3",
+   "tags": [
+    "ring-oscillator",
+    "vga",
+    "analog",
+    "transistor-level",
+    "clock",
+    "oscillator",
+    "display",
+    "experiment",
+    "standard-cells"
+   ],
+   "summary": "This design implements a configurable ring oscillator built from manually instantiated inverter cells, which can optionally drive a counter whose value is displayed as vertical colour bars on a VGA monitor. The user selects the number of inverter stages via input pins and can also choose an external clock or a VGA mode. A Tiny VGA PMOD and a VGA monitor are required for visual output, and the oscillator output is also available on bidirectional pins for measurement. The project is notable for using custom standard-cell instantiation, targeting oscillator frequencies from about 20 MHz up to 855 MHz, and it is a resubmission of an earlier design to a different PDK.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "05f3fb720dfe",
+   "tags": [
+    "floating-point",
+    "bfloat",
+    "multiplier",
+    "pipelined",
+    "serial",
+    "arithmetic"
+   ],
+   "summary": "This design performs bfloat16 multiplication, accepting data as four bytes over four cycles with a valid signal and producing the result byte-wise along with valid and early-valid indicators. The documentation consists only of informal instructions ('trust me bro') and does not provide a clear description of the operation or testing procedure. No external hardware is required for use. Due to the lack of detailed documentation, confidence in the tags and summary is limited.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "8c43f220faa4",
+   "tags": [
+    "floating-point",
+    "multiplier",
+    "arithmetic",
+    "pipelined",
+    "education",
+    "seven-segment"
+   ],
+   "summary": "This design implements an 8-bit floating-point multiplier in the E4M3 format, computing y = a * b with a latency of six clock cycles. It takes two 8-bit inputs from the UI and UIO pins and outputs the 8-bit result, which can be observed on a seven-segment display, though the display is not easily interpretable. The design is a demonstration of synthesizing the VHDL-2008 IEEE.float_pkg for a multiplier that truncates toward zero and saturates on overflow. It runs at a default clock of 50 MHz and requires no external hardware beyond the Tiny Tapeout demo board and optionally a PMOD or TT Commander for input.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f731e7a056b0",
+   "tags": [
+    "vga",
+    "animation",
+    "matrix",
+    "demo",
+    "display",
+    "game"
+   ],
+   "summary": "This design is a standalone VGA demo that produces a Matrix-like digital rain animation on a VGA monitor. It supports four different VGA timing modes, selectable via input pins, and allows the user to choose between different colour palettes. The circuit requires a TinyVGA PMOD and a VGA monitor, and it must be clocked at or near 25.175 MHz for the default mode. It is notable for being a visual demo with programmable display options and no external processing requirements.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "829ce7ec0190",
+   "tags": [
+    "microcontroller",
+    "cpu",
+    "soc",
+    "risc-v",
+    "memory",
+    "ram",
+    "uart",
+    "spi",
+    "i2c",
+    "debug"
+   ],
+   "summary": "The LISA 8-bit microcontroller is a complete system-on-chip with 128 bytes of flop-based RAM, designed to run programs assembled or compiled by a custom toolchain. It includes multiple communication interfaces such as UART, SPI, and I2C, and its pins are multiplexed to support various functions, including autobaud detection and division. The design is tested using a C-based assembler, linker, and C compiler, along with a Python debugger that can program flash memory, control the core, and read back data. The toolchain is still a work in progress, with the C compiler not fully functional and lacking floating-point support, but the assembler and linker are operational.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f1deab7cf49c",
+   "tags": [
+    "mlir",
+    "arithmetic",
+    "accumulator",
+    "floating-point",
+    "kulisch",
+    "bfloat",
+    "streaming"
+   ],
+   "summary": "This design provides a streaming byte-fed accumulator generated from an MLIR for-loop pattern, implementing a specialized S3FDP accumulator for bfloat16 multiplication and addition. It is part of a toolflow that detects loop patterns and emits optimized arithmetic circuits instead of generic floating-point datapaths. The design has a byte-wide input and output interface and requires no external hardware. It is notable for being generated automatically from MLIR and for its use of the Kulisch accumulator architecture.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "43ce04403210",
+   "tags": [
+    "mlir",
+    "arithmetic",
+    "accumulator",
+    "floating-point",
+    "ieee754",
+    "streaming"
+   ],
+   "summary": "This design implements a streaming byte-fed IEEE754 per-operation sequential and combinational accumulation core, generated from an MLIR for-loop pattern. The MLIR flow detects a loop with multiplication and addition and emits a specialized S3FDP accumulator, avoiding generic floating-point logic. The design has a byte-wide input and output interface and requires no external hardware. It is notable for being automatically generated from MLIR and for its use of the S3FDP architecture.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e2a4c3422dd1",
+   "tags": [
+    "communication",
+    "scrambler",
+    "framer",
+    "error-detection",
+    "protocol",
+    "pipeline",
+    "loopback"
+   ],
+   "summary": "The miniMAC_5L is a 16-bit scrambler/framer/error detector designed for the IHP SG2CMOS5L PDK, intended for high-speed serial communication. It encodes and decodes 18-bit words using a gPEAC and Hammer18 scheme, with a pipelined architecture that processes 9-bit half-words and has a latency of five cycles, plus an additional three cycles in loopback mode. The circuit can operate in encode, decode, or loopback mode, with control signals for data enable and output enable, and it provides error and zero flags. It requires custom external hardware for full testing and is notable for its use of a specialized PDK and its ability to chain multiple chips.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "dfa70fc144d8",
+   "tags": [
+    "i2c",
+    "monitor",
+    "uart",
+    "serial",
+    "debug",
+    "protocol"
+   ],
+   "summary": "This design is a Two-Wire Interface (I2C) bus monitor that passively captures I2C frames and outputs the captured data over a UART at 115200 baud. It does not act as an I2C slave; instead, it shifts in the bus data and formats it into three bytes per frame: the address and read/write bit, the data byte, and the acknowledge bits. The monitor requires an external UART-to-USB adapter to view the output on a PC. It runs at 50 MHz and cannot currently capture repeated I2C frames, but it has been tested on an FPGA.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "356f73c8375c",
+   "tags": [
+    "fsm",
+    "programmable",
+    "uart",
+    "spi",
+    "chroma",
+    "yosys",
+    "prism",
+    "education"
+   ],
+   "summary": "This design is a programmable finite state machine (FSM) that can be configured via a bitstream called a 'chroma' generated by a custom Yosys fork. The FSM has 7 inputs, 8 outputs, and a UART interface, along with an SPI interface for loading the configuration. To use it, the user defines an FSM in Verilog, generates a chroma bitstream using the provided tools, and loads it into the device via UART or SPI. The project is notable for its use of a custom open-source toolchain and for enabling rapid prototyping of custom FSM-based controllers.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7940,
+  "completion_tokens": 2007,
+  "total_tokens": 9947,
+  "cost": 0.0047904,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0047904,
+   "upstream_inference_prompt_cost": 0.002382,
+   "upstream_inference_completions_cost": 0.0024084
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0047904,
+ "elapsed_s": 26.2
+}

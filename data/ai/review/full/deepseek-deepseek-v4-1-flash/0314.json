@@ -1,0 +1,310 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ad9e9ee9d138",
+  "7f01de00fd21",
+  "ab4e4fd030eb",
+  "a6a203bbd575",
+  "759c3411c68d",
+  "7f6fc62e4ba1"
+ ],
+ "results": [
+  {
+   "key": "ad9e9ee9d138",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "oscillator",
+     "reason": "The design is a reloadable countdown timer/square-wave generator, not a generic oscillator circuit; the source describes timers toggling outputs, not an oscillator building block."
+    },
+    {
+     "tag": "retro",
+     "reason": "The 'apple2-style speakers' phrase is a loose analogy in the one-line description; the source does not describe recreating retro computing hardware."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sound-generator",
+     "reason": "The design is explicitly intended to drive speakers and produce square-wave tones, matching the programmable sound/tone generator category."
+    }
+   ],
+   "notes": "Removed oscillator and retro tags not supported by the source; added sound-generator for the speaker-driving tone generation.",
+   "tags_before": [
+    "signal-generator",
+    "oscillator",
+    "audio",
+    "speaker",
+    "timer",
+    "counter",
+    "retro",
+    "verilog"
+   ],
+   "tags": [
+    "signal-generator",
+    "audio",
+    "speaker",
+    "timer",
+    "counter",
+    "verilog",
+    "sound-generator"
+   ],
+   "summary_before": "This design generates two independent square waves using 8-bit reloadable countdown timers, with periods proportional to the input values plus one. It also provides a 2-bit sum output of the two square waves. The design is tested by applying arbitrary 8-bit values to the inputs and probing the outputs with an oscilloscope or logic analyzer. External hardware is not required, but the intended use is to drive speakers via resistor dividers and an amplifier.",
+   "summary": "This design generates two independent square waves using 8-bit reloadable countdown timers, with periods proportional to the input values plus one. It also provides a 2-bit sum output of the two square waves. The design is tested by applying arbitrary 8-bit values to the inputs and probing the outputs with an oscilloscope or logic analyzer. External hardware is not required, but the intended use is to drive speakers via resistor dividers and an amplifier.",
+   "summary_changed": false
+  },
+  {
+   "key": "7f01de00fd21",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design displays a clock (time), it does not generate a clock signal; the tag is a misreading of 'VGA clock'."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "The design recreates Matt Venn's VGA clock, a retro-style digital clock display."
+    }
+   ],
+   "notes": "clock-generator was a misreading of the VGA clock display; added retro for the recreated clock.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "clock-generator",
+    "rtc",
+    "pmod"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "rtc",
+    "pmod",
+    "retro"
+   ],
+   "summary_before": "This Verilog design generates VGA timing and RGB222 color output for a Tiny VGA PMOD, displaying a bouncing ball animation over an adaptation of Matt Venn's VGA clock. It supports a 640x480 60Hz mode from a 25MHz clock and includes inputs to adjust hours, minutes, and seconds. Testing requires a VGA monitor and Tiny VGA PMOD, with mode and pmod_select inputs configuring the display. The design is notable for combining a real-time clock display with a simple animation and is intended for the IHP tapeout.",
+   "summary": "This Verilog design generates VGA timing and RGB222 color output for a Tiny VGA PMOD, displaying a bouncing ball animation over an adaptation of Matt Venn's VGA clock. It supports a 640x480 60Hz mode from a 25MHz clock and includes inputs to adjust hours, minutes, and seconds. Testing requires a VGA monitor and Tiny VGA PMOD, with mode and pmod_select inputs configuring the display. The design is notable for combining a real-time clock display with a simple animation and is intended for the IHP tapeout.",
+   "summary_changed": false
+  },
+  {
+   "key": "ab4e4fd030eb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The chip drives an external LED matrix via shift registers and decoders; the generic display tag is redundant with led-matrix and not directly evidenced as an on-chip display interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "Eight player button inputs are explicitly described as the control interface."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The points outputs are intended to drive decade counters and 7-segment displays for scoring."
+    }
+   ],
+   "notes": "Added button and 7-segment interface tags supported by the pin descriptions; removed redundant display tag.",
+   "tags_before": [
+    "pong",
+    "game",
+    "led-matrix",
+    "display",
+    "shift-register",
+    "multiplexer",
+    "counter",
+    "wokwi"
+   ],
+   "tags": [
+    "pong",
+    "game",
+    "led-matrix",
+    "shift-register",
+    "multiplexer",
+    "counter",
+    "wokwi",
+    "button",
+    "7-segment"
+   ],
+   "summary_before": "This is a hardware implementation of two-player ping pong rendered on a 16x24 LED matrix, using up/down counters for each paddle and the ball plus an input register to debounce buttons. It requires substantial external hardware: a 16-bit serial-in parallel-out shift register, a 5-to-24 decoder, the LED matrix, eight buttons, BCD counters with 7-segment displays for scoring, and a timing unit to generate the enable and clock signals. Testing can start simply by hooking up left/right buttons for player one and monitoring the horizontal position bits, but full functionality needs the complete external support circuitry. The design is notable for its detailed pin-level documentation and its reliance on external multiplexing and decoding to drive the matrix.",
+   "summary": "This is a hardware implementation of two-player ping pong rendered on a 16x24 LED matrix, using up/down counters for each paddle and the ball plus an input register to debounce buttons. It requires substantial external hardware: a 16-bit serial-in parallel-out shift register, a 5-to-24 decoder, the LED matrix, eight buttons, BCD counters with 7-segment displays for scoring, and a timing unit to generate the enable and clock signals. Testing can start simply by hooking up left/right buttons for player one and monitoring the horizontal position bits, but full functionality needs the complete external support circuitry. The design is notable for its detailed pin-level documentation and its reliance on external multiplexing and decoding to drive the matrix.",
+   "summary_changed": false
+  },
+  {
+   "key": "a6a203bbd575",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "microcontroller",
+     "reason": "The design is a CPU plus memory and peripherals (an SoC), not a microcontroller-style integrated design; soc and cpu already cover it."
+    }
+   ],
+   "add": [
+    {
+     "tag": "education",
+     "reason": "The title 'Lab and Lectures SoC' and its use as a teaching vehicle indicate an educational design."
+    },
+    {
+     "tag": "pwm",
+     "reason": "An 8-bit PWM with memory-mapped duty-cycle control is explicitly part of the SoC."
+    }
+   ],
+   "notes": "Removed microcontroller in favor of soc/cpu; added education and pwm tags supported by the source.",
+   "tags_before": [
+    "soc",
+    "cpu",
+    "microcontroller",
+    "spi",
+    "pwm",
+    "timer",
+    "rom",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "soc",
+    "cpu",
+    "spi",
+    "pwm",
+    "timer",
+    "rom",
+    "memory",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "This design is a tiny system-on-chip featuring a 16-bit microprocessor, boot ROM, PWM, timer, and SPI interface. The CPU runs a built-in program that reads from an 8-bit input port and writes to an 8-bit output port, and it also exercises the SPI, PWM, and timer peripherals. The design is intended to test the microprocessor on silicon and requires external hardware such as a keypad and display. The documentation is detailed but the external hardware is not fully specified.",
+   "summary": "This design is a tiny system-on-chip featuring a 16-bit microprocessor, boot ROM, PWM, timer, and SPI interface. The CPU runs a built-in program that reads from an 8-bit input port and writes to an 8-bit output port, and it also exercises the SPI, PWM, and timer peripherals. The design is intended to test the microprocessor on silicon and requires external hardware such as a keypad and display. The documentation is detailed but the external hardware is not fully specified.",
+   "summary_changed": false
+  },
+  {
+   "key": "759c3411c68d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The design outputs digital audio and PWM; the DAC is external (R2R Pmod or RC filter), so no on-chip DAC is implemented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sound-generator",
+     "reason": "It is a replica of the AY-3-8913 programmable sound generator chip."
+    },
+    {
+     "tag": "retro",
+     "reason": "The chip is a classic 8-bit era PSG used in 1980s home computers and arcade machines."
+    }
+   ],
+   "notes": "Removed dac since conversion is external; added sound-generator and retro for the classic PSG replica.",
+   "tags_before": [
+    "audio",
+    "synthesizer",
+    "sound-generator",
+    "chiptune",
+    "pwm",
+    "dac",
+    "lfsr",
+    "retro",
+    "verilog"
+   ],
+   "tags": [
+    "audio",
+    "synthesizer",
+    "sound-generator",
+    "chiptune",
+    "pwm",
+    "lfsr",
+    "retro",
+    "verilog"
+   ],
+   "summary_before": "This is a Verilog replica of the AY-3-8913 programmable sound generator, providing three square-wave tone channels, a white noise generator, and an envelope generator with ten shapes. It is programmed through a multiplexed data/address bus with bus control pins, and it outputs digital 8-bit audio as well as PWM signals for each channel and a master audio output. External hardware such as a DAC, RC filter, amplifier, and speaker are needed to hear the audio, and the design includes a configurable clock divider to match different clock frequencies. The project is notable for its thorough test suite and goal of hardware preservation, fitting on a single Tiny Tapeout tile.",
+   "summary": "This is a Verilog replica of the AY-3-8913 programmable sound generator, providing three square-wave tone channels, a white noise generator, and an envelope generator with ten shapes. It is programmed through a multiplexed data/address bus with bus control pins, and it outputs digital 8-bit audio as well as PWM signals for each channel and a master audio output. External hardware such as a DAC, RC filter, amplifier, and speaker are needed to hear the audio, and the design includes a configurable clock divider to match different clock frequencies. The project is notable for its thorough test suite and goal of hardware preservation, fitting on a single Tiny Tapeout tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "7f6fc62e4ba1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The DAC is an internal part of the SAR conversion loop, not a standalone digital-to-analog converter output; the source does not present it as a separate DAC design."
+    },
+    {
+     "tag": "comparator",
+     "reason": "The digital comparator tag is wrong; the design uses an analog latched comparator, already covered by comparator-analog."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "The design uses custom metal-fringe capacitors and standard analog cells, not discrete transistors."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The design is a functional ADC, not a process/device characterization test structure."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working results from the author and multiple testers."
+    }
+   ],
+   "notes": "Removed unsupported dac/comparator/transistor-level/characterization tags; added silicon-tested per the working test reports.",
+   "tags_before": [
+    "sar-adc",
+    "adc",
+    "dac",
+    "comparator-analog",
+    "analog",
+    "transistor-level",
+    "comparator",
+    "instrumentation",
+    "characterization",
+    "mixed-signal"
+   ],
+   "tags": [
+    "sar-adc",
+    "adc",
+    "comparator-analog",
+    "analog",
+    "instrumentation",
+    "mixed-signal",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a 12-bit differential (11-bit single-ended) successive-approximation-register ADC implemented with custom metal-fringe capacitors and a calibrated comparator. It samples the input for two clock cycles, performs a binary search conversion over 16 cycles, and outputs the result in two 6-bit halves on the DATA pins synchronized to CLK_DATA. The design supports both differential and single-ended modes, with an offset calibration feature enabled by EN_CAL_OFFSET. Silicon tests show it works at 10-20 MHz but with noticeable noise and missing codes, requiring averaging for accurate results.",
+   "summary": "This is a 12-bit differential (11-bit single-ended) successive-approximation-register ADC implemented with custom metal-fringe capacitors and a calibrated comparator. It samples the input for two clock cycles, performs a binary search conversion over 16 cycles, and outputs the result in two 6-bit halves on the DATA pins synchronized to CLK_DATA. The design supports both differential and single-ended modes, with an offset calibration feature enabled by EN_CAL_OFFSET. Silicon tests show it works at 10-20 MHz but with noticeable noise and missing codes, requiring averaging for accurate results.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 13597,
+  "completion_tokens": 1804,
+  "total_tokens": 15401,
+  "cost": 0.003462466,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003462466,
+   "upstream_inference_prompt_cost": 0.002271826,
+   "upstream_inference_completions_cost": 0.00119064
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003462466,
+ "elapsed_s": 19.5
+}

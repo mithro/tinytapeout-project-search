@@ -1,0 +1,248 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4f3dd467303a",
+  "9922bdc7d1c3",
+  "9fb5daaa1c2c",
+  "f558d0ea539e",
+  "0499b468b249",
+  "8c5662f4bc79"
+ ],
+ "results": [
+  {
+   "key": "4f3dd467303a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "reconfigurable",
+     "reason": "The design is customizable at build time by editing flip-flop columns, not runtime reconfigurable logic."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The uo pins are named segment a-g, but the design's function is UART transmission; the 7-segment naming is incidental and the text never describes a 7-segment display."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "Already present; no addition needed."
+    }
+   ],
+   "notes": "Removed reconfigurable (build-time customization only) and 7-segment (pin naming only, no display function described); shift-register was already correctly tagged.",
+   "tags_before": [
+    "uart",
+    "wokwi",
+    "7-segment",
+    "ascii",
+    "communication",
+    "reconfigurable",
+    "shift-register"
+   ],
+   "tags": [
+    "uart",
+    "wokwi",
+    "ascii",
+    "communication",
+    "shift-register"
+   ],
+   "summary_before": "This Wokwi project is a customizable UART transmitter that can send multiple ASCII characters by storing each character in a column of flip-flops. The characters can be modified by changing the multiplexer inputs to VCC or GND, and additional characters can be added by copying and pasting columns. Testing involves setting the baud rate to 300, toggling switches for load/transmit and output enable, and observing the serial output in the Wokwi Arduino serial monitor. The documentation notes that garbage characters may be printed upon initialization, and the 'How it works' section is marked as TODO:FIXME, indicating incomplete documentation.",
+   "summary": "This Wokwi project is a customizable UART transmitter that sends multiple ASCII characters by storing each character in a column of flip-flops. Characters are set by tying multiplexer inputs to VCC or GND, and more characters can be added by copying and pasting columns. Testing involves setting the baud rate and Wokwi clock to 300, toggling the load/transmit and output-enable switches, and observing the serial output in the Wokwi Arduino serial monitor. The documentation notes that garbage characters may appear at initialization, and the 'How it works' section is marked TODO:FIXME, indicating incomplete documentation.",
+   "summary_changed": true
+  },
+  {
+   "key": "9922bdc7d1c3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source describes an R2R resistor ladder DAC with level-shifting drivers, not a design built from discrete transistors."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Already present and supported by multiple working silicon test reports."
+    }
+   ],
+   "notes": "Removed transistor-level, which is not supported by the R2R ladder description; silicon-tested was already correctly applied.",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "signal-generator",
+    "waveform-generator",
+    "transistor-level",
+    "silicon-tested"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "signal-generator",
+    "waveform-generator",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is an 8-bit R2R digital-to-analog converter (DAC) with a 3.3V output, capable of being driven externally or by an internal sine waveform generator. Silicon tests confirm a smooth sine wave output over the full 3.3V range, with a slight nonlinearity at the mid-code transition. It requires an external multimeter to measure the output voltage. The design uses level shifting drivers to achieve the 3.3V output.",
+   "summary": "This design is an 8-bit R2R digital-to-analog converter (DAC) with a 3.3V output, driven either externally or by an internal sine waveform generator. Silicon tests confirm a smooth sine wave over the full 3.3V range, with a slight nonlinearity at the mid-code transition. It requires an external multimeter to measure the output voltage. The design uses level shifting drivers to achieve the 3.3V output.",
+   "summary_changed": true
+  },
+  {
+   "key": "9fb5daaa1c2c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "audio",
+    "pwm",
+    "video",
+    "demoscene",
+    "graphics"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "pwm",
+    "video",
+    "demoscene",
+    "graphics"
+   ],
+   "summary_before": "This design is an audio/visual demo that generates VGA video and PWM audio outputs, forming an 8-part megademo. It uses eight PWM audio pins and standard VGA pins for red, green, blue, and sync signals. The demo requires external hardware: a VGA PMOD and audio output hardware. Silicon tests report that both audio and video work as expected, and one tester described it as a very nice demo with polished graphics and audio.",
+   "summary": "This design is an audio/visual demo that generates VGA video and PWM audio outputs, forming an 8-part megademo. It uses eight PWM audio pins and standard VGA pins for red, green, blue, and sync signals. The demo requires external hardware: a VGA PMOD and audio output hardware. Silicon tests report that both audio and video work as expected, and one tester described it as a very nice demo with polished graphics and audio.",
+   "summary_changed": false
+  },
+  {
+   "key": "f558d0ea539e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design is a neural processing unit for MAC operations; nothing in the source indicates digital signal processing use."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "The source describes 4-bit quantized integer MAC operations, not fixed-point arithmetic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "edge-ai",
+     "reason": "The design is a compact embedded neural processing unit for inference-style MAC operations."
+    }
+   ],
+   "notes": "Removed dsp and fixed-point as unsupported; added edge-ai for the embedded NPU inference target.",
+   "tags_before": [
+    "npu",
+    "neural-network",
+    "mac-unit",
+    "fixed-point",
+    "machine-learning",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "npu",
+    "neural-network",
+    "mac-unit",
+    "machine-learning",
+    "verilog",
+    "edge-ai"
+   ],
+   "summary_before": "AtomNPU is a compact 4-bit neural processing unit that performs multiply-accumulate operations for neural network computations. It takes 4-bit input activations and 4-bit weights and produces a quantized output. The design is intended to be tested with a step-by-step guide, though the provided documentation is minimal. No external hardware is specified, and the design is notable for being a minimal NPU implementation.",
+   "summary": "AtomNPU is a compact 4-bit neural processing unit that performs multiply-accumulate operations for neural network computations. It takes 4-bit input activations and 4-bit weights and produces a quantized output. The design is intended to be tested with a step-by-step guide, though the provided documentation is minimal. No external hardware is specified, and the design is notable for being a minimal NPU implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "0499b468b249",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "radio",
+    "communication",
+    "cordic",
+    "modulator",
+    "rf",
+    "analog",
+    "mixed-signal"
+   ],
+   "tags": [
+    "radio",
+    "communication",
+    "cordic",
+    "modulator",
+    "rf",
+    "analog",
+    "mixed-signal"
+   ],
+   "summary_before": "Tiny Whisper is a mixed-signal chip that implements a transmitter for the WSPR (Weak Signal Propagation Reporter) protocol in the 3-30 MHz shortwave band. It integrates a digital core containing a CORDIC, a delta-sigma modulator, and local oscillator generation, along with an analog IQ modulator. The design requires external hardware such as an SPI master, UART-to-USB breakout board, and an RF power amplifier with filters and antenna for testing. Documentation is currently incomplete, with references to an external GitHub repository for details.",
+   "summary": "Tiny Whisper is a mixed-signal chip that implements a transmitter for the WSPR (Weak Signal Propagation Reporter) protocol in the 3-30 MHz shortwave band. It integrates a digital core containing a CORDIC, a delta-sigma modulator, and local oscillator generation, along with an analog IQ modulator. The design requires external hardware such as an SPI master, UART-to-USB breakout board, and an RF power amplifier with filters and antenna for testing. Documentation is currently incomplete, with references to an external GitHub repository for details.",
+   "summary_changed": false
+  },
+  {
+   "key": "8c5662f4bc79",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "text",
+     "reason": "The output is a single LED blinking Morse code, not textual display output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "The design is driven by six pushbuttons for short/long dots and control functions."
+    }
+   ],
+   "notes": "Removed text (LED Morse output is not textual display); added button for the six pushbutton inputs.",
+   "tags_before": [
+    "cipher",
+    "crypto",
+    "communication",
+    "vhdl",
+    "led",
+    "text"
+   ],
+   "tags": [
+    "cipher",
+    "crypto",
+    "communication",
+    "vhdl",
+    "led",
+    "button"
+   ],
+   "summary_before": "JulkeGussinatorn 2.0 is a Morse code entry and encryption/decryption device implemented in VHDL. Users input short and long Morse signals via buttons, lock in letters, and can encrypt or decrypt the stored message. An LED output displays the Morse code saved on the device. The documentation is minimal and the description is terse, but the basic functionality is clear from the pin names and text.",
+   "summary": "JulkeGussinatorn 2.0 is a Morse code entry and encryption/decryption device implemented in VHDL. Users input short and long Morse signals via buttons, lock in letters, and can encrypt or decrypt the stored message. An LED output displays the Morse code saved on the device. The documentation is minimal and the description is terse, but the basic functionality is clear from the pin names and text.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6619,
+  "completion_tokens": 1287,
+  "total_tokens": 7906,
+  "cost": 0.002207433,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002207433,
+   "upstream_inference_prompt_cost": 0.000894693,
+   "upstream_inference_completions_cost": 0.00131274
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002207433,
+ "elapsed_s": 29.2
+}

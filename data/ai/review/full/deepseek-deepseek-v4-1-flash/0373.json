@@ -1,0 +1,215 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4dc45c505a94",
+  "2a97d2b8cdf0",
+  "c25d72a480de",
+  "836cfebd0922",
+  "f8b17bb251fd",
+  "ffd7932d2569"
+ ],
+ "results": [
+  {
+   "key": "4dc45c505a94",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a multiplier, not an arithmetic logic unit; no ALU operations are described."
+    },
+    {
+     "tag": "low-power",
+     "reason": "The title claims low-power but the source documentation provides no low-power design evidence or technique."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported alu and low-power tags; added verilog; trimmed unsupported low-power claim from summary.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "low-power",
+    "combinational"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8x8 unsigned Braun array multiplier that computes the product of two 8-bit numbers and outputs a 16-bit result. The inputs are provided on the input and bidirectional pins, and the product is output on the output and bidirectional pins. The design is purely combinational and does not require a clock or external hardware. It is notable for its low-power array architecture and systematic use of full and half adders.",
+   "summary": "This project implements an 8x8 unsigned Braun array multiplier that computes the product of two 8-bit numbers and outputs a 16-bit result. The inputs are provided on the input and bidirectional pins, and the product is output on the output and bidirectional pins. The design is purely combinational and does not require a clock or external hardware. It uses a systematic array of full and half adders to form the product.",
+   "summary_changed": true
+  },
+  {
+   "key": "2a97d2b8cdf0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "fixed-point",
+    "neural-network",
+    "comparator"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "fixed-point",
+    "neural-network",
+    "comparator"
+   ],
+   "summary_before": "This project implements a leaky integrate-and-fire neuron using 8-bit signed Q4.4 fixed-point arithmetic. It integrates an input current, applies a leak, and emits a spike when the membrane potential exceeds a threshold, with a programmable refractory period. The design is intended for tapeout and uses only adds, subtracts, and shifts. Testing requires an external ADALM2000 for stimulus and observation.",
+   "summary": "This project implements a leaky integrate-and-fire neuron using 8-bit signed Q4.4 fixed-point arithmetic. It integrates an input current, applies a leak, and emits a spike when the membrane potential exceeds a threshold, with a programmable refractory period. The design is intended for tapeout and uses only adds, subtracts, and shifts. Testing requires an external ADALM2000 for stimulus and observation.",
+   "summary_changed": false
+  },
+  {
+   "key": "c25d72a480de",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dma",
+    "memory",
+    "fsm",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "dma",
+    "memory",
+    "fsm",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This project implements a simple Tiny DMA controller for memory-to-memory copy operations, supporting both single-word and three-word burst transfers. It uses a finite state machine with IDLE, TRANSFER, and DONE states, and produces a dma_done pulse when the transfer completes, outputting the last transferred data on uo_out. The design is verified with a Cocotb testbench that checks single and burst transfers, confirming values such as 0x61 and 0x63 appear on the output. The documentation is clear about the design and testing, though the clock is specified as 10 Hz, which is unusually low.",
+   "summary": "This project implements a simple Tiny DMA controller for memory-to-memory copy operations, supporting both single-word and three-word burst transfers. It uses a finite state machine with IDLE, TRANSFER, and DONE states, and produces a dma_done pulse when the transfer completes, outputting the last transferred data on uo_out. The design is verified with a Cocotb testbench that checks single and burst transfers, confirming values such as 0x61 and 0x63 appear on the output. The documentation is clear about the design and testing, though the clock is specified as 10 Hz, which is unusually low.",
+   "summary_changed": false
+  },
+  {
+   "key": "836cfebd0922",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The design is a hazard-resolution control block, not a processor core."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed cpu and education tags not supported by the source; trimmed unsupported teaching claim from summary.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "fsm",
+    "pipeline",
+    "education"
+   ],
+   "tags": [
+    "risc-v",
+    "fsm",
+    "pipeline"
+   ],
+   "summary_before": "This is a finite state machine that resolves pipeline hazards for a RISC-V processor, handling control, data and structural hazards. It has six states and drives program-counter freeze, flush and resolved outputs based on branch, dependency and resource-conflict inputs. The design is self-contained and needs only a clock and active-low reset, with optional LEDs or a logic analyzer for visibility during FPGA integration. It is a teaching-oriented control block, and the documentation describes simulation-based verification rather than silicon results.",
+   "summary": "This is a finite state machine that resolves pipeline hazards for a RISC-V processor, handling control, data and structural hazards. It has six states and drives program-counter freeze, flush and resolved outputs based on branch, dependency and resource-conflict inputs. The design is self-contained and needs only a clock and active-low reset, with optional LEDs or a logic analyzer for visibility during FPGA integration. The documentation describes simulation-based verification rather than silicon results.",
+   "summary_changed": true
+  },
+  {
+   "key": "f8b17bb251fd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spi",
+     "reason": "The pins show SCLK and nCS, but the source never states SPI; the flash interface protocol is not documented."
+    },
+    {
+     "tag": "decoder",
+     "reason": "The source describes decoding but does not identify a code-to-signal decoder block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed spi and decoder tags not explicitly supported; trimmed unsupported SPI claim from summary.",
+   "tags_before": [
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "spi",
+    "memory",
+    "compression",
+    "decoder",
+    "verilog",
+    "cocotb"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "memory",
+    "compression",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This Verilog design reads RLE-encoded video and audio data from an external flash memory, decodes it, and outputs 8-bit VGA colour signals plus PWM audio. It uses SPI to access the flash and continues playback until a stop signal resets it to the beginning. Testing is done with a cocotb testbench that consumes a data.bin file and produces an output.bin log of every pixel, which can be converted for visual inspection. A custom PCB is required to handle the VGA output, PWM audio, and external memory connections.",
+   "summary": "This Verilog design reads RLE-encoded video and audio data from an external flash memory, decodes it, and outputs 8-bit VGA colour signals plus PWM audio. It continues playback until a stop signal resets it to the beginning. Testing is done with a cocotb testbench that consumes a data.bin file and produces an output.bin log of every pixel, which can be converted for visual inspection. A custom PCB is required to handle the VGA output, PWM audio, and external memory connections.",
+   "summary_changed": true
+  },
+  {
+   "key": "ffd7932d2569",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spi",
+    "7-segment",
+    "register-file",
+    "rp2040"
+   ],
+   "tags": [
+    "spi",
+    "7-segment",
+    "register-file",
+    "rp2040"
+   ],
+   "summary_before": "This is an SPI test design based on the tt07_alu_74181 project, featuring two read/write 8-bit registers and two read-only status registers. The first read/write register drives a 7-segment display. It is tested using an RP2040's SPI master, with example code provided to write and read registers. No external hardware is required beyond the RP2040 and the demoboard.",
+   "summary": "This is an SPI test design based on the tt07_alu_74181 project, featuring two read/write 8-bit registers and two read-only status registers. The first read/write register drives a 7-segment display. It is tested using an RP2040's SPI master, with example code provided to write and read registers. No external hardware is required beyond the RP2040 and the demoboard.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7881,
+  "completion_tokens": 1176,
+  "total_tokens": 9057,
+  "cost": 0.0037755,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0037755,
+   "upstream_inference_prompt_cost": 0.0023643,
+   "upstream_inference_completions_cost": 0.0014112
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0037755,
+ "elapsed_s": 13.8
+}

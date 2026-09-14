@@ -1,0 +1,211 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bd658cc1e235",
+  "384284842b46",
+  "f0caeb71dc64",
+  "e71bc2b50076",
+  "9a5f7f9bda6a",
+  "a5a47455dc69"
+ ],
+ "results": [
+  {
+   "key": "bd658cc1e235",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "instrumentation",
+    "frequency-counter",
+    "7-segment",
+    "audio",
+    "music",
+    "verilog"
+   ],
+   "tags": [
+    "instrumentation",
+    "frequency-counter",
+    "7-segment",
+    "audio",
+    "music",
+    "verilog"
+   ],
+   "summary_before": "This design is a guitar tuner that counts rising edges of an input pulse over a fixed sampling period and compares the count to frequencies of interest for standard guitar tuning, covering notes from about 80 to 400 Hz. It supports multiple clock configurations via three input bits and can drive either a dual or single 7-segment display, with the dot indicating an exact match in single mode. The raw pulse count is output on the bidirectional pins, and testing requires feeding a variable frequency signal and observing the closest note on the display. A silicon test report confirms it works, showing the closest note for a variable frequency input.",
+   "summary": "This design is a guitar tuner that counts rising edges of an input pulse over a fixed sampling period and compares the count to frequencies of interest for standard guitar tuning, covering notes from about 80 to 400 Hz. It supports multiple clock configurations via three input bits and can drive either a dual or single 7-segment display, with the dot indicating an exact match in single mode. The raw pulse count is output on the bidirectional pins, and testing requires feeding a variable frequency signal and observing the closest note on the display. A silicon test report confirms it works, showing the closest note for a variable frequency input.",
+   "summary_changed": false
+  },
+  {
+   "key": "384284842b46",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "retro",
+    "spi",
+    "gpio",
+    "interrupt-controller",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "cpu",
+    "retro",
+    "spi",
+    "gpio",
+    "interrupt-controller",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a 6502 microprocessor core implemented in Verilog. It provides GPIO, SPI, and interrupt pins, and uses a 2-tile layout. The documentation is extremely sparse, stating only that the design tests how big a 6502 is. No testing procedure or external hardware requirements are given.",
+   "summary": "This project is a 6502 microprocessor core implemented in Verilog. It provides GPIO, SPI, and interrupt pins, and uses a 2-tile layout. The documentation is extremely sparse, stating only that the design tests how big a 6502 is. No testing procedure or external hardware requirements are given.",
+   "summary_changed": false
+  },
+  {
+   "key": "f0caeb71dc64",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The DAC is external hardware for testing, not a circuit block implemented in this design."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Facts show analog_pins=no and the design is described as a digital LIF neuron."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "A LIF neuron is a spiking neuron; generic artificial neural network block is not described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dac, mixed-signal and neural-network tags not supported by the digital LIF neuron description and pin facts.",
+   "tags_before": [
+    "spiking-neural-network",
+    "memristor",
+    "mixed-signal",
+    "dac",
+    "neural-network",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "memristor",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is described as a digital leaky integrate-and-fire neuron with pins named IN, OUT, MEM, and Dummy. The documentation indicates it is tested by connecting to a memristor and that external hardware includes a transimpedance amplifier and a DAC. However, the description does not explain the neuron's operation, interface protocol, or expected behavior. The design appears unfinished and insufficiently documented.",
+   "summary": "This project is described as a digital leaky integrate-and-fire neuron with pins named IN, OUT, MEM, and Dummy. The documentation indicates it is tested by connecting to a memristor and that external hardware includes a transimpedance amplifier and a DAC. However, the description does not explain the neuron's operation, interface protocol, or expected behavior. The design appears unfinished and insufficiently documented.",
+   "summary_changed": false
+  },
+  {
+   "key": "e71bc2b50076",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "rom",
+    "memory",
+    "7-segment",
+    "lookup-table",
+    "verilog"
+   ],
+   "tags": [
+    "rom",
+    "memory",
+    "7-segment",
+    "lookup-table",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 256-byte ROM that stores information about the Tiny Tapeout chip. The ROM is 8 bits wide and is accessed by setting the address pins and reading the data pins. The first 16 bytes are 7-segment encoded and contain the shuttle name and commit hash, which can be displayed on the on-board 7-segment display. No external hardware is required beyond the standard board.",
+   "summary": "This project implements a 256-byte ROM that stores information about the Tiny Tapeout chip. The ROM is 8 bits wide and is accessed by setting the address pins and reading the data pins. The first 16 bytes are 7-segment encoded and contain the shuttle name and commit hash, which can be displayed on the on-board 7-segment display. No external hardware is required beyond the standard board.",
+   "summary_changed": false
+  },
+  {
+   "key": "9a5f7f9bda6a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "Source does not state it is a template; it is an undocumented test design."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Pins are named IN0-7/OUT0-7 but no GPIO function is described; tag is unsupported."
+    }
+   ],
+   "add": [],
+   "notes": "Removed template and gpio tags not supported by source; design is simply undocumented.",
+   "tags_before": [
+    "incomplete",
+    "template",
+    "wokwi",
+    "insufficient-doc",
+    "gpio"
+   ],
+   "tags": [
+    "incomplete",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a minimal placeholder design named test_design whose documentation consists only of the phrase 'it just works'. It exposes the standard eight input and eight output pins but no function is described. No testing procedure or external hardware is specified. The documentation is too thin to determine what the design actually does.",
+   "summary": "This project is a minimal design named test_design whose documentation consists only of the phrase 'it just works'. It exposes eight input and eight output pins but no function is described. No testing procedure or external hardware is specified. The documentation is too thin to determine what the design actually does.",
+   "summary_changed": true
+  },
+  {
+   "key": "a5a47455dc69",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "template",
+    "incomplete",
+    "wokwi",
+    "insufficient-doc",
+    "gpio"
+   ],
+   "tags": [
+    "template",
+    "incomplete",
+    "wokwi",
+    "insufficient-doc",
+    "gpio"
+   ],
+   "summary_before": "This project is a copy of the Tiny Tapeout template and is described only as a test. All documentation fields, including how it works, how to test, and external hardware, are marked ToDo. It exposes the standard eight inputs and eight outputs but no function is defined. The documentation is essentially empty, so nothing can be said about its behaviour.",
+   "summary": "This project is a copy of the Tiny Tapeout template and is described only as a test. All documentation fields, including how it works, how to test, and external hardware, are marked ToDo. It exposes the standard eight inputs and eight outputs but no function is defined. The documentation is essentially empty, so nothing can be said about its behaviour.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5918,
+  "completion_tokens": 1038,
+  "total_tokens": 6956,
+  "cost": 0.003021,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003021,
+   "upstream_inference_prompt_cost": 0.0017754,
+   "upstream_inference_completions_cost": 0.0012456
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003021,
+ "elapsed_s": 6.8
+}

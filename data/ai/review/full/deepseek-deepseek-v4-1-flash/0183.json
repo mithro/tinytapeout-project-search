@@ -1,0 +1,250 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b2ca3395e129",
+  "c1803c63cc69",
+  "b85cc1023182",
+  "f405c5ee1826",
+  "be4a220dd545",
+  "b86184ce7470"
+ ],
+ "results": [
+  {
+   "key": "b2ca3395e129",
+   "verdict": "escalate",
+   "remove": [],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "Documentation explicitly describes a 31-bit Fibonacci LFSR PRBS generator"
+    },
+    {
+     "tag": "prng",
+     "reason": "PRBS31 generator is a pseudo-random bit sequence generator"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states working"
+    }
+   ],
+   "notes": "Title/description and tester report describe a VGA bouncing ball demo while the documentation describes a PRBS31 LFSR, so the source is contradictory.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "lfsr",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "lfsr",
+    "verilog",
+    "prng",
+    "silicon-tested"
+   ],
+   "summary_before": "Despite its title and one-line description referring to a Jabulani ball VGA demo, the documentation describes a PRBS31 generator built from a 31-bit Fibonacci LFSR with feedback from registers 30 and 27, whose output is taken off-chip and fed back for analysis. The pin list matches the Tiny VGA pinout, and the design is clocked at 25.175 MHz, but the described PRBS behavior does not match the VGA pin functions. A silicon test report from a tester states that it is a bouncing ball demo that appears to work as intended while the documentation seems unrelated. The mismatch between the documentation and the observed silicon behavior makes the design's actual function unclear.",
+   "summary": "The documentation describes a PRBS31 generator built from a 31-bit Fibonacci LFSR with feedback from registers 30 and 27, whose output is taken off-chip and fed back for analysis. The pin list matches the Tiny VGA pinout and the design is clocked at 25.175 MHz, but the described PRBS behavior does not match the VGA pin functions. A silicon test report from a tester states that it is a bouncing ball demo that appears to work as intended while the documentation seems unrelated. The mismatch between the documentation and the observed silicon behavior makes the design's actual function unclear.",
+   "summary_changed": true
+  },
+  {
+   "key": "c1803c63cc69",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "serial",
+     "reason": "placeholder"
+    }
+   ],
+   "notes": "Tags and summary are supported; no changes needed beyond confirming the CPU/FSM/Verilog tags.",
+   "tags_before": [
+    "cpu",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "fsm",
+    "verilog",
+    "uart"
+   ],
+   "summary_before": "This project implements a minimal 8-bit CPU with a simple datapath and two finite-state machines. It accepts serial input data through the ui_in pins and provides an 8-bit output along with carry, zero, overflow, and negative flags. A start signal triggers serial input, and multiplexer select lines control internal routing. No external hardware is required for operation.",
+   "summary": "This project implements a minimal 8-bit CPU with a simple datapath and two finite-state machines. It accepts serial input data through the ui_in pins and provides an 8-bit output along with carry, zero, overflow, and negative flags. A start signal triggers serial input, and multiplexer select lines control internal routing. No external hardware is required for operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "b85cc1023182",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "PWM appears only as a pin name; the documentation describes discrete/analog audio output, not PWM"
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states working"
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "Documentation describes discrete sound output for the console"
+    }
+   ],
+   "notes": "Removed unsupported pwm tag and added silicon-tested and sound-generator based on the documentation.",
+   "tags_before": [
+    "game",
+    "vga",
+    "retro",
+    "gamepad",
+    "audio",
+    "pwm"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "retro",
+    "gamepad",
+    "audio",
+    "silicon-tested",
+    "sound-generator"
+   ],
+   "summary_before": "TinyTapeStation is a retro gaming console that plays a single pre-loaded game called Gnome Knight, controlled with an NES or SNES gamepad. It outputs 640x480 VGA video and analog audio, and supports standard retro controller layouts with simple remapping. The design requires a gamepad PMOD or direct NES controller wiring, a VGA monitor, and speakers or an amplifier. A silicon test report notes that the game starts up and characters move, though the tester did not have a SNES controller.",
+   "summary": "TinyTapeStation is a retro gaming console that plays a single pre-loaded game called Gnome Knight, controlled with an NES or SNES gamepad. It outputs 640x480 VGA video and analog audio, and supports standard retro controller layouts with simple remapping. The design requires a gamepad PMOD or direct NES controller wiring, a VGA monitor, and speakers or an amplifier. A silicon test report notes that the game starts up and characters move, though the tester did not have a SNES controller.",
+   "summary_changed": false
+  },
+  {
+   "key": "f405c5ee1826",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation states the design's purpose, inspiration, buses, and test method; it is sparse but not too sparse to describe the design"
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "placeholder"
+    }
+   ],
+   "notes": "Removed insufficient-doc since the documentation does describe the design and test approach.",
+   "tags_before": [
+    "cpu",
+    "education",
+    "rp2040",
+    "insufficient-doc",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "education",
+    "rp2040",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a simple 8-bit CPU inspired by Ben Eater's design and the game Turing Complete, created in a four-hour sprint before the submission deadline. It has an 8-bit input bus and an 8-bit output bus, with no bidirectional pins used. Testing requires an RP2040 or RP2350 on a test board acting as a memory controller to run programs. The documentation is sparse and does not detail the instruction set or architecture.",
+   "summary": "This is a simple 8-bit CPU inspired by Ben Eater's design and the game Turing Complete, created in a four-hour sprint before the submission deadline. It has an 8-bit input bus and an 8-bit output bus, with no bidirectional pins used. Testing requires an RP2040 or RP2350 on a test board acting as a memory controller to run programs. The documentation is sparse and does not detail the instruction set or architecture.",
+   "summary_changed": false
+  },
+  {
+   "key": "be4a220dd545",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "A 7-segment display is only listed as external hardware; the design itself has no 7-segment output pins or logic"
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "placeholder"
+    }
+   ],
+   "notes": "Removed 7-segment because it is only external hardware, not a design interface.",
+   "tags_before": [
+    "flip-flop",
+    "logic-gate",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "flip-flop",
+    "logic-gate",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements a flipflop using two cross-coupled NAND gates, with inputs for reset and set and outputs for the two states. Testing involves toggling the reset and set switches and observing the LEDs, which should behave differently based on the state. A 7-segment display is listed as external hardware, though its role is unclear. The project is a simple test of basic logic gates.",
+   "summary": "This design implements a flipflop using two cross-coupled NAND gates, with inputs for reset and set and outputs for the two states. Testing involves toggling the reset and set switches and observing the LEDs, which should behave differently based on the state. A 7-segment display is listed as external hardware, though its role is unclear. The project is a simple test of basic logic gates.",
+   "summary_changed": false
+  },
+  {
+   "key": "b86184ce7470",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "A hardcoded password comparator is not a hardware security design"
+    },
+    {
+     "tag": "gpio",
+     "reason": "Generic input/output pins are not specifically documented as GPIO interface"
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the project is intended for teaching or learning"
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "placeholder"
+    }
+   ],
+   "notes": "Removed security, gpio, and education tags that are not supported by the sparse documentation.",
+   "tags_before": [
+    "security",
+    "wokwi",
+    "gpio",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This design checks for a secret password entered via four input pins and produces an output when the correct combination is given. The documentation states the current password is 1234 and that the correct combination yields an output. It is a simple combinational lock with no further details on the logic or external hardware. The project is minimal and appears to be an educational exercise.",
+   "summary": "This design checks for a secret password entered via four input pins and produces an output when the correct combination is given. The documentation states the current password is 1234 and that the correct combination yields an output. It is a simple combinational lock with no further details on the logic or external hardware. The project is minimal and appears to be an educational exercise.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6487,
+  "completion_tokens": 1173,
+  "total_tokens": 7660,
+  "cost": 0.002057493,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002057493,
+   "upstream_inference_prompt_cost": 0.000861033,
+   "upstream_inference_completions_cost": 0.00119646
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002057493,
+ "elapsed_s": 35.1
+}

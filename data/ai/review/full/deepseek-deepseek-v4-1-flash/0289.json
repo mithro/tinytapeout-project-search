@@ -1,0 +1,271 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7d577ebb49be",
+  "30b404996dcd",
+  "f7adb51cfbd5",
+  "bf230aca16f8",
+  "e8495b57e58b",
+  "41f5d516409f"
+ ],
+ "results": [
+  {
+   "key": "7d577ebb49be",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design is a ring oscillator test structure, not a clock/timing signal generator intended as a clock source."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "The source describes a 7-inverter ring oscillator with muxes and dividers, not a design built from discrete transistors."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "Already present; retained as the core structure."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "Already present; the ring oscillator is an oscillator circuit."
+    },
+    {
+     "tag": "analog",
+     "reason": "Already present; the design is analog and uses an analog output pin."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "Already present; selectable dividers divide the oscillator frequency."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "Already present; the stated purpose is to compare PEX simulation with reality."
+    }
+   ],
+   "notes": "Removed clock-generator and transistor-level tags that are not supported by the source.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "clock-divider",
+    "clock-generator",
+    "process-experiment",
+    "transistor-level"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "clock-divider",
+    "process-experiment"
+   ],
+   "summary_before": "This analog project is a seven-inverter ring oscillator intended to compare PEX simulation against measured silicon behavior. A chain of selectable dividers reduces the oscillator frequency by factors from 2 to 256, and the divided signal is routed to a digital output or, when enabled, to an analog pin through a buffer. Testing requires only setting the reset, enable, and select pins and observing the output, with no external hardware needed. The design is notable as a process and simulation-correlation experiment rather than a functional end product.",
+   "summary": "This analog project is a seven-inverter ring oscillator intended to compare PEX simulation against measured silicon behavior. A chain of selectable dividers reduces the oscillator frequency by factors from 2 to 256, and the divided signal is routed to a digital output or, when enabled, to an analog pin through a buffer. Testing requires only setting the reset, enable, and select pins and observing the output, with no external hardware needed. The design is notable as a process and simulation-correlation experiment rather than a functional end product.",
+   "summary_changed": false
+  },
+  {
+   "key": "30b404996dcd",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "crc",
+    "shift-register",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "crc",
+    "shift-register",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This design implements a 16-bit Galois LFSR random number generator with user-selectable shift direction and 32 different feedback polynomials, including standard CRC-16 polynomials and experimental tap patterns. Inputs select enable, direction, and polynomial, and the 16-bit state is exposed on the output and bidirectional pins for observation on LEDs. Testing requires only DIP switches and LEDs, with no external hardware needed. The design is notable for exposing a wide range of standard and experimental polynomials for comparison and educational use.",
+   "summary": "This design implements a 16-bit Galois LFSR random number generator with user-selectable shift direction and 32 different feedback polynomials, including standard CRC-16 polynomials and experimental tap patterns. Inputs select enable, direction, and polynomial, and the 16-bit state is exposed on the output and bidirectional pins for observation on LEDs. Testing requires only DIP switches and LEDs, with no external hardware needed. The design is notable for exposing a wide range of standard and experimental polynomials for comparison and educational use.",
+   "summary_changed": false
+  },
+  {
+   "key": "f7adb51cfbd5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "arbiter",
+     "reason": "The design is a priority FSM for load activation, not a bus or resource arbitration block."
+    },
+    {
+     "tag": "comparator",
+     "reason": "The comparator is external hardware described in the test setup, not part of the chip design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "power-management",
+     "reason": "Already present; the design manages power distribution across prioritized loads."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Already present; the design is explicitly a 6-state finite state machine."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Already present; the application is power-constrained load control with external MOSFETs and comparators."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; the design is written in Verilog."
+    }
+   ],
+   "notes": "Removed arbiter and comparator tags that are not supported by the source.",
+   "tags_before": [
+    "power-management",
+    "fsm",
+    "industrial",
+    "arbiter",
+    "comparator",
+    "verilog"
+   ],
+   "tags": [
+    "power-management",
+    "fsm",
+    "industrial",
+    "verilog"
+   ],
+   "summary_before": "This design is a 6-state finite state machine that manages power distribution across three prioritized loads based on undervoltage, medium-power, and high-power status flags. It includes a stability filter and staged load activation, with immediate de-escalation. Testing involves driving the flags and observing the enable outputs, and external hardware such as voltage comparators, MOSFET drivers, and LEDs is required to interface with real loads. The project is part of the IEEE Open-Silicon 2026 initiative and is implemented in pure digital logic without firmware.",
+   "summary": "This design is a 6-state finite state machine that manages power distribution across three prioritized loads based on undervoltage, medium-power, and high-power status flags. It includes a stability filter and staged load activation, with immediate de-escalation. Testing involves driving the flags and observing the enable outputs, and external hardware such as voltage comparators, MOSFET drivers, and LEDs is required to interface with real loads. The project is part of the IEEE Open-Silicon 2026 initiative and is implemented in pure digital logic without firmware.",
+   "summary_changed": false
+  },
+  {
+   "key": "bf230aca16f8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "servo",
+    "motor-control",
+    "spi",
+    "robotics",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "servo",
+    "motor-control",
+    "spi",
+    "robotics",
+    "verilog"
+   ],
+   "summary_before": "QuadPulse is a 4-channel PWM generator ASIC for servo and DC motor control, providing jitter-free PWM signals with 8-bit duty cycle resolution. It supports four frequency modes (50 Hz to 20 kHz) and accepts runtime duty cycle updates via a 3-wire SPI interface. A hardware emergency stop pin instantly forces all outputs to zero. The design is intended for robotic systems and requires external servos, motors, or LEDs for testing, along with an SPI master.",
+   "summary": "QuadPulse is a 4-channel PWM generator ASIC for servo and DC motor control, providing jitter-free PWM signals with 8-bit duty cycle resolution. It supports four frequency modes (50 Hz to 20 kHz) and accepts runtime duty cycle updates via a 3-wire SPI interface. A hardware emergency stop pin instantly forces all outputs to zero. The design is intended for robotic systems and requires external servos, motors, or LEDs for testing, along with an SPI master.",
+   "summary_changed": false
+  },
+  {
+   "key": "e8495b57e58b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design uses a clock to drive a counter; it does not generate a clock or timing signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Already present; the design drives an 8-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Already present; the design produces a display output."
+    },
+    {
+     "tag": "counter",
+     "reason": "Already present; the animation is driven by a 3-bit counter."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; the project language is Wokwi."
+    }
+   ],
+   "notes": "Removed clock-generator tag that is not supported by the source.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "counter",
+    "wokwi",
+    "clock-generator"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "wokwi"
+   ],
+   "summary_before": "This design drives an 8-segment display based on two select inputs. When the selects are 00, it displays the letter 'K'; when 01, it displays 'A'; when 10 or 11, it shows an animated snake moving around the perimeter and through the middle bar. The animation is driven by a 3-bit counter clocked at 3 Hz. The design requires no external hardware beyond the standard board and display.",
+   "summary": "This design drives an 8-segment display based on two select inputs. When the selects are 00, it displays the letter 'K'; when 01, it displays 'A'; when 10 or 11, it shows an animated snake moving around the perimeter and through the middle bar. The animation is driven by a 3-bit counter clocked at 3 Hz. The design requires no external hardware beyond the standard board and display.",
+   "summary_changed": false
+  },
+  {
+   "key": "41f5d516409f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "mac-unit",
+    "fixed-point",
+    "neural-network",
+    "dsp",
+    "pipeline",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "mac-unit",
+    "fixed-point",
+    "neural-network",
+    "dsp",
+    "pipeline",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This is a weight-stationary signed INT8 multiply-accumulate engine that computes a 32-bit saturating accumulator from a stationary weight and a stream of activation bytes. It uses a 4-stage pipeline to meet timing at 50 MHz on a 180 nm process, with a simple strobe-based handshake and byte-serial readout of the accumulator. The design is intended as a compute primitive for quantized neural network inference and includes a cocotb test suite with a golden model. No external hardware is required beyond the Tiny Tapeout demo board.",
+   "summary": "This is a weight-stationary signed INT8 multiply-accumulate engine that computes a 32-bit saturating accumulator from a stationary weight and a stream of activation bytes. It uses a 4-stage pipeline to meet timing at 50 MHz on a 180 nm process, with a simple strobe-based handshake and byte-serial readout of the accumulator. The design is intended as a compute primitive for quantized neural network inference and includes a cocotb test suite with a golden model. No external hardware is required beyond the Tiny Tapeout demo board.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8902,
+  "completion_tokens": 1515,
+  "total_tokens": 10417,
+  "cost": 0.0044886,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044886,
+   "upstream_inference_prompt_cost": 0.0026706,
+   "upstream_inference_completions_cost": 0.001818
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044886,
+ "elapsed_s": 17.3
+}

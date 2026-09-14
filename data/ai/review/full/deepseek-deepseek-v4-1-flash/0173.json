@@ -1,0 +1,246 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1e56f78b85b6",
+  "6a53d516c714",
+  "e71eb23f606a",
+  "5356fb35e107",
+  "be8675aab5e2",
+  "48858f6e1f1a"
+ ],
+ "results": [
+  {
+   "key": "1e56f78b85b6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pmod",
+     "reason": "The design uses external VGA and audio PMODs, but the pins themselves are the TT Audio pinout, not a PMOD connector interface; the PMODs are external hardware, not an interface implemented by the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "Documentation states simulation can run on an ECPIX5 and audio on an ULX3S FPGA."
+    },
+    {
+     "tag": "music",
+     "reason": "The design generates audio output as part of a demoscene demo."
+    }
+   ],
+   "notes": "Removed pmod (external hardware, not a design interface) and added fpga and music tags supported by the documentation.",
+   "tags_before": [
+    "vga",
+    "audio",
+    "demoscene",
+    "video",
+    "pmod"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "demoscene",
+    "video",
+    "fpga",
+    "music"
+   ],
+   "summary_before": "This is a demo design that generates VGA video and audio output, intended for the Tiny Tapeout demoscene competition. It requires external VGA and audio PMODs to be plugged into the board for testing. The design can also be simulated on an ECPIX5 FPGA with appropriate PMODs, and the audio portion can run on an ULX3S using its DAC. The documentation is minimal and does not provide detailed technical information about the implementation.",
+   "summary": "This is a demo design that generates VGA video and audio output, intended for the Tiny Tapeout demoscene competition. It requires external VGA and audio PMODs to be plugged into the board for testing. The design can also be simulated on an ECPIX5 FPGA with appropriate PMODs, and the audio portion can run on an ULX3S using its DAC. The documentation is minimal and does not provide detailed technical information about the implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "6a53d516c714",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The output is specifically a 7-segment display, already covered by the 7-segment tag; generic display is redundant and unsupported as a separate interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The one-line description says 'Supposed to be a binary decoder' and the documentation is very thin, indicating an unfinished design."
+    }
+   ],
+   "notes": "Removed redundant display tag and added incomplete to reflect the 'supposed to be' description and thin documentation.",
+   "tags_before": [
+    "bcd",
+    "decoder",
+    "combinational",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "bcd",
+    "decoder",
+    "combinational",
+    "7-segment",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project is a BCD decoder that displays a 0 on a 7-segment display when pin 1 is off. It is tested by plugging it in and observing the display. No external hardware is required. The documentation is very limited and the design appears to be incomplete or not fully functional.",
+   "summary": "This project is a BCD decoder that displays a 0 on a 7-segment display when pin 1 is off. It is tested by plugging it in and observing the display. No external hardware is required. The documentation is very limited and the design appears to be incomplete or not fully functional.",
+   "summary_changed": false
+  },
+  {
+   "key": "e71eb23f606a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source states this is intended for teaching or learning; it is a simple Wokwi exercise."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The design drives a seven-segment LED display, a generic display output."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added display for the seven-segment output.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "logic-gate"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "logic-gate"
+   ],
+   "summary_before": "This design uses OR gates to generate the letter J on a seven-segment LED display. It is controlled by eight input switches and produces eight outputs, tested by flipping switches to form the letter. The project relies on the default seven-segment display and switches in the Wokwi simulator. The documentation is sparse and does not explain the exact gate arrangement or any hardware results.",
+   "summary": "This design uses OR gates to generate the letter J on a seven-segment LED display. It is controlled by eight input switches and produces eight outputs, tested by flipping switches to form the letter. The project relies on the default seven-segment display and switches in the Wokwi simulator. The documentation is sparse and does not explain the exact gate arrangement or any hardware results.",
+   "summary_changed": false
+  },
+  {
+   "key": "5356fb35e107",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The test description says correct operation outputs the number 8 with a dot, indicating a seven-segment display output."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added 7-segment based on the test description.",
+   "tags_before": [
+    "encoder",
+    "wokwi",
+    "education",
+    "logic-gate"
+   ],
+   "tags": [
+    "encoder",
+    "wokwi",
+    "logic-gate",
+    "7-segment"
+   ],
+   "summary_before": "This project implements an 8-to-3 encoder using a single AND gate and a single OR gate. It is tested by activating inputs, with inputs 6 and 7 sharing an OR gate so only one should be on at a time; correct operation outputs the number 8 with a dot. No external hardware is required. The documentation is brief and does not detail the full truth table or silicon results.",
+   "summary": "This project implements an 8-to-3 encoder using a single AND gate and a single OR gate. It is tested by activating inputs, with inputs 6 and 7 sharing an OR gate so only one should be on at a time; correct operation outputs the number 8 with a dot. No external hardware is required. The documentation is brief and does not detail the full truth table or silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "be8675aab5e2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dip-switch",
+     "reason": "The source only mentions switches generically; no DIP switch interface is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The 'How to test' section is cut off ('To use my project,') and documentation is very thin, indicating an unfinished submission."
+    }
+   ],
+   "notes": "Removed unsupported dip-switch tag and added incomplete due to truncated test instructions and very thin documentation.",
+   "tags_before": [
+    "led",
+    "dip-switch",
+    "logic-gate",
+    "wokwi"
+   ],
+   "tags": [
+    "led",
+    "logic-gate",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This project allows the user to turn switches on or off to control LEDs. It uses logic gates to drive the LEDs based on the switch states. The design is simple and can be tested by toggling switches and observing the corresponding lights. External hardware includes LEDs and switches.",
+   "summary": "This project allows the user to turn switches on or off to control LEDs. It uses logic gates to drive the LEDs based on the switch states. The design is simple and can be tested by toggling switches and observing the corresponding lights. External hardware includes LEDs and switches.",
+   "summary_changed": false
+  },
+  {
+   "key": "48858f6e1f1a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "Despite the title, the design uses logic gates to display a letter on a seven-segment display, not an 8-to-3 encoder."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is very thin and the description does not match the title, indicating an unfinished or mislabeled design."
+    }
+   ],
+   "notes": "Removed encoder tag because the actual function is a seven-segment letter display, and added incomplete due to thin documentation and title mismatch.",
+   "tags_before": [
+    "encoder",
+    "7-segment",
+    "display",
+    "wokwi",
+    "logic-gate"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "logic-gate",
+    "incomplete"
+   ],
+   "summary_before": "This is an 8-to-3 encoder that uses logic gates to display characters on a seven-segment display. For example, when inputs 1-5 are on, the display shows the letter 'F'. It can be tested by setting the inputs and observing the display. No external hardware is required beyond the seven-segment display.",
+   "summary": "This is an 8-to-3 encoder that uses logic gates to display characters on a seven-segment display. For example, when inputs 1-5 are on, the display shows the letter 'F'. It can be tested by setting the inputs and observing the display. No external hardware is required beyond the seven-segment display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5618,
+  "completion_tokens": 1302,
+  "total_tokens": 6920,
+  "cost": 0.00276063,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00276063,
+   "upstream_inference_prompt_cost": 0.00143259,
+   "upstream_inference_completions_cost": 0.00132804
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00276063,
+ "elapsed_s": 30.2
+}

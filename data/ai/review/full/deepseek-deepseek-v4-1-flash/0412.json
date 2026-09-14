@@ -1,0 +1,279 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cd0dcc1070cb",
+  "f9cc46f83ef7",
+  "bc7c93eff2c3",
+  "829ce7ec0190",
+  "7b9e0c67378f",
+  "ba529a5cd759"
+ ],
+ "results": [
+  {
+   "key": "cd0dcc1070cb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cordic",
+     "reason": "No CORDIC algorithm is mentioned anywhere in the source; the sine/cosine generation method is not described as CORDIC."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rf",
+     "reason": "WSPR is an amateur radio RF transmission scheme and the design generates the modulated I/Q signals for it."
+    }
+   ],
+   "notes": "Removed unsupported cordic tag and added rf, which is clearly supported by the WSPR radio transmission purpose.",
+   "tags_before": [
+    "radio",
+    "modulator",
+    "dsp",
+    "pwm",
+    "uart",
+    "encoder",
+    "cordic",
+    "verilog"
+   ],
+   "tags": [
+    "radio",
+    "modulator",
+    "dsp",
+    "pwm",
+    "uart",
+    "encoder",
+    "verilog",
+    "rf"
+   ],
+   "summary_before": "This design encodes amateur radio WSPR messages from a callsign, locator and power level into 162 symbols and generates corresponding sine and cosine PWM outputs for 4-FSK transmission. It is configured over a 115200 baud UART using a provided Python script, and a start_transmission input triggers the symbol sequence. The PWM outputs require external low-pass filtering, and the I/Q signals are intended to work with the TinyWhisper analog project on the same shuttle. Silicon testing confirmed that UART configuration and transmission start work and that 25% duty cycle local oscillator and PWM data appear on the outputs, though the RF output itself was not validated.",
+   "summary": "This design encodes amateur radio WSPR messages from a callsign, locator and power level into 162 symbols and generates corresponding sine and cosine PWM outputs for 4-FSK transmission. It is configured over a 115200 baud UART using a provided Python script, and a start_transmission input triggers the symbol sequence. The PWM outputs require external low-pass filtering, and the I/Q signals are intended to work with the TinyWhisper analog project on the same shuttle. Silicon testing confirmed that UART configuration and transmission start work and that 25% duty cycle local oscillator and PWM data appear on the outputs, though the RF output itself was not validated.",
+   "summary_changed": false
+  },
+  {
+   "key": "f9cc46f83ef7",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "pong",
+     "reason": "Not applicable; instead the missing canonical tag is 'retro'? No — the game is Tetris, already tagged tetris."
+    }
+   ],
+   "notes": "Removed the unsupported claim about fitting a full game into a 2x2 tile area; no other changes needed.",
+   "tags_before": [
+    "tetris",
+    "game",
+    "vga",
+    "video",
+    "display",
+    "verilog",
+    "button"
+   ],
+   "tags": [
+    "tetris",
+    "game",
+    "vga",
+    "video",
+    "display",
+    "verilog",
+    "button",
+    "pong"
+   ],
+   "summary_before": "This project implements a Tetris game rendered as a 640x480 at 60 Hz VGA signal. Four inputs (left, right, rotate, down) control the game, and the inputs are expected to be pulled high when idle so that only a low level triggers an action. It requires an external VGA output circuit such as the tiny-vga PMOD to display the picture. The design is notable for fitting a full game into a 2x2 tile area, and the documentation notes that the game-over state can be cleared by pressing the down button a couple of times.",
+   "summary": "This project implements a Tetris game rendered as a 640x480 at 60 Hz VGA signal. Four inputs (left, right, rotate, down) control the game, and the inputs are expected to be pulled high when idle so that only a low level triggers an action. It requires an external VGA output circuit such as the tiny-vga PMOD to display the picture. The documentation notes that the game-over state can be cleared by pressing the down button a couple of times.",
+   "summary_changed": true
+  },
+  {
+   "key": "bc7c93eff2c3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The design uses manually instantiated standard inverter cells, not discrete transistors; standard-cell is the correct tag."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "The source says manually instantiated ihp-sg13cmos5l inverter cells, which is full-custom cell instantiation rather than a standard cell library flow."
+    }
+   ],
+   "add": [
+    {
+     "tag": "full-custom",
+     "reason": "The ring oscillator is built from manually instantiated inverter cells rather than synthesized standard cells."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The oscillator output is exposed on pins for measurement, and the design is an experimental characterization structure."
+    }
+   ],
+   "notes": "Corrected the implementation tags: manual inverter instantiation is full-custom, not transistor-level or standard-cell.",
+   "tags_before": [
+    "ring-oscillator",
+    "vga",
+    "transistor-level",
+    "clock-generator",
+    "oscillator",
+    "display",
+    "standard-cell"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "vga",
+    "clock-generator",
+    "oscillator",
+    "display",
+    "full-custom",
+    "instrumentation"
+   ],
+   "summary_before": "This design implements a configurable ring oscillator built from manually instantiated inverter cells, which can optionally drive a counter whose value is displayed as vertical colour bars on a VGA monitor. The user selects the number of inverter stages via input pins and can also choose an external clock or a VGA mode. A Tiny VGA PMOD and a VGA monitor are required for visual output, and the oscillator output is also available on bidirectional pins for measurement. The project is notable for using custom standard-cell instantiation, targeting oscillator frequencies from about 20 MHz up to 855 MHz, and it is a resubmission of an earlier design to a different PDK.",
+   "summary": "This design implements a configurable ring oscillator built from manually instantiated inverter cells, which can optionally drive a counter whose value is displayed as vertical colour bars on a VGA monitor. The user selects the number of inverter stages via input pins and can also choose an external clock or a VGA mode. A Tiny VGA PMOD and a VGA monitor are required for visual output, and the oscillator output is also available on bidirectional pins for measurement. The project targets oscillator frequencies from about 20 MHz up to 855 MHz and is a resubmission of an earlier design to a different PDK.",
+   "summary_changed": true
+  },
+  {
+   "key": "829ce7ec0190",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "Not supported; the source does not state a RISC-V ISA, so this tag must not be added."
+    }
+   ],
+   "notes": "Summary and tags are supported; no changes required.",
+   "tags_before": [
+    "microcontroller",
+    "cpu",
+    "soc",
+    "memory",
+    "uart",
+    "spi",
+    "i2c"
+   ],
+   "tags": [
+    "microcontroller",
+    "cpu",
+    "soc",
+    "memory",
+    "uart",
+    "spi",
+    "i2c",
+    "risc-v"
+   ],
+   "summary_before": "The LISA 8-bit microcontroller is a complete system-on-chip with 128 bytes of flop-based RAM, designed to run programs assembled or compiled by a custom toolchain. It includes multiple communication interfaces such as UART, SPI, and I2C, and its pins are multiplexed to support various functions, including autobaud detection and division. The design is tested using a C-based assembler, linker, and C compiler, along with a Python debugger that can program flash memory, control the core, and read back data. The toolchain is still a work in progress, with the C compiler not fully functional and lacking floating-point support, but the assembler and linker are operational.",
+   "summary": "The LISA 8-bit microcontroller is a complete system-on-chip with 128 bytes of flop-based RAM, designed to run programs assembled or compiled by a custom toolchain. It includes multiple communication interfaces such as UART, SPI, and I2C, and its pins are multiplexed to support various functions, including autobaud detection and division. The design is tested using a C-based assembler, linker, and C compiler, along with a Python debugger that can program flash memory, control the core, and read back data. The toolchain is still a work in progress, with the C compiler not fully functional and lacking floating-point support, but the assembler and linker are operational.",
+   "summary_changed": false
+  },
+  {
+   "key": "7b9e0c67378f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The control unit is a hard-wired T-state ring counter sequencer, not described as an FSM in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The source explicitly mentions a cocotb testbench in test/."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "The control unit is driven by a 6-step T-state ring counter, a pattern sequencing circuit."
+    },
+    {
+     "tag": "retro",
+     "reason": "The design recreates a SAP-1/Ben Eater style breadboard CPU, a retro computing style."
+    }
+   ],
+   "notes": "Replaced unsupported fsm tag with sequencer and added cocotb and retro, both clearly supported.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "memory",
+    "7-segment",
+    "display",
+    "education",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "memory",
+    "7-segment",
+    "display",
+    "education",
+    "verilog",
+    "cocotb",
+    "sequencer",
+    "retro"
+   ],
+   "summary_before": "ASAP CPU v2 is an 8-bit SAP-1 style computer inspired by Ben Eater's breadboard CPU. It includes a program counter, RAM, registers, ALU, and a control unit, and can be programmed via switches. It outputs results to a multiplexed 7-segment display and requires external switches and displays for operation. The design is intended for educational purposes and includes a cocotb testbench.",
+   "summary": "ASAP CPU v2 is an 8-bit SAP-1 style computer inspired by Ben Eater's breadboard CPU. It includes a program counter, RAM, registers, ALU, and a control unit, and can be programmed via switches. It outputs results to a multiplexed 7-segment display and requires external switches and displays for operation. The design is intended for educational purposes and includes a cocotb testbench.",
+   "summary_changed": false
+  },
+  {
+   "key": "ba529a5cd759",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "qspi",
+     "reason": "The design uses a QSPI PMOD for flash and RAM, matching the qspi interface tag."
+    }
+   ],
+   "notes": "Added qspi interface tag supported by the QSPI PMOD flash/RAM usage.",
+   "tags_before": [
+    "cpu",
+    "vga",
+    "video",
+    "display",
+    "qspi",
+    "spi",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "vga",
+    "video",
+    "display",
+    "qspi",
+    "spi",
+    "memory",
+    "verilog"
+   ],
+   "summary_before": "This design is an 8-bit processor with 16-bit instructions that interacts with VGA output. It fetches programs from external QSPI flash and uses external RAM, outputting VGA signals. It requires a QSPI PMOD for flash and RAM and a TinyVGA PMOD for video output. The processor starts executing from address 0 after reset.",
+   "summary": "This design is an 8-bit processor with 16-bit instructions that interacts with VGA output. It fetches programs from external QSPI flash and uses external RAM, outputting VGA signals. It requires a QSPI PMOD for flash and RAM and a TinyVGA PMOD for video output. The processor starts executing from address 0 after reset.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8932,
+  "completion_tokens": 1503,
+  "total_tokens": 10435,
+  "cost": 0.003017568,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003017568,
+   "upstream_inference_prompt_cost": 0.001484508,
+   "upstream_inference_completions_cost": 0.00153306
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003017568,
+ "elapsed_s": 38.9
+}

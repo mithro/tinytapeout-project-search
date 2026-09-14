@@ -1,0 +1,211 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bd4380329c93",
+  "29de07e6e9a3",
+  "e648787e0bac",
+  "c6f5ad45d837",
+  "689b601e5ff6",
+  "c4b89576435f",
+  "cd7bbd681843",
+  "414041c1b8aa",
+  "4449f2bca5c7",
+  "9afb66ec6038"
+ ],
+ "results": [
+  {
+   "key": "bd4380329c93",
+   "tags": [
+    "matrix-multiply",
+    "systolic",
+    "transformer",
+    "neural-network",
+    "mac",
+    "primitive-engine",
+    "accumulator",
+    "relu",
+    "shift",
+    "host-driven"
+   ],
+   "summary": "This design implements a host-driven primitive engine for transformer layers, featuring a 2x2 systolic array of multiply-accumulate processing elements with signed 5-bit operands and 11-bit results. It includes source banks A and B, a result bank C, and supports operations such as accumulate, add, ReLU, and shift. The interface allows a host to write operands and commands, and read results one word at a time. No external hardware is required beyond a standard Tiny Tapeout board or simulator, and the design is notable for its compact implementation of a systolic schedule.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "29de07e6e9a3",
+   "tags": [
+    "alu",
+    "8-bit",
+    "accumulator",
+    "flags",
+    "ram",
+    "bus",
+    "arithmetic",
+    "logic",
+    "shift",
+    "rotate"
+   ],
+   "summary": "The Spacelizard APU is a tiny 8-bit arithmetic processing unit with an accumulator, a B register, flags (zero, carry, negative, overflow), and 8 bytes of internal RAM. It supports arithmetic, logic, shift, and rotate operations, controlled via a 4-bit opcode and 4-bit argument on ui_in, with data on the bidirectional bus. The current value of the accumulator is always available on uo_out. Testing involves applying commands and data, pulsing the EXEC strobe, and observing results; a cocotb test is included.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e648787e0bac",
+   "tags": [
+    "game",
+    "spacewar",
+    "vga",
+    "gamepad",
+    "graphics",
+    "audio",
+    "demoscene",
+    "snes"
+   ],
+   "summary": "This project provides graphics prototypes for a scaled-down Spacewar game, adhering to demoscene specifications for VGA and audio. It uses a SNES controller PMOD for input and outputs VGA signals. The design is intended to be tested with a Tiny VGA PMOD and a SNES gamepad PMOD. Documentation is minimal, with testing details marked as 'coming soon', so the full functionality and implementation are not fully described.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c6f5ad45d837",
+   "tags": [
+    "alu",
+    "8-bit",
+    "state-machine",
+    "arithmetic",
+    "logic",
+    "carry",
+    "status-flags"
+   ],
+   "summary": "This is an 8-bit arithmetic logic unit that performs arithmetic and bitwise operations on integer binary numbers. It uses a state machine to read two 8-bit operands via the digital input pins, with operation selection and status output over the bidirectional pins. The ALU supports operations such as addition, subtraction, and logical functions, and provides carry/borrow and status flags. Testing involves setting the state to read operands, selecting the operation, performing the calculation, and then reading the result and status.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "689b601e5ff6",
+   "tags": [
+    "matrix-multiply",
+    "systolic",
+    "spi",
+    "mac",
+    "accelerator",
+    "4x4",
+    "8-bit",
+    "20-bit",
+    "fsm"
+   ],
+   "summary": "This project implements a 4x4 systolic array matrix multiply-accumulate accelerator that computes the product of two 4x4 matrices of unsigned 8-bit integers, producing 16 results with 20-bit accumulator precision. It includes a processing element array, a control FSM, an SPI slave for loading matrices, and an SPI transmitter for reading results. The design requires an external SPI master, such as a microcontroller, to communicate with the chip. The systolic dataflow and skewing logic ensure correct computation, and the design is notable for its use of a 2x2 tile area.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c4b89576435f",
+   "tags": [
+    "cpu",
+    "8-bit",
+    "uart",
+    "bootloader",
+    "isa",
+    "accumulator",
+    "memory",
+    "programmable"
+   ],
+   "summary": "tcpu is an 8-bit CPU with integrated IO and a bootloader, featuring a simple instruction set that includes add, and, not, jump, store, load, and nop operations. It uses a UART interface for programming and communication, requiring an external USB-to-UART converter. The CPU has registers A and B, a program counter, and data memory, and can be programmed with a list of instructions via the UART. The design is notable for its minimalistic approach and integrated bootloader, making it easy to program and test.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cd7bbd681843",
+   "tags": [
+    "analog",
+    "sensor",
+    "exceptional-point",
+    "lc-tank",
+    "rf",
+    "chiral",
+    "capacitive",
+    "vna",
+    "2.7ghz"
+   ],
+   "summary": "This is an analog chiral exceptional-point sensor based on two coupled LC tanks at approximately 2.7 GHz, designed to detect small capacitive perturbations with enhanced sensitivity. It requires external hardware including a Tiny Tapeout demo board with u.fl connectors, a vector network analyzer capable of at least 3 GHz, and a microcontroller to set the perturbation code. The sensor operates by observing frequency splitting in the V2 spectrum in response to perturbations on the V1 tank. The design is notable for its use of exceptional-point physics to achieve high sensitivity, and it is intended for RF measurements.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "414041c1b8aa",
+   "tags": [
+    "matrix-multiply",
+    "tensor-core",
+    "accelerator",
+    "3x3",
+    "signed",
+    "5-bit",
+    "12-bit",
+    "instruction-bus",
+    "burst-load"
+   ],
+   "summary": "TinyTensorCore is a hardware accelerator for 3x3 integer matrix multiplication, fitting into a 1x2 Tiny Tapeout tile. It takes two 3x3 matrices of 5-bit signed operands and produces a 3x3 matrix of 12-bit signed results, using a 10-bit instruction bus for control and data loading. The design includes a controller, register file, and a combinational MAC array that computes the full matmul in a single cycle. It requires no external hardware and was verified with a comprehensive test suite, showing bit-exact RTL and gate-level results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4449f2bca5c7",
+   "tags": [
+    "demo",
+    "vga",
+    "audio",
+    "game",
+    "graphics",
+    "sound",
+    "competition"
+   ],
+   "summary": "Orion Iron Ion is a 2-tile demo originally created for the TT10 demo competition, featuring VGA graphics and audio output. It requires external hardware including a TinyVGA Pmod and an audio Pmod, and the demo starts automatically after reset. The documentation is minimal, with a 'TODO' for the how-it-works section, so the internal details are not described. The design is notable for its participation in the demo competition and its use of standard Tiny Tapeout peripherals.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9afb66ec6038",
+   "tags": [
+    "synthesizer",
+    "audio",
+    "vga",
+    "music",
+    "demo",
+    "pwm",
+    "delta-sigma",
+    "24-voice",
+    "sequencer",
+    "booth-multiplier"
+   ],
+   "summary": "Underflow Uncubed is a single-tile demo for the TTSKY26a demo competition, featuring a 24-voice synthesizer with VGA visualization and audio output. It computes a new sample every 800 cycles, using a shared oscillator and a radix-4 Booth multiplier for phase calculation, and outputs audio via PWM with delta-sigma modulation. The design includes a sequencer that generates melodies and chords based on a selectable key, and it requires external TinyVGA and audio Pmods. Notable features include a speedup option to skip unused cycles and a palette change mechanism.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6753,
+  "completion_tokens": 2019,
+  "total_tokens": 8772,
+  "cost": 0.00426054,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 640,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00426054,
+   "upstream_inference_prompt_cost": 0.00183774,
+   "upstream_inference_completions_cost": 0.0024228
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00426054,
+ "elapsed_s": 58.9
+}

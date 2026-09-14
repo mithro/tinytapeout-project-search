@@ -1,0 +1,228 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d39641efe4e6",
+  "6899db1d54b6",
+  "5e75d2bdda97",
+  "05bde87da6f7",
+  "e6295e69e0e3",
+  "e91021943569"
+ ],
+ "results": [
+  {
+   "key": "d39641efe4e6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not explain the neuron model or computation."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs are seven-segment segment lines, a discrete LED-style output."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added insufficient-doc plus led output tag.",
+   "tags_before": [
+    "neural-network",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "neural-network",
+    "7-segment",
+    "wokwi",
+    "insufficient-doc",
+    "led"
+   ],
+   "summary_before": "This design implements a minimal neuron-like influence field calculation with open neurons, taking a clock and reset as inputs and driving a 7-segment display. It is intended to be tested by clocking in a reference vector with some inversions, presenting the device under test, and reading the output. The documentation is very thin and does not explain the neuron model, the vector width, or how the influence field is computed. No external hardware beyond the 7-segment display is described.",
+   "summary": "This design implements a minimal neuron-like influence field calculation with open neurons, taking a clock and reset as inputs and driving a 7-segment display. It is intended to be tested by clocking in a reference vector with some inversions, presenting the device under test, and reading the output. The documentation is very thin and does not explain the neuron model, the vector width, or how the influence field is computed. No external hardware beyond the 7-segment display is described.",
+   "summary_changed": false
+  },
+  {
+   "key": "6899db1d54b6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is mentioned in the source; only generic inputs and outputs."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described in the source."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Inputs are generic ui pins, not described as DIP switches."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and gives no functional explanation."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Generic digital input and output pins are the only interface described."
+    }
+   ],
+   "notes": "Removed tags unsupported by the source and corrected the summary to match the pin names.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "template",
+    "wokwi",
+    "education",
+    "dip-switch"
+   ],
+   "tags": [
+    "template",
+    "wokwi",
+    "insufficient-doc",
+    "gpio"
+   ],
+   "summary_before": "This project is described as a 7-segment display template copy, with eight inputs and eight outputs. The only usage instruction is to press a switch, and the external hardware section says the author does not know what to do. There is no explanation of how the display is driven or what the outputs represent. The documentation is too thin to determine the actual function beyond a possible switch-to-display mapping.",
+   "summary": "This project is a first template copy with four input pins and four output pins. The only usage instruction is to toggle the input pins to create a value. There is no explanation of how the outputs are driven or what the values represent. The documentation is too thin to determine the actual function beyond a possible input-to-output mapping.",
+   "summary_changed": true
+  },
+  {
+   "key": "5e75d2bdda97",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No basic logic gate implementation is described; the design is an ALU."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present, though mostly images, so the insufficient-doc tag is not clearly supported."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported logic-gate and insufficient-doc tags; summary already matches the source.",
+   "tags_before": [
+    "alu",
+    "insufficient-doc",
+    "logic-gate"
+   ],
+   "tags": [
+    "alu",
+    "insufficient-doc",
+    "logic-gate"
+   ],
+   "summary_before": "This project is a simple 8-bit unsigned arithmetic logic unit written in Verilog, with a single input and output pin listed in the pinout. The documentation consists almost entirely of images showing the design and test setup, with no textual explanation of the supported operations or control scheme. Testing is described as using an ADALM2000 instrument, but the images are not accessible in the provided text. The documentation is too thin to determine the exact instruction set or how the single input pin selects operations.",
+   "summary": "This project is a simple 8-bit unsigned arithmetic logic unit written in Verilog, with a single input and output pin listed in the pinout. The documentation consists almost entirely of images showing the design and test setup, with no textual explanation of the supported operations or control scheme. Testing is described as using an ADALM2000 instrument, but the images are not accessible in the provided text. The documentation is too thin to determine the exact instruction set or how the single input pin selects operations.",
+   "summary_changed": false
+  },
+  {
+   "key": "05bde87da6f7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "placeholder",
+     "reason": "The design is described as a 1-bit ALU test tapeout, not an empty placeholder."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is minimal and gives no functional details."
+    }
+   ],
+   "notes": "Replaced placeholder with insufficient-doc and adjusted the final sentence to match the source.",
+   "tags_before": [
+    "alu",
+    "wokwi",
+    "placeholder"
+   ],
+   "tags": [
+    "alu",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a 1-bit ALU intended as a test tapeout. The documentation is minimal, providing only the title and one-line description. No functional details, pinout, or test information are given. It appears to be a placeholder or experimental design.",
+   "summary": "This project is a 1-bit ALU intended as a test tapeout. The documentation is minimal, providing only the title and one-line description. No functional details, pinout, or test information are given. It appears to be an experimental design with insufficient documentation to describe its operation.",
+   "summary_changed": true
+  },
+  {
+   "key": "e6295e69e0e3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "factory-test",
+    "analog",
+    "characterization"
+   ],
+   "tags": [
+    "factory-test",
+    "analog",
+    "characterization"
+   ],
+   "summary_before": "This is an analog factory test structure for Tiny Tapeout analog support, with pins for bias current, ground and power sense, and three loopback connections. The documentation consists only of FIXME placeholders, so the exact operation and test procedure cannot be determined from the provided text. External hardware requirements are likewise undocumented. Because essentially no usable documentation is present, the tags and summary are inferred from the title and pin names alone.",
+   "summary": "This is an analog factory test structure for Tiny Tapeout analog support, with pins for bias current, ground and power sense, and three loopback connections. The documentation consists only of FIXME placeholders, so the exact operation and test procedure cannot be determined from the provided text. External hardware requirements are likewise undocumented. Because essentially no usable documentation is present, the tags and summary are inferred from the title and pin names alone.",
+   "summary_changed": false
+  },
+  {
+   "key": "e91021943569",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "analog",
+    "characterization",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "analog",
+    "characterization",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a small analog test module for a differential input receiver. It takes differential clock and data inputs along with a bias current and bias select, and produces an 8-bit output. The documentation is essentially missing, with all sections marked FIXME, so its internal operation and intended use cannot be determined. It is likely a characterization or test vehicle for a differential receiver cell, but no test procedure or external hardware requirements are described.",
+   "summary": "This is a small analog test module for a differential input receiver. It takes differential clock and data inputs along with a bias current and bias select, and produces an 8-bit output. The documentation is essentially missing, with all sections marked FIXME, so its internal operation and intended use cannot be determined. It is likely a characterization or test vehicle for a differential receiver cell, but no test procedure or external hardware requirements are described.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "5e75d2bdda97: only 1 tags after review; keeping pass-two tags"
+ ],
+ "usage": {
+  "prompt_tokens": 5384,
+  "completion_tokens": 1066,
+  "total_tokens": 6450,
+  "cost": 0.00246024,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00246024,
+   "upstream_inference_prompt_cost": 0.00137292,
+   "upstream_inference_completions_cost": 0.00108732
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00246024,
+ "elapsed_s": 30.3
+}

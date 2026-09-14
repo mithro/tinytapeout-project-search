@@ -1,0 +1,353 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "c6f5ad45d837",
+  "956f4f4c4610",
+  "7be546498892",
+  "c7fd6c1548aa",
+  "bae373b2d2a7",
+  "c178cce4696b"
+ ],
+ "results": [
+  {
+   "key": "c6f5ad45d837",
+   "verdict": "fix",
+   "remove": [
+    {
+     "reason": "The design is an ALU, not a CPU.",
+     "tag": "cpu"
+    },
+    {
+     "reason": "No UART interface is mentioned in the documentation.",
+     "tag": "uart"
+    },
+    {
+     "reason": "No bootloader is described.",
+     "tag": "bootloader"
+    },
+    {
+     "reason": "No instruction decoder is described; the design is an ALU.",
+     "tag": "instruction-decoder"
+    },
+    {
+     "reason": "No register file is described.",
+     "tag": "register-file"
+    },
+    {
+     "reason": "No memory block is described.",
+     "tag": "memory"
+    }
+   ],
+   "add": [
+    {
+     "reason": "The design is an 8-bit ALU performing arithmetic and bitwise operations.",
+     "tag": "alu"
+    },
+    {
+     "reason": "The design uses a state machine to sequence reading operands, calculating, and displaying status.",
+     "tag": "fsm"
+    },
+    {
+     "reason": "The design is written in Verilog.",
+     "tag": "verilog"
+    }
+   ],
+   "notes": "Corrected tags and summary to match the documented 8-bit ALU with state machine.",
+   "tags_before": [
+    "cpu",
+    "uart",
+    "bootloader",
+    "instruction-decoder",
+    "register-file",
+    "memory",
+    "fsm"
+   ],
+   "tags": [
+    "fsm",
+    "alu",
+    "verilog"
+   ],
+   "summary_before": "tcpu is an 8-bit CPU with integrated IO and a bootloader, featuring a simple instruction set that includes add, and, not, jump, store, load, and nop operations. It uses a UART interface for programming and communication, requiring an external USB-to-UART converter. The CPU is designed for educational purposes and can be tested on a Tiny Tapeout board. Its notable feature is the integrated bootloader for easy program loading.",
+   "summary": "This project is an 8-bit arithmetic logic unit that performs arithmetic and bitwise operations on integer binary numbers. It uses a state machine to read two 8-bit operands from the input pins and to control the operation. The ALU outputs the result and status flags, including carry/borrow, through the output pins. Testing involves setting the state to read operands, selecting an operation, calculating, and then displaying the status.",
+   "summary_changed": true
+  },
+  {
+   "key": "956f4f4c4610",
+   "verdict": "fix",
+   "remove": [
+    {
+     "reason": "No VGA interface is mentioned.",
+     "tag": "vga"
+    },
+    {
+     "reason": "No display output is described.",
+     "tag": "display"
+    },
+    {
+     "reason": "No graphics output is described.",
+     "tag": "graphics"
+    },
+    {
+     "reason": "Documentation is present and describes the timer and SPI interface.",
+     "tag": "insufficient-doc"
+    }
+   ],
+   "add": [
+    {
+     "reason": "The design uses an SPI interface to read out timer values.",
+     "tag": "spi"
+    },
+    {
+     "reason": "The design is a timer with start, stop, and reset signals.",
+     "tag": "timer"
+    },
+    {
+     "reason": "The design is a factory test structure for the timer.",
+     "tag": "factory-test"
+    },
+    {
+     "reason": "The design is written in Verilog.",
+     "tag": "verilog"
+    }
+   ],
+   "notes": "Corrected tags and summary to reflect the factory test timer with SPI readout.",
+   "tags_before": [
+    "vga",
+    "display",
+    "spi",
+    "graphics",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "spi",
+    "timer",
+    "factory-test",
+    "verilog"
+   ],
+   "summary_before": "This project is a VGA display design that requires a Tiny VGA PMOD and optionally an SPI controller and external SPI ROM. It is experimental and uses a 6x2 tile area. The documentation is incomplete, with testing details still to be confirmed. It is notable for its experimental nature and potential for graphics display.",
+   "summary": "This project is a factory test for a timer called zTimer. The timer has start, stop, and reset signals, and an internal ring oscillator is enabled to provide a clock source. When stop is asserted, the elapsed count is stored in internal registers. An SPI interface is used to read out the stored timer value.",
+   "summary_changed": true
+  },
+  {
+   "key": "7be546498892",
+   "verdict": "fix",
+   "remove": [
+    {
+     "reason": "No random number generator is described.",
+     "tag": "prng"
+    },
+    {
+     "reason": "No general-purpose IO interface is described.",
+     "tag": "gpio"
+    },
+    {
+     "reason": "No factory test structure is described.",
+     "tag": "factory-test"
+    },
+    {
+     "reason": "The design is not explicitly educational in the documentation.",
+     "tag": "education"
+    }
+   ],
+   "add": [
+    {
+     "reason": "The design is a calculator that adds two inputs.",
+     "tag": "calculator"
+    },
+    {
+     "reason": "The design uses a seven-segment display output.",
+     "tag": "7-segment"
+    },
+    {
+     "reason": "The design is created using the Wokwi simulator.",
+     "tag": "wokwi"
+    }
+   ],
+   "notes": "Corrected tags and summary to match the documented mini calculator with seven-segment display.",
+   "tags_before": [
+    "prng",
+    "wokwi",
+    "education",
+    "gpio",
+    "factory-test"
+   ],
+   "tags": [
+    "wokwi",
+    "calculator",
+    "7-segment"
+   ],
+   "summary_before": "This project is titled 'Random' and its one-line description says 'I have no idea.' The how-it-works section says 'It's very interesting how it works.' and the how-to-test section says 'By testing.' The external hardware is not specified. The design may be a random number generator based on the title, but the documentation is too vague to confirm its functionality.",
+   "summary": "This project is a mini calculator that adds two input values. It has two input pins for the numbers and five output pins connected to display segments. The documentation is very thin, with the how-it-works and how-to-test sections marked as TBD. The design is implemented in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "c7fd6c1548aa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "reason": "No BCD logic is described.",
+     "tag": "bcd"
+    },
+    {
+     "reason": "No counter is described.",
+     "tag": "counter"
+    },
+    {
+     "reason": "No seven-segment display is described.",
+     "tag": "7-segment"
+    },
+    {
+     "reason": "No clock generator is described.",
+     "tag": "clock-generator"
+    }
+   ],
+   "add": [
+    {
+     "reason": "The design is a 4-bit adder.",
+     "tag": "adder"
+    },
+    {
+     "reason": "The design is created using the Wokwi simulator.",
+     "tag": "wokwi"
+    }
+   ],
+   "notes": "Corrected tags and summary to reflect the documented 4-bit adder.",
+   "tags_before": [
+    "bcd",
+    "counter",
+    "7-segment",
+    "clock-generator",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "adder"
+   ],
+   "summary_before": "This project implements a BCD counter that drives a 7-segment display. It is implemented in Wokwi and uses standard board switches and LEDs for testing. The design includes a clock generator and counter logic. It demonstrates binary-coded decimal counting.",
+   "summary": "This project implements a 4-bit adder that takes two 4-bit numbers and adds them. The first number is input on bits 0-3 and the second on bits 4-7. The result is output on bits 0-3 with a carry output on bit 4. The design uses simple logic gates and is implemented in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "bae373b2d2a7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "reason": "No error correction is described.",
+     "tag": "error-correction"
+    },
+    {
+     "reason": "No encoder is described.",
+     "tag": "encoder"
+    },
+    {
+     "reason": "No shift register is described.",
+     "tag": "shift-register"
+    },
+    {
+     "reason": "No seven-segment display is described.",
+     "tag": "7-segment"
+    }
+   ],
+   "add": [
+    {
+     "reason": "The design is a signal controller for railway track information.",
+     "tag": "industrial"
+    },
+    {
+     "reason": "The design uses LEDs as outputs.",
+     "tag": "led"
+    },
+    {
+     "reason": "The design is created using the Wokwi simulator.",
+     "tag": "wokwi"
+    }
+   ],
+   "notes": "Corrected tags and summary to match the documented railway signal controller.",
+   "tags_before": [
+    "error-correction",
+    "encoder",
+    "shift-register",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "industrial",
+    "led"
+   ],
+   "summary_before": "This project implements an error-correction encoder that loads a 6-bit input and shifts it out while encoding the bits for transmission. The write_not_shift control selects between loading and shifting, and the encoded bits are shown one at a time on an 8-segment display. It is tested using the standard Tiny Tapeout board with DIP switches and a display. The design demonstrates error-correction encoding and shift register operation.",
+   "summary": "This project sets a railway signal based on track information. It takes inputs such as track free status, pre-signal, allow shunting, and shorter braking distance. The outputs control various signal lamps including green, orange, red, yellow, and white indicators. The design simply switches lamps on and off based on the input toggles.",
+   "summary_changed": true
+  },
+  {
+   "key": "c178cce4696b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "reason": "No logic gate implementation is described.",
+     "tag": "logic-gate"
+    },
+    {
+     "reason": "No clock divider is described.",
+     "tag": "clock-divider"
+    }
+   ],
+   "add": [
+    {
+     "reason": "The design is a running light (Lauflicht) that sequences LEDs.",
+     "tag": "led"
+    },
+    {
+     "reason": "The design is created using the Wokwi simulator.",
+     "tag": "wokwi"
+    },
+    {
+     "reason": "The design is likely a simple educational exercise.",
+     "tag": "education"
+    }
+   ],
+   "notes": "Corrected tags and summary to reflect the documented running light design.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "led"
+   ],
+   "summary_before": "This project is a simple test of basic gates and clock division, likely a first Wokwi exercise. It is explicitly a simple test of basic gates and clock division, likely a first Wokwi exercise. The documentation is very thin, with a one-line description in German and no real explanation of the mapping between inputs and segments. It requires an external seven-segment display, and testing is described only as using it for a seven-segment display.",
+   "summary": "This project is a running light (Lauflicht) that sequences four LEDs. The documentation is very thin, with a one-line description in German and no detailed explanation of the logic. It is implemented in Wokwi and requires external LEDs for testing. The design is likely a simple educational exercise.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5471,
+  "completion_tokens": 1947,
+  "total_tokens": 7418,
+  "cost": 0.00496421376,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00496421376,
+   "upstream_inference_prompt_cost": 0.00157176096,
+   "upstream_inference_completions_cost": 0.0033924528
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00496421376,
+ "elapsed_s": 16.9
+}

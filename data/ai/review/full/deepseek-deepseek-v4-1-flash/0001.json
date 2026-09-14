@@ -1,0 +1,251 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6d6ab69b7767",
+  "94c8c17e9d5a",
+  "f3c7469e7372",
+  "2b73293af831",
+  "e792644b640b",
+  "421650ee179f"
+ ],
+ "results": [
+  {
+   "key": "6d6ab69b7767",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Summary had only three sentences; added a fourth supported by the resubmission fact.",
+   "tags_before": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project has no meaningful description of its function, with the documentation stating only that the author cannot explain what it does. It is intended to be tested by running random inputs, and the author plans to add an external LED. The design is essentially undocumented and its behavior cannot be determined from the provided text.",
+   "summary": "This project has no meaningful description of its function, with the documentation stating only that the author cannot explain what it does. It is intended to be tested by running random inputs, and the author plans to add an external LED. The design is essentially undocumented and its behavior cannot be determined from the provided text. It has been resubmitted across two shuttles without further clarification.",
+   "summary_changed": true
+  },
+  {
+   "key": "94c8c17e9d5a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is mentioned in the source; the title 'seven' and three outputs do not establish a 7-segment interface."
+    },
+    {
+     "tag": "display",
+     "reason": "No display hardware or output is described in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported display tags and added a fourth sentence from the resubmission fact.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a 7-segment display controller with minimal documentation. It has 6 input pins and 3 output pins, and is tested by clicking buttons. The description states only 'it works' and 'click the buttons'. The project lacks sufficient detail to determine its exact function or usage.",
+   "summary": "This design has minimal documentation, with the description stating only 'it works' and 'click the buttons'. It has 6 input pins and 3 output pins, and is tested by clicking buttons. The project lacks sufficient detail to determine its exact function or usage. It has been resubmitted across two shuttles without additional information.",
+   "summary_changed": true
+  },
+  {
+   "key": "f3c7469e7372",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "placeholder",
+     "reason": "The documentation describes a working factory test module, not an empty or placeholder submission."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a test/counter module, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The documentation explicitly describes an 8-bit counter mode."
+    }
+   ],
+   "notes": "Removed unsupported placeholder/logic-gate tags, added counter, and corrected summary to match the documented factory-test behavior.",
+   "tags_before": [
+    "factory-test",
+    "verilog",
+    "placeholder",
+    "logic-gate"
+   ],
+   "tags": [
+    "factory-test",
+    "verilog",
+    "counter"
+   ],
+   "summary_before": "The design is documented as a factory test module that mirrors input pins to outputs, mirrors bidirectional pins to outputs, or outputs a counter, depending on control signals. However, the project title and pin labels imply a spike detection and classification system with four parallel detectors, which is not described in the documentation. The actual functionality based on the provided documentation is a simple I/O test and counter mode, with no spike detection logic described. This discrepancy indicates either a documentation error or that the project is a repurposed template, and no external hardware or test procedure for the spike system is described.",
+   "summary": "The documentation describes a factory test module that mirrors input pins to outputs, mirrors bidirectional pins to outputs, or outputs an 8-bit counter, depending on the rst_n and sel control signals. The project title and pin labels, however, indicate a spike detection and classification system with four parallel detectors and a serialized byte input. The provided documentation contains no description of spike detection or classification logic, and the test procedure only covers the factory test modes. This discrepancy suggests the documentation may be incorrect or that the project is a repurposed template.",
+   "summary_changed": true
+  },
+  {
+   "key": "2b73293af831",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The design is an LED scanner, not a processor."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART is mentioned or implied by the pins."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is present in the source."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory block is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "The Cylon scanner recreates a retro sci-fi visual effect."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The core is explicitly an 8-bit shift register."
+    },
+    {
+     "tag": "led",
+     "reason": "The outputs drive eight discrete LEDs."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    }
+   ],
+   "notes": "Replaced hallucinated CPU/UART/SPI/memory tags and summary with the documented Cylon scanner behavior.",
+   "tags_before": [
+    "cpu",
+    "retro",
+    "uart",
+    "spi",
+    "memory",
+    "led"
+   ],
+   "tags": [
+    "retro",
+    "led",
+    "shift-register",
+    "wokwi"
+   ],
+   "summary_before": "This is a 16-bit Data General Nova 1200 CPU implemented with a 4-bit nibble-serial datapath, capable of executing programs stored in external QSPI Flash and using PSRAM for data storage. It includes a UART for serial communication at 19,200 baud and drives diagnostic blinkenlights on the 7-segment display. The design requires the official Tiny Tapeout QSPI PMOD for Flash and PSRAM, and programs are written in Nova assembly and flashed via a provided Python script. Notable features include full programmability and interactive terminal I/O, though it relies on external hardware for memory and communication.",
+   "summary": "This design is an 8-bit shift-register based LED scanner that sweeps a single lit LED back and forth across eight outputs. A direction flip-flop and turn-around detection reverse the shift direction when the lit bit reaches either end, and reset sets the first flip-flop while clearing the rest. It is tested by connecting eight LEDs with series resistors to the outputs, providing a clock, and holding reset low to engage the scanner. The project is implemented in Wokwi and requires only the LEDs, resistors, and a reset switch as external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "e792644b640b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational intent, only that it is the author's introduction to Tiny Tapeout."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag not supported by the source; summary unchanged.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education",
+    "dip-switch",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "dip-switch",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is described as an introduction to Tiny Tapeout built around AND gates that do not do much. The author states they are still figuring out how it works, and the pin list is inconsistent, with uo[3] labelled OUT4. Testing is said to involve flipping DIP switches, and a 7-segment display is listed as external hardware. The documentation is too thin to determine the actual logic function.",
+   "summary": "This project is described as an introduction to Tiny Tapeout built around AND gates that do not do much. The author states they are still figuring out how it works, and the pin list is inconsistent, with uo[3] labelled OUT4. Testing is said to involve flipping DIP switches, and a 7-segment display is listed as external hardware. The documentation is too thin to determine the actual logic function.",
+   "summary_changed": false
+  },
+  {
+   "key": "421650ee179f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design is a clock (timepiece), not a clock signal generator."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The external hardware is described as a digital tube, not a seven-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "No display interface is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "The design is a clock/timekeeping circuit."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator/7-segment/display tags and added rtc for the timekeeping clock.",
+   "tags_before": [
+    "clock-generator",
+    "rtc",
+    "7-segment",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "rtc",
+    "verilog"
+   ],
+   "summary_before": "This project is a clock design intended to drive a USB digital tube display. It exposes an 8-bit address input and an 8-bit data output, suggesting a memory-mapped interface to external display hardware. The documentation is very thin, stating only that it is a clock and that a PCB and 3D shell will be published separately. External hardware includes the PCB, shell, and digital tube, but no further implementation details are provided.",
+   "summary": "This project is a clock design intended to drive a USB digital tube display. It exposes an 8-bit address input and an 8-bit data output, suggesting a memory-mapped interface to external display hardware. The documentation is very thin, stating only that it is a clock and that a PCB and 3D shell will be published separately. External hardware includes the PCB, shell, and digital tube, but no further implementation details are provided.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6207,
+  "completion_tokens": 1532,
+  "total_tokens": 7739,
+  "cost": 0.0037005,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0037005,
+   "upstream_inference_prompt_cost": 0.0018621,
+   "upstream_inference_completions_cost": 0.0018384
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0037005,
+ "elapsed_s": 17.3
+}

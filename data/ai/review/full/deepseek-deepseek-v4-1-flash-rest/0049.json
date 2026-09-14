@@ -1,0 +1,327 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d00391ceae28",
+  "45e89a6a5ad4",
+  "67e8fdc3facc",
+  "b5da158a80d2",
+  "f80ce34896fe",
+  "bc95170c7fbc"
+ ],
+ "results": [
+  {
+   "key": "d00391ceae28",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "Source describes a flash ADC, not a multiplier"
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder is described in the source"
+    },
+    {
+     "tag": "combinational",
+     "reason": "Flash ADC is analog/mixed-signal conversion, not purely combinational digital logic"
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Analog, not Verilog"
+    }
+   ],
+   "add": [
+    {
+     "tag": "adc",
+     "reason": "Design is a 2-bit flash analog-to-digital converter"
+    },
+    {
+     "tag": "analog",
+     "reason": "Analog circuit design in analog language with analog pins"
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Converts analog input to encoded digital output bits"
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated 4-bit multiplier; replaced with ADC-appropriate tags and summary.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "adc",
+    "analog",
+    "mixed-signal"
+   ],
+   "summary_before": "This project implements a 4-bit binary multiplier using a combinational array structure. It multiplies two 4-bit numbers by generating partial products and summing them with full adders. The design is purely digital and produces an 8-bit product. It is a structural implementation suitable for learning about binary multiplication.",
+   "summary": "This project implements a 2-bit flash ADC that converts a 1.8 V to 0 V analog signal into an encoded 2-bit digital output. The analog input is applied to analog pin 0, and the encoded bits appear on the two dedicated outputs. It is an analog design occupying a 1x2 tile area with two analog pins. Testing is done by sweeping the analog input voltage and observing the encoded output bits.",
+   "summary_changed": true
+  },
+  {
+   "key": "45e89a6a5ad4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "Source never states a logic gate is implemented"
+    },
+    {
+     "tag": "education",
+     "reason": "No stated educational intent in the source"
+    },
+    {
+     "tag": "template",
+     "reason": "Not described as a template; only thin documentation"
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, only vague statements about inputs determining outputs"
+    }
+   ],
+   "notes": "Removed unsupported logic-gate/education/template tags and rewrote summary to match the sparse source.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This Wokwi project implements a simple logic gate circuit for educational purposes. The design is a template with minimal functionality, likely demonstrating basic gate behavior. External hardware includes buttons for inputs and an LED for output. The documentation is minimal, describing only the basic function and test procedure.",
+   "summary": "This is a Wokwi project whose documentation is very thin, stating only that the various inputs will be used to determine whether there is success on the output. Testing is described as changing the inputs to change the output. No external hardware is needed. The exact function of the design is not described in the source.",
+   "summary_changed": true
+  },
+  {
+   "key": "67e8fdc3facc",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "Design explicitly does nothing and does not work"
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation states it doesn't work and is untestable"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi"
+    }
+   ],
+   "notes": "Summary was only one sentence; expanded to four sentences using only source-supported statements.",
+   "tags_before": [
+    "wokwi",
+    "placeholder",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "placeholder",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "The project documentation states that the design does nothing and does not work.",
+   "summary": "The project documentation states that the design does nothing and does not work. It is described as untestable, and no external hardware is used. The submission is a Wokwi project with very thin documentation. It appears to be a placeholder or incomplete design.",
+   "summary_changed": true
+  },
+  {
+   "key": "b5da158a80d2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "placeholder",
+     "reason": "Source does not state it is a placeholder; it is incomplete with deferred documentation"
+    }
+   ],
+   "add": [
+    {
+     "tag": "comparator",
+     "reason": "Title and pin names LT/GT/EQ indicate a comparator"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with 'Will deal with this later'"
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is deferred and unfinished"
+    }
+   ],
+   "notes": "Removed placeholder tag not supported by source; expanded summary to four sentences.",
+   "tags_before": [
+    "comparator",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete",
+    "placeholder"
+   ],
+   "tags": [
+    "comparator",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This design is a comparator circuit built in Wokwi, but the documentation is insufficient to fully describe its functionality. The project appears to be incomplete or a placeholder.",
+   "summary": "This design is a comparator circuit built in Wokwi, with inputs A_IN and B_IN and outputs LT, GT, and EQ. The documentation is insufficient to fully describe its functionality, as both the how-it-works and how-to-test sections say 'Will deal with this later'. The external hardware section is left as boilerplate placeholder text. The project appears to be incomplete.",
+   "summary_changed": true
+  },
+  {
+   "key": "f80ce34896fe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "Design is a multiply-add with 7-segment display, not a counter"
+    },
+    {
+     "tag": "gpio",
+     "reason": "No general purpose IO behavior described beyond switches and display"
+    },
+    {
+     "tag": "template",
+     "reason": "Not described as a template"
+    },
+    {
+     "tag": "education",
+     "reason": "No stated educational intent"
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Multiplies 2-bit A by 2-bit B"
+    },
+    {
+     "tag": "adder",
+     "reason": "Adds the product to 4-bit C"
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Result is shown on a 7-segment display"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi"
+    },
+    {
+     "tag": "combinational",
+     "reason": "Pure combinational multiply-add with no clock described"
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated counter design; replaced with multiply-add and 7-segment tags and summary.",
+   "tags_before": [
+    "counter",
+    "gpio",
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "multiplier",
+    "adder",
+    "7-segment",
+    "combinational"
+   ],
+   "summary_before": "This design outputs a counter on the output and bidirectional pins when a select signal is high, and mirrors the bidirectional pins to the outputs when select is low. The documentation is minimal and the project appears to be a basic Tiny Tapeout template or introductory exercise. The counter behavior is simple and likely intended for learning purposes. The project is not notable for advanced functionality.",
+   "summary": "This design takes two 2-bit inputs A and B and a 4-bit input C, computes A multiplied by B plus C, and displays the result on a 7-segment display. The decimal point on the display represents adding 16 to the shown digit. Testing is done by setting the switches to the desired binary values and reading the display. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "bc95170c7fbc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes a MAC operation, not a general ALU"
+    },
+    {
+     "tag": "memory",
+     "reason": "Memory is only mentioned as a testing method, not implemented"
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "Design performs multiplication and accumulation"
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Multiplication is part of the MAC operation"
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, only 'It multiply and accumulates the data'"
+    }
+   ],
+   "notes": "Removed unsupported alu and memory tags; kept mac-unit and multiplier, added verilog and insufficient-doc.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "mac-unit",
+    "memory"
+   ],
+   "tags": [
+    "multiplier",
+    "mac-unit",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a multiplication and accumulation (MAC) operation in Verilog. It takes two 8-bit inputs and produces an 8-bit output, likely the accumulated result. The documentation is minimal, stating only that it multiplies and accumulates data, and suggests testing with a memory operation. No external hardware is specified, and the design's exact behavior and interface are not fully described.",
+   "summary": "This project implements a multiplication and accumulation (MAC) operation in Verilog. The documentation states only that it multiplies and accumulates the data. Testing is suggested using a memory operation, and no external hardware is specified. The exact interface and behavior of the design are not fully described in the source.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5625,
+  "completion_tokens": 1389,
+  "total_tokens": 7014,
+  "cost": 0.002058003,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002058003,
+   "upstream_inference_prompt_cost": 0.000641223,
+   "upstream_inference_completions_cost": 0.00141678
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002058003,
+ "elapsed_s": 60.5
+}

@@ -1,0 +1,364 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b4a2aa43e1f2",
+  "1035351498a4",
+  "d17f27ea563f",
+  "de93319e8f88",
+  "e709744c4d80",
+  "29c44e8cf50e"
+ ],
+ "results": [
+  {
+   "key": "b4a2aa43e1f2",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "The design explicitly implements a DFF-chain clock divider network."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "The design explicitly implements a five-inverter ring oscillator."
+    }
+   ],
+   "notes": "Added ring-oscillator and clock-divider tags and rewrote the summary to remove unsupported or garbled sentences.",
+   "tags_before": [
+    "clock-generator",
+    "oscillator",
+    "wokwi"
+   ],
+   "tags": [
+    "clock-generator",
+    "oscillator",
+    "wokwi",
+    "clock-divider",
+    "ring-oscillator"
+   ],
+   "summary_before": "This design implements a reconfigurable digitally controlled oscillator (DCO) that can operate as a ring oscillator or a clock divider. By using combination between s0(in1), s1(in2) , s2(in3) below we can different division at out1. clk (in4) - clock input, input the clock signal to this pin if the chip is to be used as a clock divider, out1 is the output of the clock divider.",
+   "summary": "This design implements a reconfigurable digitally controlled oscillator that can operate as a ring oscillator or a clock divider. The ring oscillator is formed by chaining five inverters, and its frequency is set by the inverter cell delay. A D flip-flop chain divides the clock, with the division ratio selected by the s0, s1 and s2 inputs. The design is created using the Wokwi simulator and has no reported silicon test results.",
+   "summary_changed": true
+  },
+  {
+   "key": "1035351498a4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "characterization",
+     "reason": "The source describes a neuron and STDP controller, not a process or device characterization structure."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is digital Verilog with no analog circuitry described."
+    },
+    {
+     "tag": "dac",
+     "reason": "No digital-to-analog converter is present in the source."
+    },
+    {
+     "tag": "adc",
+     "reason": "No analog-to-digital converter is present in the source."
+    },
+    {
+     "tag": "memristor",
+     "reason": "No memristor or resistive-switching device is mentioned in the source."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "The design does not generate arbitrary waveforms; it emits neuron spikes and STDP pulses."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The design implements a leaky-integrate-and-fire neuron with spike output and STDP learning."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "The design is a neural network building block with programmable weights and learning."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "An 8-bit Galois LFSR is explicitly used for the stochastic firing mode."
+    },
+    {
+     "tag": "lookup-table",
+     "reason": "An 8-entry sigmoid LUT is explicitly used for the stochastic firing threshold."
+    },
+    {
+     "tag": "spi",
+     "reason": "The design uses an 8-bit SPI mode-0 slave for register programming and readback."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Replaced hallucinated memristor/characterization tags with the actual spiking-neuron, LFSR, LUT and SPI features.",
+   "tags_before": [
+    "characterization",
+    "mixed-signal",
+    "dac",
+    "adc",
+    "spi",
+    "memristor",
+    "signal-generator"
+   ],
+   "tags": [
+    "spi",
+    "spiking-neural-network",
+    "neural-network",
+    "lfsr",
+    "lookup-table",
+    "verilog"
+   ],
+   "summary_before": "This design is a characterization platform for a single external memristor or RRAM device, providing DC sweep, pulse endurance, retention, and free-running modes. It uses an 8-bit DAC to drive the device and an 8-bit ADC to read back the response, with SPI control for mode selection and data readout. The design includes on-chip histogram and min/max tracking for DC sweeps, and read-verify with fail-index latching for endurance tests. It is implemented as a mixed-signal design and requires an external resistive-switching device and SPI host.",
+   "summary": "This design implements an 8-bit saturating leaky-integrate-and-fire neuron with a stochastic firing mode, an 8-entry sigmoid LUT, an 8-bit Galois LFSR, programmable refractory and leak, and homeostatic theta adaptation. It also includes an STDP controller with 8-bit pre and post spike traces, exponential-shift decay, an anti-Hebbian polarity bit, and optional reward-gated learning. All registers are programmable through a shared 8-bit SPI mode-0 slave, and the design emits spike, weight-update, theta, Bayesian confidence, learning-direction and busy outputs. It is written in Verilog and requires only an external SPI host and a spike-train source.",
+   "summary_changed": true
+  },
+  {
+   "key": "d17f27ea563f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asic",
+     "reason": "The source describes an FPGA fabric, not an application-specific integrated circuit implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The source explicitly mentions top-level cocotb tests."
+    }
+   ],
+   "notes": "Removed incorrect ASIC tag and added verilog and cocotb; summary now reflects the documented architecture.",
+   "tags_before": [
+    "fpga",
+    "reconfigurable",
+    "asic",
+    "education"
+   ],
+   "tags": [
+    "fpga",
+    "reconfigurable",
+    "education",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This project is a tiny FPGA fabric that can be programmed using Yosys and nextpnr. It is designed to be compatible with the Tiny Tapeout interface, allowing simple designs to be mapped directly onto the fabric. The fabric is implemented as an ASIC and is intended for educational use. The exact architecture and configuration details are not fully described in the documentation.",
+   "summary": "This project implements a tiny FABulous FPGA fabric with 128 LUT4 plus flip-flop logic cells and a vertical carry chain for fast additions up to 15 bits. The I/Os resemble the Tiny Tapeout interface, allowing simple Tiny Tapeout designs to be mapped directly onto the fabric. User designs are synthesized with Yosys and implemented with nextpnr, and the bitstream is uploaded through a bitbang interface while reset is applied. The design is written in Verilog and includes cocotb tests, with no external hardware required.",
+   "summary_changed": true
+  },
+  {
+   "key": "de93319e8f88",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "esoteric",
+     "reason": "The design is a standard systolic matrix multiplier, not an esoteric programming language or novelty computation."
+    },
+    {
+     "tag": "retro",
+     "reason": "No retro computing or gaming style hardware is described."
+    },
+    {
+     "tag": "amaranth",
+     "reason": "The design is written in Verilog, not Amaranth HDL."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "cpu",
+     "reason": "The design is a matrix multiplier, not a processor core."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systolic-array",
+     "reason": "The design is explicitly a 2x2 output-stationary systolic array."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "The design performs signed 4-bit matrix multiplication."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Each processing element is a bit-serial multiply-accumulate unit."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "The processing elements use bit-serial multiplication."
+    },
+    {
+     "tag": "fsm",
+     "reason": "An FSM controls the IDLE, COMPUTE, DRAIN and READ sequence."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Replaced hallucinated Setun/Amaranth tags with the actual systolic-array, multiplier, MAC, bit-serial and FSM features.",
+   "tags_before": [
+    "esoteric",
+    "retro",
+    "amaranth",
+    "alu",
+    "cpu",
+    "multiplier"
+   ],
+   "tags": [
+    "multiplier",
+    "systolic-array",
+    "mac-unit",
+    "bit-serial",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This design is a reimplementation of the Setun-1958 computer, a ternary-based machine, using Amaranth HDL. It reuses building blocks from the original implementation and is intended for educational or retro-computing purposes. The design requires a microcontroller to drive the pins and no other external hardware. It is written in Amaranth and targets the Tiny Tapeout ASIC shuttle.",
+   "summary": "This design implements a 2x2 output-stationary systolic array that computes signed 4-bit matrix multiplication and produces 8-bit results. Each processing element is a bit-serial multiply-accumulate unit, and the array uses input skew registers to align data across the grid. An FSM sequences the computation through IDLE, COMPUTE, DRAIN and READ states, and an output serializer streams the four accumulator results one per cycle. The design is written in Verilog and is loaded and started through the Tiny Tapeout input pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "e709744c4d80",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "No ring oscillator is described; the design generates square waves from MIDI notes."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "The oscillators are digital tone generators, not generic oscillator circuits."
+    },
+    {
+     "tag": "counter",
+     "reason": "No binary or decimal counting circuit is described."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "No linear feedback shift register is described."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design does not generate a clock or timing signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "music",
+     "reason": "The design generates square waves for musical notes from MIDI input."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "The design is a polyphonic MIDI synthesizer with up to four voices."
+    },
+    {
+     "tag": "audio",
+     "reason": "The outputs are square waves intended to be mixed and played through a speaker."
+    },
+    {
+     "tag": "pwm",
+     "reason": "A PWM output encodes the number of active voices."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The design is written in SystemVerilog."
+    }
+   ],
+   "notes": "Replaced unrelated oscillator/counter/LFSR tags with the actual MIDI synthesizer, music, audio and PWM features.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "counter",
+    "lfsr",
+    "clock-generator"
+   ],
+   "tags": [
+    "music",
+    "synthesizer",
+    "audio",
+    "pwm",
+    "systemverilog"
+   ],
+   "summary_before": "This project includes a ring oscillator, counter, LFSR, and clock generator, all implemented in digital logic. The ring oscillator provides a clock source, which is used by the counter and LFSR for various timing and pseudo-random generation purposes. The design is notable for its combination of oscillator and counter circuits. It can be used for clock generation and digital testing applications.",
+   "summary": "This project implements a polyphonic MIDI synthesizer that decodes MIDI note messages and generates square waves for up to four voices. Each voice is routed to a separate output pin so the signals can be mixed externally, and each oscillator responds to a different MIDI channel to simplify voice allocation. A PWM output encodes the number of currently active voices and can be low-pass filtered to control the gain of the mixed output. The design is written in SystemVerilog and can drive a speaker through an external driver circuit.",
+   "summary_changed": true
+  },
+  {
+   "key": "29c44e8cf50e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The source describes combinational game logic, not a finite state machine."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a puzzle game, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The game logic is described as a truth table with no clocked state."
+    }
+   ],
+   "notes": "Removed unsupported fsm and logic-gate tags and added combinational to match the truth-table implementation.",
+   "tags_before": [
+    "puzzle",
+    "game",
+    "7-segment",
+    "wokwi",
+    "education",
+    "fsm",
+    "logic-gate"
+   ],
+   "tags": [
+    "puzzle",
+    "game",
+    "7-segment",
+    "wokwi",
+    "education",
+    "combinational"
+   ],
+   "summary_before": "This design implements the wolf, goat and cabbage river crossing puzzle as a combinational logic block. Four input pins represent the positions of the farmer, wolf, goat and cabbage, and the outputs drive the segments of a 7-segment display to indicate a win, a loss, or which river bank has an unattended situation. The game is played interactively by setting the input pins to represent the positions of the four characters. The design is built with Wokwi and is intended for educational purposes.",
+   "summary": "This design implements the wolf, goat and cabbage river crossing puzzle as a combinational logic block. Four input pins represent the positions of the farmer, wolf, goat and cabbage, and the outputs drive the segments of a 7-segment display to indicate a win, a loss, or which river bank has an unattended situation. The game is played interactively by setting the input switches and observing the 7-segment display. The design is built with Wokwi and is intended for educational purposes.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8256,
+  "completion_tokens": 2422,
+  "total_tokens": 10678,
+  "cost": 0.0053832,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0053832,
+   "upstream_inference_prompt_cost": 0.0024768,
+   "upstream_inference_completions_cost": 0.0029064
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0053832,
+ "elapsed_s": 29.7
+}

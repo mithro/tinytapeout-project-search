@@ -1,0 +1,223 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "96ddea377998",
+  "162a27468d39",
+  "86c6a26f82f5",
+  "7d8fb92d798c",
+  "52a54a6360d7",
+  "167e4af661dd"
+ ],
+ "results": [
+  {
+   "key": "96ddea377998",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "opamp",
+     "reason": "An OTA is a transconductance amplifier, not an operational amplifier (opamp tag means opamp circuit); the source never calls it an opamp."
+    },
+    {
+     "tag": "low-power",
+     "reason": "The source says 'low-voltage', not low-power; no low-power optimization is documented."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence the design is built from discrete transistors rather than standard cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Analog circuit design, stated in the language and description."
+    }
+   ],
+   "notes": "Removed unsupported opamp/low-power/transistor-level tags; kept analog.",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "low-power",
+    "transistor-level"
+   ],
+   "tags": [
+    "opamp",
+    "analog",
+    "low-power",
+    "transistor-level"
+   ],
+   "summary_before": "This project is a low-voltage operational transconductance amplifier (OTA) implemented in an analog process. It has three analog pins: one output (Vo) and two inputs (VA, VB). The documentation is very brief, stating only that it amplifies transconductance and has high output impedance, and suggests testing with a function generator. No external hardware is used. The design is notable for being an analog block in a digital-oriented shuttle.",
+   "summary": "This project is a low-voltage operational transconductance amplifier (OTA) implemented in an analog process. It has three analog pins: one output (Vo) and two inputs (VA, VB). The documentation is very brief, stating only that it amplifies transconductance and has high output impedance, and suggests testing with a function generator. No external hardware is used.",
+   "summary_changed": true
+  },
+  {
+   "key": "162a27468d39",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sram",
+     "reason": "The memory is explicitly built from D flip-flops, not static RAM cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The documentation states CocoTB testbenches are included and used for verification."
+    }
+   ],
+   "notes": "Removed sram (built from DFFs) and added cocotb per documented testbenches.",
+   "tags_before": [
+    "memory",
+    "flip-flop",
+    "sram",
+    "verilog"
+   ],
+   "tags": [
+    "memory",
+    "flip-flop",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This project implements a 16-byte RAM built from D flip-flops. It supports read and write operations with a 4-bit address, active-low chip enable and load signals, and an 8-bit data input. Read operations are asynchronous, and the output is high-impedance when not enabled. The design is intended for integration into an 8-bit processor and includes CocoTB testbenches that verify write and read functionality across all addresses.",
+   "summary": "This project implements a 16-byte RAM built from D flip-flops. It supports read and write operations with a 4-bit address, active-low chip enable and load signals, and an 8-bit data input. Read operations are asynchronous, and the output is high-impedance when not enabled. The design is intended for integration into an 8-bit processor and includes CocoTB testbenches that verify write and read functionality across all addresses.",
+   "summary_changed": false
+  },
+  {
+   "key": "86c6a26f82f5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "No dedicated compute acceleration hardware is described; it is a small fixed ANN forward-pass block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "edge-ai",
+     "reason": "Embedded neural-network inference targeted design, matching the forward-pass ANN."
+    }
+   ],
+   "notes": "Replaced accelerator with edge-ai to match the small embedded ANN inference design.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "verilog"
+   ],
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "verilog",
+    "edge-ai"
+   ],
+   "summary_before": "This design implements a forward pass for a simple artificial neural network with 4 input neurons, 8 hidden neurons, and 1 output neuron, and also computes the mean squared error loss. It accepts a 4-bit input on ui_in[3:0] and uses ui_in[7] to start the computation, with the result and state available on the output pins. External hardware consists of switches to set the input value and a button or switch to trigger the forward pass. The design is intended for inference and loss calculation, and can be simulated by modifying the test script.",
+   "summary": "This design implements a forward pass for a simple artificial neural network with 4 input neurons, 8 hidden neurons, and 1 output neuron, and also computes the mean squared error loss. It accepts a 4-bit input on ui_in[3:0] and uses ui_in[7] to start the computation, with the result and state available on the output pins. External hardware consists of switches to set the input value and a button or switch to trigger the forward pass. The design is intended for inference and loss calculation, and can be simulated by modifying the test script.",
+   "summary_changed": false
+  },
+  {
+   "key": "7d8fb92d798c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crc",
+     "reason": "The design computes a longitudinal redundancy check, not a cyclic redundancy check."
+    }
+   ],
+   "add": [],
+   "notes": "Removed crc since the design is an LRC, not a CRC.",
+   "tags_before": [
+    "error-correction",
+    "crc",
+    "verilog",
+    "communication"
+   ],
+   "tags": [
+    "error-correction",
+    "verilog",
+    "communication"
+   ],
+   "summary_before": "This design computes a running longitudinal redundancy check (LRC) over a stream of bytes, updating the code each time a new byte is presented on the input pins. A byte is supplied on ui_in and the current LRC is read from uo_out, with the running value resetting when the chip is reset. No external hardware is needed, and the design is a straightforward combinational/sequential checksum generator. The documentation is brief but sufficient to understand the function and basic usage.",
+   "summary": "This design computes a running longitudinal redundancy check (LRC) over a stream of bytes, updating the code each time a new byte is presented on the input pins. A byte is supplied on ui_in and the current LRC is read from uo_out, with the running value resetting when the chip is reset. No external hardware is needed, and the design is a straightforward checksum generator. The documentation is brief but sufficient to understand the function and basic usage.",
+   "summary_changed": true
+  },
+  {
+   "key": "52a54a6360d7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "systemverilog",
+    "neuromorphic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "systemverilog",
+    "neuromorphic"
+   ],
+   "summary_before": "This project implements a basic leaky integrate-and-fire (LIF) neuron in SystemVerilog. It integrates input current by addition and leaks by dividing by two at each time step, with an enable pin advancing time roughly once per second when clocked at about 50 MHz. The neuron fires a spike when the integrated value exceeds a threshold, and it includes a timeout to prevent constant output from overstimulation. Testing involves manually setting input switches to provide current and observing spike output on LEDs, with a dedicated LED indicating time steps.",
+   "summary": "This project implements a basic leaky integrate-and-fire (LIF) neuron in SystemVerilog. It integrates input current by addition and leaks by dividing by two at each time step, with an enable pin advancing time roughly once per second when clocked at about 50 MHz. The neuron fires a spike when the integrated value exceeds a threshold, and it includes a timeout to prevent constant output from overstimulation. Testing involves manually setting input switches to provide current and observing spike output on LEDs, with a dedicated LED indicating time steps.",
+   "summary_changed": false
+  },
+  {
+   "key": "167e4af661dd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning; it is a minimal shift register."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "The design is a six-bit shift register, as stated in the title and description."
+    }
+   ],
+   "notes": "Removed unsupported education tag; shift-register and wokwi remain supported.",
+   "tags_before": [
+    "shift-register",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "shift-register",
+    "wokwi"
+   ],
+   "summary_before": "This design is a six-bit shift register that takes a clock and serial data input and presents the six stored bits on output pins 0 through 5. Testing is done by applying a clock and data on inputs 0 and 1 and observing the outputs. Most other pins are marked as not connected, and no external hardware is required. The documentation is very brief and gives no timing or reset details.",
+   "summary": "This design is a six-bit shift register that takes a clock and serial data input and presents the six stored bits on output pins 0 through 5. Testing is done by applying a clock and data on inputs 0 and 1 and observing the outputs. Most other pins are marked as not connected, and no external hardware is required. The documentation is very brief and gives no timing or reset details.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "96ddea377998: only 1 tags after review; keeping pass-two tags"
+ ],
+ "usage": {
+  "prompt_tokens": 6977,
+  "completion_tokens": 1139,
+  "total_tokens": 8116,
+  "cost": 0.002147763,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002147763,
+   "upstream_inference_prompt_cost": 0.000985983,
+   "upstream_inference_completions_cost": 0.00116178
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002147763,
+ "elapsed_s": 46.7
+}

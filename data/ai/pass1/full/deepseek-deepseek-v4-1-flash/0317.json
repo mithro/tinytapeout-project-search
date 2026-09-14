@@ -1,0 +1,201 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "46fd8769512a",
+  "1035351498a4",
+  "e49d00cfd778",
+  "de93319e8f88",
+  "370013d5c9ef",
+  "0b22eaae1c33",
+  "c821fb30bd7f",
+  "75c8ed5c145f",
+  "24eeeff20851",
+  "7afe8760d68f"
+ ],
+ "results": [
+  {
+   "key": "46fd8769512a",
+   "tags": [
+    "rram",
+    "memristor",
+    "characterization",
+    "dac",
+    "adc",
+    "spi",
+    "histogram",
+    "endurance",
+    "retention",
+    "analog-frontend"
+   ],
+   "summary": "This design is a standalone characterization platform for a single external resistive-switching device such as an RRAM, memristor, or phase-change cell. It drives an 8-bit DAC rail and reads back an 8-bit ADC rail, with four SPI-selectable modes: DC sweep with on-chip histogram and min/max tracking, pulse endurance with read-verify and fail-index latching, retention with periodic reads, and free-running operation. The host programs parameters over SPI and asserts start, after which an on-chip FSM runs the experiment to completion and writes results into readable registers. The design requires an external RRAM test cell and a carrier board that provides the analog rails; no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1035351498a4",
+   "tags": [
+    "neural-network",
+    "stdp",
+    "lif",
+    "lfsr",
+    "spi",
+    "homeostasis",
+    "bayesian",
+    "stochastic",
+    "spiking-neuron"
+   ],
+   "summary": "This design combines an 8-bit saturating leaky-integrate-and-fire neuron with a stochastic firing mode, homeostatic theta adaptation, and a Bayesian confidence window, alongside an STDP controller with pre/post spike traces and reward-gated learning. All registers are programmable via a shared 8-bit SPI mode-0 slave, and the neuron can be driven by an external spike train on ui_in[1]. The design outputs post-synaptic spikes, weight-update pulses, learning direction, and status flags. Only a microcontroller or FPGA driving the SPI slave is required as external hardware; no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e49d00cfd778",
+   "tags": [
+    "memristor",
+    "crossbar",
+    "spi",
+    "dac",
+    "adc",
+    "characterization",
+    "compliance",
+    "sweep",
+    "pulse-train",
+    "analog-frontend"
+   ],
+   "summary": "This design is a device-agnostic peripheral controller for 8x8 memristive, spintronic, phase-change, or ferroelectric crossbar arrays, supporting READ, SET, RESET, FORMING, and SWEEP modes. It provides configurable pulse widths, repeatable pulse trains, a swept-DAC I-V characterization mode, compliance-current auto-abort with sticky history, a 16-bit pulse counter, and a last-ADC-in-sweep snapshot, all programmed through a Mode-0 SPI slave. The design is a GF180mcuD port of a SKY130 sibling and adds features such as a wider pulse counter and sticky compliance history. External hardware includes an SPI master, external DAC and ADC, and the crossbar array itself; a cocotb suite of 36 tests passes locally on icarus.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "de93319e8f88",
+   "tags": [
+    "matrix-multiply",
+    "systolic-array",
+    "multiplier",
+    "dsp",
+    "serial",
+    "fsm"
+   ],
+   "summary": "This design implements a 2x2 output-stationary systolic array that computes signed 4-bit matrix multiplication, producing 8-bit results. It consists of processing elements with bit-serial multipliers and accumulators, an FSM that sequences computation, and an output serializer that streams the four accumulator results. The host loads matrix values via ui_in and uio_in, pulses start, and reads four consecutive values from uo_out after the valid signal goes high. No external hardware is required beyond the Tiny Tapeout board, and no silicon test results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "370013d5c9ef",
+   "tags": [
+    "spi",
+    "neural-amplifier",
+    "rhd2164",
+    "bridge",
+    "register-file",
+    "scan-chain",
+    "mcu"
+   ],
+   "summary": "This design implements a custom SPI module to interface with RHD2164 neural amplifier chips and select specific channels to transfer data to an MCU via SPI. It also includes a register bank accessible either by SPI or a scan-chain/shift register. The chip can be tested with an FPGA using RHD2164 and MCU-SPI emulators, or connected to a real RHD2164 chip in CMOS or LVDS mode with LVDS-to-CMOS adapters. The documentation notes that test instructions are to be added, and no silicon test results are reported.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0b22eaae1c33",
+   "tags": [
+    "tensor-processing-unit",
+    "floating-point",
+    "fp8",
+    "matrix-multiply",
+    "neural-network",
+    "machine-learning",
+    "dsp"
+   ],
+   "summary": "This design is a tensor processing unit inspired by Google's TPU that multiplies 8-bit floating-point matrices. It uses a 2x2 tiling approach to fit on the chip, which degrades performance compared to larger chips but fully utilizes I/O bandwidth. The design is intended to be tested with cocotb and pyuvm, and external hardware consists of a PCB board with Tiny Tapeout chips connected to a computer via USB. The documentation is brief and does not provide detailed usage or silicon results.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c821fb30bd7f",
+   "tags": [
+    "multiplier",
+    "balanced-ternary",
+    "serial",
+    "setun",
+    "amaranth",
+    "arithmetic"
+   ],
+   "summary": "This design is a serial balanced-ternary integer multiplier that converts two 8-bit signed binary operands to balanced ternary, multiplies them with a serial ternary shift-and-add core, and converts the product back to binary. The host loads operands serially, pulses go, waits for ready, and reads the 16-bit result serially. The datapath reuses building blocks from an Amaranth HDL implementation of the Setun-1958 computer, and no external hardware is required beyond a microcontroller to drive the pins. A cocotb test exercises the protocol with fixed and random operands, including corner cases.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "75c8ed5c145f",
+   "tags": [
+    "vga",
+    "video",
+    "animation",
+    "dvd-screensaver",
+    "display",
+    "game"
+   ],
+   "summary": "This design implements a bouncing DVD logo on a VGA display with color change on wall hits, speed control, invert, and flip options. It is configured through input pins that control tile, color, invert, slow, flip, checker, scanline, and glitch settings. The design outputs VGA signals on uo_out and requires a VGA monitor and a Tiny VGA Pmod. The documentation is minimal, providing only the title, pin names, and a one-line description, with no details on how it works or how to test it.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "24eeeff20851",
+   "tags": [
+    "vga",
+    "video",
+    "animation",
+    "dvd-screensaver",
+    "display",
+    "glitch",
+    "scanline",
+    "bitmap"
+   ],
+   "summary": "This design implements a DVD-style bouncing logo on a VGA monitor, displaying a 128x40 bitmap with the text UACJ IIT. It includes a VGA sync generator, bouncing logic, a bitmap ROM, a color palette, and effects such as CRT scanlines, checkerboard background, color cycling on wall hits, and random VHS-style corruption. The design is configured through input pins and outputs VGA signals on uo_out, requiring a VGA monitor and a Tiny VGA Pmod. The documentation describes the architecture but does not provide test instructions or silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7afe8760d68f",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "rv32i",
+    "systemverilog",
+    "processor",
+    "core"
+   ],
+   "summary": "This project is an RV32I RISC-V core implementation written in SystemVerilog, occupying a 4x4 tile area. The documentation is essentially empty: pin names are listed as TBD, and the how-it-works, how-to-test, and external-hardware sections all say 'To be done'. No details about the microarchitecture, interfaces, or testing are provided, and no silicon results are reported.",
+   "confidence": "low",
+   "insufficient_docs": true
+  }
+ ],
+ "problems": [
+  "7afe8760d68f: 3 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 7456,
+  "completion_tokens": 1921,
+  "total_tokens": 9377,
+  "cost": 0.002731816,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002731816,
+   "upstream_inference_prompt_cost": 0.001463956,
+   "upstream_inference_completions_cost": 0.00126786
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002731816,
+ "elapsed_s": 41.5
+}

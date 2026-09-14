@@ -1,0 +1,255 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5bbf715d52c6",
+  "ea4fb8521213",
+  "476884b103a8",
+  "3119fd94b1e8",
+  "f84ee4536768",
+  "c36a250d061f"
+ ],
+ "results": [
+  {
+   "key": "5bbf715d52c6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "Source says '8 segment display', not a seven-segment display."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit educational or teaching intent stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The design is controlled by eight switches, consistent with DIP switch inputs."
+    },
+    {
+     "tag": "led",
+     "reason": "The display segments are LED-style outputs driven by the logic."
+    }
+   ],
+   "notes": "Corrected display type from seven-segment to eight-segment and removed unsupported education tag.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "display",
+    "wokwi",
+    "dip-switch",
+    "led"
+   ],
+   "summary_before": "This design uses eight switches routed through four AND gates whose outputs feed two OR gates, each controlling four segments of a seven-segment display. The description presents it as a basic AND/OR demonstration, and testing consists of exercising the switches. No external hardware is listed. The documentation is short and the segment mapping is not fully specified.",
+   "summary": "This design uses eight switches routed through four AND gates whose outputs feed two OR gates, each controlling four segments of an eight-segment display. The description presents it as a basic AND/OR demonstration, and testing consists of exercising the switches. No external hardware is listed. The documentation is short and the segment mapping is not fully specified.",
+   "summary_changed": true
+  },
+  {
+   "key": "ea4fb8521213",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No explicit educational or teaching intent stated in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; summary already matches the source.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "dip-switch",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "dip-switch",
+    "wokwi"
+   ],
+   "summary_before": "This design displays the letter 'J' on a seven-segment display when dip switch 1 is active. It is tested by activating dip switch 1, and it requires an external LED display. The documentation is minimal, providing only a basic description of the function and test procedure.",
+   "summary": "This design displays the letter 'J' on a seven-segment display when dip switch 1 is active. It is tested by activating dip switch 1, and it requires an external LED display. The documentation is minimal, providing only a basic description of the function and test procedure.",
+   "summary_changed": false
+  },
+  {
+   "key": "476884b103a8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "register-file",
+    "spi",
+    "i2c",
+    "verilog"
+   ],
+   "tags": [
+    "register-file",
+    "spi",
+    "i2c",
+    "verilog"
+   ],
+   "summary_before": "This Verilog project implements a register bank that can be accessed through either SPI or I2C, with the interface selected by a digital input pin. The SPI interface uses standard cpol, cpha, cs_n, clk, mosi, and miso signals, while the I2C interface uses sda and scl with a configurable 3-bit address. Writing to the first register is intended to control LEDs on the demo board, and the remaining outputs are spare. External pull-up resistors may be needed on the I2C lines depending on the host, and the documentation notes that this is to be checked later.",
+   "summary": "This Verilog project implements a register bank that can be accessed through either SPI or I2C, with the interface selected by a digital input pin. The SPI interface uses standard cpol, cpha, cs_n, clk, mosi, and miso signals, while the I2C interface uses sda and scl with a configurable 3-bit address. Writing to the first register is intended to control LEDs on the demo board, and the remaining outputs are spare. External pull-up resistors may be needed on the I2C lines depending on the host, and the documentation notes that this is to be checked later.",
+   "summary_changed": false
+  },
+  {
+   "key": "3119fd94b1e8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design uses an external 10 kHz oscillator; it does not generate a clock."
+    },
+    {
+     "tag": "timer",
+     "reason": "No programmable timer block is described; it is a simple seconds counter."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "The oscillator is external and not part of the design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed tags for external oscillator and timer functions not present in the design.",
+   "tags_before": [
+    "counter",
+    "clock-generator",
+    "wokwi",
+    "timer",
+    "oscillator"
+   ],
+   "tags": [
+    "counter",
+    "wokwi"
+   ],
+   "summary_before": "This design is a simple counter that counts seconds when driven by a 10 kHz oscillator. It has a debugging reset pin but no other documented inputs or outputs. It is tested by enabling the 10 kHz oscillator and observing the counter behavior. No external hardware is required. The documentation is very brief and does not specify the output format or how the count is observed.",
+   "summary": "This design is a simple counter that counts seconds when driven by a 10 kHz oscillator. It has a debugging reset pin but no other documented inputs or outputs. It is tested by enabling the 10 kHz oscillator and observing the counter behavior. No external hardware is required. The documentation is very brief and does not specify the output format or how the count is observed.",
+   "summary_changed": false
+  },
+  {
+   "key": "f84ee4536768",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The source mentions flip-flops for storing the trap, not a generic memory block."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit educational or teaching intent stated in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported memory and education tags; flip-flop tag already covers storage.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "flip-flop",
+    "memory",
+    "led",
+    "dip-switch",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "flip-flop",
+    "led",
+    "dip-switch",
+    "wokwi"
+   ],
+   "summary_before": "This is a 'live or die' game where a trap is set using DIP switches and loaded into flip-flops, and another player tries to find the trap by pressing check. If the red LED turns on, the player is dead; otherwise, the 'ALIVE' output is indicated. The design is implemented in Wokwi. To test, place the trap with the DIP switch, load it, and then have another player press check. External hardware includes LEDs, a DIP switch, resistors, and pushbuttons. The documentation is very brief and does not detail the exact logic or input/output mapping.",
+   "summary": "This is a 'live or die' game where a trap is set using DIP switches and loaded into flip-flops, and another player tries to find the trap by pressing check. If the red LED turns on, the player is dead; otherwise, the 'ALIVE' output is indicated. The design is implemented in Wokwi. To test, place the trap with the DIP switch, load it, and then have another player press check. External hardware includes LEDs, a DIP switch, resistors, and pushbuttons. The documentation is very brief and does not detail the exact logic or input/output mapping.",
+   "summary_changed": false
+  },
+  {
+   "key": "c36a250d061f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The pins are dedicated CPU data/control/status signals, not general-purpose I/O."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit educational or teaching intent stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "The ISA includes arithmetic/logic operations, implying an ALU."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "A 16-instruction ISA requires instruction decode logic."
+    },
+    {
+     "tag": "register-file",
+     "reason": "A processor with arithmetic and memory operations typically includes registers."
+    }
+   ],
+   "notes": "Removed unsupported gpio and education tags; added ALU, instruction-decoder, and register-file implied by the ISA.",
+   "tags_before": [
+    "cpu",
+    "memory",
+    "gpio",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "memory",
+    "verilog",
+    "alu",
+    "instruction-decoder",
+    "register-file"
+   ],
+   "summary_before": "The SAP 8 Bit Computer is a processor implementing a 16-instruction, 8-bit ISA inspired by SAP architectures, with support for memory access, immediate operations, arithmetic/logic, control flow, and basic I/O. It operates at a very low clock of 10 Hz, making its state visible on LEDs. Testing requires DIP switches or buttons for program entry, LEDs for output observation, and optionally a logic analyzer or 7-segment display. No external hardware is strictly required, but these aids are recommended for easier testing. The design is notable for its simplicity and educational value, emulating early computer architectures.",
+   "summary": "The SAP 8 Bit Computer is a processor implementing a 16-instruction, 8-bit ISA inspired by SAP architectures, with support for memory access, immediate operations, arithmetic/logic, control flow, and basic I/O. It operates at a very low clock of 10 Hz, making its state visible on LEDs. Testing requires DIP switches or buttons for program entry, LEDs for output observation, and optionally a logic analyzer or 7-segment display. No external hardware is strictly required, but these aids are recommended for easier testing. The design is notable for its simplicity and educational value, emulating early computer architectures.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "ea4fb8521213: 3 sentences after review",
+  "3119fd94b1e8: 5 sentences after review",
+  "f84ee4536768: 6 sentences after review",
+  "c36a250d061f: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 5688,
+  "completion_tokens": 1393,
+  "total_tokens": 7081,
+  "cost": 0.003378,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003378,
+   "upstream_inference_prompt_cost": 0.0017064,
+   "upstream_inference_completions_cost": 0.0016716
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003378,
+ "elapsed_s": 12.4
+}

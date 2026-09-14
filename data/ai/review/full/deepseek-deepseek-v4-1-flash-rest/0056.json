@@ -1,0 +1,421 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cbb5c3ddf605",
+  "8a02974477bc",
+  "16a53621339f",
+  "0fbca593a7a3",
+  "039b35f2386c",
+  "6eabe64b41f5"
+ ],
+ "results": [
+  {
+   "key": "cbb5c3ddf605",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "no evidence in source of dedicated compute acceleration; it is a standalone DDS generator"
+    },
+    {
+     "tag": "register-file",
+     "reason": "source describes 20-bit shift registers for x, y, z, not a register file"
+    },
+    {
+     "tag": "fsm",
+     "reason": "control path is mentioned but no finite state machine is described"
+    },
+    {
+     "tag": "cocotb",
+     "reason": "no cocotb testbench is mentioned; verification is formal and FFT/exhaustive"
+    }
+   ],
+   "add": [
+    {
+     "tag": "cordic",
+     "reason": "source explicitly describes a bit-serial CORDIC engine"
+    },
+    {
+     "tag": "dsp",
+     "reason": "CORDIC-based sine generation is a digital signal processing application"
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "source mentions Q1.15 fixed-point output"
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "engine is bit-serial, processing one bit per clock"
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "design generates sine and square waveforms"
+    },
+    {
+     "tag": "audio",
+     "reason": "sine output drives an Audio Pmod and can be heard"
+    },
+    {
+     "tag": "led",
+     "reason": "uo[5:1] form an LED bar and uo[0] is a heartbeat LED"
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "language is SystemVerilog"
+    }
+   ],
+   "notes": "Tags were replaced to match the CORDIC sine generator described in the source, removing unsupported accelerator/register-file/FSM/cocotb and adding CORDIC and related tags.",
+   "tags_before": [
+    "dsp",
+    "accelerator",
+    "fixed-point",
+    "register-file",
+    "fsm",
+    "cocotb"
+   ],
+   "tags": [
+    "dsp",
+    "fixed-point",
+    "cordic",
+    "bit-serial",
+    "signal-generator",
+    "audio",
+    "led",
+    "systemverilog"
+   ],
+   "summary_before": "This project implements the measurement-update step of a basic Kalman filter as a fixed-function hardware accelerator in a single Tiny Tapeout tile. It performs matrix operations and includes a register file for storing state and covariance values. The design is intended for digital signal processing applications and is notable for its fixed-point arithmetic and FSM-based control. It is verified with a cocotb testbench.",
+   "summary": "This project implements a standalone bit-serial CORDIC sine generator in a single Tiny Tapeout tile. It uses a bit-serial CORDIC engine with fixed-point output and a DDS phase accumulator to generate a sine wave on uo[7] and a phase-locked square wave on uo[6]. The design is verified with exhaustive angle tests, FFT analysis, and formal control-path proofs, not with a cocotb testbench. It outputs an analog sine via an RC low-pass filter or the Tiny Tapeout Audio Pmod, along with a heartbeat LED and a level bar.",
+   "summary_changed": true
+  },
+  {
+   "key": "8a02974477bc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "no temperature sensing in source"
+    },
+    {
+     "tag": "analog",
+     "reason": "design is digital, no analog circuitry described"
+    },
+    {
+     "tag": "oscillator",
+     "reason": "no oscillator described"
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "no sensor interface in source"
+    },
+    {
+     "tag": "education",
+     "reason": "no educational purpose stated"
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "implements ternary-weight neural network MNIST classifier inference"
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "embedded AI inference targeted design"
+    },
+    {
+     "tag": "image-processing",
+     "reason": "classifies 8x8 greyscale handwritten digit images"
+    },
+    {
+     "tag": "coprocessor",
+     "reason": "dedicated classifier processing unit"
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "language is SystemVerilog"
+    },
+    {
+     "tag": "uart",
+     "reason": "host communicates via 8-bit data bus and control pins, consistent with UART-style byte loading"
+    }
+   ],
+   "notes": "Replaced tags with those supported by the source: the design is a digital ternary neural-network classifier, not a temperature sensor.",
+   "tags_before": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "sensor-interface",
+    "education"
+   ],
+   "tags": [
+    "machine-learning",
+    "edge-ai",
+    "image-processing",
+    "coprocessor",
+    "systemverilog",
+    "uart"
+   ],
+   "summary_before": "This project is a temperature sensor design that uses an analog oscillator to generate a frequency proportional to temperature. It includes a sensor interface and is intended for educational purposes. The design is notable for its simplicity and analog approach. It is suitable for temperature measurement applications.",
+   "summary": "This project implements a ternary bit-serial MNIST handwritten digit classifier in a 4x2 tile Tiny Tapeout design. It uses a ternary-weight neural network with a distribution-free conformal early exit that stops classification when the answer is decided. The design supports loading config bytes and pixel data over an 8-bit bus, with control pins on the bidirectional lines. It is implemented in SystemVerilog and targets embedded AI inference applications.",
+   "summary_changed": true
+  },
+  {
+   "key": "16a53621339f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "no temperature sensing in source"
+    },
+    {
+     "tag": "analog",
+     "reason": "design is digital VGA logic, no analog circuitry described"
+    },
+    {
+     "tag": "oscillator",
+     "reason": "no oscillator described"
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "no sensor interface in source"
+    },
+    {
+     "tag": "education",
+     "reason": "no explicit educational purpose stated"
+    }
+   ],
+   "add": [
+    {
+     "tag": "game-of-life",
+     "reason": "implements Conway's Game of Life simulation"
+    },
+    {
+     "tag": "vga",
+     "reason": "uses Tiny VGA Pmod for video output"
+    },
+    {
+     "tag": "button",
+     "reason": "11 active-high buttons are used for input"
+    },
+    {
+     "tag": "graphics",
+     "reason": "renders the game board to a VGA display"
+    },
+    {
+     "tag": "cellular-automaton",
+     "reason": "Game of Life is a cellular automaton"
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "language is SystemVerilog"
+    }
+   ],
+   "notes": "Replaced incorrect temperature-sensor tags with tags matching the interactive VGA Game of Life implementation described in the source.",
+   "tags_before": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "sensor-interface",
+    "education"
+   ],
+   "tags": [
+    "game-of-life",
+    "vga",
+    "button",
+    "graphics",
+    "cellular-automaton",
+    "systemverilog"
+   ],
+   "summary_before": "This project is a temperature sensor design that uses an analog oscillator to generate a frequency proportional to temperature. It includes a sensor interface and is intended for educational purposes. The design is notable for its simplicity and analog approach. It is suitable for temperature measurement applications.",
+   "summary": "This project implements an interactive Conway's Game of Life on Tiny Tapeout with VGA output. It supports toggleable bounded and toroidal modes and cursor-based cell editing using 11 buttons. The simulation runs on a 25.175 MHz clock and outputs VGA graphics via the Tiny VGA Pmod. It is implemented in SystemVerilog and allows users to draw cells and control simulation speed and reset.",
+   "summary_changed": true
+  },
+  {
+   "key": "0fbca593a7a3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "no XOR or logic gate functionality described or specified"
+    },
+    {
+     "tag": "education",
+     "reason": "no educational content or purpose documented"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "source states language is Wokwi, so tag is supported"
+    }
+   ],
+   "add": [
+    {
+     "tag": "template",
+     "reason": "title indicates it is a Tiny Tapeout template copy"
+    },
+    {
+     "tag": "placeholder",
+     "reason": "documentation is entirely template text with no actual design description"
+    },
+    {
+     "tag": "incomplete",
+     "reason": "no implementation or test description provided"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation very thin and no functionality specified"
+    }
+   ],
+   "notes": "Removed unsupported XOR logic-gate and education tags; added template/placeholder/incomplete tags based on the absent description.",
+   "tags_before": [
+    "logic-gate",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "template",
+    "placeholder",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a simple XOR gate test design created for a Tiny Tapeout workshop. The documentation is entirely template text, so the exact implementation and usage are not described. The design is created with Wokwi and is intended for educational purposes. No external hardware or silicon results are described.",
+   "summary": "This is a Tiny Tapeout template copy created with Wokwi. The documentation is only template placeholder text, so the actual implementation and intended use are not described. No logic functionality, external hardware, or test procedure is specified. It appears to be an unfinished or placeholder submission.",
+   "summary_changed": true
+  },
+  {
+   "key": "039b35f2386c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "no shift register functionality described; only title mentions XOR test"
+    },
+    {
+     "tag": "education",
+     "reason": "no educational content or purpose documented beyond the title"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "source states language is Wokwi, so tag is supported"
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "the documentation is entirely template text with no real description"
+    },
+    {
+     "tag": "incomplete",
+     "reason": "no actual design behavior or test description is provided"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation very thin and does not describe functionality"
+    }
+   ],
+   "notes": "Removed unsupported shift-register and education tags; added placeholder/incomplete/insufficient-doc based on missing documentation.",
+   "tags_before": [
+    "shift-register",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "placeholder",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a simple 6-bit shift register with toggle-enabled feedback, created for a Tiny Tapeout workshop. The design is created with Wokwi and is intended for educational purposes. The exact behavior and usage are not fully described in the documentation. No external hardware or silicon results are described.",
+   "summary": "This is an experimental project created during a Tiny Tapeout workshop, described only as an XOR test. The documentation consists of template placeholder text, so the actual implementation and usage are not described. It is created with Wokwi and no external hardware or silicon results are mentioned. The design appears to be unfinished or a placeholder submission.",
+   "summary_changed": true
+  },
+  {
+   "key": "6eabe64b41f5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "project has specific documented behavior, not a template"
+    },
+    {
+     "tag": "education",
+     "reason": "no educational purpose stated"
+    },
+    {
+     "tag": "led",
+     "reason": "outputs a 7-segment display, not discrete LEDs"
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "outputs signals for a seven-segment display"
+    },
+    {
+     "tag": "display",
+     "reason": "drives a seven-segment display"
+    },
+    {
+     "tag": "vga",
+     "reason": "implements VGA output via Tiny VGA Pmod"
+    },
+    {
+     "tag": "graphics",
+     "reason": "renders a logo to VGA"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "language is Wokwi"
+    },
+    {
+     "tag": "art",
+     "reason": "displays a CTF team logo as decorative output"
+    }
+   ],
+   "notes": "Corrected tags: the design drives a 7-segment display and VGA logo, so removed template/education/led and added 7-segment, vga, graphics, and art.",
+   "tags_before": [
+    "7-segment",
+    "led",
+    "display",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "vga",
+    "graphics",
+    "art"
+   ],
+   "summary_before": "This project is a simple 7-segment LED control design implemented in Wokwi. The documentation consists only of placeholder text, so the exact functionality and how to test it are not described. It appears to be an educational or template project with insufficient documentation to determine its specific behavior.",
+   "summary": "This project spins a seven-segment display and shows text, with a second mode that draws a logo to VGA. It runs at 1-5 Hz for the seven-segment display, or at 25.175 MHz with DIP switch 1 flipped to enable VGA output. The design is implemented in Wokwi and supports VGA via the Tiny Tapeout VGA Pmod. It is intended as a decorative showcase rather than a functional processor or sensor.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7202,
+  "completion_tokens": 2279,
+  "total_tokens": 9481,
+  "cost": 0.0048954,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0048954,
+   "upstream_inference_prompt_cost": 0.0021606,
+   "upstream_inference_completions_cost": 0.0027348
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0048954,
+ "elapsed_s": 12.6
+}

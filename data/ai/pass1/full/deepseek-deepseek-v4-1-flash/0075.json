@@ -1,0 +1,194 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "fa8ddeda3a61",
+  "3412827edba1",
+  "6676ec95ee98",
+  "6d13cea8b06c",
+  "682aab07c8b0",
+  "2d7c8ae64fc7",
+  "77ea751ae213",
+  "d66b749eb412",
+  "41d94e021fa6",
+  "6459b3b15f25"
+ ],
+ "results": [
+  {
+   "key": "fa8ddeda3a61",
+   "tags": [
+    "matrix-multiply",
+    "systolic-array",
+    "floating-point",
+    "uart",
+    "neural-network",
+    "dsp",
+    "multiplier",
+    "serial"
+   ],
+   "summary": "Neurocore implements a 2x2 systolic array multiplier that computes the product of two 2x2 matrices using 16-bit floating-point arithmetic. It communicates over a UART interface, receiving matrix elements as two 8-bit frames each and returning the result in the same format. The design is intended for matrix multiplication tasks, potentially in neural network or DSP applications. Testing requires an external UART connection to send and receive data according to the documented protocol.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3412827edba1",
+   "tags": [
+    "i2c",
+    "monitor",
+    "uart",
+    "protocol",
+    "debug",
+    "serial",
+    "test"
+   ],
+   "summary": "The TWI Monitor passively observes I2C bus traffic and converts captured frames into a three-byte UART output representing address, data, and acknowledgment bits. It operates at 50 MHz with a UART baud rate of 115,200 and does not act as an I2C slave. The design was tested on an FPGA and can capture single frames but not repeated frames. External hardware includes an I2C source such as an Arduino and a UART-to-USB adapter for viewing the output on a PC.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6676ec95ee98",
+   "tags": [
+    "cpu",
+    "i4004",
+    "microprocessor",
+    "retro",
+    "serial",
+    "memory"
+   ],
+   "summary": "This project is a Verilog implementation of the Intel 4004, a 4-bit microprocessor, designed for the TinyTapeout platform. It requires external hardware, specifically an MCS4 memory system, to function. The documentation is minimal, providing only a link to a Japanese Wikipedia page and no testing instructions. The design's operation and verification are not detailed in the provided documentation.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6d13cea8b06c",
+   "tags": [
+    "7-segment",
+    "display",
+    "led",
+    "counter",
+    "demo",
+    "test"
+   ],
+   "summary": "This design displays the string 'dEFAULt123' on a 7-segment LED display. The documentation is extremely sparse, with no explanation of how the design works or how to test it beyond powering it on. It appears to be a simple display driver with no external hardware requirements beyond the 7-segment display itself. The project lacks sufficient documentation to determine its purpose or functionality.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "682aab07c8b0",
+   "tags": [
+    "vco",
+    "ring-oscillator",
+    "analog",
+    "oscillator",
+    "transistor-level",
+    "test"
+   ],
+   "summary": "This is an analog voltage-controlled ring oscillator (VCRO) that uses transmission gates as delay control elements, based on a published paper. It provides an analog output and requires external control voltages on two pins, with the sum ideally equal to the 1.8V supply. The design is intended for testing and characterization of the oscillator's frequency tuning range. It is a transistor-level analog circuit with no digital interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2d7c8ae64fc7",
+   "tags": [
+    "cpu",
+    "8-bit",
+    "debugger",
+    "i2c",
+    "education",
+    "halt",
+    "register-file"
+   ],
+   "summary": "This is an 8-bit CPU based on Ben Eater's breadboard CPU design, featuring a built-in debugger accessible via I2C at address 0x2A. The debugger allows pausing the CPU, loading programs, and inspecting or modifying registers. The CPU has 8 input and 8 output pins for external data, and it can be halted via a dedicated pin. Silicon testing confirmed it works when connected to a BusPirate over I2C.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "77ea751ae213",
+   "tags": [
+    "cpu",
+    "8-bit",
+    "debugger",
+    "i2c",
+    "education",
+    "halt",
+    "register-file"
+   ],
+   "summary": "This is an 8-bit CPU based on Ben Eater's breadboard CPU design, featuring a built-in debugger accessible via I2C at address 0x2A. The debugger allows pausing the CPU, loading programs, and inspecting or modifying registers. The CPU has 8 input and 8 output pins for external data, and it can be halted via a dedicated pin. Silicon testing confirmed it works when connected to a BusPirate over I2C.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d66b749eb412",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "skullfet",
+    "transistor-level",
+    "clock",
+    "divider"
+   ],
+   "summary": "Oscillating Bones is a ring oscillator built from a chain of 21 SkullFET inverters, producing a square wave output around 90 MHz. It provides divided frequency outputs at 1/2, 1/4, and 1/8 of the base frequency. Silicon tests measured frequencies between 87 and 91 MHz, with some testers observing lower frequencies on divided outputs. It requires an oscilloscope or logic analyzer to observe the output waveforms.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "41d94e021fa6",
+   "tags": [
+    "encryption",
+    "one-time-pad",
+    "prng",
+    "register-file",
+    "crypto",
+    "xor",
+    "8-bit"
+   ],
+   "summary": "This design implements an 8-bit encryption and decryption unit using pseudorandom one-time pads. It accepts plaintext or ciphertext on 8 input pins, uses a control pin to select encryption or decryption, and outputs the result on 8 output pins. For encryption, it generates a random pad, XORs it with the plaintext, and stores the pad in an internal register file, outputting the register index. For decryption, it uses the provided index to retrieve the pad and recover the plaintext. External hardware with basic memory and data display is needed for testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6459b3b15f25",
+   "tags": [
+    "game",
+    "successive-approximation",
+    "7-segment",
+    "puzzle",
+    "education",
+    "binary",
+    "dip-switch"
+   ],
+   "summary": "This is a game where the player tries to guess a pseudo-random 8-bit number by successive approximation, similar to the algorithm used in SAR ADCs. The player inputs an 8-bit guess via DIP switches, and a 7-segment LED indicates whether the guess is above, below, or equal to the secret number. The secret number is generated upon reset, and the player can keep guessing until they find it. Silicon testing confirmed it works on the demo board using its DIP switches and 7-segment LED.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "41d94e021fa6: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 4743,
+  "completion_tokens": 1762,
+  "total_tokens": 6505,
+  "cost": 0.0035373,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035373,
+   "upstream_inference_prompt_cost": 0.0014229,
+   "upstream_inference_completions_cost": 0.0021144
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035373,
+ "elapsed_s": 9.9
+}

@@ -1,0 +1,190 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b250fd576426",
+  "108271f0ef43",
+  "3751ae26ab18",
+  "5fb7c50e559d",
+  "9adc50d07d17",
+  "1adf9503761a",
+  "90d3f2dab929",
+  "c7fd6c1548aa",
+  "bae373b2d2a7",
+  "af7dc0c8d0f8"
+ ],
+ "results": [
+  {
+   "key": "b250fd576426",
+   "tags": [
+    "neural-network",
+    "bnn",
+    "binarized",
+    "neuron",
+    "machine-learning",
+    "inference"
+   ],
+   "summary": "This project implements a tiny binarized neural network with eight output neurons in Verilog. Inputs are shared between parameter loading and data input depending on the setup pin, and the eight outputs are either neuron results or a parameter value. The documentation consists only of pin names and a TODO for both the operation and test sections, so the internal architecture and weight-loading scheme cannot be determined. It is notable mainly as a minimal hardware neural-network experiment, but the lack of documentation limits confidence.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "108271f0ef43",
+   "tags": [
+    "sat-solver",
+    "solver",
+    "counter",
+    "state-machine",
+    "test",
+    "education"
+   ],
+   "summary": "Tinysat is a small SAT solver that iterates over all possible assignments to a simple satisfiability problem using a counter. It accepts a reset, run and load control signals plus four data bits, and outputs a four-bit assignment along with solution and done flags. The author plans to test it with an RP2040 that reproduces the same checks as the project's test.py. The design is a straightforward brute-force solver and is documented only briefly, with no details on the problem encoding or the number of variables.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3751ae26ab18",
+   "tags": [
+    "led",
+    "display",
+    "uart",
+    "serial",
+    "driver",
+    "p10",
+    "panel"
+   ],
+   "summary": "This design drives a 16x16 P10 LED panel, initially showing the string TT03 and accepting 600-baud UART commands to paint, erase, clear and change colour. It outputs the panel's red, green, blue, blank, address, clock and latch signals, and a mode pin selects between two clocking patterns for different panel orientations. External hardware needed is the LED panel itself plus a level converter to 5V logic. The author notes limitations from resource and clock constraints: single colour at a time, no double buffering, and visible flicker at roughly 46Hz refresh.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5fb7c50e559d",
+   "tags": [
+    "ring-oscillator",
+    "temperature-sensor",
+    "oscillator",
+    "sensor",
+    "uart",
+    "counter",
+    "analog"
+   ],
+   "summary": "This project uses ring oscillators whose frequency varies with temperature, counting oscillator cycles within a clock period and reporting the result over UART. It supports internal and external clocks, selectable inverter-based and NAND-based oscillators, and outputs several counter bits. After reset and enable, a START command received over UART triggers a measurement value to be sent back. The design is an experiment to characterise the temperature-versus-frequency relationship, and it requires UART connectivity to read results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9adc50d07d17",
+   "tags": [
+    "test",
+    "wokwi",
+    "7-segment",
+    "led",
+    "passthrough",
+    "factory-test"
+   ],
+   "summary": "This is a straight-through test design that connects each of the eight inputs directly to the corresponding output. The inputs are labelled as 7-segment segments a through g plus dot, and the outputs drive the same segments. It is tested by setting a DIP switch high and observing the matching LED on the 7-segment display. The project is a minimal wiring check with no logic, useful for verifying board connectivity.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1adf9503761a",
+   "tags": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi",
+    "bcd",
+    "clock"
+   ],
+   "summary": "This Wokwi design counts from 0 to 9, incrementing once per second, and drives a 7-segment display. A 4-bit counter sequences through the digits and combinational logic maps the count to the segment outputs a through g plus dot. It is tested by setting the clock to 1Hz. The project is a simple educational counter with no external hardware beyond the standard board display.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "90d3f2dab929",
+   "tags": [
+    "encoder",
+    "convolutional",
+    "error-correction",
+    "ccsds",
+    "shift-register",
+    "7-segment",
+    "wokwi",
+    "communication"
+   ],
+   "summary": "This project implements a (7, 1/2) convolutional encoder following the CCSDS 131.0-B-4 standard, generating two output symbols for each input bit with six states. A write_not_shift control loads a 6-bit input into a shift register, and subsequent clock cycles shift it out while the encoded bits are shown one at a time on the 8-segment display, with the decimal point indicating the clock. Testing involves loading a known input such as 0b100110 and checking the 12-bit encoded output. The design is intended for space-communication error correction and is documented with a concrete test procedure.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c7fd6c1548aa",
+   "tags": [
+    "adder",
+    "alu",
+    "arithmetic",
+    "wokwi",
+    "half-adder",
+    "combinational"
+   ],
+   "summary": "This project is a 4-bit adder that takes two four-bit numbers on its inputs and produces a four-bit sum plus carry. The inputs are a0-a3 and b0-b3, and the outputs are r0-r3 and carry, with all numbers in little-endian format. It is built from simple logic gates in a half-adder style. The design is a basic arithmetic building block with no external hardware required beyond the standard board switches and LEDs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "bae373b2d2a7",
+   "tags": [
+    "railway",
+    "signal",
+    "led",
+    "state-machine",
+    "industrial",
+    "wokwi"
+   ],
+   "summary": "KS-Signal sets railway signal lamps based on track occupancy and control inputs such as track1_free, track2_free, pre_signal, allow shunting, caution and shorter braking distance. It drives green, orange, red, all-yellow and several white indicator outputs, simply switching lamps on and off according to the inputs. Testing requires connecting a clock, nine buttons as inputs and the listed LEDs as outputs. The design models a German railway signalling aspect system and needs external buttons and LEDs to operate.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "af7dc0c8d0f8",
+   "tags": [
+    "cellular-automaton",
+    "7-segment",
+    "game",
+    "puzzle",
+    "animation",
+    "wokwi",
+    "education",
+    "state-machine"
+   ],
+   "summary": "This project implements a simple cellular automaton on a 7-segment display using about 200 logic gates, where each segment lives or dies based on the number of living neighbours it touches. Seven flip-flops hold the state, combinational logic computes the next state, and the design supports manual loading of an initial pattern, manual stepping, and automatic running with selectable clock dividers. It is tested on the standard Tiny Tapeout board using DIP switches for load, run mode and clock division, with no external hardware required. The documentation includes detailed operating instructions and a set of puzzles about the automaton's behaviour, making it a notable educational design.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4533,
+  "completion_tokens": 1650,
+  "total_tokens": 6183,
+  "cost": 0.001909896,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001909896,
+   "upstream_inference_prompt_cost": 0.000820896,
+   "upstream_inference_completions_cost": 0.001089
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001909896,
+ "elapsed_s": 22.0
+}

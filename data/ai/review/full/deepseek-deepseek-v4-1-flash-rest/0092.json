@@ -1,0 +1,317 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ef645560f57a",
+  "b7792c2f7f66",
+  "4ac57685ba60",
+  "6b446a40dd23",
+  "d9ca4490c916",
+  "bb2c2cde4d3c"
+ ],
+ "results": [
+  {
+   "key": "ef645560f57a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "LEDs are only mentioned as optional external hardware, not an on-chip output."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "7-segment display is only optional external hardware, not part of the design."
+    },
+    {
+     "tag": "memory",
+     "reason": "The source mentions writing values to memory but no memory block is documented or exposed."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "The design is an 8-channel PWM controller."
+    },
+    {
+     "tag": "uart",
+     "reason": "UART input is explicitly used for control."
+    },
+    {
+     "tag": "driver",
+     "reason": "The PWM outputs drive external devices such as LEDs or displays."
+    }
+   ],
+   "notes": "Removed tags for optional external hardware and undocumented memory; added driver tag for PWM output stage.",
+   "tags_before": [
+    "pwm",
+    "uart",
+    "led",
+    "7-segment",
+    "memory"
+   ],
+   "tags": [
+    "pwm",
+    "uart",
+    "driver"
+   ],
+   "summary_before": "This design provides eight PWM outputs that are exposed on the output pins, and a UART input on a bidirectional pin. The PWM outputs can be used to control LEDs or other devices, and the UART interface allows external control of the PWM duty cycles. The design is implemented in Verilog and is suitable for educational or hobbyist projects. It is a simple and flexible PWM generator with serial control.",
+   "summary": "This design provides eight PWM outputs on the output pins and a UART input on a bidirectional pin. The UART interface allows external control of the PWM duty cycles. The design is implemented in Verilog. It is a simple PWM generator with serial control.",
+   "summary_changed": true
+  },
+  {
+   "key": "b7792c2f7f66",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source describes a logic gate test design, not a boilerplate or starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design implements AND, OR, NAND and XOR gates."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "The design is a basic logic gate test suitable for teaching or learning."
+    }
+   ],
+   "notes": "Removed unsupported template tag; added logic-gate, wokwi and education tags.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This project implements several basic logic gates (AND, OR, NAND, XOR) using six input pins and four output pins. It is tested by setting specific input values and checking that the outputs match the expected gate results. The documentation is minimal, providing only a brief description of the logic gates and test procedure.",
+   "summary": "This project implements several basic logic gates (AND, OR, NAND, XOR) using six input pins and four output pins. It is tested by setting specific input values and checking that the outputs match the expected gate results. The documentation is minimal, providing only a brief description of the logic gates and test procedure. The design is implemented in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "4ac57685ba60",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design is a counter, not a clock or timing signal generator."
+    },
+    {
+     "tag": "education",
+     "reason": "There is no evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design is explicitly an 8-bit counter."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator and education tags; kept counter and wokwi.",
+   "tags_before": [
+    "counter",
+    "clock-generator",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "wokwi"
+   ],
+   "summary_before": "WilfTT is an 8-bit counter design that increments on each clock cycle. It is implemented in Wokwi and runs at 1 Hz. The design is tested by pressing play in the simulation. The project lacks detailed documentation, so its specific operation and any external hardware requirements are unclear.",
+   "summary": "WilfTT is an 8-bit counter design that increments on each clock cycle. It is implemented in Wokwi and runs at 1 Hz. The design is tested by pressing play in the simulation. The project lacks detailed documentation, so its specific operation and any external hardware requirements are unclear.",
+   "summary_changed": false
+  },
+  {
+   "key": "6b446a40dd23",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Verilog, not Wokwi."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "The design is a motor track racing game."
+    },
+    {
+     "tag": "vga",
+     "reason": "The design outputs VGA signals and matches the Tiny VGA pinout."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The design renders game graphics to VGA."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Player controls and game mode selection use general purpose input pins."
+    }
+   ],
+   "notes": "Removed incorrect wokwi tag; added game, vga, graphics and gpio tags.",
+   "tags_before": [
+    "game",
+    "vga",
+    "graphics",
+    "gpio",
+    "wokwi"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "graphics",
+    "gpio"
+   ],
+   "summary_before": "This design implements a motocross racing game for up to four players, each controlling a bike with a single button. It outputs a VGA signal to display the game track and uses bidirectional pins to select among four tracks and set game speed. The design is notable for supporting four simultaneous players with minimal controls and is based on an open-source project.",
+   "summary": "This design implements a motocross racing game for up to four players, each controlling a bike with a single button. It outputs a VGA signal to display the game track and uses bidirectional pins to select among four tracks and set game speed. The design is notable for supporting four simultaneous players with minimal controls and is based on an open-source project. It is implemented in Verilog.",
+   "summary_changed": true
+  },
+  {
+   "key": "d9ca4490c916",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design has task slots and configuration registers, but no multi-register file is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "The design combines arithmetic blocks including an adder, multiplier and divider."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "An 8x8 multiplier is explicitly included."
+    },
+    {
+     "tag": "adder",
+     "reason": "A byte adder is explicitly included."
+    },
+    {
+     "tag": "divider",
+     "reason": "A reciprocal-ROM divider is explicitly included."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The design is verified with a cocotb regression."
+    },
+    {
+     "tag": "asic",
+     "reason": "The design is hardened for GF180MCU AS 3.3 V."
+    }
+   ],
+   "notes": "Removed unsupported register-file tag; added alu, multiplier, adder, divider, cocotb and asic tags.",
+   "tags_before": [
+    "alu",
+    "multiplier",
+    "adder",
+    "divider",
+    "register-file",
+    "cocotb",
+    "asic"
+   ],
+   "tags": [
+    "alu",
+    "multiplier",
+    "adder",
+    "divider",
+    "cocotb",
+    "asic"
+   ],
+   "summary_before": "This tile combines a byte adder, an 8x8 multiplier, and a reciprocal-ROM divider behind a small register-loaded interface with four task slots and command, mode, and bank selection pins. It is verified with a cocotb testbench and implemented as an ASIC. The design supports basic arithmetic operations and can be used for educational or computational purposes.",
+   "summary": "This tile combines a byte adder, an 8x8 multiplier, and a reciprocal-ROM divider behind a small register-loaded interface with four task slots and command, mode, and bank selection pins. It is verified with a cocotb testbench and implemented as an ASIC. The design supports basic arithmetic operations and can be used for educational or computational purposes. The GF180MCU AS 3.3 V hardening flow uses a project SDC with explicit I/O delay, clock uncertainty/transition, fanout, transition, and capacitance constraints.",
+   "summary_changed": true
+  },
+  {
+   "key": "bb2c2cde4d3c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fpga",
+     "reason": "FPGA is only suggested as optional test equipment, not a target platform."
+    },
+    {
+     "tag": "frequency-counter",
+     "reason": "The design outputs a VCO pulse train but does not implement a frequency counter."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adc",
+     "reason": "The design implements two ADC architectures."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design is an analog circuit with analog pins."
+    },
+    {
+     "tag": "vco",
+     "reason": "A voltage-controlled oscillator path is explicitly included."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "A first-order switched-capacitor delta-sigma modulator is included."
+    }
+   ],
+   "notes": "Removed unsupported fpga and frequency-counter tags; added adc, analog, vco and sigma-delta tags.",
+   "tags_before": [
+    "adc",
+    "analog",
+    "vco",
+    "sigma-delta",
+    "fpga",
+    "frequency-counter"
+   ],
+   "tags": [
+    "adc",
+    "analog",
+    "vco",
+    "sigma-delta"
+   ],
+   "summary_before": "This design implements an analog-to-digital converter (ADC) with a sigma-delta modulator and a voltage-controlled oscillator (VCO). It is intended for frequency counting applications and is verified on an FPGA platform. The design is notable for its mixed-signal approach.",
+   "summary": "This design implements an analog-to-digital converter (ADC) with a sigma-delta modulator and a voltage-controlled oscillator (VCO). It is intended for frequency counting applications and is verified on an FPGA platform. The design is notable for its mixed-signal approach. It uses two analog pads and a 1.8 V supply.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6647,
+  "completion_tokens": 1717,
+  "total_tokens": 8364,
+  "cost": 0.005068125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.005068125,
+   "upstream_inference_prompt_cost": 0.002492625,
+   "upstream_inference_completions_cost": 0.0025755
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.005068125,
+ "elapsed_s": 6.3
+}

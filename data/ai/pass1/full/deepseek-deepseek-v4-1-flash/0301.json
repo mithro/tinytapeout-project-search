@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "df58ebabf0cb",
+  "29da74f5699f",
+  "71ddd9e11ab5",
+  "baa9694c414f",
+  "5a873be08a98",
+  "8bdcbb9bc024",
+  "621cc009fb8b",
+  "f04716927a2e",
+  "f9e63aafb4db",
+  "d55ed8050f63"
+ ],
+ "results": [
+  {
+   "key": "df58ebabf0cb",
+   "tags": [
+    "game",
+    "vga",
+    "arcade",
+    "lfsr",
+    "state-machine",
+    "animation",
+    "display",
+    "crosshair",
+    "sprite",
+    "button-input"
+   ],
+   "summary": "MAW Bird Shooter is a single-player arcade game implemented in SystemVerilog that drives a 640x480 60 Hz VGA display directly from the chip. The player moves a crosshair with four directional buttons and fires up to ten shots at an animated bird, with hit/miss overlays, a shot counter, and win/lose screens. It requires a VGA monitor or TinyVGA PMOD, five momentary push-buttons, and five 10 kOhm pull-down resistors on the button inputs. The design is notable for fitting a complete game with sprite rendering, LFSR-driven enemy movement, and button debouncing into a 2x2 tile ASIC.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "29da74f5699f",
+   "tags": [
+    "motor-control",
+    "pwm",
+    "drone",
+    "quadcopter",
+    "flight-controller",
+    "robotics",
+    "receiver",
+    "esc",
+    "mixing"
+   ],
+   "summary": "This project implements a simple quadcopter flight controller in SystemVerilog that converts four PWM control inputs (throttle, yaw, pitch, roll) into four motor PWM outputs. It mixes the inputs so throttle raises all motors together while yaw, pitch, and roll introduce differential adjustments, using a 20 ms PWM frame with 1 ms minimum and 2 ms maximum duty. The full system requires a radio receiver or control source, ESCs, and motors, with the author using an ELRS/CRSF receiver and a CRSF-to-PWM converter. The design is a straightforward hardware mixer without sensor feedback or stabilization, intended as a minimal flight controller.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "71ddd9e11ab5",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "spi",
+    "fixed-point",
+    "divider",
+    "multiplier",
+    "coprocessor",
+    "dot-product",
+    "mac",
+    "rp2040"
+   ],
+   "summary": "The Kunal ML co-processor is a Verilog design that connects to an RP2040 over SPI to perform machine learning operations such as division and dot products. It uses Q8.8 signed fixed-point arithmetic and includes an SPI slave, an iterative 16-bit signed divider, and a command state machine with operand and weight registers. BUSY and DONE pins allow the host to poll operation status, though status can also be read via a READ_STAT command. No external components are required, and the design is notable for providing hardware acceleration for fixed-point ML primitives on a small ASIC.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "baa9694c414f",
+   "tags": [
+    "morse-code",
+    "7-segment",
+    "translator",
+    "uart",
+    "button-input",
+    "timing",
+    "shift-register",
+    "education",
+    "pmod"
+   ],
+   "summary": "This SystemVerilog design translates Morse code entered via a push button into characters A-Z and displays the most recent two characters on seven-segment displays through a Digilent Pmod SSD. Timing rules distinguish dits (1 s hold), dahs (3 s hold), letter ends (3 s release), and word ends (7 s release), with an external LED blinking at 1 Hz to help the user keep time. It requires a tactile switch, an LED, and the Pmod SSD, and includes testbenches for the counting and translation modules. The project is a straightforward educational Morse decoder with no silicon test results reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5a873be08a98",
+   "tags": [
+    "energy-harvesting",
+    "adc",
+    "spi",
+    "uart",
+    "comparator",
+    "low-power",
+    "multiplier",
+    "sensor",
+    "research",
+    "state-machine"
+   ],
+   "summary": "This Verilog project is an ultra-low-power controller for an energy harvesting system that evaluates two proprietary harvesting topologies (P and S) and switches to the one yielding more energy. It uses an external LTC2450 SPI ADC to measure capacitor voltages, outputs pulses to control external switches, and logs results over UART at 1200 baud. To fit within a Tiny Tapeout tile, it replaces hardware multipliers with a custom 17-cycle shift-and-add sequential multiplier and runs at 32.768 kHz to minimize power. The design requires external harvesting circuitry, a USB-to-UART adapter, and an RTC oscillator for standalone operation, and is intended for academic research.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8bdcbb9bc024",
+   "tags": [
+    "morse-code",
+    "7-segment",
+    "translator",
+    "button-input",
+    "timing",
+    "shift-register",
+    "education",
+    "pmod",
+    "led"
+   ],
+   "summary": "This SystemVerilog design translates Morse code entered via a push button into characters A-Z and displays the most recent two characters on seven-segment displays through a Digilent Pmod SSD. Timing rules distinguish dits (1 s hold), dahs (3 s hold), letter ends (3 s release), and word ends (7 s release), with an external LED blinking at 1 Hz to help the user keep time. It requires a tactile switch, an LED, and the Pmod SSD, and includes testbenches for the counting and translation modules. This project appears to be a duplicate of another Morse code translator entry with identical documentation and no silicon test results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "621cc009fb8b",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "tpu",
+    "mac",
+    "relu",
+    "multiplier",
+    "programmable",
+    "memory-mapped",
+    "sequential",
+    "matrix-multiply"
+   ],
+   "summary": "This Verilog design is a programmable sequential hardware neural network with a single layer of three neurons, each processing three inputs, using a shared multiply-accumulate unit to fit in one Tiny Tapeout tile. Weights, biases, and inputs can be loaded at runtime through a multiplexed memory-mapped interface on the bidirectional pins, and the design applies a ReLU activation after accumulation. No external hardware is required; a testbench or microcontroller can write parameters and trigger calculations over the bus. The design is notable for implementing a tiny tensor-processing-unit-like architecture with a single shared MAC engine.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f04716927a2e",
+   "tags": [
+    "vga",
+    "display",
+    "graphics",
+    "demo",
+    "animation",
+    "color",
+    "tiny-vga"
+   ],
+   "summary": "My First TT Demo is a Verilog design that uses elementary bitwise logic to generate colorful graphics on a VGA display. It has no inputs and only VGA outputs, matching the Tiny VGA PMOD pinout, and requires a VGA monitor or compatible PMOD to view the output. The documentation is very thin, describing only that it produces subjectively cool colors through simple logic. There are no silicon test results or further details about the generated patterns.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f9e63aafb4db",
+   "tags": [
+    "led",
+    "charlieplex",
+    "uart",
+    "display",
+    "pwm",
+    "brightness",
+    "adafruit",
+    "serial",
+    "controller"
+   ],
+   "summary": "This Verilog project is a controller for an Adafruit Charlieplex LED array, supporting up to 8x7 (56) LEDs with the eight bidirectional pins. On reset it displays a brightness gradient, and a 9600-baud UART receive interface allows custom displays to be programmed by sending ASCII characters for brightness and pixel address. Because Charlieplex LEDs are addressed one at a time, brightness is controlled by on-time proportional to the desired level, making overall brightness depend on how many LEDs are lit. It requires an external Adafruit Charlieplex array and an FPGA implementation with a USB driver script is provided for testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d55ed8050f63",
+   "tags": [
+    "cpu",
+    "pll",
+    "overclocking",
+    "ospi",
+    "fpga",
+    "processor",
+    "memory",
+    "interrupt",
+    "halt",
+    "debug"
+   ],
+   "summary": "OCPU is a PLL-based overclockable CPU implemented in Verilog that interfaces with an FPGA over an octal SPI (OSPI) bus for memory access. It exposes control signals such as page_done, page_loading, page_interrupt, is_halted, and data_req to coordinate with the FPGA, which acts as a memory and paging controller. The design is intended to be tested with an FPGA providing the OSPI memory and page management, and the PLL allows the CPU clock to be overclocked. The documentation is sparse, providing only pin names and no detailed description of the instruction set or architecture.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7057,
+  "completion_tokens": 1975,
+  "total_tokens": 9032,
+  "cost": 0.002679676,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002679676,
+   "upstream_inference_prompt_cost": 0.001376176,
+   "upstream_inference_completions_cost": 0.0013035
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002679676,
+ "elapsed_s": 24.8
+}

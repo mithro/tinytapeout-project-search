@@ -1,0 +1,287 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "07ffc303ee08",
+  "f6dc6a95034a",
+  "80802c024fbd",
+  "68743f029795",
+  "7f815e593a8d",
+  "dea490e59d71"
+ ],
+ "results": [
+  {
+   "key": "07ffc303ee08",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "The output is exposed as raw hsync/vsync/RGB signals intended for a TinyVGA Pmod, but the design documentation describes it as VGA output while the project itself is a terminal output; the VGA claim is supported by the pins but the tag appears redundant with the documented UART-terminal primary purpose."
+    },
+    {
+     "tag": "text",
+     "reason": "ANSI terminal output is textual, but the project does not implement text rendering hardware; the terminal interprets the characters."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test status is 'partial' and the author reports the terminal output works, so a silicon-tested claim is supported."
+    },
+    {
+     "tag": "tile-1x2",
+     "reason": "Not in vocabulary; cannot add."
+    }
+   ],
+   "notes": "The vga and text tags are not clearly supported: the design outputs VGA-style signals for a TinyVGA Pmod, but the primary documented interface is ANSI terminal over UART, and no text rendering hardware is described.",
+   "tags_before": [
+    "game-of-life",
+    "cellular-automaton",
+    "uart",
+    "vga",
+    "lfsr",
+    "text",
+    "verilog"
+   ],
+   "tags": [
+    "game-of-life",
+    "cellular-automaton",
+    "uart",
+    "lfsr",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design simulates Conway's Game of Life on a 32x16 grid with periodic boundary conditions. It outputs the state to an ANSI serial terminal over UART and also provides VGA output via the bidirectional pins. The initial state is pseudo-randomly generated using an LFSR, and the simulation can be controlled via single-character commands over UART. Silicon testing confirmed that the terminal output works as expected.",
+   "summary": "This design simulates Conway's Game of Life on a 32x16 grid with periodic boundary conditions. It outputs the state to an ANSI serial terminal over UART and also provides VGA output via the bidirectional pins. The initial state is pseudo-randomly generated using an LFSR, and the simulation can be controlled via single-character commands over UART. Partial silicon testing confirmed that the terminal output works as expected.",
+   "summary_changed": true
+  },
+  {
+   "key": "f6dc6a95034a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the documentation."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "The SUBNEG CPU name implies subtraction, but the source does not explicitly describe a subtractor circuit or unit."
+    },
+    {
+     "tag": "latch",
+     "reason": "Latches are external hardware devices used for interfacing, not part of the submitted design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "gpio",
+     "reason": "The design exposes a bi-directional CPU bus on uio pins, functioning as general purpose digital IO."
+    },
+    {
+     "tag": "external-sram",
+     "reason": "Not in vocabulary; cannot add."
+    }
+   ],
+   "notes": "The fsm, subtractor, and latch tags are unsupported or misattributed: no FSM or subtractor is described, and latches are external components.",
+   "tags_before": [
+    "cpu",
+    "subtractor",
+    "sram",
+    "memory",
+    "latch",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "sram",
+    "memory",
+    "verilog",
+    "gpio"
+   ],
+   "summary_before": "This is an implementation of a simple 8-bit SUBNEG CPU that requires external parallel SRAM for program and data storage. It provides control signals for interfacing with external SRAM and latches, and the program must be loaded into SRAM by an external device before enabling the CPU. The design outputs internal state bits for debugging and requires additional hardware such as a 3.3V SRAM, address latch, and output latch. It is a minimal CPU design intended for educational or experimental use.",
+   "summary": "This is an implementation of a simple 8-bit SUBNEG CPU that requires external parallel SRAM for program and data storage. It provides control signals for interfacing with external SRAM and latches, and the program must be loaded into SRAM by an external device before enabling the CPU. The design outputs internal state bits for debugging and requires additional hardware such as a 3.3V SRAM, address latch, and output latch. It is a minimal CPU design intended for educational or experimental use.",
+   "summary_changed": false
+  },
+  {
+   "key": "80802c024fbd",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "fixed-point",
+    "video",
+    "display",
+    "multiplier",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "fixed-point",
+    "video",
+    "display",
+    "multiplier",
+    "verilog"
+   ],
+   "summary_before": "This design computes the Mandelbrot fractal in real time while racing the VGA beam, using one iteration per clock cycle and a maximum depth of 16 iterations. It outputs a 720x480 VGA signal through a Tiny VGA Pmod, with the fractal rendered at 180x480 pixels using 16-bit fixed-point arithmetic and approximated multipliers. The image position and zoom are configured through the input and bidirectional pins, with control values written during vsync. It is notable for fitting a real-time fractal renderer into a 2x2 tile area at 100 MHz.",
+   "summary": "This design computes the Mandelbrot fractal in real time while racing the VGA beam, using one iteration per clock cycle and a maximum depth of 16 iterations. It outputs a 720x480 VGA signal through a Tiny VGA Pmod, with the fractal rendered at 180x480 pixels using 16-bit fixed-point arithmetic and approximated multipliers. The image position and zoom are configured through the input and bidirectional pins, with control values written during vsync. It is notable for fitting a real-time fractal renderer into a 2x2 tile area at 100 MHz.",
+   "summary_changed": false
+  },
+  {
+   "key": "68743f029795",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "The design outputs SVGA 800x600, not standard VGA; the documentation explicitly says SVGA."
+    }
+   ],
+   "add": [
+    {
+     "tag": "svga",
+     "reason": "Not in vocabulary; cannot add."
+    }
+   ],
+   "notes": "The vga tag is inaccurate because the source describes SVGA 800x600 output, not VGA.",
+   "tags_before": [
+    "vga",
+    "sprite",
+    "display",
+    "spi",
+    "video",
+    "graphics",
+    "systemverilog"
+   ],
+   "tags": [
+    "sprite",
+    "display",
+    "spi",
+    "video",
+    "graphics",
+    "systemverilog",
+    "vga"
+   ],
+   "summary_before": "This SystemVerilog design produces an 800x600 60 Hz SVGA output with a background and a single 12x12 sprite, internally rendered at 100x75 and scaled up. An SPI receiver accepts commands to replace sprite data, change colors, set the background and move the sprite, with the Tiny Tapeout logo shown by default. It requires a Tiny VGA Pmod for output and an SPI master for configuration. The design is deliberately limited to one sprite, as the name suggests.",
+   "summary": "This SystemVerilog design produces an 800x600 60 Hz SVGA output with a background and a single 12x12 sprite, internally rendered at 100x75 and scaled up. An SPI receiver accepts commands to replace sprite data, change colors, set the background and move the sprite, with the Tiny Tapeout logo shown by default. It requires a Tiny VGA Pmod for output and an SPI master for configuration. The design is deliberately limited to one sprite, as the name suggests.",
+   "summary_changed": false
+  },
+  {
+   "key": "7f815e593a8d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a ring oscillator built from inverters, but the tag 'logic-gate' implies a basic logic gate implementation, which is too broad and not the focus; 'ring-oscillator' already covers the implementation."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "The documentation does not state standard-cell implementation; it is described in Verilog and may be synthesized, but no standard-cell evidence is given."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "While used for characterization, the design is a ring oscillator for process characterization; 'instrumentation' is not clearly supported as the primary domain."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "The design is intended for characterizing inverter delay and oscillator behavior on the process."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "It explores fabrication process behavior through a configurable ring oscillator."
+    }
+   ],
+   "notes": "The logic-gate, standard-cell, and instrumentation tags are not well supported; characterization and process-experiment better describe the purpose.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "logic-gate",
+    "delay-line",
+    "instrumentation",
+    "standard-cell"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "delay-line",
+    "characterization",
+    "process-experiment"
+   ],
+   "summary_before": "This is a configurable ring oscillator built from up to 3853 inverters, with taps at chain lengths of 1, 3, 5, 7, 11, 21, 51, 101, 201, 501, 1001, 2001, 3001 and 3853. The ring is enabled by connecting one of the tap outputs back to the ring_in input, and the resulting frequency is measured externally. A scope or logic analyzer is needed to measure the output frequency and the delay between different points in the chain. The design is intended for characterizing inverter delay and oscillator behavior on the process.",
+   "summary": "This is a configurable ring oscillator built from up to 3853 inverters, with taps at chain lengths of 1, 3, 5, 7, 11, 21, 51, 101, 201, 501, 1001, 2001, 3001 and 3853. The ring is enabled by connecting one of the tap outputs back to the ring_in input, and the resulting frequency is measured externally. A scope or logic analyzer is needed to measure the output frequency and the delay between different points in the chain. The design is intended for characterizing inverter delay and oscillator behavior on the process.",
+   "summary_changed": false
+  },
+  {
+   "key": "dea490e59d71",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source is a student project but does not explicitly state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "Testing uses a cocotb testbench."
+    }
+   ],
+   "notes": "The education tag is unsupported; cocotb is explicitly mentioned in the testing description.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This project is a simple RISC-V processor design in Verilog that fetches, decodes, and executes instructions using an ALU and register file. It accepts a 16-bit instruction input and produces an 8-bit result output. The design is flexible for expansion but is not a complete processor. Testing is done via a cocotb testbench with various test cases.",
+   "summary": "This project is a simple RISC-V processor design in Verilog that fetches, decodes, and executes instructions using an ALU and register file. It accepts a 16-bit instruction input and produces an 8-bit result output. The design is flexible for expansion but is not a complete processor. Testing is done via a cocotb testbench with various test cases.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "07ffc303ee08: reviewer added non-canonical tag 'tile-1x2'",
+  "f6dc6a95034a: reviewer added non-canonical tag 'external-sram'"
+ ],
+ "usage": {
+  "prompt_tokens": 7450,
+  "completion_tokens": 1729,
+  "total_tokens": 9179,
+  "cost": 0.0043098,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043098,
+   "upstream_inference_prompt_cost": 0.002235,
+   "upstream_inference_completions_cost": 0.0020748
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043098,
+ "elapsed_s": 8.1
+}

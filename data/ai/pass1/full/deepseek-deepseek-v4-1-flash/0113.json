@@ -1,0 +1,201 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b2e6ea41ec3d",
+  "60f63900e87b",
+  "c77fd00c6b50",
+  "291ba977ef1c",
+  "33aeffebfaf8",
+  "ab481e1ddab4",
+  "a1bcf320d879",
+  "f226837d945d",
+  "0d39881015a1",
+  "b669660cc85f"
+ ],
+ "results": [
+  {
+   "key": "b2e6ea41ec3d",
+   "tags": [
+    "power-gating",
+    "placeholder",
+    "factory-test",
+    "experiment",
+    "standard-cells",
+    "test"
+   ],
+   "summary": "This project is a placeholder for a power-gated test design that was intended as preliminary work for supporting power-gated designs on later IHP shuttles. The documentation states that the pins and behavior are to be filled in later, and the author's silicon report confirms that the power gating experiments did not end up on the shuttle. No functional design was implemented, so there is nothing to test or use. The project is notable only as a reserved but unused slot.",
+   "confidence": "high",
+   "insufficient_docs": true
+  },
+  {
+   "key": "60f63900e87b",
+   "tags": [
+    "power-gating",
+    "placeholder",
+    "factory-test",
+    "experiment",
+    "standard-cells",
+    "test"
+   ],
+   "summary": "This project is a placeholder for a power-gated test design that was intended as preliminary work for supporting power-gated designs on later IHP shuttles. The documentation states that the pins and behavior are to be filled in later, and the author's silicon report confirms that the power gating experiments did not end up on the shuttle. No functional design was implemented, so there is nothing to test or use. The project is notable only as a reserved but unused slot.",
+   "confidence": "high",
+   "insufficient_docs": true
+  },
+  {
+   "key": "c77fd00c6b50",
+   "tags": [
+    "fpga",
+    "lut",
+    "scan-chain",
+    "reconfigurable",
+    "tile",
+    "state-machine",
+    "clock",
+    "education"
+   ],
+   "summary": "ROTFPGA v2a is a reconfigurable logic circuit built from an 8x8 array of identical tiles, each containing a NAND gate, a D flip-flop and a buffer that can be rotated or mirrored according to configuration. Configuration and reset are loaded through a scan chain, and the design exposes eight tile inputs and eight tile outputs plus scan and loop-breaker controls. It is tested with a Python test suite that loads two configurations and runs upload, download, single-step, propagation and loop-breaker tests. The design is a heavily area-optimized port of the original Caravel ROTFPGA, and the author reports that silicon works as expected.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "291ba977ef1c",
+   "tags": [
+    "fpga",
+    "lut",
+    "scan-chain",
+    "reconfigurable",
+    "tile",
+    "clock-gating",
+    "latch",
+    "test"
+   ],
+   "summary": "ROTFPGA v2b is a minor modification of ROTFPGA v2a intended as a control group for testing latches on IHP, with latches simulated using flip-flops and some inputs combined to free up two extra inputs. It keeps the same 8x8 rotatable-tile FPGA architecture and scan-chain configuration, but adds separate clock-gating inputs for flip-flops and simulated latches. The test suite replaces each original clock tick with alternating latch clocks and a combined latch/flip-flop clock. The author reports that silicon works as expected, and the design is notable for isolating latch behavior from the rest of the FPGA.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "33aeffebfaf8",
+   "tags": [
+    "sdr",
+    "radio",
+    "am",
+    "comparator",
+    "adc",
+    "spi",
+    "pwm",
+    "decimation",
+    "nco",
+    "dsp"
+   ],
+   "summary": "This project is a fully digital AM software-defined-radio pipeline that uses an external comparator as a 1-bit ADC frontend, oversamples and decimates by 4096 to gain about six bits of precision, and demodulates AM. A SPI interface programs a 32-bit register containing gain and NCO phase increment, and the demodulated audio is emitted as PWM. It requires external hardware including a comparator, resistor bias network, RC network, RF amplifier and an SPI microcontroller to set the station. The core is large at 3x2 tiles and 64% utilization, and the author notes that simplifying the demodulation pipeline is a possible future area reduction.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ab481e1ddab4",
+   "tags": [
+    "modem",
+    "modulation",
+    "demodulation",
+    "ask",
+    "fsk",
+    "psk",
+    "communication",
+    "dsp",
+    "sinusoid"
+   ],
+   "summary": "The Multimode Modem generates digitized sinusoidal signals and applies ASK, FSK or PSK modulation selected by two input pins, then demodulates the same scheme to recover the original bit stream. It runs from a 10 MHz clock, requires a reset pulse to synchronize, and outputs the modulated signal on seven pins and the demodulated bit on one pin. Testing is done by selecting a modulation mode and observing the modulated and demodulated outputs, with an Analog Discovery 2 listed as external hardware. The documentation describes the internal blocks and test procedure but does not report silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a1bcf320d879",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "rv32e",
+    "uart",
+    "spi",
+    "qspi",
+    "psram",
+    "flash",
+    "audio"
+   ],
+   "summary": "KianV RISC-V RV32E Baremetal SoC is a bare-metal RV32E RISC-V system-on-chip with a UART, a QSPI memory controller for PSRAM and flash, a generic SPI interface, a sigma-delta audio emulator and PWM output. Firmware is built with an RV32E toolchain and the CPU boots from NOR flash at an offset of 1 MiB, with hardware register addresses documented in the source. It requires a PMOD Flash plus PSRAM module, using 8 MB of PSRAM address space, and the author plans to provide on-chip demos once silicon is available. The design is notable for being a compact bare-metal RISC-V SoC with audio support in a 4x2 tile area.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f226837d945d",
+   "tags": [
+    "puf",
+    "security",
+    "random-number-generator",
+    "register",
+    "addressable",
+    "crypto"
+   ],
+   "summary": "This One Bit PUF design contains an array of one-bit physical unclonable function cells, addressed by four input pins, that output eight PUF bits selected by the address. The documentation explains that with ADDR_BITS=2 and OUT_BITS=2 the design contains eight one-bit PUFs and an address of 2'b10 reads bits OUT[5:4]. The output is stated to be zero in the reset condition, and no external hardware is required. The documentation is brief and does not describe the PUF cell implementation or provide silicon test results.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0d39881015a1",
+   "tags": [
+    "vga",
+    "clock",
+    "triangle-renderer",
+    "state-machine",
+    "rasterizer",
+    "animation",
+    "display",
+    "rtc"
+   ],
+   "summary": "No Time For Squares, IHP edition is a 12-hour clock that rasterizes three triangles using edge equations while generating VGA timing, updating the second, minute and hour hands every frame from lookup tables. It outputs Tiny VGA signals on the output pins and uses input pins to advance the minute and hour hands, with debug select pins also exposed. It requires a TinyVGA PMOD connected to a VGA monitor, and the author notes the design is boring without it. A silicon tester reports that the clock works, runs on time, and that the minute and hour adjustments function as documented.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b669660cc85f",
+   "tags": [
+    "puf",
+    "security",
+    "random-number-generator",
+    "register",
+    "crypto",
+    "one-bit"
+   ],
+   "summary": "This One Bit PUF is a single-bit physical unclonable function based on a difference of two registers, with a start signal input and a one-bit PUF output. The documentation consists only of an image and a note that the output is zero in the reset condition, and it does not describe the PUF cell or how to read it. No external hardware is listed, and no silicon test results are provided. The documentation is too thin to say more about the implementation or its behavior.",
+   "confidence": "low",
+   "insufficient_docs": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5558,
+  "completion_tokens": 1849,
+  "total_tokens": 7407,
+  "cost": 0.00226631,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 830,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00226631,
+   "upstream_inference_prompt_cost": 0.00104597,
+   "upstream_inference_completions_cost": 0.00122034
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00226631,
+ "elapsed_s": 24.8
+}

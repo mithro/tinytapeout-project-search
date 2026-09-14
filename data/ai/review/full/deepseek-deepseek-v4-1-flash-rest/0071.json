@@ -1,0 +1,391 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e9bef3fe809d",
+  "c820e3fad6e6",
+  "fc5a7e0279a3",
+  "60f63900e87b",
+  "ab481e1ddab4",
+  "0d39881015a1"
+ ],
+ "results": [
+  {
+   "key": "e9bef3fe809d",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with only a one-line description and no instruction set details."
+    }
+   ],
+   "notes": "Documentation is very thin; added insufficient-doc tag.",
+   "tags_before": [
+    "stack-machine",
+    "cpu",
+    "systemverilog"
+   ],
+   "tags": [
+    "stack-machine",
+    "cpu",
+    "systemverilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a stack-machine CPU written in SystemVerilog. It uses a single data pin for input, output, and bidirectional communication. The design can be tested in hardware or simulation. The documentation is very sparse, offering only a one-line description and no further details on the instruction set or operation.",
+   "summary": "This design is an 8-bit stack machine written in SystemVerilog. It is documented with only a one-line description and has no detailed instruction set documentation. A single bidirectional pin is described as carrying data. The design can be tested in hardware or with simulation.",
+   "summary_changed": true
+  },
+  {
+   "key": "c820e3fad6e6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is present and describes the PWM design, pin functions, debouncing, and testing."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "This is a functional PWM generator with a working silicon report, not an empty placeholder."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design was reported working on silicon and is documented, so it is not an unfinished work-in-progress."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "The design generates a pulse width modulation output with adjustable duty cycle."
+    },
+    {
+     "tag": "button",
+     "reason": "Two debounced button inputs increase and decrease the duty cycle."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the design was tested working."
+    },
+    {
+     "tag": "debouncer",
+     "reason": "The design implements debouncing logic for the increase and decrease buttons."
+    }
+   ],
+   "notes": "Replaced incorrect empty-draft tags with tags supported by the PWM documentation and working silicon report.",
+   "tags_before": [
+    "insufficient-doc",
+    "placeholder",
+    "incomplete"
+   ],
+   "tags": [
+    "pwm",
+    "button",
+    "verilog",
+    "silicon-tested",
+    "debouncer"
+   ],
+   "summary_before": "The documentation for this project is too sparse to determine its functionality. No pin names or test reports were provided. The draft summary is empty. Therefore, the design cannot be described accurately.",
+   "summary": "This Verilog module generates a PWM signal with an adjustable duty cycle from a 50 MHz clock input. Two debounced button inputs increase or decrease the duty cycle, and the PWM output runs at 5 MHz. The duty cycle can vary from 0% to 90% in 10% increments. Hardware testing confirmed the buttons adjust the PWM, though the documented pinout is incorrect.",
+   "summary_changed": true
+  },
+  {
+   "key": "fc5a7e0279a3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation fully explains the multiplier architecture and operation."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "This is a complete 4x4 multiplier design, not an empty placeholder."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design was tested working on silicon and is fully documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The design implements a 4x4 combinational multiplier."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The test instructions use a 7-segment LED display to show the product."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the design was tested working."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The multiplier is described as combinational with no sequential state."
+    }
+   ],
+   "notes": "Replaced incorrect empty-draft tags with tags matching the documented and silicon-tested multiplier.",
+   "tags_before": [
+    "insufficient-doc",
+    "placeholder",
+    "incomplete"
+   ],
+   "tags": [
+    "multiplier",
+    "verilog",
+    "7-segment",
+    "silicon-tested",
+    "combinational"
+   ],
+   "summary_before": "The documentation for this project is too sparse to determine its functionality. No pin names or test reports were provided. The draft summary is empty. Therefore, the design cannot be described accurately.",
+   "summary": "This combinational multiplier takes a 4-bit multiplicand and 4-bit multiplier and produces an 8-bit product. A signed_mode input selects whether the operands are treated as unsigned or signed using the Modified Baugh-Wooley algorithm. In unsigned mode the multiplier uses an array of full-adder and AND-gate cells, with a ripple-carry adder forming the upper product bits. It can be tested on a Tiny Tapeout demoboard by setting the switches and reading the product on a 7-segment display.",
+   "summary_changed": true
+  },
+  {
+   "key": "60f63900e87b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gate-level",
+     "reason": "The design is a placeholder with no implemented logic, so gate-level status is unsupported."
+    },
+    {
+     "tag": "fpga",
+     "reason": "No FPGA targeting or porting is mentioned in the documentation."
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "No scan-chain or test circuitry is described."
+    },
+    {
+     "tag": "reconfigurable",
+     "reason": "The placeholder does not implement any reconfigurable logic."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "A 1x2 tile footprint is normal device sizing and is not described as spanning multiple functional tiles."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is present in the placeholder design."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation circuit is present in the placeholder design."
+    },
+    {
+     "tag": "education",
+     "reason": "The project is not documented as intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "The documentation and author report explicitly state this is a reserved placeholder project."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design was never implemented; the author says the power gating experiments did not make the shuttle."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The how-it-works and how-to-test sections say only 'To be filled later'."
+    },
+    {
+     "tag": "power-gating",
+     "reason": "The placeholder was reserved for power gating experiments, as stated in the title and one-line description."
+    }
+   ],
+   "notes": "Source describes a placeholder power-gating experiment; removed invented hardware tags and replaced with placeholder, incomplete, insufficient-doc, and power-gating.",
+   "tags_before": [
+    "gate-level",
+    "fpga",
+    "scan-chain",
+    "reconfigurable",
+    "multi-tile",
+    "fsm",
+    "clock-generator",
+    "education"
+   ],
+   "tags": [
+    "placeholder",
+    "incomplete",
+    "insufficient-doc",
+    "power-gating"
+   ],
+   "summary_before": "This project is a gate-level Verilog design that was originally intended for FPGA implementation but was later adapted for a multi-tile ASIC. It includes a scan-chain for testing, a reconfigurable logic block, and a finite state machine with a clock generator. The design is intended for educational purposes, demonstrating gate-level design techniques. The documentation is sparse, and the design is not fully verified.",
+   "summary": "This project is a placeholder for a power gating test design on the IHP shuttle. Its documentation states that the how-it-works and how-to-test sections were to be filled later, and the author's silicon report confirms the power gating experiments did not end up on the shuttle. The pins are labeled TODO, and no functional logic was implemented. It was reserved as preliminary work toward supporting power gated designs on later IHP shuttles.",
+   "summary_changed": true
+  },
+  {
+   "key": "ab481e1ddab4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "puf",
+     "reason": "The design performs digital modems, not physical unclonable functions."
+    },
+    {
+     "tag": "security",
+     "reason": "The documentation does not describe a hardware security focus."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo random number generator is described."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file is described in the modem design."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptographic function is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "communication",
+     "reason": "The design implements digital modulation and demodulation for data communication."
+    },
+    {
+     "tag": "modulator",
+     "reason": "The design generates modulated ASK, FSK, and PSK signals."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "The design recovers the original data from the modulated signal."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "The design generates digitized sinusoidal signals for modulation."
+    }
+   ],
+   "notes": "Replaced incorrect PUF/security draft tags with tags matching the documented multimode modem.",
+   "tags_before": [
+    "puf",
+    "security",
+    "prng",
+    "register-file",
+    "crypto"
+   ],
+   "tags": [
+    "communication",
+    "modulator",
+    "demodulator",
+    "verilog",
+    "signal-generator"
+   ],
+   "summary_before": "This One Bit PUF design contains an array of one-bit physical unclonable function cells, addressed by four input pins, that output eight PUF bits selected by the address. The documentation is brief and does not describe the PUF cell implementation or provide silicon test results. The design is intended for security applications. The documentation is too thin to say more about the implementation or its behavior.",
+   "summary": "This Verilog multimode modem performs digital modulation and demodulation using ASK, FSK, and PSK schemes. It uses a 10 MHz clock to generate digitized sinusoidal signals internally, and two selection inputs choose the modulation scheme. The modulated signal appears on mod_out pins and the recovered data appears on demod_out. Testing requires applying a 10 MHz clock, a reset pulse, and using selection inputs 01, 10, or 11 for ASK, FSK, or PSK respectively.",
+   "summary_changed": true
+  },
+  {
+   "key": "0d39881015a1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "puf",
+     "reason": "The design is a VGA clock, not a physical unclonable function."
+    },
+    {
+     "tag": "security",
+     "reason": "No security function is described."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is implemented, documented, and reported working on silicon."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The design generates VGA timing and outputs RGB, hsync, and vsync, matching the Tiny VGA pinout."
+    },
+    {
+     "tag": "display",
+     "reason": "The design is intended to drive a VGA monitor display."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It rasterizes three triangle hands into a rendered clock display."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The core function is a 12-hour clock display."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The main part is a state machine that rasterizes triangles and generates VGA timing."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the clock ran on time and inputs adjusted minutes and hours."
+    },
+    {
+     "tag": "art",
+     "reason": "The design renders a decorative triangular clock display."
+    }
+   ],
+   "notes": "Replaced incorrect PUF/security draft tags with tags matching the documented and silicon-tested VGA clock.",
+   "tags_before": [
+    "puf",
+    "security",
+    "incomplete"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "graphics",
+    "clock-generator",
+    "fsm",
+    "verilog",
+    "silicon-tested",
+    "art"
+   ],
+   "summary_before": "This project is a PUF cell design that is intended for security applications. The documentation consists only of an image and a note that the output is zero in the reset condition, and it does not describe the PUF cell or how to read it. The documentation is too thin to say more about the implementation or its behavior. The design is notable for its use of PUF technology.",
+   "summary": "This Verilog design is a 12-hour clock rendered as triangles using a race-the-beam triangle renderer. A state machine incrementally rasterizes three triangles from their edge equations while generating VGA timing, and each frame updates the second, minute, and hour hands from lookup tables. It uses the Tiny VGA pinout and requires a TinyVGA adapter and VGA monitor to view. Input pins advance the minute and hour hands, and the silicon-tested clock was confirmed to run on time and respond to adjustments.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6257,
+  "completion_tokens": 2330,
+  "total_tokens": 8587,
+  "cost": 0.0046731,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0046731,
+   "upstream_inference_prompt_cost": 0.0018771,
+   "upstream_inference_completions_cost": 0.002796
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0046731,
+ "elapsed_s": 67.6
+}

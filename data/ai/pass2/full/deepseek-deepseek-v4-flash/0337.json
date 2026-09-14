@@ -1,0 +1,200 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "8e065b59096d",
+  "a71ef3998c4c",
+  "5a6ebb29f4e4",
+  "c50d4be0b130",
+  "5451646fc9bd",
+  "9f6708cbfa4f",
+  "5fa97b37513d",
+  "d1935aa74097",
+  "46493de3e6f7",
+  "7c691fb5cf1c"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "8e065b59096d",
+   "tags": [
+    "cpu",
+    "spi",
+    "memory",
+    "education",
+    "factory-test",
+    "verilog"
+   ],
+   "summary": "Nano-120 is a small 8-bit CPU with a 120-instruction set intended as a teaching resource, where both code and data memory use generic RAM. A slave SPI block lets an external master load programs and inspect data before and after execution, with a MODE pin selecting programming or run and a RUN pin starting execution. The eight outputs expose selected internal buses under OUT_CTRL control, and eight bidirectional pins provide extra control, interrupt sources and SPI MISO. It is designed for foundry testing with minimal memory resources and includes only limited documentation of the ISA itself.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "a71ef3998c4c",
+   "tags": [
+    "i2c",
+    "spi",
+    "communication",
+    "verilog"
+   ],
+   "summary": "Communotron is a prototype translator that listens on an I2C bus and emits the data portion of writes it receives as SPI traffic. It is a 1x1 design with an I2C address of 0x41, four SPI chip-select outputs, and SPI clock and data outputs, and it strips I2C ACK bits by stalling the SPI clock. Testing is done by connecting a 400 kHz clock, an I2C controller, and oscilloscope probes on the SPI lines, since the documentation describes no external hardware requirement beyond possible I2C bus drivers. The documentation is very thin, consisting of a short usage note rather than a specification.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "5a6ebb29f4e4",
+   "tags": [
+    "sar-adc",
+    "adc",
+    "analog",
+    "mixed-signal",
+    "comparator"
+   ],
+   "summary": "This 1x2 analog project is an 8-bit successive-approximation-register ADC with differential analog inputs vinp and vinn and an end-of-conversion flag. The eight digital outputs present the conversion result, and the documentation states only that an analog input is converted to an 8-bit digital value. No external hardware is listed beyond the placeholder text, and no test procedure, timing information, or reference details are given. The description is essentially a title and one line, so little can be said about its implementation or characterization.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "c50d4be0b130",
+   "tags": [
+    "sensor-interface",
+    "temperature-sensor",
+    "dsp",
+    "edge-ai",
+    "asic",
+    "low-power",
+    "verilog"
+   ],
+   "summary": "The Environmental Mapping Processor is a small digital ASIC that averages and thresholds temperature, humidity and pressure samples and also computes whether a position is within a Manhattan distance of a target location. It takes sensor type, sample validity, output selection, clear and mode signals on the inputs, an 8-bit sensor data word on the bidirectional pins, and returns an 8-bit result plus status. The chip has no sensors or radio of its own; a portable implementation would pair it with a BME280, a GNSS receiver, a low-power microcontroller, a memory LCD, microSD storage and a LiPo battery. Reset and enable sequences are the only test guidance given, and the spatial grid is defined by the external controller.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "5451646fc9bd",
+   "tags": [
+    "fft",
+    "audio",
+    "vga",
+    "video",
+    "cordic",
+    "fixed-point",
+    "pipeline",
+    "dsp",
+    "cocotb",
+    "verilog"
+   ],
+   "summary": "SeeTheBeat is a real-time audio visualizer that calculates a 512-point radix-2 fixed-point FFT on chip and streams procedural pixels to a VGA output at 800x600. Because the FFT working buffer does not fit on chip, the sample memory lives in the demo board's RP2040/RP2350 and the chip exchanges data with it over a bus during each of the nine FFT stages; bin magnitude, log scaling, band summing and beat detection are left to firmware. With only a clock and a Tiny VGA Pmod the chip draws a built-in ramp visual state, which checks VGA timing, sync polarity, Pmod bit order and blanking. The design was verified block by block against a Python golden model with cocotb, and it notably avoids any multiplier or twiddle ROM by using a CORDIC rotator.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "9f6708cbfa4f",
+   "tags": [
+    "audio",
+    "qspi",
+    "memory",
+    "pwm",
+    "systemverilog"
+   ],
+   "summary": "This controller streams 8-bit PCM audio stored in an external QSPI flash device and reproduces it through a high-frequency PWM output on one of the dedicated and bidirectional pins. After reset it issues a software reset to put the flash into 1-bit mode, then reads data in 8-byte chunks using the Fast Read Quad I/O instruction and buffers them for playback. Two input pins select playback speed among 0.5x, 1x, 1.5x and 2x by repeating or skipping samples. It requires a W25Qxx-style QSPI flash and the Tiny Tapeout audio Pmod, and the clock is only 50 kHz.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "5fa97b37513d",
+   "tags": [
+    "neural-network",
+    "systolic-array",
+    "mac-unit",
+    "pipeline",
+    "fixed-point",
+    "accelerator",
+    "verilog"
+   ],
+   "summary": "This design is a weight-stationary systolic processing element that multiplies a stored int8 weight by an int8 activation, accumulates the product and applies bias and Leaky ReLU before saturating back to int8. It is controlled through an 8-bit time-multiplexed data bus and four control signals for loading weights, loading bias, accumulating and resetting, with output_valid and overflow status outputs. A three-stage pipeline separates the MAC, bias addition and activation so that each stage has a short critical path; the accumulator is saturated to int16 using a wider intermediate sum. It was prototyped on a Terasic MAX10 DE10-Lite and would be used as a building block for a larger array.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "d1935aa74097",
+   "tags": [
+    "machine-learning",
+    "perceptron",
+    "verilog"
+   ],
+   "summary": "The HDC Classifier is an 8-bit hyperdimensional computing classifier that compares an input vector against two class prototypes and selects the class with the smaller Hamming distance. Input data arrives on the eight input pins, while mode, class selection, valid and start controls are driven on the bidirectional pins and the six-bit distance, winner and done signals appear on the outputs. The workflow is to reset, present data and control signals, assert start, then read the winner and distance once done is high. No external hardware is required beyond the standard clock and reset, and the documentation is brief but sufficient for the interface.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "46493de3e6f7",
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "qspi",
+    "memory",
+    "framebuffer",
+    "gamepad",
+    "verilog"
+   ],
+   "summary": "JA Achtung Compact is a one-tile implementation of the two-player Achtung, die Kurve! game, where each player steers a head that leaves a permanent trail and loses on hitting a wall or any trail. The chip has no internal framebuffer: it uses an external APS6404L QSPI PSRAM as a 1-bit-per-pixel occupancy map, fetching bursts for 640x480 VGA during active video and using the vertical blanking interval for collision reads and trail writes. Input comes from the Tiny Tapeout Gamepad Pmod with SNES-style controllers, with shoulder buttons turning and start restarting, and player 2's trail uses a woven sub-pattern so the two monochrome trails differ. It needs the VGA, QSPI PSRAM and Gamepad Pmods plus a monitor, and the reset must be held for at least 150 us after PSRAM power-up.",
+   "changed": false,
+   "sentences": 5
+  },
+  {
+   "index": 10,
+   "key": "7c691fb5cf1c",
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "qspi",
+    "memory",
+    "framebuffer",
+    "gamepad",
+    "verilog"
+   ],
+   "summary": "JA Achtung Full is the larger 1x2 version of the two-player Achtung, die Kurve! game, with continuously rotating heads, trails that include periodic passable gaps, boost moves and a color-selection lobby. It stores a 640x480 framebuffer in external QSPI PSRAM packed four 2-bit pixels per byte, streaming 8-byte bursts for VGA and reusing the PSRAM port during vertical blanking for collision checks and trail updates. Movement uses Q10.6 fixed-point coordinates with a quarter-wave lookup for 64 directions, and two SNES-style controllers share the Gamepad Pmod serial interface. It requires the VGA, QSPI PSRAM and Gamepad Pmods plus a monitor, and its larger test suite compares more than forty game traces against an independent Python framebuffer model.",
+   "changed": false,
+   "sentences": 5
+  }
+ ],
+ "problems": [
+  "46493de3e6f7: 5 sentences",
+  "7c691fb5cf1c: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 12834,
+  "completion_tokens": 2132,
+  "total_tokens": 14966,
+  "cost": 0.0014136304,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0014136304,
+   "upstream_inference_prompt_cost": 0.0010032204,
+   "upstream_inference_completions_cost": 0.00041041
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0014136304,
+ "elapsed_s": 52.8
+}

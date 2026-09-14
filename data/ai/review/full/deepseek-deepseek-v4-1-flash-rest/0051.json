@@ -1,0 +1,446 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a80e09201b15",
+  "b8ee420b06bd",
+  "3c7ffd4f7235",
+  "79f079cf206d",
+  "fec21b6cd83f",
+  "5a08af4e5b74"
+ ],
+ "results": [
+  {
+   "key": "a80e09201b15",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "No ring oscillator or inverter chain exists in the design; it is a PWM generator with SPI control."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "The design does not implement an oscillator; it consumes an external clock."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design is purely digital Verilog with no analog circuitry."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "The core function is dual-channel PWM with complementary outputs."
+    },
+    {
+     "tag": "spi",
+     "reason": "Duty cycle and alignment are configured over an SPI interface."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Unused pins are repurposed as gate-level test outputs (NAND, NOR, XNOR, etc.)."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "An internal divided clock is made available on an output pin for debugging."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The design includes a divided clock output derived from the input clock."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states 'working' from the author."
+    }
+   ],
+   "notes": "Corrected tags and summary; original tags and summary described a ring oscillator, which is not present.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "analog"
+   ],
+   "tags": [
+    "clock-generator",
+    "pwm",
+    "spi",
+    "logic-gate",
+    "clock-divider",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a ring oscillator circuit for clock generation. It uses a chain of inverters to produce an oscillating signal. The design is intended for use as a clock source or for characterization purposes. It is notable for its simple analog implementation.",
+   "summary": "This project implements two independent PWM channels with complementary outputs, where duty cycle and edge- or center-aligned mode are configured via SPI. It also repurposes unused output pins as simple gate-level logic test signals based on two test inputs, allowing validation of silicon gates. An internal divided clock is routed to an output pin for slower visual debugging. The design is purely digital and has been reported working on silicon.",
+   "summary_changed": true
+  },
+  {
+   "key": "b8ee420b06bd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "No clock division is described or implied by the pins or documentation."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational intent; it is a personal test."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "The design is explicitly a test of a DSR flip-flop."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design includes XOR inputs and basic gate logic."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Testing instructions mention using DIP switches to set inputs."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the project is described as 'just trying somethings out'."
+    }
+   ],
+   "notes": "Corrected tags and summary; original summary invented a seven-segment display and German documentation.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "flip-flop",
+    "dip-switch",
+    "incomplete"
+   ],
+   "summary_before": "This project is a simple test of basic gates and clock division, likely a first Wokwi exercise. It is explicitly a simple test of basic gates and clock division, likely a first Wokwi exercise. The documentation is very thin, with a one-line description in German and no real explanation of the mapping between inputs and segments. It requires an external seven-segment display, and testing is described only as using it for a seven-segment display.",
+   "summary": "This project is a simple Wokwi test of a DSR flip-flop, with XOR inputs and reset/data controls. It is intended as a personal experiment rather than a finished design. Testing is described as using DIP switches to set inputs. The documentation is very sparse and does not fully explain the mapping between inputs and outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "3c7ffd4f7235",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "No game functionality is described; the project is a microcontroller."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "No puzzle logic is present."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "The documentation does not mention a pipelined datapath."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The language is Verilog, not SystemVerilog."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "No cocotb testbench is mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "microcontroller",
+     "reason": "It is an 8-bit microcontroller SOC with CPU, memory, and peripherals."
+    },
+    {
+     "tag": "soc",
+     "reason": "Integrates a CPU core, DFFRAM, and multiple peripherals."
+    },
+    {
+     "tag": "cpu",
+     "reason": "Contains a custom 8-bit processor core (LISA)."
+    },
+    {
+     "tag": "memory",
+     "reason": "Includes a 128-byte DFFRAM module."
+    },
+    {
+     "tag": "spi",
+     "reason": "Supports SPI via Pmod and SPI SRAM programming."
+    },
+    {
+     "tag": "uart",
+     "reason": "Supports UART via Pmod and demo board USB."
+    },
+    {
+     "tag": "i2c",
+     "reason": "Supports I2C via Pmod."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Provides general-purpose I/O ports (pa, pb, pc)."
+    },
+    {
+     "tag": "bootloader",
+     "reason": "Includes flash programming and debugger support for loading code."
+    }
+   ],
+   "notes": "Corrected tags and summary; original tags and summary were unrelated to the microcontroller design.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "pipeline",
+    "education",
+    "systemverilog",
+    "gpio",
+    "cocotb"
+   ],
+   "tags": [
+    "gpio",
+    "microcontroller",
+    "soc",
+    "cpu",
+    "memory",
+    "spi",
+    "uart",
+    "i2c",
+    "bootloader"
+   ],
+   "summary_before": "The project is a puzzle game design with a pipeline architecture. It is intended for educational purposes and uses GPIO for input/output. The design is implemented in SystemVerilog and is notable for its game logic. It is verified with a cocotb testbench.",
+   "summary": "This project is an 8-bit microcontroller SOC featuring a custom LISA CPU core and 128 bytes of DFFRAM. It provides SPI, UART, and I2C interfaces, along with general-purpose I/O ports. The design is implemented in Verilog and includes a C-based toolchain and Python debugger for programming and debugging. It is intended as a complete microcontroller platform with on-chip memory and multiple communication peripherals.",
+   "summary_changed": true
+  },
+  {
+   "key": "79f079cf206d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "No security features are described."
+    },
+    {
+     "tag": "puf",
+     "reason": "No physically unclonable function is present."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator is described."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file is mentioned; the design is an FSM example."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "The project is explicitly an advanced finite-state machine example."
+    },
+    {
+     "tag": "education",
+     "reason": "It is a course example for CSE 30342 at the University of Notre Dame."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The design is written in SystemVerilog."
+    },
+    {
+     "tag": "calculator",
+     "reason": "The FSM implements a 'memory calculator' with arithmetic operations."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The design is a sequential state machine with feedback and return edges."
+    }
+   ],
+   "notes": "Corrected tags and summary; original tags and summary were unrelated to the FSM example.",
+   "tags_before": [
+    "security",
+    "puf",
+    "prng",
+    "register-file"
+   ],
+   "tags": [
+    "fsm",
+    "education",
+    "systemverilog",
+    "calculator",
+    "sequential-logic"
+   ],
+   "summary_before": "The project is a security-focused design that uses a PUF for entropy generation. It includes a PRNG and register file. The design is notable for its use of register mismatch as a source of entropy. Documentation is very limited, but the design appears to be a hardware security primitive.",
+   "summary": "This project is an example final project for a digital integrated circuits course, implementing an advanced finite-state machine in SystemVerilog. The FSM acts as a 'memory calculator' that performs various arithmetic and logic operations on 128-bit inputs a and b, using the previous result. It includes eight internal states with self-feedback loops and return edges, meeting specific course requirements. The design is intended for educational purposes and includes a testbench for verification.",
+   "summary_changed": true
+  },
+  {
+   "key": "fec21b6cd83f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning is involved; it is a triangle rasterizer."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "No AI inference or edge AI functionality is present."
+    },
+    {
+     "tag": "low-power",
+     "reason": "Low-power operation is not mentioned or implied."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The design is not described as a finite-state machine; it is a rasterizer."
+    }
+   ],
+   "add": [
+    {
+     "tag": "graphics",
+     "reason": "The design renders graphics (triangles) to a VGA display."
+    },
+    {
+     "tag": "vga",
+     "reason": "It outputs VGA signals (hsync, vsync, RGB) for a 640x480 display."
+    },
+    {
+     "tag": "image-processing",
+     "reason": "It implements a scanline rasterization algorithm for triangle rendering."
+    },
+    {
+     "tag": "spi",
+     "reason": "UIO pins include SPI-like signals (CS, MOSI, SCK) for configuration."
+    },
+    {
+     "tag": "framebuffer",
+     "reason": "It generates pixel data for display, though not a full framebuffer; it is a rasterizer."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "It includes a combined multiply-and-divide unit for edge calculations."
+    },
+    {
+     "tag": "divider",
+     "reason": "The same unit performs sequential division."
+    }
+   ],
+   "notes": "Corrected tags and summary; original tags and summary described a Tsetlin Machine, which is not present.",
+   "tags_before": [
+    "machine-learning",
+    "edge-ai",
+    "low-power",
+    "fsm"
+   ],
+   "tags": [
+    "graphics",
+    "vga",
+    "image-processing",
+    "spi",
+    "framebuffer",
+    "multiplier",
+    "divider"
+   ],
+   "summary_before": "This project implements a Tsetlin Machine, a binary classifier with on-chip training, using a 4-feature, 4-clause architecture. It uses pure digital logic and finite state machines instead of arithmetic multipliers, making it suitable for ultra-low-power Edge AI. The design includes 32 Tsetlin Automata, each implemented as a 4-bit saturating up/down counter. It is optimized for low-power operation and targets edge AI applications.",
+   "summary": "This project implements a scanline triangle rasterizer that outputs VGA video at 640x480 resolution with 2 bits per color. It uses a single combined multiply-and-divide unit to calculate triangle edges, updating state during H-blank periods. The design can be configured via SPI-like UIO pins to change the rendered geometry and color. It requires a TinyVGA PMOD adapter and optionally an MCU for configuration.",
+   "summary_changed": true
+  },
+  {
+   "key": "5a08af4e5b74",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pll",
+     "reason": "No phase-locked loop is described."
+    },
+    {
+     "tag": "frequency-counter",
+     "reason": "No frequency counter is present."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The design is not for process characterization."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation circuitry is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "It is a 16-bit computer based on the Nand2Tetris Hack CPU."
+    },
+    {
+     "tag": "spi",
+     "reason": "It fetches instructions from off-chip SPI memory."
+    },
+    {
+     "tag": "memory",
+     "reason": "Uses off-chip SPI memory for ROM and RAM."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Provides general-purpose inputs, outputs, and bidirectional I/O."
+    },
+    {
+     "tag": "education",
+     "reason": "Based on the Nand2Tetris course, which is educational."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Designed to pair with an RP2040 for simulated SPI RAM."
+    },
+    {
+     "tag": "microcontroller",
+     "reason": "It is a complete computer system with CPU and memory interface."
+    }
+   ],
+   "notes": "Corrected tags and summary; original tags and summary described a PLL test structure, which is not present.",
+   "tags_before": [
+    "pll",
+    "frequency-counter",
+    "characterization",
+    "clock-generator"
+   ],
+   "tags": [
+    "cpu",
+    "spi",
+    "memory",
+    "gpio",
+    "education",
+    "rp2040",
+    "microcontroller"
+   ],
+   "summary_before": "This project is a test structure for characterizing a PLL on Tiny Tapeout. It is designed to measure the PLL's output frequency and lock range. The design includes a frequency counter to measure the PLL output. It is tested by providing a reference clock and observing the PLL's behavior.",
+   "summary": "This project is a 16-bit computer based on the Nand2Tetris Hack architecture, with a CPU that fetches instructions via SPI from an off-chip memory module. The memory module, simulated on an RP2040, stores both ROM and RAM partitions. The design provides general-purpose I/O and is intended to run programs loaded into the RP2040's ROM section. It is a working implementation of the Hack computer with modifications for physical feasibility.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8110,
+  "completion_tokens": 2542,
+  "total_tokens": 10652,
+  "cost": 0.0054834,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0054834,
+   "upstream_inference_prompt_cost": 0.002433,
+   "upstream_inference_completions_cost": 0.0030504
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0054834,
+ "elapsed_s": 42.1
+}

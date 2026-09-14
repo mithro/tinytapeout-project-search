@@ -1,0 +1,300 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "142992567de2",
+  "f8da2e6d0050",
+  "70273ae15906",
+  "b43b6752729d",
+  "b686df7fc9bf",
+  "c5db24e74e5b"
+ ],
+ "results": [
+  {
+   "key": "142992567de2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The design has a concrete AND gate pinout, not boilerplate; the unfilled text is documentation, not the design itself."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is only the unfilled template text, too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed template tag because the pinout indicates a real AND gate; added insufficient-doc for the unfilled documentation.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "template",
+    "combinational"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "combinational",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design appears to be a single AND gate, with inputs IN0_AND and IN1_AND and output OUT0_AND. The documentation still contains the unfilled template text asking the author to explain how the project works and how to test it. No external hardware is listed and no test procedure is given. The only concrete information is the pin naming, so the design is inferred to be a basic AND gate.",
+   "summary": "This design appears to be a single AND gate, with inputs IN0_AND and IN1_AND and output OUT0_AND. The documentation still contains the unfilled template text asking the author to explain how the project works and how to test it. No external hardware is listed and no test procedure is given. The only concrete information is the pin naming, so the design is inferred to be a basic AND gate.",
+   "summary_changed": false
+  },
+  {
+   "key": "f8da2e6d0050",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present but very sparse and does not fully describe the design."
+    }
+   ],
+   "notes": "Added insufficient-doc because the documentation is too sparse to fully describe the design.",
+   "tags_before": [
+    "logic-gate",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "logic-gate",
+    "7-segment",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design includes an AND gate connected to IN1 and the clock, and a NOT gate connected to IN7, with eight outputs. Testing involves setting inputs and checking outputs against expected results. External hardware includes a 7-segment LED display, tactile switches, a resistor, and a slide switch. The project is a basic logic gate test in Wokwi, with limited documentation.",
+   "summary": "This design includes an AND gate connected to IN1 and the clock, and a NOT gate connected to IN7, with eight outputs. Testing involves setting inputs and checking outputs against expected results. External hardware includes a 7-segment LED display, tactile switches, a resistor, and a slide switch. The project is a basic logic gate test in Wokwi, with limited documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "70273ae15906",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "voltage-reference",
+     "reason": "The source only says the circuit uses a reference voltage; it does not implement or expose a voltage reference block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed voltage-reference because the source only mentions using a reference voltage, not implementing one.",
+   "tags_before": [
+    "ldo",
+    "analog",
+    "power-management",
+    "voltage-reference"
+   ],
+   "tags": [
+    "ldo",
+    "analog",
+    "power-management"
+   ],
+   "summary_before": "This is a low dropout voltage regulator that regulates its output using a reference voltage. The four analog pins provide the input, an output capacitor node, analog ground and the regulator output. Testing is described only as using a voltage source, with a power source and oscilloscope listed as external equipment. The documentation is extremely sparse, giving no information on dropout, load range, current capability or measured performance.",
+   "summary": "This is a low dropout voltage regulator that regulates its output using a reference voltage. The four analog pins provide the input, an output capacitor node, analog ground and the regulator output. Testing is described only as using a voltage source, with a power source and oscilloscope listed as external equipment. The documentation is extremely sparse, giving no information on dropout, load range, current capability or measured performance.",
+   "summary_changed": false
+  },
+  {
+   "key": "b43b6752729d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The source describes an ASCON hash accelerator, not a RISC-V processor."
+    },
+    {
+     "tag": "qspi",
+     "reason": "No QSPI interface is described; the interface is UART."
+    },
+    {
+     "tag": "cpu",
+     "reason": "The design is a hash accelerator, not a processor core."
+    },
+    {
+     "tag": "fpga",
+     "reason": "The source mentions a host FPGA only as an example host, not as the target platform."
+    },
+    {
+     "tag": "gpio",
+     "reason": "No general-purpose GPIO interface is described."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory block is described; the design is a hash accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "Implements the ASCON-CXOF128 cryptographic hash function."
+    },
+    {
+     "tag": "hash",
+     "reason": "Implements a hash function and hash-chain wrapper."
+    },
+    {
+     "tag": "uart",
+     "reason": "Uses a UART-framed protocol at 115200 baud."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Described as a hardware accelerator for iterative hashing."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "crc",
+     "reason": "Uses CRC16-CCITT for frame integrity."
+    }
+   ],
+   "notes": "Replaced incorrect RISC-V/QSPI/CPU/FPGA/GPIO/memory tags with crypto, hash, UART, accelerator, Verilog and CRC tags matching the ASCON accelerator documentation.",
+   "tags_before": [
+    "risc-v",
+    "qspi",
+    "cpu",
+    "fpga",
+    "gpio",
+    "memory"
+   ],
+   "tags": [
+    "crypto",
+    "hash",
+    "uart",
+    "accelerator",
+    "verilog",
+    "crc"
+   ],
+   "summary_before": "This die is the memory-controller half of the authQV RISC-V system, containing a QSPI flash controller and an 8-phase parallel-bus bridge that exposes the memory-fetch interface to a companion FPGA. The actual RV32E CPU runs on the FPGA, and this chip only services flash reads for instruction fetch and read-only data loads. It requires a QSPI flash module and a companion FPGA running the CPU and block RAM. The design is notable for its split architecture and the use of a free-running 8-phase counter for synchronized communication.",
+   "summary": "This is an ASCON-CXOF128 hash-chain hardware accelerator with a UART-framed protocol supporting single-shot and n-iteration chain modes. It communicates over UART at 115200 baud, 8-N-1, using framed commands with CRC16-CCITT and status responses. The design exposes done, busy, error, debug, heartbeat and receive-active signals on its outputs. Testing requires a UART host and involves sending PING, configuring registers, loading data, starting the hash, and reading the result.",
+   "summary_changed": true
+  },
+  {
+   "key": "b686df7fc9bf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is an FSM irrigation controller, not a basic logic gate."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "No ring oscillator is described."
+    },
+    {
+     "tag": "phase-detector",
+     "reason": "No phase detector is described."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "No flip-flop study module is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "No standard-cell library usage is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "Explicitly described as a finite state machine."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Controls an irrigation pump based on soil moisture."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "comparator-analog",
+     "reason": "Uses two comparators to detect soil moisture levels."
+    },
+    {
+     "tag": "relay",
+     "reason": "The pump output drives a relay-controlled water pump."
+    }
+   ],
+   "notes": "Replaced unrelated logic-gate/ring-oscillator/phase-detector/flip-flop/counter/standard-cell tags with FSM, industrial, Verilog, comparator-analog and relay tags matching the irrigation controller.",
+   "tags_before": [
+    "education",
+    "logic-gate",
+    "ring-oscillator",
+    "phase-detector",
+    "flip-flop",
+    "counter",
+    "standard-cell",
+    "verilog"
+   ],
+   "tags": [
+    "education",
+    "verilog",
+    "fsm",
+    "industrial",
+    "comparator-analog",
+    "relay"
+   ],
+   "summary_before": "This is a didactic testchip for teaching CMOS design, featuring five modules selected by a 3-bit MUX: a logic gate library, a ring oscillator with configurable divider, a phase-frequency detector, a D/T flip-flop study, and a 4-bit binary counter. The design includes always-live monitoring signals on bidirectional pins and is intended for hands-on experimentation with oscilloscopes, function generators, and push-buttons. It is notable for using explicit sky130 standard cell instantiations and for providing a range of frequencies from the ring oscillator for different measurement instruments. The chip is designed for educational purposes and includes detailed testing instructions for each module.",
+   "summary": "This is a finite state machine that controls an irrigation pump based on soil moisture levels detected by two comparators. It has four states: IDLE, IRRIGATE, SATURATED, and INVALID, with the pump turned on only in the IRRIGATE state and an invalid flag asserted in the INVALID state. Testing involves connecting a moisture sensor and comparators to the inputs, a pump to the PUMP output, and checking state transitions for dry, mild, wet, and invalid moisture readings. External hardware includes a moisture sensor, two comparators, a relay-controlled pump, a clock source, and a power supply.",
+   "summary_changed": true
+  },
+  {
+   "key": "c5db24e74e5b",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is only unfilled template text, too sparse to describe any design."
+    }
+   ],
+   "notes": "Added insufficient-doc because the documentation is only unfilled template text.",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "placeholder"
+   ],
+   "tags": [
+    "template",
+    "wokwi",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a copy of the Tiny Tapeout template, titled 'Tiny Tapeout Template Copy' with a one-line description 'Test'. The documentation sections are all unfilled placeholders. There is no information about any actual design functionality, testing procedure, or external hardware. It is an incomplete submission with insufficient documentation.",
+   "summary": "This project is a copy of the Tiny Tapeout template, titled 'Tiny Tapeout Template Copy' with a one-line description 'Test'. The documentation sections are all unfilled placeholders. There is no information about any actual design functionality, testing procedure, or external hardware. It is an incomplete submission with insufficient documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5983,
+  "completion_tokens": 1758,
+  "total_tokens": 7741,
+  "cost": 0.0039045,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039045,
+   "upstream_inference_prompt_cost": 0.0017949,
+   "upstream_inference_completions_cost": 0.0021096
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039045,
+ "elapsed_s": 13.5
+}

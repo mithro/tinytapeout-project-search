@@ -1,0 +1,234 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4f6d47bd9280",
+  "0b5d974e212c",
+  "4886fb5096bd",
+  "5e58e4866f30",
+  "59ed942f79a1",
+  "e821dd33b0a3"
+ ],
+ "results": [
+  {
+   "key": "4f6d47bd9280",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon test report says 'working (the author)' but the report is about adapting test scripts; the status field says working, so silicon-tested is arguably supported, but the summary's claim of 'notable for its compact implementation' is unsupported. However, silicon-tested is supported by the status. Actually, the status is 'working', so silicon-tested is supported. But the proposed summary says 'Silicon test reports indicate that the design works after adapting the test scripts' which is supported. The issue is the last sentence's claim of 'notable for its compact implementation of a polyphonic synthesizer on Tiny Tapeout' which is not in the source. Also, the tag 'silicon-tested' is supported by the status 'working'. So no removal needed for silicon-tested. But the summary has an unsupported claim. The tags seem mostly supported. However, 'barrel-shifter' is mentioned in the source as part of the ALU. 'register-file' is mentioned. 'alu' is mentioned. 'pwm' is mentioned. 'music' and 'chiptune' are supported by the title and description. 'synthesizer' is supported. 'audio' is supported. 'verilog' is supported. So tags are fine. The summary has an unsupported claim in the last sentence. So verdict fix, but no tag changes? The instructions say to remove tags that are not supported. All tags seem supported. But the summary needs correction. So remove empty, add empty, summary corrected. But the verdict is fix because summary is wrong. Also, the summary says 'it is notable for its compact implementation' which is not in the source. So fix summary. Also, the summary says 'care must be taken to avoid damaging audio equipment with high output voltages' which is supported by the source's warning about resistive divider. So only the 'notable for its compact implementation' is unsupported. Also, the summary says 'controlled via register writes through a command interface' which is supported by the pins and description. So fix summary. Also, the tag 'silicon-tested' is supported by the status 'working'. So no tag changes. But the proposed tags include 'silicon-tested' which is correct. So verdict fix, remove empty, add empty, summary corrected. However, the instructions say to remove tags that are not supported. None are unsupported. So remove empty. Add empty. Summary corrected. Notes: 'Summary contained an unsupported claim about compact implementation.'"
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported claim about compact implementation from summary.",
+   "tags_before": [
+    "synthesizer",
+    "audio",
+    "pwm",
+    "music",
+    "chiptune",
+    "alu",
+    "register-file",
+    "barrel-shifter",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "synthesizer",
+    "audio",
+    "pwm",
+    "music",
+    "chiptune",
+    "alu",
+    "register-file",
+    "barrel-shifter",
+    "verilog"
+   ],
+   "summary_before": "This design is a 4-channel chiptune synthesizer that uses a 12-13 bit ALU with a barrel shifter, a latch-based register file, and a 64-cycle program to calculate each sample, outputting PWM audio signals. It requires external hardware to convert the PWM outputs to audio, such as Mike's audio Pmod for mono or a resistive divider and capacitor for stereo, and it is controlled via register writes through a command interface. Example test code and functions are provided for playing notes and configuring waveforms. Silicon test reports indicate that the design works after adapting the test scripts, and it is notable for its compact implementation of a polyphonic synthesizer on Tiny Tapeout, though care must be taken to avoid damaging audio equipment with high output voltages.",
+   "summary": "This design is a 4-channel chiptune synthesizer that uses a 12-13 bit ALU with a barrel shifter, a latch-based register file, and a 64-cycle program to calculate each sample, outputting PWM audio signals. It requires external hardware to convert the PWM outputs to audio, such as Mike's audio Pmod for mono or a resistive divider and capacitor for stereo, and it is controlled via register writes through a command interface. Example test code and functions are provided for playing notes and configuring waveforms. Silicon test reports indicate that the design works after adapting the test scripts, and care must be taken to avoid damaging audio equipment with high output voltages.",
+   "summary_changed": true
+  },
+  {
+   "key": "0b5d974e212c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "qspi",
+    "memory",
+    "uart",
+    "pwm",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "qspi",
+    "memory",
+    "uart",
+    "pwm",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a crowdsourced RISC-V SoC named TinyQV 'Berzerk' that integrates a small RV32EC CPU with QSPI flash and PSRAM memory and various community-contributed peripherals. It runs code from external QSPI flash and uses QSPI PSRAM for data memory, with UART for communication and GPIO for interrupts. The design requires external QSPI flash and PSRAM modules (such as the QSPI Pmod) and is programmed using a custom toolchain and SDK. Silicon tests confirm it can run MicroPython and Coremark at 64 MHz, and peripherals like a frequency synthesizer have been partially tested.",
+   "summary": "This is a crowdsourced RISC-V SoC named TinyQV 'Berzerk' that integrates a small RV32EC CPU with QSPI flash and PSRAM memory and various community-contributed peripherals. It runs code from external QSPI flash and uses QSPI PSRAM for data memory, with UART for communication and GPIO for interrupts. The design requires external QSPI flash and PSRAM modules (such as the QSPI Pmod) and is programmed using a custom toolchain and SDK. Silicon tests confirm it can run MicroPython and Coremark at 64 MHz, and peripherals like a frequency synthesizer have been partially tested.",
+   "summary_changed": false
+  },
+  {
+   "key": "4886fb5096bd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state it is intended for teaching or learning; it is a test chip for a microprocessor."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag as the source does not indicate teaching intent; removed unsupported claim about teaching vehicle from summary.",
+   "tags_before": [
+    "soc",
+    "cpu",
+    "spi",
+    "pwm",
+    "timer",
+    "rom",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "soc",
+    "cpu",
+    "spi",
+    "pwm",
+    "timer",
+    "rom",
+    "verilog"
+   ],
+   "summary_before": "This Verilog project is a small system on chip containing a 16-bit microprocessor, a 32-word boot ROM, RAM, an 8-bit PWM, an 8-bit timer, a UART and an SPI interface, all memory-mapped for the CPU. After reset the boot ROM runs a program that reads the 8-bit input port, writes it to the 8-bit output port, and exercises the supported instructions and the SPI, timer and PWM blocks. It is tested by powering the chip and observing the parallel output on a 7-segment display or LEDs, with SPI data appearing on the MOSI and related pins. The design is intended as a teaching vehicle for lectures and labs, and the documentation notes that external hardware such as a keypad and display is still to be decided.",
+   "summary": "This Verilog project is a small system on chip containing a 16-bit microprocessor, a 32-word boot ROM, RAM, an 8-bit PWM, an 8-bit timer, a UART and an SPI interface, all memory-mapped for the CPU. After reset the boot ROM runs a program that reads the 8-bit input port, writes it to the 8-bit output port, and exercises the supported instructions and the SPI, timer and PWM blocks. It is tested by powering the chip and observing the parallel output on a 7-segment display or LEDs, with SPI data appearing on the MOSI and related pins. The documentation notes that external hardware such as a keypad and display is still to be decided.",
+   "summary_changed": true
+  },
+  {
+   "key": "5e58e4866f30",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "priority-encoder",
+     "reason": "The design is a simple latch/priority circuit, but the source does not describe a priority encoder; it only sets the output high if the button is pressed first."
+    }
+   ],
+   "add": [],
+   "notes": "Removed priority-encoder tag as the source does not describe a priority encoder; corrected summary to remove unsupported latching claim.",
+   "tags_before": [
+    "game",
+    "button",
+    "led",
+    "7-segment",
+    "priority-encoder",
+    "wokwi"
+   ],
+   "tags": [
+    "game",
+    "button",
+    "led",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This project, called 'Fastest Finger', determines which of up to eight buttons was pressed first and lights the corresponding LED. The outputs can also drive a 7-segment display. The design is a simple priority circuit that latches the first button press. Testing involves connecting buttons to the inputs and observing which output goes high. It is implemented in Wokwi and is intended as a game.",
+   "summary": "This project, called 'Fastest Finger', determines which of up to eight buttons was pressed first and lights the corresponding LED. The outputs can also drive a 7-segment display. The design is a simple circuit that sets the output high for the first button pressed. Testing involves connecting buttons to the inputs and observing which output goes high. It is implemented in Wokwi and is intended as a game.",
+   "summary_changed": true
+  },
+  {
+   "key": "59ed942f79a1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a logic tester for educational purposes, not a measurement/instrumentation application."
+    }
+   ],
+   "add": [],
+   "notes": "Removed instrumentation tag as the design is educational, not measurement-focused.",
+   "tags_before": [
+    "education",
+    "logic-gate",
+    "flip-flop",
+    "combinational",
+    "wokwi",
+    "instrumentation"
+   ],
+   "tags": [
+    "education",
+    "logic-gate",
+    "flip-flop",
+    "combinational",
+    "wokwi"
+   ],
+   "summary_before": "This design is a basic logic tester that validates the operation of individual logic gates (AND, NAND, OR, NOR, NOT, XOR) and flip-flops (D, RS, JK). It provides common inputs for the gates and selection pins to choose which flip-flop to test, with outputs indicating the logic states. The design is intended for educational purposes, allowing users to verify truth tables by observing the outputs. It is implemented in Wokwi and requires no external hardware beyond the chip's pins.",
+   "summary": "This design is a basic logic tester that validates the operation of individual logic gates (AND, NAND, OR, NOR, NOT, XOR) and flip-flops (D, RS, JK). It provides common inputs for the gates and selection pins to choose which flip-flop to test, with outputs indicating the logic states. The design is intended for educational purposes, allowing users to verify truth tables by observing the outputs. It is implemented in Wokwi and requires no external hardware beyond the chip's pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "e821dd33b0a3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The design uses a 3-bit counter, but the primary function is a game; the counter is a component, not the main type."
+    }
+   ],
+   "add": [],
+   "notes": "Removed counter tag as it is a component, not the main type; summary is supported.",
+   "tags_before": [
+    "game",
+    "button",
+    "decoder",
+    "counter",
+    "wokwi"
+   ],
+   "tags": [
+    "game",
+    "button",
+    "decoder",
+    "wokwi"
+   ],
+   "summary_before": "This design implements a 'Fastest Finger' game that determines which of eight buttons was pressed first. It uses a 3-bit counter and a 3-to-8 decoder to latch the first button press and illuminate the corresponding LED. The design requires external buttons connected to the inputs and LEDs (or a seven-segment display) connected to the outputs. It is a simple, clocked game suitable for educational or entertainment purposes.",
+   "summary": "This design implements a 'Fastest Finger' game that determines which of eight buttons was pressed first. It uses a 3-bit counter and a 3-to-8 decoder to latch the first button press and illuminate the corresponding LED. The design requires external buttons connected to the inputs and LEDs (or a seven-segment display) connected to the outputs. It is a simple, clocked game suitable for educational or entertainment purposes.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "5e58e4866f30: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 8890,
+  "completion_tokens": 1807,
+  "total_tokens": 10697,
+  "cost": 0.0048354,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0048354,
+   "upstream_inference_prompt_cost": 0.002667,
+   "upstream_inference_completions_cost": 0.0021684
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0048354,
+ "elapsed_s": 53.3
+}

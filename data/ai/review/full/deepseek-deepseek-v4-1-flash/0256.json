@@ -1,0 +1,257 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8971309b9600",
+  "f3f0258d8eac",
+  "6f2e59737324",
+  "c44161a33863",
+  "9923ad76165d",
+  "7142dc55eea2"
+ ],
+ "results": [
+  {
+   "key": "8971309b9600",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vco",
+     "reason": "VCO needs a voltage control input; this design is digitally controlled with binary select pins."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The source describes inverters inside a ring oscillator, not a standalone logic gate implementation."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "Flip-flops are internal building blocks of the divider chain, not the primary documented function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-generator",
+     "reason": "Produces an oscillator output and divided clock outputs."
+    },
+    {
+     "tag": "digital",
+     "reason": "not in canonical vocabulary"
+    }
+   ],
+   "notes": "Removed unsupported VCO, logic-gate, and flip-flop tags and corrected the summary's claim about a digital tag; summary now covers pin functions, configuration, and limits.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-divider",
+    "vco",
+    "logic-gate",
+    "flip-flop",
+    "wokwi"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-divider",
+    "wokwi",
+    "clock-generator"
+   ],
+   "summary_before": "Redco is a reconfigurable digitally controlled oscillator built from a five-inverter ring oscillator feeding a flip-flop clock divider. It can be used as a ring oscillator by shorting out0 back to the input, or as a clock divider and DCO selected by three binary control pins, with outputs on out0 and out1. The documentation explains the pin functions and configuration but the project is a Wokwi design with no tiles and no measured silicon results. No external hardware is specified.",
+   "summary": "Redco is a reconfigurable digitally controlled oscillator built from a five-inverter ring oscillator feeding a flip-flop clock divider. It can be used as a ring oscillator by shorting out0 to in0 and in4, or as a clock divider/DCO selected by three binary control pins, with outputs on out0 and out1. The documentation explains the pin functions and configuration; it is a Wokwi design with no tiles, no measured silicon results, and no external hardware specified. The frequency is described as 1/(5*inverter cell delay) for the ring oscillator case.",
+   "summary_changed": true
+  },
+  {
+   "key": "f3f0258d8eac",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "decoder",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "decoder",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This project converts 8 input signals into outputs for a 7-segment display using combinational logic. It is tested by setting each input individually to 1 while others are 0, and verifying the displayed digit, with all inputs high showing the dot. No external hardware is required. The documentation is brief but sufficient to understand the basic function.",
+   "summary": "This project converts 8 input signals into outputs for a 7-segment display using combinational logic. It is tested by setting each input individually to 1 while others are 0, and verifying the displayed digit, with all inputs high showing the dot. No external hardware is required. The documentation is brief but sufficient to understand the basic function.",
+   "summary_changed": false
+  },
+  {
+   "key": "6f2e59737324",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The source describes a simple code-match function, not a basic logic-gate implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed the unsupported logic-gate tag and corrected the summary's overclaim about documentation and test details.",
+   "tags_before": [
+    "sequence-detector",
+    "logic-gate",
+    "led",
+    "wokwi",
+    "education",
+    "puzzle"
+   ],
+   "tags": [
+    "sequence-detector",
+    "led",
+    "wokwi",
+    "education",
+    "puzzle"
+   ],
+   "summary_before": "This design acts as a secret code detector: it turns on an output when inputs 1, 2, 3, 4, and 8 are all active. It uses eight inputs and one output, which can drive an LED to indicate the correct combination. The documentation is minimal but sufficient to understand the basic function. External hardware needed includes an 8-input device (such as switches) and an output LED.",
+   "summary": "This design acts as a secret code detector: it turns on output 1 when inputs 1, 2, 3, 4, and 8 are all active. It uses eight inputs and one output, which can drive an LED to indicate the correct combination. The documentation is very thin but sufficient to understand the basic function, and no test procedure is provided beyond checking the output. External hardware needed includes an 8-input device (such as switches) and an output LED.",
+   "summary_changed": true
+  },
+  {
+   "key": "c44161a33863",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "microcontroller",
+     "reason": "The design is a full RISC-V SoC capable of booting Linux, not a small microcontroller-class device; the 'soc' tag already covers the integration."
+    }
+   ],
+   "add": [
+    {
+     "tag": "linux-soc",
+     "reason": "not in canonical vocabulary"
+    }
+   ],
+   "notes": "Removed redundant microcontroller tag and corrected the summary to avoid implying built-in flash or an onboard UART bridge.",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "uart",
+    "spi",
+    "qspi",
+    "memory",
+    "microcontroller"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "uart",
+    "spi",
+    "qspi",
+    "memory"
+   ],
+   "summary_before": "This is a 32-bit RISC-V IMA SoC capable of booting Linux, featuring external SPI flash and PSRAM, a UART, and a SPI peripheral. It is tested by building a system image and loading it into the SPI flash, then running at 30 MHz (max tested 34.5 MHz). External hardware includes a QSPI Pmod for flash and PSRAM, and a UART connection for communication. Notable for being a full Linux-capable SoC on a Tiny Tapeout chip.",
+   "summary": "This is a 32-bit RISC-V IMA SoC capable of booting Linux, featuring external SPI flash and PSRAM, a UART, and a SPI peripheral. It is tested by building a system image and loading it into the SPI flash, then running at 30 MHz (max tested 34.5 MHz). External hardware includes a QSPI Pmod for flash and PSRAM, plus UART over the demo board USB. It is a full Linux-capable SoC implemented in Verilog on a 8x2 tile Tiny Tapeout chip.",
+   "summary_changed": true
+  },
+  {
+   "key": "9923ad76165d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design is an oscillator with divider outputs, not a general-purpose clock generation circuit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed the overbroad clock-generator tag; simulation frequency kept as stated in the source.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "clock-divider",
+    "analog",
+    "transistor-level",
+    "silicon-art"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-divider",
+    "analog",
+    "transistor-level",
+    "silicon-art"
+   ],
+   "summary_before": "This design is a stylish ring oscillator built from 21 SkullFET inverters, generating a square wave with a simulated frequency of about 169.2 MHz. It is tested by connecting an oscilloscope to the divided outputs, as the full-speed outputs are too fast for GPIO pins. No external hardware is required beyond an oscilloscope. Notable for its use of SkullFET transistors and the inclusion of frequency dividers for observability.",
+   "summary": "This design is a stylish ring oscillator built from 21 SkullFET inverters, generating a square wave with a simulated frequency of about 169.2 MHz. It is tested by connecting an oscilloscope to one of the divided outputs, as the full-speed outputs are too fast for GPIO pins. No external hardware is required beyond an oscilloscope. Notable for its use of SkullFET transistors and the inclusion of frequency dividers for observability.",
+   "summary_changed": true
+  },
+  {
+   "key": "7142dc55eea2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation function is described; the design is a flip-flop test structure."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "The source does not state that standard cells are used; it is a SKY130 FF test structure."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is extremely sparse: 'See design data' and no test procedure."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator and standard-cell tags; added insufficient-doc and corrected the summary to match the sparse documentation.",
+   "tags_before": [
+    "flip-flop",
+    "analog",
+    "transistor-level",
+    "standard-cell",
+    "factory-test",
+    "clock-generator"
+   ],
+   "tags": [
+    "flip-flop",
+    "analog",
+    "transistor-level",
+    "factory-test",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a test structure for a flip-flop implemented in the SKY130 process, intended for analog characterization. It is not designed for the standard demo board but requires a dedicated test platform with FPGA hardware to drive control signals with precise timing. The documentation is minimal, stating only that design data should be consulted and that no test procedure has been written yet. The exact testing platform is still to be determined.",
+   "summary": "This is a test structure for a flip-flop implemented in the SKY130 process, intended as an analog characterization vehicle. It is not designed for the standard demo board but requires a dedicated test platform with FPGA hardware to drive control signals with precise timing. The documentation is minimal, stating only that design data should be consulted and that no test procedure has been written yet. The exact testing platform is still to be determined.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "8971309b9600: reviewer added non-canonical tag 'digital'",
+  "c44161a33863: reviewer added non-canonical tag 'linux-soc'"
+ ],
+ "usage": {
+  "prompt_tokens": 6310,
+  "completion_tokens": 1406,
+  "total_tokens": 7716,
+  "cost": 0.0035802,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035802,
+   "upstream_inference_prompt_cost": 0.001893,
+   "upstream_inference_completions_cost": 0.0016872
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035802,
+ "elapsed_s": 7.4
+}

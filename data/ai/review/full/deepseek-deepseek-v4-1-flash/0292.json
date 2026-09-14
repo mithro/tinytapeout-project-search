@@ -1,0 +1,344 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e89b5cfee3ea",
+  "cf15c1fa5537",
+  "f96f42e8917d",
+  "74d8d6798e1f",
+  "8bd9ef76b16c",
+  "aed2c899a3b5"
+ ],
+ "results": [
+  {
+   "key": "e89b5cfee3ea",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design counts clock cycles; it does not generate a clock signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Already proposed, but the design explicitly drives six seven-segment displays."
+    },
+    {
+     "tag": "display",
+     "reason": "The chronometer output is shown on a six-digit display."
+    },
+    {
+     "tag": "counter",
+     "reason": "The core function is counting minutes, seconds and hundredths."
+    },
+    {
+     "tag": "timer",
+     "reason": "The design is a chronometer/timer."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The source language is Verilog."
+    }
+   ],
+   "notes": "Removed clock-generator because the design counts clock cycles rather than generating a clock.",
+   "tags_before": [
+    "timer",
+    "7-segment",
+    "display",
+    "counter",
+    "clock-generator",
+    "verilog"
+   ],
+   "tags": [
+    "timer",
+    "7-segment",
+    "display",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 50 MHz chronometer that displays minutes, seconds and hundredths of a second across six seven-segment displays. A start button initialises or pauses the counter, and a reset button restarts it from zero. It requires six common-cathode seven-segment displays plus push buttons for the start and reset inputs, with the cathodes driven by the unidirectional outputs and the anodes by the bidirectional pins. The design is a straightforward digital clock application with no reported silicon test results.",
+   "summary": "This project implements a 50 MHz chronometer that displays minutes, seconds and hundredths of a second across six seven-segment displays. A start button initialises or pauses the counter, and a reset button restarts it from zero. It requires six common-cathode seven-segment displays plus push buttons for the start and reset inputs, with the cathodes driven by the unidirectional outputs and the anodes by the bidirectional pins. The design is a straightforward digital clock application with no reported silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "cf15c1fa5537",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The design is based on a template but is a complete name-display project, not a boilerplate submission."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Already proposed, but the design explicitly drives a seven-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "The output is a seven-segment display showing names."
+    },
+    {
+     "tag": "counter",
+     "reason": "A counter drives the one-letter-per-second update."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The design includes a configurable clock divider."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The source language is Verilog."
+    }
+   ],
+   "notes": "Removed template because the project is a complete name-display design, not a starter template.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "counter",
+    "clock-divider",
+    "template"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "clock-divider",
+    "verilog"
+   ],
+   "summary_before": "This design displays names on a 7-segment display, showing one letter per second by default. The top three input bits select which name is shown, while the lower five bits configure the clock divider speed, allowing a manual push-button to step the display. The bottom eight bits of the internal counter are output on the bidirectional pins. It is based on the 7-segment counter template project and is intended for simple visual demonstrations.",
+   "summary": "This design displays names on a 7-segment display, showing one letter per second by default. The top three input bits select which name is shown, while the lower five bits configure the clock divider speed, allowing a manual push-button to step the display. The bottom eight bits of the internal counter are output on the bidirectional pins. It is based on the 7-segment counter template project and is intended for simple visual demonstrations.",
+   "summary_changed": false
+  },
+  {
+   "key": "f96f42e8917d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a matrix multiplier, not an arithmetic logic unit."
+    },
+    {
+     "tag": "error-correction",
+     "reason": "It performs range checking and outputs zero on error, but does not implement error detection/correction coding."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Already proposed, but the core function is multiplication of 2x2 matrices."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "The module is a dedicated matrix-multiplication compute block."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The source explicitly describes a cocotb Python test script."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The source language is Verilog."
+    }
+   ],
+   "notes": "Removed alu and error-correction because the design is a matrix multiplier with range checking, not an ALU or error-correction block.",
+   "tags_before": [
+    "accelerator",
+    "multiplier",
+    "alu",
+    "error-correction",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "accelerator",
+    "multiplier",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This module multiplies two 2x2 matrices where each element is an unsigned 2-bit number, with inputs provided on 8-bit wires and outputs on uo_out and uio_out. It performs error checking to ensure each element is in the range [0,2], outputting zero if any element is out of range. The design includes a Verilog testbench and a cocotb Python test script that verify the multiplication against expected results. Testing can also be done on an FPGA or in simulation with waveform viewing.",
+   "summary": "This module multiplies two 2x2 matrices where each element is an unsigned 2-bit number, with inputs provided on 8-bit wires and outputs on uo_out and uio_out. It performs error checking to ensure each element is in the range [0,2], outputting zero if any element is out of range. The design includes a Verilog testbench and a cocotb Python test script that verify the multiplication against expected results. Testing can also be done on an FPGA or in simulation with waveform viewing.",
+   "summary_changed": false
+  },
+  {
+   "key": "74d8d6798e1f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a computer architecture implementation; the oscilloscope is only a suggested observation method."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Already proposed, but the SAP-1 is a simple computer architecture."
+    },
+    {
+     "tag": "alu",
+     "reason": "The architecture includes an adder and performs addition/subtraction."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The controller sequences six instruction stages."
+    },
+    {
+     "tag": "education",
+     "reason": "The SAP-1 is a well-known educational computer architecture."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The source language is Verilog."
+    }
+   ],
+   "notes": "Removed instrumentation because the oscilloscope is only a suggested observation method, not the design purpose.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "fsm",
+    "education",
+    "verilog",
+    "instrumentation"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "fsm",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This is an implementation of the SAP-1 simple-as-possible computer architecture, containing a program counter, registers, adder, memory, instruction register, bus, and controller. It has no external inputs and runs autonomously from the clock, performing only addition and subtraction on 8-bit values. The bus output can currently only be observed with an oscilloscope, and the author suggests adding a 7-segment display controller as an enhancement. The design is based on the well-known Malvino and Brown architecture popularized by Ben Eater.",
+   "summary": "This is an implementation of the SAP-1 simple-as-possible computer architecture, containing a program counter, registers, adder, memory, instruction register, bus, and controller. It has no external inputs and runs autonomously from the clock, performing only addition and subtraction on 8-bit values. The bus output can currently only be observed with an oscilloscope, and the author suggests adding a 7-segment display controller as an enhancement. The design is based on the well-known Malvino and Brown architecture popularized by Ben Eater.",
+   "summary_changed": false
+  },
+  {
+   "key": "8bd9ef76b16c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "The source language is Analog, not Verilog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "time-to-digital-converter",
+     "reason": "Already proposed, but the design is explicitly a TDC."
+    },
+    {
+     "tag": "analog",
+     "reason": "The source language is Analog and the design uses analog delay elements."
+    },
+    {
+     "tag": "delay-line",
+     "reason": "The design includes a variable fine/coarse delay line."
+    },
+    {
+     "tag": "phase-detector",
+     "reason": "The TDC measures phase difference between start and stop signals."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The circuit is a measurement/test structure for phase difference."
+    }
+   ],
+   "notes": "Removed verilog because the project language is Analog.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "analog",
+    "delay-line",
+    "phase-detector",
+    "instrumentation",
+    "verilog"
+   ],
+   "tags": [
+    "time-to-digital-converter",
+    "analog",
+    "delay-line",
+    "phase-detector",
+    "instrumentation"
+   ],
+   "summary_before": "This analog design implements a time-to-digital converter (TDC) with an 8-stage delay line to measure the phase difference between start and stop signals. It includes a variable delay line with fine (25 ps) and coarse (145 ps) steps to generate known phase differences for testing. The TDC achieves approximately 75 ps resolution in post-layout simulation. It requires external hardware such as a Raspberry Pi and level shifters to drive the analog and digital inputs; the design serves no practical purpose beyond testing the TDC circuit.",
+   "summary": "This analog design implements a time-to-digital converter (TDC) with an 8-stage delay line to measure the phase difference between start and stop signals. It includes a variable delay line with fine (25 ps) and coarse (145 ps) steps to generate known phase differences for testing. The TDC achieves approximately 75 ps resolution in post-layout simulation. It requires external hardware such as a Raspberry Pi and level shifters to drive the analog and digital inputs; the design serves no practical purpose beyond testing the TDC circuit.",
+   "summary_changed": false
+  },
+  {
+   "key": "aed2c899a3b5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated 4x4 multiplier, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Already proposed, but the design is explicitly a 4x4 array multiplier."
+    },
+    {
+     "tag": "adder",
+     "reason": "The multiplier is built from full adders."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The multiplier is a purely combinational array of AND gates and full adders."
+    },
+    {
+     "tag": "education",
+     "reason": "The description says it is based on a previous lab, indicating a student exercise."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The source language is Verilog."
+    }
+   ],
+   "notes": "Removed alu because the design is a dedicated multiplier, not an arithmetic logic unit.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "adder",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design implements a 4x4 array multiplier that takes two 4-bit unsigned numbers and outputs their 8-bit product. It uses a structural approach with full adders and AND gates, and is intended to be tested with switches for inputs and LEDs for outputs on the TinyTapeout demo board. The project appears to be a student lab exercise, with the description noting it is based on a previous lab. Testing involves setting switches and verifying the LED output matches the expected product.",
+   "summary": "This Verilog design implements a 4x4 array multiplier that takes two 4-bit unsigned numbers and outputs their 8-bit product. It uses a structural approach with full adders and AND gates, and is intended to be tested with switches for inputs and LEDs for outputs on the TinyTapeout demo board. The project appears to be a student lab exercise, with the description noting it is based on a previous lab. Testing involves setting switches and verifying the LED output matches the expected product.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8234,
+  "completion_tokens": 1994,
+  "total_tokens": 10228,
+  "cost": 0.004863,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004863,
+   "upstream_inference_prompt_cost": 0.0024702,
+   "upstream_inference_completions_cost": 0.0023928
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004863,
+ "elapsed_s": 42.8
+}

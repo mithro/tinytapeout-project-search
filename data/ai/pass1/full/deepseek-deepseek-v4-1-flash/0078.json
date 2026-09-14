@@ -1,0 +1,188 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ed3bef9a77cc",
+  "b88d0978a4e9",
+  "87a68662c790",
+  "121a300daada",
+  "a14cb40f73f1",
+  "907ba02d2ef7",
+  "000e3213309f",
+  "4ccee358966f",
+  "eb136b54650a",
+  "0f312ebc53dc"
+ ],
+ "results": [
+  {
+   "key": "ed3bef9a77cc",
+   "tags": [
+    "temperature-sensor",
+    "spi",
+    "7-segment",
+    "sensor",
+    "display",
+    "lm70",
+    "serial"
+   ],
+   "summary": "This design reads 8-bit temperature data from an LM70 sensor over SPI and displays it on a 7-segment display. It can be tested without external hardware by using an RP2040 to emulate the sensor and provide the clock, with modes to show MSB or LSB. External hardware includes an LM70 sensor and a 7-segment display. Silicon testing confirmed it works when connected to a real LM70 sensor.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b88d0978a4e9",
+   "tags": [
+    "cpu",
+    "simplez",
+    "serial",
+    "uart",
+    "education",
+    "led"
+   ],
+   "summary": "Simplez is a small CPU design implemented in Verilog. It communicates via serial input from a keyboard and serial output to a display, with eight LEDs for status. The documentation is minimal, consisting only of links to an external GitHub repository, so details of its operation and testing are not provided here. External hardware likely includes a keyboard, display, and LEDs.",
+   "confidence": "medium",
+   "insufficient_docs": true
+  },
+  {
+   "key": "87a68662c790",
+   "tags": [
+    "audio",
+    "pwm",
+    "sound",
+    "music",
+    "synthesizer",
+    "piezo"
+   ],
+   "summary": "This design plays a prelude.wav file in an endless loop using a sine lookup table with varying frequency, output as a PWM signal. It is intended to be tested by connecting a piezo speaker to the PWM pins and listening. External hardware required is a piezo. A silicon test report indicates the design is broken, with no output observed.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "121a300daada",
+   "tags": [
+    "spi",
+    "pwm",
+    "gpio",
+    "register-file",
+    "protocol",
+    "test"
+   ],
+   "summary": "This design is an SPI-controlled PWM generator and 8-bit IO controller with two SPI interfaces for testing. It contains eight registers that configure PWM on-time and cycle, and eight IO pins that can be set as inputs or outputs. Testing involves reading an ID register and writing/reading back registers via SPI. External hardware needed is an SPI master device.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a14cb40f73f1",
+   "tags": [
+    "pwm",
+    "led",
+    "i2c",
+    "display",
+    "7-segment",
+    "audio"
+   ],
+   "summary": "This is an 8-channel PWM controller for LED brightness, using an exponential (X^3) duty cycle curve to provide linear perceived brightness with 8-bit input. It can be controlled either by the ui inputs or via I2C, with the first I2C write switching to I2C mode. Testing can be done by adjusting DIP switches to see different brightness levels on a 7-segment LED display. External hardware includes LEDs and optionally an I2C master.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "907ba02d2ef7",
+   "tags": [
+    "register-file",
+    "shift-register",
+    "serial",
+    "education",
+    "state-machine",
+    "counter"
+   ],
+   "summary": "This project implements a serial-in serial-out shift register with four internal registers and selectable left or right shifting. It has inputs for data, clock, reset, enable, and shift direction, and a single data output. Testing involves applying clock edges with reset low and enable high, and observing the shifted data. External hardware may include a signal generator for clock and buttons or switches for inputs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "000e3213309f",
+   "tags": [
+    "motor-control",
+    "stepper",
+    "state-machine",
+    "robotics",
+    "industrial",
+    "gpio"
+   ],
+   "summary": "This design is a state machine that controls a bipolar stepper motor with four output bits, plus enable and direction inputs. It requires an external clock to set the step rate. Testing involves verifying the output waveforms for enable and direction. Silicon testing confirmed correct operation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4ccee358966f",
+   "tags": [
+    "audio",
+    "pwm",
+    "synthesizer",
+    "music",
+    "sound",
+    "adsr",
+    "spinalhdl"
+   ],
+   "summary": "AudioChip_V2 generates two audio waveforms as PWM outputs, intended for use in modular synthesizers. It has 12 frequency input bits and ADSR control inputs to alter the waveforms. Testing requires attaching low-pass filters to the PWM outputs to hear analog audio. External hardware includes low-pass filters.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "eb136b54650a",
+   "tags": [
+    "timer",
+    "counter",
+    "7-segment",
+    "display",
+    "bcd",
+    "debounce",
+    "clock"
+   ],
+   "summary": "This design implements a timer and counter with a 4-digit 7-segment display interface, controlled by start, stop, and mode buttons. It includes debouncing logic and can operate in manual or automatic modes. Testing can be done via simulation or with external hardware such as a 4-digit 7-segment display, transistors, and buttons. The design is documented in detail.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0f312ebc53dc",
+   "tags": [
+    "vga",
+    "video",
+    "shader",
+    "spi",
+    "graphics",
+    "animation",
+    "display"
+   ],
+   "summary": "Tiny Shader is a programmable shader unit that executes a 10-instruction shader per pixel to generate images and animations, output via VGA at 640x480 with an internal resolution of 64x48. It includes an SPI interface for loading new shaders and setting a user register. Testing requires a Tiny VGA Pmod and optionally an SPI controller. Silicon testing confirmed all features work, including custom shader upload and animation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5515,
+  "completion_tokens": 1524,
+  "total_tokens": 7039,
+  "cost": 0.004354125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004354125,
+   "upstream_inference_prompt_cost": 0.002068125,
+   "upstream_inference_completions_cost": 0.002286
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004354125,
+ "elapsed_s": 5.3
+}

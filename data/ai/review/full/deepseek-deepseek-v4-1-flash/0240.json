@@ -1,0 +1,228 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e579858bb01f",
+  "de133818bb5d",
+  "b6dffe064544",
+  "103f613221f0",
+  "6c8603e83561",
+  "2d7c8ae64fc7"
+ ],
+ "results": [
+  {
+   "key": "e579858bb01f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "The design is a cascaded gate chain with enable controls and taps, not a purely combinational logic design."
+    },
+    {
+     "tag": "delay-line",
+     "reason": "The source describes a failed ring oscillator and gate-delay measurement taps, not a programmable or fixed signal delay line."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The source explicitly states the original ring oscillator purpose was not achieved."
+    }
+   ],
+   "notes": "Removed unsupported combinational and delay-line tags; added incomplete because the stated ring oscillator goal was not achieved.",
+   "tags_before": [
+    "characterization",
+    "delay-line",
+    "education",
+    "verilog",
+    "combinational",
+    "ring-oscillator"
+   ],
+   "tags": [
+    "characterization",
+    "education",
+    "verilog",
+    "ring-oscillator",
+    "incomplete"
+   ],
+   "summary_before": "This project attempts to build a cascaded NOT-gate ring oscillator for delay measurements, but the synthesizer does not support combinatorial feedback and collapsed the cascaded inverters into buffers, so the original ring oscillator goal was not achieved. The two enable inputs control signal propagation through the gate chain to three output taps representing different gate stages. A square wave can be applied to the inputs and an oscilloscope used to measure stage delays for comparison with theoretical calculations. The design is presented as an educational experiment about synthesis limitations rather than a working oscillator.",
+   "summary": "This project attempts to build a cascaded NOT-gate ring oscillator for delay measurements, but the synthesizer does not support combinatorial feedback and collapsed the cascaded inverters into buffers, so the original ring oscillator goal was not achieved. The two enable inputs control signal propagation through the gate chain to three output taps representing different gate stages. A square wave can be applied to the inputs and an oscilloscope used to measure stage delays for comparison with theoretical calculations. The design is presented as an educational experiment about synthesis limitations rather than a working oscillator.",
+   "summary_changed": false
+  },
+  {
+   "key": "de133818bb5d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The JTAG state machine is part of the JTAG interface, but the design is not primarily an FSM implementation."
+    },
+    {
+     "tag": "bist",
+     "reason": "The source describes boundary scan and JTAG test logic, not built-in self-test circuitry."
+    }
+   ],
+   "add": [],
+   "notes": "Removed fsm and bist tags that are not supported as primary design characteristics.",
+   "tags_before": [
+    "jtag",
+    "scan-chain",
+    "fsm",
+    "gpio",
+    "verilog",
+    "cocotb",
+    "bist"
+   ],
+   "tags": [
+    "jtag",
+    "scan-chain",
+    "gpio",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This design implements JTAG test logic with four test data registers: an 8-bit boundary scan register between the fixed input and output pins, plus blink_in, blink_out and blink_dir registers for the two bidirectional pins. The JTAG TCK, TMS, TDI, TRSTn and TDO signals are routed through user IO, and the default clock and reset are left unconnected because JTAG supplies its own. It is controlled by resetting the core, shifting an instruction into the IR to select a TDR, then shifting data bits into that register. Testing requires a JTAG debug adapter, and the cocotb simulation includes helper routines for driving the JTAG state machine.",
+   "summary": "This design implements JTAG test logic with four test data registers: an 8-bit boundary scan register between the fixed input and output pins, plus blink_in, blink_out and blink_dir registers for the two bidirectional pins. The JTAG TCK, TMS, TDI, TRSTn and TDO signals are routed through user IO, and the default clock and reset are left unconnected because JTAG supplies its own. It is controlled by resetting the core, shifting an instruction into the IR to select a TDR, then shifting data bits into that register. Testing requires a JTAG debug adapter, and the cocotb simulation includes helper routines for driving the JTAG state machine.",
+   "summary_changed": false
+  },
+  {
+   "key": "b6dffe064544",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spinalhdl",
+     "reason": "The source says the design is generated with SpinalHDL, but the detected language is Verilog and the tag vocabulary requires notable HDL use; the Verilog tag is already present."
+    }
+   ],
+   "add": [],
+   "notes": "Removed spinalhdl tag because the detected language is Verilog and the source only mentions SpinalHDL as a generator.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "pipeline",
+    "adder",
+    "spinalhdl",
+    "verilog"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "pipeline",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "PiMAC is a pipelined multiply-and-accumulate unit that computes a*b+c for 4-bit unsigned inputs. It uses a classic shift-and-add multiplication method, with the partial products computed across pipeline stages and the result available after a latency of three clock cycles. The design is generated with SpinalHDL and exposes a, b, and c on input pins and the 8-bit result on output pins. It is a small arithmetic building block intended for educational or integration purposes, with no external hardware required beyond the digital interface.",
+   "summary": "PiMAC is a pipelined multiply-and-accumulate unit that computes a*b+c for 4-bit unsigned inputs. It uses a classic shift-and-add multiplication method, with the partial products computed across pipeline stages and the result available after a latency of three clock cycles. The design is generated with SpinalHDL and exposes a, b, and c on input pins and the 8-bit result on output pins. It is a small arithmetic building block intended for educational or integration purposes, with no external hardware required beyond the digital interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "103f613221f0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "keypad",
+    "7-segment",
+    "pmod",
+    "decoder",
+    "verilog"
+   ],
+   "tags": [
+    "keypad",
+    "7-segment",
+    "pmod",
+    "decoder",
+    "verilog"
+   ],
+   "summary_before": "This project is a keypad controller that scans a 4x4 keypad by driving columns and reading rows to detect key presses. The detected key is decoded and displayed on a single 7-segment display. The design operates at a low clock frequency of 1000 Hz and requires an external keypad PMOD connected to the bidirectional pins. It is a simple interface project intended for experimenting with keypad input and display output.",
+   "summary": "This project is a keypad controller that scans a 4x4 keypad by driving columns and reading rows to detect key presses. The detected key is decoded and displayed on a single 7-segment display. The design operates at a low clock frequency of 1000 Hz and requires an external keypad PMOD connected to the bidirectional pins. It is a simple interface project intended for experimenting with keypad input and display output.",
+   "summary_changed": false
+  },
+  {
+   "key": "6c8603e83561",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sequencer",
+     "reason": "The design is a memory game, not a general pattern or event sequencing circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puzzle",
+     "reason": "The source describes a memory game where the player repeats sequences, which fits puzzle game logic."
+    }
+   ],
+   "notes": "Removed sequencer and added puzzle to better match the memory game described in the source.",
+   "tags_before": [
+    "game",
+    "button",
+    "led",
+    "sequencer",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "button",
+    "led",
+    "verilog",
+    "puzzle"
+   ],
+   "summary_before": "This design implements a memory game similar to Simon, where the device plays a sequence of button-lamp colors and the player must repeat the sequence by pressing corresponding buttons. The game keeps a high score until power is lost or reset, and ends when the player makes a mistake, waits too long, or reaches 32 moves. It requires four buttons and four lamps connected to the specified pins, plus a start button. The design is notable for its simple implementation of a classic game with high-score tracking and visual feedback.",
+   "summary": "This design implements a memory game similar to Simon, where the device plays a sequence of button-lamp colors and the player must repeat the sequence by pressing corresponding buttons. The game keeps a high score until power is lost or reset, and ends when the player makes a mistake, waits too long, or reaches 32 moves. It requires four buttons and four lamps connected to the specified pins, plus a start button. The design is notable for its simple implementation of a classic game with high-score tracking and visual feedback.",
+   "summary_changed": false
+  },
+  {
+   "key": "2d7c8ae64fc7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "i2c",
+    "education",
+    "register-file",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "cpu",
+    "i2c",
+    "education",
+    "register-file",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an 8-bit CPU based on Ben Eater's breadboard CPU design, featuring a built-in debugger accessible via I2C at address 0x2A. The debugger allows pausing the CPU, loading programs, and inspecting or modifying registers. The CPU has 8 input and 8 output pins for external data, and it can be halted via a dedicated pin. Silicon testing confirmed it works when connected to a BusPirate over I2C.",
+   "summary": "This is an 8-bit CPU based on Ben Eater's breadboard CPU design, featuring a built-in debugger accessible via I2C at address 0x2A. The debugger allows pausing the CPU, loading programs, and inspecting or modifying registers. The CPU has 8 input and 8 output pins for external data, and it can be halted via a dedicated pin. Silicon testing confirmed it works when connected to a BusPirate over I2C.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6933,
+  "completion_tokens": 1364,
+  "total_tokens": 8297,
+  "cost": 0.002205,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002205,
+   "upstream_inference_prompt_cost": 0.0013866,
+   "upstream_inference_completions_cost": 0.0008184
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002205,
+ "elapsed_s": 64.5
+}

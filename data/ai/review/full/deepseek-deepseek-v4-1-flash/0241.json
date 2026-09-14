@@ -1,0 +1,227 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "77ea751ae213",
+  "a3b89dbe1dff",
+  "0a209c5f3947",
+  "161b01a74919",
+  "45e89afb2260",
+  "dc6b5befa495"
+ ],
+ "results": [
+  {
+   "key": "77ea751ae213",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "i2c",
+    "education",
+    "register-file",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "cpu",
+    "i2c",
+    "education",
+    "register-file",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an 8-bit CPU based on Ben Eater's breadboard CPU design, featuring a built-in debugger accessible via I2C at address 0x2A. The debugger allows pausing the CPU, loading programs, and inspecting or modifying registers. The CPU has 8 input and 8 output pins for external data, and it can be halted via a dedicated pin. Silicon testing confirmed it works when connected to a BusPirate over I2C.",
+   "summary": "This is an 8-bit CPU based on Ben Eater's breadboard CPU design, featuring a built-in debugger accessible via I2C at address 0x2A. The debugger allows pausing the CPU, loading programs, and inspecting or modifying registers. The CPU has 8 input and 8 output pins for external data, and it can be halted via a dedicated pin. Silicon testing confirmed it works when connected to a BusPirate over I2C.",
+   "summary_changed": false
+  },
+  {
+   "key": "a3b89dbe1dff",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design is a matrix multiplication block for ternary-weight LLMs; the source does not describe an artificial neural network, only a multiply-accumulate matrix multiplication accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "The design is a matrix multiplication block and includes a systolic array, so a multiply-accumulate unit is directly supported by the source."
+    }
+   ],
+   "notes": "Removed neural-network because a matrix multiplication block is not a generic artificial neural network; added the more specific mac-unit.",
+   "tags_before": [
+    "accelerator",
+    "neural-network",
+    "machine-learning",
+    "systolic-array",
+    "verilog"
+   ],
+   "tags": [
+    "accelerator",
+    "machine-learning",
+    "systolic-array",
+    "verilog",
+    "mac-unit"
+   ],
+   "summary_before": "This design implements a matrix multiplication accelerator for ternary (1.58-bit) weights and 8-bit activations, targeting LLM inference. It uses a systolic array architecture and accepts packed weight data on input pins and activation data on bidirectional pins. Results are output on 8 output pins, and an enable pin strobes the operation. An external microcontroller is required to feed data and retrieve results.",
+   "summary": "This design implements a matrix multiplication accelerator for ternary (1.58-bit) weights and 8-bit activations, targeting LLM inference. It uses a systolic array architecture and accepts packed weight data on input pins and activation data on bidirectional pins. Results are output on 8 output pins, and an enable pin strobes the operation. An external microcontroller is required to feed data and retrieve results.",
+   "summary_changed": false
+  },
+  {
+   "key": "0a209c5f3947",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The source presents an analog current comparator with summations of digital pins; it does not describe an artificial neural network."
+    },
+    {
+     "tag": "neuromorphic",
+     "reason": "The source does not describe brain-inspired neuromorphic computing hardware."
+    }
+   ],
+   "add": [
+    {
+     "tag": "comparator-analog",
+     "reason": "The project is explicitly an analog current comparator."
+    }
+   ],
+   "notes": "Removed neural-network and neuromorphic because the comparator is not an ANN or neuromorphic system; added the canonical comparator-analog tag.",
+   "tags_before": [
+    "comparator",
+    "analog",
+    "mixed-signal",
+    "neural-network",
+    "neuromorphic"
+   ],
+   "tags": [
+    "comparator",
+    "analog",
+    "mixed-signal",
+    "comparator-analog"
+   ],
+   "summary_before": "This analog design implements a current comparator that compares two currents formed by summing eight digital inputs each. The excitatory and inhibitory currents are set via input and bidirectional pins, and the comparator output is an analog voltage representing a sigmoid-like function. It includes debug analog pins for monitoring internal signals. Testing requires a multimeter to measure the output voltage, and the design is intended for experimentation with analog neural network primitives.",
+   "summary": "This analog design implements a current comparator that compares two currents formed by summing eight digital inputs each. The excitatory and inhibitory currents are set via input and bidirectional pins, and the comparator output is an analog voltage representing a sigmoid-like function. It includes debug analog pins for monitoring internal signals. Testing requires a multimeter to measure the output voltage, and the design is intended for experimentation with analog neural network primitives.",
+   "summary_changed": false
+  },
+  {
+   "key": "161b01a74919",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "arbiter",
+     "reason": "The source describes consensus voting on redundant microcontroller votes, not a bus or resource arbitration function."
+    },
+    {
+     "tag": "error-correction",
+     "reason": "No error detection or correction coding is described; the design performs majority/vote consensus, not ECC."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the source only describes threshold-configured voting logic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "industrial",
+     "reason": "The source frames the design for safety-critical hardware control, which is an industrial control application."
+    }
+   ],
+   "notes": "Removed arbiter, error-correction and fsm because the source describes configurable consensus voting, not those specific hardware functions; added industrial for the safety-critical hardware application.",
+   "tags_before": [
+    "arbiter",
+    "error-correction",
+    "automotive",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "automotive",
+    "verilog",
+    "industrial"
+   ],
+   "summary_before": "This Verilog design implements modified-consensus voting for redundant microcontrollers, treating each of the eight inputs as a vote where 1 means fail and 0 means pass. The number of active voters and the failure threshold are configurable, so a system can, for example, fail when three of eight voters report a fault. It is aimed at safety-critical hardware where redundant controllers guard against single-point faults. Verification is done through unit tests run with make in the test subfolder, and no external hardware is described.",
+   "summary": "This Verilog design implements modified-consensus voting for redundant microcontrollers, treating each of the eight inputs as a vote where 1 means fail and 0 means pass. The number of active voters and the failure threshold are configurable, so a system can, for example, fail when three of eight voters report a fault. It is aimed at safety-critical hardware where redundant controllers guard against single-point faults. Verification is done through unit tests run with make in the test subfolder, and no external hardware is described.",
+   "summary_changed": false
+  },
+  {
+   "key": "45e89afb2260",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "power-management",
+    "modulator",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "power-management",
+    "modulator",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design generates phase-shifted PWM signals for controlling two PMOS and two NMOS transistors in a power converter, with configurable duty cycles and dead time to prevent cross-conduction. It includes a shift register for serial control, internal generation of phase-shifted triangular waveforms, and output multiplexing. The design operates at a 1000 Hz clock and requires no external hardware. Testing involves verifying the PWM outputs against the input duty cycles and control signals.",
+   "summary": "This Verilog design generates phase-shifted PWM signals for controlling two PMOS and two NMOS transistors in a power converter, with configurable duty cycles and dead time to prevent cross-conduction. It includes a shift register for serial control, internal generation of phase-shifted triangular waveforms, and output multiplexing. The design operates at a 1000 Hz clock and requires no external hardware. Testing involves verifying the PWM outputs against the input duty cycles and control signals.",
+   "summary_changed": false
+  },
+  {
+   "key": "dc6b5befa495",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pattern-generator",
+    "vga",
+    "video",
+    "display",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "pattern-generator",
+    "vga",
+    "video",
+    "display",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design generates a checkers pattern on a VGA screen. It outputs RGB and sync signals compatible with the Tiny VGA pinout. The design requires a TinyTapeout VGA PMOD and a VGA monitor for testing. Silicon test reports indicate that it works and produces a pattern similar to the default checkers from vga-playground.com, with a noted transparency effect.",
+   "summary": "This design generates a checkers pattern on a VGA screen. It outputs RGB and sync signals compatible with the Tiny VGA pinout. The design requires a TinyTapeout VGA PMOD and a VGA monitor for testing. Silicon test reports indicate that it works and produces a pattern similar to the default checkers from vga-playground.com, with a noted transparency effect.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6174,
+  "completion_tokens": 1296,
+  "total_tokens": 7470,
+  "cost": 0.0034074,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034074,
+   "upstream_inference_prompt_cost": 0.0018522,
+   "upstream_inference_completions_cost": 0.0015552
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034074,
+ "elapsed_s": 6.1
+}

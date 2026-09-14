@@ -1,0 +1,194 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "32f9b2e02550",
+  "05cec3960674",
+  "75f6711498bc",
+  "9ede4e2ecb97",
+  "700f775049d9",
+  "c33ae664db90",
+  "ae8f80432d56",
+  "14ca0b7c2823",
+  "c0a4dff82e00",
+  "3e79613524a6"
+ ],
+ "results": [
+  {
+   "key": "32f9b2e02550",
+   "tags": [
+    "i2c",
+    "hash",
+    "fnv-1a",
+    "leading-zero-count",
+    "hyperloglog",
+    "peripheral",
+    "arduino"
+   ],
+   "summary": "This design implements two I2C peripherals: a 32-bit FNV-1a hash unit and a leading-zero counter, plus two constant-byte generators. Bytes are written over I2C and results are read back, with each read resetting the hash. It is tested with an Arduino I2C master using known input/output pairs. The design is notable for packaging small arithmetic and hashing functions behind a standard I2C Pmod interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "05cec3960674",
+   "tags": [
+    "i2c",
+    "register-file",
+    "analog",
+    "peripheral",
+    "configuration",
+    "asynchronous"
+   ],
+   "summary": "This block is an asynchronous I2C slave that exposes a register file, intended to configure analog blocks on the same chip. An I2C master writes and reads words to the registers, and an LED is listed as external hardware for testing. The documentation is very brief and does not describe the register map or address. The design is notable for providing a reusable configuration interface for analog circuitry.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "75f6711498bc",
+   "tags": [
+    "i2s",
+    "pwm",
+    "pdm",
+    "audio",
+    "beamforming",
+    "microphone",
+    "delay"
+   ],
+   "summary": "This design converts 8-bit I2S/PDM microphone input into PWM output, with eight PDM microphone channels and a beamformed PCM output. Pin names indicate a bit clock, LR clock, microphone clock, per-microphone PCM outputs, and a 5-bit delay select for beamforming. The documentation is essentially placeholder text, so the actual signal processing and configuration are not described. External hardware needed includes microphones, a clock generator, and an I2S receiver.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "9ede4e2ecb97",
+   "tags": [
+    "washing-machine",
+    "microprocessor",
+    "controller",
+    "systemverilog",
+    "dual-mode",
+    "lipsi"
+   ],
+   "summary": "This project is described as a dual-mode washing machine controller with a LiPSi microprocessor and a standalone controller selected by a pin. The documentation states it is not meant for submission and gives no functional details, test procedure, or external hardware. Pin names are generic and provide no additional information. As a result, the design cannot be evaluated from the available documentation.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "700f775049d9",
+   "tags": [
+    "synthesizer",
+    "audio",
+    "spi",
+    "adsr",
+    "iir-filter",
+    "delta-sigma",
+    "music",
+    "education"
+   ],
+   "summary": "This is a digital saw-wave synthesizer with a programmable pulse generator, ADSR amplitude modulation, a one-pole IIR filter, and a first-order delta-sigma audio output. Parameters are set over an SPI slave interface, and a trigger input starts and stops notes; a VST/CLAP plugin generates the SPI commands. It is an educational design that deliberately mirrors the audio pipeline structurally in hardware, and it requires an external lowpass filter, button Pmod, audio Pmod, and SPI master. Testing uses a cocotb testbench that writes audio to a file and compares against a golden reference.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c33ae664db90",
+   "tags": [
+    "7-segment",
+    "lfsr",
+    "counter",
+    "display",
+    "prng",
+    "test"
+   ],
+   "summary": "This design drives a 7-segment display from a counter whose period is either fixed or pseudo-random, selected by an input pin. A second input chooses between a hexadecimal sequence and a fixed text string, and the low 8 bits of a 24-bit counter are exposed on the bidirectional pins. It is tested on the Tiny Tapeout evaluation board by observing the display and changing the two select inputs. The design is notable mainly as a simple display and LFSR demonstration.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ae8f80432d56",
+   "tags": [
+    "synthesizer",
+    "audio",
+    "spi",
+    "adsr",
+    "iir-filter",
+    "delta-sigma",
+    "music",
+    "education"
+   ],
+   "summary": "This is a digital synthesizer with a programmable pulse-wave generator, ADSR amplitude modulation, a one-pole IIR filter, and a first-order delta-sigma audio output. It is controlled through an SPI slave interface and a trigger input, with a VST/CLAP plugin available to generate SPI commands from a DAW. The design is educational and intentionally maps the audio pipeline directly into hardware, requiring an external lowpass filter, button Pmod, audio Pmod, and SPI master. Testing uses a cocotb testbench that captures audio to a file and compares against a golden reference.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "14ca0b7c2823",
+   "tags": [
+    "audio",
+    "synthesizer",
+    "music",
+    "square-wave",
+    "tremolo",
+    "7-segment",
+    "led",
+    "education"
+   ],
+   "summary": "This is a small square-wave tone generator that produces 16 notes across 4 octaves with an optional tremolo effect. Note and octave are selected by input pins, an enable pin gates the tone, and seven outputs drive LEDs as a simple visualizer while the audio comes from the eighth output. It requires an external RC low-pass filter, a DC blocking capacitor, and a speaker or headphones, and it is intended to be controlled from a Pi Pico or a small keyboard. The documentation is informal and notes that the project was completed under time pressure.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c0a4dff82e00",
+   "tags": [
+    "multiplier",
+    "arithmetic",
+    "serial",
+    "state-machine",
+    "education",
+    "area-efficient"
+   ],
+   "summary": "This design is a 3-bit unsigned multiplier that trades speed for area by streaming operands and results over multiple clock cycles. A start signal begins the operation, the product appears after 18 cycles, and a valid output indicates when the result is ready. It can be driven from the Tiny Tapeout motherboard web interface or with input/output Pmods. The design is notable for its explicit multi-cycle streaming behavior and is likely an educational exercise.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3e79613524a6",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "uart",
+    "jtag",
+    "bootloader",
+    "pwm",
+    "sram",
+    "serial"
+   ],
+   "summary": "This project is a RISC-V CPU with a serial port, JTAG interface, PWM output, and GPIO, but it requires external SRAM and address latches for memory. A bootloader allows programs to be loaded over the serial port at 115200 bps, and a simple test is to send an 'L' and receive an 'L' back. More complete testing needs an external memory board attached to the Pmod connectors, and the JTAG port can also be used. The design is notable for fitting a CPU with a bootloader and debug interface into a small Tiny Tapeout tile budget.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5155,
+  "completion_tokens": 1624,
+  "total_tokens": 6779,
+  "cost": 0.00202915,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 830,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00202915,
+   "upstream_inference_prompt_cost": 0.00095731,
+   "upstream_inference_completions_cost": 0.00107184
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00202915,
+ "elapsed_s": 23.4
+}

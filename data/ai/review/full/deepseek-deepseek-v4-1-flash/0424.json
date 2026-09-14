@@ -1,0 +1,234 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2848d73318ad",
+  "e8475779d39e",
+  "be8611307820",
+  "cda7ed890a6e",
+  "46f9a97756f9",
+  "c405c98a2fa8"
+ ],
+ "results": [
+  {
+   "key": "2848d73318ad",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led-matrix",
+     "reason": "The display is a generic 8x8 pixel display driven by row/column pins, not a WS2812 or MAX7219 LED matrix; the canonical output tag 'display' is more accurate."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The design drives an external 8x8 pixel display via row and column pins."
+    },
+    {
+     "tag": "pong",
+     "reason": "The gameplay is a paddle-and-falling-object arcade game in the Pong style."
+    }
+   ],
+   "notes": "Replaced led-matrix with display and added pong to match the paddle-and-falling-object gameplay.",
+   "tags_before": [
+    "game",
+    "led-matrix",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "button",
+    "verilog",
+    "display",
+    "pong"
+   ],
+   "summary_before": "This project implements an arcade-style game called Drops, where the player moves a horizontal bar to catch falling droplets on an 8x8 pixel display. The game uses two mechanical buttons for left and right movement, and the player loses a life each time a drop is missed, with the game ending when all lives are lost. It requires an external 8x8 display and two buttons, and the documentation notes potential issues with drop direction and bar movement that may need pin adjustments. The design is a simple interactive game with basic hardware requirements.",
+   "summary": "This project implements an arcade-style game called Drops, where the player moves a horizontal bar to catch falling droplets on an 8x8 pixel display. The game uses two mechanical buttons for left and right movement, and the player loses a life each time a drop is missed, with the game ending when all lives are lost. It requires an external 8x8 display and two buttons, and the documentation notes potential issues with drop direction and bar movement that may need pin adjustments. The design is a simple interactive game with basic hardware requirements.",
+   "summary_changed": false
+  },
+  {
+   "key": "e8475779d39e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "comparator",
+    "transistor-level"
+   ],
+   "tags": [
+    "opamp",
+    "analog",
+    "comparator",
+    "transistor-level"
+   ],
+   "summary_before": "This is a simple FET operational amplifier designed in Sky130, intended to function as a high-impedance, high-gain amplifier block that can act as a comparator or, with feedback, as an inverting or non-inverting amplifier. It includes two testbenches for non-inverting and inverting amplifier configurations, and testing requires a power source, resistors, signal generator, and oscilloscope. The design has specific requirements: the input signal ground must connect to the ZREF pin, not the chip power ground, and the output will have a DC offset due to an internal virtual ground. Silicon test reports indicate partial success, with the author suggesting that easier connections for analog pins would facilitate testing.",
+   "summary": "This is a simple FET operational amplifier designed in Sky130, intended to function as a high-impedance, high-gain amplifier block that can act as a comparator or, with feedback, as an inverting or non-inverting amplifier. It includes two testbenches for non-inverting and inverting amplifier configurations, and testing requires a power source, resistors, signal generator, and oscilloscope. The design has specific requirements: the input signal ground must connect to the ZREF pin, not the chip power ground, and the output will have a DC offset due to an internal virtual ground. Silicon test reports indicate partial success, with the author suggesting that easier connections for analog pins would facilitate testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "be8611307820",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The built-in 256-byte demo ROM is a small internal ROM, not a generic memory block; the 'rom' tag is more precise."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rom",
+     "reason": "The design includes a built-in 256-byte demo ROM."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports confirm both built-in demos work."
+    },
+    {
+     "tag": "retro",
+     "reason": "The CPU was originally developed for the XCS10XL FPGA and is an 8-bit retro-style processor."
+    }
+   ],
+   "notes": "Swapped memory for rom, added silicon-tested and retro to match the documented ROM and silicon status.",
+   "tags_before": [
+    "cpu",
+    "vhdl",
+    "memory",
+    "synthesizer",
+    "music",
+    "register-file"
+   ],
+   "tags": [
+    "cpu",
+    "vhdl",
+    "synthesizer",
+    "music",
+    "register-file",
+    "rom",
+    "silicon-tested",
+    "retro"
+   ],
+   "summary_before": "The DJ8 is an 8-bit CPU implemented in VHDL, featuring an 8x8-bit register file, a 15-bit address bus, and an 8-bit data bus, with a built-in 256-byte demo ROM containing two demos. It can be tested using the internal demos by setting DIP switches at reset, and external hardware such as a speaker or parallel Flash ROM may be used for other applications. Silicon test reports confirm that both built-in demos work, including a bytebeat synthesizer and a 7-segment display demo. The design is notable for its compact instruction set and successful silicon validation.",
+   "summary": "The DJ8 is an 8-bit CPU implemented in VHDL, featuring an 8x8-bit register file, a 15-bit address bus, and an 8-bit data bus, with a built-in 256-byte demo ROM containing two demos. It can be tested using the internal demos by setting DIP switches at reset, and external hardware such as a speaker or parallel Flash ROM may be used for other applications. Silicon test reports confirm that both built-in demos work, including a bytebeat synthesizer and a 7-segment display demo. The design is notable for its compact instruction set and successful silicon validation.",
+   "summary_changed": false
+  },
+  {
+   "key": "cda7ed890a6e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dac",
+    "analog",
+    "current-mirror",
+    "transistor-level"
+   ],
+   "tags": [
+    "dac",
+    "analog",
+    "current-mirror",
+    "transistor-level"
+   ],
+   "summary_before": "This is an 8-bit current-steering digital-to-analog converter (IDAC) based on a chain of cells that divide current by two, with each cell optionally sourcing current to the output. It is tested by setting the digital inputs to control the output current, with a reference voltage applied to set the full-scale current, and observing the current through an external resistor. External hardware includes a multimeter, potentiometer, and switches for setting inputs. Silicon test reports indicate the design is broken due to missing via2 connections, resulting in no current output.",
+   "summary": "This is an 8-bit current-steering digital-to-analog converter (IDAC) based on a chain of cells that divide current by two, with each cell optionally sourcing current to the output. It is tested by setting the digital inputs to control the output current, with a reference voltage applied to set the full-scale current, and observing the current through an external resistor. External hardware includes a multimeter, potentiometer, and switches for setting inputs. Silicon test reports indicate the design is broken due to missing via2 connections, resulting in no current output.",
+   "summary_changed": false
+  },
+  {
+   "key": "46f9a97756f9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "The design uses USBUART, BTN, and 8LD Pmod connectors."
+    },
+    {
+     "tag": "memory",
+     "reason": "Instruction and data memory are implemented as register files."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added pmod and memory based on the documented interfaces and register-file memories.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "uart",
+    "register-file",
+    "education"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "uart",
+    "register-file",
+    "pmod",
+    "memory"
+   ],
+   "summary_before": "This project implements a simplified RISC-V core that adheres to a subset of the RV32I ISA, with instruction and data memory implemented as small register files that are programmed via a UART interface. The core operates in two modes: PROGRAM mode, where the user sends a sync packet followed by up to 64 bytes of binary instructions, and DATA READ mode, where the user can read the contents of data memory. It requires external hardware such as a USBUART Pmod, and optionally a BTN Pmod and 8LD Pmod for reset and status indication. The design is notable for its UART-based programming and its use of TL-Verilog, with a template provided for custom processor designs.",
+   "summary": "This project implements a simplified RISC-V core that adheres to a subset of the RV32I ISA, with instruction and data memory implemented as small register files that are programmed via a UART interface. The core operates in two modes: PROGRAM mode, where the user sends a sync packet followed by up to 64 bytes of binary instructions, and DATA READ mode, where the user can read the contents of data memory. It requires external hardware such as a USBUART Pmod, and optionally a BTN Pmod and 8LD Pmod for reset and status indication. The design is notable for its UART-based programming and its use of TL-Verilog, with a template provided for custom processor designs.",
+   "summary_changed": false
+  },
+  {
+   "key": "c405c98a2fa8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "logic-gate",
+    "combinational",
+    "education",
+    "dip-switch",
+    "led"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "logic-gate",
+    "combinational",
+    "education",
+    "dip-switch",
+    "led"
+   ],
+   "summary_before": "Gate Guesser is a simple game where the user must deduce which logic gate connects each input to each output. The design contains one layer of combinational logic with 16 inputs and 8 outputs, each output being a specific logic function of one or two inputs. To play, the user connects switches to the inputs and LEDs to the outputs, then flips switches to observe the outputs and identify the gates. The solution is provided in the documentation as a spoiler.",
+   "summary": "Gate Guesser is a simple game where the user must deduce which logic gate connects each input to each output. The design contains one layer of combinational logic with 16 inputs and 8 outputs, each output being a specific logic function of one or two inputs. To play, the user connects switches to the inputs and LEDs to the outputs, then flips switches to observe the outputs and identify the gates. The solution is provided in the documentation as a spoiler.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8033,
+  "completion_tokens": 1497,
+  "total_tokens": 9530,
+  "cost": 0.005257875,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.005257875,
+   "upstream_inference_prompt_cost": 0.003012375,
+   "upstream_inference_completions_cost": 0.0022455
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.005257875,
+ "elapsed_s": 5.0
+}

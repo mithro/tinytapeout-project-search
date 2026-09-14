@@ -1,0 +1,209 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "c56459c778db",
+  "2c5ca7e5e477",
+  "baa9694c414f",
+  "8243a6ffe58e",
+  "746fb5ab9d22",
+  "eed310f2a082"
+ ],
+ "results": [
+  {
+   "key": "c56459c778db",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "The design is a voltage reference, not a temperature sensing interface; no temperature readout is provided."
+    }
+   ],
+   "add": [],
+   "notes": "Removed temperature-sensor: the block outputs a voltage reference, not a temperature sensing interface.",
+   "tags_before": [
+    "bandgap",
+    "voltage-reference",
+    "analog",
+    "temperature-sensor"
+   ],
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "analog"
+   ],
+   "summary_before": "This analog block generates a temperature-stable reference voltage of about 1.2 V using a pseudo-PTAT current generator with enable-gated startup. It is used by applying a 1.8 V supply and asserting the appropriate enable pins (ui[6] and ui[3]) to obtain the reference on ua[0]. Testing requires a voltmeter to measure the output and verify low temperature dependence. The design is notable for including a startup circuit that can be toggled if the bandgap fails to start.",
+   "summary": "This analog block generates a reference voltage of about 1.2 V using a pseudo-PTAT current generator with enable-gated startup. It is used by applying a 1.8 V supply and asserting the appropriate enable pins (ui[6] and ui[3]) to obtain the reference on ua[0]. Testing requires voltage measurement equipment to measure the output and verify low temperature dependence. The design includes a startup circuit that can be toggled if the bandgap fails to start.",
+   "summary_changed": true
+  },
+  {
+   "key": "2c5ca7e5e477",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "axi",
+    "register-file",
+    "systemverilog",
+    "communication"
+   ],
+   "tags": [
+    "axi",
+    "register-file",
+    "systemverilog",
+    "communication"
+   ],
+   "summary_before": "This SystemVerilog design implements an AXI4-Lite slave with a read-only ID register and 32 general-purpose registers, providing a 16-bit readback path on the bidirectional pins. It is used by driving the address, write/read requests, and data through the input and bidirectional pins, with read data appearing on the outputs. No external hardware is required for basic operation, though a host controller is needed to exercise the AXI4-Lite interface. The design serves as a demonstration of integrating a standard bus protocol into a Tiny Tapeout project.",
+   "summary": "This SystemVerilog design implements an AXI4-Lite slave with a read-only ID register and 32 general-purpose registers, providing a 16-bit readback path on the bidirectional pins. It is used by driving the address, write/read requests, and data through the input and bidirectional pins, with read data appearing on the outputs. No external hardware is required for basic operation, though a host controller is needed to exercise the AXI4-Lite interface. The design serves as a demonstration of integrating a standard bus protocol into a Tiny Tapeout project.",
+   "summary_changed": false
+  },
+  {
+   "key": "baa9694c414f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "education",
+    "communication",
+    "7-segment",
+    "button",
+    "shift-register",
+    "pmod",
+    "led"
+   ],
+   "tags": [
+    "education",
+    "communication",
+    "7-segment",
+    "button",
+    "shift-register",
+    "pmod",
+    "led"
+   ],
+   "summary_before": "This SystemVerilog design translates Morse code entered via a push button into characters A-Z and displays the most recent two characters on seven-segment displays through a Digilent Pmod SSD. Timing rules distinguish dits (1 s hold), dahs (3 s hold), letter ends (3 s release), and word ends (7 s release), with an external LED blinking at 1 Hz to help the user keep time. It requires a tactile switch, an LED, and the Pmod SSD, and includes testbenches for the counting and translation modules. The project is a straightforward educational Morse decoder with no silicon test results reported.",
+   "summary": "This SystemVerilog design translates Morse code entered via a push button into characters A-Z and displays the most recent two characters on seven-segment displays through a Digilent Pmod SSD. Timing rules distinguish dits (1 s hold), dahs (3 s hold), letter ends (3 s release), and word ends (7 s release), with an external LED blinking at 1 Hz to help the user keep time. It requires a tactile switch, an LED, and the Pmod SSD, and includes testbenches for the counting and translation modules. The project is a straightforward educational Morse decoder with no silicon test results reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "8243a6ffe58e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "robotics",
+     "reason": "The source describes motor and LED driving, not robotics control."
+    }
+   ],
+   "add": [
+    {
+     "tag": "driver",
+     "reason": "Provides high-side/low-side gate driver control outputs for half-bridge stages."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Targets motor and power-stage control applications typical of industrial control."
+    }
+   ],
+   "notes": "Removed robotics (no robotics control described); added driver and industrial for the half-bridge gate-drive and motor-control application.",
+   "tags_before": [
+    "pwm",
+    "motor-control",
+    "spi",
+    "robotics",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "motor-control",
+    "spi",
+    "verilog",
+    "driver",
+    "industrial"
+   ],
+   "summary_before": "This project is a 4-channel PWM controller with SPI configuration, designed for half-bridge motor and LED driving. It includes configurable frequency, per-channel duty cycle and phase offset, dead-time insertion to prevent shoot-through, and fault protection that latches off outputs when the nFAULT input is asserted. The design requires an external SPI master and optionally a gate driver IC and power stage for motor control. It is notable for its comprehensive feature set and fault handling in a compact implementation.",
+   "summary": "This project is a 4-channel PWM controller with SPI configuration, designed for half-bridge motor and LED driving. It includes configurable frequency, per-channel duty cycle and phase offset, dead-time insertion to prevent shoot-through, and fault protection that latches off outputs when the nFAULT input is asserted. The design requires an external SPI master and optionally a gate driver IC and power stage for motor control. It is notable for its comprehensive feature set and fault handling in a compact implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "746fb5ab9d22",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described; rendering uses arithmetic operations, not an ALU block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu: the design performs arithmetic rendering but does not implement an ALU.",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "graphics",
+    "video",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "graphics",
+    "video",
+    "verilog"
+   ],
+   "summary_before": "This project generates real-time VGA graphics using purely arithmetic logic, with no framebuffer or ROM. It cycles through four rendering modes (rings, plasma, interference, chaos) based on a frame counter, and every pixel is computed on-the-fly. The design requires a VGA monitor and a 25 MHz clock, and it automatically starts rendering and cycling through modes upon reset release. It is notable for its fully procedural approach and continuous animation.",
+   "summary": "This project generates real-time VGA graphics using purely arithmetic logic, with no framebuffer or ROM. It cycles through four rendering modes (rings, plasma, interference, chaos) based on a frame counter, and every pixel is computed on-the-fly. The design requires a VGA monitor and a 25 MHz clock, and it automatically starts rendering and cycling through modes upon reset release. It is notable for its fully procedural approach and continuous animation.",
+   "summary_changed": false
+  },
+  {
+   "key": "eed310f2a082",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This is an 8-bit MIPS-inspired single-cycle processor with eight registers, an ALU, branches and jumps, scaled to fit one Tiny Tapeout tile. It runs a hardcoded program automatically after reset; three input pins select which register is shown on the eight outputs, while five bidirectional pins expose the program counter and one shows a halt flag. Testing needs only LEDs on the outputs and switches on the register-select inputs, with no external hardware required. It is notable for preserving core MIPS concepts in a very small area, though the documentation does not report silicon results.",
+   "summary": "This is an 8-bit MIPS-inspired single-cycle processor with eight registers, an ALU, branches and jumps, scaled to fit one Tiny Tapeout tile. It runs a hardcoded program automatically after reset; three input pins select which register is shown on the eight outputs, while five bidirectional pins expose the program counter and one shows a halt flag. Testing needs only LEDs on the outputs and switches on the register-select inputs, with no external hardware required. It is notable for preserving core MIPS concepts in a very small area, though the documentation does not report silicon results.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7638,
+  "completion_tokens": 1187,
+  "total_tokens": 8825,
+  "cost": 0.00464475,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00464475,
+   "upstream_inference_prompt_cost": 0.00286425,
+   "upstream_inference_completions_cost": 0.0017805
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00464475,
+ "elapsed_s": 5.4
+}

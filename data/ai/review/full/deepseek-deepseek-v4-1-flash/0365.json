@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "c2c868cc1d05",
+  "dc1506ee56cc",
+  "75e66d9cca10",
+  "33758d89a81e",
+  "eb258d0efbbb",
+  "ff1a0f02c4a0"
+ ],
+ "results": [
+  {
+   "key": "c2c868cc1d05",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The ISA has only add/and/or/immediate ops; no dedicated ALU block is described, and the tag is not clearly supported."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The documentation describes instruction decoding and sequencing but never states a finite state machine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "microcontroller",
+     "reason": "It is a small processor with registers and an instruction set, matching the microcontroller/soc-style type."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "The design decodes 3-bit opcodes and multi-word instruction formats."
+    }
+   ],
+   "notes": "Removed unsupported alu/fsm tags and added microcontroller and instruction-decoder; summary corrected to avoid claiming accumulator-based architecture and educational intent not stated in the source.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "fsm",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "education",
+    "verilog",
+    "microcontroller",
+    "instruction-decoder"
+   ],
+   "summary_before": "Toy CPU is an 8-bit accumulator-based processor with a small instruction set, designed for the Tiny Tapeout platform. It accepts instructions serially through the 6-bit input pins, using a start sequence to begin execution, and outputs data on 8 output pins. The design is intended for educational purposes and simple experimentation, requiring an external clock and reset signal. It is a minimal CPU implementation that demonstrates basic computer architecture concepts.",
+   "summary": "Toy CPU is an 8-bit toy processor with a small instruction set, designed for the Tiny Tapeout platform. It accepts instructions serially through the upper 6 bits of the input pins, using an all-ones start sequence to begin execution, and outputs data on 8 output pins. The design requires an external clock and reset signal and is documented with an ISA table and instruction format. It is a minimal CPU implementation that demonstrates basic computer architecture concepts.",
+   "summary_changed": true
+  },
+  {
+   "key": "dc1506ee56cc",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "led",
+    "pwm",
+    "shift-register",
+    "counter"
+   ],
+   "tags": [
+    "led",
+    "pwm",
+    "shift-register",
+    "counter"
+   ],
+   "summary_before": "This design creates a moving light effect similar to the Knight Rider sensor lights, using shift registers and counters. It provides speed and brightness control via input pins, with brightness achieved through PWM at 50 Hz. The outputs are intended to drive LEDs with series resistors, and push buttons can be connected to the control inputs. It is a simple visual effect generator for entertainment or display purposes.",
+   "summary": "This design creates a moving light effect similar to the Knight Rider sensor lights, using shift registers and counters. It provides speed and brightness control via input pins, with brightness achieved through PWM at 50 Hz. The outputs are intended to drive LEDs with series resistors, and push buttons can be connected to the control inputs. It is a simple visual effect generator for entertainment or display purposes.",
+   "summary_changed": false
+  },
+  {
+   "key": "75e66d9cca10",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "communication",
+    "ascii",
+    "rom"
+   ],
+   "tags": [
+    "uart",
+    "communication",
+    "ascii",
+    "rom"
+   ],
+   "summary_before": "This circuit converts 5-bit Baudot code from a teletype machine to 8-bit ASCII. It uses two UARTs, a clock divider, and a conversion ROM to handle the data conversion. The design requires an optoisolator at the Baudot input and a USB serial adapter at the ASCII output. It is useful for interfacing vintage teletype equipment with modern serial devices.",
+   "summary": "This circuit converts 5-bit Baudot code from a teletype machine to 8-bit ASCII. It uses two UARTs, a clock divider, and a conversion ROM to handle the data conversion. The design requires an optoisolator at the Baudot input and a USB serial adapter at the ASCII output. It is useful for interfacing vintage teletype equipment with modern serial devices.",
+   "summary_changed": false
+  },
+  {
+   "key": "33758d89a81e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fsm",
+    "security",
+    "puzzle",
+    "wokwi"
+   ],
+   "tags": [
+    "fsm",
+    "security",
+    "puzzle",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a stateful combination lock that requires three correct codes in sequence to unlock. A two-bit state machine tracks progress, and any wrong code resets to the initial state. The lock status is output on a single pin, and inputs include reset, enter, and five code-digit pins. It is designed for the Wokwi simulator and is described as an experiment or puzzle; no silicon test results are provided.",
+   "summary": "This project implements a stateful combination lock that requires three correct codes in sequence to unlock. A two-bit state machine tracks progress, and any wrong code resets to the initial state. The lock status is output on a single pin, and inputs include reset, enter, and five code-digit pins. It is designed for the Wokwi simulator and is described as an experiment or puzzle; no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "eb258d0efbbb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "The source does not mention binary-coded decimal logic; it converts binary to decimal/hex display."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The output is a 7-segment display showing the converted number."
+    }
+   ],
+   "notes": "Removed unsupported bcd tag and added display output tag.",
+   "tags_before": [
+    "decoder",
+    "7-segment",
+    "bcd",
+    "wokwi"
+   ],
+   "tags": [
+    "decoder",
+    "7-segment",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This project converts a 4-bit binary number to either decimal or hexadecimal and displays the result on a 7-segment display. The user selects the conversion mode via dedicated input pins (Dec or Hex) and inputs the binary number through four pins. The design is implemented in Wokwi and outputs the seven segment control signals plus a dot. The documentation explains the basic operation and testing but does not provide detailed implementation details.",
+   "summary": "This project converts a 4-bit binary number to either decimal or hexadecimal and displays the result on a 7-segment display. The user selects the conversion mode via dedicated input pins (Dec or Hex) and inputs the binary number through four pins. The design is implemented in Wokwi and outputs the seven segment control signals plus a dot. The documentation explains the basic operation and testing but does not provide detailed implementation details.",
+   "summary_changed": false
+  },
+  {
+   "key": "ff1a0f02c4a0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The outputs are labeled as seven-segment segments, but the source only says the outputs are connected to a seven segment display for testing; the tag is weakly supported and the design is an adder/subtractor."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The result is shown on a seven-segment display."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The adder-subtractor is a purely combinational circuit with no state described."
+    }
+   ],
+   "notes": "Removed weakly supported 7-segment tag and added display and combinational tags.",
+   "tags_before": [
+    "adder",
+    "subtractor",
+    "wokwi",
+    "7-segment"
+   ],
+   "tags": [
+    "adder",
+    "subtractor",
+    "wokwi",
+    "display",
+    "combinational"
+   ],
+   "summary_before": "This project implements a 3-bit parallel adder-subtractor that can add or subtract two 3-bit binary numbers. It uses a carry-in input to select between addition and subtraction (via two's complement). The result is displayed on a 7-segment display, with outputs mapped to segments. The design is implemented in Wokwi and includes a clock and reset, though their role is not fully explained in the documentation.",
+   "summary": "This project implements a 3-bit parallel adder-subtractor that can add or subtract two 3-bit binary numbers. It uses a carry-in input to select between addition and subtraction (via two's complement). The result is displayed on a 7-segment display, with outputs mapped to segments. The design is implemented in Wokwi and includes a clock and reset, though their role is not fully explained in the documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7248,
+  "completion_tokens": 1126,
+  "total_tokens": 8374,
+  "cost": 0.001618206,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001618206,
+   "upstream_inference_prompt_cost": 0.000875046,
+   "upstream_inference_completions_cost": 0.00074316
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001618206,
+ "elapsed_s": 12.2
+}

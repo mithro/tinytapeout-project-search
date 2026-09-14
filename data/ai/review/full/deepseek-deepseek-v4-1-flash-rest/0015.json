@@ -1,0 +1,437 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f74610dfdc85",
+  "e12887ef091f",
+  "0d8085f6eb16",
+  "286493ae069d",
+  "656e956e7133",
+  "c50c8dda5019"
+ ],
+ "results": [
+  {
+   "key": "f74610dfdc85",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counting circuit described; design compares guesses against a secret pattern."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor input; inputs are user number guesses."
+    },
+    {
+     "tag": "uart",
+     "reason": "No serial interface in pins or text."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Bulls and Cows guessing game."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "Deduction puzzle game logic."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Sequential game logic with save/compare states."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Bulls/cows indications shown on seven-segment display."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Compares user input against secret pattern."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated pulse counter; replaced with game/puzzle tags matching the source.",
+   "tags_before": [
+    "counter",
+    "sensor-interface",
+    "uart",
+    "fsm",
+    "shift-register"
+   ],
+   "tags": [
+    "fsm",
+    "game",
+    "puzzle",
+    "7-segment",
+    "comparator",
+    "verilog"
+   ],
+   "summary_before": "This design counts the number of digital pulses occurring within a time interval across four input channels. The counts are periodically output using a serial output. It is intended for low-power wake-up sensor interfaces, acoustic event detection, non-destructive testing, and particle counting. The design is a generic pulse-counting digital building block.",
+   "summary": "This design implements the Bulls and Cows number-guessing game in Verilog. A secret pattern of four distinct 3-bit numbers is stored via a save signal, and the player enters guesses through the input pins. The design compares each guess to the secret and reports bulls (correct digit and position) and cows (correct digit, wrong position) on a seven-segment display. The goal is to reach four bulls.",
+   "summary_changed": true
+  },
+  {
+   "key": "e12887ef091f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "No neural network in the source."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning content."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "No fixed-point arithmetic described."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "No spiking neurons."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface; output is read via oscilloscope."
+    },
+    {
+     "tag": "fpga",
+     "reason": "No FPGA target mentioned."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Not a compute accelerator; it is a simple CPU."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "SAP-1 is a simple 8-bit computer architecture."
+    },
+    {
+     "tag": "alu",
+     "reason": "Contains adder, multiplier and divider arithmetic modules."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Multiplier module included."
+    },
+    {
+     "tag": "divider",
+     "reason": "Divider module included."
+    },
+    {
+     "tag": "memory",
+     "reason": "Memory module stores program and data."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Register A and Register B storage."
+    },
+    {
+     "tag": "instruction-decoder",
+     "reason": "Instruction register and controller decode opcodes."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Controller sequences six execution stages."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary were for a neural network accelerator, unrelated to this SAP-1 CPU.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "fixed-point",
+    "spiking-neural-network",
+    "uart",
+    "fpga",
+    "accelerator"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "multiplier",
+    "divider",
+    "memory",
+    "register-file",
+    "instruction-decoder",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "The design implements a neural network accelerator with fixed-point arithmetic and a spiking neural network mode. It is intended for FPGA deployment and communicates via UART. The core clock and reset come from an external FPGA through input pins, while the on-board RP2040 clock is used only for debug and mirrored to an output. The design is notable for its machine learning capabilities in a small form factor.",
+   "summary": "This design implements the SAP-1 (Simple As Possible) 8-bit computer architecture in Verilog, forked from Brandon Cruz's design. It contains a clock, program counter, registers A and B, an adder, multiplier, divider, memory, instruction register, bus and controller. The 8-bit bus carries data between modules under load and enable control, and instruction execution proceeds through six stages. The only current way to read the bus output is with an oscilloscope.",
+   "summary_changed": true
+  },
+  {
+   "key": "0d8085f6eb16",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "No spiking neural network; it is a stochastic integrator."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network content."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface in pins or text."
+    }
+   ],
+   "add": [
+    {
+     "tag": "stochastic-computing",
+     "reason": "Uses stochastic bitstream computing for integration."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "References LFSR design for stochastic computing."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design written in Verilog."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Implements integration for ODE solving, a signal-processing computation."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated spiking neural network; replaced with stochastic-computing tags.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi"
+   ],
+   "tags": [
+    "stochastic-computing",
+    "lfsr",
+    "verilog",
+    "dsp"
+   ],
+   "summary_before": "This project implements a spiking neural network with 18 programmable digital LIF neurons and 144 synapses arranged in three fully connected layers. The design is notable for being generated by ChatGPT and for its use of programmable delays, but it lacks silicon test results.",
+   "summary": "This project implements a stochastic integrator in Verilog using Euler's definition of integration in the stochastic domain. It follows unipolar probability and takes two serial bitstream inputs. The outputs provide several serial bitstream results for sequence, system and test integrators. Testing is done by holding one input high and the other low to observe the described equations.",
+   "summary_changed": true
+  },
+  {
+   "key": "286493ae069d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "No spiking neural network in this analog design."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network content."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Analog design with analog pin."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Combines digital DAC/ADC control with analog signal path."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "8-bit R2R ladder DAC."
+    },
+    {
+     "tag": "adc",
+     "reason": "4-bit flash ADC."
+    },
+    {
+     "tag": "dac",
+     "reason": "8-bit DAC output."
+    },
+    {
+     "tag": "comparator-analog",
+     "reason": "Flash ADC uses analog comparators."
+    },
+    {
+     "tag": "voltage-reference",
+     "reason": "Resistive divider sets ADC reference voltages."
+    }
+   ],
+   "notes": "Proposed tags and summary were for an unrelated spiking neural network; replaced with analog converter tags.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi"
+   ],
+   "tags": [
+    "analog",
+    "mixed-signal",
+    "r2r-dac",
+    "adc",
+    "dac",
+    "comparator-analog",
+    "voltage-reference"
+   ],
+   "summary_before": "This project implements a spiking neural network with 18 programmable digital LIF neurons and 144 synapses arranged in three fully connected layers. The design is notable for being generated by ChatGPT and for its use of programmable delays, but it lacks silicon test results.",
+   "summary": "This analog design implements an 8-bit R2R DAC and a 4-bit flash ADC. The DAC inputs connect directly to the digital input pins, and its output reaches the analog pin through a transmission gate when the dac_connect pin is high. The flash ADC has a 0-1 V input range with reference voltages from a resistive divider, and its output is multiplexed onto three 4-bit buses. The ADC reference can be calibrated from the analog pin by setting adc_cal_connect high.",
+   "summary_changed": true
+  },
+  {
+   "key": "656e956e7133",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "No spiking neural network."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network content."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Analog test structure with analog output pin."
+    },
+    {
+     "tag": "sar-adc",
+     "reason": "Test targets a CDAC capacitor chain for a SAR ADC."
+    },
+    {
+     "tag": "characterization",
+     "reason": "Measures noise susceptibility of the capacitor array."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "Intentionally bad layout to study layout effects on performance."
+    }
+   ],
+   "notes": "Proposed tags and summary were for an unrelated spiking neural network; replaced with analog characterization tags.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi"
+   ],
+   "tags": [
+    "analog",
+    "sar-adc",
+    "characterization",
+    "process-experiment"
+   ],
+   "summary_before": "This project implements a spiking neural network with 18 programmable digital LIF neurons and 144 synapses arranged in three fully connected layers. The design is notable for being generated by ChatGPT and for its use of programmable delays, but it lacks silicon test results.",
+   "summary": "This project is a noise test for a CDAC capacitor chain used in a SAR ADC. It uses a C2C array of MIM capacitors to determine how susceptible they are to noise. The digital pins are clocked to observe which areas are most susceptible. The layout was intentionally done badly to determine to what degree layout matters.",
+   "summary_changed": true
+  },
+  {
+   "key": "c50c8dda5019",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cipher",
+     "reason": "No cipher in the design."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptography content."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface; output is VGA."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Outputs RGB222 VGA with HS and VS sync pins."
+    },
+    {
+     "tag": "video",
+     "reason": "Generates a video signal."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Renders an image of a plane and text."
+    },
+    {
+     "tag": "text",
+     "reason": "Types text over the image."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "Visual demo showcase."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design written in Verilog."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Requires a VGA PMOD on the output port."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated XOR cipher; replaced with VGA demo tags.",
+   "tags_before": [
+    "cipher",
+    "crypto",
+    "uart"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "text",
+    "demoscene",
+    "verilog",
+    "pmod"
+   ],
+   "summary_before": "This project implements a simple XOR cipher with UART communication. It uses a UART interface for data input and output, and the cipher operation is performed on the received data. The design is purely digital and requires no external hardware. The exact key handling and encryption details are not fully described.",
+   "summary": "This project is a demo that types text over an image of a plane flying into the sunset. It presents an RGB222 VGA signal on the output port, with horizontal and vertical sync pins. The demo runs automatically without user input. It requires a VGA PMOD connected to the output pins.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6806,
+  "completion_tokens": 2083,
+  "total_tokens": 8889,
+  "cost": 0.002152586,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002152586,
+   "upstream_inference_prompt_cost": 0.000777806,
+   "upstream_inference_completions_cost": 0.00137478
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002152586,
+ "elapsed_s": 33.3
+}

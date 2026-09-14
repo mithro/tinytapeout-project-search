@@ -1,0 +1,360 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b0e9756c342b",
+  "cc5c57e7117c",
+  "6433fc3a237f",
+  "e17f4a89afc2",
+  "a2a71df2c840",
+  "16a5aeabb9fd"
+ ],
+ "results": [
+  {
+   "key": "b0e9756c342b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "No FIR filter is described; the design uses an inverted CIC filter and modulator."
+    },
+    {
+     "tag": "delay-line",
+     "reason": "Delay select pins exist but no delay-line circuit is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "i2s",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "audio",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "microphone",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "modulator",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "PDM output is produced by a modulator, which is a sigma-delta style conversion."
+    }
+   ],
+   "notes": "Removed unsupported fir-filter and delay-line tags; added sigma-delta for the PDM modulator.",
+   "tags_before": [
+    "i2s",
+    "modulator",
+    "dsp",
+    "audio",
+    "microphone",
+    "delay-line",
+    "fir-filter"
+   ],
+   "tags": [
+    "i2s",
+    "modulator",
+    "dsp",
+    "audio",
+    "microphone",
+    "sigma-delta"
+   ],
+   "summary_before": "This design converts I2S audio input to PDM output using an inverted CIC filter and modulator. It also supports up to eight PDM microphones, producing per-microphone PCM outputs and a beamformed PCM output, with delay selection controlled by five pins. The design is intended for use with an I2S output device and PDM input devices, such as microphones and a clock generator. The documentation is minimal beyond the pin descriptions and a brief explanation of the core conversion method.",
+   "summary": "This design converts I2S audio input to PDM output using an inverted CIC filter and modulator. It also supports up to eight PDM microphones, producing per-microphone PCM outputs and a beamformed PCM output, with delay selection controlled by five pins. The design is intended for use with an I2S output device and PDM input devices, such as microphones and a clock generator. The documentation is minimal beyond the pin descriptions and a brief explanation of the core conversion method.",
+   "summary_changed": false
+  },
+  {
+   "key": "cc5c57e7117c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The source describes a TRNG based on ring oscillators, not a pseudo-random number generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cipher",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "crypto",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "trng",
+     "reason": "Already present; kept."
+    }
+   ],
+   "notes": "Removed prng tag since the design is explicitly a TRNG, not a PRNG.",
+   "tags_before": [
+    "trng",
+    "ring-oscillator",
+    "crypto",
+    "cipher",
+    "shift-register",
+    "prng"
+   ],
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "crypto",
+    "cipher",
+    "shift-register"
+   ],
+   "summary_before": "This design combines a ring-oscillator-based true random number generator with an ASCON S-box cryptographic substitution block. Sixteen ring oscillators are split into two banks controlled by ui_in bits 0 and 1, and a 64-bit shift register captures their outputs, with bits 2-4 selecting which 8-bit slice is presented. The S-box is enabled by ui_in bit 7 and takes bits 2-6 as its 5-bit input, and the final uo_out is the bitwise XOR of the TRNG and S-box results. It was verified only in simulation with a testbench driving various input values, and no external hardware is required.",
+   "summary": "This design combines a ring-oscillator-based true random number generator with an ASCON S-box cryptographic substitution block. Sixteen ring oscillators are split into two banks controlled by ui_in bits 0 and 1, and a 64-bit shift register captures their outputs, with bits 2-4 selecting which 8-bit slice is presented. The S-box is enabled by ui_in bit 7 and takes bits 2-6 as its 5-bit input, and the final uo_out is the bitwise XOR of the TRNG and S-box results. It was verified only in simulation with a testbench driving various input values, and no external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "6433fc3a237f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neuromorphic",
+     "reason": "The source describes a time-domain winner-take-all circuit, not brain-inspired neuromorphic computing."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "spi",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "time-to-digital-converter",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "comparator",
+     "reason": "The winner-take-all selection compares PWM durations to find the smallest and k-smallest."
+    }
+   ],
+   "notes": "Removed neuromorphic tag as the source does not describe neuromorphic processing; added comparator for the winner-take-all selection.",
+   "tags_before": [
+    "pwm",
+    "time-to-digital-converter",
+    "spi",
+    "neuromorphic"
+   ],
+   "tags": [
+    "pwm",
+    "time-to-digital-converter",
+    "spi",
+    "comparator"
+   ],
+   "summary_before": "This design generates eight 12-bit PWM signals with a common trigger and can also accept eight external PWM inputs, selecting between internal and external sources via SPI configuration. A time-domain winner-take-all circuit detects the falling edges of the PWM signals to find the smallest duration and the k-smallest durations, latching the corresponding addresses. The design includes a time-to-digital converter that digitizes PWM durations, and results are read out over SPI. It is intended for event-based or neuromorphic-style processing and requires external SPI control and optional external PWM sources.",
+   "summary": "This design generates eight 12-bit PWM signals with a common trigger and can also accept eight external PWM inputs, selecting between internal and external sources via SPI configuration. A time-domain winner-take-all circuit detects the falling edges of the PWM signals to find the smallest duration and the k-smallest durations, latching the corresponding addresses. The design includes a time-to-digital converter that digitizes PWM durations, and results are read out over SPI. It requires external SPI control and optional external PWM sources.",
+   "summary_changed": true
+  },
+  {
+   "key": "e17f4a89afc2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "Language tag is redundant with the facts and not needed in the summary tags."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "counter",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "timer",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "Already present; kept."
+    }
+   ],
+   "notes": "Removed redundant verilog tag; summary unchanged.",
+   "tags_before": [
+    "7-segment",
+    "counter",
+    "timer",
+    "clock-divider",
+    "verilog"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "timer",
+    "clock-divider"
+   ],
+   "summary_before": "This design counts down from 9 to 0 at one-second intervals and displays the current digit on a 7-segment display. The counting speed can be changed by driving the input pins with a compare value, which sets the clock divider; with all inputs low the compare is 10,000,000 for a 10 MHz clock. The lower 8 bits of the counter are also available on the bidirectional pins. It is a simple timer/display demonstration with no external hardware beyond the 7-segment display.",
+   "summary": "This design counts down from 9 to 0 at one-second intervals and displays the current digit on a 7-segment display. The counting speed can be changed by driving the input pins with a compare value, which sets the clock divider; with all inputs low the compare is 10,000,000 for a 10 MHz clock. The lower 8 bits of the counter are also available on the bidirectional pins. It is a simple timer/display demonstration with no external hardware beyond the 7-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "a2a71df2c840",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplexer",
+     "reason": "The internal multiplexer is a selection mechanism, not a standalone multiplexer design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "education",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "adder",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Already present; kept."
+    }
+   ],
+   "notes": "Removed multiplexer tag as it is an internal selection mechanism, not a primary design feature.",
+   "tags_before": [
+    "education",
+    "adder",
+    "fsm",
+    "decoder",
+    "multiplexer",
+    "systemverilog"
+   ],
+   "tags": [
+    "education",
+    "adder",
+    "fsm",
+    "decoder",
+    "systemverilog"
+   ],
+   "summary_before": "This design bundles four educational modules selected by an internal multiplexer: a vending machine state machine, a coin acceptor decoder, a 24-bit ripple carry adder, and a 24-bit carry lookahead adder. The adders are tested by feeding 24-bit operands in 8-bit chunks and reading the 25-bit result in 8-bit chunks. An oscilloscope can be used to measure the difference in execution speed between the two adder types. The coin acceptor decoder is designed for the HX-916 model.",
+   "summary": "This design bundles four educational modules selected by an internal multiplexer: a vending machine state machine, a coin acceptor decoder, a 24-bit ripple carry adder, and a 24-bit carry lookahead adder. The adders are tested by feeding 24-bit operands in 8-bit chunks and reading the 25-bit result in 8-bit chunks. An oscilloscope can be used to measure the difference in execution speed between the two adder types. The coin acceptor decoder is designed for the HX-916 model.",
+   "summary_changed": false
+  },
+  {
+   "key": "16a5aeabb9fd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The design is a cellular automaton simulation, not an interactive game."
+    },
+    {
+     "tag": "display",
+     "reason": "VGA and video tags already cover the display output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game-of-life",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "cellular-automaton",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "vga",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "video",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Already present; kept."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; kept."
+    }
+   ],
+   "notes": "Removed game and display tags; game-of-life and cellular-automaton better describe the design.",
+   "tags_before": [
+    "game-of-life",
+    "cellular-automaton",
+    "game",
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "game-of-life",
+    "cellular-automaton",
+    "vga",
+    "video",
+    "graphics",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This design implements Conway's Game of Life on a single Tiny Tapeout tile. It outputs a VGA video signal using the Tiny VGA pinout and runs at a 25.175 MHz clock. The project includes cocotb tests for verification and requires an external VGA screen to display the output. The documentation is very brief and does not describe the internal implementation or the initial pattern.",
+   "summary": "This design implements Conway's Game of Life on a single Tiny Tapeout tile. It outputs a VGA video signal using the Tiny VGA pinout and runs at a 25.175 MHz clock. The project includes cocotb tests for verification and requires an external VGA screen to display the output. The documentation is very brief and does not describe the internal implementation or the initial pattern.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8149,
+  "completion_tokens": 1804,
+  "total_tokens": 9953,
+  "cost": 0.003124923,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003124923,
+   "upstream_inference_prompt_cost": 0.001284843,
+   "upstream_inference_completions_cost": 0.00184008
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003124923,
+ "elapsed_s": 86.0
+}

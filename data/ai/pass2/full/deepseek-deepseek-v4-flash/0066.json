@@ -1,0 +1,189 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "71836ddd1a29",
+  "bc6d77d6b56b",
+  "25a399f2e38c",
+  "6267addc4be9",
+  "50de24a8b3a6",
+  "f8d18a1ec6a7",
+  "003e3986d6c7",
+  "1de1ffb6df46",
+  "cacaebbc05c8",
+  "7b25e8be2f15"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "71836ddd1a29",
+   "tags": [
+    "counter",
+    "pattern-generator",
+    "sequencer",
+    "gpio",
+    "verilog"
+   ],
+   "summary": "This design outputs a different 8-bit bit pattern on each clock cycle and then resets. It is tested by applying a reset, cycling the clock several times, and comparing the outputs to the expected sequence. The outputs can be measured directly on GPIO pins, so no external hardware is required. The documentation is very thin and does not specify the actual bit patterns or the reset behavior in detail.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "bc6d77d6b56b",
+   "tags": [
+    "fsm",
+    "industrial",
+    "sensor-interface",
+    "motor-control",
+    "education",
+    "verilog"
+   ],
+   "summary": "This is a Mealy finite state machine with three states (wait, fill, alarm) that controls a water pump filling an upper tank based on three digital water-level sensors. It drives a pump output and an alarm output, and it is intended to be wired to switches or buttons for the sensors and LEDs for the outputs on the bidirectional pins. The documentation is in Spanish and describes the state transitions in detail, but the testing section is marked TODO. It appears to be a class or practice exercise rather than a silicon-validated design.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "25a399f2e38c",
+   "tags": [
+    "calculator",
+    "alu",
+    "register-file",
+    "gpio",
+    "fsm",
+    "verilog"
+   ],
+   "summary": "This design is a 16-bit calculator built around an ALU with twelve selectable operations, including arithmetic, shifts, rotates, and bitwise logic. An 8-bit bidirectional data port is used to load the two 16-bit operands byte by byte and to read back the 16-bit result, while four input pins select the operation and five output pins report status flags such as zero, sign, carry, and overflow. A small counter sequences the load, execute, and readout phases, and the operation is started by releasing the reset pin. The documentation is detailed with a timing diagram and operation table, but the testing section is marked TBC and no silicon results are given.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "6267addc4be9",
+   "tags": [
+    "cpu",
+    "risc-v",
+    "spi",
+    "memory",
+    "vhdl",
+    "register-file"
+   ],
+   "summary": "This project implements a TinyRV1-compliant RISC-V CPU without a multiply instruction, with additional AND and XOR support, written in VHDL. It has no internal program memory and must be attached to an external SPI memory device, using dedicated SPI MOSI, SCLK, and CS pins plus a MISO input. Eight bidirectional pins expose a register for observation, and the design is intended to run at 12 MHz. Testing requires the provided SPI slave with memory synthesized onto an FPGA, so it cannot be exercised standalone.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "50de24a8b3a6",
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "memory",
+    "verilog"
+   ],
+   "summary": "This design implements a programmable recurrent spiking neural network with nine leaky integrate-and-fire neurons arranged in three layers of three, with three spike inputs and three spike outputs. Weights, thresholds, leak rate, feedback scale, and refractory period are loaded through a custom serial interface, and the network processes input spikes synchronously with one-clock-cycle output pulses. The documentation states that the design was generated with ChatGPT and describes the programming procedure, but no test results or external hardware requirements are given. It is a research-style experiment rather than a validated product.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "f8d18a1ec6a7",
+   "tags": [
+    "rom",
+    "memory",
+    "7-segment",
+    "decoder",
+    "gpio",
+    "verilog"
+   ],
+   "summary": "This is a 128-byte, 8-bit-wide ROM that stores information about the Tiny Tapeout chip, addressed by eight input pins and read out on eight output pins. The first sixteen bytes are 7-segment encoded and contain the shuttle name and commit hash, which can be displayed on an on-board 7-segment display by toggling the first four DIP switches. It is a simple read-only memory with no clock or control logic, and it requires no external hardware beyond the address switches and display. The documentation is brief but sufficient to understand the function.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "003e3986d6c7",
+   "tags": [
+    "chisel",
+    "7-segment",
+    "counter",
+    "audio",
+    "pwm",
+    "pmod",
+    "education"
+   ],
+   "summary": "This is a Chisel Hello World project that displays a counter on a 7-segment display and emits the Morse code for \"hello world\" on the display's decimal point and as PWM audio. The audio output is intended for a PmodAMP2 amplifier connected to the bidirectional PMOD, with gain and shutdown control pins, and switch 0 can disable the counter display to make the Morse code easier to see. Testing currently uses cocotb, with a planned move to ChiselTest. A partial silicon test report notes that the author did not clearly see the correct Morse code and observed something blinking.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "1de1ffb6df46",
+   "tags": [
+    "game",
+    "pong",
+    "vga",
+    "video",
+    "chisel"
+   ],
+   "summary": "This is a basic Pong game implemented in Chisel that outputs a VGA video signal with two-bit-per-channel color and separate horizontal and vertical sync. Four input pins control the two paddles, and two more enable autopilot for either player, while bidirectional pins expose game state, sync signals, loss indicators, and a game tick. The documentation is minimal, describing it only as a Chisel template, and testing currently uses cocotb with a planned move to ChiselTest. No external hardware beyond a VGA display and buttons is described, and no silicon results are reported.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "cacaebbc05c8",
+   "tags": [
+    "dac",
+    "modulator",
+    "pwm",
+    "spi",
+    "amaranth"
+   ],
+   "summary": "This design is a digital-to-analog converter front end that outputs PDM, PWM, and two forms of PFM waveforms representing an 8-bit digital input level. The input can be loaded either in parallel through eight input pins or over an SPI interface, selected by a bidirectional pin, and the output rate can be divided down from the 50 MHz clock by up to 15. To obtain an analog signal, an external RC filter must be connected to the chosen modulation output pin. The author notes that the intended analog output path was not completed due to time constraints and that the SPI path is less validated than the parallel path.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "7b25e8be2f15",
+   "tags": [
+    "counter",
+    "security",
+    "crypto",
+    "verilog"
+   ],
+   "summary": "This is an 8-bit counter that increments when the first input bit is set, but it is protected by Moosic logic locking so it will not count unless the correct six-bit key is applied first. The key is entered on the upper input bits along with a key-enable bit, and the counter value is exposed on eight output pins. The design is self-contained and intended to demonstrate logic locking rather than to drive external hardware. A silicon test report confirms that the design does nothing without the key and counts at the clock frequency once the key is set.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10042,
+  "completion_tokens": 1767,
+  "total_tokens": 11809,
+  "cost": 0.0010736607,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0010736607,
+   "upstream_inference_prompt_cost": 0.0007335132,
+   "upstream_inference_completions_cost": 0.0003401475
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0010736607,
+ "elapsed_s": 33.3
+}

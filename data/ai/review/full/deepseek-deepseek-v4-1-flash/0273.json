@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "030de4bc3ca9",
+  "c1ab972ba5c7",
+  "ebd757d01697",
+  "dc52d9c6f362",
+  "2f224c80d6ba",
+  "fc8e905c3cc5"
+ ],
+ "results": [
+  {
+   "key": "030de4bc3ca9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "demoscene",
+     "reason": "No evidence of demoscene style showcase; it is a simple bouncing-letters screensaver."
+    }
+   ],
+   "add": [],
+   "notes": "Removed demoscene tag not supported by the source; summary left unchanged.",
+   "tags_before": [
+    "vga",
+    "display",
+    "graphics",
+    "video",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "graphics",
+    "video"
+   ],
+   "summary_before": "This design generates a 640x480 VGA signal at 25.175 MHz showing the letters IEEE bouncing around the screen. It has no user controls and simply runs from the clock and reset, with the eight outputs wired to the Tiny VGA PMOD pinout. The only external hardware needed is a VGA PMOD and a compatible monitor. The documentation is very thin, noting only that the Verilog was produced with Gemini, so little can be said about the internal implementation.",
+   "summary": "This design generates a VGA signal at 25.175 MHz showing the letters IEEE bouncing around the screen. It has no user controls and simply runs from the clock and reset, with the eight outputs wired to the Tiny VGA PMOD pinout. The only external hardware needed is a VGA PMOD and a compatible monitor. The documentation is very thin, noting only that the Verilog was produced with Gemini, so little can be said about the internal implementation.",
+   "summary_changed": true
+  },
+  {
+   "key": "c1ab972ba5c7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "qspi",
+     "reason": "The PSRAM is explicitly used in single-bit SPI mode, not quad SPI."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systemverilog",
+     "reason": "Source states the design is written in SystemVerilog."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "Design spans 1x2 tiles."
+    }
+   ],
+   "notes": "Removed unsupported qspi tag and added systemverilog and multi-tile tags.",
+   "tags_before": [
+    "dma",
+    "spi",
+    "memory",
+    "qspi"
+   ],
+   "tags": [
+    "dma",
+    "spi",
+    "memory",
+    "systemverilog",
+    "multi-tile"
+   ],
+   "summary_before": "This is a two-channel byte DMA engine that moves data to and from an external SPI PSRAM device. Configuration bytes are loaded on the input pins with a valid strobe, a start pin triggers operation, and the SPI master pins connect to the memory. Status outputs report DMA activity, completion pulses per channel, pending configuration and configuration errors. It targets a QSPI PMOD with an APS6404 PSRAM used in single-bit SPI mode, and the documentation covers the pin mapping but not the internal architecture or measured throughput.",
+   "summary": "This is a two-channel byte DMA engine that moves data to and from an external SPI PSRAM device. Configuration bytes are loaded on the input pins with a valid strobe, a start pin triggers operation, and the SPI master pins connect to the memory. Status outputs report DMA activity, completion pulses per channel, pending configuration and configuration errors. It targets a QSPI PMOD with an APS6404 PSRAM used in single-bit SPI mode, and the documentation covers the pin mapping but not the internal architecture or measured throughput.",
+   "summary_changed": false
+  },
+  {
+   "key": "ebd757d01697",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "No general purpose IO interface is described; pins are DMA control and transfer bus signals."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "Testing uses a cocotb-based Python testbench."
+    }
+   ],
+   "notes": "Removed unsupported gpio tag and added cocotb tag for the stated testbench.",
+   "tags_before": [
+    "dma",
+    "fsm",
+    "memory",
+    "gpio"
+   ],
+   "tags": [
+    "dma",
+    "fsm",
+    "memory",
+    "cocotb"
+   ],
+   "summary_before": "This project implements an 8-bit DMA controller for transferring data between memory and I/O devices, structured as a finite state machine. The documentation provides a state-by-state explanation and a state diagram, but the provided excerpt does not include the full details. Testing is done via a cocotb-based Python testbench with Icarus Verilog. The design is notable for its DMA functionality in a small footprint.",
+   "summary": "This project implements an 8-bit DMA controller for transferring data between memory and I/O devices, structured as a finite state machine. The documentation provides a state-by-state explanation and a state diagram, but the provided excerpt does not include the full details. Testing is done via a cocotb-based Python testbench with Icarus Verilog. The design is notable for its DMA functionality in a small footprint.",
+   "summary_changed": false
+  },
+  {
+   "key": "dc52d9c6f362",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pattern-generator",
+     "reason": "pattern-generator in the vocabulary means a digital test pattern generator, not a generative art pattern."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multi-tile",
+     "reason": "Design spans a 2x2 tile canvas."
+    }
+   ],
+   "notes": "Removed pattern-generator (test-pattern meaning) and added multi-tile for the 2x2 canvas.",
+   "tags_before": [
+    "silicon-art",
+    "art",
+    "graphics",
+    "pattern-generator"
+   ],
+   "tags": [
+    "silicon-art",
+    "art",
+    "graphics",
+    "multi-tile"
+   ],
+   "summary_before": "This project is a generative art piece that creates recursive rectangle patterns, described as 'silicon cross stitch', on a 2x2 tile canvas. It is written in Verilog and has a single dummy output pin, with no inputs or control interface. The design is purely visual and requires no external hardware; it is meant to be observed rather than tested. The documentation is very sparse, offering only a brief description and no technical details.",
+   "summary": "This project is a generative art piece that creates recursive rectangle patterns, described as 'silicon cross stitch', on a 2x2 tile canvas. It is written in Verilog and has a single dummy output pin, with no inputs or control interface. The design is purely visual and requires no external hardware; it is meant to be observed rather than tested. The documentation is very sparse, offering only a brief description and no technical details.",
+   "summary_changed": false
+  },
+  {
+   "key": "2f224c80d6ba",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "error-correction",
+    "encoder",
+    "decoder"
+   ],
+   "tags": [
+    "error-correction",
+    "encoder",
+    "decoder"
+   ],
+   "summary_before": "This design implements a Hamming(7,4) error-correcting code system that can encode 4-bit data into a 7-bit codeword and decode a received codeword while detecting and correcting a single-bit error. A MODE input selects between encoding and decoding, and an error flag output indicates when a correctable error was detected. No external hardware is required beyond input switches and LEDs to observe the encoded or corrected output. The documentation is very short and does not describe the internal implementation or provide test vectors.",
+   "summary": "This design implements a Hamming(7,4) error-correcting code system that can encode 4-bit data into a 7-bit codeword and decode a received codeword while detecting and correcting a single-bit error. A MODE input selects between encoding and decoding, and an error flag output indicates when a correctable error was detected. No external hardware is required beyond input switches and LEDs to observe the encoded or corrected output. The documentation is very short and does not describe the internal implementation or provide test vectors.",
+   "summary_changed": false
+  },
+  {
+   "key": "fc8e905c3cc5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence the design is built from discrete transistors rather than standard cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multi-tile",
+     "reason": "Design spans 1x2 tiles."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Analog RF-DC rectifier with analog pins; however it is purely analog, so this tag is questionable."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level tag; added multi-tile for the 1x2 span.",
+   "tags_before": [
+    "analog",
+    "power-management",
+    "rf",
+    "transistor-level"
+   ],
+   "tags": [
+    "analog",
+    "power-management",
+    "rf",
+    "multi-tile",
+    "mixed-signal"
+   ],
+   "summary_before": "This is a differential RF-DC rectifier designed in Sky130 for passive RFID and RF energy harvesting experiments. It converts an RF input signal into a DC output voltage, with three analog pins for the differential RF input and the rectified output. The design is implemented as an analog block and does not include digital control logic. No testing details or external hardware requirements are provided in the documentation.",
+   "summary": "This is a differential RF-DC rectifier designed in Sky130 for passive RFID and RF energy harvesting experiments. It converts an RF input signal into a DC output voltage, with three analog pins for the differential RF input and the rectified output. The design is implemented as an analog block and does not include digital control logic. No testing details or external hardware requirements are provided in the documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5870,
+  "completion_tokens": 1120,
+  "total_tokens": 6990,
+  "cost": 0.001846098,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001846098,
+   "upstream_inference_prompt_cost": 0.000703698,
+   "upstream_inference_completions_cost": 0.0011424
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001846098,
+ "elapsed_s": 55.7
+}

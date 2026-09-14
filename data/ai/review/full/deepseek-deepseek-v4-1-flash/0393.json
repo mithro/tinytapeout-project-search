@@ -1,0 +1,289 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "63758ecf67fd",
+  "aeeca83a2bd1",
+  "fdc53433bf90",
+  "d46af0ca409c",
+  "2e4fe0f89962",
+  "f0055f3891cd"
+ ],
+ "results": [
+  {
+   "key": "63758ecf67fd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "A fixed-code combinational lock is a toy pattern matcher, not a hardware security design."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No code-to-signal decoding structure is described; it is a pattern comparator."
+    },
+    {
+     "tag": "education",
+     "reason": "Nothing in the source states a teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the project is tested in the Wokwi simulator."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Outputs assert on equality of the 4-bit input against fixed codes."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Outputs depend only on the current input code, with no clock or state."
+    }
+   ],
+   "notes": "Removed unsupported security/decoder/education tags and added combinational to match the purely input-driven logic.",
+   "tags_before": [
+    "security",
+    "comparator",
+    "decoder",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "comparator",
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This project implements a 4-bit digital lock that asserts an UNLOCK output when the input code equals 1011. Three additional outputs act as Easter eggs for the near-miss codes 1010, 1001 and 0011, and all outputs stay low for any other code. Testing is done by toggling the four input switches and observing LEDs or a 7-segment display against the supplied truth table. The design is a small combinational pattern matcher with clear documentation and no external hardware requirements.",
+   "summary": "This project implements a 4-bit digital lock that asserts an UNLOCK output when the input code equals 1011. Three additional outputs act as Easter eggs for the near-miss codes 1010, 1001 and 0011, and all outputs stay low for any other code. Testing is done by toggling the four input switches and observing LEDs or a 7-segment display against the supplied truth table. The design is a small combinational pattern matcher with clear documentation and no external hardware requirements.",
+   "summary_changed": false
+  },
+  {
+   "key": "aeeca83a2bd1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "A Johnson counter is a specific feedback counter; the generic shift-register tag is redundant and not stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the design is simulated there."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Already proposed; kept as it is explicitly described as sequential logic."
+    }
+   ],
+   "notes": "Dropped the redundant shift-register tag; the rest of the proposed tags and summary are supported.",
+   "tags_before": [
+    "counter",
+    "johnson-counter",
+    "sequential-logic",
+    "wokwi",
+    "shift-register"
+   ],
+   "tags": [
+    "counter",
+    "johnson-counter",
+    "sequential-logic",
+    "wokwi"
+   ],
+   "summary_before": "This design is an eight-bit Johnson counter that requires only a clock to count, with the complement of the last flip-flop fed back to the first flip-flop. Its eight outputs expose the counter state, and testing consists of simply turning the circuit on and observing the outputs. No external hardware is needed. The documentation is brief but sufficient to describe the design and its operation.",
+   "summary": "This design is an eight-bit Johnson counter that requires only a clock to count, with the complement of the last flip-flop fed back to the first flip-flop. Its eight outputs expose the counter state, and testing consists of simply turning the circuit on and observing the outputs. No external hardware is needed. The documentation is brief but sufficient to describe the design and its operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "fdc53433bf90",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "A single LIF neuron pattern detector is not machine learning inference or training hardware."
+    },
+    {
+     "tag": "education",
+     "reason": "The low clock is for observability, not stated as a teaching product."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "Explicitly a LIF neuron core processing spike patterns."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "An output drives a MOSFET module to rotate a motor on pattern match."
+    },
+    {
+     "tag": "robotics",
+     "reason": "The documentation frames the behavior as a robotic reflex response."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    }
+   ],
+   "notes": "Removed machine-learning and education tags; added systemverilog and kept the supported spiking/motor/robotics tags.",
+   "tags_before": [
+    "spiking-neural-network",
+    "machine-learning",
+    "motor-control",
+    "education",
+    "robotics"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "motor-control",
+    "robotics",
+    "systemverilog"
+   ],
+   "summary_before": "This is a spiking pattern recognition core based on a leaky integrate-and-fire (LIF) neuron that triggers an event when a target spike pattern is detected. It uses input switches to set the pattern and a signal generator to provide a 0.5Hz square wave. When the pattern matches, an output drives a MOSFET module to rotate a motor. The clock is deliberately set to 2 Hz to make internal processing observable, and the design is intended for educational demonstrations of robotic reflex responses.",
+   "summary": "This is a spiking pattern recognition core based on a leaky integrate-and-fire (LIF) neuron that triggers an event when a target spike pattern is detected. It uses input switches to set the pattern and a signal generator to provide a 0.5Hz square wave. When the pattern matches, an output drives a MOSFET module to rotate a motor. The clock is deliberately set to 2 Hz to make internal processing observable, and the design is intended for educational demonstrations of robotic reflex responses.",
+   "summary_changed": false
+  },
+  {
+   "key": "d46af0ca409c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "physics",
+    "pmod"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "physics",
+    "pmod"
+   ],
+   "summary_before": "This design plots the trajectory of a fixed system of two ordinary differential equations on a VGA display, using the coefficients a=0, b=-1, c=1, d=0. A reset transition from low to high starts the plotting, and cycling the reset restarts the trace from the beginning. It requires a 25 MHz clock and a Tiny VGA PMOD connected to the output header. The author describes it as a very bad and very unstable plotter, and the documentation does not cover any silicon test results.",
+   "summary": "This design plots the trajectory of a fixed system of two ordinary differential equations on a VGA display, using the coefficients a=0, b=-1, c=1, d=0. A reset transition from low to high starts the plotting, and cycling the reset restarts the trace from the beginning. It requires a 25 MHz clock and a Tiny VGA PMOD connected to the output header. The author describes it as a very bad and very unstable plotter, and the documentation does not cover any silicon test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "2e4fe0f89962",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design streams data over I2C; the display is on the host, not an output of this design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "graphics",
+     "reason": "It implements a 256x256 canvas drawing application."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "Controlled by an SNES-compatible gamepad via the Gamepad PMOD."
+    },
+    {
+     "tag": "i2c",
+     "reason": "Streams canvas coordinates and color data over I2C."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Uses the Gamepad PMOD connector."
+    }
+   ],
+   "notes": "Removed the display tag since rendering happens on the host, not on-chip.",
+   "tags_before": [
+    "graphics",
+    "gamepad",
+    "i2c",
+    "pmod",
+    "display"
+   ],
+   "tags": [
+    "graphics",
+    "gamepad",
+    "i2c",
+    "pmod"
+   ],
+   "summary_before": "Tiny Canvas is a hardware drawing tool that mimics MS Paint, controlled by an SNES-compatible gamepad and outputting canvas coordinates and color data over I2C. It supports RGB color mixing, variable brush sizes, symmetry modes, and fill rectangle operations. The design requires a Gamepad PMOD and an SNES controller, and an I2C master device to render the canvas on a display. It is a 1x1 tile design that streams paint events in real-time to a host for a 256x256 canvas.",
+   "summary": "Tiny Canvas is a hardware drawing tool that mimics MS Paint, controlled by an SNES-compatible gamepad and outputting canvas coordinates and color data over I2C. It supports RGB color mixing, variable brush sizes, symmetry modes, and fill rectangle operations. The design requires a Gamepad PMOD and an SNES controller, and an I2C master device to render the canvas on a display. It is a 1x1 tile design that streams paint events in real-time to a host for a 256x256 canvas.",
+   "summary_changed": false
+  },
+  {
+   "key": "f0055f3891cd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design displays a clock; it does not generate a clock or timing signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Renders a 640x480 VGA output using the Tiny VGA pinout."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "Time adjustment uses a Gamepad PMOD."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "The documentation explicitly calls it a demoscene VGA clock display."
+    },
+    {
+     "tag": "rtc",
+     "reason": "It maintains and displays hours, minutes and seconds with settable time."
+    }
+   ],
+   "notes": "Replaced clock-generator with rtc, since the design keeps time rather than generating a clock signal.",
+   "tags_before": [
+    "vga",
+    "clock-generator",
+    "gamepad",
+    "display",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "gamepad",
+    "display",
+    "demoscene",
+    "rtc"
+   ],
+   "summary_before": "The VGA Clock Demo is a Verilog design that renders a circular analog clock face on a 640x480 VGA display, with background colors and sun/moon positions changing based on the time of day. It includes hour, minute, and second hands, and allows time adjustment via a Gamepad PMOD. The clock starts at 00:00:00 and can be set using the gamepad buttons. It requires a VGA monitor and a Gamepad PMOD, and is notable for its visual representation of time with day/night themes.",
+   "summary": "The VGA Clock Demo is a Verilog design that renders a circular analog clock face on a 640x480 VGA display, with background colors and sun/moon positions changing based on the time of day. It includes hour, minute, and second hands, and allows time adjustment via a Gamepad PMOD. The clock starts at 00:00:00 and can be set using the gamepad buttons. It requires a VGA monitor and a Gamepad PMOD, and is notable for its visual representation of time with day/night themes.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7721,
+  "completion_tokens": 1485,
+  "total_tokens": 9206,
+  "cost": 0.002690403,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002690403,
+   "upstream_inference_prompt_cost": 0.001175703,
+   "upstream_inference_completions_cost": 0.0015147
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002690403,
+ "elapsed_s": 71.6
+}

@@ -1,0 +1,208 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "66319d18f4d9",
+  "0ef0ceb6ca64",
+  "94dfa1f07a94",
+  "5a8f0995ec0d",
+  "02bac4a92741",
+  "59952fbd94e3"
+ ],
+ "results": [
+  {
+   "key": "66319d18f4d9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a ring oscillator chain of inverters, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Not supported; silicon_status is 'no reports', so this tag must not be added."
+    }
+   ],
+   "notes": "Removed logic-gate tag; the design is an inverter-chain ring oscillator, not a logic gate implementation.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "delay-line",
+    "characterization",
+    "logic-gate",
+    "verilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "delay-line",
+    "characterization",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements a configurable ring oscillator with up to 3853 inverter stages. By connecting one of the output pins to the ring_in input or enabling internal loopback, a ring of a specific length is formed, and the output frequency can be measured. External hardware such as an oscilloscope or logic analyzer is required to measure the frequency and delay between different points in the chain. The design is notable for its large number of stages and the ability to select from many tap points.",
+   "summary": "This design implements a configurable ring oscillator with up to 3853 inverter stages. By connecting one of the output pins to the ring_in input or enabling internal loopback, a ring of a specific length is formed, and the output frequency can be measured. External hardware such as an oscilloscope or logic analyzer is required to measure the frequency and delay between different points in the chain. The design is notable for its large number of stages and the ability to select from many tap points.",
+   "summary_changed": false
+  },
+  {
+   "key": "0ef0ceb6ca64",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "usb",
+    "uart",
+    "spi",
+    "i2c",
+    "jtag",
+    "gpio",
+    "communication"
+   ],
+   "tags": [
+    "usb",
+    "uart",
+    "spi",
+    "i2c",
+    "jtag",
+    "gpio",
+    "communication"
+   ],
+   "summary_before": "This 2x2 tile design is a USB to UART/SPI/I2C/JTAG/GPIO adapter implemented in Gatery. It enumerates as a USB CDC device on a host computer and can bit-bang various serial protocols to communicate with external devices. Testing involves connecting a device such as an LIS2DH12 sensor and running example software. An external 1.5k pull-up resistor on USB_DP is required for USB operation. The design is notable for supporting many protocols on a single chip.",
+   "summary": "This 2x2 tile design is a USB to UART/SPI/I2C/JTAG/GPIO adapter implemented in Gatery. It enumerates as a USB CDC device on a host computer and can bit-bang various serial protocols to communicate with external devices. Testing involves connecting a device such as a LIS2DH12 sensor and running example software. An external 1.5k pull-up resistor on USB_DP is required for USB operation. The design is notable for supporting many protocols on a single chip.",
+   "summary_changed": true
+  },
+  {
+   "key": "94dfa1f07a94",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag; no teaching intent is stated in the source.",
+   "tags_before": [
+    "cpu",
+    "memory",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "memory",
+    "verilog"
+   ],
+   "summary_before": "The FROG is an extremely minimal 4-bit load-store CPU that addresses external memory via a 7-bit address bus and reads instructions/data from input pins. It supports a zero-wait-state memory mode and provides a write cycle signal. Testing involves setting the data input to a NOP instruction and observing the address bus increment. External SRAM or ROM containing instructions is required for operation.",
+   "summary": "The FROG is an extremely minimal 4-bit load-store CPU that addresses external memory via a 7-bit address bus and reads instructions/data from input pins. It supports a zero-wait-state memory mode and provides a write cycle signal. Testing involves setting the data input to a NOP instruction and observing the address bus increment. External SRAM or ROM containing instructions is required for operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "5a8f0995ec0d",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Reordered summary sentences so the unsupported use-case claim is not presented as a test result; content otherwise unchanged.",
+   "tags_before": [
+    "shift-register",
+    "multiplexer",
+    "verilog"
+   ],
+   "tags": [
+    "shift-register",
+    "multiplexer",
+    "verilog"
+   ],
+   "summary_before": "This design implements six 40-bit shift registers with a multiplexer that selects between input data and recirculating output data. On each clock cycle, six bits are shifted in, and the six bits input four cycles earlier are output. It can be used for serial data delay or storage. The design is simple and requires only a clock and control signals.",
+   "summary": "This design implements six 40-bit shift registers with a multiplexer that selects between input data and recirculating output data. On each clock cycle, six bits are shifted in, and the six bits input four cycles earlier are output. The design is simple and requires only a clock and control signals. It can be used for serial data delay or storage.",
+   "summary_changed": true
+  },
+  {
+   "key": "02bac4a92741",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "combinational",
+     "reason": "The design uses registers to store nibbles and is clocked, so it is not purely combinational."
+    }
+   ],
+   "add": [],
+   "notes": "Removed combinational tag; the design contains registers and is clocked.",
+   "tags_before": [
+    "cipher",
+    "lookup-table",
+    "ascii",
+    "verilog",
+    "combinational"
+   ],
+   "tags": [
+    "cipher",
+    "lookup-table",
+    "ascii",
+    "verilog"
+   ],
+   "summary_before": "Tiny rot13 implements the ROT13 substitution cipher on ASCII characters. It accepts a character as two 4-bit nibbles via control lines, performs the ROT13 transformation using a lookup table, and outputs the result as an 8-bit value. The design is tested by shifting in nibbles and reading the output, and can be used with an MCU or FPGA for full functionality. It is notable for fitting the cipher into a single tile and using control lines instead of a fixed clock cycle protocol.",
+   "summary": "Tiny rot13 implements the ROT13 substitution cipher on ASCII characters. It accepts a character as two 4-bit nibbles via control lines, performs the ROT13 transformation using a lookup table, and outputs the result as an 8-bit value. The design is tested by shifting in nibbles and reading the output, and can be used with an MCU or FPGA for full functionality. It is notable for fitting the cipher into a single tile and using control lines instead of a fixed clock cycle protocol.",
+   "summary_changed": false
+  },
+  {
+   "key": "59952fbd94e3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The LED is external test hardware, not an output interface of the design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed led tag; the LED is external test equipment, not a design output.",
+   "tags_before": [
+    "pwm",
+    "signal-generator",
+    "led",
+    "verilog",
+    "counter"
+   ],
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "verilog",
+    "counter"
+   ],
+   "summary_before": "This PWM generator produces a 100 Hz PWM signal with a duty cycle set by a 6-bit input, where the duty cycle is twice the input value. It is tested by connecting switches to the duty cycle inputs and an LED to the PWM output to observe the brightness. The design is simple and requires minimal external hardware.",
+   "summary": "This PWM generator produces a 100 Hz PWM signal with a duty cycle set by a 6-bit input, where the duty cycle is twice the input value. It is tested by connecting switches to the duty cycle inputs and an LED to the PWM output to observe the brightness. The design is simple and requires minimal external hardware. The duty cycle inputs range from 0 to 50.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "0ef0ceb6ca64: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6914,
+  "completion_tokens": 1041,
+  "total_tokens": 7955,
+  "cost": 0.002031738,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002031738,
+   "upstream_inference_prompt_cost": 0.000969918,
+   "upstream_inference_completions_cost": 0.00106182
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002031738,
+ "elapsed_s": 28.2
+}

@@ -1,0 +1,243 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6f5a97541186",
+  "6dc895f9da24",
+  "d29cb12ce9e7",
+  "592fb6f5c66b",
+  "dba4e13f9f49",
+  "b0edc703c996"
+ ],
+ "results": [
+  {
+   "key": "6f5a97541186",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "retro",
+     "reason": "Retro style is not claimed; it is a functional simplified implementation, not a retro recreation showcase."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Registers are mentioned as a collection but not a multi-register file structure with addressing evidence."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "Missing canonical tag? No — remove this add candidate."
+    }
+   ],
+   "notes": "Removed unsupported retro and register-file tags; the proposed summary was otherwise accurate.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "fsm",
+    "verilog",
+    "retro"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "instruction-decoder",
+    "fsm",
+    "verilog",
+    "risc-v"
+   ],
+   "summary_before": "This project implements a custom 8-bit microprocessor inspired by the 6502, built around an ALU, registers and a microcoded instruction decoder that executes a subset of the original instruction set. Data is exchanged on the eight bidirectional pins uio[0] to uio[7], while the eight outputs uo[0] to uo[7] carry address bits, and the design runs at 40 MHz. The documentation mentions a block diagram and describes two testing strategies for verifying processor correctness. No silicon test results are reported, and the instruction subset is not fully enumerated in the provided text.",
+   "summary": "This project implements a custom 8-bit microprocessor inspired by the 6502 architecture, built around an ALU, registers, and a microcoded instruction decoder that executes a subset of the 6502 instruction set. Data is exchanged on the eight bidirectional pins uio[0] to uio[7], while the eight outputs uo[0] to uo[7] carry address bits; the design runs at 40 MHz. The documentation includes a block diagram and describes two testing strategies for verifying processor correctness. No silicon test results are reported, and the instruction subset is not fully enumerated in the provided text.",
+   "summary_changed": true
+  },
+  {
+   "key": "6dc895f9da24",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sprite",
+     "reason": "The source describes a fish image bouncing around, not sprite-based graphics hardware."
+    }
+   ],
+   "add": [],
+   "notes": "Removed sprite tag as only a bouncing image is documented.",
+   "tags_before": [
+    "vga",
+    "sprite",
+    "graphics",
+    "video",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This design displays a fish sprite that bounces around a VGA screen, based on the VGA Playground logo example. It is used by connecting the chip to a VGA monitor and loading the project. The only external hardware required is a VGA display. The documentation is minimal and does not describe any testing or silicon results.",
+   "summary": "This design displays a fish image that bounces around a VGA screen, based on the VGA Playground logo example. It is used by connecting the chip to a screen with a VGA connection and loading the project. The only external hardware required is a VGA display. The documentation is minimal and does not describe any testing or silicon results.",
+   "summary_changed": true
+  },
+  {
+   "key": "d29cb12ce9e7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "Divided outputs are provided, but no general-purpose clock generation function is described."
+    },
+    {
+     "tag": "analog",
+     "reason": "Mixed-signal is supported by controllable current sources and analog supply pins, but a separate analog tag is redundant and weaker."
+    },
+    {
+     "tag": "divider",
+     "reason": "The divider outputs are frequency divisions of the ring oscillator; this is covered by ring-oscillator/oscillator context rather than a digital divider circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "The uo outputs div8 through div256 are explicit clock frequency division outputs."
+    }
+   ],
+   "notes": "Adjusted tags to clock-divider and removed redundant unsupported tags.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "divider",
+    "analog",
+    "mixed-signal"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "mixed-signal",
+    "clock-divider"
+   ],
+   "summary_before": "This mixed-signal design is a 31-stage ring oscillator with controllable current sources, providing divided clock outputs. It is enabled via a ring_enb signal, and when ui_in is set to 0xFF, the oscillator runs and produces divided frequencies on the outputs. The design includes analog control pins for current sources and power, and it can be tested with an oscilloscope to measure timing. The documentation is brief, indicating it was created for the TTIHP26a shuttle, but lacks detailed test results or application notes.",
+   "summary": "This mixed-signal design is a 31-stage ring oscillator with controllable current sources, providing divided clock outputs. It is enabled via a ring_enb signal, and when ui_in is set to 0xFF, the oscillator runs and produces divided frequencies on the outputs. The design includes analog control pins for current sources and power, and it can be tested with an oscilloscope to measure timing. The documentation is brief, indicating it was created for the TTIHP26a shuttle, but lacks detailed test results or application notes.",
+   "summary_changed": false
+  },
+  {
+   "key": "592fb6f5c66b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "An animated squares pattern is not an interactive game."
+    }
+   ],
+   "add": [],
+   "notes": "Removed game tag as the project is an animation, not a game.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "game",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This design generates an animated VGA squares pattern based on the VGA playground rings template. Two input pins control the animation speed and direction, and the outputs drive a standard Tiny VGA pinout. It is tested either through a testbench or by connecting a VGA monitor. The documentation is brief and does not describe the visual output in detail.",
+   "summary": "This design generates an animated VGA squares pattern based on the VGA playground rings template. Two input pins control the animation speed and direction, and the outputs drive a standard Tiny VGA pinout. It is tested either through a testbench or by connecting a VGA monitor. The documentation is brief and does not describe the visual output in detail.",
+   "summary_changed": false
+  },
+  {
+   "key": "dba4e13f9f49",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pattern-generator",
+     "reason": "The canonical pattern-generator means a digital test pattern generator, not a visual stripe pattern."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "The one-line description says it is a quick test of the new advanced workshop guide."
+    }
+   ],
+   "notes": "Swapped pattern-generator for workshop, which is directly supported by the description.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "pattern-generator",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "education",
+    "verilog",
+    "workshop"
+   ],
+   "summary_before": "This project generates a stripe pattern on a VGA display, based on the VGA playground template. It is intended as a quick test of an advanced workshop guide, and the input pins can be used to change the pattern. A VGA Pmod is required to view the output. The documentation is thin and does not specify what the input pins control.",
+   "summary": "This project generates a stripe pattern on a VGA display, based on the VGA playground template. It is intended as a quick test of an advanced workshop guide, and the input pins can be used to change the pattern. A VGA Pmod is required to view the output. The documentation is thin and does not specify what the input pins control.",
+   "summary_changed": false
+  },
+  {
+   "key": "b0edc703c996",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "snake-game",
+    "game",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "snake-game",
+    "game",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This design animates a snake travelling around a 7-segment display. A chain of flip-flops driven by the clock and reset generates a time sequence, and each step lights the segments that form the moving snake. A step button advances the snake by one tile, and the design uses the 7-segment segments A through G plus the decimal point as outputs. The documentation is brief and the external hardware section is left as an unfilled template, but the behaviour is clear from the description.",
+   "summary": "This design animates a snake travelling around a 7-segment display. A chain of flip-flops driven by the clock and reset generates a time sequence, and each step lights the segments that form the moving snake. A step button advances the snake by one tile, and the design uses the 7-segment segments A through G plus the decimal point as outputs. The documentation is brief and the external hardware section is left as an unfilled template, but the behaviour is clear from the description.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5659,
+  "completion_tokens": 1302,
+  "total_tokens": 6961,
+  "cost": 0.0032601,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032601,
+   "upstream_inference_prompt_cost": 0.0016977,
+   "upstream_inference_completions_cost": 0.0015624
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032601,
+ "elapsed_s": 6.8
+}

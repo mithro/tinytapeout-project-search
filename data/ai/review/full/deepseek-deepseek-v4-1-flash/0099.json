@@ -1,0 +1,212 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "68dfeb036415",
+  "1794691c2a01",
+  "972029330fa5",
+  "9225dcc8ad53",
+  "f16998a2da82",
+  "d26c7e8c4d5f"
+ ],
+ "results": [
+  {
+   "key": "68dfeb036415",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rgb-led",
+     "reason": "The design outputs three PWM signals to drive LEDs, but the source never states the LEDs are RGB; the title 'RGB Mixer' is not supported by the pin descriptions or documentation."
+    },
+    {
+     "tag": "education",
+     "reason": "The source says it is a 'Zero to ASIC demo project', not that it is intended for teaching or learning digital design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rotary-encoder",
+     "reason": "The design debounces and reads three digital encoders connected to the first six inputs."
+    },
+    {
+     "tag": "driver",
+     "reason": "It provides PWM output stages intended to drive external LEDs."
+    }
+   ],
+   "notes": "Removed unsupported rgb-led and education tags; added rotary-encoder and driver tags.",
+   "tags_before": [
+    "pwm",
+    "led",
+    "debouncer",
+    "rgb-led",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "pwm",
+    "led",
+    "debouncer",
+    "verilog",
+    "rotary-encoder",
+    "driver"
+   ],
+   "summary_before": "This design debounces inputs from three rotary encoders and generates PWM signals to control RGB LED brightness. It is intended for use with external digital encoders connected to the first six inputs. The project is a demo for the Zero to ASIC course. Testing involves twisting the encoders and observing the LED brightness changes.",
+   "summary": "This design debounces inputs from three rotary encoders and generates PWM signals to control LED brightness. It is intended for use with external digital encoders connected to the first six inputs. The project is a demo for the Zero to ASIC course. Testing involves twisting the encoders and observing the LED brightness changes.",
+   "summary_changed": true
+  },
+  {
+   "key": "1794691c2a01",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "shift-register",
+    "led",
+    "verilog",
+    "counter"
+   ],
+   "tags": [
+    "shift-register",
+    "led",
+    "verilog",
+    "counter"
+   ],
+   "summary_before": "Option22 is a long shift register that holds 22 bytes (22x8 bits) and rotates them. Data is shifted in on the positive clock edge when the write signal is high, and after every 8 clocks a byte is available at the output. The design is tested by keeping write high to push in 22 bytes, then keeping write low to read out the bytes. It requires external pink LEDs for visual output.",
+   "summary": "Option22 is a long shift register that holds 22 bytes (22x8 bits) and rotates them. Data is shifted in on the positive clock edge when the write signal is high, and after every 8 clocks a byte is available at the output. The design is tested by keeping write high to push in 22 bytes, then keeping write low to read out the bytes. It requires external pink LEDs for visual output.",
+   "summary_changed": false
+  },
+  {
+   "key": "972029330fa5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design is a single spiking LIF neuron, not a generic artificial neural network."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the project was tested and working on fabricated silicon."
+    }
+   ],
+   "notes": "Removed overly broad neural-network tag and added silicon-tested based on the working silicon report.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements an adaptive leaky integrate-and-fire neuron with configurable adaptive threshold and decay rate. It accepts an 8-bit current input and outputs the membrane potential and spike output, with control pins to enable adaptive features. Silicon testing confirmed that the neuron fires in response to different current levels, though the spike output appeared as digital pulses rather than narrow spikes. The design aims to enhance spike sparsity while preserving input features, and the documentation includes simulation and test results.",
+   "summary": "This project implements an adaptive leaky integrate-and-fire neuron with configurable adaptive threshold and decay rate. It accepts an 8-bit current input and outputs the membrane potential and spike output, with control pins to enable adaptive features. Silicon testing confirmed that the neuron fires in response to different current levels, though the spike output appeared as digital pulses rather than narrow spikes. The design aims to enhance spike sparsity while preserving input features, and the documentation includes simulation and test results.",
+   "summary_changed": false
+  },
+  {
+   "key": "9225dcc8ad53",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "counter",
+    "characterization",
+    "silicon-tested"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "counter",
+    "characterization",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements three different ring oscillators with varying temperature dependence: a basic NAND-based oscillator, a capacitively loaded NAND oscillator, and a tri-state inverter oscillator with sub-threshold enable. Each oscillator drives a counter that can be latched and transferred via a Manchester-encoded serial data stream, and divided versions of each oscillator clock are also output. The design is intended for characterization and testing of oscillator behavior. Silicon tests confirmed that at least one oscillator output works, though full testing is incomplete.",
+   "summary": "This design implements three different ring oscillators with varying temperature dependence: a basic NAND-based oscillator, a capacitively loaded NAND oscillator, and a tri-state inverter oscillator with sub-threshold enable. Each oscillator drives a counter that can be latched and transferred via a Manchester-encoded serial data stream, and divided versions of each oscillator clock are also output. The design is intended for characterization and testing of oscillator behavior. Silicon tests confirmed that at least one oscillator output works, though full testing is incomplete.",
+   "summary_changed": false
+  },
+  {
+   "key": "f16998a2da82",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "comparator",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "comparator",
+    "verilog"
+   ],
+   "summary_before": "This design implements delta modulation spike encoding for spiking neural networks, mimicking the snnTorch implementation. It generates a spike when the difference between the current and previous 4-bit data inputs exceeds a configurable threshold, with an option to emit negative spikes. The previous data register can be read and forced for debugging, and the design can be tested with an ADC or by manually changing the data input and observing spikes on an oscilloscope. All numerical inputs and outputs are unsigned 4-bit integers.",
+   "summary": "This design implements delta modulation spike encoding for spiking neural networks, mimicking the snnTorch implementation. It generates a spike when the difference between the current and previous 4-bit data inputs exceeds a configurable threshold, with an option to emit negative spikes. The previous data register can be read and forced for debugging, and the design can be tested with an ADC or by manually changing the data input and observing spikes on an oscilloscope. All numerical inputs and outputs are unsigned 4-bit integers.",
+   "summary_changed": false
+  },
+  {
+   "key": "d26c7e8c4d5f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning; it only describes the multiplier operation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag and the speculative final sentence about it being an educational exercise.",
+   "tags_before": [
+    "multiplier",
+    "combinational",
+    "education",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4x4 array multiplier that generates and sums partial products to produce an 8-bit output from two 4-bit inputs. The documentation explains the general operation of an array multiplier but does not provide specific implementation details or test results. Testing involves applying binary inputs and verifying the output against expected multiplication results. No external hardware is needed. The design is likely an educational exercise, but the documentation is somewhat generic and lacks project-specific details.",
+   "summary": "This project is a 4x4 array multiplier that generates and sums partial products to produce an 8-bit output from two 4-bit inputs. The documentation explains the general operation of an array multiplier but does not provide specific implementation details or test results. Testing involves applying binary inputs and verifying the output against expected multiplication results. No external hardware is needed.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6968,
+  "completion_tokens": 1143,
+  "total_tokens": 8111,
+  "cost": 0.0025212,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0025212,
+   "upstream_inference_prompt_cost": 0.0011496,
+   "upstream_inference_completions_cost": 0.0013716
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0025212,
+ "elapsed_s": 46.9
+}

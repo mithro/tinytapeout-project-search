@@ -1,0 +1,306 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "db2b274a4bac",
+  "d2dca9a00bca",
+  "bab396991263",
+  "cabf84f2a78f",
+  "457efe6c495d",
+  "37bb11f4908c"
+ ],
+ "results": [
+  {
+   "key": "db2b274a4bac",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counting circuit is described; the design compares guess bits to random bits."
+    },
+    {
+     "tag": "prng",
+     "reason": "Uses Verilog $random, but no dedicated PRNG hardware is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Already present; interactive guessing game."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; source language is Verilog."
+    }
+   ],
+   "notes": "Removed counter and prng tags because the source describes comparison logic and $random use, not a counter or dedicated PRNG.",
+   "tags_before": [
+    "game",
+    "prng",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "verilog"
+   ],
+   "summary_before": "This is a random number guessing game where the player has three attempts to guess a 6-bit random number. The guess is entered on six input pins, and the result appears on six output pins, with each bit indicating whether the corresponding guess bit matched the random number. A correct guess outputs all ones and resets the game with a new random number; after three failed attempts, the game outputs all zeros and resets. The design uses Verilog's $random function and is intended as a simple interactive game.",
+   "summary": "This is a random number guessing game where the player has three attempts to guess a 6-bit random number. The guess is entered on six input pins, and the result appears on six output pins, with each bit indicating whether the corresponding guess bit matched the random number. A correct guess outputs all ones and resets the game with a new random number; after three failed attempts, the game outputs all zeros and resets. The design uses Verilog's $random function and is intended as a simple interactive game.",
+   "summary_changed": false
+  },
+  {
+   "key": "d2dca9a00bca",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the design is a CPU core with a bus interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "Already present; implements a PDP8 CPU core."
+    },
+    {
+     "tag": "retro",
+     "reason": "Already present; recreates a classic PDP8 minicomputer architecture."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; source language is Verilog."
+    }
+   ],
+   "notes": "Removed fsm tag because the source describes a CPU core and bus protocol, not a finite state machine.",
+   "tags_before": [
+    "cpu",
+    "retro",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "retro",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 12-bit PDP8 CPU core in Verilog, excluding the extended arithmetic unit so it lacks multiply and divide instructions. It communicates over a custom 5-clock bus interface that multiplexes 12-bit addresses and data through 8-bit pins, with separate phases for address, data, and I/O cycles. An assembler is included mainly for testing purposes, and testbench code is provided. The design is notable for being a compact reimplementation of a classic minicomputer architecture on a single Tiny Tapeout tile.",
+   "summary": "This project implements a 12-bit PDP8 CPU core in Verilog, excluding the extended arithmetic unit so it lacks multiply and divide instructions. It communicates over a custom 5-clock bus interface that multiplexes 12-bit addresses and data through 8-bit pins, with separate phases for address, data, and I/O cycles. An assembler is included mainly for testing purposes, and testbench code is provided. The design is a compact reimplementation of a classic minicomputer architecture on a single Tiny Tapeout tile.",
+   "summary_changed": true
+  },
+  {
+   "key": "bab396991263",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "Already present; implements RAM storage."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Already present; uses shift registers for storage."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; created using Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and lacks testing details."
+    }
+   ],
+   "notes": "Added insufficient-doc because the documentation is very thin and testing instructions are missing.",
+   "tags_before": [
+    "memory",
+    "shift-register",
+    "wokwi"
+   ],
+   "tags": [
+    "memory",
+    "shift-register",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements an 8-byte RAM using shift registers. It stores data bits and provides 8 parallel outputs. The design is written in Wokwi and uses a clock and address inputs to control data storage. The documentation is minimal, stating only that it stores stuff, and lacks detailed testing instructions.",
+   "summary": "This project implements an 8-byte RAM using shift registers. It stores data bits and provides 8 parallel outputs. The design is written in Wokwi and uses a clock and address inputs to control data storage. The documentation is minimal, stating only that it stores stuff, and lacks detailed testing instructions.",
+   "summary_changed": false
+  },
+  {
+   "key": "cabf84f2a78f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described; the design is a full adder built from multiplexers."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Already present; implements a full adder."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "Already present; uses 4:1 multiplexers."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; outputs drive a seven-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; created using Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "The project is presented as a teaching example of implementing a full adder with multiplexers."
+    }
+   ],
+   "notes": "Removed alu tag because the source describes a full adder, not an ALU.",
+   "tags_before": [
+    "adder",
+    "multiplexer",
+    "alu",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "multiplexer",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This project implements a full adder using two 4:1 multiplexers instead of conventional gates, with the sum and carry outputs driving a seven-segment display. Three inputs A, B and Cin are provided on input pins, and the design is clocked at 1 Hz. Testing involves setting the clock and applying two 3-bit binary numbers, then reading the sum and carry on the display. The documentation is somewhat inconsistent about the number of inputs and the role of the clock.",
+   "summary": "This project implements a full adder using two 4:1 multiplexers instead of conventional gates, with the sum and carry outputs driving a seven-segment display. Three inputs A, B and Cin are provided on input pins, and the design is clocked at 1 Hz. Testing involves setting the clock and applying two 3-bit binary numbers, then reading the sum and carry on the display. The documentation is somewhat inconsistent about the number of inputs and the role of the clock.",
+   "summary_changed": false
+  },
+  {
+   "key": "457efe6c495d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is described; inputs are generic level signals."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs are labeled as LEDs, not a seven-segment display."
+    }
+   ],
+   "add": [
+    {
+     "tag": "motor-control",
+     "reason": "Already present; controls a motor based on tank level."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Already present; uses four states and D flip-flops for state control."
+    },
+    {
+     "tag": "led",
+     "reason": "Already present; drives LEDs for level indication."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; created using Wokwi."
+    }
+   ],
+   "notes": "Removed sensor-interface and 7-segment tags because the source describes generic level inputs and LED outputs, not a sensor interface or seven-segment display.",
+   "tags_before": [
+    "sensor-interface",
+    "motor-control",
+    "fsm",
+    "7-segment",
+    "led",
+    "wokwi"
+   ],
+   "tags": [
+    "motor-control",
+    "fsm",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This design monitors a water tank level using two inputs and drives four LEDs to indicate Full, Half1, Half2 and Empty states, plus a motor control output. It uses D flip-flops for synchronization and state storage, and the motor starts when the tank is empty and stops when full. Testing involves a clock and two inputs, with five outputs connected to LEDs and a motor indicator. The documentation is somewhat unclear about the exact input encoding and the role of the clock.",
+   "summary": "This design monitors a water tank level using two inputs and drives four LEDs to indicate Full, Half1, Half2 and Empty states, plus a motor control output. It uses D flip-flops for synchronization and state storage, and the motor starts when the tank is empty and stops when full. Testing involves a clock and two inputs, with five outputs connected to LEDs and a motor indicator. The documentation is somewhat unclear about the exact input encoding and the role of the clock.",
+   "summary_changed": false
+  },
+  {
+   "key": "37bb11f4908c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "The serial data line is a custom serial input, not a UART interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "Already present; implements TOTP authentication."
+    },
+    {
+     "tag": "security",
+     "reason": "Already present; two-factor authentication security application."
+    },
+    {
+     "tag": "hash",
+     "reason": "Already present; uses SHA1 and HMAC."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; outputs drive a seven-segment display."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin with TODO placeholders."
+    }
+   ],
+   "notes": "Removed uart tag because the serial input is custom, not a UART interface; added insufficient-doc due to TODO documentation.",
+   "tags_before": [
+    "crypto",
+    "security",
+    "hash",
+    "7-segment",
+    "uart"
+   ],
+   "tags": [
+    "crypto",
+    "security",
+    "hash",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a TOTP authenticator that generates 6 to 8 digit codes for two-factor authentication, compatible with common apps like Google Authenticator. It accepts a shared secret and timestamp via a serial input and displays the generated code on a 7-segment display. Debug outputs are available on the bidirectional pins for inspecting internal SHA1 and HMAC operations. The design is documented only by its pin names and a TODO placeholder, so detailed operation and testing procedures are not provided.",
+   "summary": "This project implements a TOTP authenticator that generates 6 to 8 digit codes for two-factor authentication, compatible with common apps like Google Authenticator. It accepts a shared secret and timestamp via a serial input and displays the generated code on a 7-segment display. Debug outputs are available on the bidirectional pins for inspecting internal SHA1 and HMAC operations. The design is documented only by its pin names and a TODO placeholder, so detailed operation and testing procedures are not provided.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6577,
+  "completion_tokens": 1782,
+  "total_tokens": 8359,
+  "cost": 0.0041115,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041115,
+   "upstream_inference_prompt_cost": 0.0019731,
+   "upstream_inference_completions_cost": 0.0021384
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041115,
+ "elapsed_s": 28.3
+}

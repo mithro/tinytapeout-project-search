@@ -1,0 +1,260 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "dac340c12177",
+  "3721bb947c62",
+  "dbfd1497a276",
+  "a563f0ff3370",
+  "ef26fde400a5",
+  "a2e31479dc3d"
+ ],
+ "results": [
+  {
+   "key": "dac340c12177",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "art",
+     "reason": "The source describes a retro pixel-art sprite animation, not an artistic/decorative silicon design; 'art' is not clearly supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "Documentation explicitly says colors and animation are inspired by classic retro pixel-art styles."
+    },
+    {
+     "tag": "sprite",
+     "reason": "Sprite ROM lookups and sprite-based rendering are explicitly described."
+    }
+   ],
+   "notes": "Removed unsupported 'art' tag and added 'retro' and 'sprite' which are directly stated in the documentation.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "sprite",
+    "art"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "sprite",
+    "retro"
+   ],
+   "summary_before": "This project displays a Charizard sprite with a flamethrower animation on a VGA monitor. It uses sprite ROM lookups, palette mapping, and state-based rendering to produce real-time animation at a 25.175 MHz clock. The design requires a VGA display and appropriate connections, with no other external hardware. The documentation notes that the original plan for a full evolution line was scaled back due to area constraints, and the final design uses a 1x2 tile area.",
+   "summary": "This project displays a Charizard sprite with a flamethrower animation on a VGA monitor. It uses sprite ROM lookups, palette mapping, and state-based rendering logic to produce real-time animation at a 25.175 MHz clock. The design requires a VGA display and appropriate connections, with no other external hardware. The documentation notes that the original plan for a full evolution line was scaled back due to area constraints, and the final design uses a 1x2 tile area.",
+   "summary_changed": true
+  },
+  {
+   "key": "3721bb947c62",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source indicates the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The design is verified with a Cocotb testbench as stated in the documentation."
+    },
+    {
+     "tag": "button",
+     "reason": "Player input is provided via pushbutton-style input pins (player_input, start, enter)."
+    }
+   ],
+   "notes": "Removed unsupported 'education' tag; added 'cocotb' and 'button' which are supported by the documentation and pins.",
+   "tags_before": [
+    "game",
+    "memory",
+    "fsm",
+    "led",
+    "education"
+   ],
+   "tags": [
+    "game",
+    "memory",
+    "fsm",
+    "led",
+    "cocotb",
+    "button"
+   ],
+   "summary_before": "This chip implements a Simon Says memory game where a sequence is stored in RAM and the player must repeat it using two input buttons. It operates in two modes: programming mode to load the sequence via bidirectional pins, and game mode where the sequence is shown on LEDs and player input is checked. The design is tested with a Cocotb testbench that verifies programming, correct input, and error detection. External hardware such as switches and LEDs is suggested for manual testing.",
+   "summary": "This chip implements a Simon Says memory game where a sequence is stored in RAM and the player must repeat it using two input buttons. It operates in two modes: programming mode to load the sequence via bidirectional pins, and game mode where the sequence is shown on LEDs and player input is checked. The design is tested with a Cocotb testbench that verifies programming, correct input, and error detection. External hardware such as switches and LEDs is suggested for manual testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "dbfd1497a276",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "text",
+    "graphics"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "text",
+    "graphics"
+   ],
+   "summary_before": "This design generates a VGA signal displaying the moving text 'Bonjour Terre!' on a monitor. It is created using the VGA playground with a logo template and requires only a VGA monitor for testing. The design is simple and serves as a demonstration of text animation on a VGA display. No external hardware beyond a monitor is needed.",
+   "summary": "This design generates a VGA signal displaying the moving text 'Bonjour Terre!' on a monitor. It is created using the VGA playground with a logo template and requires only a VGA monitor for testing. The design is simple and serves as a demonstration of text animation on a VGA display. No external hardware beyond a monitor is needed.",
+   "summary_changed": false
+  },
+  {
+   "key": "a563f0ff3370",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The design is described as a 4-phase loop processor, not a finite state machine; no FSM is explicitly documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "Testing is done via cocotb as stated in the documentation."
+    },
+    {
+     "tag": "reversible",
+     "reason": "The design is explicitly reversible-computing-inspired with save/reverse operations."
+    }
+   ],
+   "notes": "Removed unsupported 'fsm' tag; added 'cocotb' and 'reversible' which are directly supported by the documentation.",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "memory",
+    "alu",
+    "fsm"
+   ],
+   "tags": [
+    "cpu",
+    "esoteric",
+    "memory",
+    "alu",
+    "cocotb"
+   ],
+   "summary_before": "This design is a 4-bit processor inspired by reversible computing, featuring a 4-phase bus protocol and a 4x4 scratchpad RAM. It executes arithmetic, logic, shift, compare, and memory operations, with support for reversible operations like save and reverse using checkpoint metadata. Testing is done via cocotb, verifying phase progression, ALU operations, RAM access, and reverse functionality. No external hardware is required, but a host controller can drive the phase-aware transactions.",
+   "summary": "This design is a 4-bit processor inspired by reversible computing, featuring a 4-phase bus protocol and a 4x4 scratchpad RAM. It executes arithmetic, logic, shift, compare, and memory operations, with support for reversible operations like save and reverse using checkpoint metadata. Testing is done via cocotb, verifying phase progression, ALU operations, RAM access, and reverse functionality. No external hardware is required, but a host controller can drive the phase-aware transactions.",
+   "summary_changed": false
+  },
+  {
+   "key": "ef26fde400a5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design outputs VGA video, not a generic display; 'display' is redundant and less specific than 'vga'/'video'."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "The design uses the TinyTapeout VGA PMOD connector as stated in the external hardware section."
+    },
+    {
+     "tag": "rasterizer",
+     "reason": "The design is explicitly a hardware triangle rasterizer."
+    }
+   ],
+   "notes": "Removed redundant 'display' tag; added 'pmod' and 'rasterizer' which are supported by the documentation.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "video",
+    "display",
+    "systemverilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "systemverilog",
+    "pmod"
+   ],
+   "summary_before": "This project implements a hardware triangle rasterizer that renders filled triangles to a 256x256 viewport on a 640x480 VGA display. It uses the edge-equation method with incremental evaluation to avoid per-pixel multiplications, and triangles are loaded serially via an 8-bit input with a valid strobe. The design requires a VGA PMOD and monitor, and an external microcontroller to send triangle data. It is notable for its efficient hardware rasterization suitable for embedded graphics.",
+   "summary": "This project implements a hardware triangle rasterizer that renders filled triangles to a 256x256 viewport on a 640x480 VGA display. It uses the edge-equation method with incremental evaluation to avoid per-pixel multiplications, and triangles are loaded serially via an 8-bit input with a valid strobe. The design requires a VGA PMOD and monitor, and an external microcontroller to send triangle data. It is notable for its efficient hardware rasterization suitable for embedded graphics.",
+   "summary_changed": false
+  },
+  {
+   "key": "a2e31479dc3d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design is for ML acceleration, not general digital signal processing; no DSP application is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The design is verified with cocotb tests as stated in the documentation."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "The design is explicitly intended for tiny ML accelerators, matching the edge-ai tag."
+    }
+   ],
+   "notes": "Removed unsupported 'dsp' tag; added 'cocotb' and 'edge-ai' which are supported by the documentation.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "machine-learning",
+    "dsp",
+    "neural-network",
+    "verilog"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "machine-learning",
+    "neural-network",
+    "verilog",
+    "cocotb",
+    "edge-ai"
+   ],
+   "summary_before": "This design implements a 32-bit iterative multiply-accumulate (MAC) unit with a 7x8-bit multiplier, intended for tiny ML accelerators. A controller FSM manages partial sums and bias alignment across four training phases or one inference phase. The design is verified with cocotb tests comparing against a reference model, and it requires no external hardware beyond the Tiny Tapeout carrier. It is notable for its iterative architecture suitable for resource-constrained AI applications.",
+   "summary": "This design implements a 32-bit iterative multiply-accumulate (MAC) unit with a 7x8-bit multiplier, intended for tiny ML accelerators. A controller FSM manages partial sums and bias alignment across four training phases or one inference phase. The design is verified with cocotb tests comparing against a reference model, and it requires no external hardware beyond the Tiny Tapeout carrier. It is notable for its iterative architecture suitable for resource-constrained AI applications.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "a563f0ff3370: reviewer added non-canonical tag 'reversible'"
+ ],
+ "usage": {
+  "prompt_tokens": 7723,
+  "completion_tokens": 1416,
+  "total_tokens": 9139,
+  "cost": 0.00191368,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3380,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00191368,
+   "upstream_inference_prompt_cost": 0.00097912,
+   "upstream_inference_completions_cost": 0.00093456
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00191368,
+ "elapsed_s": 17.4
+}

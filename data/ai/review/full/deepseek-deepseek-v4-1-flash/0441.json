@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e32658b50cca",
+  "05f857a4baad",
+  "491c20af0295",
+  "ee1f18d0380c",
+  "b5f4c27518aa",
+  "f1e2d654e269"
+ ],
+ "results": [
+  {
+   "key": "e32658b50cca",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design reads from an external SPI flash; it does not implement a memory block itself."
+    },
+    {
+     "tag": "qspi",
+     "reason": "The flash is accessed with single-bit SPI READ (0x03) with 24-bit addresses; the pinout is QSPI-compatible but the design does not implement a quad SPI interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "speaker",
+     "reason": "The analog outputs drive audio amplifiers/speakers, matching the speaker output tag."
+    }
+   ],
+   "notes": "Removed memory and qspi tags not supported by the source; added speaker for the analog audio outputs.",
+   "tags_before": [
+    "audio",
+    "spi",
+    "dac",
+    "analog",
+    "memory",
+    "qspi"
+   ],
+   "tags": [
+    "audio",
+    "spi",
+    "dac",
+    "analog",
+    "speaker"
+   ],
+   "summary_before": "This design plays raw unsigned 8-bit PCM audio samples from an attached SPI flash chip through DACs connected to analog pins ua[0] and ua[1]. It requires an SPI flash configured for 24-bit addressing and audio amplifiers connected to the analog outputs. The design supports play/pause control and mode selection via input pins. It is notable for integrating analog output with digital SPI flash reading.",
+   "summary": "This design plays raw unsigned 8-bit PCM audio samples from an attached SPI flash chip through DACs connected to analog pins ua[0] and ua[1]. It requires an SPI flash configured for 24-bit addressing and audio amplifiers connected to the analog outputs. The design supports play/pause control and mode selection via input pins. It is notable for integrating analog output with digital SPI flash reading.",
+   "summary_changed": false
+  },
+  {
+   "key": "05f857a4baad",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "bist",
+    "sram",
+    "memory",
+    "fsm",
+    "cocotb"
+   ],
+   "tags": [
+    "bist",
+    "sram",
+    "memory",
+    "fsm",
+    "cocotb"
+   ],
+   "summary_before": "This project implements a Built-In Self-Test (BIST) mechanism for an 8-bit by 16-word internal SRAM. It uses a finite state machine to write a test pattern to all addresses and then read back and compare the values, setting a fail flag on mismatch and a done flag upon completion. The test pattern is provided on ui_in[3:0], and the start signal initiates the process. It is intended for memory integrity verification and can be tested with a Cocotb testbench.",
+   "summary": "This project implements a Built-In Self-Test (BIST) mechanism for an 8-bit by 16-word internal SRAM. It uses a finite state machine to write a test pattern to all addresses and then read back and compare the values, setting a fail flag on mismatch and a done flag upon completion. The test pattern is provided on ui_in[3:0], and the start signal initiates the process. It is intended for memory integrity verification and can be tested with a Cocotb testbench.",
+   "summary_changed": false
+  },
+  {
+   "key": "491c20af0295",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "A pedestrian crossing light simulation is not an industrial control application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "The controller toggles between green and red with a countdown, i.e. a finite state machine."
+    },
+    {
+     "tag": "led",
+     "reason": "The outputs drive light signals and the documentation suggests connecting LEDs for visualization."
+    }
+   ],
+   "notes": "Removed industrial tag; added fsm and led tags supported by the source.",
+   "tags_before": [
+    "industrial",
+    "timer",
+    "verilog"
+   ],
+   "tags": [
+    "timer",
+    "verilog",
+    "fsm",
+    "led"
+   ],
+   "summary_before": "This is a simulation of a pedestrian traffic light controller that toggles between green and red lights with a countdown. It is tested by observing the output pins, where the lights swap after the countdown resets. No external hardware is required, but LEDs can be connected for visualization. The design is a simple state machine with a countdown timer.",
+   "summary": "This is a simulation of a pedestrian traffic light controller that toggles between green and red lights with a countdown. It is tested by observing the output pins, where the lights swap after the countdown resets. No external hardware is required, but LEDs can be connected for visualization. The design is a simple state machine with a countdown timer.",
+   "summary_changed": false
+  },
+  {
+   "key": "ee1f18d0380c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sensor-interface",
+     "reason": "The design uses specific I2C gyro and UART proximity sensor interfaces, which are already covered by i2c and uart; no generic sensor interface is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "servo",
+     "reason": "The pins include PWM and direction outputs for left and right motors, matching motor control outputs."
+    }
+   ],
+   "notes": "Removed sensor-interface; added servo for the motor PWM/direction outputs.",
+   "tags_before": [
+    "robotics",
+    "i2c",
+    "uart",
+    "pwm",
+    "motor-control",
+    "sensor-interface"
+   ],
+   "tags": [
+    "robotics",
+    "i2c",
+    "uart",
+    "pwm",
+    "motor-control",
+    "servo"
+   ],
+   "summary_before": "This is an experimental controller for an autonomous robot, enabling sensor communication and path tracking. It interfaces with a gyro via I2C and a proximity sensor via UART, and controls motors with PWM and direction signals. The design is tested by connecting the specified sensors and enabling the robot. It requires external gyro and proximity sensors, as well as motor drivers.",
+   "summary": "This is an experimental controller for an autonomous robot, enabling sensor communication and path tracking. It interfaces with a gyro via I2C and a proximity sensor via UART, and controls motors with PWM and direction signals. The design is tested by connecting the specified sensors and enabling the robot. It requires external gyro and proximity sensors, as well as motor drivers.",
+   "summary_changed": false
+  },
+  {
+   "key": "b5f4c27518aa",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design works on fabricated silicon."
+    }
+   ],
+   "notes": "Added silicon-tested tag based on the working silicon test report.",
+   "tags_before": [
+    "cordic",
+    "spi",
+    "fixed-point",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "cordic",
+    "spi",
+    "fixed-point",
+    "dsp",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a ROM-less CORDIC engine that computes sine and cosine of an input angle using 16-bit fixed-point arithmetic. It interfaces via SPI to receive four 16-bit inputs and returns three 16-bit outputs. The design is tested with an SPI master, such as an RP2040, and achieves high accuracy. It is notable for avoiding ROM by generating micro-rotation angles with Taylor series approximation.",
+   "summary": "This is a ROM-less CORDIC engine that computes sine and cosine of an input angle using 16-bit fixed-point arithmetic. It interfaces via SPI to receive four 16-bit inputs and returns three 16-bit outputs. The design is tested with an SPI master, such as an RP2040, and achieves high accuracy. It is notable for avoiding ROM by generating micro-rotation angles with Taylor series approximation.",
+   "summary_changed": false
+  },
+  {
+   "key": "f1e2d654e269",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "spi",
+    "communication",
+    "systemverilog"
+   ],
+   "tags": [
+    "uart",
+    "spi",
+    "communication",
+    "systemverilog"
+   ],
+   "summary_before": "This design integrates a UART and an SPI communication block into a single Tiny Tapeout tile, with pins arranged so both can operate simultaneously. A loopback input connects the input register directly to the output register, so serial output echoes serial input when loopback is asserted, which simplifies testing without external devices. The UART exposes start, valid, and ready signals, while the SPI exposes chip select, start, sclk, and separate slave receive and transmit starts. The documentation describes the top-level wrapper and submodules but gives no silicon test results or measured behavior.",
+   "summary": "This design integrates a UART and an SPI communication block into a single Tiny Tapeout tile, with pins arranged so both can operate simultaneously. A loopback input connects the input register directly to the output register, so serial output echoes serial input when loopback is asserted, which simplifies testing without external devices. The UART exposes start, valid, and ready signals, while the SPI exposes chip select, start, sclk, and separate slave receive and transmit starts. The documentation describes the top-level wrapper and submodules but gives no silicon test results or measured behavior.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7483,
+  "completion_tokens": 1158,
+  "total_tokens": 8641,
+  "cost": 0.002296173,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002296173,
+   "upstream_inference_prompt_cost": 0.001115013,
+   "upstream_inference_completions_cost": 0.00118116
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002296173,
+ "elapsed_s": 46.4
+}

@@ -1,0 +1,412 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3444ec3b9a56",
+  "370013d5c9ef",
+  "f6d2568f52ce",
+  "69030bd11971",
+  "5395b8394eaa",
+  "574c9d944577"
+ ],
+ "results": [
+  {
+   "key": "3444ec3b9a56",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "oscillator",
+     "reason": "no oscillator in the design; it is a VGA image display"
+    },
+    {
+     "tag": "dac",
+     "reason": "no DAC present; outputs are digital VGA color signals"
+    },
+    {
+     "tag": "analog",
+     "reason": "pins are digital VGA signals, no analog circuitry"
+    },
+    {
+     "tag": "vco",
+     "reason": "no voltage-controlled oscillator in the source"
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "Verilog design, not discrete transistor level"
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Tiny VGA pinout detected and VGA monitor output described"
+    },
+    {
+     "tag": "video",
+     "reason": "outputs a video signal to a VGA monitor"
+    },
+    {
+     "tag": "graphics",
+     "reason": "renders a logo/image on screen"
+    },
+    {
+     "tag": "display",
+     "reason": "displays an image on a monitor"
+    },
+    {
+     "tag": "art",
+     "reason": "displays a laboratory logo and author image"
+    },
+    {
+     "tag": "verilog",
+     "reason": "written in Verilog"
+    }
+   ],
+   "notes": "Proposed tags described an oscillator/DAC design that does not match the VGA logo display source.",
+   "tags_before": [
+    "oscillator",
+    "dac",
+    "analog",
+    "vco",
+    "transistor-level"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "art",
+    "verilog"
+   ],
+   "summary_before": "This analog design implements a voltage-controlled ring oscillator with an 8-bit DAC for frequency tuning. It uses input pins to select the image and control color, and outputs standard VGA signals. The design is notable for its trimming capability and analog implementation.",
+   "summary": "This design displays either the Automation Laboratory logo or the author's image on a VGA monitor. It uses input pins to select the image and control color, and outputs standard VGA signals including sync and RGB. The design is written in Verilog and targets the Tiny Tapeout ASIC shuttle. It requires a VGA PMOD board and a VGA monitor for testing.",
+   "summary_changed": true
+  },
+  {
+   "key": "370013d5c9ef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "no VGA interface in pins or text"
+    },
+    {
+     "tag": "video",
+     "reason": "no video output described"
+    },
+    {
+     "tag": "graphics",
+     "reason": "no graphics rendering in the design"
+    },
+    {
+     "tag": "display",
+     "reason": "no display output described"
+    },
+    {
+     "tag": "game",
+     "reason": "not a game; it is an SPI bridge for neural amplifier chips"
+    },
+    {
+     "tag": "retro",
+     "reason": "no retro computing or gaming content"
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "implements SPI interfaces to RHD2164, MCU, and register bank"
+    },
+    {
+     "tag": "biomedical",
+     "reason": "interfaces with RHD2164 neural amplifier chips for neural recording"
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "measurement/data acquisition bridge for neural amplifier chips"
+    },
+    {
+     "tag": "register-file",
+     "reason": "implements a register bank accessible via SPI or scanchain/shift register"
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "register bank accessible via scanchain/shift register"
+    },
+    {
+     "tag": "verilog",
+     "reason": "written in Verilog"
+    }
+   ],
+   "notes": "Proposed tags described a VGA game, which is unrelated to the SPI neural amplifier bridge source.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "game",
+    "retro"
+   ],
+   "tags": [
+    "spi",
+    "biomedical",
+    "instrumentation",
+    "register-file",
+    "scan-chain",
+    "verilog"
+   ],
+   "summary_before": "This design is a game that outputs video via VGA, with graphics and display capabilities. It is written in Verilog and targets the Tiny Tapeout ASIC shuttle. The design requires a VGA monitor and possibly input devices such as buttons or a gamepad. It is notable for its retro-style graphics and gameplay.",
+   "summary": "This design implements a custom SPI module to interface with RHD2164 neural amplifier chips and select specific channels to transfer data to an MCU via SPI. It also implements a register bank accessible either by SPI or by scanchain/shift register. The design can be tested with an FPGA using RHD2164 and MCU-SPI emulators, or connected to a real RHD2164 chip in CMOS or LVDS mode. It is written in Verilog and targets the Tiny Tapeout ASIC shuttle.",
+   "summary_changed": true
+  },
+  {
+   "key": "f6d2568f52ce",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "no adder described in the source"
+    },
+    {
+     "tag": "subtractor",
+     "reason": "no subtractor described in the source"
+    },
+    {
+     "tag": "register-file",
+     "reason": "no register file described in the source"
+    },
+    {
+     "tag": "alu",
+     "reason": "no ALU described in the source"
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "created using the Wokwi simulator"
+    },
+    {
+     "tag": "template",
+     "reason": "described as a test for the Wokwi platform"
+    },
+    {
+     "tag": "incomplete",
+     "reason": "documentation says it is only a test for Wokwi"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation is very thin and does not describe functionality"
+    }
+   ],
+   "notes": "Proposed tags claimed adder/subtractor/ALU/register-file functionality not present in the source.",
+   "tags_before": [
+    "adder",
+    "subtractor",
+    "register-file",
+    "alu",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a full adder and full subtractor with two 4-bit registers, selecting the operation and destination register via control inputs. Data is entered in binary on four input pins, the register is chosen with one input, and add or subtract is chosen with another.",
+   "summary": "This project is a test design for the Wokwi platform. The documentation states that it is only a test for Wokwi and provides no further description of its logic. It has eight input pins and eight output pins, but the source does not explain their function. The design is written in Wokwi and targets the Tiny Tapeout ASIC shuttle.",
+   "summary_changed": true
+  },
+  {
+   "key": "69030bd11971",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "no cryptography described in the source"
+    },
+    {
+     "tag": "automotive",
+     "reason": "no automotive application described in the source"
+    },
+    {
+     "tag": "security",
+     "reason": "no security function described in the source"
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "written in Verilog"
+    },
+    {
+     "tag": "placeholder",
+     "reason": "documentation is generic placeholder text with no real design description"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation is very thin and does not describe the design"
+    }
+   ],
+   "notes": "Proposed tags and summary invented an ECDSA/V2X automotive security design not supported by the placeholder source.",
+   "tags_before": [
+    "crypto",
+    "automotive",
+    "security",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a hardware IP block that performs low-latency ECDSA verification for V2X communication. The documentation states the purpose and timing goal but does not describe the internal datapath, curve parameters, or how the signature data is actually loaded and processed. The design is intended for automotive V2X security applications. The documentation does not provide silicon test results.",
+   "summary": "This project is a placeholder submission with generic documentation. The how-it-works and how-to-test sections contain only placeholder text, and the pin names are single letters with no described function. It is written in Verilog and targets the Tiny Tapeout ASIC shuttle. No external hardware is required, and no silicon test results are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "5395b8394eaa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "no educational intent stated in the source"
+    },
+    {
+     "tag": "template",
+     "reason": "not described as a template; documentation is empty"
+    },
+    {
+     "tag": "gpio",
+     "reason": "no general purpose IO function described"
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "output pin names top, topr, botr, bot, botl, topl, mid, dot match seven-segment display segments"
+    },
+    {
+     "tag": "display",
+     "reason": "outputs appear intended for a seven-segment display"
+    },
+    {
+     "tag": "wokwi",
+     "reason": "created using the Wokwi simulator"
+    },
+    {
+     "tag": "incomplete",
+     "reason": "documentation says 'i do not know yet' and 'nothing so far'"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation is very thin and does not describe functionality"
+    }
+   ],
+   "notes": "Removed unsupported education/template/gpio tags; kept the seven-segment inference based on pin names.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "template",
+    "gpio"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled 'numbers' and appears to be a seven-segment display driver based on its pin names, which include segment labels such as top, topr, botr, bot, botl, topl, mid, and dot. The documentation is essentially empty: the one-line description says 'nothing so far', the how-it-works section says 'i do not know yet', and the how-to-test section says 'i do not know yet'. No external hardware is listed, though a seven-segment display would be required to use the outputs. The design is likely a simple educational template, but the lack of documentation prevents a clear understanding of its functionality.",
+   "summary": "This project is titled 'numbers' and its output pin names suggest a seven-segment display driver. The documentation is essentially empty: the one-line description says 'nothing so far', and both the how-it-works and how-to-test sections say 'i do not know yet'. No external hardware is listed, though a seven-segment display would be required to use the outputs. The design is written in Wokwi and targets the Tiny Tapeout ASIC shuttle.",
+   "summary_changed": true
+  },
+  {
+   "key": "574c9d944577",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "trng",
+     "reason": "no true random number generator described in the source"
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "no ring oscillator described in the source"
+    },
+    {
+     "tag": "prng",
+     "reason": "no pseudo random number generator described in the source"
+    },
+    {
+     "tag": "analog",
+     "reason": "no analog circuitry described in the source"
+    },
+    {
+     "tag": "vco",
+     "reason": "no voltage-controlled oscillator described in the source"
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "title and one-line description state a 4-bit 1-channel PWM module"
+    },
+    {
+     "tag": "alu",
+     "reason": "title states an ALU 4 bits"
+    },
+    {
+     "tag": "verilog",
+     "reason": "written in Verilog"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation is very thin and does not describe the ALU or PWM operation"
+    }
+   ],
+   "notes": "Proposed tags and summary described a ring-oscillator TRNG, which contradicts the PWM/ALU source.",
+   "tags_before": [
+    "trng",
+    "ring-oscillator",
+    "prng",
+    "analog",
+    "pwm",
+    "vco"
+   ],
+   "tags": [
+    "pwm",
+    "alu",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design generates a random bit with a variable probability using a ring oscillator-based true random number generator. It employs seven 7-stage ring oscillators with a NAND gate, an inverter bias system controlled by a DAC, and flip-flops to sample the output. The design is intended for cryptographic or security applications. It is notable for its use of analog bias control to vary the output probability.",
+   "summary": "This design is a 4-bit, 1-channel PWM module that also includes a 4-bit ALU. The documentation is very thin: it only says to set ui_in[7:0] as input and read uo_out to get the output. The design is written in Verilog and targets the Tiny Tapeout ASIC shuttle. No external hardware or silicon test results are described.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5734,
+  "completion_tokens": 2158,
+  "total_tokens": 7892,
+  "cost": 0.0043098,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043098,
+   "upstream_inference_prompt_cost": 0.0017202,
+   "upstream_inference_completions_cost": 0.0025896
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043098,
+ "elapsed_s": 28.0
+}

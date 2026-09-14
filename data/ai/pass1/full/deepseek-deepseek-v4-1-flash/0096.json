@@ -1,0 +1,195 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "82eee85c006f",
+  "adc33d46220f",
+  "70b011842d54",
+  "8cb33c4e71c6",
+  "7369485fdc10",
+  "faf173b77555",
+  "175fe23b799d",
+  "cdb778def367",
+  "04be7d3d561f",
+  "9bba07bd2779"
+ ],
+ "results": [
+  {
+   "key": "82eee85c006f",
+   "tags": [
+    "gaussian-blur",
+    "filter",
+    "image-processing",
+    "shift-register",
+    "dsp",
+    "4-bit",
+    "wokwi"
+   ],
+   "summary": "This design implements a 4-bit Gaussian blur filter that accepts nine pixel values serially through a free-running shift register and outputs the blurred center pixel. After nine clock cycles the shift register is full and the output can be sampled, with the last shift register stage also exposed for testing. The design is written in Wokwi and runs at 100 kHz on a single tile. An FPGA is suggested as useful external hardware for driving the pixel stream, and the documentation is brief but sufficient to understand the operation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "adc33d46220f",
+   "tags": [
+    "ecc",
+    "error-correction",
+    "hamming-code",
+    "bist",
+    "transmitter",
+    "receiver",
+    "encoder",
+    "decoder",
+    "wokwi"
+   ],
+   "summary": "This project implements a 1-bit error detection and correction module with a transmitter that generates four redundant bits from an 8-bit input to form a 12-bit codeword, a built-in self-test block that can inject errors, and a receiver that corrects any single-bit error. The BIST block outputs either the redundant bits or the error position on four bidirectional pins depending on whether an error was inserted. Testing requires twelve LEDs, a 7-segment display, counters, and digital input switches. The design is written in Wokwi and targets a single tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "70b011842d54",
+   "tags": [
+    "uart",
+    "serial",
+    "communication",
+    "protocol",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary": "This project is described as a UART for connecting two digital devices, using switches to select an ASCII character and a 7-segment display to show the result. The documentation is very thin, consisting of only a few sentences that do not explain the baud rate, framing, or register interface. The pin names are generic (in1 through in8, out1 through out3) and do not clearly map to UART signals. External hardware listed includes an Arduino, a 7-segment display, and eight switches, but the design's actual behavior cannot be fully determined from the provided text.",
+   "confidence": "low",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8cb33c4e71c6",
+   "tags": [
+    "register",
+    "flip-flop",
+    "storage",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "summary": "This design is a simple 8-bit register that stores the eight input bits on the eight outputs when a clock pulse occurs. It is built from D-type flip-flops and is intended as a basic educational example. Testing is done by setting the inputs and using a push button to save and hold the value. The documentation is minimal and the design is very simple, with no external hardware required beyond the clock and input switches.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7369485fdc10",
+   "tags": [
+    "7-segment",
+    "display",
+    "animation",
+    "message",
+    "inverted",
+    "wokwi"
+   ],
+   "summary": "This project sequentially spells out a hidden message on a 7-segment display by inverting the segment outputs, so the viewer must invert the segments to decipher the text. It uses the eight outputs a through g plus dot and runs at 1 Hz on a single tile. The documentation is very brief and does not state what the message is or how the sequence is generated. No external hardware is mentioned, and the design appears to be a small novelty or puzzle.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "faf173b77555",
+   "tags": [
+    "counter",
+    "8-bit",
+    "education",
+    "led",
+    "wokwi",
+    "factory-test"
+   ],
+   "summary": "This is an 8-bit binary counter designed by a 9-year-old following instructions and a picture, with outputs Q0 through Q7 counting upward. It is tested by connecting an LED Pmod and observing the binary count, and multiple silicon test reports confirm that it works correctly at 1 Hz. The design is notable as a beginner-friendly educational project and has been verified by several testers. No complex external hardware is required beyond the LEDs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "175fe23b799d",
+   "tags": [
+    "full-adder",
+    "adder",
+    "kmap",
+    "arithmetic",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "summary": "This project implements a full-adder directly from Karnaugh maps for both the sum and carry-out outputs, taking inputs A, B, and C-IN. It behaves as a standard full-adder and requires no external hardware. The design is a straightforward combinational circuit intended to demonstrate a K-map-based implementation. The documentation is short but sufficient to understand the function.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cdb778def367",
+   "tags": [
+    "sha256",
+    "crypto",
+    "hash",
+    "encryption",
+    "bus",
+    "register",
+    "verilog"
+   ],
+   "summary": "This is a minimal SHA-256 hash core implemented in Verilog with a single-cycle-round architecture, intended to fit within a 2x2 tile area. It exposes an addressed register interface through the input pins and an 8-bit data bus on the bidirectional pins, with a ready output. The documentation is incomplete, containing TODO placeholders for both the architecture description and test instructions. No external hardware is needed beyond a bus master to transfer commands and data, but the design cannot be fully evaluated from the provided text.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "04be7d3d561f",
+   "tags": [
+    "factory-test",
+    "test",
+    "gpio",
+    "counter",
+    "io",
+    "verilog",
+    "scan-chain"
+   ],
+   "summary": "This factory test module is designed to verify all I/O pins of an ASIC and has three modes: mirroring input pins to outputs, mirroring bidirectional pins to outputs, and outputting an 8-bit counter on both output and bidirectional pins. Mode selection is controlled by rst_n and sel signals, with the counter incrementing every clock cycle and resetting when rst_n is low. The design is written in Verilog and occupies a single tile. It is intended for manufacturing test and requires no external hardware beyond the ASIC itself.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9bba07bd2779",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "linux",
+    "uart",
+    "spi",
+    "psram",
+    "flash",
+    "verilog",
+    "microcontroller"
+   ],
+   "summary": "This is a RISC-V SoC called KianV uLinux that can boot a small Linux system, implemented in Verilog across an 8x2 tile area. It provides a UART interface, SPI connections for flash and PSRAM, and several LED outputs, with one bidirectional pin held always high. The design is notable for being a full Linux-capable RISC-V ASIC on a Tiny Tapeout shuttle. External hardware includes SPI flash and PSRAM memories, and the documentation is limited to pin names without detailed usage instructions.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4068,
+  "completion_tokens": 1488,
+  "total_tokens": 5556,
+  "cost": 0.0025551,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0025551,
+   "upstream_inference_prompt_cost": 0.00103734,
+   "upstream_inference_completions_cost": 0.00151776
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0025551,
+ "elapsed_s": 36.0
+}

@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4c5ba3ae92ba",
+  "22d64cd1d152",
+  "3e2689529be1",
+  "e897edfe122d",
+  "1138dc07e06d",
+  "576dc80bf273"
+ ],
+ "results": [
+  {
+   "key": "4c5ba3ae92ba",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "The pins implement a Tiny VGA pinout only; no audio output pin or audio interface is defined, and no audio hardware is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "text",
+     "reason": "The design explicitly displays a 'HELLO WORLD' text message."
+    },
+    {
+     "tag": "vga",
+     "reason": "The detected Tiny VGA pinout and the stated purpose confirm a VGA video output."
+    }
+   ],
+   "notes": "Removed audio because the pinout and documentation do not define any audio interface; re-added vga/text as supported canonical tags.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "text",
+    "audio"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "text"
+   ],
+   "summary_before": "This project drives a VGA monitor to display a Hello World message with synchronized audio and changing colors. It uses the standard Tiny VGA pinout and is clocked at 25.175 MHz, requiring the TinyVGA PMOD as external hardware. The documentation is very thin, consisting only of the one-line description, a brief note about the display and audio, and a testing instruction to connect a VGA monitor. No implementation details, audio interface description, or silicon test results are provided.",
+   "summary": "This project drives a VGA monitor to display a Hello World message with changing colors, using the standard Tiny VGA pinout at 25.175 MHz. The only external hardware named is the TinyVGA PMOD, and the design is a single 1x1 tile implemented in Verilog. The documentation is thin, giving just the display purpose and a testing instruction to connect a VGA monitor. No implementation details or silicon test results are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "22d64cd1d152",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "lfsr",
+    "edge-detector",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "lfsr",
+    "edge-detector",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design bundles several digital structures: a 4-bit counter, positive and negative edge trigger circuits, an LFSR for pseudo-random sequences, and multiple pulse counters with trigger circuits. It is tested by connecting external inputs and observing outputs on the uo and uio pins. The documentation is brief and does not specify external hardware requirements beyond basic input/output connections. The project appears to be an educational collection of common digital building blocks.",
+   "summary": "This design bundles several digital structures: a 4-bit counter, positive and negative edge trigger circuits, an LFSR for pseudo-random sequences, and multiple pulse counters with trigger circuits. It is tested by connecting external inputs and observing outputs on the uo and uio pins. The documentation is brief and does not specify external hardware requirements beyond basic input/output connections. The project appears to be an educational collection of common digital building blocks.",
+   "summary_changed": false
+  },
+  {
+   "key": "3e2689529be1",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "sequential-logic",
+    "flip-flop",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "sequential-logic",
+    "flip-flop",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This sequential circuit uses D flip-flops to display the name 'Andre' on a 7-segment display. It is tested by connecting the outputs to a common-cathode 7-segment display and providing a 1 Hz clock. The design requires only the 7-segment display as external hardware. The documentation is minimal and does not describe the internal state machine or character sequence in detail.",
+   "summary": "This sequential circuit uses D flip-flops to display the name 'Andre' on a 7-segment display. It is tested by connecting the outputs to a common-cathode 7-segment display and providing a 1 Hz clock. The design requires only the 7-segment display as external hardware. The documentation is minimal and does not describe the internal state machine or character sequence in detail.",
+   "summary_changed": false
+  },
+  {
+   "key": "e897edfe122d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Nothing in the source indicates this design is intended for teaching or learning; it is a student-style exercise but no educational purpose is stated."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education as unsupported; rewrote the first sentence to avoid a parity ambiguity between the title and the body.",
+   "tags_before": [
+    "parity",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "parity",
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This is a parity detector that turns on an LED when an even number of its eight switch inputs are high, and turns it off for an odd number. It is built from six XOR gates and is tested by toggling the input switches and observing the parity output. No external hardware beyond the switches and LED is required. The documentation is very brief and does not include a schematic or detailed explanation.",
+   "summary": "This is a parity detector that controls an LED output based on the number of active switch inputs. The documentation describes it as turning off the parity LED when an odd number of switches are on, built from six XOR gates, and tested by toggling the switches. No external hardware beyond the switches and LED is required. The documentation is very brief and does not include a schematic or detailed explanation.",
+   "summary_changed": true
+  },
+  {
+   "key": "1138dc07e06d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "scan-chain",
+     "reason": "No scan chain or test scan circuitry is described; the design is simple pad control and configuration-bit access logic."
+    },
+    {
+     "tag": "asic",
+     "reason": "Too generic and not clearly supported as a distinguishing tag, while more precise factory-test/characterization tags apply."
+    }
+   ],
+   "add": [
+    {
+     "tag": "factory-test",
+     "reason": "The design explicitly controls test pads on the die for silicon testing."
+    },
+    {
+     "tag": "characterization",
+     "reason": "It provides access to configuration bits and pad inputs on a test die for process/device testing."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is marked very thin and gives pin functions with little explanatory text."
+    }
+   ],
+   "notes": "Removed scan-chain and asic as unsupported in favor of factory-test, characterization, and insufficient-doc.",
+   "tags_before": [
+    "factory-test",
+    "scan-chain",
+    "asic"
+   ],
+   "tags": [
+    "factory-test",
+    "characterization",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design provides control logic for test pads on the north side of the TTGF0p1 die, allowing configuration bits to be set and read back. It uses a config bit index and toggle signals to select and modify configuration bits, with outputs reflecting pad inputs and the selected config bit value. The design is intended for silicon testing and does not require external hardware beyond the chip's pads. The documentation is sparse and focuses on pin functions rather than a full description.",
+   "summary": "This design provides control logic for test pads on the north side of the TTGF0p1 die, allowing configuration bits to be set and read back. It uses a config-bit index and toggle signals to select and modify configuration bits, with outputs reflecting pad inputs and the selected config bit value. The design is intended for silicon testing and does not require external hardware beyond the chip's pads. The documentation is sparse and focuses on pin functions rather than a full description.",
+   "summary_changed": true
+  },
+  {
+   "key": "576dc80bf273",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "bandgap",
+    "voltage-reference",
+    "analog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "analog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an analog bandgap voltage reference based on a Beta amplifier topology with a folded cascode OTA. It provides a typical output voltage of approximately 1.23 V. The circuit includes a buffer for one output node and requires an external DC voltage source for testing. Silicon measurements showed a Vref of 1.26 V, close to the expected value.",
+   "summary": "This is an analog bandgap voltage reference based on a Beta amplifier topology with a folded cascode OTA. It provides a typical output voltage of approximately 1.23 V. The circuit includes a buffer for one output node and requires an external DC voltage source for testing. Silicon measurements showed a Vref of 1.26 V, close to the expected value.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5607,
+  "completion_tokens": 1208,
+  "total_tokens": 6815,
+  "cost": 0.0031317,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0031317,
+   "upstream_inference_prompt_cost": 0.0016821,
+   "upstream_inference_completions_cost": 0.0014496
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0031317,
+ "elapsed_s": 6.9
+}

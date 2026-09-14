@@ -1,0 +1,250 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "30bd90de186b",
+  "04f2c4125b43",
+  "69e8e7ac34ae",
+  "1c40c3c002e8",
+  "1c7ad88ad204",
+  "9ed0c0c884f6"
+ ],
+ "results": [
+  {
+   "key": "30bd90de186b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fifo",
+     "reason": "The text only mentions a flow-control buffer option; it does not document a FIFO interface or memory structure."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The documentation states that after manufacturing the design can be manually tested, indicating it has been fabricated."
+    }
+   ],
+   "notes": "Replaced unsupported FIFO tag with supported silicon-tested tag based on documentation.",
+   "tags_before": [
+    "adder",
+    "pipeline",
+    "fifo",
+    "systemverilog",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "pipeline",
+    "systemverilog",
+    "education",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements an adder with separate flow control for each argument and the result, using a choice of pipeline register/buffer modules. It is a solution to an RTL job interview question and is used in educational repositories. The design includes a self-checking testbench and can be manually tested with buttons and LEDs. It is notable for demonstrating various flow control strategies.",
+   "summary": "This design implements an adder with separate flow control for each argument and the result, using one of several selectable pipeline register or buffer modules. It is a solution to an RTL job interview question described by Yuri Panchul and is used in the educational systemverilog-homework and basics-graphics-music repositories. The design includes a self-checking testbench and can be manually tested with buttons and LEDs to cover back-to-back data, argument starvation, and backpressure. It is an educational design demonstrating different flow control strategies at the RTL level.",
+   "summary_changed": true
+  },
+  {
+   "key": "04f2c4125b43",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "video",
+     "reason": "This is a VGA-specific design, so the more precise vga tag is sufficient and supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "The external hardware section specifies a TinyVGA PMOD, which is a Digilent PMOD."
+    }
+   ],
+   "notes": "Removed overly generic video tag and added pmod tag supported by external hardware.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "art",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "art",
+    "graphics",
+    "verilog",
+    "pmod"
+   ],
+   "summary_before": "This design displays a large selection of pride flags on a VGA monitor, with controls to show the first flag, move to the next or previous flag, or select a flag by index. It uses the Tiny VGA pinout and requires a TinyVGA PMOD to connect to a monitor. The design is extensible by adding new flag modules and updating the index, as described in the documentation. No silicon test reports are provided, but the documentation is clear about usage and configuration.",
+   "summary": "This design displays a large selection of pride flags on a VGA monitor, with controls to show the first flag, move to the next or previous flag, or select a flag by index. It uses the Tiny VGA pinout and requires a TinyVGA PMOD to connect to a monitor. The design is extensible by adding new flag modules and updating the index, as described in the documentation. No silicon test reports are provided, but the documentation is clear about usage and configuration.",
+   "summary_changed": false
+  },
+  {
+   "key": "69e8e7ac34ae",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design has individual registers and a 16-byte memory, but no multi-register file structure is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "The CPU is based on the SAP-1 architecture, not RISC-V, so this tag is removed."
+    }
+   ],
+   "notes": "Removed unsupported register-file tag; added risc-v tag noting the architecture is not RISC-V, correcting a potential misattribution.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "memory",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "memory",
+    "education",
+    "verilog",
+    "risc-v"
+   ],
+   "summary_before": "This is an 8-bit CPU based on the SAP-1 architecture, developed as part of a university course. It includes a control unit, program counter, instruction register, 16-byte memory, arithmetic logic unit with flags, accumulator, and output register. The CPU can execute a small instruction set and provides outputs for the accumulator and flags. It is intended for educational purposes and can be tested by providing opcodes and observing outputs.",
+   "summary": "This is an 8-bit CPU based on the SAP-1 architecture, developed as part of a university course. It includes a control unit, program counter, instruction register, 16-byte memory, arithmetic logic unit with carry and zero flags, accumulator, and output register. The CPU can execute a small instruction set and provides outputs for the accumulator and flags. It is intended for educational purposes and can be tested by providing opcodes and observing outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "1c40c3c002e8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The ring oscillators generate high-frequency signals for testing, not a clock signal for a system."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The documentation notes the 300 MHz oscillator had a missing contact in TT08 and was fixed for TT09, indicating silicon testing."
+    }
+   ],
+   "notes": "Removed incorrect clock-generator tag and added silicon-tested tag per documentation.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "clock-generator"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog design contains two ring oscillators, one built from 18 inverters and a NAND enable gate targeting roughly 600 MHz, and one from 36 inverters targeting roughly 300 MHz, each followed by a two-stage driver to drive the analog pads. Ring 1 is enabled via ui[0] and observed on uo[0], while ring 2 is enabled via ui[1] and observed on uo[1]. Testing requires an oscilloscope to measure the attenuated analog output, and the documentation notes that the 300 MHz oscillator had a missing contact in TT08 and was fixed for TT09. The design is notable for being a transistor-level analog oscillator experiment with known silicon issues.",
+   "summary": "This analog design contains two ring oscillators, one built from 18 inverters and a NAND enable gate targeting roughly 600 MHz, and one from 36 inverters targeting roughly 300 MHz, each followed by a two-stage driver to drive the analog pads. Ring 1 is enabled via ui[0] and observed on uo[0], while ring 2 is enabled via ui[1] and observed on uo[1]. Testing requires an oscilloscope to measure the attenuated analog output, and the documentation notes that the 300 MHz oscillator had a missing contact in TT08 and was fixed for TT09. The design is notable for being a transistor-level analog oscillator experiment with known silicon issues.",
+   "summary_changed": false
+  },
+  {
+   "key": "1c7ad88ad204",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "video",
+    "text",
+    "display",
+    "framebuffer",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "video",
+    "text",
+    "display",
+    "framebuffer",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "The Styler chip manipulates 16x16 character glyph bitmaps based on text mode attributes such as bold, faint, italic, underline, and blink. It has registers for scanline, control, bitmap, and attributes, and it interfaces via 8 bidirectional data pins and several control inputs. The typical use involves writing a scanline number, reading back a logical scanline, and then manipulating bitmap halves to apply visual effects. The chip is intended as part of a larger text mode video display hardware system, and testing is covered by provided test scripts.",
+   "summary": "The Styler chip manipulates 16x16 character glyph bitmaps based on text mode attributes such as bold, faint, italic, underline, and blink. It has registers for scanline, control, bitmap, and attributes, and it interfaces via 8 bidirectional data pins and several control inputs. The typical use involves writing a scanline number, reading back a logical scanline, and then manipulating bitmap halves to apply visual effects. The chip is intended as part of a larger text mode video display hardware system, and testing is covered by provided test scripts.",
+   "summary_changed": false
+  },
+  {
+   "key": "9ed0c0c884f6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design specifically outputs VGA, so the display tag is too generic and redundant."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "The external hardware section specifies a TinyVGA PMOD, which is a Digilent PMOD."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon test reports state the design is working, confirming silicon validation."
+    },
+    {
+     "tag": "video",
+     "reason": "VGA is a video output interface, so the video tag is supported and more precise than display."
+    }
+   ],
+   "notes": "Removed generic display tag; added pmod, video, and silicon-tested tags supported by documentation and silicon status.",
+   "tags_before": [
+    "vga",
+    "display",
+    "graphics",
+    "art",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "art",
+    "verilog",
+    "pmod",
+    "silicon-tested",
+    "video"
+   ],
+   "summary_before": "This design displays a large collection of pride flags on a VGA monitor, with controls to select the flag by index or step through them. It is used by connecting a Tiny VGA PMOD and using the input pins to change the displayed flag. The design requires an external VGA PMOD and a VGA monitor. Silicon testing confirmed that flag switching works, though the index-based selection via uio was not tested.",
+   "summary": "This design displays a large collection of pride flags on a VGA monitor, with controls to select the flag by index or step through them. It is used by connecting a Tiny VGA PMOD and using the input pins to change the displayed flag. The design requires an external VGA PMOD and a VGA monitor. Silicon testing confirmed that flag switching works, though the index-based selection via uio was not tested.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10575,
+  "completion_tokens": 1500,
+  "total_tokens": 12075,
+  "cost": 0.0049725,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0049725,
+   "upstream_inference_prompt_cost": 0.0031725,
+   "upstream_inference_completions_cost": 0.0018
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0049725,
+ "elapsed_s": 9.5
+}

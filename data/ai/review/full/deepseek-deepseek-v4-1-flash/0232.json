@@ -1,0 +1,282 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "c3d3f357c0b9",
+  "4e098b136e81",
+  "16ea19364ea9",
+  "59fe7633f8fe",
+  "ae8f813f7dd2",
+  "d1929284aa2f"
+ ],
+ "results": [
+  {
+   "key": "c3d3f357c0b9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No state machine is described; the design is a register buffer with a clock divider and multiplexed segment inputs."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "The 4-3 multiplexing of segment inputs is described, but the tag is marginal; keeping it is defensible, however the summary's claim about stale data is unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "Stores 12 seven-segment digit patterns in registers, a storage block."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Register-based storage and sequential readback."
+    }
+   ],
+   "notes": "Removed fsm (no state machine described) and corrected the summary, which invented a warning about stale data not present in the source.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "register-file",
+    "clock-divider",
+    "multiplexer",
+    "fsm",
+    "systemverilog"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "register-file",
+    "clock-divider",
+    "systemverilog",
+    "memory",
+    "sequential-logic"
+   ],
+   "summary_before": "This SystemVerilog design stores up to twelve seven-segment digit patterns in registers and can read them back sequentially at a variable rate controlled by a clock divider. In write mode the segment inputs are multiplexed to set the first four segments and then the remaining three, with the select pin advancing to the next digit; in read mode the stored digits cycle on the outputs with a period from about 82 ms to 2.6 s. The user must track how many digits have been written, and the documentation warns that peeking at unoccupied entries returns stale data. No external hardware is required.",
+   "summary": "This SystemVerilog design stores up to twelve seven-segment digit patterns in registers and can read them back sequentially at a variable rate controlled by a clock divider. In write mode the segment inputs are multiplexed to set the first four segments and then the remaining three, with the select pin advancing to the next digit; in read mode the stored digits cycle on the outputs with a period from about 82 ms to 2.6 s. The user is responsible for tracking how many digits have been set. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "4e098b136e81",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon report is a working report from the author, but the design was resubmitted and the bug fixed in tt06; the tag is acceptable only if the report is treated as silicon validation. The report says working, so silicon-tested is supported; however the summary's claim about the fix is supported. Keep silicon-tested."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The documentation links an online Wokwi simulation."
+    },
+    {
+     "tag": "scoreboard",
+     "reason": "A two-digit 7-segment display shows the score."
+    }
+   ],
+   "notes": "Added wokwi and scoreboard tags; the summary is otherwise supported by the source.",
+   "tags_before": [
+    "game",
+    "audio",
+    "led",
+    "7-segment",
+    "button",
+    "speaker",
+    "silicon-tested",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "audio",
+    "led",
+    "7-segment",
+    "button",
+    "speaker",
+    "verilog",
+    "wokwi",
+    "scoreboard"
+   ],
+   "summary_before": "This design implements the Simon Says memory game, where the player must repeat a growing sequence of colors. The sequence is shown via four LEDs, each with a corresponding tone played through a speaker, and the score is displayed on a two-digit 7-segment display. The game requires external hardware: four push buttons with pull-down resistors, four LEDs, a speaker or buzzer, and optionally a two-digit 7-segment display. A silicon test report notes a minor bug where pressing a button immediately after failing skips the game over sound, which was fixed in a later version.",
+   "summary": "This design implements the Simon Says memory game, where the player must repeat a growing sequence of colors. The sequence is shown via four LEDs, each with a corresponding tone played through a speaker, and the score is displayed on a two-digit 7-segment display. The game requires external hardware: four push buttons with pull-down resistors, four LEDs, a speaker or buzzer, and optionally a two-digit 7-segment display. A silicon test report notes a minor bug where pressing a button immediately after failing skips the game over sound, which was fixed in a later version.",
+   "summary_changed": false
+  },
+  {
+   "key": "16ea19364ea9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "fsm"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "fsm"
+   ],
+   "summary_before": "This design implements a configurable leaky integrate-and-fire (LIF) neuron that mimics biological neuron behavior. It uses a state machine to configure parameters such as beta (decay rate) and threshold, then integrates an input current to produce a membrane potential and spike output. The neuron is controlled via input pins for configuration and current injection, with outputs for membrane potential and spike. It is intended for experimentation with neuron parameters and behavior.",
+   "summary": "This design implements a configurable leaky integrate-and-fire (LIF) neuron that mimics biological neuron behavior. It uses a state machine to configure parameters such as beta (decay rate) and threshold, then integrates an input current to produce a membrane potential and spike output. The neuron is controlled via input pins for configuration and current injection, with outputs for membrane potential and spike. It is intended for experimentation with neuron parameters and behavior.",
+   "summary_changed": false
+  },
+  {
+   "key": "59fe7633f8fe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design takes a 1 Hz clock input; it does not generate a clock."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No decoding of codes to signals is described; the counters drive LEDs directly."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "Implements a real-time clock with seconds, minutes, and hours counters."
+    },
+    {
+     "tag": "led",
+     "reason": "Drives 16 LEDs to show the time."
+    }
+   ],
+   "notes": "Removed clock-generator and decoder (unsupported); added rtc and led.",
+   "tags_before": [
+    "counter",
+    "timer",
+    "led",
+    "clock-generator",
+    "wokwi",
+    "decoder"
+   ],
+   "tags": [
+    "counter",
+    "timer",
+    "led",
+    "wokwi",
+    "rtc"
+   ],
+   "summary_before": "This project implements an analog clock controller that drives LEDs to represent the time, with a 1 Hz internal clock input. It includes counters for seconds, minutes, and hours, and outputs to 16 LEDs that indicate the hour and the last 15-minute increment. Input pins allow stopping the clock and manually incrementing the minute or hour counters. The design requires 16 external LEDs for display and is intended to simulate an analog clock face.",
+   "summary": "This project implements an analog clock controller that drives LEDs to represent the time, with a 1 Hz internal clock input. It includes counters for seconds, minutes, and hours, and outputs to 16 LEDs that indicate the hour and the last 15-minute increment. Input pins allow stopping the clock and manually incrementing the minute or hour counters. The design requires 16 external LEDs for display and is intended to simulate an analog clock face.",
+   "summary_changed": false
+  },
+  {
+   "key": "ae8f813f7dd2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational purpose; it is a game."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the design tracks position and direction."
+    }
+   ],
+   "add": [
+    {
+     "tag": "maze",
+     "reason": "The design is a maze explorer game."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive five 7-segment displays."
+    },
+    {
+     "tag": "display",
+     "reason": "The maze walls are displayed on the segment displays."
+    }
+   ],
+   "notes": "Removed education and fsm (unsupported); added maze, 7-segment, and display.",
+   "tags_before": [
+    "game",
+    "maze",
+    "7-segment",
+    "display",
+    "fsm",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "game",
+    "maze",
+    "7-segment",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This project is a maze explorer game implemented in Verilog, where the player navigates a maze using three input buttons to move forward and select direction. The game state and direction are output on bidirectional pins, and the maze walls are displayed on five 7-segment displays. It requires external hardware: five 7-segment displays, current-limiting resistors, and wiring. The design is a simple interactive game suitable for educational purposes.",
+   "summary": "This project is a maze explorer game implemented in Verilog, where the player navigates a maze using three input buttons to move forward and select direction. The game state and direction are output on bidirectional pins, and the maze walls are displayed on five 7-segment displays. It requires external hardware: five 7-segment displays, current-limiting resistors, and wiring. The design is a simple interactive game.",
+   "summary_changed": true
+  },
+  {
+   "key": "d1929284aa2f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "scan-chain",
+     "reason": "The source describes a BILBO shift register with feedback, not a scan chain."
+    }
+   ],
+   "add": [
+    {
+     "tag": "bist",
+     "reason": "The design is a Built-In Logic Block Observer for memory test, a self-test structure."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The BILBO is implemented as a shift register with feedback."
+    },
+    {
+     "tag": "memory",
+     "reason": "It is intended for memory test observation."
+    }
+   ],
+   "notes": "Removed scan-chain (unsupported); added bist, shift-register, and memory.",
+   "tags_before": [
+    "bist",
+    "scan-chain",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "bist",
+    "shift-register",
+    "verilog",
+    "memory"
+   ],
+   "summary_before": "This design implements an 8-bit Concurrent Built-In Logic Block Observer (CBILBO) for memory testing, using shift registers, multiplexers, and feedback logic. It provides a way to observe and control internal memory elements for test purposes. The project includes input and output paths for Tiny Tapeout and supports asynchronous reset. No external hardware is required for testing, and the design is intended to be verified through simulation of its shifting and feedback behavior.",
+   "summary": "This design implements an 8-bit Concurrent Built-In Logic Block Observer (CBILBO) for memory testing, using shift registers, multiplexers, and feedback logic. It provides a way to observe and control internal memory elements for test purposes. The project includes input and output paths for Tiny Tapeout and supports asynchronous reset. No external hardware is required for testing, and the design is intended to be verified through simulation of its shifting and feedback behavior.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8133,
+  "completion_tokens": 1387,
+  "total_tokens": 9520,
+  "cost": 0.002695503,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002695503,
+   "upstream_inference_prompt_cost": 0.001280763,
+   "upstream_inference_completions_cost": 0.00141474
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002695503,
+ "elapsed_s": 55.9
+}

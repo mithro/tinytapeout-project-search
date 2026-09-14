@@ -1,0 +1,258 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "003e3986d6c7",
+  "fa8ddeda3a61",
+  "44d4b61896d6",
+  "e39e17dfba96",
+  "52fb69caf2fc",
+  "b50963805608"
+ ],
+ "results": [
+  {
+   "key": "003e3986d6c7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source describes a Hello World example but does not state an educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The source explicitly says testing currently uses cocotb."
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "The design plays Morse code as PWM audio, a programmable tone/sound generation function."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added cocotb and sound-generator tags supported by the source.",
+   "tags_before": [
+    "chisel",
+    "7-segment",
+    "counter",
+    "audio",
+    "pwm",
+    "pmod",
+    "education"
+   ],
+   "tags": [
+    "chisel",
+    "7-segment",
+    "counter",
+    "audio",
+    "pwm",
+    "pmod",
+    "cocotb",
+    "sound-generator"
+   ],
+   "summary_before": "This is a Chisel Hello World project that displays a counter on a 7-segment display and emits the Morse code for \"hello world\" on the display's decimal point and as PWM audio. The audio output is intended for a PmodAMP2 amplifier connected to the bidirectional PMOD, with gain and shutdown control pins, and switch 0 can disable the counter display to make the Morse code easier to see. Testing currently uses cocotb, with a planned move to ChiselTest. A partial silicon test report notes that the author did not clearly see the correct Morse code and observed something blinking.",
+   "summary": "This is a Chisel Hello World project that displays a counter on a 7-segment display and emits the Morse code for \"hello world\" on the display's decimal point and as PWM audio. The audio output is intended for a PmodAMP2 amplifier connected to the bidirectional PMOD, with gain and shutdown control pins, and switch 0 can disable the counter display to make the Morse code easier to see. Testing currently uses cocotb, with a planned move to ChiselTest. A partial silicon test report notes that the author did not clearly see the correct Morse code and observed something blinking.",
+   "summary_changed": false
+  },
+  {
+   "key": "fa8ddeda3a61",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The source never mentions neural networks; it is a general matrix multiplier."
+    },
+    {
+     "tag": "dsp",
+     "reason": "The source does not describe digital signal processing use."
+    }
+   ],
+   "add": [],
+   "notes": "Removed neural-network and dsp tags not supported by the source; summary now avoids implying those applications.",
+   "tags_before": [
+    "systolic-array",
+    "floating-point",
+    "accelerator",
+    "multiplier",
+    "dsp",
+    "neural-network",
+    "uart",
+    "verilog"
+   ],
+   "tags": [
+    "systolic-array",
+    "floating-point",
+    "accelerator",
+    "multiplier",
+    "uart",
+    "verilog"
+   ],
+   "summary_before": "Neurocore implements a 2x2 systolic array multiplier that computes the product of two 2x2 matrices using 16-bit floating-point arithmetic. It communicates over a UART interface, receiving matrix elements as two 8-bit frames each and returning the result in the same format. The design is intended for matrix multiplication tasks, potentially in neural network or DSP applications. Testing requires an external UART connection to send and receive data according to the documented protocol.",
+   "summary": "Neurocore implements a 2x2 systolic array multiplier that computes the product of two 2x2 matrices using 16-bit floating-point arithmetic. It communicates over a UART interface, receiving matrix elements as two 8-bit frames each and returning the result in the same format. The design is intended for matrix multiplication tasks. Testing requires an external UART connection to send and receive data according to the documented protocol.",
+   "summary_changed": true
+  },
+  {
+   "key": "44d4b61896d6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "microcontroller",
+    "soc",
+    "spi",
+    "uart",
+    "i2c",
+    "memory",
+    "sram",
+    "verilog"
+   ],
+   "tags": [
+    "microcontroller",
+    "soc",
+    "spi",
+    "uart",
+    "i2c",
+    "memory",
+    "sram",
+    "verilog"
+   ],
+   "summary_before": "This is an 8-bit microcontroller system-on-chip called LISA, featuring a Tiny Tapeout Logic Controller and multiple communication interfaces including SPI, UART, and I2C. It is supported by a custom C-based assembler, linker, and a Python-based debugger for programming and debugging. The design requires external SPI flash and SRAM for program storage and data memory. The toolchain is partially functional, with the C compiler still under development and lacking floating-point support.",
+   "summary": "This is an 8-bit microcontroller system-on-chip called LISA, featuring a Tiny Tapeout Logic Controller and multiple communication interfaces including SPI, UART, and I2C. It is supported by a custom C-based assembler, linker, and a Python-based debugger for programming and debugging. The design requires external SPI flash and SRAM for program storage and data memory. The toolchain is partially functional, with the C compiler still under development and lacking floating-point support.",
+   "summary_changed": false
+  },
+  {
+   "key": "e39e17dfba96",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "The design generates GPS test signals; it is not a data communication protocol design."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "The source mentions PRNGs but not LFSRs specifically."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "The generator is a configurable block used to test GPS receiver search algorithms."
+    },
+    {
+     "tag": "rf",
+     "reason": "It generates GPS intermediate-frequency signals for receiver testing."
+    }
+   ],
+   "notes": "Removed unsupported communication and lfsr tags; added instrumentation and rf based on the GPS test-signal purpose.",
+   "tags_before": [
+    "communication",
+    "signal-generator",
+    "uart",
+    "prng",
+    "nco",
+    "lfsr",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "signal-generator",
+    "uart",
+    "prng",
+    "nco",
+    "dsp",
+    "verilog",
+    "instrumentation",
+    "rf"
+   ],
+   "summary_before": "This project generates GPS intermediate frequency signals with configurable parameters including satellite ID, code phase, Doppler shift, and SNR. It includes a register bank configurable via UART and a core with a Gold code generator, NCO, and PRNGs for noise generation. The design outputs sine and cosine signals with and without noise, and can be used to test GPS receiver search algorithms. External hardware such as a microprocessor or FPGA can be used to provide the navigation message input.",
+   "summary": "This project generates GPS intermediate frequency signals with configurable parameters including satellite ID, code phase, Doppler shift, and SNR. It includes a register bank configurable via UART and a core with a Gold code generator, NCO, and PRNGs for noise generation. The design outputs sine and cosine signals with and without noise, and can be used to test GPS receiver search algorithms. External hardware such as a microprocessor or FPGA can be used to provide the navigation message input.",
+   "summary_changed": false
+  },
+  {
+   "key": "52fb69caf2fc",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "stepper-motor",
+    "motor-control",
+    "driver",
+    "spi",
+    "rp2040",
+    "systemverilog",
+    "gpio",
+    "robotics"
+   ],
+   "tags": [
+    "stepper-motor",
+    "motor-control",
+    "driver",
+    "spi",
+    "rp2040",
+    "systemverilog",
+    "gpio",
+    "robotics"
+   ],
+   "summary_before": "This is a real-time motor controller designed to drive stepper motors with precise timing between steps. It interfaces with an RP2040 via SPI for register programming and control, and provides 8 motor control outputs along with general-purpose I/O. External hardware includes a 28BYJ-48 stepper motor with a ULN2003 driver, and optionally a second motor. The design is intended for use with the Tiny Tapeout demo board, and MicroPython support is planned but not yet available.",
+   "summary": "This is a real-time motor controller designed to drive stepper motors with precise timing between steps. It interfaces with an RP2040 via SPI for register programming and control, and provides 8 motor control outputs along with general-purpose I/O. External hardware includes a 28BYJ-48 stepper motor with a ULN2003 driver, and optionally a second motor. The design is intended for use with the Tiny Tapeout demo board, and MicroPython support is planned but not yet available.",
+   "summary_changed": false
+  },
+  {
+   "key": "b50963805608",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "soc",
+    "retro",
+    "uart",
+    "spi",
+    "gpio",
+    "bootloader",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "soc",
+    "retro",
+    "uart",
+    "spi",
+    "gpio",
+    "bootloader",
+    "education"
+   ],
+   "summary_before": "This is a small System-on-Chip (SoC) built around DuckCPU, a custom 8-bit CPU inspired by the Zilog Z80 and Sharp LR35902. It includes peripherals such as UART, SPI, and GPIO, and uses a reserved SPI interface for external flash and RAM. The design is intended for learning purposes and requires external SPI flash and RAM ICs, as well as a USB-to-UART circuit for programming via a bootloader. Detailed documentation is promised after tapeout.",
+   "summary": "This is a small System-on-Chip (SoC) built around DuckCPU, a custom 8-bit CPU inspired by the Zilog Z80 and Sharp LR35902. It includes peripherals such as UART, SPI, and GPIO, and uses a reserved SPI interface for external flash and RAM. The design is intended for learning purposes and requires external SPI flash and RAM ICs, as well as a USB-to-UART circuit for programming via a bootloader. Detailed documentation is promised after tapeout.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7457,
+  "completion_tokens": 1244,
+  "total_tokens": 8701,
+  "cost": 0.0027891,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0027891,
+   "upstream_inference_prompt_cost": 0.0012963,
+   "upstream_inference_completions_cost": 0.0014928
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0027891,
+ "elapsed_s": 8.3
+}

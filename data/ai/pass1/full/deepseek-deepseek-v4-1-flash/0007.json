@@ -1,0 +1,194 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8b0c3c823ed1",
+  "81cce33b149f",
+  "6419290b3ee5",
+  "ed4ae9f83c1d",
+  "0908e7b19714",
+  "128a00c602fc",
+  "6cf8f207b8e7",
+  "02676e2c4578",
+  "75cb4b18a6bc",
+  "5558e7fabf97"
+ ],
+ "results": [
+  {
+   "key": "8b0c3c823ed1",
+   "tags": [
+    "alu",
+    "accumulator",
+    "state-machine",
+    "arithmetic",
+    "led",
+    "calculator",
+    "register"
+   ],
+   "summary": "This design implements a small accumulator that applies one of four operations (add, subtract, XOR, or left shift) to an input value and stores the result in a register. The operation is selected by two arithOp input bits, and a state machine requires the enable signal to be released before another operation can be triggered. The eight-bit result is shown on the LED outputs, and the design is tested by toggling switches on the demo board. It is a simple arithmetic demonstration with no external hardware beyond the board switches and LEDs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "81cce33b149f",
+   "tags": [
+    "gcd",
+    "scan-chain",
+    "chisel",
+    "arithmetic",
+    "state-machine",
+    "serial"
+   ],
+   "summary": "This project is a 16-bit greatest common divisor unit based on Knuth's binary GCD algorithm, written in Chisel. Operands are loaded and results are read back through a scan chain using the ld, u_bit, and v_bit pins, with a done signal indicating completion. The design is verified with ChiselTest unit tests run through sbt, and it requires no external hardware. Its notable feature is the use of scan chains for I/O, which conserves pins on the Tiny Tapeout tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6419290b3ee5",
+   "tags": [
+    "counter",
+    "rotary-encoder",
+    "gray-code",
+    "quadrature",
+    "uart",
+    "spi",
+    "pwm",
+    "debounce",
+    "configurable"
+   ],
+   "summary": "This module is a configurable 8-bit counter driven by a two-channel Gray code signal, intended to interface with incremental rotary encoders. It provides parallel and UART serial counter outputs, a direction signal, and a PWM output whose duty cycle tracks the counter value, and it supports optional debouncing, wrapping, and an X1/X2/X4 gearbox for acceleration. Configuration is loaded over SPI as a 32-bit word that sets initial and maximum values, gearbox timing, and other options. External hardware needed is a Gray code source, possibly with filtering or Schmitt triggers for mechanical encoders, and the UART output runs at the clock rate.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ed4ae9f83c1d",
+   "tags": [
+    "fpga",
+    "lut",
+    "configurable-logic",
+    "spade",
+    "template",
+    "education"
+   ],
+   "summary": "This project is titled YaFPGA and describes itself as yet another FPGA, implemented in the Spade language. The pin list shows four general inputs, four general outputs, and a config data and config clock pair, suggesting a small configurable logic fabric. However, both the how-it-works and how-to-test sections are marked TODO, so the documentation is essentially absent. No behavior, configuration format, or test procedure can be confirmed from the provided text.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "0908e7b19714",
+   "tags": [
+    "cpu",
+    "4-bit",
+    "alu",
+    "accumulator",
+    "instruction-set",
+    "microprocessor",
+    "register-file",
+    "memory"
+   ],
+   "summary": "This is a 4-bit microprocessor with a 4-bit ALU, accumulator, 8-bit memory address register, and 12-bit destination register, supporting 16 instructions including arithmetic, logic, load/store, and branches. It can address 4096 bytes of program memory and 254 words of data memory, with six words of on-chip RAM and two general-purpose input ports. Testing is done manually with a debounced push button as clock and DIP switches to key in instructions, following a documented sequence that produces known output patterns. External hardware at minimum includes program memory and glue logic, as shown in the example system diagram.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "128a00c602fc",
+   "tags": [
+    "sound",
+    "synthesizer",
+    "square-wave",
+    "sawtooth",
+    "noise",
+    "ring-oscillator",
+    "dac",
+    "frequency-generator",
+    "audio"
+   ],
+   "summary": "This is a programmable sound generator with two square-wave voices, one sawtooth voice, and one noise channel, and it can also serve as a general-purpose frequency generator. Tone generation divides a ring-oscillator-derived internal clock by a programmable divisor, producing a 6-bit digital sample that can be converted to analog with a resistor chain. Programming is done through a 4-bit data bus with address and write strobe pins, and a documented register sequence produces a roughly 440 Hz tone. External hardware includes a DAC or resistor network and a microcontroller or microprocessor to program the device.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6cf8f207b8e7",
+   "tags": [
+    "automotive",
+    "state-machine",
+    "led",
+    "taillight",
+    "moore-machine",
+    "sequencer"
+   ],
+   "summary": "This design is a taillight controller for a 1965 Ford Thunderbird, implemented as a Moore state machine in Verilog. It takes left, right, and hazard inputs and drives six outputs labeled r1-r3 and l1-l3 for the rear lamps. After reset the state machine enters an idle mode, and the documentation gives no further test procedure or external hardware requirements. The design is notable mainly for reproducing a classic automotive sequential turn-signal behavior.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "02676e2c4578",
+   "tags": [
+    "fft",
+    "dsp",
+    "complex-arithmetic",
+    "fixed-point",
+    "transform",
+    "signal-processing"
+   ],
+   "summary": "This design computes a small FFT, taking four 4-bit signed real inputs and producing four 6-bit complex outputs. Data is written using a write-enable signal and read back from the data output pins, with an rd_idx_zero output indicating the read index. The documentation is brief and does not specify the transform length, scaling, or ordering beyond the input and output widths. No external hardware is mentioned, and the design is intended as a compact DSP building block.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "75cb4b18a6bc",
+   "tags": [
+    "microcontroller",
+    "pic",
+    "instruction-set",
+    "serial",
+    "gpio",
+    "programmable",
+    "mcu"
+   ],
+   "summary": "This project implements a small microcontroller with a subset of the PIC mid-range instruction set, including six general-purpose registers and 16 program words, but no special function registers, carry, or call/stack support. Programs are shifted in serially through prog_data with prog_strobe, using a 28-bit word per instruction, after which the device runs standalone. Four general-purpose inputs and eight general-purpose outputs are provided, with GPR 6 and GPR 7 mapped to GPI and GPO. External hardware is needed only at startup to shift in the program, such as another microcontroller or USB GPIO interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5558e7fabf97",
+   "tags": [
+    "lcd",
+    "clock",
+    "hd44780",
+    "display",
+    "rtc",
+    "timer"
+   ],
+   "summary": "This design drives an HD44780-compatible character LCD to display a clock, using a 4-bit LCD interface with data pins D4-D7 plus enable and register-select lines. Hour and minute set inputs allow the time to be adjusted, and the design runs from the Tiny Tapeout clock. The documentation consists only of links to an external GitHub README, so the internal implementation and exact test procedure are not described in the provided text. External hardware required is an HD44780 LCD module.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4807,
+  "completion_tokens": 1710,
+  "total_tokens": 6517,
+  "cost": 0.00218614,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00218614,
+   "upstream_inference_prompt_cost": 0.00105754,
+   "upstream_inference_completions_cost": 0.0011286
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00218614,
+ "elapsed_s": 20.8
+}

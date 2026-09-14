@@ -1,0 +1,225 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8098b5c10cd7",
+  "a71ef3998c4c",
+  "b17e5d387538",
+  "a6a1cc667a4a",
+  "aa22da5b661a",
+  "72696b1b0d50"
+ ],
+ "results": [
+  {
+   "key": "8098b5c10cd7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "floating-point",
+     "reason": "The source only mentions a 'custom bfloat16 multiplier'; bfloat16 is a floating-point format, but the design itself is a wrapper, not a floating-point unit, and the tag is not clearly supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The 'How it works' section is literally TODO, so the design description is unfinished."
+    }
+   ],
+   "notes": "Removed floating-point tag because the design is a wrapper around a bfloat16 multiplier, not a floating-point unit; added incomplete tag due to TODO documentation.",
+   "tags_before": [
+    "ethernet",
+    "accelerator",
+    "floating-point",
+    "multiplier",
+    "communication",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "ethernet",
+    "accelerator",
+    "multiplier",
+    "communication",
+    "pmod",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "This project is a network-connected accelerator wrapper that interfaces with a custom bfloat16 multiplier via a 100Mbps Ethernet PHY. It uses a LAN8720A PHY and a 50MHz oscillator on an Ethernet Pmod, and responds to application packets with EtherType 0x88b5. Testing requires connecting the ASIC to a local network and running a provided packet sender/receiver tool. The documentation is incomplete (how-it-works is TODO), but the testing procedure and external hardware are described.",
+   "summary": "This project is a network-connected accelerator wrapper that interfaces with a custom bfloat16 multiplier via a 100Mbps Ethernet PHY. It uses a LAN8720A PHY and a 50MHz oscillator on an Ethernet Pmod, and responds to application packets with EtherType 0x88b5. Testing requires connecting the ASIC to a local network and running a provided packet sender/receiver tool. The documentation is incomplete (how-it-works is TODO), but the testing procedure and external hardware are described.",
+   "summary_changed": false
+  },
+  {
+   "key": "a71ef3998c4c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "i2c",
+    "spi",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "i2c",
+    "spi",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "Communotron is a prototype translator that listens on an I2C bus and emits the data portion of writes it receives as SPI traffic. It is a 1x1 design with an I2C address of 0x41, four SPI chip-select outputs, and SPI clock and data outputs, and it strips I2C ACK bits by stalling the SPI clock. Testing is done by connecting a 400 kHz clock, an I2C controller, and oscilloscope probes on the SPI lines, since the documentation describes no external hardware requirement beyond possible I2C bus drivers. The documentation is very thin, consisting of a short usage note rather than a specification.",
+   "summary": "Communotron is a prototype translator that listens on an I2C bus and emits the data portion of writes it receives as SPI traffic. It is a 1x1 design with an I2C address of 0x41, four SPI chip-select outputs, and SPI clock and data outputs, and it strips I2C ACK bits by stalling the SPI clock. Testing is done by connecting a 400 kHz clock, an I2C controller, and oscilloscope probes on the SPI lines, since the documentation describes no external hardware requirement beyond possible I2C bus drivers. The documentation is very thin, consisting of a short usage note rather than a specification.",
+   "summary_changed": false
+  },
+  {
+   "key": "b17e5d387538",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "framebuffer",
+     "reason": "The design shifts out character/bitmap columns for POV displays; there is no pixel framebuffer described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The design outputs character and bitmap columns to drive a POV display."
+    }
+   ],
+   "notes": "Removed framebuffer tag because no framebuffer is described; added display tag for the POV display output.",
+   "tags_before": [
+    "rom",
+    "framebuffer",
+    "led",
+    "display",
+    "ascii",
+    "verilog",
+    "shift-register"
+   ],
+   "tags": [
+    "rom",
+    "led",
+    "display",
+    "ascii",
+    "verilog",
+    "shift-register"
+   ],
+   "summary_before": "Option23 Serial is a character ROM and bitmap shifter for POV displays, similar to Option23 but with a serial interface. It shifts in 8-bit data LSB first to load ASCII characters or bitmap columns, with additional underline and overline controls. The design outputs columns to drive LEDs, and is tested by shifting in data and setting the mode to clock out characters and graphics. It requires external pink LEDs.",
+   "summary": "Option23 Serial is a character ROM and bitmap shifter for POV displays, similar to Option23 but with a serial interface. It shifts in 8-bit data LSB first to load ASCII characters or bitmap columns, with additional underline and overline controls. The design outputs columns to drive LEDs, and is tested by shifting in data and setting the mode to clock out characters and graphics. It requires external pink LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "a6a1cc667a4a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The design detects neural spikes from ADC samples; it is not a spiking neural network hardware implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a measurement/detection circuit for neural recording signals."
+    }
+   ],
+   "notes": "Removed spiking-neural-network tag because the design is a spike detector, not an SNN; added instrumentation tag for its measurement role.",
+   "tags_before": [
+    "spiking-neural-network",
+    "iir-filter",
+    "dsp",
+    "spi",
+    "biomedical",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "iir-filter",
+    "dsp",
+    "spi",
+    "biomedical",
+    "cocotb",
+    "verilog",
+    "instrumentation"
+   ],
+   "summary_before": "This design implements an adaptive neural spike detector with an IIR bandpass filter (300-3000 Hz), a nonlinear energy operator (NEO), and an EWMA adaptive threshold. It processes 8-bit signed ADC samples and outputs a spike detection pulse along with a 7-bit timestamp. The threshold multiplier and refractory period are configurable via a 3-wire SPI interface. The design is intended as a digital backend for neural recording AFEs and is tested with a cocotb testbench; external hardware such as an ADC or microcontroller is recommended for real-world use.",
+   "summary": "This design implements an adaptive neural spike detector with an IIR bandpass filter (300-3000 Hz), a nonlinear energy operator (NEO), and an EWMA adaptive threshold. It processes 8-bit signed ADC samples and outputs a spike detection pulse along with a 7-bit timestamp. The threshold multiplier and refractory period are configurable via a 3-wire SPI interface. The design is intended as a digital backend for neural recording AFEs and is tested with a cocotb testbench; external hardware such as an ADC or microcontroller is recommended for real-world use.",
+   "summary_changed": false
+  },
+  {
+   "key": "aa22da5b661a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "oscillator",
+    "trng",
+    "ring-oscillator",
+    "verilog",
+    "process-experiment"
+   ],
+   "tags": [
+    "oscillator",
+    "trng",
+    "ring-oscillator",
+    "verilog",
+    "process-experiment"
+   ],
+   "summary_before": "This design implements free-running oscillators to compare simulation with reality and includes a true random number generator (TRNG). It uses combinational loops with dividers to produce output frequencies below 50kHz, and the TRNG output is available on one pin. The design is tested by selecting an oscillator via input pins and measuring the frequency on the output pins, while observing random numbers on another pin. It is a process experiment and requires no external hardware.",
+   "summary": "This design implements free-running oscillators to compare simulation with reality and includes a true random number generator (TRNG). It uses combinational loops with dividers to produce output frequencies below 50kHz, and the TRNG output is available on one pin. The design is tested by selecting an oscillator via input pins and measuring the frequency on the output pins, while observing random numbers on another pin. It is a process experiment and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "72696b1b0d50",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "standard-cell",
+    "ring-oscillator",
+    "shift-register",
+    "instrumentation",
+    "silicon-tested"
+   ],
+   "tags": [
+    "standard-cell",
+    "ring-oscillator",
+    "shift-register",
+    "instrumentation",
+    "silicon-tested"
+   ],
+   "summary_before": "This project includes a sky130-compatible standard cell generator written in Python using gdstk, four example cells (mux2i, maj3, dlrtp, dfrtp), and a TinyTapeout test chip that compares foundry cells against custom-generated ones. The test chip uses an instrumentation framework with a ring oscillator, clock divider, and shift registers to perform both direct and advanced tests at speed. Silicon tests confirmed basic functionality in direct output mode, but the author cautions against using the custom cells in serious designs due to limited testing.",
+   "summary": "This project includes a sky130-compatible standard cell generator written in Python using gdstk, four example cells (mux2i, maj3, dlrtp, dfrtp), and a TinyTapeout test chip that compares foundry cells against custom-generated ones. The test chip uses an instrumentation framework with a ring oscillator, clock divider, and shift registers to perform both direct and advanced tests at speed. Silicon tests confirmed basic functionality in direct output mode, but the author cautions against using the custom cells in serious designs due to limited testing.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "72696b1b0d50: 3 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 8604,
+  "completion_tokens": 1310,
+  "total_tokens": 9914,
+  "cost": 0.0032124,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032124,
+   "upstream_inference_prompt_cost": 0.0016404,
+   "upstream_inference_completions_cost": 0.001572
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032124,
+ "elapsed_s": 8.9
+}

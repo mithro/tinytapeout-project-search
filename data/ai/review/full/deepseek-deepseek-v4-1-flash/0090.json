@@ -1,0 +1,191 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "35b0b849e0ab",
+  "a68e4001bddd",
+  "33f0470ec78c",
+  "7d3619cc4933",
+  "3b91855ec3f3",
+  "d920b31e436b"
+ ],
+ "results": [
+  {
+   "key": "35b0b849e0ab",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lookup-table",
+     "reason": "The source describes an AES inverse S-box computation, not a generic lookup-table based function evaluation; the tag is not clearly supported."
+    }
+   ],
+   "add": [],
+   "notes": "Removed lookup-table tag as unsupported; summary expanded to four supported sentences.",
+   "tags_before": [
+    "aes",
+    "crypto",
+    "lookup-table",
+    "cipher",
+    "verilog"
+   ],
+   "tags": [
+    "aes",
+    "crypto",
+    "cipher",
+    "verilog"
+   ],
+   "summary_before": "This circuit computes the inverse S-box of the Advanced Encryption Standard (AES), taking an 8-bit input and producing an 8-bit output.",
+   "summary": "This circuit computes the inverse S-box of the Advanced Encryption Standard (AES). It takes an 8-bit input byte on ui[0] through ui[7] and produces an 8-bit output byte on uo[0] through uo[7]. The result can be read back from uo_out (unregistered) or uio_out (registered). No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "a68e4001bddd",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ws2812",
+    "rotary-encoder",
+    "rgb-led",
+    "led"
+   ],
+   "tags": [
+    "ws2812",
+    "rotary-encoder",
+    "rgb-led",
+    "led"
+   ],
+   "summary_before": "This Verilog design uses a rotary encoder to control a ring of 12 WS2812B LEDs. Rotating the encoder selects which LED is lit, and a button inverts the LED state. The user can select the color (green, red, or blue) via three input pins and set the intensity with two additional pins. The chip outputs a WS2812B serial data stream on one pin to drive the LED chain, and it also outputs the current count value. External hardware includes a rotary encoder and a WS2812B LED ring.",
+   "summary": "This Verilog design uses a rotary encoder to control a ring of 12 WS2812B LEDs. Rotating the encoder selects which LED is lit, and a button inverts the LED state. The user can select the color (green, red, or blue) via three input pins and set the intensity with two additional pins. The chip outputs a WS2812B serial data stream on one pin to drive the LED chain, and it also outputs the current count value. External hardware includes a rotary encoder and a WS2812B LED ring.",
+   "summary_changed": false
+  },
+  {
+   "key": "33f0470ec78c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes a calculator supporting arithmetic operations but does not state that it contains a dedicated ALU block."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No code-to-signal decoding circuit is described in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu and decoder tags not supported by the source.",
+   "tags_before": [
+    "calculator",
+    "7-segment",
+    "keypad",
+    "alu",
+    "decoder"
+   ],
+   "tags": [
+    "calculator",
+    "7-segment",
+    "keypad"
+   ],
+   "summary_before": "This project implements a basic calculator supporting addition, subtraction, multiplication, and division on positive integers. It scans a 4x4 matrix keypad through the ROW and COL pins and drives a 3-digit seven-segment display via the sseg outputs, with E_1 through E_3 likely acting as digit enables. Testing is done by entering operands through the keypad and checking that the display shows the expected result. External hardware required is a 4x4 matrix keypad and a 3-digit seven-segment display.",
+   "summary": "This project implements a basic calculator supporting addition, subtraction, multiplication, and division on positive integers. It scans a 4x4 matrix keypad through the ROW and COL pins and drives a 3-digit seven-segment display via the sseg outputs, with E_1 through E_3 likely acting as digit enables. Testing is done by entering operands through the keypad and checking that the display shows the expected result. External hardware required is a 4x4 matrix keypad and a 3-digit seven-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "7d3619cc4933",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The source describes a DFFRAM memory module, not a multi-register storage block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed register-file tag as unsupported; memory and insufficient-doc retained.",
+   "tags_before": [
+    "memory",
+    "register-file",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "memory",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a 128-byte DFFRAM module with address, write enable, and data input/output pins. The documentation consists only of 'TODO' placeholders, so the exact functionality and usage are not described. The pin names indicate a memory interface with 7 address bits, a write enable, 8 data inputs, and 8 data outputs. No test or usage information is provided.",
+   "summary": "This design implements a 128-byte DFFRAM module with address, write enable, and data input/output pins. The documentation consists only of 'TODO' placeholders, so the exact functionality and usage are not described. The pin names indicate a memory interface with 7 address bits, a write enable, 8 data inputs, and 8 data outputs. No test or usage information is provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "3b91855ec3f3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "The source describes a password-guessing FSM but does not indicate a hardware security focus."
+    }
+   ],
+   "add": [],
+   "notes": "Removed security tag as unsupported by the source.",
+   "tags_before": [
+    "fsm",
+    "security",
+    "verilog"
+   ],
+   "tags": [
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This design is a finite state machine that checks a hard-coded password entered by the user. Four input pins carry the data nibble, one pin is a send strobe and one is a clock enable, while the eight outputs present an acknowledge byte. The documentation states that the password is 3044238, which is the only test instruction given. It is a small 1x1 Verilog project, and no external hardware beyond the input switches and output observation is described.",
+   "summary": "This design is a finite state machine that checks a hard-coded password entered by the user. Four input pins carry the data nibble, one pin is a send strobe and one is a clock enable, while the eight outputs present an acknowledge byte. The documentation states that the password is 3044238, which is the only test instruction given. It is a small 1x1 Verilog project, and no external hardware beyond the input switches and output observation is described.",
+   "summary_changed": false
+  },
+  {
+   "key": "d920b31e436b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This design implements an integrate-and-fire neuron in silicon, where an 8-bit input current is injected and accumulated into a membrane potential. When the membrane potential exceeds a threshold, the neuron emits a spike. The membrane potential is exposed on the 8-bit output and the spike on a bidirectional pin, allowing observation with switches and probes. The documentation is brief but sufficient to describe the basic operation and testing.",
+   "summary": "This design implements an integrate-and-fire neuron in silicon, where an 8-bit input current is injected and accumulated into a membrane potential. When the membrane potential exceeds a threshold, the neuron emits a spike. The membrane potential is exposed on the 8-bit output and the spike on a bidirectional pin, allowing observation with switches and probes. The documentation is brief but sufficient to describe the basic operation and testing.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "a68e4001bddd: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6118,
+  "completion_tokens": 1130,
+  "total_tokens": 7248,
+  "cost": 0.0022506,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0022506,
+   "upstream_inference_prompt_cost": 0.0008946,
+   "upstream_inference_completions_cost": 0.001356
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0022506,
+ "elapsed_s": 19.9
+}

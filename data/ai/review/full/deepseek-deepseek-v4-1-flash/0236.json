@@ -1,0 +1,276 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "44e294828cad",
+  "b7739dbbd392",
+  "39a234684e88",
+  "4b5d4642b3c4",
+  "33e82f98c7f8",
+  "c2075a30a1f0"
+ ],
+ "results": [
+  {
+   "key": "44e294828cad",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "VGA output is already covered by vga/video; no generic display interface is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "Four direction pushbutton inputs are documented on ui_in[3:0]."
+    }
+   ],
+   "notes": "Removed unsupported display tag and added button for the documented direction inputs.",
+   "tags_before": [
+    "puzzle",
+    "game",
+    "vga",
+    "video",
+    "display",
+    "gamepad",
+    "graphics"
+   ],
+   "tags": [
+    "puzzle",
+    "game",
+    "vga",
+    "video",
+    "gamepad",
+    "graphics",
+    "button"
+   ],
+   "summary_before": "This design implements the 2048 sliding tile puzzle game for VGA display, where players slide numbered tiles on a 4x4 grid to combine them and create a tile with the number 2048. The game is controlled via input pins or an optional SNES-compatible gamepad, and it includes two color themes and a unit test mode. The design requires a TinyVGA Pmod for video output and optionally a Gamepad Pmod for controller input. It supports debug commands via bidirectional pins when in unit test mode.",
+   "summary": "This design implements the 2048 sliding tile puzzle game for VGA display, where players slide numbered tiles on a 4x4 grid to combine them and create a tile with the number 2048. The game is controlled via input pins or an optional SNES-compatible gamepad, and it includes two color themes and a unit test mode. The design requires a TinyVGA Pmod for video output and optionally a Gamepad Pmod for controller input. It supports debug commands via bidirectional pins when in unit test mode.",
+   "summary_changed": false
+  },
+  {
+   "key": "b7739dbbd392",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The design uses tristate inverters and an NMOS in a standard-cell flow, not a discrete-transistor build."
+    }
+   ],
+   "add": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed transistor-level tag; the design is a standard-cell tristate-inverter trick, not discrete transistors.",
+   "tags_before": [
+    "temperature-sensor",
+    "analog",
+    "7-segment",
+    "lookup-table",
+    "transistor-level",
+    "verilog"
+   ],
+   "tags": [
+    "temperature-sensor",
+    "analog",
+    "7-segment",
+    "lookup-table",
+    "verilog"
+   ],
+   "summary_before": "This design implements a digital temperature sensor that measures on-chip temperature and displays it on a 7-segment LED display. It creatively uses tristate inverters to build a voltage DAC and bias an NMOS transistor in subthreshold operation, exploiting the temperature dependence of subthreshold current to create a temperature-dependent delay. A calibration engine with a look-up table allows linearization and calibration of the displayed temperature code. The sensor outputs a 0-63 code, showing tens and ones on the display, and includes debug modes for internal signals.",
+   "summary": "This design implements a digital temperature sensor that measures on-chip temperature and displays it on a 7-segment LED display. It creatively uses tristate inverters to build a voltage DAC and bias an NMOS transistor in subthreshold operation, exploiting the temperature dependence of subthreshold current to create a temperature-dependent delay. A calibration engine with a look-up table allows linearization and calibration of the displayed temperature code. The sensor outputs a 0-63 code, showing tens and ones on the display, and includes debug modes for internal signals.",
+   "summary_changed": false
+  },
+  {
+   "key": "39a234684e88",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "calculator",
+     "reason": "The design factors an input number; it does not perform keypad-driven arithmetic calculation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states working."
+    },
+    {
+     "tag": "counter",
+     "reason": "A counter drives the seven-segment display and debug output."
+    }
+   ],
+   "notes": "Removed calculator tag; added silicon-tested and counter to match the source and silicon report.",
+   "tags_before": [
+    "calculator",
+    "7-segment",
+    "display",
+    "counter",
+    "clock-divider",
+    "silicon-tested",
+    "verilog"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "clock-divider",
+    "silicon-tested",
+    "verilog"
+   ],
+   "summary_before": "This design takes an 8-bit input and computes its factors, displaying them one by one on a seven-segment display with a one-second interval. It also indicates prime factors up to 19 on the bidirectional pins and uses the dot on the display to indicate primality. The design uses a modulo computation trick with hardcoded values and includes a clock divider to generate the one-second delay. Silicon testing confirmed it works, and the author notes it was a learning experience in hardware design.",
+   "summary": "This design takes an 8-bit input and computes its factors, displaying them one by one on a seven-segment display with a one-second interval. It also indicates prime factors up to 19 on the bidirectional pins and uses the dot on the display to indicate primality. The design uses a modulo computation trick with hardcoded values and includes a clock divider to generate the one-second delay. Silicon testing confirmed it works, and the author notes it was a learning experience in hardware design.",
+   "summary_changed": false
+  },
+  {
+   "key": "4b5d4642b3c4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The bus pins are a custom asynchronous bus, not general-purpose digital IO."
+    },
+    {
+     "tag": "memory",
+     "reason": "Program and data memory are external; the chip itself contains no memory block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "esoteric",
+     "reason": "Implements the brainfuck esoteric language."
+    },
+    {
+     "tag": "cpu",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed gpio and memory tags that misdescribe the custom external bus and off-chip memory.",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "asynchronous",
+    "memory",
+    "gpio",
+    "rp2040",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "esoteric",
+    "asynchronous",
+    "rp2040",
+    "verilog"
+   ],
+   "summary_before": "This design is a hardware CPU for the brainfuck esolang with extensions for compressing consecutive operations. It uses an external asynchronous bus to access program and data memory, as well as I/O, since the memory does not fit on the chip. The bus protocol multiplexes address and data, and the CPU requires an external bus device, such as an RP2040, to operate. The documentation is detailed but the design is complex and requires careful integration with external hardware.",
+   "summary": "This design is a hardware CPU for the brainfuck esolang with extensions for compressing consecutive operations. It uses an external asynchronous bus to access program and data memory, as well as I/O, since the memory does not fit on the chip. The bus protocol multiplexes address and data, and the CPU requires an external bus device, such as an RP2040, to operate. The documentation is detailed but the design is complex and requires careful integration with external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "33e82f98c7f8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lookup-table",
+     "reason": "No LUT-based logic is described; the songs are stored as note-duration pairs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "Twelve momentary key switches are documented as inputs."
+    },
+    {
+     "tag": "led",
+     "reason": "An LED bar visualizer is driven by the outputs."
+    }
+   ],
+   "notes": "Removed unsupported lookup-table tag; added button and led for the documented switches and LED bar.",
+   "tags_before": [
+    "music",
+    "audio",
+    "synthesizer",
+    "lookup-table",
+    "led",
+    "speaker",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "music",
+    "audio",
+    "synthesizer",
+    "led",
+    "speaker",
+    "button",
+    "verilog"
+   ],
+   "summary_before": "This design is a digital piano that generates twelve independent musical notes across eight octaves and can also play two predefined songs stored in RTTTL format. It uses a 1 MHz clock to produce square-wave audio output and drives an LED bar as a visualizer. The design requires external hardware: twelve momentary switches for the keys, four toggle switches for mode and octave selection, an LED bar, and a speaker with an amplifier. It is notable for its musical application and the inclusion of demo songs, but it has no silicon test report.",
+   "summary": "This design is a digital piano that generates twelve independent musical notes across eight octaves and can also play two predefined songs stored in RTTTL format. It uses a 1 MHz clock to produce square-wave audio output and drives an LED bar as a visualizer. The design requires external hardware: twelve momentary switches for the keys, four toggle switches for mode and octave selection, an LED bar, and a speaker with an amplifier. It is notable for its musical application and the inclusion of demo songs, but it has no silicon test report.",
+   "summary_changed": false
+  },
+  {
+   "key": "c2075a30a1f0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "photodiode",
+     "reason": "The luxmeter is an external SPI sensor, not an on-chip photodiode interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed photodiode tag; the luxmeter is an external SPI sensor, not a photodiode interface.",
+   "tags_before": [
+    "lookup-table",
+    "spi",
+    "7-segment",
+    "rotary-encoder",
+    "photodiode",
+    "instrumentation"
+   ],
+   "tags": [
+    "lookup-table",
+    "spi",
+    "7-segment",
+    "rotary-encoder",
+    "instrumentation"
+   ],
+   "summary_before": "CSIT-Luks is a camera lighting settings recommender that takes ISO, shutter speed, and focal ratio inputs via a rotary encoder and displays them on a four-digit seven-segment display. It reads an external luxmeter over SPI and uses the values to look up a recommended setting from a LUT stored in SPI flash, then displays the result. The design requires external hardware including a rotary encoder, seven-segment display, SPI luxmeter, and SPI flash. It is a practical tool for photography, though no silicon test results are provided.",
+   "summary": "CSIT-Luks is a camera lighting settings recommender that takes ISO, shutter speed, and focal ratio inputs via a rotary encoder and displays them on a four-digit seven-segment display. It reads an external luxmeter over SPI and uses the values to look up a recommended setting from a LUT stored in SPI flash, then displays the result. The design requires external hardware including a rotary encoder, seven-segment display, SPI luxmeter, and SPI flash. It is a practical tool for photography, though no silicon test results are provided.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9659,
+  "completion_tokens": 1293,
+  "total_tokens": 10952,
+  "cost": 0.002988753,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002988753,
+   "upstream_inference_prompt_cost": 0.001669893,
+   "upstream_inference_completions_cost": 0.00131886
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002988753,
+ "elapsed_s": 37.5
+}

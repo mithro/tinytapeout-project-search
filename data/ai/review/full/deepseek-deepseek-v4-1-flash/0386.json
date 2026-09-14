@@ -1,0 +1,269 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "c7cfffb68edb",
+  "682aab07c8b0",
+  "87a68662c790",
+  "121a300daada",
+  "4ccee358966f",
+  "9f7f75b80dee"
+ ],
+ "results": [
+  {
+   "key": "c7cfffb68edb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The design does not contain a DAC; the source only suggests connecting an external DAC to the SPI output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "Keep, but clarify it is an SPI master output interface for an external DAC."
+    },
+    {
+     "tag": "waveform-generator",
+     "reason": "Supported by title and description; canonical tag."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Supported by source describing generation of various signals."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Output is Q7 two's-complement fixed-point."
+    }
+   ],
+   "notes": "Removed dac tag because the source only mentions an external DAC, not an on-chip DAC.",
+   "tags_before": [
+    "waveform-generator",
+    "signal-generator",
+    "spi",
+    "dac",
+    "fixed-point"
+   ],
+   "tags": [
+    "waveform-generator",
+    "signal-generator",
+    "spi",
+    "fixed-point"
+   ],
+   "summary_before": "The Wave Generator produces sine, sawtooth, triangular, and square waveforms with selectable amplitude and phase parameters, outputting 8-bit two's complement fixed-point values in parallel or via a write-only SPI interface. It is configured by setting waveform selection pins and loading amplitude and phase values through a parameter bus, then enabling generation. An external SPI DAC is needed to convert the digital output to an analog signal. The design is notable for its flexible parameter control and the SPI interface that enables connection to a DAC, with a maximum sampling frequency of 1.65 MHz.",
+   "summary": "The Wave Generator produces sine, sawtooth, triangular, and square waveforms with selectable amplitude and phase parameters, outputting 8-bit two's complement fixed-point values in parallel or via a write-only SPI interface. It is configured by setting waveform selection pins and loading amplitude and phase values through a parameter bus, then enabling generation. An external SPI DAC is needed to convert the digital output to an analog signal. The design provides flexible parameter control and SPI output for connecting to a DAC, with a maximum sampling frequency of 1.65 MHz.",
+   "summary_changed": true
+  },
+  {
+   "key": "682aab07c8b0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vco",
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "characterization"
+   ],
+   "tags": [
+    "vco",
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "characterization"
+   ],
+   "summary_before": "This is an analog voltage-controlled ring oscillator (VCRO) that uses transmission gates as delay control elements, based on a published paper. It provides an analog output and requires external control voltages on two pins, with the sum ideally equal to the 1.8V supply. The design is intended for testing and characterization of the oscillator's frequency tuning range. It is a transistor-level analog circuit with no digital interface.",
+   "summary": "This is an analog voltage-controlled ring oscillator (VCRO) that uses transmission gates as delay control elements, based on a published paper. It provides an analog output and requires external control voltages on two pins, with the sum ideally equal to the 1.8V supply. The design is intended for testing and characterization of the oscillator's frequency tuning range. It is a transistor-level analog circuit with no digital interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "87a68662c790",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synthesizer",
+     "reason": "The source describes playing a stored waveform, not a tone synthesizer."
+    },
+    {
+     "tag": "buzzer",
+     "reason": "External hardware is a piezo speaker, but the tag is not clearly supported as the design's core interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "audio",
+     "reason": "Supported by audio output and prelude.wav playback."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Supported by pwm_pos and pwm_neg pins."
+    },
+    {
+     "tag": "music",
+     "reason": "Supported by playback of a prelude.wav music loop."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Adjusted tags to match the stored-waveform PWM audio source rather than implying generic synthesis.",
+   "tags_before": [
+    "audio",
+    "pwm",
+    "music",
+    "synthesizer",
+    "buzzer",
+    "verilog"
+   ],
+   "tags": [
+    "audio",
+    "pwm",
+    "music",
+    "verilog"
+   ],
+   "summary_before": "This design plays a prelude.wav file in an endless loop using a sine lookup table with varying frequency, output as a PWM signal. It is intended to be tested by connecting a piezo speaker to the PWM pins and listening. External hardware required is a piezo. A silicon test report indicates the design is broken, with no output observed.",
+   "summary": "This design plays a prelude.wav file in an endless loop using a sine lookup table with varying frequency, output as a PWM signal. It is intended to be tested by connecting a piezo speaker to the PWM pins and listening. External hardware required is a piezo. A silicon test report indicates the design is broken, with no output observed.",
+   "summary_changed": false
+  },
+  {
+   "key": "121a300daada",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spi",
+    "pwm",
+    "gpio",
+    "register-file",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "spi",
+    "pwm",
+    "gpio",
+    "register-file",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "This design is an SPI-controlled PWM generator and 8-bit IO controller with two SPI interfaces for testing. It contains eight registers that configure PWM on-time and cycle, and eight IO pins that can be set as inputs or outputs. Testing involves reading an ID register and writing/reading back registers via SPI. External hardware needed is an SPI master device.",
+   "summary": "This design is an SPI-controlled PWM generator and 8-bit IO controller with two SPI interfaces for testing. It contains eight registers that configure PWM on-time and cycle, and eight IO pins that can be set as inputs or outputs. Testing involves reading an ID register and writing/reading back registers via SPI. External hardware needed is an SPI master device.",
+   "summary_changed": false
+  },
+  {
+   "key": "4ccee358966f",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "spinalhdl",
+     "reason": "The source states the design was written in SpinalHDL and generates Verilog."
+    }
+   ],
+   "notes": "Added spinalhdl tag because the source explicitly states SpinalHDL was used.",
+   "tags_before": [
+    "audio",
+    "pwm",
+    "synthesizer",
+    "music",
+    "spinalhdl",
+    "verilog"
+   ],
+   "tags": [
+    "audio",
+    "pwm",
+    "synthesizer",
+    "music",
+    "spinalhdl",
+    "verilog"
+   ],
+   "summary_before": "AudioChip_V2 generates two audio waveforms as PWM outputs, intended for use in modular synthesizers. It has 12 frequency input bits and ADSR control inputs to alter the waveforms. Testing requires attaching low-pass filters to the PWM outputs to hear analog audio. External hardware includes low-pass filters.",
+   "summary": "AudioChip_V2 generates two audio waveforms as PWM outputs, intended for use in modular synthesizers. It has 12 frequency input bits and ADSR control inputs to alter the waveforms. Testing requires attaching low-pass filters to the PWM outputs to hear analog audio. External hardware includes low-pass filters.",
+   "summary_changed": false
+  },
+  {
+   "key": "9f7f75b80dee",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No source evidence that this is intended for teaching or learning digital design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Supported by the seven segment outputs."
+    },
+    {
+     "tag": "display",
+     "reason": "Supported by 7-segment display output."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "Supported by the flip-flop chain description."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is working with author report."
+    }
+   ],
+   "notes": "Removed unsupported education tag and kept silicon-tested as the author reported working silicon.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "flip-flop",
+    "wokwi",
+    "education",
+    "silicon-tested"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "flip-flop",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This design uses a chain of flip-flops to display the word 'HELP' on a 7-segment display, with each flip-flop representing one letter and the last one blanking all segments. It has only seven outputs for the segments and no inputs, so it simply shows the sequence after reset. The project is a minimal demonstration and has been tested on silicon, with the author confirming that it displayed 'HELP'. No external hardware is required beyond the 7-segment display.",
+   "summary": "This design uses a chain of flip-flops to display the word 'HELP' on a 7-segment display, with each flip-flop representing one letter and the last one blanking all segments. It has only seven outputs for the segments and no inputs, so it simply shows the sequence after reset. The project is a minimal demonstration and has been tested on silicon, with the author confirming that it displayed 'HELP'. No external hardware is required beyond the 7-segment display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6597,
+  "completion_tokens": 1354,
+  "total_tokens": 7951,
+  "cost": 0.0036039,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036039,
+   "upstream_inference_prompt_cost": 0.0019791,
+   "upstream_inference_completions_cost": 0.0016248
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036039,
+ "elapsed_s": 7.7
+}

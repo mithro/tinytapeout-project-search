@@ -1,0 +1,240 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6f0dfc4056de",
+  "1f9205d8a24e",
+  "3a96533d3b58",
+  "ed64a1fc4cc7",
+  "377589bc77ec",
+  "8af1dac10fc2"
+ ],
+ "results": [
+  {
+   "key": "6f0dfc4056de",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "button",
+     "reason": "No button input is present in the pins or documentation."
+    },
+    {
+     "tag": "silicon-art",
+     "reason": "This is a VGA logo display, not an artistic silicon layout."
+    }
+   ],
+   "add": [
+    {
+     "tag": "art",
+     "reason": "Displays a decorative logo image on screen."
+    }
+   ],
+   "notes": "Removed unsupported button and silicon-art tags; added art for the decorative logo display.",
+   "tags_before": [
+    "vga",
+    "display",
+    "graphics",
+    "silicon-art",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "graphics",
+    "verilog",
+    "art"
+   ],
+   "summary_before": "This design displays a bouncing Tiny Tapeout logo on a VGA screen. It includes inputs for tiling, color enable, color index selection, and vertical flipping. The design requires a TinyVGA PMOD and a VGA monitor. It is a simple visual display project with minimal documentation.",
+   "summary": "This design displays a bouncing Tiny Tapeout logo on a VGA screen. It includes inputs for tiling, color enable, color index selection, and vertical flipping. The design requires a TinyVGA PMOD and a VGA monitor. It is a simple visual display project with minimal documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "1f9205d8a24e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design stores a single configured value, not a multi-register file."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The output is a bitwise XOR of the input with a stored value."
+    }
+   ],
+   "notes": "Replaced register-file with combinational, which better matches the XOR logic.",
+   "tags_before": [
+    "logic-gate",
+    "register-file",
+    "verilog"
+   ],
+   "tags": [
+    "logic-gate",
+    "verilog",
+    "combinational"
+   ],
+   "summary_before": "This design outputs the bitwise XOR of the 8-bit input with a previously configured 8-bit value. Configuration is done by holding a control pin high for at least two clock cycles while the desired value is on the input. After configuration, the output continuously reflects the XOR of the current input and the stored value. The documentation is minimal and does not describe any additional features or testing details.",
+   "summary": "This design outputs the bitwise XOR of the 8-bit input with a previously configured 8-bit value. Configuration is done by holding a control pin high for at least two clock cycles while the desired value is on the input. After configuration, the output continuously reflects the XOR of the current input and the stored value. The documentation is minimal and does not describe any additional features or testing details.",
+   "summary_changed": false
+  },
+  {
+   "key": "3a96533d3b58",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "image-processing",
+    "uart",
+    "verilog"
+   ],
+   "tags": [
+    "image-processing",
+    "uart",
+    "verilog"
+   ],
+   "summary_before": "This design performs nearest neighbor interpolation demosaicing for RGGB Bayer color filter arrays. It receives pixel data over a UART serial interface and outputs the demosaiced result over UART. The project is implemented in Verilog and fits in a single Tiny Tapeout tile. The documentation is minimal, providing only the title, one-line description, and pin names, so details of the implementation and testing are not available.",
+   "summary": "This design performs nearest neighbor interpolation demosaicing for RGGB Bayer color filter arrays. It receives pixel data over a UART serial interface and outputs the demosaiced result over UART. The project is implemented in Verilog and fits in a single Tiny Tapeout tile. The documentation is minimal, providing only the title, one-line description, and pin names, so details of the implementation and testing are not available.",
+   "summary_changed": false
+  },
+  {
+   "key": "ed64a1fc4cc7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "trng",
+     "reason": "The design is a deterministic XOR-based entropy mixer, not a true random number generator."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptographic algorithm or function is implemented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "prng",
+     "reason": "Produces a randomized output stream from XOR feedback, matching a pseudo-random generator."
+    }
+   ],
+   "notes": "Removed trng and crypto; the XOR feedback design is a pseudo-random generator, not a true RNG or crypto core.",
+   "tags_before": [
+    "trng",
+    "prng",
+    "crypto",
+    "verilog"
+   ],
+   "tags": [
+    "prng",
+    "verilog"
+   ],
+   "summary_before": "This design is a hardware entropy mixing circuit that generates randomized outputs using XOR feedback paths. It accepts an 8-bit entropy input and produces an 8-bit randomized output stream. The design is lightweight and requires no external hardware. However, the documentation is very thin, providing only a high-level description and no details on testing or implementation.",
+   "summary": "This design is a hardware entropy mixing circuit that generates randomized outputs using XOR feedback paths. It accepts an 8-bit entropy input and produces an 8-bit randomized output stream. The design is lightweight and requires no external hardware. However, the documentation is very thin, providing only a high-level description and no details on testing or implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "377589bc77ec",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "current-mirror",
+     "reason": "The design is a current-starved ring oscillator VCO, not a current mirror."
+    },
+    {
+     "tag": "factory-test",
+     "reason": "No factory self-test structure is described."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The design is a VCO experiment, not a process characterization structure."
+    },
+    {
+     "tag": "power-management",
+     "reason": "No power supply management function is present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vco",
+     "reason": "The core is a current-starved ring oscillator voltage-controlled oscillator."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "Uses a 5-stage current-starved ring oscillator."
+    },
+    {
+     "tag": "analog",
+     "reason": "Analog VCO experiment with analog pins."
+    },
+    {
+     "tag": "full-custom",
+     "reason": "Described as custom layout experiments in GF180mcuD."
+    }
+   ],
+   "notes": "Replaced incorrect factory-test/characterization/current-mirror/power-management tags with VCO, ring-oscillator, analog, and full-custom.",
+   "tags_before": [
+    "analog",
+    "current-mirror",
+    "factory-test",
+    "characterization",
+    "power-management"
+   ],
+   "tags": [
+    "analog",
+    "vco",
+    "ring-oscillator",
+    "full-custom"
+   ],
+   "summary_before": "This is an analog factory test structure for GF180mcuD, consisting of large current mirror loads that draw a multiplied reference current from selected power rails. It includes sense wires to measure voltage drops on power rails and voltage raise on the VGND rail. Testing requires a programmable current source and a precision multimeter to provide the reference current and measure the sense voltages. The design is intended for characterizing analog support on the GF180mcuD process.",
+   "summary": "This is an analog VCO experiment using a current-starved ring oscillator. It consists of five current-starved inverter stages in a ring, followed by a buffer pair, with the output available on an analog pin and a divided digital copy on the bidirectional pins. For an input voltage in the range 0.55V to 3.3V, the oscillator output is expected to be a square wave roughly in the range of 2MHz to 400MHz. Testing requires a precision variable voltage source and an oscilloscope.",
+   "summary_changed": true
+  },
+  {
+   "key": "8af1dac10fc2",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dac",
+    "analog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "dac",
+    "analog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a simple 4-bit current-output digital-to-analog converter. The digital input is provided on four input pins, and the analog output current is sunk from a single analog pin. A resistive load connected to the analog output is required to observe the current. The documentation is very brief, providing only a one-line description and basic testing instructions.",
+   "summary": "This is a simple 4-bit current-output digital-to-analog converter. The digital input is provided on four input pins, and the analog output current is sunk from a single analog pin. A resistive load connected to the analog output is required to observe the current. The documentation is very brief, providing only a one-line description and basic testing instructions.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6054,
+  "completion_tokens": 1312,
+  "total_tokens": 7366,
+  "cost": 0.0024498,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0024498,
+   "upstream_inference_prompt_cost": 0.0008754,
+   "upstream_inference_completions_cost": 0.0015744
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0024498,
+ "elapsed_s": 13.3
+}

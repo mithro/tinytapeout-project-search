@@ -1,0 +1,295 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "aa48271a3f16",
+  "7ec4fef87c54",
+  "2023b1b74c56",
+  "d2b95cff04da",
+  "23488ce01012",
+  "2c4db0552d24"
+ ],
+ "results": [
+  {
+   "key": "aa48271a3f16",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rtc",
+     "reason": "The design decodes an external MSF radio time signal; it is not a real-time clock circuit itself."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The display is driven via a shift-register chain; the pinout only exposes shift_clk/shift_data/shift_latch, not segment drives."
+    }
+   ],
+   "add": [
+    {
+     "tag": "radio",
+     "reason": "Decodes the MSF/WWVB radio time signal from an external receiver module."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Already proposed; the design synchronises and decodes the MSF bitstream (kept)."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Outputs drive a 42/84-bit shift register chain for the display."
+    },
+    {
+     "tag": "display",
+     "reason": "Drives an LED display via the shift register chain."
+    }
+   ],
+   "notes": "Removed rtc and 7-segment; added radio and display to match the MSF receiver input and shift-register-driven display.",
+   "tags_before": [
+    "rtc",
+    "decoder",
+    "shift-register",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "decoder",
+    "shift-register",
+    "verilog",
+    "radio",
+    "display"
+   ],
+   "summary_before": "The MSF Clock decodes the MSF radio clock bitstream and displays the time on an LED display driven by a shift register. It requires an external MSF receiver module connected to the data input, and a 12.5 kHz clock. The design outputs shift clock, data, and latch signals to drive a 42-bit shift register chain for the display, and can also show the date when a button is held. It is a specialized timekeeping design that synchronizes and decodes the MSF time signal.",
+   "summary": "The MSF Clock decodes the MSF radio clock bitstream and displays the time on an LED display driven by a shift register. It requires an external MSF receiver module connected to the data input, and a 12.5 kHz clock. The design outputs shift clock, data, and latch signals to drive a 42-bit shift register chain for the display, and can also show the date when a button is held. It is a specialized timekeeping design that synchronizes and decodes the MSF time signal.",
+   "summary_changed": false
+  },
+  {
+   "key": "7ec4fef87c54",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "timer",
+     "reason": "No programmable timer is described; the counter is a free-running observation counter."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design exposes eight inverters, not a basic logic gate implementation as the primary function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "Eight inverters with inputs and outputs exposed are used as a ring-oscillator test structure."
+    },
+    {
+     "tag": "counter",
+     "reason": "A counter's upper bits are driven to the outputs (kept)."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The inverter/counter structure is a test vehicle for observing behaviour on silicon."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, described only as 'a blink'."
+    }
+   ],
+   "notes": "Removed timer and logic-gate; added characterization and insufficient-doc given the thin documentation.",
+   "tags_before": [
+    "ring-oscillator",
+    "counter",
+    "timer",
+    "logic-gate",
+    "verilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "counter",
+    "verilog",
+    "characterization",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design instantiates eight inverters whose inputs and outputs are exposed on the input and bidirectional pins, together with a counter whose upper bits are driven to the outputs. The documentation is very thin, describing it only as a blink and suggesting checking reset, enable and counter function. It appears to be a simple test structure for observing inverter behaviour and counter operation on silicon. No external hardware is described beyond observing the pins.",
+   "summary": "This design instantiates eight inverters whose inputs and outputs are exposed on the input and bidirectional pins, together with a counter whose upper bits are driven to the outputs. The documentation is very thin, describing it only as a blink and suggesting checking reset, enable and counter function. It appears to be a simple test structure for observing inverter behaviour and counter operation on silicon. No external hardware is described beyond observing the pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "2023b1b74c56",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "Implements a leaky integrate-and-fire spiking neuron (kept)."
+    },
+    {
+     "tag": "neuromorphic",
+     "reason": "Brain-inspired spiking neuron design (kept)."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Written in Verilog (kept)."
+    }
+   ],
+   "notes": "Summary corrected to remove the unsupported STDP claim; tags unchanged.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This project implements a basic leaky integrate-and-fire neuron with spike-timing-dependent plasticity (STDP) in silicon. An input current is injected via switches, added to a decaying membrane potential, and a spike is triggered when the potential exceeds a threshold. The membrane potential is exposed on the output pins and the spike on a bidirectional pin. The documentation is minimal and does not detail the STDP mechanism or testing beyond observing firing rate changes with input current.",
+   "summary": "This project implements a basic leaky integrate-and-fire neuron in Verilog. An input current is injected via switches, added to a decaying membrane potential, and a spike is triggered when the potential exceeds a threshold. The membrane potential is exposed on the output pins and the spike on a bidirectional pin. The documentation is minimal and does not detail the STDP mechanism or testing beyond observing firing rate changes with input current.",
+   "summary_changed": true
+  },
+  {
+   "key": "d2b95cff04da",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "timer",
+     "reason": "No programmable timer is described; the counter is a free-running second counter."
+    },
+    {
+     "tag": "biomedical",
+     "reason": "The title mentions heart rhythm, but the documentation describes only generic threshold filtering and peak detection with no biomedical sensing interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive seven-segment segments a-g plus a dot (kept)."
+    },
+    {
+     "tag": "counter",
+     "reason": "A second counter is exposed on the bidirectional pins (kept)."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Written in Verilog (kept)."
+    },
+    {
+     "tag": "comparator",
+     "reason": "A compare register and threshold filtering compare the input against a programmed value."
+    },
+    {
+     "tag": "edge-detector",
+     "reason": "Peak detection over three consecutive clock cycles detects transitions in the input stream."
+    }
+   ],
+   "notes": "Removed timer and biomedical; added comparator and edge-detector to match the documented threshold/peak logic.",
+   "tags_before": [
+    "biomedical",
+    "7-segment",
+    "counter",
+    "timer",
+    "verilog"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "verilog",
+    "comparator",
+    "edge-detector"
+   ],
+   "summary_before": "This design applies threshold-based filtering to an input data stream and then performs peak detection over three consecutive clock cycles. A clock divider halves the input clock, and a counter driven by that clock is exposed on the bidirectional pins while the compare threshold is loaded in two four-bit halves through the input pins. The outputs drive a seven-segment display with a decimal point, presumably to show the counter or detected peaks. The documentation describes the loading sequence but does not explain the intended signal source or what the display actually shows, and no silicon results are provided.",
+   "summary": "This design applies threshold-based filtering to an input data stream and then performs peak detection over three consecutive clock cycles. A clock divider halves the input clock, and a counter driven by that clock is exposed on the bidirectional pins while the compare threshold is loaded in two four-bit halves through the input pins. The outputs drive a seven-segment display with a decimal point, presumably to show the counter or detected peaks. The documentation describes the loading sequence but does not explain the intended signal source or what the display actually shows, and no silicon results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "23488ce01012",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "No signal-processing algorithm is described; the design is arithmetic on stochastic bitstreams."
+    }
+   ],
+   "add": [
+    {
+     "tag": "stochastic-computing",
+     "reason": "Multiplier, adder and self-multiplier operate on stochastic serial bitstreams (kept)."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Implements a stochastic multiplier (kept)."
+    },
+    {
+     "tag": "adder",
+     "reason": "Implements a stochastic adder (kept)."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Written in Verilog."
+    }
+   ],
+   "notes": "Removed dsp; added verilog to match the stated language.",
+   "tags_before": [
+    "stochastic-computing",
+    "multiplier",
+    "adder",
+    "dsp"
+   ],
+   "tags": [
+    "stochastic-computing",
+    "multiplier",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This design implements a stochastic-computing multiplier, adder, and self-multiplier that operate on serial bitstreams. Two 9-bit repeating input streams enter on ui[0] and ui[1], and the multiplier, adder, and self-multiplier results appear as serial outputs on uo[0], uo[1], and uo[2], with uo[3] resetting the clock counter; the self-multiplier uses only the first stream. Testing involves feeding the repeating streams and reading the resulting 9-bit serial outputs. The documentation consists mainly of images with little explanatory text, and an ADALM2000 is listed as external hardware.",
+   "summary": "This design implements a stochastic-computing multiplier, adder, and self-multiplier that operate on serial bitstreams. Two 9-bit repeating input streams enter on ui[0] and ui[1], and the multiplier, adder, and self-multiplier results appear as serial outputs on uo[0], uo[1], and uo[2], with uo[3] resetting the clock counter; the self-multiplier uses only the first stream. Testing involves feeding the repeating streams and reading the resulting 9-bit serial outputs. The documentation consists mainly of images with little explanatory text, and an ADALM2000 is listed as external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "2c4db0552d24",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "demoscene",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "demoscene",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "Wirecube is a VGA demo that renders a rotating 3D wireframe cube, submitted for the Tiny Tapeout demoscene competition. It uses an optimized edge function to draw lines by evaluating magnitude thresholds, and stores cube vertices in a ROM to efficiently generate the wireframe. The design outputs VGA signals through a Tiny VGA Pmod and operates at a clock frequency of 50.35 MHz; input pins control background color, cube color, and animation speed. Silicon testing confirmed that the cube rotates and displays effects, though occasionally it stops rotating and turns into a sole rectangle.",
+   "summary": "Wirecube is a VGA demo that renders a rotating 3D wireframe cube, submitted for the Tiny Tapeout demoscene competition. It uses an optimized edge function to draw lines by evaluating magnitude thresholds, and stores cube vertices in a ROM to efficiently generate the wireframe. The design outputs VGA signals through a Tiny VGA Pmod and operates at a clock frequency of 50.35 MHz; input pins control background color, cube color, and animation speed. Silicon testing confirmed that the cube rotates and displays effects, though occasionally it stops rotating and turns into a sole rectangle.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7004,
+  "completion_tokens": 1751,
+  "total_tokens": 8755,
+  "cost": 0.002778888,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002778888,
+   "upstream_inference_prompt_cost": 0.000992868,
+   "upstream_inference_completions_cost": 0.00178602
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002778888,
+ "elapsed_s": 70.5
+}

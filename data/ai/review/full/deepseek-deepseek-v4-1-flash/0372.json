@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e8dece715b75",
+  "4935b48dcf03",
+  "56048c3abe19",
+  "a4f9fe361e19",
+  "96633f083be4",
+  "e4861251b9dd"
+ ],
+ "results": [
+  {
+   "key": "e8dece715b75",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "signal-generator",
+    "clock-divider",
+    "instrumentation",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "signal-generator",
+    "clock-divider",
+    "instrumentation",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This project implements a clock frequency sweeper that divides the input clock by 2 every 15 cycles, cycling from 1/2 to 1/16 of the input frequency, with an active-high enable input. It is tested in simulation with a test bench and cocotb, and on hardware by enabling the input and observing the output clock with an oscilloscope. No external hardware is needed. The design is a simple clock division experiment with clear documentation.",
+   "summary": "This project implements a clock frequency sweeper that divides the input clock by 2 every 15 cycles, cycling from 1/2 to 1/16 of the input frequency, with an active-high enable input. It is tested in simulation with a test bench and cocotb, and on hardware by enabling the input and observing the output clock with an oscilloscope. No external hardware is needed. The design is a simple clock division experiment with clear documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "4935b48dcf03",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synthesizer",
+     "reason": "The source never describes a synthesizer or tone generation, only audio output playback."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "No step sequencing or event sequencing hardware is described in the documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "music",
+     "reason": "The demo features music with bass and drums, matching the music domain."
+    },
+    {
+     "tag": "pmod",
+     "reason": "The pinout describes Pmod VGA and Pmod audio connections."
+    }
+   ],
+   "notes": "Removed unsupported audio-synthesis style tags; added music and pmod based on documented demo content and Pmod pinout.",
+   "tags_before": [
+    "vga",
+    "audio",
+    "synthesizer",
+    "sequencer",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "demoscene",
+    "music",
+    "pmod"
+   ],
+   "summary_before": "Sequential Shadows Deluxe is a demo competition entry for TT08 that generates VGA video and audio, featuring visual effects and music. It requires a TinVGA or Pmod VGA for video output and Mike's audio Pmod for sound, with pinout selection via an input. The demo includes flashing lights by default, which can be disabled via inputs. The design is notable for its integration of video and audio in a single submission.",
+   "summary": "Sequential Shadows Deluxe is a demo competition entry for TT08 that generates VGA video and audio, featuring visual effects and music. It requires a TinVGA or Pmod VGA for video output and Mike's audio Pmod for sound, with pinout selection via an input. The demo includes flashing lights by default, which can be disabled via inputs. The design is notable for its integration of video and audio in a single submission.",
+   "summary_changed": false
+  },
+  {
+   "key": "56048c3abe19",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The documentation explicitly states the design can be tested with cocotb."
+    }
+   ],
+   "notes": "Added cocotb supplement to corrected summary and tag; no tag removals needed.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "fixed-point",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "fixed-point",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This design implements two leaky integrate-and-fire neurons connected by a synapse with spike-timing-dependent plasticity, using 8-bit fixed-point arithmetic. The first neuron receives an 8-bit input current on ui, the second neuron's state is driven out on uo, and spike outputs plus the 6-bit synapse weight appear on the bidirectional pins. It is tested by applying current patterns and observing spike timing and weight changes, optionally with a logic analyzer or signal generator. The project is notable for putting a small plastic spiking neural network on a single Tiny Tapeout tile.",
+   "summary": "This design implements two leaky integrate-and-fire neurons connected by a synapse with spike-timing-dependent plasticity, using 8-bit fixed-point arithmetic. The first neuron receives an 8-bit input current on ui, the second neuron's state is driven out on uo, and spike outputs plus the 6-bit synapse weight appear on the bidirectional pins. It is tested by applying current patterns and observing spike timing and weight changes, a process that can be automated with cocotb or optionally observed with a logic analyzer or signal generator. The project is notable for putting a small plastic spiking neural network on a single Tiny Tapeout tile.",
+   "summary_changed": true
+  },
+  {
+   "key": "a4f9fe361e19",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "i2c",
+    "rom",
+    "uart",
+    "ring-oscillator",
+    "verilog"
+   ],
+   "tags": [
+    "i2c",
+    "rom",
+    "uart",
+    "ring-oscillator",
+    "verilog"
+   ],
+   "summary_before": "This design reads a 16-bit design ID from an I2C EEPROM and generates control signals to select the corresponding Tiny Tapeout project on a multiplexer. It also outputs the read value on a UART for debugging and includes a ring oscillator that can be enabled to provide a clock, avoiding the need for an external clock. It requires an external I2C EEPROM and pull-up resistors on the I2C lines. The design is a prototype for automatic project selection in Tiny Tapeout.",
+   "summary": "This design reads a 16-bit design ID from an I2C EEPROM and generates control signals to select the corresponding Tiny Tapeout project on a multiplexer. It also outputs the read value on a UART for debugging and includes a ring oscillator that can be enabled to provide a clock, avoiding the need for an external clock. It requires an external I2C EEPROM and pull-up resistors on the I2C lines. The design is a prototype for automatic project selection in Tiny Tapeout.",
+   "summary_changed": false
+  },
+  {
+   "key": "96633f083be4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rtc",
+     "reason": "No real-time clock is described; the design uses internal counters driven by the system clock."
+    },
+    {
+     "tag": "education",
+     "reason": "The vocabulary defines education for teaching or learning digital design; sponsorship alone does not establish educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "calculator",
+     "reason": "The alarm clock takes numeric alarm values from switches and displays time on a numeric-style output, matching the calculator tag's switch-to-number output pattern."
+    }
+   ],
+   "notes": "Removed rtc and education tags that lack direct source support; added calculator tag for the numeric-input numeric-display alarm-clock interface.",
+   "tags_before": [
+    "rtc",
+    "timer",
+    "counter",
+    "education"
+   ],
+   "tags": [
+    "timer",
+    "counter",
+    "calculator"
+   ],
+   "summary_before": "This is a simple alarm clock that compares internal hour and minute counters against user-set alarm values and asserts an alarm output when they match. It is tested with a provided testbench that sets alarm values and observes the alarm and time outputs. No external hardware is required beyond the chip itself, though the design uses inout pins for some signals due to pin limitations. The project was sponsored by MITRE and MIT/LL Beaver Works Summer Institute, indicating an educational origin.",
+   "summary": "This is a simple alarm clock that compares internal hour and minute counters against user-set alarm values and asserts an alarm output when they match. It is tested with a provided testbench that sets alarm values and observes the alarm and time outputs. The design uses inout pins for some signals due to limited pin availability. The project was sponsored by The MITRE Corporation and MIT/LL Beaver Works Summer Institute.",
+   "summary_changed": true
+  },
+  {
+   "key": "e4861251b9dd",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "verilog"
+   ],
+   "summary_before": "This project is an 8-bit custom RISC processor with a Von Neumann architecture and multicycle design. It features an ALU, 16 general-purpose registers, a stack pointer, and a program counter, and communicates with external memory via an 8-bit data bus and 15-bit address bus. Testing requires connecting external memory, loading a program, and providing a clock. The design is notable for its detailed documentation and custom instruction set.",
+   "summary": "This project is an 8-bit custom RISC processor with a Von Neumann architecture and multicycle design. It features an ALU, 16 general-purpose registers, a stack pointer, and a program counter, and communicates with external memory via an 8-bit data bus and 15-bit address bus. Testing requires connecting external memory, loading a program, and providing a clock. The design is notable for its detailed documentation and custom instruction set.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8706,
+  "completion_tokens": 1260,
+  "total_tokens": 9966,
+  "cost": 0.0041238,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041238,
+   "upstream_inference_prompt_cost": 0.0026118,
+   "upstream_inference_completions_cost": 0.001512
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041238,
+ "elapsed_s": 7.3
+}

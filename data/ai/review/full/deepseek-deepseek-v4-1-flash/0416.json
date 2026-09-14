@@ -1,0 +1,332 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "66e2751569ef",
+  "b9d3d0006888",
+  "367fc5e56b90",
+  "71ddd9e11ab5",
+  "63ae9a458bf2",
+  "c8ac70171b44"
+ ],
+ "results": [
+  {
+   "key": "66e2751569ef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "microcontroller",
+     "reason": "The design is a SoC built around the SERV CPU, not a microcontroller-style integrated design as described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "qspi",
+     "reason": "The external flash/RAM interface uses QSPI signals (cs_flash, sck, sio0-3) and the QPMOD is explicitly referenced."
+    },
+    {
+     "tag": "memory",
+     "reason": "The design interfaces with external SPI Flash/RAM memory."
+    }
+   ],
+   "notes": "Removed microcontroller tag because the design is explicitly a SoC using the SERV CPU, not a microcontroller-style integrated design.",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "uart",
+    "spi",
+    "qspi",
+    "gpio",
+    "memory",
+    "verilog",
+    "microcontroller"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "uart",
+    "spi",
+    "qspi",
+    "gpio",
+    "memory",
+    "verilog"
+   ],
+   "summary_before": "This project implements a custom system-on-chip using the SERV processor core under the RV32e instruction set. It provides GPIO inputs and outputs, a UART interface for serial communication, and SPI/QSPI interfaces for external flash and RAM memory. The design requires an external SPI Flash/RAM memory module, such as the QPMOD, and a USB-to-serial converter to interact with the system. It is notable for being a compact RISC-V SoC that fits within a 3x2 tile area and has been proven with external QSPI memory hardware.",
+   "summary": "This project implements a custom system-on-chip using the SERV processor core under the RV32e instruction set. It provides GPIO inputs and outputs, a UART interface for serial communication, and SPI/QSPI interfaces for external flash and RAM memory. The design requires an external SPI Flash/RAM memory module, such as the QPMOD, and a USB-to-serial converter to interact with the system. It is notable for being a compact RISC-V SoC that fits within a 3x2 tile area and has been proven with external QSPI memory hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "b9d3d0006888",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "waveform-generator",
+    "analog",
+    "mixed-signal",
+    "lfsr",
+    "sequencer",
+    "nco"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "waveform-generator",
+    "analog",
+    "mixed-signal",
+    "lfsr",
+    "sequencer",
+    "nco"
+   ],
+   "summary_before": "PolyWave is a mixed-signal four-channel waveform source with a digital engine driving four 16-bit R-2R DACs. The digital engine includes four 20-bit phase accumulators, a shared 16-bit LFSR noise source, a 4-bit sequencer, and DAC sample registers, and can run autonomously or accept direct byte writes. The analog outputs are on four pins, and the design uses the Tiny Tapeout custom GDS path with prebuilt layout files. Testing requires a clock/reset source, digital control signals, and an oscilloscope or logic analyzer to observe the outputs.",
+   "summary": "PolyWave is a mixed-signal four-channel waveform source with a digital engine driving four 16-bit R-2R DACs. The digital engine includes four 20-bit phase accumulators, a shared 16-bit LFSR noise source, a 4-bit sequencer, and DAC sample registers, and can run autonomously or accept direct byte writes. The analog outputs are on four pins, and the design uses the Tiny Tapeout custom GDS path with prebuilt layout files. Testing requires a clock/reset source, digital control signals, and an oscilloscope or logic analyzer to observe the outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "367fc5e56b90",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "microcontroller",
+    "spi",
+    "memory",
+    "uart",
+    "gpio",
+    "soc",
+    "verilog"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "microcontroller",
+    "spi",
+    "memory",
+    "uart",
+    "gpio",
+    "soc",
+    "verilog"
+   ],
+   "summary_before": "This project is a small RISC-V microcontroller based on the PicoRV32 core, executing in place from an external SPI flash with 128 bytes of on-chip SRAM, a UART, and an 8-bit GPIO port. It requires an SPI flash (or an RP2040 emulating one) connected to the uio pins and a USB-serial adapter for the UART console. The design boots a program from flash and can run example firmware like a bouncing LED or a self-test that reports over UART. Notable features include the execute-in-place architecture to save area, closed timing at 50 MHz but tested at 25 MHz, and the need for external flash and serial hardware.",
+   "summary": "This project is a small RISC-V microcontroller based on the PicoRV32 core, executing in place from an external SPI flash with 128 bytes of on-chip SRAM, a UART, and an 8-bit GPIO port. It requires an SPI flash (or an RP2040 emulating one) connected to the uio pins and a USB-serial adapter for the UART console. The design boots a program from flash and can run example firmware like a bouncing LED or a self-test that reports over UART. Notable features include the execute-in-place architecture to save area, closed timing at 50 MHz but tested at 25 MHz, and the need for external flash and serial hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "71ddd9e11ab5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design provides ML primitives (divide, dot product) but does not implement a neural network."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "The design includes a MAC unit and divider, but no standalone multiplier is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fixed-point",
+     "reason": "All arithmetic uses Q8.8 signed fixed-point."
+    },
+    {
+     "tag": "divider",
+     "reason": "Includes an iterative 16-bit signed divider."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Includes a MAC accumulator for dot products."
+    },
+    {
+     "tag": "spi",
+     "reason": "Communicates with the RP2040 over SPI."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Designed to pair with an RP2040 host."
+    },
+    {
+     "tag": "coprocessor",
+     "reason": "Acts as a co-processor offloading ML operations from the RP2040."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Provides hardware acceleration for fixed-point ML primitives."
+    }
+   ],
+   "notes": "Removed neural-network and multiplier tags; added fixed-point, divider, mac-unit, spi, rp2040, coprocessor, accelerator.",
+   "tags_before": [
+    "machine-learning",
+    "spi",
+    "coprocessor",
+    "accelerator",
+    "fixed-point",
+    "divider",
+    "mac-unit",
+    "rp2040",
+    "neural-network",
+    "multiplier"
+   ],
+   "tags": [
+    "machine-learning",
+    "spi",
+    "coprocessor",
+    "accelerator",
+    "fixed-point",
+    "divider",
+    "mac-unit",
+    "rp2040"
+   ],
+   "summary_before": "The Kunal ML co-processor is a Verilog design that connects to an RP2040 over SPI to perform machine learning operations such as division and dot products. It uses Q8.8 signed fixed-point arithmetic and includes an SPI slave, an iterative 16-bit signed divider, and a command state machine with operand and weight registers. BUSY and DONE pins allow the host to poll operation status, though status can also be read via a READ_STAT command. No external components are required, and the design is notable for providing hardware acceleration for fixed-point ML primitives on a small ASIC.",
+   "summary": "The Kunal ML co-processor is a Verilog design that connects to an RP2040 over SPI to perform machine learning operations such as division and dot products. It uses Q8.8 signed fixed-point arithmetic and includes an SPI slave, an iterative 16-bit signed divider, and a command state machine with operand and weight registers. BUSY and DONE pins allow the host to poll operation status, though status can also be read via a READ_STAT command. No external components are required, and the design is notable for providing hardware acceleration for fixed-point ML primitives on a small ASIC.",
+   "summary_changed": false
+  },
+  {
+   "key": "63ae9a458bf2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that the design is intended for teaching or learning."
+    },
+    {
+     "tag": "sram",
+     "reason": "The design uses internal instruction memory, not an SRAM block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "bootloader",
+     "reason": "Includes a UART program loader that writes instructions into internal memory."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Supports configurable seven-segment output."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Provides a GPIO output register."
+    },
+    {
+     "tag": "uart",
+     "reason": "Uses UART for program loading and console output."
+    },
+    {
+     "tag": "risc-v",
+     "reason": "Implements an RV32E RISC-V core."
+    },
+    {
+     "tag": "soc",
+     "reason": "Integrates CPU, memory, UART, GPIO, and seven-segment peripheral."
+    },
+    {
+     "tag": "microcontroller",
+     "reason": "A minimal microcontroller-style SoC with CPU, memory, and peripherals."
+    }
+   ],
+   "notes": "Removed education and sram tags; added bootloader, 7-segment, gpio, uart, risc-v, soc, microcontroller.",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "uart",
+    "bootloader",
+    "7-segment",
+    "gpio",
+    "microcontroller",
+    "sram",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "uart",
+    "bootloader",
+    "7-segment",
+    "gpio",
+    "microcontroller",
+    "verilog"
+   ],
+   "summary_before": "This design is a minimal RV32E microcontroller SoC with a UART program loader, internal instruction memory, GPIO, and configurable 7-segment output. It can boot from internal memory or load a program via UART, and it supports a demo program that drives seven-segment displays. The core includes 16 registers and supports a subset of RISC-V instructions. It requires an external USB-UART adapter for loading programs and can drive a 7-segment display directly.",
+   "summary": "This design is a minimal RV32E microcontroller SoC with a UART program loader, internal instruction memory, GPIO, and configurable 7-segment output. It can boot from internal memory or load a program via UART, and it supports a demo program that drives seven-segment displays. The core includes 16 registers and supports a subset of RISC-V instructions. It requires an external USB-UART adapter for loading programs and can drive a 7-segment display directly.",
+   "summary_changed": false
+  },
+  {
+   "key": "c8ac70171b44",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Drives a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Outputs to a display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Implemented in Wokwi."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Uses AND gates to drive the display."
+    }
+   ],
+   "notes": "Removed education tag; added 7-segment, display, wokwi, logic-gate.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "logic-gate",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "logic-gate"
+   ],
+   "summary_before": "This design uses AND gates to drive a 7-segment display so that a '3' is shown when the first four inputs are all high. It is implemented in Wokwi and requires no external hardware beyond the display itself. The project is extremely simple and appears to be an educational exercise in combinational logic. Its documentation is minimal, but the functionality is clear from the description.",
+   "summary": "This design uses AND gates to drive a 7-segment display so that a '3' is shown when the first four inputs are all high. It is implemented in Wokwi and requires no external hardware beyond the display itself. The project is extremely simple and appears to be an educational exercise in combinational logic. Its documentation is minimal, but the functionality is clear from the description.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8057,
+  "completion_tokens": 1803,
+  "total_tokens": 9860,
+  "cost": 0.0045807,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0045807,
+   "upstream_inference_prompt_cost": 0.0024171,
+   "upstream_inference_completions_cost": 0.0021636
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0045807,
+ "elapsed_s": 35.5
+}

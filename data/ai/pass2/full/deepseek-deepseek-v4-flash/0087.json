@@ -1,0 +1,196 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "f17e0c830ad6",
+  "9714124be261",
+  "4495656bf31c",
+  "e6295e69e0e3",
+  "109060c626b0",
+  "fe1cc78c4e7d",
+  "6ada42f44a65",
+  "2fe4de707c1b",
+  "37d90b259331",
+  "3e4892a9383a"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "f17e0c830ad6",
+   "summary": "This design implements a decimal stopwatch that counts from 0 to 9 and loops, driven by the 20 MHz ASIC clock. It is a first Tiny Tapeout experiment with no external inputs or outputs required, and the documentation notes limited testing infrastructure. Testing can be done in simulation via a linked MakerChip sandbox or on a Tiny Tapeout demo board using an FPGA harness and dfu-util. The project is notable mainly as a simple educational counter with no silicon test results reported.",
+   "tags": [
+    "counter",
+    "clock-divider",
+    "timer",
+    "education",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "9714124be261",
+   "summary": "This analog block is a current-mode Schmitt trigger that converts input currents into a digital output with hysteresis, using internally set reference currents and an adjustable falling-edge threshold via an external voltage. It is intended to detect current-mode signals from devices such as photodiodes, SPADs and silicon photomultipliers for LIDAR, medical and particle-physics applications. Testing requires a current source or voltage source with series resistance in the tens of microamperes range, a tunable voltage supply for references, and a fast oscilloscope on the output. The design is notable for targeting single-photon and rare-event detection front ends, though no silicon test results are provided.",
+   "tags": [
+    "analog",
+    "comparator",
+    "comparator-analog",
+    "photodiode",
+    "sensor-interface",
+    "instrumentation"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "4495656bf31c",
+   "summary": "This is a framebuffer-less VGA ray-casting graphics engine inspired by Wolfenstein 3D, rendering textured walls with flat floor and ceiling by racing the beam. The player point of view is controlled over SPI, and an optional external QSPI ROM can supply textures instead of the internally generated ones. It needs a Tiny VGA PMOD on the dedicated outputs, an SPI host for control, and a clock around 25.175 MHz for standard 640x480 VGA. Silicon reports say it works without the glitches of the earlier TT04 version, including external SPI textures, though a clock hack was needed and the SPI peripherals still need full testing.",
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "graphics",
+    "spi",
+    "qspi",
+    "verilog",
+    "silicon-tested"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 4,
+   "key": "e6295e69e0e3",
+   "summary": "This is an analog factory test structure for Tiny Tapeout analog support, with pins for bias current, ground and power sense, and three loopback connections. The documentation consists only of FIXME placeholders, so the exact operation and test procedure cannot be determined from the provided text. External hardware requirements are likewise undocumented. Because essentially no usable documentation is present, the tags and summary are inferred from the title and pin names alone.",
+   "tags": [
+    "factory-test",
+    "analog",
+    "characterization"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "109060c626b0",
+   "summary": "This analog block selects among different peripheral circuits, including RF-based transmission, depending on the chosen mode. The documentation is very thin, giving only that a mode must be selected with the proper input to activate the required RF transmission peripheral. Testing is said to require a VNA, multimeter and oscilloscope, but no pin-level detail or measured results are provided. The design is notable only as an RF peripheral experiment, and the available documentation is insufficient to describe its operation precisely.",
+   "tags": [
+    "analog",
+    "rf",
+    "radio",
+    "insufficient-doc"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "fe1cc78c4e7d",
+   "summary": "TinyWSPR is a Chisel-based WSPR beacon that transmits Weak Signal Propagation Reporter radio signals, recommended for the 20m and 40m bands. Configuration is loaded one byte at a time over the config pins, covering callsign, grid square, power level, symbol time, divisor and deviation, after which the RF start pin triggers transmission at the correct time. An external lowpass filter is absolutely required to remove harmonics from the square-wave transmitter, along with a properly tuned antenna. The design is notable for putting a complete WSPR encoder and transmitter into a small digital block, but no silicon test results are reported.",
+   "tags": [
+    "radio",
+    "rf",
+    "communication",
+    "modulator",
+    "chisel",
+    "clock-divider"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 7,
+   "key": "6ada42f44a65",
+   "summary": "This analog block is a double balanced mixer that takes an RF input with DC bias and a digital local-oscillator signal to produce a differential intermediate-frequency output. It also includes a quadrature divider that generates I and Q phase outputs from a clock input. The design was simulated at 7 MHz, and the documentation gives no test procedure or external hardware beyond the RF and LO sources implied by the pins. No silicon test results are provided, so the summary is based mainly on the title and pin names.",
+   "tags": [
+    "analog",
+    "rf",
+    "radio",
+    "audio",
+    "demodulator",
+    "clock-divider"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "2fe4de707c1b",
+   "summary": "This is a Subleq one-instruction-set CPU that uses an external SPI FRAM as its RAM and communicates over a 115200-baud UART at a 10 MHz clock. Programs are produced by a simplified C compiler for Subleq, converted to an array and flashed into the FRAM through an Arduino-compatible microcontroller. The design requires an external SPI FRAM such as the MB85RS64V, and the SPI clock runs at half the input clock. It is notable for being a deliberately slow but complete OISC machine with a supporting toolchain, though no silicon test results are reported.",
+   "tags": [
+    "cpu",
+    "esoteric",
+    "uart",
+    "spi",
+    "memory",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "2fe4de707c1b",
+   "summary": "This design replicates the classic 74181 4-bit slice ALU twice to form an 8-bit arithmetic logic unit, with an SPI slave peripheral for loading and reading registers and a multiplexer driving a 7-segment debug display. It supports all four SPI modes with eight configurable read/write registers and eight read-only status registers, and is controlled from an RP2040 using SPI1. Silicon reports confirm the SPI interface works when the SPI clock is at least five times slower than the ASIC clock, though the ALU itself was not verified by the independent tester. The project is notable as a faithful reproduction of a historic ALU part with a practical SPI debug interface.",
+   "tags": [
+    "alu",
+    "spi",
+    "7-segment",
+    "register-file",
+    "systemverilog",
+    "silicon-tested"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "3e4892a9383a",
+   "summary": "This design drives a chain of up to four Pixie Chroma WS2812B LED-matrix displays, showing characters received over a 9600-baud 8N1 UART and shifting them left as new ones arrive. It includes reusable blocks such as a WS2812B driver, UART receiver and transmitter, an LFSR-based pseudo-random color selector, and a 5x7 character ROM, with options for dimming, fixed or random colors, and internal or UART-triggered refresh. External hardware needed is one to four chained Pixie Chroma displays with adequate power and a UART terminal or adapter. Silicon testing by the author confirmed working operation with two chained devices, and the project is notable for its cocotb tests of the UART and WS2812B protocol.",
+   "tags": [
+    "uart",
+    "led",
+    "ws2812",
+    "display",
+    "text",
+    "prng",
+    "lfsr",
+    "cocotb",
+    "verilog",
+    "silicon-tested"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [
+  "37d90b259331: key echoed as '2fe4de707c1b', matched by index"
+ ],
+ "usage": {
+  "prompt_tokens": 11038,
+  "completion_tokens": 1863,
+  "total_tokens": 12901,
+  "cost": 0.0010624642,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0010624642,
+   "upstream_inference_prompt_cost": 0.0007494802,
+   "upstream_inference_completions_cost": 0.000312984
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0010624642,
+ "elapsed_s": 321.2
+}

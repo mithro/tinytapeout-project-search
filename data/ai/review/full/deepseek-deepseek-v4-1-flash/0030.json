@@ -1,0 +1,261 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4aeb8b16ea86",
+  "ada7e113dcbe",
+  "9dbe9880db27",
+  "3f8695bf8e4b",
+  "822aed3ac51d",
+  "b0516836bcf8"
+ ],
+ "results": [
+  {
+   "key": "4aeb8b16ea86",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The silicon report is a single author self-report, not independent validation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The design is an analog differential receiver with analog pins."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is mostly FIXME placeholders."
+    }
+   ],
+   "notes": "Removed silicon-tested because the only report is an author self-report, not independent silicon validation.",
+   "tags_before": [
+    "analog",
+    "insufficient-doc",
+    "silicon-tested"
+   ],
+   "tags": [
+    "analog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a test module for a differential input receiver, implemented in analog circuitry. It accepts differential clock and data inputs, along with a bias current and a bias select signal, and deserializes the data to 16 parallel outputs. Silicon testing by the author successfully deserialized data up to 600 Mbit/s with a 500 mV single-ended swing (1 V differential). The documentation is minimal, with 'FIXME' placeholders for how it works, how to test, and external hardware, but the silicon result confirms functionality.",
+   "summary": "This is a test module for a differential input receiver, implemented in analog circuitry. It accepts differential clock and data inputs, along with a bias current and a bias select signal, and deserializes the data to 16 parallel outputs. The author reports that silicon testing successfully deserialized data up to 600 Mbit/s with a 500 mV single-ended swing (1 V differential). The documentation is minimal, with 'FIXME' placeholders for how it works, how to test, and external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "ada7e113dcbe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "The design is a programmable sound generator, not a code-to-signal decoder."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network functionality is described."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning functionality is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sound-generator",
+     "reason": "It is a replica of the AY-3-8913 programmable sound generator."
+    },
+    {
+     "tag": "music",
+     "reason": "The design generates music/audio tones."
+    },
+    {
+     "tag": "audio",
+     "reason": "It provides digital and PWM audio outputs."
+    },
+    {
+     "tag": "pwm",
+     "reason": "PWM is used for pseudo-analog audio output."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "The noise generator uses a 17-bit LFSR."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    },
+    {
+     "tag": "retro",
+     "reason": "It recreates a classic 8-bit era sound chip."
+    },
+    {
+     "tag": "dac",
+     "reason": "The original chip had internal DACs and this implementation provides digital audio suitable for an external DAC."
+    }
+   ],
+   "notes": "Replaced incorrect neural-network/machine-learning/decoder tags with sound-generator, music, audio, pwm, lfsr, verilog, retro, and dac based on the source.",
+   "tags_before": [
+    "decoder",
+    "neural-network",
+    "machine-learning"
+   ],
+   "tags": [
+    "sound-generator",
+    "music",
+    "audio",
+    "pwm",
+    "lfsr",
+    "verilog",
+    "retro",
+    "dac"
+   ],
+   "summary_before": "This design unpacks ternary, quinary, and septenary packed weights, converting them from a compressed format of 1.6 to 2.6 bits per parameter into an unpacked representation. It takes 8 bits of packed weight data on the input pins and outputs the unpacked values on both the output and bidirectional pins, with a control input to select between ternary and septenary modes. Testing requires providing packed weights on the input Pmods, and external hardware such as a Raspberry Pi Pico is needed to supply the data. The design is notable for its application in neural network quantization, but the documentation is minimal and lacks detailed usage instructions.",
+   "summary": "This Verilog implementation is a replica of the classic AY-3-8913 programmable sound generator, a 3-voice PSG chip from General Instrument. It provides three square-wave tone generators, a white noise generator using a 17-bit LFSR, an envelope generator with 10 shapes, and 16 volume levels, controlled through 14 registers. The design outputs digital 8-bit audio and a PWM pseudo-analog audio signal, and can be configured with an external clock divider. It is intended for hardware preservation and educational purposes, with a test suite for regression testing against the original chip behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "9dbe9880db27",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "music",
+    "audio",
+    "buzzer",
+    "counter",
+    "led",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "music",
+    "audio",
+    "buzzer",
+    "counter",
+    "led",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project combines two diagrams created with the Chip Inventor block-based design platform: a piano tune that drives a buzzer from a button, and a 6-bit counter. The counter's binary value can be observed on four LEDs connected in pull-up mode, and the buzzer plays a note when triggered. The documentation is brief and does not describe the internal implementation in detail. It serves mainly as a demonstration of the Chip Inventor design tool.",
+   "summary": "This project combines two diagrams created with the Chip Inventor block-based design platform: a piano tune that drives a buzzer from a button, and a 6-bit counter. The counter's binary value can be observed on four LEDs connected in pull-up mode, and the buzzer plays a note when triggered. The documentation is brief and does not describe the internal implementation in detail. It serves mainly as a demonstration of the Chip Inventor design tool.",
+   "summary_changed": false
+  },
+  {
+   "key": "3f8695bf8e4b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "bcd",
+    "decoder",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "bcd",
+    "decoder",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This project converts Binary Coded Decimal (BCD) input to decimal digits for display on a 7-segment display. It uses a decoder circuit to drive the appropriate segments based on the BCD value. The design is implemented in Wokwi and outputs the segment control signals. The documentation describes the basic operation but does not provide detailed testing instructions or pin mappings.",
+   "summary": "This project converts Binary Coded Decimal (BCD) input to decimal digits for display on a 7-segment display. It uses a decoder circuit to drive the appropriate segments based on the BCD value. The design is implemented in Wokwi and outputs the segment control signals. The documentation describes the basic operation but does not provide detailed testing instructions or pin mappings.",
+   "summary_changed": false
+  },
+  {
+   "key": "822aed3ac51d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "wokwi",
+    "7-segment",
+    "display",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "display",
+    "incomplete"
+   ],
+   "summary_before": "This design aims to display a number on a seven-segment display based on an 8-bit input, with outputs labeled for each segment (top, topr, botr, bot, botl, topl, middle, dot). The documentation states it is 'not finished yet', and the test procedure is to enter a number and see it on the display. The bidirectional pins are labeled 1 through 8, possibly for digit selection. External hardware such as a seven-segment display is implied but not explicitly listed, and the design is incomplete.",
+   "summary": "This design aims to display a number on a seven-segment display based on an 8-bit input, with outputs labeled for each segment (top, topr, botr, bot, botl, topl, middle, dot). The documentation states it is 'not finished yet', and the test procedure is to enter a number and see it on the display. The bidirectional pins are labeled 1 through 8, possibly for digit selection. External hardware such as a seven-segment display is implied but not explicitly listed, and the design is incomplete.",
+   "summary_changed": false
+  },
+  {
+   "key": "b0516836bcf8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "The source mentions a Sound PMOD and speaker, but no audio output pins or audio generation details are documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The design outputs VGA signals and requires a VGA PMOD."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It displays animated figures on a VGA monitor."
+    },
+    {
+     "tag": "music",
+     "reason": "It is synchronized with the San Jose State Fight Song."
+    },
+    {
+     "tag": "pmod",
+     "reason": "It uses TT VGA and Sound PMODs."
+    }
+   ],
+   "notes": "Removed audio tag because no audio output pins or audio generation details are documented; added vga, graphics, music, and pmod based on the source.",
+   "tags_before": [
+    "vga",
+    "audio",
+    "graphics",
+    "music",
+    "pmod"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "music",
+    "pmod"
+   ],
+   "summary_before": "This project displays an animated dance of navy-blue and yellow figures synchronized with the San Jose State Fight Song for the first 15 seconds. It outputs VGA signals and audio through a sound PMOD. The design requires a VGA monitor and speaker connected via appropriate PMODs. The documentation is brief but indicates the intended behavior.",
+   "summary": "This project displays an animated dance of navy-blue and yellow figures synchronized with the San Jose State Fight Song for the first 15 seconds. It outputs VGA signals and audio through a sound PMOD. The design requires a VGA monitor and speaker connected via appropriate PMODs. The documentation is brief but indicates the intended behavior.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10107,
+  "completion_tokens": 1557,
+  "total_tokens": 11664,
+  "cost": 0.0029556,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0029556,
+   "upstream_inference_prompt_cost": 0.0020214,
+   "upstream_inference_completions_cost": 0.0009342
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0029556,
+ "elapsed_s": 99.2
+}

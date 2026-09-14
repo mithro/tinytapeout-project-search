@@ -1,0 +1,350 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "95b06c6769a8",
+  "5054f5c40ac4",
+  "3677a123019c",
+  "7f16305a09a4",
+  "a0bd974db397",
+  "6da40961c1d4"
+ ],
+ "results": [
+  {
+   "key": "95b06c6769a8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "motor-control",
+     "reason": "The design only outputs three square waves; it does not drive a motor directly, and the motor application is described as a future complement requiring external analog filtering."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The oscilloscope is only external test equipment, not the application of the design."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state that the project is intended for teaching or learning."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Wokwi is only mentioned as a schematic/simulation link; the implementation language is Verilog and the design was tested on an FPGA."
+    },
+    {
+     "tag": "fpga",
+     "reason": "The FPGA is used only for testing, not as the target platform."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "The project generates three phase-shifted square-wave signals."
+    },
+    {
+     "tag": "johnson-counter",
+     "reason": "The source explicitly says it uses a 3-bit ring register in Johnson counter configuration."
+    },
+    {
+     "tag": "ring-counter",
+     "reason": "The source explicitly describes a ring counter configuration."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported application/implementation tags and added verilog; summary was already accurate.",
+   "tags_before": [
+    "signal-generator",
+    "johnson-counter",
+    "ring-counter",
+    "motor-control",
+    "instrumentation",
+    "education",
+    "wokwi",
+    "fpga"
+   ],
+   "tags": [
+    "signal-generator",
+    "johnson-counter",
+    "ring-counter",
+    "verilog"
+   ],
+   "summary_before": "This project implements a digital three-phase generator that produces three square-wave outputs with 120-degree phase shifts from a single input clock. It uses a 3-bit Johnson counter and provides both normal and complementary outputs. The design was simulated in Quartus II and tested on an Altera Cyclone II FPGA, but it requires external signal generation and an oscilloscope for verification. The intended application is to drive three-phase motors after analog filtering, although the chip only outputs digital signals.",
+   "summary": "This project implements a digital three-phase generator that produces three square-wave outputs with 120-degree phase shifts from a single input clock. It uses a 3-bit Johnson counter and provides both normal and complementary outputs. The design was simulated in Quartus II and tested on an Altera Cyclone II FPGA, but it requires external signal generation and an oscilloscope for verification. The intended application is to drive three-phase motors after analog filtering, although the chip only outputs digital signals.",
+   "summary_changed": false
+  },
+  {
+   "key": "5054f5c40ac4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "The design is a GPU/rasterizer, not a dedicated compute accelerator."
+    },
+    {
+     "tag": "display",
+     "reason": "The output is specifically VGA video, so the generic display tag is redundant."
+    },
+    {
+     "tag": "video",
+     "reason": "The output is specifically VGA video, so the generic video tag is redundant."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The design outputs VGA video and matches the Tiny VGA pinout."
+    },
+    {
+     "tag": "spi",
+     "reason": "The design is controlled by a host microcontroller over SPI."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The design rasterizes polygons and renders graphics."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported accelerator tag and redundant generic display/video tags; added verilog.",
+   "tags_before": [
+    "accelerator",
+    "vga",
+    "spi",
+    "graphics",
+    "display",
+    "video",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "spi",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "badGPU is a basic GPU that rasterizes up to four triangles at 640x480 60Hz with 6-bit color, controlled by a host microcontroller over SPI. It supports a programmable background color and uses polygon ordering instead of a Z-buffer, with vertices limited to 80 X and 60 Y positions. The design requires a Tiny VGA PMOD, a VGA screen, and an SPI-capable microcontroller, and it asserts an interrupt during blanking to accept new commands. It is notable for fitting a simple polygon rasterizer into a 4x2 tile Tiny Tapeout design.",
+   "summary": "badGPU is a basic GPU that rasterizes up to four triangles at 640x480 60Hz with 6-bit color, controlled by a host microcontroller over SPI. It supports a programmable background color and uses polygon ordering instead of a Z-buffer, with vertices limited to 80 X and 60 Y positions. The design requires a Tiny VGA PMOD, a VGA screen, and an SPI-capable microcontroller, and it asserts an interrupt during blanking to accept new commands. It is notable for fitting a simple polygon rasterizer into a 4x2 tile Tiny Tapeout design.",
+   "summary_changed": false
+  },
+  {
+   "key": "3677a123019c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a small combinational XOR/multiplexer circuit, not a basic logic gate implementation."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "The multiplexer is only a selection mechanism inside the XOR circuit, not the primary function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The design is purely combinational logic."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is very thin and does not fully describe the design."
+    }
+   ],
+   "notes": "Replaced unsupported logic-gate/multiplexer tags with combinational and insufficient-doc; corrected the summary's claim that documentation is clear.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "multiplexer"
+   ],
+   "tags": [
+    "wokwi",
+    "combinational",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design computes XOR outputs on the first four output pins, with a multiplexer selecting between two sets of XOR results based on input IN4. It has five inputs (IN0 to IN4) and four outputs (OUT0 to OUT3). Testing involves toggling the inputs from IN0 to IN4. The documentation is clear and concise, describing a simple combinational logic circuit. No external hardware is required.",
+   "summary": "This design computes XOR outputs on the first four output pins, with a multiplexer selecting between two sets of XOR results based on input IN4. It has five inputs (IN0 to IN4) and four outputs (OUT0 to OUT3). Testing involves toggling the inputs from IN0 to IN4. The documentation is very thin and does not fully describe the design.",
+   "summary_changed": true
+  },
+  {
+   "key": "7f16305a09a4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "graphics",
+     "reason": "The design is a static silicon artwork, not a graphics rendering circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-art",
+     "reason": "The source explicitly describes silicon art on met4."
+    },
+    {
+     "tag": "art",
+     "reason": "The design is purely artistic."
+    }
+   ],
+   "notes": "Removed unsupported graphics tag; added silicon-art and art.",
+   "tags_before": [
+    "silicon-art",
+    "art",
+    "graphics"
+   ],
+   "tags": [
+    "silicon-art",
+    "art"
+   ],
+   "summary_before": "This project creates generative cross-stitch patterns using the metal layers of the silicon die. It has no electrical function; the only pin is a dummy output. The design is purely artistic and requires no external hardware. It is notable for using the chip as a canvas for visual art rather than computation.",
+   "summary": "This project creates generative cross-stitch patterns using the metal layers of the silicon die. It has no electrical function; the only pin is a dummy output. The design is purely artistic and requires no external hardware. It is notable for using the chip as a canvas for visual art rather than computation.",
+   "summary_changed": false
+  },
+  {
+   "key": "a0bd974db397",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "floating-point",
+     "reason": "The design uses the posit format, not IEEE floating point."
+    },
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated division circuit, not a general arithmetic logic unit."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Decoding is only an internal stage of the division operation, not the primary function."
+    },
+    {
+     "tag": "encoder",
+     "reason": "Encoding is only an internal stage of the division operation, not the primary function."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The source describes a staged division circuit and does not state that it is purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "divider",
+     "reason": "The design implements a division circuit."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "The source explicitly says the division is broken down into fixed-point stages."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The design is written in SystemVerilog."
+    }
+   ],
+   "notes": "Removed unsupported floating-point/alu/decoder/encoder/combinational tags; added divider, fixed-point, and systemverilog.",
+   "tags_before": [
+    "divider",
+    "floating-point",
+    "fixed-point",
+    "alu",
+    "decoder",
+    "encoder",
+    "systemverilog",
+    "combinational"
+   ],
+   "tags": [
+    "divider",
+    "fixed-point",
+    "systemverilog"
+   ],
+   "summary_before": "This design implements an <8,0> posit division circuit, accepting two 8-bit posit inputs via ui and uio and outputting the 8-bit quotient on uo. Pre-fabrication testing compared simulated outputs against a software-generated table for all possible input pairs, and post-fabrication testing requires supplying input posit values and observing the quotient on the output pins. External hardware such as a microcontroller or DIP switches is needed to drive the input pins. The design is notable for supporting the posit number format, an alternative to IEEE floating point.",
+   "summary": "This design implements an <8,0> posit division circuit, accepting two 8-bit posit inputs via ui and uio and outputting the 8-bit quotient on uo. Pre-fabrication testing compared simulated outputs against a software-generated table for all possible input pairs, and post-fabrication testing requires supplying input posit values and observing the quotient on the output pins. External hardware such as a microcontroller or DIP switches is needed to drive the input pins. The design is notable for supporting the posit number format, an alternative to IEEE floating point.",
+   "summary_changed": false
+  },
+  {
+   "key": "6da40961c1d4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "video",
+     "reason": "The output is specifically VGA video, so the generic video tag is redundant."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pong",
+     "reason": "The project implements the classic game Pong."
+    },
+    {
+     "tag": "game",
+     "reason": "The project is an interactive game."
+    },
+    {
+     "tag": "vga",
+     "reason": "The design outputs VGA video and matches the Tiny VGA pinout."
+    },
+    {
+     "tag": "button",
+     "reason": "The game is controlled by six buttons."
+    },
+    {
+     "tag": "sprite",
+     "reason": "The source explicitly says it generates sprites."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed redundant generic video tag; added verilog.",
+   "tags_before": [
+    "pong",
+    "game",
+    "vga",
+    "video",
+    "button",
+    "sprite",
+    "verilog"
+   ],
+   "tags": [
+    "pong",
+    "game",
+    "vga",
+    "button",
+    "sprite",
+    "verilog"
+   ],
+   "summary_before": "This project implements the classic game Pong on raw silicon, generating VGA video and stereo audio. It uses a custom VGA sync module and pixel-clock-based logic to render sprites and background colors. The game is controlled by six buttons for two players (up, down, serve for each). External hardware includes a TinyVGA Pmod and buttons with pull-down resistors.",
+   "summary": "This project implements the classic game Pong on raw silicon, generating VGA video and stereo audio. It uses a custom VGA sync module and pixel-clock-based logic to render sprites and background colors. The game is controlled by six buttons for two players (up, down, serve for each). External hardware includes a TinyVGA Pmod and buttons with pull-down resistors.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7283,
+  "completion_tokens": 2199,
+  "total_tokens": 9482,
+  "cost": 0.0021552,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0021552,
+   "upstream_inference_prompt_cost": 0.0008358,
+   "upstream_inference_completions_cost": 0.0013194
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0021552,
+ "elapsed_s": 77.3
+}

@@ -1,0 +1,278 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3aaf865a624e",
+  "91c8e35f58c2",
+  "26ca54016d12",
+  "d910494584ff",
+  "ada3cdb4c370",
+  "ad8b3ba96b7e"
+ ],
+ "results": [
+  {
+   "key": "3aaf865a624e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "The design demonstrates a hardware trojan; 'security' is not clearly supported beyond the trojan tag itself."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Not supported; no silicon reports, so must not be added."
+    }
+   ],
+   "notes": "Removed unsupported 'security' tag; 'silicon-tested' was not added since no silicon reports exist.",
+   "tags_before": [
+    "hardware-trojan",
+    "adder",
+    "subtractor",
+    "lfsr",
+    "7-segment",
+    "security",
+    "wokwi"
+   ],
+   "tags": [
+    "hardware-trojan",
+    "adder",
+    "subtractor",
+    "lfsr",
+    "7-segment",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a 4-bit full adder and subtractor with an externally triggered hardware trojan inserted in the critical path. It includes LFSR outputs and inputs, and displays results on a 7-segment display. Testing requires DIP switches, an external trigger signal, and a pattern generator and logic analyzer. The design is notable for demonstrating a hardware trojan in a simple arithmetic circuit.",
+   "summary": "This project implements a 4-bit full adder and subtractor with an externally triggered hardware trojan inserted in the critical path. It includes LFSR outputs and inputs, and displays results on a 7-segment display. Testing requires DIP switches, an external trigger signal, and a pattern generator and logic analyzer. The design demonstrates a hardware trojan in a simple arithmetic circuit.",
+   "summary_changed": true
+  },
+  {
+   "key": "91c8e35f58c2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rgb-led",
+     "reason": "Outputs are PWM signals; the source does not state RGB LED hardware, only LEDs attached to outputs."
+    },
+    {
+     "tag": "asic",
+     "reason": "No evidence of an ASIC implementation beyond the Tiny Tapeout context; not clearly stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rotary-encoder",
+     "reason": "Three digital encoders are read as inputs."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs drive LEDs whose brightness changes."
+    }
+   ],
+   "notes": "Removed unsupported rgb-led/asic; added rotary-encoder and led based on pins and text.",
+   "tags_before": [
+    "rgb-led",
+    "pwm",
+    "encoder",
+    "debouncer",
+    "led",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "pwm",
+    "encoder",
+    "debouncer",
+    "led",
+    "verilog",
+    "rotary-encoder"
+   ],
+   "summary_before": "This design reads three digital encoders, debounces the inputs, and outputs three PWM signals to control RGB LED brightness. It is a Zero to ASIC demo project implemented in Verilog. Testing involves twisting each encoder and observing the brightness change on connected LEDs. External hardware includes three digital encoders and an RGB LED.",
+   "summary": "This design reads three digital encoders, debounces the inputs, and outputs three PWM signals to control LED brightness. It is a Zero to ASIC demo project implemented in Verilog. Testing involves twisting each encoder and observing the brightness change on connected LEDs. External hardware includes three digital encoders and LEDs attached to the outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "26ca54016d12",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": "Redundant with comparator-analog; the design is an analog comparator, not a generic digital comparator."
+    },
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "Source does not state the design is built from discrete transistors rather than standard cells."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "A silicon test report exists, though it reports the design as broken."
+    }
+   ],
+   "notes": "Removed unsupported education/transistor-level and redundant comparator; added silicon-tested per report.",
+   "tags_before": [
+    "comparator-analog",
+    "comparator",
+    "analog",
+    "transistor-level",
+    "education"
+   ],
+   "tags": [
+    "comparator-analog",
+    "analog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an analog comparator built by the MNEL team from USFQ that compares two voltages or currents and outputs a binary signal indicating which input is greater. It is tested by applying known input voltages and verifying that the output transitions at the expected threshold across the full input range. No external hardware is required beyond the analog input, reference, and output pins. A silicon test report notes the design was broken because the supply voltage appeared higher than the 1.8V rating of the transistors.",
+   "summary": "This is an analog comparator built by the MNEL team from USFQ that compares two voltages or currents and outputs a binary signal indicating which input is greater. It is tested by applying known input voltages and verifying that the output transitions at the expected threshold across the full input range. No external hardware is required beyond the analog input, reference, and output pins. A silicon test report notes the design was broken because the supply voltage appeared higher than the 1.8V rating of the transistors.",
+   "summary_changed": false
+  },
+  {
+   "key": "d910494584ff",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a DAC/waveform generator, not a measurement or instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "A silicon test report confirms the design worked."
+    }
+   ],
+   "notes": "Removed unsupported instrumentation; added silicon-tested per working report.",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "signal-generator",
+    "waveform-generator",
+    "instrumentation"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "signal-generator",
+    "waveform-generator",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a 4-bit R2R digital-to-analog converter with an integrated sawtooth waveform generator, implemented in analog. It can be driven externally by setting the external data pin high and applying 4 input bits, or it can generate a sawtooth internally when external data is low, with frequency set by loading a divider. Testing requires a multimeter on the analog output pin to observe the voltage or sawtooth waveform. A silicon test report confirms it worked at a 10 kHz clock, producing the expected sawtooth wave.",
+   "summary": "This is a 4-bit R2R digital-to-analog converter with an integrated sawtooth waveform generator, implemented in analog. It can be driven externally by setting the external data pin high and applying 4 input bits, or it can generate a sawtooth internally when external data is low, with frequency set by loading a divider. Testing requires a multimeter on the analog output pin to observe the voltage or sawtooth waveform. A silicon test report confirms it worked at a 10 kHz clock, producing the expected sawtooth wave.",
+   "summary_changed": false
+  },
+  {
+   "key": "ada3cdb4c370",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "Language is TL-Verilog, not plain Verilog; the canonical vocabulary has no TL-Verilog tag."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puzzle",
+     "reason": "Mastermind is a code-breaking puzzle game."
+    },
+    {
+     "tag": "led",
+     "reason": "Eight output LEDs provide game feedback."
+    },
+    {
+     "tag": "button",
+     "reason": "Eight push buttons are used for color input."
+    },
+    {
+     "tag": "pmod",
+     "reason": "External hardware uses Pmod BTN and Pmod8LD modules."
+    }
+   ],
+   "notes": "Removed verilog tag since language is TL-Verilog; re-added supported game interface tags.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "led",
+    "button",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "led",
+    "button",
+    "pmod"
+   ],
+   "summary_before": "This TL-Verilog project implements the Mastermind game, where the user guesses a hidden four-color combination using eight color inputs and receives feedback on correct colors and positions via eight LEDs. A random answer is chosen by pressing a button, guesses are made with four button presses, and the game indicates a win or loss after ten rounds. External hardware includes two Pmod BTN modules for eight push buttons, a Pmod8LD for eight LEDs, and a splitter cable. The design is a complete interactive game with clear testing instructions.",
+   "summary": "This TL-Verilog project implements the Mastermind game, where the user guesses a hidden four-color combination using eight color inputs and receives feedback on correct colors and positions via eight LEDs. A random answer is chosen by pressing a button, guesses are made with four button presses, and the game indicates a win or loss after ten rounds. External hardware includes two Pmod BTN modules for eight push buttons, a Pmod8LD for eight LEDs, and a splitter cable. The design is a complete interactive game with clear testing instructions.",
+   "summary_changed": false
+  },
+  {
+   "key": "ad8b3ba96b7e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design is specifically a pair of oscillators; signal-generator is broader and less supported than oscillator/ring-oscillator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "A silicon test report confirms the oscillators run, though slower than intended."
+    }
+   ],
+   "notes": "Removed broad signal-generator; added silicon-tested per working report.",
+   "tags_before": [
+    "oscillator",
+    "ring-oscillator",
+    "analog",
+    "signal-generator"
+   ],
+   "tags": [
+    "oscillator",
+    "ring-oscillator",
+    "analog",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog project generates two sinusoidal oscillators centered around 0.9V, targeting 20MHz and 21MHz. The oscillators are based on ring oscillators and should oscillate regardless of chip corner, though frequency varies. Silicon testing showed they run slower than intended (approx 13 and 14.2MHz) with waveforms between sinusoidal and triangular. No external hardware is required for operation.",
+   "summary": "This analog project generates two sinusoidal oscillators centered around 0.9V, targeting 20MHz and 21MHz. The oscillators are based on ring oscillators and should oscillate regardless of chip corner, though frequency varies. Silicon testing showed they run slower than intended (approx 13 and 14.2MHz) with waveforms between sinusoidal and triangular. No external hardware is required for operation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6452,
+  "completion_tokens": 1438,
+  "total_tokens": 7890,
+  "cost": 0.002318868,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002318868,
+   "upstream_inference_prompt_cost": 0.000852108,
+   "upstream_inference_completions_cost": 0.00146676
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002318868,
+ "elapsed_s": 41.3
+}

@@ -1,0 +1,295 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "16401781d474",
+  "c21b824ef8c6",
+  "2a7350b339f1",
+  "3148372f2493",
+  "595a31d814c7",
+  "d087ecc198f9"
+ ],
+ "results": [
+  {
+   "key": "16401781d474",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes only a 4-bit adder, not a full arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The design is explicitly a 4-bit adder."
+    },
+    {
+     "tag": "combinational",
+     "reason": "A 4-bit adder is purely combinational logic."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project language is Wokwi."
+    },
+    {
+     "tag": "led",
+     "reason": "The outputs are connected to LEDs."
+    },
+    {
+     "tag": "education",
+     "reason": "The simple adder is suitable for teaching or learning digital design."
+    }
+   ],
+   "notes": "Removed unsupported alu tag; added adder, combinational, wokwi, led, and education tags.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "combinational",
+    "education",
+    "wokwi",
+    "led"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "education",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "This is a 4-bit adder that takes two 4-bit numbers on ui[0:3] and ui[4:7] and produces a 5-bit sum on uo[0:4]. It is tested by connecting buttons or DIP switches to the eight inputs and LEDs to the five outputs. The design is a straightforward Wokwi beginner project with no on-chip peripherals. The documentation is minimal but sufficient to describe the function and required external hardware.",
+   "summary": "This is a 4-bit adder that takes two 4-bit numbers on ui[0:3] and ui[4:7] and produces a 5-bit sum on uo[0:4]. It is tested by connecting buttons or DIP switches to the eight inputs and LEDs to the five outputs. The design is a straightforward Wokwi beginner project with no on-chip peripherals. The documentation is minimal but sufficient to describe the function and required external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "c21b824ef8c6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fifo",
+    "asynchronous",
+    "clock-domain-crossing",
+    "gray-code",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "fifo",
+    "asynchronous",
+    "clock-domain-crossing",
+    "gray-code",
+    "memory",
+    "verilog"
+   ],
+   "summary_before": "This asynchronous FIFO enables data transfer between two clock domains using separate read and write clocks. It uses Gray-coded pointers for synchronization and provides full and empty flags. The design can be fully simulated without external hardware, but on an FPGA, LEDs or UART may be used to display status. It is a standard implementation of a clock-domain-crossing FIFO.",
+   "summary": "This asynchronous FIFO enables data transfer between two clock domains using separate read and write clocks. It uses Gray-coded pointers for synchronization and provides full and empty flags. The design can be fully simulated without external hardware, but on an FPGA, LEDs or UART may be used to display status. It is a standard implementation of a clock-domain-crossing FIFO.",
+   "summary_changed": false
+  },
+  {
+   "key": "2a7350b339f1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sensor-interface",
+     "reason": "The design is a voltage comparator, not a generic sensor input interface."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "The source describes passgates built from PMOS and NMOS, but not a full transistor-level design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "comparator-analog",
+     "reason": "The design is an analog voltage comparator."
+    },
+    {
+     "tag": "decoder",
+     "reason": "A decoder controls the passgates for threshold selection."
+    },
+    {
+     "tag": "voltage-reference",
+     "reason": "The design uses a resistor ladder to generate fixed threshold voltages."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design is analog-intensive and uses analog pins."
+    }
+   ],
+   "notes": "Replaced sensor-interface and transistor-level with comparator-analog, decoder, voltage-reference, and analog tags.",
+   "tags_before": [
+    "comparator",
+    "sensor-interface",
+    "analog",
+    "transistor-level",
+    "decoder",
+    "voltage-reference"
+   ],
+   "tags": [
+    "comparator",
+    "analog",
+    "decoder",
+    "voltage-reference",
+    "comparator-analog"
+   ],
+   "summary_before": "This programmable threshold voltage comparator compares an external reference voltage with one of eight selectable threshold levels, seven fixed and one user-defined. It uses a resistor ladder and passgates controlled by a decoder, and outputs a digital high when the reference exceeds the threshold. Testing requires a 1.8V supply and input voltages up to 1.8V, with a maximum switching frequency of 100 kHz. The design is analog-intensive and provides a flexible voltage sensing capability.",
+   "summary": "This programmable threshold voltage comparator compares an external reference voltage with one of eight selectable threshold levels, seven fixed and one user-defined. It uses a resistor ladder and passgates controlled by a decoder, and outputs a digital high when the reference exceeds the threshold. Testing requires a 1.8V supply and input voltages up to 1.8V, with a maximum switching frequency of 100 kHz. The design is analog-intensive and provides a flexible voltage sensing capability.",
+   "summary_changed": false
+  },
+  {
+   "key": "3148372f2493",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "priority-encoder",
+    "parity",
+    "7-segment",
+    "encoder",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "priority-encoder",
+    "parity",
+    "7-segment",
+    "encoder",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This design implements a 9-to-4 priority encoder with a parity checker and a 7-segment display output. It supports selectable MSB or LSB priority and even or odd parity modes via input pins. The encoded value and parity bit are displayed on the 7-segment display, with the parity bit controlling the decimal point. Testing involves setting the mode pins and observing the outputs on the display and output pins.",
+   "summary": "This design implements a 9-to-4 priority encoder with a parity checker and a 7-segment display output. It supports selectable MSB or LSB priority and even or odd parity modes via input pins. The encoded value and parity bit are displayed on the 7-segment display, with the parity bit controlling the decimal point. Testing involves setting the mode pins and observing the outputs on the display and output pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "595a31d814c7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The design is a 16-bit CPU based on the HACK architecture."
+    },
+    {
+     "tag": "alu",
+     "reason": "The CPU contains an ALU with 18 operations."
+    },
+    {
+     "tag": "spi",
+     "reason": "The design uses SPI for memory and debug communication."
+    },
+    {
+     "tag": "memory",
+     "reason": "The CPU interfaces with external SPI RAM."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The CPU uses a finite state machine for control."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added cpu, alu, spi, memory, and fsm tags.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "spi",
+    "memory",
+    "fsm",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "spi",
+    "memory",
+    "fsm"
+   ],
+   "summary_before": "This is a 16-bit CPU based on the HACK architecture, containing D and A registers, a program counter, an ALU with 18 operations, and SPI master logic. Because the chip lacks on-chip memory, instructions and data are fetched from an external SPI RAM one 16-bit word at a time, and a second SPI port provides debug access to the D register, A register, program counter and FSM state. The design targets a Microchip 23XX512 SPI RAM and a microcontroller for debugging, and it matches the SPI Pmod pinout. It is notable for fitting a working CPU into a single tile by serializing memory access.",
+   "summary": "This is a 16-bit CPU based on the HACK architecture, containing D and A registers, a program counter, an ALU with 18 operations, and SPI master logic. Because the chip lacks on-chip memory, instructions and data are fetched from an external SPI RAM one 16-bit word at a time, and a second SPI port provides debug access to the D register, A register, program counter and FSM state. The design targets a Microchip 23XX512 SPI RAM and a microcontroller for debugging, and it matches the SPI Pmod pinout. It is notable for fitting a working CPU into a single tile by serializing memory access.",
+   "summary_changed": false
+  },
+  {
+   "key": "d087ecc198f9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design has two 32-bit registers, not a multi-register file."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "The source does not mention a multiplexer."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "The design is an ALU for INTERCAL operations."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The design implements operations from the esoteric INTERCAL programming language."
+    },
+    {
+     "tag": "education",
+     "reason": "The source describes it as an educational project."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported register-file and multiplexer tags; added alu, esoteric, education, and verilog tags.",
+   "tags_before": [
+    "alu",
+    "esoteric",
+    "education",
+    "register-file",
+    "multiplexer",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "esoteric",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "An ALU for the five operators of the INTERCAL programming language, including unary AND, OR, XOR, interleave, and select. It features two 32-bit registers and supports reading and writing bytes via address and selector pins. The design is intended for educational and novelty purposes, with extensive documentation and test cases. It can be used without external hardware, though a microcontroller is recommended for driving inputs and reading outputs.",
+   "summary": "An ALU for the five operators of the INTERCAL programming language, including unary AND, OR, XOR, interleave, and select. It features two 32-bit registers and supports reading and writing bytes via address and selector pins. The design is intended for educational and novelty purposes, with extensive documentation and test cases. It can be used without external hardware, though a microcontroller is recommended for driving inputs and reading outputs.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9562,
+  "completion_tokens": 1687,
+  "total_tokens": 11249,
+  "cost": 0.00611625,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00611625,
+   "upstream_inference_prompt_cost": 0.00358575,
+   "upstream_inference_completions_cost": 0.0025305
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00611625,
+ "elapsed_s": 4.9
+}

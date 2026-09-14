@@ -1,0 +1,175 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "5672b53c1d17",
+  "9c21f22eb135",
+  "aa271b1824d7",
+  "cd1b1d2b0178",
+  "75ebfd234a34",
+  "6ee3cc3e4c5d",
+  "390ae8e7f98c",
+  "0ee23125c57d",
+  "7bfccc1419ba",
+  "665062445bcd"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "key": "5672b53c1d17",
+   "summary": "TinyPID implements a configurable PID controller that reads a process variable from an external shift register or ADC and writes a control output to an external shift register or DAC. Configuration parameters (setpoint, kp, ki) are loaded over an SPI-like configuration channel and are zero at startup. The design is tested by shifting in configuration, then shifting in process variable values and observing the resulting output. It requires external shift registers or converter chips for both the input and output paths, and the documentation is brief but sufficient to describe the interface.",
+   "tags": [
+    "industrial",
+    "spi",
+    "adc",
+    "dac",
+    "shift-register",
+    "mixed-signal"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "9c21f22eb135",
+   "summary": "This project implements a convolutional encoder for digital communication, using two fourth-order polynomials and a 5-bit shift register to produce an encoded output bit from each input bit. Input data is accepted when a data-valid signal is asserted, and the codeword is computed by XORing the polynomial-masked shift register contents. Testing is done by applying clock, reset, data valid and input data and comparing the output against hand calculations. No external hardware is required, and the documentation is minimal but describes the encoding scheme.",
+   "tags": [
+    "communication",
+    "error-correction",
+    "encoder",
+    "shift-register"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "aa271b1824d7",
+   "summary": "This design combines a sigma-delta DAC and a tracking-loop ADC, where the DAC's pulse-density output is filtered externally to produce an analog voltage and an off-chip comparator closes the ADC feedback loop. ADC readings are transmitted as hex-encoded ASCII over a UART at the clock rate, and a second 8-bit DAC is controlled by UART words received at one tenth of the clock rate. Testing requires an external comparator, resistors and capacitors to build the RC filters and feedback path. The project is notable for demonstrating mixed-signal conversion using only digital primitives plus a few passive components.",
+   "tags": [
+    "sigma-delta",
+    "adc",
+    "dac",
+    "uart",
+    "analog",
+    "comparator",
+    "filter-analog",
+    "mixed-signal"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "cd1b1d2b0178",
+   "summary": "This design generates the GPS C/A PRN sequences for PRN1 through PRN32 using two LFSRs built to the GPS ICD, with selected taps of the second LFSR combined with the first to produce the chosen code. The PRN index is selected on the input pins, and the G1, G2 and selected PRN outputs are exposed. Testing is done by selecting a PRN, resetting, and clocking while checking the output sequence against the expected pattern. No external hardware is needed, and the documentation is concise but adequate.",
+   "tags": [
+    "communication",
+    "lfsr",
+    "prng",
+    "sequencer"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "75ebfd234a34",
+   "summary": "This project implements the state transition logic for a 5-state, 8-symbol universal Turing machine as combinational logic mapping (state, symbol) to (state, symbol, direction). State and symbol are supplied on the input pins, and the next state, new symbol and head direction appear on the outputs. Testing is performed by applying state and symbol combinations and comparing the outputs against the transition table in test.py. The design is purely combinational and requires no external hardware, but the documentation is limited to a short description.",
+   "tags": [
+    "esoteric",
+    "combinational",
+    "fsm",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "6ee3cc3e4c5d",
+   "summary": "The McCoy is a custom 8-bit microprocessor with a RISC-V-inspired custom ISA, containing an opcode decoder, an 8-bit ALU, seven general-purpose and three special-purpose 6-bit registers, and branch target selection in a single-stage pipeline. Reset must be held high for one clock cycle before instructions are fed in, and the program counter or x8 register is output depending on the clock phase. Example programs and a fuller explanation are provided in the testbench folder and readme. It requires an external source capable of driving and reading 16 GPIO pins, and the documentation is reasonably detailed.",
+   "tags": [
+    "cpu",
+    "risc-v",
+    "alu",
+    "register-file",
+    "instruction-decoder",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "390ae8e7f98c",
+   "summary": "This is a 2-bit ALU built around a ripple-carry adder that can perform sixteen different operations selected by four ALU_Sel bits. The description mentions finite state machines and temporary values feeding into the basic ALU calculations, but the exact operation set is not documented. The testing section is marked TODO, so no verification procedure is given. The documentation is too thin to confirm the full behavior, and no external hardware is described.",
+   "tags": [
+    "alu",
+    "adder",
+    "combinational",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "0ee23125c57d",
+   "summary": "This design estimates the frequency of an input signal by XORing successive samples to detect edges, summing them over a window, and mapping the result to a digit from 0 to 9 representing ten-percent bands of the maximum frequency. The digit is shown on a seven-segment display, and the input signal can optionally be looped back to the output for a sanity check. Testing requires a clock and a test signal generator, and the clock frequency itself does not matter as long as timing constraints are met. The documentation is clear about the measurement approach and its coarse resolution.",
+   "tags": [
+    "frequency-counter",
+    "7-segment",
+    "edge-detector",
+    "instrumentation",
+    "counter"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "7bfccc1419ba",
+   "summary": "This project is a 4-bit multiplier built from single-bit full adders, with inputs registered and the 8-bit product displayed on a seven-segment display in two 4-bit halves alternating every 500 ms. Because only eight pins are available including clock and reset, only three bits of each factor are exposed and the fourth bit is tied to zero. The HDL is verified with cocotb tests covering the single-bit adder, 4-bit adder, 4-bit multiplier and top level. External hardware includes a clock divider to 2500 Hz, a seven-segment display with dot LED, and an 8-bit DIP switch.",
+   "tags": [
+    "multiplier",
+    "adder",
+    "7-segment",
+    "cocotb",
+    "alu",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "665062445bcd",
+   "summary": "This SystemVerilog design sequences a traffic light with a pedestrian walk button, driving red, yellow, green, walk and no-walk indicators plus a noisemaker output. Pressing the walk button turns the light red and then starts the walk signal and the 'beep boop' sound, with timings tuned to match a streetlight formerly at Carnegie Mellon University. Testing is done by observing the inputs and outputs, and external hardware consists of LEDs, a noisemaker and a button. The documentation is brief but the behavior and interface are clear.",
+   "tags": [
+    "industrial",
+    "fsm",
+    "sequencer",
+    "led"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7739,
+  "completion_tokens": 1736,
+  "total_tokens": 9475,
+  "cost": 0.001502274,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001502274,
+   "upstream_inference_prompt_cost": 0.001037026,
+   "upstream_inference_completions_cost": 0.000465248
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001502274,
+ "elapsed_s": 13.9
+}

@@ -1,0 +1,204 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bd1c4c9a3958",
+  "fbe8f1ae1075",
+  "e18d4ee5916e",
+  "8328b041a3d9",
+  "57869ee2a3ff",
+  "71836ddd1a29"
+ ],
+ "results": [
+  {
+   "key": "bd1c4c9a3958",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "memory",
+    "sram",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "memory",
+    "sram",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a proof-of-concept SRAM controller for 128 bytes of memory, with pins for address, write enable, and data input/output, including a bank select signal that multiplexes some bidirectional pins. The documentation is entirely 'TODO', so the detailed operation and usage are not described. The pin names suggest a banked memory interface with 9 address bits and 8 data bits. No test or implementation details are provided.",
+   "summary": "This design is a proof-of-concept SRAM controller for 128 bytes of memory, with pins for address, write enable, and data input/output, including a bank select signal that multiplexes some bidirectional pins. The documentation is entirely 'TODO', so the detailed operation and usage are not described. The pin names suggest a banked memory interface with 9 address bits and 8 data bits. No test or implementation details are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "fbe8f1ae1075",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "No memory block is described; the pins are a CPU data/address bus, not a memory implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed memory tag because the design is a CPU, not a memory block.",
+   "tags_before": [
+    "cpu",
+    "verilog",
+    "memory"
+   ],
+   "tags": [
+    "cpu",
+    "verilog"
+   ],
+   "summary_before": "This project is a simple 8-bit CPU based on 8bitworkshop. Eight input pins form the data input bus, eight bidirectional pins carry a write strobe and a seven-bit address, and eight output pins provide the data output bus. The documentation is limited to a one-line description and a note that testing is a brief explanation, so the instruction set and memory interface are not detailed. It is a 1x1 Verilog tile with no further test or hardware information provided.",
+   "summary": "This project is a simple 8-bit CPU based on 8bitworkshop. Eight input pins form the data input bus, eight bidirectional pins carry a write strobe and a seven-bit address, and eight output pins provide the data output bus. The documentation is limited to a one-line description and a note that testing is a brief explanation, so the instruction set and memory interface are not detailed. It is a 1x1 Verilog tile with no further test or hardware information provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "e18d4ee5916e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "No memory block is implemented; the CPU uses an external memory image, not on-chip memory."
+    },
+    {
+     "tag": "interrupt-controller",
+     "reason": "Only a single InterruptIn pin is present; no interrupt controller logic is documented."
+    },
+    {
+     "tag": "asic",
+     "reason": "ASIC is redundant for a Tiny Tapeout digital design and not specifically supported by the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed memory, interrupt-controller and asic tags that are not supported by the source.",
+   "tags_before": [
+    "cpu",
+    "risc-v",
+    "memory",
+    "interrupt-controller",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "cpu",
+    "risc-v",
+    "verilog"
+   ],
+   "summary_before": "This project is a 16-bit RISC-V CPU implemented in Verilog with a 16-bit address and data interface exposed on the chip pins. It includes an assembler and a memory image, allowing programs to be assembled and executed. The CPU reads instructions and data from an external memory via the address and data pins, with a write strobe and address latch controls, and also provides an interrupt input. The documentation refers to a README for more details, but the provided text is limited, so the exact instruction set and testing procedure are not fully described here.",
+   "summary": "This project is a 16-bit RISC-V CPU implemented in Verilog with a 16-bit address and data interface exposed on the chip pins. It includes an assembler and a memory image, allowing programs to be assembled and executed. The CPU reads instructions and data from an external memory via the address and data pins, with a write strobe and address latch controls, and also provides an interrupt input. The documentation refers to a README for more details, but the provided text is limited, so the exact instruction set and testing procedure are not fully described here.",
+   "summary_changed": false
+  },
+  {
+   "key": "8328b041a3d9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed fsm tag because no state machine is documented.",
+   "tags_before": [
+    "security",
+    "wokwi",
+    "7-segment",
+    "fsm",
+    "button",
+    "dip-switch"
+   ],
+   "tags": [
+    "security",
+    "wokwi",
+    "7-segment",
+    "button",
+    "dip-switch"
+   ],
+   "summary_before": "This Wokwi design implements a simple padlock or safe code lock that displays status on a seven-segment display. The user sets a code using switches, locks and unlocks with another switch, and enters the code with a push button. The design includes a reset switch and an LED to indicate locked status; testing involves simulating the switch and button sequences in Wokwi. It is a basic educational example of a code-based lock with minimal documentation beyond the controls description.",
+   "summary": "This Wokwi design implements a simple padlock or safe code lock that displays status on a seven-segment display. The user sets a code using switches, locks and unlocks with another switch, and enters the code with a push button. The design includes a reset switch and an LED to indicate locked status; testing involves simulating the switch and button sequences in Wokwi. It is a basic educational example of a code-based lock with minimal documentation beyond the controls description.",
+   "summary_changed": false
+  },
+  {
+   "key": "57869ee2a3ff",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "signal-generator",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "verilog"
+   ],
+   "summary_before": "This project is a configurable PWM generator whose duty cycle is selected by three digital input signals, with an enable input and a clock. The duty cycle steps in 12.5% increments from 12.5% to 100% depending on the three-bit combination, and the PWM signal appears on a single output pin. Testing requires a signal generator for a 10MHz clock and an oscilloscope to observe the pulse width. The documentation is in Spanish and provides a clear truth table, but no silicon test results are reported.",
+   "summary": "This project is a configurable PWM generator whose duty cycle is selected by three digital input signals, with an enable input and a clock. The duty cycle steps in 12.5% increments from 12.5% to 100% depending on the three-bit combination, and the PWM signal appears on a single output pin. Testing requires a signal generator for a 10MHz clock and an oscilloscope to observe the pulse width. The documentation is in Spanish and provides a clear truth table, but no silicon test results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "71836ddd1a29",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The source describes a bit pattern sequence, not a binary or decimal counting circuit."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "The design outputs a fixed pattern per clock, not a pattern or event sequencing circuit."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The outputs are plain digital outputs, not a general purpose I/O interface."
+    }
+   ],
+   "add": [],
+   "notes": "Removed counter, sequencer and gpio tags that are not supported by the source.",
+   "tags_before": [
+    "counter",
+    "pattern-generator",
+    "sequencer",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "pattern-generator",
+    "verilog"
+   ],
+   "summary_before": "This design outputs a different 8-bit bit pattern on each clock cycle and then resets. It is tested by applying a reset, cycling the clock several times, and comparing the outputs to the expected sequence. The outputs can be measured directly on GPIO pins, so no external hardware is required. The documentation is very thin and does not specify the actual bit patterns or the reset behavior in detail.",
+   "summary": "This design outputs a different 8-bit bit pattern on each clock cycle and then resets. It is tested by applying a reset, cycling the clock several times, and comparing the outputs to the expected sequence. The outputs can be measured directly on GPIO pins, so no external hardware is required. The documentation is very thin and does not specify the actual bit patterns or the reset behavior in detail.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6065,
+  "completion_tokens": 1251,
+  "total_tokens": 7316,
+  "cost": 0.0013428,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0013428,
+   "upstream_inference_prompt_cost": 0.0005922,
+   "upstream_inference_completions_cost": 0.0007506
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0013428,
+ "elapsed_s": 39.5
+}

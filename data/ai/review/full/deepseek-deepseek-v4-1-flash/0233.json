@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "958415b80473",
+  "1b70340923ae",
+  "0beabbb80845",
+  "ff12cad51183",
+  "c8e3180d56f2",
+  "34c1f3be6706"
+ ],
+ "results": [
+  {
+   "key": "958415b80473",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "A 2x2 2-bit matrix multiplier is a small arithmetic block, not dedicated compute acceleration hardware."
+    },
+    {
+     "tag": "alu",
+     "reason": "The design is a matrix multiplier, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Already present; the design computes matrix products."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The matrix multiplication is purely combinational logic with no clocked state."
+    }
+   ],
+   "notes": "Removed accelerator and alu as unsupported; added combinational for the purely combinational matrix multiply.",
+   "tags_before": [
+    "multiplier",
+    "accelerator",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "verilog",
+    "combinational"
+   ],
+   "summary_before": "This design multiplies two 2-bit 2x2 matrices, accepting matrix A on the standard input pins and matrix B on the bidirectional pins, and outputting the result matrix C on the standard output pins. Each matrix element is 2 bits, and the pin mapping is explicitly documented. Testing requires pulling pins high or low to set the input matrices and reading the output pins for the product. No external hardware is needed.",
+   "summary": "This design multiplies two 2-bit 2x2 matrices, accepting matrix A on the standard input pins and matrix B on the bidirectional pins, and outputting the result matrix C on the standard output pins. Each matrix element is 2 bits, and the pin mapping is explicitly documented. Testing requires pulling pins high or low to set the input matrices and reading the output pins for the product. No external hardware is needed.",
+   "summary_changed": false
+  },
+  {
+   "key": "1b70340923ae",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design uses external QSPI PSRAM but does not implement a memory block itself."
+    }
+   ],
+   "add": [
+    {
+     "tag": "qspi",
+     "reason": "The design interfaces to external QSPI PSRAM and the pins match the SPI Pmod pinout."
+    },
+    {
+     "tag": "spi",
+     "reason": "Host communication uses SPI with SS#, SCK, MOSI and MISO pins."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The source language is SystemVerilog."
+    }
+   ],
+   "notes": "Removed memory tag because the design only interfaces to external PSRAM rather than implementing memory.",
+   "tags_before": [
+    "qspi",
+    "spi",
+    "memory",
+    "systemverilog"
+   ],
+   "tags": [
+    "qspi",
+    "spi",
+    "systemverilog"
+   ],
+   "summary_before": "This design implements a fuzzy search engine based on the bit-vector Levenshtein distance algorithm. It finds the closest matching word in a dictionary stored in external QSPI PSRAM, communicating with the host via SPI. The design requires a specific QSPI PSRAM PMOD that supports quad-mode operations and runs at half the clock speed of the chip. It is notable for being a hardware implementation of a string matching algorithm, with a provided client tool for testing.",
+   "summary": "This design implements a fuzzy search engine based on the bit-vector Levenshtein distance algorithm. It finds the closest matching word in a dictionary stored in external QSPI PSRAM, communicating with the host via SPI. The design requires a specific QSPI PSRAM PMOD that supports quad-mode operations and runs at half the clock speed of the chip. It is notable for being a hardware implementation of a string matching algorithm, with a provided client tool for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "0beabbb80845",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8-bit linear feedback shift register (LFSR) that generates a pseudo-random sequence. It accepts an 8-bit seed value and a write-enable signal to load the seed, and outputs the current LFSR state on eight output pins. The design is simple and requires no external hardware beyond reading the output pins. It can be used as a basic pseudo-random number generator.",
+   "summary": "This project implements an 8-bit linear feedback shift register (LFSR) that generates a pseudo-random sequence. It accepts an 8-bit seed value and a write-enable signal to load the seed, and outputs the current LFSR state on eight output pins. The design is simple and requires no external hardware beyond reading the output pins. It can be used as a basic pseudo-random number generator.",
+   "summary_changed": false
+  },
+  {
+   "key": "ff12cad51183",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "perceptron",
+    "neural-network",
+    "machine-learning",
+    "verilog"
+   ],
+   "tags": [
+    "perceptron",
+    "neural-network",
+    "machine-learning",
+    "verilog"
+   ],
+   "summary_before": "This project implements a single-layer perceptron in Verilog. It takes 8 bits of input and 8 bits of weights, and classifies the input into one of two classes based on a weighted sum and threshold. The design is tested using a Python script that initializes inputs and expected outputs, and then runs a makefile-based test. No external hardware is required.",
+   "summary": "This project implements a single-layer perceptron in Verilog. It takes 8 bits of input and 8 bits of weights, and classifies the input into one of two classes based on a weighted sum and threshold. The design is tested using a Python script that initializes inputs and expected outputs, and then runs a makefile-based test. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "c8e3180d56f2",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The source language is Verilog."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "The design implements a perceptron layer for neural network inference."
+    }
+   ],
+   "notes": "Added verilog and machine-learning tags that were clearly supported but missing.",
+   "tags_before": [
+    "perceptron",
+    "neural-network",
+    "mac-unit"
+   ],
+   "tags": [
+    "perceptron",
+    "neural-network",
+    "mac-unit",
+    "verilog",
+    "machine-learning"
+   ],
+   "summary_before": "This design implements a basic perceptron with a ReLU activation layer, using a single-cycle multiply-accumulation unit. It takes four signed 4-bit weights and four signed 4-bit inputs, and outputs a 16-bit ReLU result. The design is tested by providing weight-input pairs cycle-by-cycle and sampling the output, then resetting for a new invocation. No external hardware is required.",
+   "summary": "This design implements a basic perceptron with a ReLU activation layer, using a single-cycle multiply-accumulation unit. It takes four signed 4-bit weights and four signed 4-bit inputs, and outputs a 16-bit ReLU result. The design is tested by providing weight-input pairs cycle-by-cycle and sampling the output, then resetting for a new invocation. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "34c1f3be6706",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is explicitly a set of four NAND gates."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project language is Wokwi."
+    }
+   ],
+   "notes": "Removed education as unsupported; kept logic-gate and wokwi.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This design places four NAND gates on a tile, with each gate taking two input pins and driving one output pin. The description says it is a bunch of NANDs intended to test the tool chain for now. Testing is described informally as manually connecting the NAND inputs. No external hardware is specified, and the project is a simple tool-chain exercise rather than a useful circuit.",
+   "summary": "This design places four NAND gates on a tile, with each gate taking two input pins and driving one output pin. The description says it is a bunch of NANDs intended to test the tool chain for now. Testing is described informally as manually connecting the NAND inputs. No external hardware is specified, and the project is a simple tool-chain exercise rather than a useful circuit.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6500,
+  "completion_tokens": 1251,
+  "total_tokens": 7751,
+  "cost": 0.002548032,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002548032,
+   "upstream_inference_prompt_cost": 0.001046832,
+   "upstream_inference_completions_cost": 0.0015012
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002548032,
+ "elapsed_s": 19.6
+}

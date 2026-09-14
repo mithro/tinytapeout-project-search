@@ -1,0 +1,214 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "812b9851a78e",
+  "7151096d9b9a",
+  "e2a4c3422dd1",
+  "ef8ecbd7a3c8",
+  "302f57bbf9ae",
+  "dc3cbd886700"
+ ],
+ "results": [
+  {
+   "key": "812b9851a78e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a clock and counter; it does not generate a clock signal."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "Already present; the design is built around a binary counter."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; language is Wokwi."
+    }
+   ],
+   "notes": "Removed clock-generator and education tags that are not supported by the source.",
+   "tags_before": [
+    "7-segment",
+    "counter",
+    "display",
+    "wokwi",
+    "clock-generator",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This design uses a clock and a binary counter to cycle through the characters O, 2, E, L, H, d, and blank on a 7-segment display, spelling 'O2ELHd'. It is tested by setting the clock to 1 Hz and observing the display, with a reset input to restart the sequence. External hardware includes a 7-segment LED display, a clock source, and a reset button. The design is a simple demonstration of driving a 7-segment display with a counter.",
+   "summary": "This design uses a clock and a binary counter to cycle through the characters O, 2, E, L, H, d, and blank on a 7-segment display, spelling 'O2ELHd'. It is tested by setting the clock to 1 Hz and observing the display, with a reset input to restart the sequence. External hardware includes a 7-segment LED display, a clock source, and a reset button. The design is a simple demonstration of driving a 7-segment display with a counter.",
+   "summary_changed": false
+  },
+  {
+   "key": "7151096d9b9a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "register-file",
+    "education",
+    "wokwi",
+    "template"
+   ],
+   "tags": [
+    "counter",
+    "register-file",
+    "education",
+    "wokwi",
+    "template"
+   ],
+   "summary_before": "This is an educational Wokwi project intended as a starting point for Swiss high school students to learn ASIC design and digital circuitry basics. It includes a 4-bit binary counter and two 4-bit registers with write and read operations controlled by opcode pins. The design is tested by following exercises on the Wokwi project page, which explain how to store and retrieve data. No external hardware is required, and the project serves as a teaching tool with documented pitfalls.",
+   "summary": "This is an educational Wokwi project intended as a starting point for Swiss high school students to learn ASIC design and digital circuitry basics. It includes a 4-bit binary counter and two 4-bit registers with write and read operations controlled by opcode pins. The design is tested by following exercises on the Wokwi project page, which explain how to store and retrieve data. No external hardware is required, and the project serves as a teaching tool with documented pitfalls.",
+   "summary_changed": false
+  },
+  {
+   "key": "e2a4c3422dd1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "error-correction",
+     "reason": "The design detects errors but does not correct them; the source explicitly says errors are signalled but not managed."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crc",
+     "reason": "The Hammer18 scheme is a CRC-style scrambler/error detector."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "Already present; the design is explicitly pipelined."
+    }
+   ],
+   "notes": "Removed error-correction because the design only detects errors, and added crc for the Hammer18 scrambler.",
+   "tags_before": [
+    "communication",
+    "error-correction",
+    "pipeline"
+   ],
+   "tags": [
+    "communication",
+    "pipeline",
+    "crc"
+   ],
+   "summary_before": "The miniMAC_5L is a 16-bit scrambler/framer/error detector designed for the IHP SG2CMOS5L PDK, intended for high-speed serial communication. It encodes and decodes 18-bit words using a gPEAC and Hammer18 scheme, with a pipelined architecture that processes 9-bit half-words and has a latency of five cycles, plus an additional three cycles in loopback mode. The circuit can operate in encode, decode, or loopback mode, with control signals for data enable and output enable, and it provides error and zero flags. It requires custom external hardware for full testing and is notable for its use of a specialized PDK and its ability to chain multiple chips.",
+   "summary": "The miniMAC_5L is a 16-bit scrambler/framer/error detector designed for the IHP SG2CMOS5L PDK, intended for high-speed serial communication. It encodes and decodes 18-bit words using a gPEAC and Hammer18 scheme, with a pipelined architecture that processes 9-bit half-words and has a latency of five cycles, plus an additional three cycles in loopback mode. The circuit can operate in encode, decode, or loopback mode, with control signals for data enable and output enable, and it provides error and zero flags. It requires custom external hardware for full testing and is notable for its use of a specialized PDK and its ability to chain multiple chips.",
+   "summary_changed": false
+  },
+  {
+   "key": "ef8ecbd7a3c8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "wishbone",
+    "uart",
+    "gpio",
+    "qspi",
+    "cpu",
+    "microcontroller"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "wishbone",
+    "uart",
+    "gpio",
+    "qspi",
+    "cpu",
+    "microcontroller"
+   ],
+   "summary_before": "This project is a TinyQV RISC-V SoC with a Wishbone interconnect, integrating a UART16550 and GPIO peripherals. It exposes debug signals and supports QSPI flash/RAM interfaces. The design is implemented in Verilog and occupies a 6x2 tile area. Extensive testing is performed using cocotb and gate-level simulations, and external hardware such as a USB-UART bridge and QSPI memory can be connected for bring-up.",
+   "summary": "This project is a TinyQV RISC-V SoC with a Wishbone interconnect, integrating a UART16550 and GPIO peripherals. It exposes debug signals and supports QSPI flash/RAM interfaces. The design is implemented in Verilog and occupies a 6x2 tile area. Extensive testing is performed using cocotb and gate-level simulations, and external hardware such as a USB-UART bridge and QSPI memory can be connected for bring-up.",
+   "summary_changed": false
+  },
+  {
+   "key": "302f57bbf9ae",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pll",
+    "ring-oscillator",
+    "clock-generator",
+    "oscillator"
+   ],
+   "tags": [
+    "pll",
+    "ring-oscillator",
+    "clock-generator",
+    "oscillator"
+   ],
+   "summary_before": "This is an all-digital phase-locked loop (ADPLL) that locks an internal ring oscillator to a 32.768 kHz crystal reference, synthesizing a 16.777216 MHz output clock (x512 multiplication). It provides lock indicator and phase error outputs. The design is implemented in Verilog and requires an external 32.768 kHz crystal oscillator module. Optional testing can be done with a frequency counter or logic analyzer.",
+   "summary": "This is an all-digital phase-locked loop (ADPLL) that locks an internal ring oscillator to a 32.768 kHz crystal reference, synthesizing a 16.777216 MHz output clock (x512 multiplication). It provides lock indicator and phase error outputs. The design is implemented in Verilog and requires an external 32.768 kHz crystal oscillator module. Optional testing can be done with a frequency counter or logic analyzer.",
+   "summary_changed": false
+  },
+  {
+   "key": "dc3cbd886700",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "aes",
+    "cipher",
+    "crypto",
+    "lookup-table"
+   ],
+   "tags": [
+    "aes",
+    "cipher",
+    "crypto",
+    "lookup-table"
+   ],
+   "summary_before": "This is a constant-time AES S-Box implementing both SubBytes (encrypt) and InvSubBytes (decrypt) operations per FIPS 197. The input byte is looked up in the standard AES substitution table via purely combinational logic, with registered output. The design is inherently constant-time in hardware and is part of the rtlforge project, which generates formally-verified cryptographic IP from Rust specifications. It requires no external hardware and can be exhaustively verified by iterating all 256 input values.",
+   "summary": "This is a constant-time AES S-Box implementing both SubBytes (encrypt) and InvSubBytes (decrypt) operations per FIPS 197. The input byte is looked up in the standard AES substitution table via purely combinational logic, with registered output. The design is inherently constant-time in hardware and is part of the rtlforge project, which generates formally-verified cryptographic IP from Rust specifications. It requires no external hardware and can be exhaustively verified by iterating all 256 input values.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9318,
+  "completion_tokens": 1205,
+  "total_tokens": 10523,
+  "cost": 0.0042414,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042414,
+   "upstream_inference_prompt_cost": 0.0027954,
+   "upstream_inference_completions_cost": 0.001446
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042414,
+ "elapsed_s": 12.5
+}

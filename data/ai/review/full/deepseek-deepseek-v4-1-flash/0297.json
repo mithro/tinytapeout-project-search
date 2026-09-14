@@ -1,0 +1,312 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "907026298502",
+  "90d8e71f38f3",
+  "49dc999c2c66",
+  "4cf6ea6a5965",
+  "763915c46083",
+  "4610b5fb563e"
+ ],
+ "results": [
+  {
+   "key": "907026298502",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a four-bit adder with a display decoder, not an arithmetic logic unit performing multiple operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "education",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed alu because the source describes only an adder and decoder, not an arithmetic logic unit.",
+   "tags_before": [
+    "adder",
+    "7-segment",
+    "decoder",
+    "alu",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "7-segment",
+    "decoder",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design is a four-bit adder that takes two four-bit binary numbers and produces their sum on a seven-segment display, with the carry shown on the decimal point. It uses four full adders feeding a binary-to-seven-segment decoder, and is tested by setting the two numbers on DIP switches. Display of sums greater than nine is noted as questionable, and no external hardware is needed. The project is a straightforward arithmetic and display demonstration.",
+   "summary": "This design is a four-bit adder that takes two four-bit binary numbers and produces their sum on a seven-segment display, with the carry shown on the decimal point. It uses four full adders feeding a binary-to-seven-segment decoder, and is tested by setting the two numbers on DIP switches. Display of sums greater than nine is noted as questionable, and no external hardware is needed. The project is a straightforward arithmetic and display demonstration.",
+   "summary_changed": false
+  },
+  {
+   "key": "90d8e71f38f3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crc",
+    "parity",
+    "error-correction",
+    "shift-register",
+    "wokwi",
+    "communication"
+   ],
+   "tags": [
+    "crc",
+    "parity",
+    "error-correction",
+    "shift-register",
+    "wokwi",
+    "communication"
+   ],
+   "summary_before": "This project implements two banks of CRC-16/XModem and even parity calculators based on Ben Eater's error detection videos, each with shift data, shift clock, active-low reset, and active-low read controls. The read-back mode disables the feedback XOR so the calculated CRC and parity can be shifted out for inspection. Testing is done by connecting a Pico as shown in Wokwi, sending a string, and comparing the read-back CRC and parity values. The design can also be driven by switches or any microcontroller, and the documentation explains the control scheme clearly.",
+   "summary": "This project implements two banks of CRC-16/XModem and even parity calculators based on Ben Eater's error detection videos, each with shift data, shift clock, active-low reset, and active-low read controls. The read-back mode disables the feedback XOR so the calculated CRC and parity can be shifted out for inspection. Testing is done by connecting a Pico as shown in Wokwi, sending a string, and comparing the read-back CRC and parity values. The design can also be driven by switches or any microcontroller, and the documentation explains the control scheme clearly.",
+   "summary_changed": false
+  },
+  {
+   "key": "49dc999c2c66",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design has a small register write interface, not a multi-register storage block as implied by the register-file tag."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sound-generator",
+     "reason": "The source describes a programmable sound chip with LFSR voices and a mixer."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "audio",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "music",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "dac",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed register-file as the source describes a small control register interface, not a general register file; added sound-generator as the canonical type.",
+   "tags_before": [
+    "audio",
+    "synthesizer",
+    "lfsr",
+    "music",
+    "register-file",
+    "dac"
+   ],
+   "tags": [
+    "audio",
+    "synthesizer",
+    "lfsr",
+    "music",
+    "dac",
+    "sound-generator"
+   ],
+   "summary_before": "bitslam is a programmable sound chip with two LFSR-based voices and a mixer, controlled through a register write interface using an address/data selector pin. Each voice has a clock divider for pitch and a 4-bit tap mask selecting LFSR feedback taps, while the mixer register sets per-voice volume from silent to full. It is intended to be driven by an external host such as a microcontroller, and a 4-bit DAC connected to the four digital outputs is required to produce analog audio. The design is notable for its compact LFSR tone generation and the documentation credits a fix for an interconnect bug.",
+   "summary": "bitslam is a programmable sound chip with two LFSR-based voices and a mixer, controlled through a register write interface using an address/data selector pin. Each voice has a clock divider for pitch and a 4-bit tap mask selecting LFSR feedback taps, while the mixer register sets per-voice volume from silent to full. It is intended to be driven by an external host such as a microcontroller, and a 4-bit DAC connected to the four digital outputs is required to produce analog audio. The design is notable for its compact LFSR tone generation and the documentation credits a fix for an interconnect bug.",
+   "summary_changed": false
+  },
+  {
+   "key": "4cf6ea6a5965",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "divider",
+     "reason": "The design uses integer division internally but is not a digital divider circuit; the source describes a continued fraction calculator."
+    },
+    {
+     "tag": "alu",
+     "reason": "The source describes arithmetic operations for continued fractions, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "calculator",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "button",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed divider and alu because the source describes a continued fraction calculator, not a divider or ALU circuit.",
+   "tags_before": [
+    "calculator",
+    "divider",
+    "multiplier",
+    "alu",
+    "button",
+    "dip-switch",
+    "verilog"
+   ],
+   "tags": [
+    "calculator",
+    "multiplier",
+    "button",
+    "dip-switch",
+    "verilog"
+   ],
+   "summary_before": "This design computes continued fraction convergents of the square root of a 14-bit natural number entered via switches. Pressing one button advances to the next convergent pair P and Q, and another button cycles through the 16-bit P and Q values on the 8 status LEDs in four bytes. It is intended to be used alongside a phone calculator or paper to find fundamental solutions to Pell's equation x^2 - Dy^2 = 1. The design fits in roughly 1000 cells by avoiding comparisons and floor operations except on the first step, and it outputs binary rather than 7-segment values due to area constraints.",
+   "summary": "This design computes continued fraction convergents of the square root of a 14-bit natural number entered via switches. Pressing one button advances to the next convergent pair P and Q, and another button cycles through the 16-bit P and Q values on the 8 status LEDs in four bytes. It is intended to be used alongside a phone calculator or paper to find fundamental solutions to Pell's equation x^2 - Dy^2 = 1. The design fits in roughly 1000 cells by avoiding comparisons and floor operations except on the first step, and it outputs binary rather than 7-segment values due to area constraints.",
+   "summary_changed": false
+  },
+  {
+   "key": "763915c46083",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a MAC unit, not an arithmetic logic unit."
+    },
+    {
+     "tag": "dsp",
+     "reason": "The source does not mention digital signal processing; it targets ML accelerators."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "The source describes a MAC unit for ML accelerators, not a neural network implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed alu, dsp, and neural-network as unsupported by the source, which describes a MAC unit for ML accelerators.",
+   "tags_before": [
+    "mac-unit",
+    "multiplier",
+    "alu",
+    "machine-learning",
+    "neural-network",
+    "dsp",
+    "accelerator"
+   ],
+   "tags": [
+    "mac-unit",
+    "multiplier",
+    "machine-learning",
+    "accelerator"
+   ],
+   "summary_before": "This design implements an iterative multiply-and-accumulate (MAC) unit intended for machine learning accelerators. It performs a 7x8-bit multiplication and adds a third operand provided on the bidirectional pins, with the result output on uo_out. The design uses a reset to latch the first operand and then accepts the second operand each clock cycle. Testing is described as complex, with full instructions to be added later, and it requires a CPU to supply input data.",
+   "summary": "This design implements an iterative multiply-and-accumulate (MAC) unit intended for machine learning accelerators. It performs a 7x8-bit multiplication and adds a third operand provided on the bidirectional pins, with the result output on uo_out. The design uses a reset to latch the first operand and then accepts the second operand each clock cycle. Testing is described as complex, with full instructions to be added later, and it requires a CPU to supply input data.",
+   "summary_changed": false
+  },
+  {
+   "key": "4610b5fb563e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "led-matrix",
+    "spi",
+    "max7219",
+    "graphics",
+    "display",
+    "rom",
+    "verilog"
+   ],
+   "tags": [
+    "led-matrix",
+    "spi",
+    "max7219",
+    "graphics",
+    "display",
+    "rom",
+    "verilog"
+   ],
+   "summary_before": "This project drives a 32x8 LED matrix using a MAX7219/7221 controller via SPI. It displays an animation that alternates between a beaver logo and the letters 'BWSI', with bitmaps stored in an internal ROM. The design is intended to be tested on an FPGA connected to a breadboard, requiring external hardware including the LED matrix, the MAX7219/7221 chip, and a 5V power source. The SPI interface handles both configuration and bitmap data transmission.",
+   "summary": "This project drives a 32x8 LED matrix using a MAX7219/7221 controller via SPI. It displays an animation that alternates between a beaver logo and the letters 'BWSI', with bitmaps stored in an internal ROM. The design is intended to be tested on an FPGA connected to a breadboard, requiring external hardware including the LED matrix, the MAX7219/7221 chip, and a 5V power source. The SPI interface handles both configuration and bitmap data transmission.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6663,
+  "completion_tokens": 1721,
+  "total_tokens": 8384,
+  "cost": 0.0017444,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0017444,
+   "upstream_inference_prompt_cost": 0.0007118,
+   "upstream_inference_completions_cost": 0.0010326
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0017444,
+ "elapsed_s": 69.3
+}

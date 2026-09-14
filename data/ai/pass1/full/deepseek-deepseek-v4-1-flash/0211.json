@@ -1,0 +1,194 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7108f4543f13",
+  "a07324134500",
+  "d35d98395955",
+  "c986c2e1d30b",
+  "f332ccd378c2",
+  "75e26c8ef850",
+  "d562662ae87a",
+  "60dff85af027",
+  "f84955ec04f4",
+  "7f0fd2675355"
+ ],
+ "results": [
+  {
+   "key": "7108f4543f13",
+   "tags": [
+    "counter",
+    "7-segment",
+    "display",
+    "bcd",
+    "decoder",
+    "clock"
+   ],
+   "summary": "This design is a decimal counter that increments from 0 to 9 once per second and drives a 7-segment display. A 4-bit counter wraps at 9, and combinational logic decodes the value into segment patterns on outputs uo[0] through uo[6], with uo[7] as the decimal point. It requires a 1 Hz clock and a common-cathode 7-segment display or Tiny Tapeout display board connected to the outputs. The documentation is clear and complete, describing the counter, decoder, reset behavior and test procedure.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a07324134500",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "serv",
+    "spi",
+    "qspi",
+    "gpio",
+    "microcontroller",
+    "soc"
+   ],
+   "summary": "This project is a minimal 32-bit RV32I RISC-V processor core based on the bit-serial SERV architecture, which trades throughput for very small area by processing one bit per clock cycle. It exposes five GPIO pins plus an SPI master (sclk, cs_n, mosi) intended to boot code from an external SPI flash memory such as a Winbond W25Q80. Optional LEDs on the GPIO pins and a logic analyzer can be used to observe operation and debug the SPI traffic. The description notes it is a copy of an existing design kept as a memento from a course, and the documentation is brief but sufficient to understand the interface.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d35d98395955",
+   "tags": [
+    "vga",
+    "audio",
+    "i2s",
+    "microphone",
+    "7-segment",
+    "uart",
+    "music",
+    "education",
+    "template"
+   ],
+   "summary": "This SystemVerilog project is a template example prepared for a Verilog meetup at California Polytechnic State University, combining several peripherals on one design. It reads sound level from an INMP441 I2S microphone, performs sound recognition, shows the detected note on a TM1638 7-segment display module, and draws color patterns on a VGA screen using the Tiny VGA pinout. It also exposes eight switches, a UART receive pin, and a sticky_failure output, and is intended to be compatible with an FPGA counterpart from the BGM infrastructure. The documentation is very thin, consisting mostly of pointers to the 'How it works' section, so the internal recognition algorithm is not described.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c986c2e1d30b",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "test",
+    "state-machine",
+    "counter",
+    "timing"
+   ],
+   "summary": "This Verilog design generates a 640x480 VGA test image for the three color channels. It uses two finite state machines, two synchronous counters and timing constants derived from the VGA standard to produce the sync and color signals. Testing requires a VGA-capable display connected through a TinyVGA Pmod, and the design is powered on and observed directly. The documentation is short but states the architecture and the required external hardware clearly.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f332ccd378c2",
+   "tags": [
+    "alu",
+    "vhdl",
+    "multiplier",
+    "divider",
+    "arithmetic",
+    "signed",
+    "opcode",
+    "flags"
+   ],
+   "summary": "This VHDL design is a synchronous 6-bit two's-complement ALU that samples two operands and a 4-bit opcode on each rising clock edge and registers the result one cycle later. It supports sixteen operations including add, subtract, multiply, divide, bitwise logic, shifts, negate, increment, decrement, signed less-than and XNOR, with ZERO and signed OVF flags. Operand A and the low opcode bits come from ui_in, operand B and the high opcode bits from uio_in, and the result plus flags appear on uo_out. The documentation is unusually thorough, including a full opcode truth table and a simulation result table, and only a clock source and reset button are needed externally.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "75e26c8ef850",
+   "tags": [
+    "clock",
+    "rtc",
+    "7-segment",
+    "display",
+    "counter",
+    "timer",
+    "mains"
+   ],
+   "summary": "This Verilog design implements a wall clock that derives its timebase from a mains AC signal, supporting both 50 Hz and 60 Hz operation selected by an input pin. It drives a multiplexed 7-segment display through segment outputs uo[0] through uo[6] and a colon LED, with digit enables and a PM indicator on the bidirectional pins. Inputs allow setting hours, minutes and seconds, choosing 12-hour or 24-hour display, and accepting or emitting a one-pulse-per-second signal. The documentation consists only of the pin list, so the internal counter structure and exact usage are inferred from pin names.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d562662ae87a",
+   "tags": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "summary": "This Wokwi project is described as a counter driving a 7-segment display, with four input pins and seven output pins. The documentation fields are placeholders containing only 'TODO', 'TEST' and 'LOL', so the actual counting behavior, clocking and display mapping cannot be determined from the provided text. External hardware is not meaningfully specified. The project has essentially no usable documentation.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "60dff85af027",
+   "tags": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi",
+    "clock",
+    "education"
+   ],
+   "summary": "This Wokwi project is a simple 2-bit counter that shows its current value on a 7-segment display. The eight output pins are named OUT0 through OUT7, presumably driving the segments, and the design is advanced by toggling the clock. A 7-segment display is the only external hardware mentioned. The documentation is minimal, with no detail on the decoding logic or reset behavior.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f84955ec04f4",
+   "tags": [
+    "shift-register",
+    "7-segment",
+    "display",
+    "wokwi",
+    "animation",
+    "ring-counter"
+   ],
+   "summary": "This Wokwi project implements a shift register whose bits run around the outer ring of a 7-segment display. A high level on the IN_SHR input shifts a bit into the register, while the INV_RING input inverts the displayed pattern, and EN_SEG_MID controls the middle segment. The eight outputs A through G plus DP drive the display segments directly. The documentation is very brief and the test instructions are incomplete, but the pin names and description make the basic operation clear.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7f0fd2675355",
+   "tags": [
+    "wokwi",
+    "template",
+    "7-segment",
+    "display",
+    "decoder",
+    "education",
+    "logic"
+   ],
+   "summary": "This Wokwi template project reads up to seven lever inputs and displays the corresponding number on a 7-segment LED, with a reset button to clear the display. The output pin names mention logic functions such as inverter, and/or, and xor, suggesting the template also exposes simple gate outputs, though the description is inconsistent. According to the text, activating more than one lever at a time produces no output. The documentation is largely placeholder text, so the exact behavior of the outputs is uncertain.",
+   "confidence": "low",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5381,
+  "completion_tokens": 1730,
+  "total_tokens": 7111,
+  "cost": 0.002149256,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002149256,
+   "upstream_inference_prompt_cost": 0.001007456,
+   "upstream_inference_completions_cost": 0.0011418
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002149256,
+ "elapsed_s": 21.4
+}

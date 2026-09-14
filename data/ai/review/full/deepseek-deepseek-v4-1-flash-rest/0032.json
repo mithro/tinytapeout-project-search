@@ -1,0 +1,457 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "c413a9e71690",
+  "e5bad5b1fd8c",
+  "967f6083f46c",
+  "226f403f2ad7",
+  "d1faf722f906",
+  "8b7d5325e393"
+ ],
+ "results": [
+  {
+   "key": "c413a9e71690",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output; pins are SPI only."
+    },
+    {
+     "tag": "trng",
+     "reason": "No true random number generator in the source."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo random number generator in the source."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "No ring oscillator in the source."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output; the design is a cipher accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "Implements the Simon block cipher."
+    },
+    {
+     "tag": "cipher",
+     "reason": "Hardware implementation of a block cipher."
+    },
+    {
+     "tag": "spi",
+     "reason": "SPI slave interface on the pins with CS_n, MOSI, MISO, SCK."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Testing is done with a cocoTB script."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary describe unrelated VGA/TRNG content; corrected to SPI Simon cipher.",
+   "tags_before": [
+    "vga",
+    "trng",
+    "prng",
+    "ring-oscillator",
+    "display"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "spi",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This design multiplexes between four VGA projects, with an option to use a true random number generator based on sampling a ring oscillator to randomly select the active project. The multiplexer selects which VGA project is displayed on the output. The random selection is controlled by a TRNG. This allows for a variety of visual outputs.",
+   "summary": "This design is a hardware implementation of the Simon block cipher in the 32/64 configuration, with an SPI slave interface. A master device can write a 64-bit key and a 32-bit data block, configure encrypt or decrypt mode, and read back the result. Testing can be done with a cocoTB script, and the design was tested on FPGA with an SPI master ESP devkit. External SPI master hardware is needed.",
+   "summary_changed": true
+  },
+  {
+   "key": "e5bad5b1fd8c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output; pins are parallel data, cmd, and data_out."
+    },
+    {
+     "tag": "pattern-generator",
+     "reason": "No test pattern generator in the source."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator; the design uses the external 50 MHz clock."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output; outputs are numeric data."
+    }
+   ],
+   "add": [
+    {
+     "tag": "npu",
+     "reason": "Title and description state it is a neural processing unit."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "Computes a fully connected neural network layer."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "Embedded INT8 inference engine for neural network inference."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Four parallel multiply-accumulate datapaths."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Integrates four 8-bit Han-Carlson multipliers."
+    },
+    {
+     "tag": "adder",
+     "reason": "Integrates four Sparse Kogge-Stone adders."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "Pipelined multiply and accumulate stages."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Uses signed INT8 and INT16 fixed-point arithmetic."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Stores 32 x INT8 weights and 4 x INT16 biases in registers."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary describe an unrelated VGA pattern generator; corrected to the actual NPU design.",
+   "tags_before": [
+    "vga",
+    "pattern-generator",
+    "oscillator",
+    "display"
+   ],
+   "tags": [
+    "npu",
+    "neural-network",
+    "edge-ai",
+    "mac-unit",
+    "multiplier",
+    "adder",
+    "pipeline",
+    "fixed-point",
+    "register-file",
+    "verilog"
+   ],
+   "summary_before": "This design is a VGA pattern generator that produces test patterns on a VGA display. It uses an oscillator to generate the pixel clock. The output is a video signal with various patterns. It is useful for testing VGA monitors or projects.",
+   "summary": "This design is a minimal neural processing unit with four parallel multiply-accumulate datapaths that computes a single fully connected layer with ReLU activation. It integrates custom arithmetic units generated by SproutHDL, including Han-Carlson multipliers and Sparse Kogge-Stone adders. A pipeline register between the multiply and accumulate stages ensures clean timing closure. The design stores weights and biases, runs pipelined inference in N_IN + 3 cycles, and is configured through command and data inputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "967f6083f46c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display interface or output."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output; outputs are FFT real and imaginary samples."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No code-to-signal decoding circuit described."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Not purely combinational; it is a synchronous FFT with a clock."
+    },
+    {
+     "tag": "education",
+     "reason": "No indication the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fft",
+     "reason": "Implements a 64-point Radix-2 SDF DIF FFT."
+    },
+    {
+     "tag": "dsp",
+     "reason": "FFT is a digital signal processing algorithm."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary describe an unrelated 7-segment decoder; corrected to the 64-point FFT.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "decoder",
+    "combinational",
+    "education"
+   ],
+   "tags": [
+    "fft",
+    "dsp",
+    "verilog"
+   ],
+   "summary_before": "This project is a combinational 7-segment decoder that converts a BCD nibble into the standard gfedcba pattern for a seven-segment display. It is designed for educational purposes and can be used to drive a seven-segment display. The design is purely combinational and does not require any clock. The output is directly observable on the seven-segment display pins.",
+   "summary": "This design implements a 64-point Radix-2 Single Delay Feedback Decimation-In-Frequency FFT in silicon, targeting the Tiny Tapeout 6x2 tile footprint. It requires an external controller, such as an FPGA or microcontroller, to generate the trigger sequence, send 64 data samples, and capture output samples. The interface is entirely synchronous digital, with 8-bit real input and 8-bit real and imaginary outputs, and no analog peripherals. The controller should also optionally reorder the captured bins by reversing their 6-bit indices for natural frequency order.",
+   "summary_changed": true
+  },
+  {
+   "key": "226f403f2ad7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game-of-life",
+     "reason": "No Game of Life implementation in the source."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output; pins are UART and status signals."
+    },
+    {
+     "tag": "video",
+     "reason": "No video signal output."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "No visual or audio demoscene showcase."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No rendered graphics output; outputs are status signals."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "Fingerprint verification is security and biometric related."
+    },
+    {
+     "tag": "security",
+     "reason": "Hardware security focused fingerprint verification."
+    },
+    {
+     "tag": "biomedical",
+     "reason": "Fingerprint biometric authentication."
+    },
+    {
+     "tag": "uart",
+     "reason": "Implements the AS-68M UART command protocol on uart_rx and uart_tx pins."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Implemented as a 14-state deterministic finite state machine."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "Interfaces with the AS-68M fingerprint sensor."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary describe an unrelated Game of Life VGA project; corrected to the fingerprint verification ASIC.",
+   "tags_before": [
+    "game-of-life",
+    "vga",
+    "video",
+    "demoscene",
+    "graphics"
+   ],
+   "tags": [
+    "crypto",
+    "security",
+    "biomedical",
+    "uart",
+    "fsm",
+    "sensor-interface",
+    "verilog"
+   ],
+   "summary_before": "This project is a demoscene implementation of Conway's Game of Life intended to display on a VGA board. The documentation states only that it shows the Game of Life on the VGA board, with no details on resolution, timing, or control interface. The design uses a VGA PMOD that provides the VGA connector and resistor-ladder DAC. The output is a video signal that can be observed on a VGA monitor.",
+   "summary": "FinSec-1 is a hardware-only AS-68M or AS-68ML fingerprint verification ASIC. It implements the complete AS-68M UART command protocol at 57600 baud, 8-N-1, as a 14-state deterministic finite state machine in synthesisable Verilog RTL, with no microcontroller, FPGA, or CPU in the trusted execution path. The design includes UART transmit and receive, finger-present input, and outputs for match, no-match, error, sensor-ready, finger-detect, UART-busy, and heartbeat signals. External hardware would include an AS-68M sensor and a UART host to communicate with the device.",
+   "summary_changed": true
+  },
+  {
+   "key": "d1faf722f906",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No ALU, opcode, or AND/OR/XOR/ADD operations are described."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder circuit described."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No basic logic gate implementation described."
+    },
+    {
+     "tag": "education",
+     "reason": "No indication of educational intent."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The described counter or incremental behavior is not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "template",
+     "reason": "Title and description indicate it is a starter template project."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Implemented using the Wokwi simulator."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and describes only an incomplete functionality."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is too sparse to describe the design."
+    },
+    {
+     "tag": "counter",
+     "reason": "When STEP is pressed, it increases from 0 to 9 on the screen."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Screen counter 0-9 is likely a seven-segment style display."
+    },
+    {
+     "tag": "button",
+     "reason": "A STEP button input is described."
+    }
+   ],
+   "notes": "Proposed tags and summary describe an unrelated ALU design; corrected to the sparse Wokwi template.",
+   "tags_before": [
+    "alu",
+    "adder",
+    "logic-gate",
+    "wokwi",
+    "education",
+    "combinational"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "incomplete",
+    "insufficient-doc",
+    "counter",
+    "7-segment",
+    "button"
+   ],
+   "summary_before": "This project implements a 3-bit ALU that can perform AND, OR, XOR, and ADD operations based on a 2-bit opcode. It uses an 8-input DIP switch to set the A and B inputs and LEDs to display the outputs. The design is implemented in Wokwi and is intended for educational purposes. The ALU is combinational, producing results directly from the inputs.",
+   "summary": "This project is a Wokwi template that does something when the STEP button is pressed. The documentation states that when STEP is pressed, it increases from 0-9 on the screen. The external hardware is unknown. The documentation is very thin and does not describe a specific application beyond the counter behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "8b7d5325e393",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spi",
+     "reason": "No SPI interface; the design uses a custom UART protocol."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No hardware multiplier described."
+    },
+    {
+     "tag": "cordic",
+     "reason": "No CORDIC algorithm described."
+    },
+    {
+     "tag": "approximate-computing",
+     "reason": "No approximate computing techniques described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "Measurement and characterization tool for jitter."
+    },
+    {
+     "tag": "frequency-counter",
+     "reason": "Measures temporal displacement and period using a 17-bit counter."
+    },
+    {
+     "tag": "uart",
+     "reason": "Custom UART protocol on rx_pin and tx_pin at 115200 baud."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design written in Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary describe an unrelated SPI multiplier/CORDIC design; corrected to the jitter meter.",
+   "tags_before": [
+    "spi",
+    "multiplier",
+    "cordic",
+    "approximate-computing"
+   ],
+   "tags": [
+    "instrumentation",
+    "frequency-counter",
+    "uart",
+    "verilog"
+   ],
+   "summary_before": "This design implements a multiplier and CORDIC algorithm using SPI interface. It uses approximate computing techniques for area and power savings. The design is notable for its use of approximate computing and SPI interface.",
+   "summary": "This design is a high-precision digital jitter meter that characterizes signal integrity in high-speed digital systems up to 50 MHz. It measures the temporal displacement of a target signal relative to a reference clock using a 17-bit synchronous counter running at 50 MHz. The core includes an arithmetic unit, a register bank for maximum and minimum jitter and sample counts, a UART protocol FSM, and a hardware gate pin to pause and resume measurements. It requires an external microcontroller and USB-to-UART adapter to configure parameters and retrieve results.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6848,
+  "completion_tokens": 2612,
+  "total_tokens": 9460,
+  "cost": 0.0051888,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0051888,
+   "upstream_inference_prompt_cost": 0.0020544,
+   "upstream_inference_completions_cost": 0.0031344
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0051888,
+ "elapsed_s": 12.3
+}

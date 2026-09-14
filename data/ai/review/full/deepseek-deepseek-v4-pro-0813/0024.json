@@ -1,0 +1,332 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "71dd885af9bc",
+  "89d3b6d2796c",
+  "8900dfdd218f",
+  "14385abdfe69",
+  "3a3ac33f071a",
+  "33aeffebfaf8"
+ ],
+ "results": [
+  {
+   "key": "71dd885af9bc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "The source describes a frequency encoder/decoder, but the canonical tag 'encoder' means signal-to-code encoding circuit, not a frequency encoder; the project is better described by other tags."
+    },
+    {
+     "tag": "decoder",
+     "reason": "The source describes a frequency encoder/decoder, but the canonical tag 'decoder' means code-to-signal decoding circuit, not a frequency decoder; the project is better described by other tags."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neuromorphic",
+     "reason": "The documentation explicitly mentions treating input as current injection to a LIF neuron, indicating a brain-inspired neuromorphic design."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The documentation describes a leaky integrate-and-fire (LIF) neuron, which is a spiking neural network component."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The project combines digital frequency encoding/decoding with an analog-like current injection to a LIF neuron, suggesting mixed-signal behavior."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is very thin and the connection between the encoder/decoder and LIF neuron is unclear."
+    }
+   ],
+   "notes": "Removed encoder/decoder tags because they do not match the canonical meanings; added neuromorphic and spiking-neural-network tags based on the LIF neuron description.",
+   "tags_before": [
+    "encoder",
+    "decoder",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "neuromorphic",
+    "spiking-neural-network",
+    "mixed-signal"
+   ],
+   "summary_before": "This project implements an 8-bit frequency encoder and decoder for a 1-bit frequency channel, with a selector pin to choose between encoding and decoding modes. The documentation also mentions that it treats an 8-bit input voltage as a current injection to a leaky integrate-and-fire (LIF) neuron, but the connection between the two functions is unclear. Testing instructions are minimal, stating only 'Do something', and no external hardware is specified. The design appears to be a mixed-signal or neuromorphic experiment with incomplete documentation.",
+   "summary": "This project implements an 8-bit frequency encoder and decoder for a 1-bit frequency channel, with a selector pin to choose between encoding and decoding modes. The documentation also mentions that it treats an 8-bit input voltage as a current injection to a leaky integrate-and-fire (LIF) neuron, but the connection between the two functions is unclear. Testing instructions are minimal, stating only 'Do something', and no external hardware is specified. The design appears to be a mixed-signal or neuromorphic experiment with incomplete documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "89d3b6d2796c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The source only describes an 8-bit shift register; there is no evidence of a multi-register storage block."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is mentioned in the source documentation or pin names."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is extremely thin, with only 'This just works2' repeated."
+    }
+   ],
+   "notes": "Removed unsupported register-file and uart tags; added insufficient-doc due to very thin documentation.",
+   "tags_before": [
+    "shift-register",
+    "register-file",
+    "uart",
+    "wokwi"
+   ],
+   "tags": [
+    "shift-register",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a shift register with a UART interface, allowing serial data to be shifted in and out. The shift register is built using flip-flops and can be used for serial-to-parallel conversion. The UART interface enables communication with external devices.",
+   "summary": "This design implements an 8-bit shift register. The documentation is extremely sparse, with only 'This just works2' repeated. No external hardware or detailed testing instructions are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "8900dfdd218f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The source mentions lighting an LED, but the pin names do not clearly indicate an LED output; the documentation is too sparse to confirm an LED interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "The project is described as a guessing game involving pins and an LED."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "The project involves guessing a pin, which is a puzzle-like interaction."
+    }
+   ],
+   "notes": "Removed led tag due to lack of clear LED output evidence; added game and puzzle tags based on the guessing interaction.",
+   "tags_before": [
+    "wokwi",
+    "led",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "game",
+    "puzzle"
+   ],
+   "summary_before": "This project is titled 'gta6' and involves guessing a pin that lights an LED. It is tested by picking a pin and seeing if it lights up. No external hardware is required. The documentation is extremely sparse and does not describe any actual game functionality.",
+   "summary": "This project is titled 'gta6' and involves guessing a pin that lights an LED. It is tested by picking a pin and seeing if it lights up. No external hardware is required. The documentation is extremely sparse and does not describe any actual game functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "14385abdfe69",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "floating-point",
+     "reason": "The source describes a digital LIF neuron, not a floating-point arithmetic unit."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is mentioned in the source documentation or pin names."
+    },
+    {
+     "tag": "adder",
+     "reason": "The source does not describe an adder circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neuromorphic",
+     "reason": "The design implements a digital LIF neuron, which is a brain-inspired neuromorphic component."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The LIF neuron is a spiking neural network element."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is very thin, with only brief descriptions of the neuron behavior."
+    }
+   ],
+   "notes": "Removed floating-point, spi, and adder tags as unsupported; added neuromorphic and spiking-neural-network tags based on the LIF neuron description.",
+   "tags_before": [
+    "floating-point",
+    "spi",
+    "adder"
+   ],
+   "tags": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a 32-bit floating point adder accessible over SPI. It uses a simple command-based SPI protocol and requires an external SPI master, such as an Arduino, for testing. The design has four internal registers that can be read and written via SPI. The exact floating-point format and rounding behavior are not described.",
+   "summary": "This project implements a digital LIF neuron with reset by subtraction, configurable leakage and threshold. It takes weight inputs and a spike input, and produces a spike output. The documentation is very thin, with no detailed testing instructions beyond inputting weights and spikes to observe spiking.",
+   "summary_changed": true
+  },
+  {
+   "key": "3a3ac33f071a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "audio",
+    "pwm",
+    "graphics",
+    "demoscene",
+    "art",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "pwm",
+    "graphics",
+    "demoscene",
+    "art",
+    "verilog"
+   ],
+   "summary_before": "Flame demo displays a flame animation on a VGA monitor and plays simple 1-bit PWM audio. It requires a TinyVGA PMOD for video and either Mike's audio PMOD or a basic RC filter for sound, and it runs at a 25 MHz clock with a reset pulse. Silicon testing by two independent testers confirmed that both audio and video work as expected, with good use of color and dithering. The design is a compact demoscene-style demo suitable for the Tiny Tapeout demo competition.",
+   "summary": "Flame demo displays a flame animation on a VGA monitor and plays simple 1-bit PWM audio. It requires a TinyVGA PMOD for video and either Mike's audio PMOD or a basic RC filter for sound, and it runs at a 25 MHz clock with a reset pulse. Silicon testing by two independent testers confirmed that both audio and video work as expected, with good use of color and dithering. The design is a compact demoscene-style demo suitable for the Tiny Tapeout demo competition.",
+   "summary_changed": false
+  },
+  {
+   "key": "33aeffebfaf8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The source describes an AM software-defined radio, not a RISC-V processor."
+    },
+    {
+     "tag": "cpu",
+     "reason": "No CPU is mentioned in the source documentation."
+    },
+    {
+     "tag": "soc",
+     "reason": "The design is not described as a system-on-chip."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is mentioned; the control interface is SPI."
+    },
+    {
+     "tag": "qspi",
+     "reason": "No QSPI interface is mentioned."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory block is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "radio",
+     "reason": "The project is an AM software-defined radio receiver."
+    },
+    {
+     "tag": "rf",
+     "reason": "The design is for radio frequency reception."
+    },
+    {
+     "tag": "dsp",
+     "reason": "The design implements digital signal processing for AM demodulation."
+    },
+    {
+     "tag": "spi",
+     "reason": "The design includes an SPI interface for setting demodulation frequency and gain."
+    },
+    {
+     "tag": "adc",
+     "reason": "The design uses an external comparator as a 1-bit ADC frontend."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "The design implements AM demodulation."
+    },
+    {
+     "tag": "nco",
+     "reason": "The design uses a numerically controlled oscillator for carrier frequency generation."
+    },
+    {
+     "tag": "audio",
+     "reason": "The design outputs demodulated audio via PWM."
+    },
+    {
+     "tag": "pwm",
+     "reason": "The design uses PWM for audio output."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans 3x2 Tiny Tapeout tiles."
+    }
+   ],
+   "notes": "Removed risc-v, cpu, soc, uart, qspi, and memory tags as unsupported; added radio, rf, dsp, spi, adc, demodulator, nco, audio, pwm, and multi-tile tags based on the source documentation.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "uart",
+    "spi",
+    "qspi",
+    "memory",
+    "audio"
+   ],
+   "tags": [
+    "spi",
+    "audio",
+    "radio",
+    "rf",
+    "dsp",
+    "adc",
+    "demodulator",
+    "nco",
+    "pwm",
+    "multi-tile"
+   ],
+   "summary_before": "KianV RISC-V RV32E Baremetal SoC is a bare-metal RV32E RISC-V system-on-chip with a UART, a QSPI memory controller for PSRAM and flash, a generic SPI interface, a sigma-delta audio emulator and PWM output. It is designed for embedded applications and can be programmed via the UART or SPI. The SoC includes a memory controller for external PSRAM and flash. It is notable for its small footprint and bare-metal operation.",
+   "summary": "This project is a 1-bit AM software-defined radio pipeline written in Verilog. It uses an external comparator as a 1-bit ADC frontend, oversampled and decimated 4096 times to gain extra precision. The core includes an SPI interface for setting demodulation frequency and gain, and outputs demodulated audio via PWM. The design spans 3x2 Tiny Tapeout tiles and is based on a Hackaday project by Alberto Garlassi.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "89d3b6d2796c: 3 sentences after review",
+  "14385abdfe69: 3 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6393,
+  "completion_tokens": 2085,
+  "total_tokens": 8478,
+  "cost": 0.011968976,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2048,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.011968976,
+   "upstream_inference_prompt_cost": 0.004950866,
+   "upstream_inference_completions_cost": 0.00701811
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.011968976,
+ "elapsed_s": 27.2
+}

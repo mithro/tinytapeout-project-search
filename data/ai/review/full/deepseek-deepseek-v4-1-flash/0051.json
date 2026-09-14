@@ -1,0 +1,321 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "541374b0f8ab",
+  "81e2a5cebb85",
+  "779e54e83d47",
+  "ae303993abab",
+  "194756dc48b7",
+  "e0d5ee297973"
+ ],
+ "results": [
+  {
+   "key": "541374b0f8ab",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence the design is built from discrete transistors; it is a custom high-density shift register cell, not a discrete-transistor design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'working' with author and independent tester reports."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Title and pin names (sr_in/sr_out) confirm a shift register."
+    },
+    {
+     "tag": "analog",
+     "reason": "Language is Analog and the design uses dual-phase clocking."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "How-it-works, how-to-test and external-hardware sections are all FIXME."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level tag and added insufficient-doc; silicon-tested is supported by the working reports.",
+   "tags_before": [
+    "shift-register",
+    "analog",
+    "transistor-level",
+    "silicon-tested"
+   ],
+   "tags": [
+    "shift-register",
+    "analog",
+    "silicon-tested",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a custom high-density shift register implemented as an analog/transistor-level block, with 8 serial inputs, 8 serial outputs, and two clock phases. The documentation is essentially a placeholder, with the how-it-works, how-to-test, and external-hardware sections all left as FIXME. Silicon test reports from the author and an independent tester indicate that shift-register behavior was observed for both the internal-clock and dual-phase-clock variants, with data emerging roughly 36 cycles later, though the micropython-driven timings are described as unreliable. The notable point is that the custom cell works in silicon despite the minimal documentation.",
+   "summary": "This is a custom high-density shift register implemented as an analog block, with 8 serial inputs, 8 serial outputs, and two clock phases. The documentation is essentially a placeholder, with the how-it-works, how-to-test, and external-hardware sections all left as FIXME. Silicon test reports from the author and an independent tester indicate that shift-register behavior was observed for both the internal-clock and dual-phase-clock variants, with data emerging roughly 36 cycles later, though the micropython-driven timings are described as unreliable. The notable point is that the custom cell works in silicon despite the minimal documentation.",
+   "summary_changed": true
+  },
+  {
+   "key": "81e2a5cebb85",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "No evidence the project is a boilerplate or starter template; it is a full adder design with placeholder docs."
+    },
+    {
+     "tag": "display",
+     "reason": "Display output is not confirmed; only 7-segment pins are present and the summary itself notes the display use is unconfirmed."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "How-it-works and how-to-test are placeholder text with no actual details."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "All eight output pins are named for seven-segment segments plus dot."
+    },
+    {
+     "tag": "adder",
+     "reason": "One-line description states it is a full adder design."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported template and display tags; added insufficient-doc and 7-segment.",
+   "tags_before": [
+    "adder",
+    "wokwi",
+    "7-segment",
+    "display",
+    "template",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is described as a quick full adder design for the tto5 Supercon event. The documentation contains only placeholder text for how it works and how to test it, with no actual details. The pins are the standard 7-segment display outputs, suggesting the sum may be displayed, but this is not confirmed. The documentation is essentially empty, so the design cannot be evaluated beyond its title.",
+   "summary": "This project is described as a quick full adder design for the tto5 Supercon event. The documentation contains only placeholder text for how it works and how to test it, with no actual details. The pins are the standard 7-segment display outputs, suggesting the sum may be displayed, but this is not confirmed. The documentation is essentially empty, so the design cannot be evaluated beyond its title.",
+   "summary_changed": false
+  },
+  {
+   "key": "779e54e83d47",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "Pins are generic pass-through outputs described as lighting a number eight, not a seven-segment display interface."
+    },
+    {
+     "tag": "display",
+     "reason": "No display interface is documented; outputs drive LEDs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Documentation explicitly describes AND logic gates."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs drive LEDs and external hardware is listed as LED."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "Basic exercise-style documentation with switch inputs and LED outputs suggests a learning project."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment and display tags; kept logic-gate, led, wokwi and education.",
+   "tags_before": [
+    "logic-gate",
+    "led",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design implements AND logic gates whose outputs drive LEDs, with additional pass-through connections intended to light segments of a number eight display. It is tested by switching on pins 1 and 3 to activate the AND gate. The project requires external LEDs as hardware. The documentation is basic and appears to be from an educational exercise.",
+   "summary": "This design implements AND logic gates whose outputs drive LEDs, with additional pass-through connections intended to light segments of a number eight display. It is tested by switching on pins 1 and 3 to activate the AND gate. The project requires external LEDs as hardware. The documentation is basic and appears to be from an educational exercise.",
+   "summary_changed": false
+  },
+  {
+   "key": "ae303993abab",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The display is described as an LED display forming a number 7 shape, not a seven-segment interface."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the project is intended for teaching or learning; it is a simple fixed-output design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "Outputs are connected to LEDs composing the number 7 shape."
+    },
+    {
+     "tag": "display",
+     "reason": "The design drives an LED display showing the number 7."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment and education tags; corrected summary to say LED display rather than seven-segment.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "led",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "display",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This design always displays the number 7 on a seven-segment LED display regardless of which input switch is turned on, as long as at least one switch is active. It is tested by pressing start and turning on any switch. The project requires an external LED display. The documentation is minimal and the design appears to be a simple fixed-output exercise.",
+   "summary": "This design always displays the number 7 on an LED display regardless of which input switch is turned on, as long as at least one switch is active. It is tested by pressing start and turning on any switch. The project requires an external LED display. The documentation is minimal and the design appears to be a simple fixed-output exercise.",
+   "summary_changed": true
+  },
+  {
+   "key": "194756dc48b7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "No evidence the project is a boilerplate or starter template; it is a specific letter-display test."
+    },
+    {
+     "tag": "education",
+     "reason": "No explicit statement that the project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Documentation says the letters show up on the 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "The design outputs letters to a display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "One-line description says 'Only a test so far' and the pin list is incomplete."
+    }
+   ],
+   "notes": "Removed unsupported template and education tags; added incomplete and 7-segment.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi design displays the letters E, L, I, A and S one after another on a 7-segment display, with one second between each letter. It is started with a 10 kHz clock and needs no external hardware beyond the display. The project is explicitly described as only a test so far, and the pin list is incomplete, so little can be said about its inputs. It appears to be an early learning exercise rather than a finished design.",
+   "summary": "This Wokwi design displays the letters E, L, I, A and S one after another on a 7-segment display, with one second between each letter. It is started with a 10 kHz clock and needs no external hardware beyond the display. The project is explicitly described as only a test so far, and the pin list is incomplete, so little can be said about its inputs. It appears to be an early learning exercise rather than a finished design.",
+   "summary_changed": false
+  },
+  {
+   "key": "e0d5ee297973",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design uses inverters to set a fixed display pattern, not a general logic gate implementation."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The display is described as a BCD display, not a seven-segment interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The design drives a BCD display to show the letter H."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "Simple fixed-pattern test with switch inputs and display output suggests a learning exercise."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and 7-segment tags; corrected summary to say BCD display rather than seven-segment.",
+   "tags_before": [
+    "logic-gate",
+    "7-segment",
+    "wokwi",
+    "education",
+    "display"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "display"
+   ],
+   "summary_before": "This design, called \"Tiny tapeouts test gates\", displays the letter H on a BCD display when all inputs are set to 1. It uses inverters on two pins to change their values from 1 to 0, forming the pattern needed for the letter H on a seven-segment display. The output pins are configured to drive the display segments, with specific pins set high or low; for example, OUT0 and OUT3 are 0 while others are 1. The project is a simple test of logic gates and display driving, requiring a seven-segment display as external hardware.",
+   "summary": "This design, called \"Tiny tapeouts test gates\", displays the letter H on a BCD display when all inputs are set to 1. It uses inverters on two pins to change their values from 1 to 0, forming the pattern needed for the letter H on the display. The output pins are configured to drive the display segments, with specific pins set high or low; for example, OUT0 and OUT3 are 0 while others are 1. The project is a simple test of logic gates and display driving, requiring a display as external hardware.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5984,
+  "completion_tokens": 1835,
+  "total_tokens": 7819,
+  "cost": 0.00339762,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00339762,
+   "upstream_inference_prompt_cost": 0.00152592,
+   "upstream_inference_completions_cost": 0.0018717
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00339762,
+ "elapsed_s": 58.1
+}

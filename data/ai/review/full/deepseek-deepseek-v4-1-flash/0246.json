@@ -1,0 +1,249 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e884abe17adb",
+  "bed5fb479397",
+  "46493de3e6f7",
+  "7c691fb5cf1c",
+  "09c9f7e60301",
+  "d4ff62c367b5"
+ ],
+ "results": [
+  {
+   "key": "e884abe17adb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "Design is an AY-3-8913 PSG reimplementation, not a standalone DAC"
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "Analog sawtooth waveform generator is a minor external/OpenLane detail, not a synthesizer design"
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'dac' and 'synthesizer' tags not supported by the AY-3-8913 PSG project; summary rephrased with source-supported wording.",
+   "tags_before": [
+    "sound-generator",
+    "chiptune",
+    "synthesizer",
+    "audio",
+    "dac",
+    "pwm",
+    "analog",
+    "r2r-dac"
+   ],
+   "tags": [
+    "sound-generator",
+    "chiptune",
+    "audio",
+    "pwm",
+    "analog",
+    "r2r-dac"
+   ],
+   "summary_before": "This project is a reimplementation of the AY-3-8913 programmable sound generator, a 3-voice PSG chip with three analog output channels and corresponding PWM outputs. The design uses a simple 8-bit R2R DAC and is driven externally or by an OpenLane-generated sawtooth waveform generator. The analog outputs are available on the ua pins, and the PWM outputs on the uo pins. Testing requires a multimeter to measure the output voltage on analog pin 0.",
+   "summary": "This project is a reimplementation of the AY-3-8913 programmable sound generator, a 3-voice PSG chip from General Instruments and a smaller variant of the AY-3-8910 or its analog YM2149. It uses a simple 8-bit R2R DAC driven externally or by an OpenLane-generated sawtooth waveform generator. The analog outputs are on the ua pins and the PWM outputs are on the uo pins. Testing requires a multimeter to measure the output voltage on analog pin 0.",
+   "summary_changed": true
+  },
+  {
+   "key": "bed5fb479397",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "Design is a compute-in-memory peripheral, not a neural network implementation"
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "It performs a 16-bit dot-product accumulator, not a dedicated multiply-accumulate unit"
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'neural-network' and 'mac-unit' tags not supported by the CIM peripheral description.",
+   "tags_before": [
+    "accelerator",
+    "bist",
+    "factory-test",
+    "spi",
+    "mac-unit",
+    "memory",
+    "neural-network",
+    "verilog"
+   ],
+   "tags": [
+    "accelerator",
+    "bist",
+    "factory-test",
+    "spi",
+    "memory",
+    "verilog"
+   ],
+   "summary_before": "This design is a compute-in-memory (CIM) peripheral featuring an 8x8 1-bit cell array with built-in self-test (BIST) and a 64-bit sticky fault map. It performs a 16-bit dot-product accumulation over user-programmable row activations, configurable via SPI. The BIST supports march, checkerboard, and diagonal patterns, and an external trigger can start the test. It requires an SPI master for programming and reading results, and provides status outputs such as busy, done, and fault flags.",
+   "summary": "This design is a compute-in-memory (CIM) peripheral featuring an 8x8 1-bit cell array with built-in self-test (BIST) and a 64-bit sticky fault map. It performs a 16-bit dot-product accumulation over user-programmable row activations, configurable via SPI. The BIST supports march, checkerboard, and diagonal patterns, and an external trigger can start the test. It requires an SPI master for programming and reading results, and provides status outputs such as busy, done, and fault flags.",
+   "summary_changed": false
+  },
+  {
+   "key": "46493de3e6f7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "vga",
+    "video",
+    "qspi",
+    "memory",
+    "framebuffer",
+    "gamepad",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "qspi",
+    "memory",
+    "framebuffer",
+    "gamepad",
+    "verilog"
+   ],
+   "summary_before": "JA Achtung Compact is a one-tile implementation of the two-player Achtung, die Kurve! game, where each player steers a head that leaves a permanent trail and loses on hitting a wall or any trail. The chip has no internal framebuffer: it uses an external APS6404L QSPI PSRAM as a 1-bit-per-pixel occupancy map, fetching bursts for 640x480 VGA during active video and using the vertical blanking interval for collision reads and trail writes. Input comes from the Tiny Tapeout Gamepad Pmod with SNES-style controllers, with shoulder buttons turning and start restarting, and player 2's trail uses a woven sub-pattern so the two monochrome trails differ. It needs the VGA, QSPI PSRAM and Gamepad Pmods plus a monitor, and the reset must be held for at least 150 us after PSRAM power-up.",
+   "summary": "JA Achtung Compact is a one-tile implementation of the two-player Achtung, die Kurve! game, where each player steers a head that leaves a permanent trail and loses on hitting a wall or any trail. The chip has no internal framebuffer: it uses an external APS6404L QSPI PSRAM as a 1-bit-per-pixel occupancy map, fetching bursts for 640x480 VGA during active video and using the vertical blanking interval for collision reads and trail writes. Input comes from the Tiny Tapeout Gamepad Pmod with SNES-style controllers, with shoulder buttons turning and start restarting, and player 2's trail uses a woven sub-pattern so the two monochrome trails differ. It needs the VGA, QSPI PSRAM and Gamepad Pmods plus a monitor, and the reset must be held for at least 150 us after PSRAM power-up.",
+   "summary_changed": false
+  },
+  {
+   "key": "7c691fb5cf1c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "External QSPI PSRAM is used as a framebuffer, not a memory block design"
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'memory' tag because the design uses external PSRAM rather than implementing a memory block.",
+   "tags_before": [
+    "game",
+    "vga",
+    "video",
+    "qspi",
+    "memory",
+    "framebuffer",
+    "gamepad",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "qspi",
+    "framebuffer",
+    "gamepad",
+    "verilog"
+   ],
+   "summary_before": "JA Achtung Full is the larger 1x2 version of the two-player Achtung, die Kurve! game, with continuously rotating heads, trails that include periodic passable gaps, boost moves and a color-selection lobby. It stores a 640x480 framebuffer in external QSPI PSRAM packed four 2-bit pixels per byte, streaming 8-byte bursts for VGA and reusing the PSRAM port during vertical blanking for collision checks and trail updates. Movement uses Q10.6 fixed-point coordinates with a quarter-wave lookup for 64 directions, and two SNES-style controllers share the Gamepad Pmod serial interface. It requires the VGA, QSPI PSRAM and Gamepad Pmods plus a monitor, and its larger test suite compares more than forty game traces against an independent Python framebuffer model.",
+   "summary": "JA Achtung Full is the larger 1x2 version of the two-player Achtung, die Kurve! game, with continuously rotating heads, trails that include periodic passable gaps, boost moves and a color-selection lobby. It stores a 640x480 framebuffer in external QSPI PSRAM packed four 2-bit pixels per byte, streaming 8-byte bursts for VGA and reusing the PSRAM port during vertical blanking for collision checks and trail updates. Movement uses Q10.6 fixed-point coordinates with a quarter-wave lookup for 64 directions, and two SNES-style controllers share the Gamepad Pmod serial interface. It requires the VGA, QSPI PSRAM and Gamepad Pmods plus a monitor, and its larger test suite compares more than forty game traces against an independent Python framebuffer model.",
+   "summary_changed": false
+  },
+  {
+   "key": "09c9f7e60301",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "The project includes PRBS generators, not an LFSR design"
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'lfsr' tag because the source specifies PRBS generators, not LFSR.",
+   "tags_before": [
+    "synthesizer",
+    "music",
+    "audio",
+    "i2s",
+    "spi",
+    "7-segment",
+    "lfsr",
+    "verilog"
+   ],
+   "tags": [
+    "synthesizer",
+    "music",
+    "audio",
+    "i2s",
+    "spi",
+    "7-segment",
+    "verilog"
+   ],
+   "summary_before": "This design implements Karplus-Strong plucked-string synthesis based on published papers, with a register map accessed via SPI and audio samples output through an I2S transmitter. It includes pseudo-random binary sequence generators for noise and a 7-segment display output, and operates with a 256 kHz clock to produce a 16 kHz sample rate. The design is configured through SPI mode 0, CPHA=1, and the synthesized samples are sent continuously over I2S. It requires an external I2S DAC to hear the sound.",
+   "summary": "This design implements Karplus-Strong plucked-string synthesis based on published papers, with a register map accessed via SPI and audio samples output through an I2S transmitter. It includes pseudo-random binary sequence generators for noise and a 7-segment display output, and operates with a 256 kHz clock to produce a 16 kHz sample rate. The design is configured through SPI mode 0, CPHA=1, and the synthesized samples are sent continuously over I2S. It requires an external I2S DAC to hear the sound.",
+   "summary_changed": false
+  },
+  {
+   "key": "d4ff62c367b5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "External QSPI flash is storage for images, not a memory block design"
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'memory' tag because the design uses external QSPI flash rather than implementing a memory block.",
+   "tags_before": [
+    "vga",
+    "qspi",
+    "image-processing",
+    "display",
+    "video",
+    "graphics",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "qspi",
+    "image-processing",
+    "display",
+    "video",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "This design reads RGB332 pixel data from a QSPI flash memory and displays it on a VGA screen, with configurable timing and latency. It is used by flashing an image to QSPI flash, setting configuration registers via a shift register interface, and enabling the display. External hardware includes a QSPI Pmod and a Tiny VGA Pmod. The design supports up to 720p and 1024x768 resolutions and allows switching between multiple images stored in flash.",
+   "summary": "This design reads RGB332 pixel data from a QSPI flash memory and displays it on a VGA screen, with configurable timing and latency. It is used by flashing an image to QSPI flash, setting configuration registers via a shift register interface, and enabling the display. External hardware includes a QSPI Pmod and a Tiny VGA Pmod. The design supports up to 720p and 1024x768 resolutions and allows switching between multiple images stored in flash.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "46493de3e6f7: 5 sentences after review",
+  "7c691fb5cf1c: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 8884,
+  "completion_tokens": 1513,
+  "total_tokens": 10397,
+  "cost": 0.0044808,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044808,
+   "upstream_inference_prompt_cost": 0.0026652,
+   "upstream_inference_completions_cost": 0.0018156
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044808,
+ "elapsed_s": 7.4
+}

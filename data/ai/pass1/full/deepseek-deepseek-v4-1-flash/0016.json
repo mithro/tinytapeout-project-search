@@ -1,0 +1,188 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "53d03ef03e4a",
+  "7a0c015fa646",
+  "49dc999c2c66",
+  "636bc4b97967",
+  "c3d3f357c0b9",
+  "cd5c9421d192",
+  "767734ced361",
+  "f940a688afdc",
+  "7bcb2b61effd",
+  "cea2e502d65e"
+ ],
+ "results": [
+  {
+   "key": "53d03ef03e4a",
+   "tags": [
+    "brainfuck",
+    "cpu",
+    "control-unit",
+    "state-machine",
+    "esoteric",
+    "education"
+   ],
+   "summary": "Potato-1 is the control logic for a Brainfuck CPU, decoding the eight Brainfuck instructions plus HALT and NOP into register increment/decrement and memory read/write control signals. It reads instruction, zero flag and IO wait inputs on each rising clock edge and updates its output pins on the falling edge, pausing on Put/Get until IO wait is released. Using it requires external hardware: three bidirectional counters for program counter, data pointer and value, a ROM for instructions, a RAM for data, and TTL gates for write control. The design is deliberately minimal and slow, and the documentation notes it is only the control portion of a CPU rather than a complete processor.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7a0c015fa646",
+   "tags": [
+    "timer",
+    "7-segment",
+    "fsm",
+    "counter",
+    "clock",
+    "stopwatch"
+   ],
+   "summary": "tiny egg timer is a configurable countdown timer implemented as a three-state finite state machine (Idle, Waiting, Alarm) with counters for clock cycles, seconds and minutes. The user sets a wait time in minutes on five input pins and asserts start; a 7-segment display shows the countdown with the decimal point toggling each second, and an 'A' is displayed when the time expires. The alarm is stopped by deasserting the start switch, and no external hardware is required. The documentation is brief but sufficient to describe the intended operation and test procedure.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "49dc999c2c66",
+   "tags": [
+    "sound",
+    "synthesizer",
+    "lfsr",
+    "audio",
+    "dac",
+    "music",
+    "register-file",
+    "pwm"
+   ],
+   "summary": "bitslam is a programmable sound chip with two LFSR-based voices and a mixer, controlled through a register write interface using an address/data selector pin. Each voice has a clock divider for pitch and a 4-bit tap mask selecting LFSR feedback taps, while the mixer register sets per-voice volume from silent to full. It is intended to be driven by an external host such as a microcontroller, and a 4-bit DAC connected to the four digital outputs is required to produce analog audio. The design is notable for its compact LFSR tone generation and the documentation credits a fix for an interconnect bug.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "636bc4b97967",
+   "tags": [
+    "7-segment",
+    "display",
+    "shift-register",
+    "education",
+    "led",
+    "counter"
+   ],
+   "summary": "This design spells out the name 'zoe' and the age '4' on a seven-segment display, driven by four input pins labeled Z, O, E and F. The documentation is extremely thin, stating only that it 'spells leters' and that testing involves shifting a one-hot value, so the exact encoding and sequencing are not described. No external hardware is mentioned beyond the seven-segment display itself. Because the description is so sparse, the tags and summary are largely inferred from the title and pin names.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "c3d3f357c0b9",
+   "tags": [
+    "7-segment",
+    "display",
+    "register-file",
+    "buffer",
+    "clock-divider",
+    "multiplexer",
+    "state-machine"
+   ],
+   "summary": "This SystemVerilog design stores up to twelve seven-segment digit patterns in registers and can read them back sequentially at a variable rate controlled by a clock divider. In write mode the segment inputs are multiplexed to set the first four segments and then the remaining three, with the select pin advancing to the next digit; in read mode the stored digits cycle on the outputs with a period from about 82 ms to 2.6 s. The user must track how many digits have been written, and the documentation warns that peeking at unoccupied entries returns stale data. No external hardware is required.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cd5c9421d192",
+   "tags": [
+    "prng",
+    "random-number-generator",
+    "lfsr",
+    "state-machine",
+    "register-file",
+    "test"
+   ],
+   "summary": "PSRANDOM is a pseudo-random number generator built around a general register and a state machine, with load-seed, load-data and rand control inputs and an 8-bit output bus. After reset, asserting load changes the output bus once, while asserting rand causes the output to change continuously. The documentation is very brief and does not describe the generator algorithm or the seed width in detail, and the author's own tags are 'test' and 'timer'. No external hardware is mentioned.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "767734ced361",
+   "tags": [
+    "combo-lock",
+    "security",
+    "state-machine",
+    "puzzle",
+    "input",
+    "unlock"
+   ],
+   "summary": "Combo lock is a four-digit combination lock that accepts digits 0-9 in binary on four input pins, with each digit followed by a 0000 separator. The first four digits entered become the new combination, and re-entering the same sequence asserts the unlock output; the combination can be changed by holding unlock and pressing reset, or cleared with master reset. The design uses a state machine to track the entered sequence and compare it against the stored combination. No external hardware is required beyond the input switches and an unlock indicator.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f940a688afdc",
+   "tags": [
+    "state-machine",
+    "fsm",
+    "serial",
+    "education",
+    "fpga",
+    "sequence-detector"
+   ],
+   "summary": "FSM_LAT is a finite state machine whose state sequence can be reprogrammed through a serial input, with each state advancing when its associated input is high. The documentation is in Spanish and describes loading the state sequence using a clock synchronized with the serial programming data, and an external FPGA is suggested to generate that clock and serial stream. The pin names are generic and give no additional detail about the state encoding or transition logic. Because the documentation is minimal and partly unclear, the tags and summary are inferred from the title and description.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7bcb2b61effd",
+   "tags": [
+    "cpu",
+    "alu",
+    "risc",
+    "register-file",
+    "8-bit",
+    "microprocessor",
+    "state-machine"
+   ],
+   "summary": "HiddenCPU is a basic 8-bit CPU that executes each instruction in a single clock cycle, taking opcode and register address bits on its input pins and presenting an 8-bit result or program counter on its outputs. After reset the registers initialize to ascending values starting from 0, which provides a simple way to verify operation. The design has no absolute external hardware requirements, though the documentation notes that external memory and addressing hardware would be useful. The author's own tags describe it as an ALU, microprocessor and RISC design.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cea2e502d65e",
+   "tags": [
+    "fifo",
+    "memory",
+    "latch",
+    "register-file",
+    "queue",
+    "clock-divider"
+   ],
+   "summary": "This design implements a 52-entry, 6-bit FIFO where the first 48 entries are a chain of latches for high density and the last four are a ring of flip-flops allowing random access for peeking. Because data must propagate down the latch chain, the FIFO can refuse writes when nearly full even if not completely full, and a ready output indicates when the chain can accept more data; reads have minimal delay except for a two-cycle input buffering latency. The write enable pin doubles as a mode selector for the shared input pins, which control reset, pop and peek address when not writing. The documentation is detailed and notes that peeking at unoccupied entries returns stale data.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5546,
+  "completion_tokens": 1756,
+  "total_tokens": 7302,
+  "cost": 0.002202716,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002202716,
+   "upstream_inference_prompt_cost": 0.001043756,
+   "upstream_inference_completions_cost": 0.00115896
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002202716,
+ "elapsed_s": 27.2
+}

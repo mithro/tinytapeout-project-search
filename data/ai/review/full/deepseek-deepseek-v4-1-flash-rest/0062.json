@@ -1,0 +1,343 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f0080c78701f",
+  "0165cbf860f5",
+  "c42386900139",
+  "97288b300a01",
+  "3dccbc718bf9",
+  "0e41a0ec9e74"
+ ],
+ "results": [
+  {
+   "key": "f0080c78701f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement that the project is intended for teaching or learning; 'first project' is not evidence of educational intent."
+    },
+    {
+     "tag": "template",
+     "reason": "The documentation is the unmodified template, but the design itself is not a boilerplate/starter template project."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The design has a described function (letter 'A' on seven-segment display), so it is not an empty placeholder submission."
+    },
+    {
+     "tag": "display",
+     "reason": "The seven-segment tag already covers the display; generic display tag is redundant and not separately evidenced."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The description explicitly uses switches as inputs."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The one-line description describes combinational logic mapping switch states to a seven-segment output."
+    }
+   ],
+   "notes": "Removed unsupported education/template/placeholder tags and corrected the summary to match the stated switch-to-display behavior.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "template",
+    "insufficient-doc",
+    "placeholder",
+    "7-segment",
+    "display",
+    "dip-switch"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "7-segment",
+    "dip-switch",
+    "logic-gate"
+   ],
+   "summary_before": "This project is a small combinational logic circuit built in Wokwi, intended as a first project. It requires an external seven-segment display and switches, though the documentation does not list them explicitly. The documentation is the unmodified template, so the circuit's purpose and operation are not described. No pin names, external hardware or test instructions are provided.",
+   "summary": "This project is a small combinational logic circuit built in Wokwi that displays the letter 'A' on a seven-segment display when the 2nd, 3rd, 5th and 7th switches are on. It requires an external seven-segment display and switches, though the documentation does not list them explicitly. The documentation is the unmodified template, so the circuit's operation is not described in detail. No pin names, external hardware or test instructions are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "0165cbf860f5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a 31.5 MHz clock; it does not generate a clock."
+    },
+    {
+     "tag": "timer",
+     "reason": "No programmable timer block is described; the design displays time."
+    },
+    {
+     "tag": "rtc",
+     "reason": "No real-time clock circuit is described; time is adjusted via inputs and shown on VGA."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report status is 'working'."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator/timer/rtc tags, added silicon-tested, and corrected the summary to match the VGA clock behavior and silicon status.",
+   "tags_before": [
+    "vga",
+    "display",
+    "clock-generator",
+    "timer",
+    "rtc",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "pmod",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a VGA display controller with a clock generator, timer, and RTC functionality. It uses a PMOD interface for external connections and is designed for educational purposes. The design is implemented in Verilog and targets the Tiny Tapeout platform. No silicon test report is provided, so its hardware behavior is not confirmed.",
+   "summary": "This project implements a VGA display controller that shows the time on a VGA screen. It uses a PMOD interface for external connections and is implemented in Verilog. The design targets the Tiny Tapeout platform and has a working silicon test report. The time is adjusted with the inputs and the VGA PMOD type is selected with input[3].",
+   "summary_changed": true
+  },
+  {
+   "key": "c42386900139",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "No temperature sensing is described anywhere in the source."
+    },
+    {
+     "tag": "pwm",
+     "reason": "No PWM signal or PWM interface is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counting circuit is described; the design uses a FIFO and UART."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "No measurement or instrumentation application is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "The design implements a UART transmitter and receiver at 115200 baud."
+    },
+    {
+     "tag": "fifo",
+     "reason": "An 8-byte synchronous FIFO buffers data between AXI-Stream and UART."
+    },
+    {
+     "tag": "axi",
+     "reason": "The design bridges a parallel AXI-Stream interface."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The project is written in Verilog."
+    }
+   ],
+   "notes": "Replaced tags and summary that described an unrelated PWM/temperature design with the actual AXI-Stream/UART/FIFO design.",
+   "tags_before": [
+    "temperature-sensor",
+    "pwm",
+    "uart",
+    "counter",
+    "instrumentation"
+   ],
+   "tags": [
+    "uart",
+    "fifo",
+    "axi",
+    "verilog"
+   ],
+   "summary_before": "The PWM signal is generated by the temperature sensor, and this module is designed to count the number of clock cycles during which the PWM signal remains LOW. The design operates at 50 MHz and is notable for its simple PWM-to-UART conversion for temperature sensing. It measures the duty cycle of the PWM signal to determine temperature. The result is sent over a UART interface for external monitoring.",
+   "summary": "This project bridges a parallel AXI-Stream interface with a serial UART communication protocol. Data is received from an AXI master, stored in an 8-byte synchronous FIFO, then serialized and transmitted over UART at 115200 baud. A loopback UART receiver is integrated to validate data integrity, and the design operates at 50 MHz. No external hardware is necessary to verify core functionality because the project is fully testable on-chip using the internal UART loopback.",
+   "summary_changed": true
+  },
+  {
+   "key": "97288b300a01",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "No linear feedback shift register is described."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator is described."
+    },
+    {
+     "tag": "arbiter",
+     "reason": "No bus or resource arbitration logic is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The design includes a full adder."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "The design includes a full subtractor."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Two 4-bit registers store operands and are selected for writing."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "The output is chosen via a mux between adder and subtractor results."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is built from logic gates in Wokwi."
+    }
+   ],
+   "notes": "Replaced unrelated LFSR/PRNG/arbiter tags and summary with the documented adder/subtractor design.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "arbiter",
+    "logic-gate",
+    "wokwi"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "adder",
+    "subtractor",
+    "register-file",
+    "multiplexer"
+   ],
+   "summary_before": "This design combines a mutex arbiter, an inefficient C-gate, and an LFSR that drives a 4-bit pseudo-random output. The documentation does not specify any external hardware.",
+   "summary": "This design combines two 4-bit registers, a full adder, and a full subtractor, with the output selected by a multiplexer. Inputs 0-3 provide the data in binary, input 4 selects which register to write, and input 7 chooses between addition and subtraction. The design is built in Wokwi and requires no external hardware, though LEDs and switches are useful for observing and setting the output. The documentation describes the operation and test procedure.",
+   "summary_changed": true
+  },
+  {
+   "key": "3dccbc718bf9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "flip-flop",
+     "reason": "No flip-flop or latch is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design uses logic gates to control seven-segment outputs."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The design drives a seven-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "The design produces a display output."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is built in Wokwi."
+    }
+   ],
+   "notes": "Removed unsupported flip-flop tag and corrected the summary to match the documented logic-gate seven-segment design.",
+   "tags_before": [
+    "7-segment",
+    "flip-flop",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This project uses inverters, including a flip-flop inverter, to light up segments of an 8-segment clock display. The design is intended for educational purposes and is simulated in Wokwi. The documentation is incomplete, so the exact functionality cannot be determined. The design is notable for its use of inverters and flip-flops.",
+   "summary": "This project uses logic gates to determine which sections of a seven-segment display are lit based on input values. It is built in Wokwi and has eight input pins and three output pins. The documentation is brief, so the exact mapping of input combinations to displayed segments is not fully specified. The design is intended as a small educational logic exercise.",
+   "summary_changed": true
+  },
+  {
+   "key": "0e41a0ec9e74",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The source describes inverters and a flip-flop inverter, not general logic gates."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The source says '8 segment clock', not a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "The source mentions an LED display, but the specific segment display is better captured by the corrected description."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "The project is built in Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "The project appears to be a student repository exercise, though the source is sparse."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the documented inverter-based 8-segment display design.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "education",
+    "wokwi"
+   ],
+   "summary_before": "This design uses logic gates to control segments of a 7-segment display based on input values. The documentation is incomplete, so the exact functionality cannot be determined. The design is intended for educational purposes and is simulated in Wokwi. The design is notable for its use of logic gates to drive a display.",
+   "summary": "This design uses a variety of three different inverters, including a flip-flop inverter, to light up an 8-segment clock display. Flipping the switches lights the corresponding segment, while the flip-flop inverter stores energy with switches 3 and 4, which alternate. The project is built in Wokwi and requires an LED display as external hardware. The documentation is incomplete, so the exact functionality cannot be fully determined.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6055,
+  "completion_tokens": 1978,
+  "total_tokens": 8033,
+  "cost": 0.0041901,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041901,
+   "upstream_inference_prompt_cost": 0.0018165,
+   "upstream_inference_completions_cost": 0.0023736
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041901,
+ "elapsed_s": 13.2
+}

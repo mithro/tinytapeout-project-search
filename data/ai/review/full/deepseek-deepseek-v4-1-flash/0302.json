@@ -1,0 +1,218 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "0e71bd122c58",
+  "5e19bd9d477a",
+  "e96e819101f9",
+  "8cb33c4e71c6",
+  "faf173b77555",
+  "4d214e66db8e"
+ ],
+ "results": [
+  {
+   "key": "0e71bd122c58",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report from the author confirms working status."
+    }
+   ],
+   "notes": "Added silicon-tested tag based on author's working report.",
+   "tags_before": [
+    "logic-gate",
+    "shift-register",
+    "delay-line",
+    "fpga",
+    "verilog"
+   ],
+   "tags": [
+    "logic-gate",
+    "shift-register",
+    "delay-line",
+    "fpga",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a single NAND gate that is time-multiplexed using a giant shift register to emulate complex logic. The design achieves a time/space tradeoff by feeding inputs from and writing results to the shift register. It requires an external FPGA or similar to drive the inputs at high precision to feed instructions. Silicon testing showed it works as expected even at high frequencies.",
+   "summary": "This project implements a single NAND gate that is time-multiplexed using a giant shift register to emulate complex logic. The design achieves a time/space tradeoff by feeding inputs from and writing results to the shift register. It requires an external FPGA or similar to drive the inputs at high precision to feed instructions. Silicon testing showed it works as expected even at high frequencies.",
+   "summary_changed": false
+  },
+  {
+   "key": "5e19bd9d477a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a Mandelbrot accelerator, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "image-processing",
+     "reason": "The design is used to generate images of the Mandelbrot set."
+    }
+   ],
+   "notes": "Removed alu tag; added image-processing tag based on use case.",
+   "tags_before": [
+    "graphics",
+    "floating-point",
+    "accelerator",
+    "alu",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "graphics",
+    "floating-point",
+    "accelerator",
+    "verilog",
+    "silicon-tested",
+    "image-processing"
+   ],
+   "summary_before": "This accelerator calculates the Mandelbrot set iteration z = z^2 + c using 32-bit IEEE 754 floating-point arithmetic, performing one iteration per clock cycle. It accepts the complex number c via a shift register interface and outputs the iteration count and an unbounded flag when the result exceeds the bound. The design requires no external hardware and was tested by generating a 256x256 image of the Mandelbrot set, taking about 24 minutes when manually clocked. It is notable for implementing floating-point arithmetic in a compact hardware design.",
+   "summary": "This accelerator calculates the Mandelbrot set iteration z = z^2 + c using 32-bit IEEE 754 floating-point arithmetic, performing one iteration per clock cycle. It accepts the complex number c via a shift register interface and outputs the iteration count and an unbounded flag when the result exceeds the bound. The design requires no external hardware and was tested by generating a 256x256 image of the Mandelbrot set, taking about 24 minutes when manually clocked. It is notable for implementing floating-point arithmetic in a compact hardware design.",
+   "summary_changed": false
+  },
+  {
+   "key": "e96e819101f9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "button",
+     "reason": "No button interface is mentioned or present in the pins."
+    }
+   ],
+   "add": [],
+   "notes": "Removed button tag; no button interface in pins or text.",
+   "tags_before": [
+    "uart",
+    "text",
+    "led",
+    "gpio",
+    "button"
+   ],
+   "tags": [
+    "uart",
+    "text",
+    "led",
+    "gpio"
+   ],
+   "summary_before": "This design implements a UART menu system that waits for user input characters (1-7) and responds with either informative text or toggles output bits. It uses a basic UART driver for TX and RX, operating at 115200 bps with a 50 MHz clock, and requires an external UART transceiver connected to the recommended pins. Two output pins can drive LEDs through MOSFET drivers, and the design is controlled by sending single characters without line endings. The documentation is minimal but provides enough information to understand and test the functionality.",
+   "summary": "This design implements a UART menu system that waits for user input characters (1-7) and responds with either informative text or toggles output bits. It uses a basic UART driver for TX and RX, operating at 115200 bps with a 50 MHz clock, and requires an external UART transceiver connected to the recommended pins. Two output pins can drive LEDs through MOSFET drivers, and the design is controlled by sending single characters without line endings. The documentation is minimal but provides enough information to understand and test the functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "8cb33c4e71c6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design is a simple 8-bit register, not a multi-register file."
+    }
+   ],
+   "add": [
+    {
+     "tag": "register-file",
+     "reason": "The design is a simple 8-bit register, not a multi-register file."
+    }
+   ],
+   "notes": "Removed register-file tag; design is a single register, not a register file.",
+   "tags_before": [
+    "register-file",
+    "flip-flop",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "flip-flop",
+    "education",
+    "wokwi",
+    "register-file"
+   ],
+   "summary_before": "This design is a simple 8-bit register that stores the eight input bits on the eight outputs when a clock pulse occurs. It is built from D-type flip-flops and is intended as a basic educational example. Testing is done by setting the inputs and using a push button to save and hold the value. The documentation is minimal and the design is very simple, with no external hardware required beyond the clock and input switches.",
+   "summary": "This design is a simple 8-bit register that stores the eight input bits on the eight outputs when a clock pulse occurs. It is built from D-type flip-flops and is intended as a basic educational example. Testing is done by setting the inputs and using a push button to save and hold the value. The documentation is minimal and the design is very simple, with no external hardware required beyond the clock and input switches.",
+   "summary_changed": false
+  },
+  {
+   "key": "faf173b77555",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "education",
+    "led",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "counter",
+    "education",
+    "led",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This is an 8-bit binary counter designed by a 9-year-old following instructions and a picture, with outputs Q0 through Q7 counting upward. It is tested by connecting an LED Pmod and observing the binary count, and multiple silicon test reports confirm that it works correctly at 1 Hz. The design is notable as a beginner-friendly educational project and has been verified by several testers. No complex external hardware is required beyond the LEDs.",
+   "summary": "This is an 8-bit binary counter designed by a 9-year-old following instructions and a picture, with outputs Q0 through Q7 counting upward. It is tested by connecting an LED Pmod and observing the binary count, and multiple silicon test reports confirm that it works correctly at 1 Hz. The design is notable as a beginner-friendly educational project and has been verified by several testers. No complex external hardware is required beyond the LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "4d214e66db8e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "edge-detector",
+     "reason": "The design performs Sobel filtering for edge detection, but the tag 'edge-detector' typically refers to signal edge detection, not image edge detection."
+    }
+   ],
+   "add": [],
+   "notes": "Removed edge-detector tag; it is ambiguous for image processing.",
+   "tags_before": [
+    "image-processing",
+    "spi",
+    "lfsr",
+    "verilog",
+    "edge-detector"
+   ],
+   "tags": [
+    "image-processing",
+    "spi",
+    "lfsr",
+    "verilog"
+   ],
+   "summary_before": "This project implements grayscale conversion and Sobel filtering for edge detection in images. Pixels are sent via SPI, and the processing mode is selected through input pins, with options for bypass, grayscale, Sobel, or combined grayscale and Sobel. An internal LFSR can generate test pixels. The design requires an external SPI master, such as a Raspberry Pi, to send and receive data.",
+   "summary": "This project implements grayscale conversion and Sobel filtering for edge detection in images. Pixels are sent via SPI, and the processing mode is selected through input pins, with options for bypass, grayscale, Sobel, or combined grayscale and Sobel. An internal LFSR can generate test pixels. The design requires an external SPI master, such as a Raspberry Pi, to send and receive data.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7533,
+  "completion_tokens": 1206,
+  "total_tokens": 8739,
+  "cost": 0.0027663,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0027663,
+   "upstream_inference_prompt_cost": 0.0013191,
+   "upstream_inference_completions_cost": 0.0014472
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0027663,
+ "elapsed_s": 8.6
+}

@@ -1,0 +1,228 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8bea071af6bd",
+  "2ad8eb655d79",
+  "09d98dfed31a",
+  "68cb991fc2de",
+  "98159fefe7c0",
+  "894ef51ab17d"
+ ],
+ "results": [
+  {
+   "key": "8bea071af6bd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bist",
+     "reason": "The health tests (repetition count test) are entropy health checks, not built-in self-test circuitry for the chip."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "No — this is not supported; do not add. (No silicon reports given, so no silicon-tested tag.)"
+    }
+   ],
+   "notes": "Removed bist (health tests are entropy health checks, not chip self-test); no silicon-tested claim since no silicon reports exist.",
+   "tags_before": [
+    "trng",
+    "hash",
+    "crypto",
+    "uart",
+    "bist",
+    "verilog"
+   ],
+   "tags": [
+    "trng",
+    "hash",
+    "crypto",
+    "uart",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a true random number generator that uses a noise source sampled by a digital circuit and conditions the data with SHA-256 to produce cryptographic-quality random numbers. It supports raw entropy and hashed output modes, with built-in health tests, and transmits results via UART. It requires a UART terminal and optionally an oscilloscope for debugging. The design is notable for its cryptographic conditioning and health monitoring.",
+   "summary": "This is a true random number generator that samples a noise source with a digital circuit and conditions the data using SHA-256 to produce cryptographic-quality random numbers. It supports raw entropy output for analysis and hashed output for secure applications, with built-in health tests such as the repetition count test. A state machine controls data collection, processing, and transmission of results over UART. Testing requires a UART terminal, and optionally an oscilloscope for debugging the noise source.",
+   "summary_changed": true
+  },
+  {
+   "key": "2ad8eb655d79",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The documentation explicitly says it is only the controller example with a movable square, not a full game."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Already present; no change needed. (No additions.)"
+    }
+   ],
+   "notes": "Removed game tag because the source states it is not a complete game; kept incomplete, retro, demoscene, vga, gamepad.",
+   "tags_before": [
+    "game",
+    "vga",
+    "gamepad",
+    "retro",
+    "demoscene",
+    "incomplete"
+   ],
+   "tags": [
+    "vga",
+    "gamepad",
+    "retro",
+    "demoscene",
+    "incomplete"
+   ],
+   "summary_before": "This project is a scaled-down version of the Spacewar game with VGA output, based on the VGA playground controller example. It accepts a SNES gamepad for input and outputs VGA signals, and also supports an audio PMOD. The design was left incomplete due to the Efabless shutdown, so it only allows moving a square on the screen rather than being a full game. It is configured for the demoscene competition and requires external VGA and gamepad hardware.",
+   "summary": "This project is a scaled-down Spacewar-style design with VGA output, based on the VGA playground controller example. It accepts a SNES gamepad for input and outputs VGA signals, and the pinout also accommodates an audio PMOD. The design was left incomplete when work stopped at the Efabless shutdown, so it only allows moving a square on the screen rather than being a full game. It is configured for the demoscene competition and requires external VGA and gamepad hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "09d98dfed31a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "gamepad",
+    "silicon-art",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "gamepad",
+    "silicon-art",
+    "verilog"
+   ],
+   "summary_before": "This design displays a bouncing IHP logo on a 640x480 VGA screen with an animated color gradient. It is configured via input pins to tile the logo, use a solid color, or use a white background, and an optional Gamepad Pmod allows pausing and changing direction. It requires a Tiny VGA Pmod and optionally a Gamepad Pmod. The design is notable for its use of the TinyVGA standard and interactive controls.",
+   "summary": "This design displays a bouncing IHP logo on a 640x480 VGA screen with an animated color gradient. It is configured via input pins to tile the logo, use a solid color, or use a white background, and an optional Gamepad Pmod allows pausing and changing direction. It requires a Tiny VGA Pmod and optionally a Gamepad Pmod. The design is notable for its use of the TinyVGA standard and interactive controls.",
+   "summary_changed": false
+  },
+  {
+   "key": "68cb991fc2de",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "e-ink",
+    "display",
+    "spi",
+    "driver",
+    "sram",
+    "verilog"
+   ],
+   "tags": [
+    "e-ink",
+    "display",
+    "spi",
+    "driver",
+    "sram",
+    "verilog"
+   ],
+   "summary_before": "This is a Verilog driver for the Adafruit 2.13-inch e-ink display, which uses the SSD1680 chipset. It generates eight simple patterns in real time and sends them via SPI, with a special mode to copy SRAM contents to the display. It requires the specific e-ink display and a bundle of jumper wires to connect to the PMOD. The design is notable for its low memory overhead and ability to put the display into deep sleep while retaining the image.",
+   "summary": "This is a Verilog driver for the Adafruit 2.13-inch e-ink display, which uses the SSD1680 chipset. It generates eight simple patterns in real time and sends them via SPI, with a special mode to copy SRAM contents to the display. It requires the specific e-ink display and a bundle of jumper wires to connect to the PMOD. The design is notable for its low memory overhead and ability to put the display into deep sleep while retaining the image.",
+   "summary_changed": false
+  },
+  {
+   "key": "98159fefe7c0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "modulator",
+     "reason": "LTC uses biphase mark coding, but the design is a timecode generator, not a general signal modulator; the tag overstates the function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "timer",
+     "reason": "The design maintains time and frame count with multiple counters, a timing/counting function."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "It is a timecode generator used for audio/video synchronization measurement and equipment sync."
+    }
+   ],
+   "notes": "Removed modulator (timecode generator, not a general modulator); added timer and instrumentation.",
+   "tags_before": [
+    "i2c",
+    "audio",
+    "video",
+    "modulator",
+    "7-segment"
+   ],
+   "tags": [
+    "i2c",
+    "audio",
+    "video",
+    "7-segment",
+    "timer",
+    "instrumentation"
+   ],
+   "summary_before": "This project generates Linear Timecode (LTC) for audio and video synchronization, using counters to track time and frame count and emitting 80-bit biphase-mark-coded frames on a single pin. It adds I2C control for setting timecode and user bits, with framerate, drop-frame, color-frame, and background-format flags on ui[2..7], and debug outputs including a seven-segment framerate display. It is designed to work with the Tiny Tapeout Audio PMOD for line-level output, and I2C requires pull-ups and a host such as a Bus Pirate. This is a v2 revision of a design previously taped out on several shuttles, and the documentation is detailed about wiring and testing.",
+   "summary": "This project generates Linear Timecode (LTC) for audio and video synchronization, using counters to track time and frame count and emitting 80-bit biphase-mark-coded frames on a single pin. It adds I2C control for setting timecode and user bits, with framerate, drop-frame, color-frame, and background-format flags on ui[2..7], and debug outputs including a seven-segment framerate display. It is designed to work with the Tiny Tapeout Audio PMOD for line-level output, and I2C requires pull-ups and a host such as a Bus Pirate. This is a v2 revision of a design previously taped out on several shuttles, and the documentation is detailed about wiring and testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "894ef51ab17d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "combinational",
+    "lookup-table",
+    "rom",
+    "7-segment",
+    "decoder",
+    "education"
+   ],
+   "tags": [
+    "combinational",
+    "lookup-table",
+    "rom",
+    "7-segment",
+    "decoder",
+    "education"
+   ],
+   "summary_before": "This is a purely combinational 8-bit prime number detector that uses a 256-bit lookup table to identify primes from 0 to 255. The lower hex nibble of the input number is displayed on the 7-segment display, and the decimal point lights up when the number is prime. It requires no external hardware beyond the Tiny Tapeout demo board's DIP switches and 7-segment display. The design is notable for its zero-latency operation and minimal gate count of about 100 gates.",
+   "summary": "This is a purely combinational 8-bit prime number detector that uses a 256-bit lookup table to identify primes from 0 to 255. The lower hex nibble of the input number is displayed on the 7-segment display, and the decimal point lights up when the number is prime. It requires no external hardware beyond the Tiny Tapeout demo board's DIP switches and 7-segment display. The design is notable for its zero-latency operation and minimal gate count of about 100 gates.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8149,
+  "completion_tokens": 1131,
+  "total_tokens": 9280,
+  "cost": 0.002438463,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002438463,
+   "upstream_inference_prompt_cost": 0.001284843,
+   "upstream_inference_completions_cost": 0.00115362
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002438463,
+ "elapsed_s": 43.8
+}

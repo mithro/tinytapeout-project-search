@@ -1,0 +1,317 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f121fcf4bc36",
+  "207629fa7133",
+  "4d66c8793cdf",
+  "ef3bdf1e63bc",
+  "fdec2e6e3836",
+  "ef053c025dbc"
+ ],
+ "results": [
+  {
+   "key": "f121fcf4bc36",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "The design is a half adder, not an encoder; no encoding function is described."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No decoding function is described anywhere in the source."
+    },
+    {
+     "tag": "template",
+     "reason": "Nothing in the source indicates a boilerplate or starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The source explicitly implements a 1-bit half adder (sum and carry)."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Sum is XOR and carry is AND of the inputs, purely combinational logic."
+    },
+    {
+     "tag": "led",
+     "reason": "External hardware section states two LEDs are connected to the sum and carry outputs."
+    }
+   ],
+   "notes": "Removed unsupported encoder/decoder/template tags and replaced the invented summary with one matching the half-adder documentation.",
+   "tags_before": [
+    "encoder",
+    "decoder",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "template"
+   ],
+   "tags": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "adder",
+    "combinational",
+    "led"
+   ],
+   "summary_before": "This project is described as an encoder design, though the one-line description calls it an 8x3 decoder. The documentation is sparse and does not clarify the exact function. It is built in Wokwi and appears to be an educational exercise. The project is not notable for advanced functionality.",
+   "summary": "This project implements a 1-bit half adder whose sum and carry are shown on the output pins. The sum is the XOR of inputs A and B, and the carry is the AND of A and B. It is built in Wokwi and is a simple educational exercise. Two LEDs connected to the outputs indicate the sum and carry values.",
+   "summary_changed": true
+  },
+  {
+   "key": "207629fa7133",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "Source states input is from a serial UART interface (9600,n,8,1 COM port)."
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "Already proposed; the design is an 8-bit Programmable Sound Generator (PSG)."
+    },
+    {
+     "tag": "chiptune",
+     "reason": "Title and description state it replicates the vintage 8-bit APU/PSG for chiptune sound."
+    },
+    {
+     "tag": "retro",
+     "reason": "Source says it replicates the Audio Processing Unit of vintage video games."
+    }
+   ],
+   "notes": "Added uart, chiptune and retro tags supported by the source; summary expanded to four supported sentences.",
+   "tags_before": [
+    "music",
+    "audio",
+    "pwm",
+    "sound-generator"
+   ],
+   "tags": [
+    "music",
+    "audio",
+    "pwm",
+    "sound-generator",
+    "uart",
+    "chiptune",
+    "retro"
+   ],
+   "summary_before": "This design is a music and sound generator that outputs audio through PWM. It requires an analog PWM filter and audio driver for the test rig. The design generates sound signals.",
+   "summary": "This design is an 8-bit Programmable Sound Generator that replicates the audio processing unit of vintage video games. It takes input from a serial UART interface and outputs PWM audio. An analog PWM filter and audio driver are needed for the test rig. It generates square, triangle, and noise sound channels.",
+   "summary_changed": true
+  },
+  {
+   "key": "4d66c8793cdf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "Source never states an FIR structure; it only says digital low-pass and decimation filter."
+    },
+    {
+     "tag": "iir-filter",
+     "reason": "Source never states an IIR structure."
+    },
+    {
+     "tag": "filter-analog",
+     "reason": "The filter is digital; the analog part is explicitly deferred to a future shuttle."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sigma-delta",
+     "reason": "Design is a decimation filter for the output of a delta-sigma ADC/modulator."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Digital low-pass and decimation filtering is signal processing."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Decimation filter converts 1-bit modulator stream to 16-bit data; not a decoder — omit."
+    }
+   ],
+   "notes": "Removed unsupported FIR/IIR/analog-filter tags; corrected summary to match the documented decimation filter behavior.",
+   "tags_before": [
+    "dsp",
+    "fir-filter",
+    "iir-filter",
+    "sigma-delta",
+    "filter-analog"
+   ],
+   "tags": [
+    "dsp",
+    "sigma-delta",
+    "decoder"
+   ],
+   "summary_before": "This design implements a digital low-pass and decimation filter intended for the output of a delta-sigma analog-to-digital converter. The filter reduces the sampling rate and removes high-frequency noise from the bitstream. It is implemented in digital logic and can be tested by feeding a modulated input and observing the filtered output. The design is notable for its application in signal processing.",
+   "summary": "This design implements a digital low-pass and decimation filter intended for the output of a delta-sigma analog-to-digital converter. It accepts 1-bit modulator data at 50 MHz and produces 16-bit filtered data on the GPIOs at 781.25 kHz. The analog portion is not included and is hoped for on a future shuttle. It is implemented in Verilog and can be tested by feeding a modulated input and observing the filtered output.",
+   "summary_changed": true
+  },
+  {
+   "key": "ef3bdf1e63bc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "The design is an encoder, not an adder; no addition is described."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "encoder",
+     "reason": "Source explicitly describes an active-high 7:3 encoder with invertible output."
+    },
+    {
+     "tag": "education",
+     "reason": "Titled 'My First TinyTapeout' and presented as a basic learning design."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the design is built in the Wokwi simulator."
+    },
+    {
+     "tag": "led",
+     "reason": "Testing instructions connect the first three output lines to LEDs."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Implemented from basic gates per the referenced gate diagram."
+    }
+   ],
+   "notes": "Replaced invented adder/ALU tags and summary with the documented 7:3 encoder behavior.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "led"
+   ],
+   "tags": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "led",
+    "encoder"
+   ],
+   "summary_before": "This design implements an adder circuit using XOR, AND, and OR gates on its input pins. The description is too brief to determine the exact bit width or output encoding of the adder. The project is built in Wokwi and is intended for educational purposes. It likely demonstrates basic arithmetic logic.",
+   "summary": "This design implements an active-high 7:3 encoder that can invert its output. It is built in Wokwi and is presented as a first TinyTapeout educational project. Testing is done by toggling the seven input lines and observing the first three output lines on LEDs. The output shows the binary representation of the selected input line.",
+   "summary_changed": true
+  },
+  {
+   "key": "fdec2e6e3836",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "prng",
+    "lfsr",
+    "shift-register",
+    "sequential-logic",
+    "verilog"
+   ],
+   "tags": [
+    "prng",
+    "lfsr",
+    "shift-register",
+    "sequential-logic",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8-bit pseudo-random number generator based on a 16-bit linear feedback shift register with a twist: the upper and lower halves are rotated in opposite directions and XORed. It is tested by observing the generated sequence on the output pins, and the initialization seed can be changed via the input pins. All-zero initialization is invalid and produces a constant zero output. The design is notable for its modified LFSR structure that combines two rotated halves.",
+   "summary": "This project implements an 8-bit pseudo-random number generator based on a 16-bit linear feedback shift register with a twist: the upper and lower halves are rotated in opposite directions and XORed. It is tested by observing the generated sequence on the output pins, and the initialization seed can be changed via the input pins. All-zero initialization is invalid and produces a constant zero output. The design is notable for its modified LFSR structure that combines two rotated halves.",
+   "summary_changed": false
+  },
+  {
+   "key": "ef053c025dbc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a game using flip-flops and combinational display logic, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Source describes a small interactive game with a player objective."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "Objective is to time a switch toggle to light segments forming a '0'."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working on fabricated silicon."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the design is built in the Wokwi simulator."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs S1-S6 and SDOT drive a seven-segment display."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Circular buffer of D flip-flops and player memory are sequential elements."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate tag, added game/puzzle/silicon-tested tags, and corrected the summary's false claim that no silicon test report exists.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "7-segment",
+    "display",
+    "sequential-logic"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "display",
+    "sequential-logic",
+    "game",
+    "puzzle",
+    "silicon-tested"
+   ],
+   "summary_before": "This circuit uses a circular buffer of D flip-flops as a selector and D flip-flops for memory, with combinational logic for the display. It is implemented in Wokwi and is intended for educational purposes. The design demonstrates sequential logic and memory elements. No silicon test report is provided, so its hardware behavior is not confirmed.",
+   "summary": "This circuit uses a circular buffer of D flip-flops as a selector and D flip-flops for player memory, with combinational logic for the display. It is implemented in Wokwi and is a small game where the player toggles a switch at the right moment to light the segments forming a '0'. Silicon test reports confirm the design works on fabricated hardware. The reset signal initializes the circular buffer and clears the player memory.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6739,
+  "completion_tokens": 1504,
+  "total_tokens": 8243,
+  "cost": 0.002459373,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002459373,
+   "upstream_inference_prompt_cost": 0.000925293,
+   "upstream_inference_completions_cost": 0.00153408
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002459373,
+ "elapsed_s": 67.2
+}

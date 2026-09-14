@@ -1,0 +1,240 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a8b5fbc36772",
+  "14ca0b7c2823",
+  "bccf134b7e83",
+  "d7e5ee4afcf1",
+  "7ff4dfe90ee7",
+  "4743f773bcca"
+ ],
+ "results": [
+  {
+   "key": "a8b5fbc36772",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The design steps through letters on button presses; no counting circuit is described."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "The design is stepped by pressing the clock button."
+    }
+   ],
+   "notes": "Removed unsupported counter and education tags; added button tag for the clock button input.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "text",
+    "counter"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "text",
+    "button"
+   ],
+   "summary_before": "This design steps through the five letters of the name AAron on a seven-segment display each time a clock button is pressed. The documentation notes that the letters for 0 and 1 are the same, so the sequence has a quirk. A seven-segment display is the only external hardware needed. It is a simple educational character-sequencing project with no reported silicon results.",
+   "summary": "This design steps through the five letters of the name AAron on a seven-segment display each time a clock button is pressed. The documentation notes that the letters for 0 and 1 are the same, so the sequence has a quirk. A seven-segment display is the only external hardware needed. It is a simple character-sequencing project with no reported silicon results.",
+   "summary_changed": true
+  },
+  {
+   "key": "14ca0b7c2823",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; softened the control sentence to match the source's speculative wording.",
+   "tags_before": [
+    "audio",
+    "music",
+    "signal-generator",
+    "synthesizer",
+    "education",
+    "led"
+   ],
+   "tags": [
+    "audio",
+    "music",
+    "signal-generator",
+    "synthesizer",
+    "led"
+   ],
+   "summary_before": "This is a small square-wave tone generator that produces 16 notes across 4 octaves with an optional tremolo effect. Note and octave are selected by input pins, an enable pin gates the tone, and seven outputs drive LEDs as a simple visualizer while the audio comes from the eighth output. It requires an external RC low-pass filter, a DC blocking capacitor, and a speaker or headphones, and it is intended to be controlled from a Pi Pico or a small keyboard. The documentation is informal and notes that the project was completed under time pressure.",
+   "summary": "This is a small square-wave tone generator that produces 16 notes across 4 octaves with an optional tremolo effect. Note and octave are selected by input pins, an enable pin gates the tone, and seven outputs drive LEDs as a simple visualizer while the audio comes from the eighth output. It requires an external RC low-pass filter, a DC blocking capacitor, and a speaker or headphones, and the documentation suggests it could be controlled from a Pi Pico or a small keyboard. The documentation is informal and notes that the project was completed under time pressure.",
+   "summary_changed": true
+  },
+  {
+   "key": "bccf134b7e83",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The title mentions DFT but the documentation does not describe any DFT or signal-processing functionality."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show a working JTAG IDCODE test on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported dsp tag; added silicon-tested based on the working JTAG test report.",
+   "tags_before": [
+    "systolic-array",
+    "mac-unit",
+    "multiplier",
+    "jtag",
+    "dsp",
+    "accelerator"
+   ],
+   "tags": [
+    "systolic-array",
+    "mac-unit",
+    "multiplier",
+    "jtag",
+    "accelerator",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a 2x2 multiply-and-accumulate systolic array for signed 8-bit values with design-for-test infrastructure including a JTAG interface. It is used by feeding data through the data_i inputs with valid and mode controls and reading results from the result_o outputs, while the JTAG port allows scan testing of the internal logic. No external hardware beyond a JTAG controller and signal sources is described, and the design occupies a 1x2 tile area. A silicon tester only performed a basic JTAG test and confirmed the correct IDCODE was returned, so the arithmetic functionality has not been fully verified on silicon.",
+   "summary": "This is a 2x2 multiply-and-accumulate systolic array for signed 8-bit values with design-for-test infrastructure including a JTAG interface. It is used by feeding data through the data_i inputs with valid and mode controls and reading results from the result_o outputs, while the JTAG port allows scan testing of the internal logic. No external hardware beyond a JTAG controller and signal sources is described, and the design occupies a 1x2 tile area. A silicon tester only performed a basic JTAG test and confirmed the correct IDCODE was returned, so the arithmetic functionality has not been fully verified on silicon.",
+   "summary_changed": false
+  },
+  {
+   "key": "d7e5ee4afcf1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The source describes a stopwatch peripheral, not a measurement or instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "The external hardware list specifies a 7-Segment Display PMOD."
+    }
+   ],
+   "notes": "Removed unsupported instrumentation tag; added pmod tag for the specified 7-segment PMOD.",
+   "tags_before": [
+    "timer",
+    "uart",
+    "7-segment",
+    "debouncer",
+    "memory",
+    "instrumentation"
+   ],
+   "tags": [
+    "timer",
+    "uart",
+    "7-segment",
+    "debouncer",
+    "memory",
+    "pmod"
+   ],
+   "summary_before": "This is an interactive 1Hz stopwatch with hardware debouncing, lap memory, alarm target, and 9600-baud UART RX/TX telemetry. It uses a 10 MHz clock and includes modules for debouncing, BCD counting, alarm comparison, and UART communication. The design is implemented in Verilog and requires external hardware such as a 7-segment display, push-buttons, DIP switches, and a USB-to-TTL serial cable for full testing. It was developed as part of the V-SPACE Demo.",
+   "summary": "This is an interactive 1Hz stopwatch with hardware debouncing, lap memory, alarm target, and 9600-baud UART RX/TX telemetry. It uses a 10 MHz clock and includes modules for debouncing, BCD counting, alarm comparison, and UART communication. The design is implemented in Verilog and requires external hardware such as a 7-segment display, push-buttons, DIP switches, and a USB-to-TTL serial cable for full testing. It was developed as part of the V-SPACE Demo.",
+   "summary_changed": false
+  },
+  {
+   "key": "7ff4dfe90ee7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "silicon-art",
+    "vga",
+    "display",
+    "graphics",
+    "rom",
+    "gamepad",
+    "verilog"
+   ],
+   "tags": [
+    "silicon-art",
+    "vga",
+    "display",
+    "graphics",
+    "rom",
+    "gamepad",
+    "verilog"
+   ],
+   "summary_before": "This design displays a bouncing Tiny Tapeout logo with an animated color gradient on a 640x480 VGA screen, with the 128x128 monochrome bitmap stored in a custom NOR ROM macro. The ROM's transistor pattern doubles as silicon art, making the logo visible in the diffusion layer of the fabricated chip. Inputs allow tiling the logo, switching to a solid color, and optionally controlling bouncing with a Gamepad Pmod. It requires a Tiny VGA Pmod and an optional Gamepad Pmod.",
+   "summary": "This design displays a bouncing Tiny Tapeout logo with an animated color gradient on a 640x480 VGA screen, with the 128x128 monochrome bitmap stored in a custom NOR ROM macro. The ROM's transistor pattern doubles as silicon art, making the logo visible in the diffusion layer of the fabricated chip. Inputs allow tiling the logo, switching to a solid color, and optionally controlling bouncing with a Gamepad Pmod. It requires a Tiny VGA Pmod and an optional Gamepad Pmod.",
+   "summary_changed": false
+  },
+  {
+   "key": "4743f773bcca",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "timer",
+     "reason": "The design is a seconds counter, not a programmable timer block."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock divider is described; the source only mentions a register and combinational logic."
+    }
+   ],
+   "add": [],
+   "notes": "Removed timer and clock-divider tags not supported by the very thin documentation.",
+   "tags_before": [
+    "7-segment",
+    "counter",
+    "display",
+    "timer",
+    "clock-divider"
+   ],
+   "tags": [
+    "7-segment",
+    "counter",
+    "display"
+   ],
+   "summary_before": "This design counts from 0 to 9 on a seven-segment display, incrementing once per second. It uses a register and combinational logic to drive the display segments. After reset, the counter should increase by one every second. No external hardware is required beyond the display.",
+   "summary": "This design counts from 0 to 9 on a seven-segment display, incrementing once per second. It uses a register and combinational logic to drive the display segments. After reset, the counter should increase by one every second. No external hardware is required beyond the display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6933,
+  "completion_tokens": 1303,
+  "total_tokens": 8236,
+  "cost": 0.0036435,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036435,
+   "upstream_inference_prompt_cost": 0.0020799,
+   "upstream_inference_completions_cost": 0.0015636
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036435,
+ "elapsed_s": 20.4
+}

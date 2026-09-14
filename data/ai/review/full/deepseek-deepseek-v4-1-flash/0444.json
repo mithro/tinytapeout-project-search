@@ -1,0 +1,192 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5e7663998c41",
+  "9512e36bd3b0",
+  "91bac9408e42",
+  "f7d27645881b",
+  "5caa37900576",
+  "d16ac3984bc9"
+ ],
+ "results": [
+  {
+   "key": "5e7663998c41",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "prng",
+    "vhdl",
+    "counter"
+   ],
+   "tags": [
+    "prng",
+    "vhdl",
+    "counter"
+   ],
+   "summary_before": "This is an 8-bit VHDL implementation of the XORShift random number generator, based on Tzarc's algorithm. It uses the previous output and a counter of generated numbers to produce a new 8-bit output. Testing involves comparing the output with a known-good software implementation by manually clocking the circuit. The design is a straightforward PRNG with no external hardware requirements.",
+   "summary": "This is an 8-bit VHDL implementation of the XORShift random number generator, based on Tzarc's algorithm. It uses the previous output and a counter of generated numbers to produce a new 8-bit output. Testing involves comparing the output with a known-good software implementation by manually clocking the circuit. The design is a straightforward PRNG with no external hardware requirements.",
+   "summary_changed": false
+  },
+  {
+   "key": "9512e36bd3b0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "No encoding function is described; this is a decoder, not an encoder."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'encoder' tag as the design only decodes quadrature signals.",
+   "tags_before": [
+    "rotary-encoder",
+    "encoder",
+    "counter",
+    "decoder"
+   ],
+   "tags": [
+    "rotary-encoder",
+    "counter",
+    "decoder"
+   ],
+   "summary_before": "The QEI (Quadrature Encoder Interface) decodes A/B quadrature signals into a 15-bit up/down count and a direction flag. It synchronizes the inputs to the clock and outputs the count across the output and bidirectional pins. The design can be tested with an encoder connected directly for single-ended signals or via an RS-422 receiver for differential signals. It is a compact, straightforward implementation with clear documentation.",
+   "summary": "The QEI (Quadrature Encoder Interface) decodes A/B quadrature signals into a 15-bit up/down count and a direction flag. It synchronizes the inputs to the clock and outputs the count across the output and bidirectional pins. The design can be tested with an encoder connected directly for single-ended signals or via an RS-422 receiver for differential signals. It is a compact, straightforward implementation with clear documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "91bac9408e42",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state 'working (a tester)'."
+    }
+   ],
+   "notes": "Added 'silicon-tested' to match the provided silicon test reports.",
+   "tags_before": [
+    "vga",
+    "pattern-generator",
+    "video",
+    "display",
+    "graphics"
+   ],
+   "tags": [
+    "vga",
+    "pattern-generator",
+    "video",
+    "display",
+    "graphics",
+    "silicon-tested"
+   ],
+   "summary_before": "VGA Pattern Generator produces colorful geometric patterns on a VGA monitor at 640x480 @ 60 Hz. It uses a 25 MHz pixel clock and generates patterns procedurally from pixel coordinates, with input switches selecting between modes and palettes. The design requires a TinyVGA PMOD adapter and a VGA monitor. Silicon tests confirmed working patterns that change with input toggles.",
+   "summary": "VGA Pattern Generator produces colorful geometric patterns on a VGA monitor at 640x480 @ 60 Hz. It uses a 25 MHz pixel clock and generates patterns procedurally from pixel coordinates, with input switches selecting between modes and palettes. The design requires a TinyVGA PMOD adapter and a VGA monitor. Silicon tests confirmed working patterns that change with input toggles.",
+   "summary_changed": false
+  },
+  {
+   "key": "f7d27645881b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": "The design samples digital levels from comparator inputs; it does not implement a comparator."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'comparator' tag because the design processes comparator inputs rather than implementing a comparator.",
+   "tags_before": [
+    "servo",
+    "pwm",
+    "motor-control",
+    "robotics",
+    "comparator"
+   ],
+   "tags": [
+    "servo",
+    "pwm",
+    "motor-control",
+    "robotics"
+   ],
+   "summary_before": "This design is a two-channel RC servo pulse generator that produces standard 20 ms PWM frames with pulse widths between 1.0 ms and 2.0 ms based on two asynchronous comparator inputs. It uses a 50 MHz clock and has active-low reset and enable signals. The outputs are PWM signals for X and Y axes. Testing involves driving the comparator inputs with digital levels and observing the PWM outputs on a scope or in simulation.",
+   "summary": "This design is a two-channel RC servo pulse generator that produces standard 20 ms PWM frames with pulse widths between 1.0 ms and 2.0 ms based on two asynchronous comparator inputs. It uses a 50 MHz clock and has active-low reset and enable signals. The outputs are PWM signals for X and Y axes. Testing involves driving the comparator inputs with digital levels and observing the PWM outputs on a scope or in simulation.",
+   "summary_changed": false
+  },
+  {
+   "key": "5caa37900576",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "led",
+    "display",
+    "graphics",
+    "industrial",
+    "pattern-generator",
+    "sequential-logic"
+   ],
+   "tags": [
+    "led",
+    "display",
+    "graphics",
+    "industrial",
+    "pattern-generator",
+    "sequential-logic"
+   ],
+   "summary_before": "This design displays animated arrow signs for traffic control using 25 LEDs arranged in a specific pattern. It supports 16 selectable patterns with options for flashing and sequential animation, controlled by input pins. The outputs drive the LEDs directly, and the design includes a lamp test and active-low control. It requires an external array of 25 LEDs connected to the output and bidirectional pins.",
+   "summary": "This design displays animated arrow signs for traffic control using 25 LEDs arranged in a specific pattern. It supports 16 selectable patterns with options for flashing and sequential animation, controlled by input pins. The outputs drive the LEDs directly, and the design includes a lamp test and active-low control. It requires an external array of 25 LEDs connected to the output and bidirectional pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "d16ac3984bc9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "error-correction",
+    "encoder",
+    "decoder",
+    "wokwi"
+   ],
+   "tags": [
+    "error-correction",
+    "encoder",
+    "decoder",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a Hamming (7,4) encoder and decoder with single-bit error correction. It uses eight input and output pins, with a mode selection pin to switch between encoding and decoding. In decode mode, it can correct single-bit errors and reports when a correction occurs. The design is built in Wokwi and is documented with pin descriptions and testing instructions.",
+   "summary": "This project implements a Hamming (7,4) encoder and decoder with single-bit error correction. It uses eight input and output pins, with a mode selection pin to switch between encoding and decoding. In decode mode, it can correct single-bit errors and reports when a correction occurs. The design is built in Wokwi and is documented with pin descriptions and testing instructions.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8301,
+  "completion_tokens": 956,
+  "total_tokens": 9257,
+  "cost": 0.0036375,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036375,
+   "upstream_inference_prompt_cost": 0.0024903,
+   "upstream_inference_completions_cost": 0.0011472
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036375,
+ "elapsed_s": 7.2
+}

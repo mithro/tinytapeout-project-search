@@ -1,0 +1,458 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8c7a933f3f65",
+  "3f0a3b63a561",
+  "0b75fc5f13f7",
+  "07a77313e93b",
+  "0988a9a21398",
+  "85884219272d"
+ ],
+ "results": [
+  {
+   "key": "8c7a933f3f65",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source is a complete BISS-C position acquisition design, not boilerplate."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The design is fully described and functional, not an empty submission."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation and functionality are complete."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "No evidence the design was created with the Wokwi simulator."
+    },
+    {
+     "tag": "education",
+     "reason": "No stated teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "SPI register interface with CS_N, CLK, MOSI, MISO pins."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "Reads position from an external BISS-C absolute encoder."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Position acquisition with trigger pulse for measurement equipment."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Encoder position acquisition and external equipment triggering is an industrial control application."
+    },
+    {
+     "tag": "pulse",
+     "reason": "Not in vocabulary; omitted."
+    }
+   ],
+   "notes": "Removed unsupported template/placeholder/wokwi/education tags and added SPI, sensor-interface, instrumentation and industrial tags matching the documented BISS-C encoder acquisition design.",
+   "tags_before": [
+    "template",
+    "placeholder",
+    "incomplete",
+    "wokwi",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "spi",
+    "sensor-interface",
+    "instrumentation",
+    "industrial",
+    "signal-generator"
+   ],
+   "summary_before": "This project has only placeholder text for its title, description, and documentation, with no indication of what the design actually does. The design is likely a template or incomplete submission. The documentation is insufficient to describe the functionality. The design is implemented in Verilog using the Wokwi simulator.",
+   "summary": "This project implements a BISS-C master that acquires position from an absolute encoder and produces a pulse output to synchronize an external trigger with the acquisition. It includes an SPI register interface using CPOL=1 and CPHA=1 with an 8-bit command plus 32-bit data frame, where the top command bit selects read or write. Extra features include BISS-C delay compensation and spare UIO control via registers that can be synchronized with the trigger. Testing requires a BISS-C encoder connected through an RS422 transceiver and optionally an external instrument on the pulse output.",
+   "summary_changed": true
+  },
+  {
+   "key": "3f0a3b63a561",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR is described; the oscillator uses recursive sinusoid generation."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generation is present."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described in the source."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "No pattern or event sequencing is described."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "Direct Digital Synthesis of quadrature sinusoids is a signal processing design."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Generates sine and cosine waveforms."
+    },
+    {
+     "tag": "nco",
+     "reason": "Numerically controlled oscillator style DDS sinusoid generation."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "Outputs are produced via two first-order sigma-delta modulators."
+    },
+    {
+     "tag": "spi",
+     "reason": "Prescaler value is loaded through an SPI port (SCK, CS, MOSI)."
+    },
+    {
+     "tag": "audio",
+     "reason": "PCM sine/cosine outputs are intended as audio-band signals."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Replaced unrelated LFSR/PRNG/counter/sequencer/shift-register tags with DDS, signal-generator, NCO, sigma-delta, SPI and audio tags supported by the documentation.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "counter",
+    "sequencer",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "dsp",
+    "signal-generator",
+    "nco",
+    "sigma-delta",
+    "spi",
+    "audio"
+   ],
+   "summary_before": "This design implements a linear feedback shift register, pseudo-random number generator, counter, sequencer, and shift register. The design is likely used for generating pseudo-random sequences or for testing purposes. The documentation describes the components but does not provide a specific application. The design is implemented in Verilog.",
+   "summary": "This project generates two sinusoidal waveforms with a fixed 90-degree phase offset (I/Q signals) using Direct Digital Synthesis. The outputs are presented as Pulse Code Modulation via two first-order sigma-delta modulators. The DDS block can be prescaled by sending a prescaler value through the SPI port. The oscillator design is based on a published recursive sinusoid generation algorithm, and recommended external hardware includes a digital buffer and two RC filters.",
+   "summary_changed": true
+  },
+  {
+   "key": "0b75fc5f13f7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning is described; the design is a 4-bit LFSR."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network hardware is present."
+    },
+    {
+     "tag": "security",
+     "reason": "No hardware security function is described."
+    },
+    {
+     "tag": "automotive",
+     "reason": "No automotive application is described."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "No multiply-accumulate unit is present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "Implements a 4-bit maximum-length linear feedback shift register."
+    },
+    {
+     "tag": "prng",
+     "reason": "Generates a pseudo-random sequence of period 15."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Register shifts on every rising clock edge with reset loading a seed."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Removed fabricated ML/automotive/security tags and corrected the summary to describe the documented 4-bit LFSR.",
+   "tags_before": [
+    "machine-learning",
+    "neural-network",
+    "security",
+    "automotive",
+    "mac-unit",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "lfsr",
+    "prng",
+    "sequential-logic"
+   ],
+   "summary_before": "This design is a machine learning-based hardware anomaly detection engine for V2X packet data. The engine uses a multiply-accumulate unit with hardcoded model weights to analyze incoming data. The design is intended for automotive security applications. The documentation provides test vectors and describes a six-stage pipeline, but no silicon results are reported.",
+   "summary": "This project implements a 4-bit maximum-length Linear Feedback Shift Register using the feedback polynomial x4+x+1 with taps at bit positions 3 and 0. On every rising clock edge the register shifts left by one position and a feedback bit computed as the XOR of bits 3 and 0 is inserted at the LSB. When the active-low reset is asserted the register loads the seed value 0x1, and the LFSR cycles through all 15 non-zero states before repeating. The 4-bit output appears on uo_out[3:0], the upper nibble is always zero, and no external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "07a77313e93b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "No security or password checking is described; the design is a tremolo controller."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the core is an LFO and PWM comparator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "music",
+     "reason": "Intended for a tremolo guitar pedal effect."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Generates a PWM tremolo control output."
+    },
+    {
+     "tag": "audio",
+     "reason": "Modulates guitar audio volume for a tremolo effect."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "Contains an 8-bit low frequency oscillator."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Waveform generator produces saw up, saw down, square and triangle shapes."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Modulation level is compared against a PWM counter."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Testbench is verified using Cocotb."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Removed incorrect security/FSM tags and rewrote the summary to match the documented tremolo PWM controller.",
+   "tags_before": [
+    "security",
+    "fsm",
+    "sequential-logic",
+    "verilog"
+   ],
+   "tags": [
+    "sequential-logic",
+    "verilog",
+    "music",
+    "pwm",
+    "audio",
+    "oscillator",
+    "signal-generator",
+    "comparator",
+    "cocotb"
+   ],
+   "summary_before": "This design consists of a password checker, a lock controller, and a top module. It can be tested with a provided testbench using iverilog. The design implements a simple security mechanism for controlling access. It is notable for its educational value in demonstrating sequential logic and state machines.",
+   "summary": "This project implements a digital tremolo modulation controller intended for guitar pedal applications, generating a PWM signal that can be converted to a smooth analog control signal with an RC filter. At its center is an 8-bit low frequency oscillator whose rate is set by the rate select inputs, feeding a waveform generator that produces saw up, saw down, square and triangle shapes. Depth logic controls the intensity of the tremolo effect, and the resulting modulation level is compared against a PWM counter to produce the output. The design is verified with Cocotb testbenches covering reset, enable, PWM generation, rate, waveform, depth and debug outputs, and requires external RC filtering, an op-amp buffer and analog tremolo staging.",
+   "summary_changed": true
+  },
+  {
+   "key": "0988a9a21398",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder is described."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "No subtraction circuit is described."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The design is clocked and sequential, not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "Uses an 8-bit linear feedback shift register for key stream generation."
+    },
+    {
+     "tag": "prng",
+     "reason": "LFSR generates a pseudo-random key stream."
+    },
+    {
+     "tag": "crypto",
+     "reason": "Data masking via XOR with a key stream is a cryptographic technique."
+    },
+    {
+     "tag": "security",
+     "reason": "Demonstrates secure V2X data masking."
+    },
+    {
+     "tag": "communication",
+     "reason": "Targets secure V2X vehicle-to-everything communication."
+    },
+    {
+     "tag": "automotive",
+     "reason": "V2X is an automotive communication application."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "LFSR updates on every rising clock edge."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Replaced unrelated arithmetic tags with LFSR, PRNG, crypto, security, communication and automotive tags supported by the V2X masking documentation.",
+   "tags_before": [
+    "alu",
+    "adder",
+    "subtractor",
+    "combinational"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "crypto",
+    "security",
+    "communication",
+    "automotive",
+    "sequential-logic",
+    "verilog"
+   ],
+   "summary_before": "This design performs fast modular addition and subtraction arithmetic arrays using specialized combinational subtraction matrix logic blocks without slow division operations. It is optimized for speed by avoiding division. The design is suitable for applications requiring efficient modular arithmetic. It is notable for its innovative approach to modular computation.",
+   "summary": "This project implements a Secure V2X Mini Demonstrator using an 8-bit Linear Feedback Shift Register. The design accepts an 8-bit plaintext input on ui_in and internally generates an 8-bit pseudo-random key stream with the LFSR. The plaintext is XORed with the key stream to produce masked output data on uo_out, with the LFSR updating on every rising clock edge. No external hardware is required, and testing involves applying input data, clocking the design and verifying that the output changes according to the XOR operation.",
+   "summary_changed": true
+  },
+  {
+   "key": "85884219272d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "trng",
+     "reason": "No true random number generator or entropy source is described."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "No ring oscillator is present; the design uses a counter."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptographic function is described."
+    },
+    {
+     "tag": "hash",
+     "reason": "No hash function is implemented."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generation is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "Generates a variable duty cycle PWM signal."
+    },
+    {
+     "tag": "counter",
+     "reason": "An internal 8-bit counter increments every clock cycle."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Counter value is compared with the input duty cycle value."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Produces a configurable PWM waveform."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Removed fabricated TRNG/ring-oscillator/crypto/hash tags and corrected the summary to the documented 8-bit PWM generator.",
+   "tags_before": [
+    "trng",
+    "ring-oscillator",
+    "crypto",
+    "hash",
+    "prng"
+   ],
+   "tags": [
+    "pwm",
+    "counter",
+    "comparator",
+    "signal-generator",
+    "verilog"
+   ],
+   "summary_before": "This design provides an on-die entropy source using a ring oscillator with NIST SP 800-90B health tests. The entropy is conditioned through ASCON-Hash256 and fed into an ASCON Hash_DRBG for key and nonce generation. A debug pin exposes raw ring-oscillator bits for post-silicon entropy characterization. It is notable for its integration of a TRNG with cryptographic conditioning.",
+   "summary": "This project implements a configurable 8-bit PWM generator that produces a variable duty cycle signal from an 8-bit input. An internal 8-bit counter increments on every clock cycle and is compared with the duty cycle value on ui_in, driving uo_out[0] high while the counter is below the input and low otherwise. Examples include ui_in = 64 for 25% duty cycle, 128 for 50% and 192 for 75%. No external hardware is required, and testing involves applying a clock, releasing reset and observing the PWM waveform on uo_out[0].",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7128,
+  "completion_tokens": 2585,
+  "total_tokens": 9713,
+  "cost": 0.00255432,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3380,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00255432,
+   "upstream_inference_prompt_cost": 0.00084822,
+   "upstream_inference_completions_cost": 0.0017061
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00255432,
+ "elapsed_s": 30.1
+}

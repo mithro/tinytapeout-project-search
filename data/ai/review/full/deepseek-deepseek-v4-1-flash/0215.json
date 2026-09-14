@@ -1,0 +1,232 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "c2302c8cd439",
+  "8795d604167f",
+  "fc5bf4b9be27",
+  "b7545f74b02c",
+  "cbc40aba01da",
+  "ada07391f6f8"
+ ],
+ "results": [
+  {
+   "key": "c2302c8cd439",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "A traffic light controller is not an industrial control application; the source describes an intersection state machine, not industrial equipment."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "The design drives vehicle and pedestrian signal LEDs, and the test instructions require hooking up LEDs."
+    }
+   ],
+   "notes": "Removed industrial (not an industrial control application) and kept led, which is supported by the LED outputs and test instructions.",
+   "tags_before": [
+    "industrial",
+    "fsm",
+    "wokwi",
+    "led"
+   ],
+   "tags": [
+    "fsm",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "This design implements a state machine to control German traffic lights at an intersection with main and side streets, including pedestrian signals. It operates at a 1 Hz clock and generates a blinking yellow light for the side street in the reset state. Testing requires providing a clock, connecting LEDs, and generating a reset signal; an additional inverter is needed for pedestrian red signals. External hardware includes LEDs and an inverter. The design is notable for modeling a specific traffic light sequence, implemented in Wokwi.",
+   "summary": "This design implements a state machine to control German traffic lights at an intersection with main and side streets, including pedestrian signals. It operates at a 1 Hz clock and generates a blinking yellow light for the side street in the reset state. Testing requires providing a clock, connecting LEDs, and generating a reset signal; an additional inverter is needed for pedestrian red signals. External hardware includes LEDs and an inverter.",
+   "summary_changed": true
+  },
+  {
+   "key": "8795d604167f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spi",
+     "reason": "The source describes an SPI-like serial shift interface, not a full SPI protocol implementation."
+    },
+    {
+     "tag": "edge-detector",
+     "reason": "No edge detection function is described; the design shifts data on SCLK rising edges as part of the serial interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "divider",
+     "reason": "The design uses an iterative divider to test divisibility of the input number."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The source explicitly states that FSM control logic takes over after the number is shifted in."
+    }
+   ],
+   "notes": "Removed spi and edge-detector as unsupported; added divider and fsm, which are explicitly described.",
+   "tags_before": [
+    "spi",
+    "fsm",
+    "divider",
+    "edge-detector"
+   ],
+   "tags": [
+    "fsm",
+    "divider"
+   ],
+   "summary_before": "This design detects whether a 31-bit number is prime by iteratively dividing it by all smaller numbers. The number is shifted in serially via an SPI-like interface, and the result is indicated by a dedicated pin after computation. It requires an external clock and uses a finite state machine with an iterative divider to minimize area. The design is an experiment in implementing a prime detector on a small scale.",
+   "summary": "This design detects whether a 31-bit number is prime by iteratively dividing it by all smaller numbers. The number is shifted in serially via an SPI-like interface, and the result is indicated by a dedicated pin after computation. It requires an external clock and uses a finite state machine with an iterative divider to minimize area. The design is an experiment in implementing a prime detector on a small scale.",
+   "summary_changed": false
+  },
+  {
+   "key": "fc5bf4b9be27",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fir-filter",
+    "dsp",
+    "multiplier",
+    "adder",
+    "pipeline",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "fir-filter",
+    "dsp",
+    "multiplier",
+    "adder",
+    "pipeline",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "ttFIR implements a 4-tap digital finite impulse response (FIR) filter with 6-bit two's complement inputs and coefficients and an 8-bit output. Coefficients are loaded serially over four clock cycles, and input samples are shifted in each cycle; the output is the 8 most significant bits of the 14-bit sum, delayed by two cycles. The design is intended to be driven by an FPGA or microcontroller that provides the input signal and reads the output. It is a straightforward DSP building block, and the author suggests increasing the number of taps as a future challenge.",
+   "summary": "ttFIR implements a 4-tap digital finite impulse response (FIR) filter with 6-bit two's complement inputs and coefficients and an 8-bit output. Coefficients are loaded serially over four clock cycles, and input samples are shifted in each cycle; the output is the 8 most significant bits of the 14-bit sum, delayed by two cycles. The design is intended to be driven by an FPGA or microcontroller that provides the input signal and reads the output. It is a straightforward DSP building block, and the author suggests increasing the number of taps as a future challenge.",
+   "summary_changed": false
+  },
+  {
+   "key": "b7545f74b02c",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "The external hardware section specifies a general purpose FPGA with a PMOD connector for testing."
+    }
+   ],
+   "notes": "Added pmod because the source explicitly mentions a PMOD connector for external testing.",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "lfsr",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "lfsr",
+    "verilog",
+    "pmod"
+   ],
+   "summary_before": "This design implements a two-channel XOR stream cipher using programmable 32-bit Galois LFSRs for encryption and decryption. It can be configured via a 130-bit serial shift register to set LFSR taps and state, and it supports simultaneous transmit and receive channels. The default configuration uses PRBS-31 taps and a fixed state. It is intended for secure communication experiments and requires external hardware for testing.",
+   "summary": "This design implements a two-channel XOR stream cipher using programmable 32-bit Galois LFSRs for encryption and decryption. It can be configured via a 130-bit serial shift register to set LFSR taps and state, and it supports simultaneous transmit and receive channels. The default configuration uses PRBS-31 taps and a fixed state. It is intended for secure communication experiments and requires external hardware for testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "cbc40aba01da",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "incomplete",
+     "reason": "The design is complete and functional as an inverter test project; it is not unfinished."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design consists of eight inverters, which are basic logic gates."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    }
+   ],
+   "notes": "Removed incomplete because the design is a complete inverter test; kept logic-gate and wokwi.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "incomplete"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This project consists of eight inverters that invert every input line. It is also used to fill empty design spaces on the chip. The design is implemented in Wokwi and can be tested by setting input switches and observing the corresponding LEDs. The documentation is very brief and does not provide additional context or applications.",
+   "summary": "This project consists of eight inverters that invert every input line. It is also used to fill empty design spaces on the chip. The design is implemented in Wokwi and can be tested by setting input switches and observing the corresponding LEDs. The documentation is very brief and does not provide additional context or applications.",
+   "summary_changed": false
+  },
+  {
+   "key": "ada07391f6f8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "spi",
+    "uart",
+    "sram",
+    "gpio",
+    "7-segment",
+    "bit-serial",
+    "silicon-tested",
+    "verilog"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "spi",
+    "uart",
+    "sram",
+    "gpio",
+    "7-segment",
+    "bit-serial",
+    "silicon-tested",
+    "verilog"
+   ],
+   "summary_before": "This is a minimal RV32E bit-serial processor that uses an external SPI RAM for both instructions and data, with the SPI RAM and UART connected to the bidirectional pins. It has no caches and runs at roughly clock speed divided by 32, with registers x3 and x4 hardcoded for cheap access to RAM and peripherals, and no support for ebreak or interrupts. The eight inputs and eight outputs are general-purpose GPIO, and the outputs can also drive a 7-segment display; the UART runs at clock speed divided by 128 with simple status bits and no FIFOs. Silicon testing by the author confirmed the design works, and programs can be built with the nanoV-sdk and tested against an SPI RAM or an RP2040-based emulator.",
+   "summary": "This is a minimal RV32E bit-serial processor that uses an external SPI RAM for both instructions and data, with the SPI RAM and UART connected to the bidirectional pins. It has no caches and runs at roughly clock speed divided by 32, with registers x3 and x4 hardcoded for cheap access to RAM and peripherals, and no support for ebreak or interrupts. The eight inputs and eight outputs are general-purpose GPIO, and the outputs can also drive a 7-segment display; the UART runs at clock speed divided by 128 with simple status bits and no FIFOs. Silicon testing by the author confirmed the design works, and programs can be built with the nanoV-sdk and tested against an SPI RAM or an RP2040-based emulator.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7674,
+  "completion_tokens": 1351,
+  "total_tokens": 9025,
+  "cost": 0.0039234,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039234,
+   "upstream_inference_prompt_cost": 0.0023022,
+   "upstream_inference_completions_cost": 0.0016212
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039234,
+ "elapsed_s": 11.5
+}

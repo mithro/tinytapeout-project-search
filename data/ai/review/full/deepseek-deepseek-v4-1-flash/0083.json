@@ -1,0 +1,229 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b88388c1a87d",
+  "9694b6ba2e4b",
+  "5a6ebb29f4e4",
+  "284df6620da3",
+  "4f4bae2f2bd9",
+  "fcbcf9c19161"
+ ],
+ "results": [
+  {
+   "key": "b88388c1a87d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pll",
+     "reason": "The design is only a VCO core intended for a future PLL; no PLL is implemented."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "MCML is a logic style, not evidence of discrete-transistor construction; no such claim in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed pll and transistor-level tags that the thin source does not support.",
+   "tags_before": [
+    "analog",
+    "vco",
+    "pll",
+    "transistor-level",
+    "oscillator",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "analog",
+    "vco",
+    "oscillator",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is an analog MCML VCO core intended for a future PLL. The documentation consists only of placeholder text, providing no details on how the circuit works or how to test it. No external hardware is listed, and the design is marked as analog with two analog pins. Because the documentation is essentially empty, little can be said about its operation or verification.",
+   "summary": "This project is an analog MCML VCO core intended for a future PLL. The documentation consists only of placeholder text, providing no details on how the circuit works or how to test it. No external hardware is listed, and the design is marked as analog with two analog pins. Because the documentation is essentially empty, little can be said about its operation or verification.",
+   "summary_changed": false
+  },
+  {
+   "key": "9694b6ba2e4b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The facts mark documentation as present; the placeholder text is a template, not a missing-doc case."
+    }
+   ],
+   "add": [],
+   "notes": "Removed insufficient-doc since documentation is marked present, though it is only a template.",
+   "tags_before": [
+    "cpu",
+    "retro",
+    "education",
+    "memory",
+    "fsm",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "cpu",
+    "retro",
+    "education",
+    "memory",
+    "fsm"
+   ],
+   "summary_before": "This project implements a CPU that executes the Little Man Computer instruction set architecture. It interfaces with an external RAM module for program and data storage. The documentation is essentially a template with placeholder text, providing no details on how the CPU works, how to test it, or what external hardware is required. As a result, the design's capabilities and limitations cannot be assessed from the available information.",
+   "summary": "This project implements a CPU that executes the Little Man Computer instruction set architecture. It interfaces with an external RAM module for program and data storage. The documentation is essentially a template with placeholder text, providing no details on how the CPU works, how to test it, or what external hardware is required. As a result, the design's capabilities and limitations cannot be assessed from the available information.",
+   "summary_changed": false
+  },
+  {
+   "key": "5a6ebb29f4e4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The source describes an analog SAR-ADC with digital outputs but does not claim a combined analog/digital design."
+    },
+    {
+     "tag": "comparator",
+     "reason": "A comparator is implied by SAR operation but is not stated in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed mixed-signal and comparator tags not supported by the sparse source.",
+   "tags_before": [
+    "sar-adc",
+    "adc",
+    "analog",
+    "mixed-signal",
+    "comparator"
+   ],
+   "tags": [
+    "sar-adc",
+    "adc",
+    "analog"
+   ],
+   "summary_before": "This 1x2 analog project is an 8-bit successive-approximation-register ADC with differential analog inputs vinp and vinn and an end-of-conversion flag. The eight digital outputs present the conversion result, and the documentation states only that an analog input is converted to an 8-bit digital value. No external hardware is listed beyond the placeholder text, and no test procedure, timing information, or reference details are given. The description is essentially a title and one line, so little can be said about its implementation or characterization.",
+   "summary": "This 1x2 analog project is an 8-bit successive-approximation-register ADC with differential analog inputs vinp and vinn and an end-of-conversion flag. The eight digital outputs present the conversion result, and the documentation states only that an analog input is converted to an 8-bit digital value. No external hardware is listed beyond the placeholder text, and no test procedure, timing information, or reference details are given. The description is essentially a title and one line, so little can be said about its implementation or characterization.",
+   "summary_changed": false
+  },
+  {
+   "key": "284df6620da3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "combinational",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "combinational",
+    "education",
+    "wokwi"
+   ],
+   "summary_before": "This design uses NOT and AND gates to display the letter J on a 7-segment display when the code 6531 is entered. It is tested by entering that code and observing the display. External hardware requires a single-digit 7-segment display. The project is a simple educational exercise.",
+   "summary": "This design uses NOT and AND gates to display the letter J on a 7-segment display when the code 6531 is entered. It is tested by entering that code and observing the display. External hardware requires a single-digit 7-segment display. The project is a simple educational exercise.",
+   "summary_changed": false
+  },
+  {
+   "key": "4f4bae2f2bd9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asic",
+     "reason": "asic is a generic implementation tag not specifically supported; the design is a demo project, not described as an ASIC implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rotary-encoder",
+     "reason": "The design takes three digital encoder inputs and debounces them."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state working, checked by the author on all three channels."
+    }
+   ],
+   "notes": "Removed generic asic tag; added rotary-encoder and silicon-tested based on pins and test report.",
+   "tags_before": [
+    "pwm",
+    "led",
+    "debouncer",
+    "asic"
+   ],
+   "tags": [
+    "pwm",
+    "led",
+    "debouncer",
+    "rotary-encoder",
+    "silicon-tested"
+   ],
+   "summary_before": "The RGB Mixer demo takes inputs from three digital encoders, debounces them, and produces three PWM outputs whose duty cycles correspond to the encoder values. It is intended to be tested by twisting each encoder and observing the brightness of LEDs connected to the PWM outputs. For debugging, setting the debug port to 0, 1, or 2 outputs the internal encoder value on the bidirectional pins. The design requires three external digital encoders and was reported working by the author, who checked all three channels.",
+   "summary": "The RGB Mixer demo takes inputs from three digital encoders, debounces them, and produces three PWM outputs whose duty cycles correspond to the encoder values. It is intended to be tested by twisting each encoder and observing the brightness of LEDs connected to the PWM outputs. For debugging, setting the debug port to 0, 1, or 2 outputs the internal encoder value on the bidirectional pins. The design requires three external digital encoders and was reported working by the author, who checked all three channels.",
+   "summary_changed": false
+  },
+  {
+   "key": "fcbcf9c19161",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described; the design uses a FIFO buffer."
+    }
+   ],
+   "add": [],
+   "notes": "Removed shift-register tag; the source describes FIFO buffering, not a shift register.",
+   "tags_before": [
+    "fifo",
+    "error-correction",
+    "communication",
+    "fsm",
+    "verilog",
+    "cocotb",
+    "shift-register"
+   ],
+   "tags": [
+    "fifo",
+    "error-correction",
+    "communication",
+    "fsm",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This design is an error-correcting FIFO buffer that uses SECDED error correction and ARQ retransmission to provide reliable data transmission. It buffers 4-bit data and supports normal, corrupted, and retransmission modes through error mode selection, generating ACK and NACK signals for handshaking. The design is verified using Cocotb testbenches that cover normal transmission, error injection, retransmission, and sequential reads. It runs at a very low clock of 10 Hz and is notable for integrating lightweight error correction into a small FIFO buffer.",
+   "summary": "This design is an error-correcting FIFO buffer that uses SECDED error correction and ARQ retransmission to provide reliable data transmission. It buffers 4-bit data and supports normal, corrupted, and retransmission modes through error mode selection, generating ACK and NACK signals for handshaking. The design is verified using Cocotb testbenches that cover normal transmission, error injection, retransmission, and sequential reads. It runs at a very low clock of 10 Hz and is notable for integrating lightweight error correction into a small FIFO buffer.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5748,
+  "completion_tokens": 1303,
+  "total_tokens": 7051,
+  "cost": 0.003288,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003288,
+   "upstream_inference_prompt_cost": 0.0017244,
+   "upstream_inference_completions_cost": 0.0015636
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003288,
+ "elapsed_s": 10.8
+}

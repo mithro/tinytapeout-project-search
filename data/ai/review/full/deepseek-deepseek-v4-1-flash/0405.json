@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5b9470658354",
+  "d6e2130575ae",
+  "01a07aa2ac61",
+  "9ddbb7acf808",
+  "4cd90743c3d7",
+  "55427fd3636e"
+ ],
+ "results": [
+  {
+   "key": "5b9470658354",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ring-counter",
+    "counter",
+    "shift-register",
+    "wokwi",
+    "education",
+    "gpio"
+   ],
+   "tags": [
+    "ring-counter",
+    "counter",
+    "shift-register",
+    "wokwi",
+    "education",
+    "gpio"
+   ],
+   "summary_before": "This project implements an 8-bit ring counter that shifts data to the right and rotates it around. Each input pin can set a bit high, and the clock shifts the register while the reset clears it. The documentation explains how to test it with switches, LEDs, and a push-button, and lists the required external hardware. It is a clear educational example of a ring counter.",
+   "summary": "This project implements an 8-bit ring counter that shifts data to the right and rotates it around. Each input pin can set a bit high, and the clock shifts the register while the reset clears it. The documentation explains how to test it with switches, LEDs, and a push-button, and lists the required external hardware. It is a clear educational example of a ring counter.",
+   "summary_changed": false
+  },
+  {
+   "key": "d6e2130575ae",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "The design measures clock skew between two clocks but does not implement clock domain crossing synchronizers."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "The suite is explicitly for measuring process, voltage, and temperature variations."
+    },
+    {
+     "tag": "time-to-digital-converter",
+     "reason": "The documentation states clock skew is determined using a time digitizer."
+    }
+   ],
+   "notes": "Removed clock-domain-crossing (no synchronizer evidence) and added characterization and time-to-digital-converter tags supported by the text.",
+   "tags_before": [
+    "ring-oscillator",
+    "process-experiment",
+    "flip-flop",
+    "delay-line",
+    "counter",
+    "clock-domain-crossing"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "process-experiment",
+    "flip-flop",
+    "delay-line",
+    "counter",
+    "characterization",
+    "time-to-digital-converter"
+   ],
+   "summary_before": "PVTMonitorSuite is a fully digital, modular suite for measuring gate delays, flip-flop timings, and clock skew under varying process, voltage, and temperature conditions. It uses ring oscillators and flip-flop-based measurement circuits to quantify timing characteristics, with high-speed counters converting delays into digital values. External equipment including a frequency measurement device, a precise 50 MHz signal source, and a target clock generator are required. The design avoids GF180MCU standard cells and passes all Tiny Tapeout checks.",
+   "summary": "PVTMonitorSuite is a fully digital, modular suite for measuring gate delays, flip-flop timings, and clock skew under varying process, voltage, and temperature conditions. It uses ring oscillators and flip-flop-based measurement circuits to quantify timing characteristics, with high-speed counters converting delays into digital values. External equipment including a frequency measurement device, a precise 50 MHz signal source, and a target clock generator are required. The design avoids GF180MCU standard cells and passes all Tiny Tapeout checks.",
+   "summary_changed": false
+  },
+  {
+   "key": "01a07aa2ac61",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "The UART is only mentioned in the one-line description; the very thin documentation provides no interface evidence."
+    },
+    {
+     "tag": "timer",
+     "reason": "The timer is only mentioned in the one-line description; the very thin documentation provides no interface evidence."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "The design recreates the classic 6502 CPU."
+    }
+   ],
+   "notes": "Removed uart and timer tags because the very thin documentation does not substantiate those interfaces; added retro for the classic 6502 CPU.",
+   "tags_before": [
+    "cpu",
+    "microcontroller",
+    "uart",
+    "timer",
+    "gpio",
+    "systemverilog"
+   ],
+   "tags": [
+    "cpu",
+    "microcontroller",
+    "gpio",
+    "systemverilog",
+    "retro"
+   ],
+   "summary_before": "This SystemVerilog design is a complete 6502 CPU with a bus multiplexer, GPIO, timer, and UART, occupying a 2x2 tile area. The multiplexed address/data bus is exposed on the bidirectional pins, while control signals such as RDY, NMI, IRQ, and SO are on the inputs, and PHI1, PHI2, R/W, and SYNC are on the outputs. GPIO pins are split between unidirectional inputs and outputs. The design is notable for integrating a classic 8-bit CPU core with peripherals on a Tiny Tapeout chip, though the documentation does not describe the UART or timer registers in detail.",
+   "summary": "This SystemVerilog design is a complete 6502 CPU with a bus multiplexer, GPIO, timer, and UART, occupying a 2x2 tile area. The multiplexed address/data bus is exposed on the bidirectional pins, while control signals such as RDY, NMI, IRQ, and SO are on the inputs, and PHI1, PHI2, R/W, and SYNC are on the outputs. GPIO pins are split between unidirectional inputs and outputs. The design is notable for integrating a classic 8-bit CPU core with peripherals on a Tiny Tapeout chip, though the documentation does not describe the UART or timer registers in detail.",
+   "summary_changed": false
+  },
+  {
+   "key": "9ddbb7acf808",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ring-oscillator",
+    "pll",
+    "spi",
+    "register-file",
+    "characterization",
+    "lfsr",
+    "systemverilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "pll",
+    "spi",
+    "register-file",
+    "characterization",
+    "lfsr",
+    "systemverilog"
+   ],
+   "summary_before": "This is a test, calibration, and design exploration design for the Wedgetail project, part of a PhD thesis. It contains a configurable array of ring oscillators, a digital phase-locked loop, and an SPI register file generated with SystemRDL, with the intent of verifying these components on real silicon. No external hardware is required, and the design also explores a logo-stamping workflow. The documentation is fairly detailed about the components but does not report silicon results.",
+   "summary": "This is a test, calibration, and design exploration design for the Wedgetail project, part of a PhD thesis. It contains a configurable array of ring oscillators, a digital phase-locked loop, and an SPI register file generated with SystemRDL, with the intent of verifying these components on real silicon. No external hardware is required, and the design also explores a logo-stamping workflow. The documentation is fairly detailed about the components but does not report silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "4cd90743c3d7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-divider",
+    "silicon-art",
+    "analog",
+    "transistor-level"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-divider",
+    "silicon-art",
+    "analog",
+    "transistor-level"
+   ],
+   "summary_before": "This design is a ring oscillator built from a chain of 21 SkullFET inverters, producing a square wave output with an expected frequency of about 150.5 MHz. It provides divided outputs at 75.3 MHz, 37.6 MHz, and 18.8 MHz. The circuit is intended to be tested by connecting an oscilloscope to one of the output pins. The design is notable for its use of SkullFET transistors and its stylish theme.",
+   "summary": "This design is a ring oscillator built from a chain of 21 SkullFET inverters, producing a square wave output with an expected frequency of about 150.5 MHz. It provides divided outputs at 75.3 MHz, 37.6 MHz, and 18.8 MHz. The circuit is intended to be tested by connecting an oscilloscope to one of the output pins. The design is notable for its use of SkullFET transistors and its stylish theme.",
+   "summary_changed": false
+  },
+  {
+   "key": "55427fd3636e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "puzzle",
+    "game",
+    "7-segment",
+    "display",
+    "led",
+    "wokwi"
+   ],
+   "tags": [
+    "puzzle",
+    "game",
+    "7-segment",
+    "display",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This is a puzzle game in which each of seven input switches toggles a corresponding segment of a 7-segment display together with its neighbouring segments, and the goal is to reach states showing all digits from 0 to 9. The inputs and outputs share the same segment labels TM, TR, BR, BM, BL, TL and MM, with the decimal point unused. It requires an external 7-segment LED display and seven microswitches wired to inputs i0 through i6 and outputs o0 through o6. The design is a compact Wokwi-based logic puzzle with clear wiring instructions but no discussion of solution strategy or internal implementation.",
+   "summary": "This is a puzzle game in which each of seven input switches toggles a corresponding segment of a 7-segment display together with its neighbouring segments, and the goal is to reach states showing all digits from 0 to 9. The inputs and outputs share the same segment labels TM, TR, BR, BM, BL, TL and MM, with the decimal point unused. It requires an external 7-segment LED display and seven microswitches wired to inputs i0 through i6 and outputs o0 through o6. The design is a compact Wokwi-based logic puzzle with clear wiring instructions but no discussion of solution strategy or internal implementation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6504,
+  "completion_tokens": 1237,
+  "total_tokens": 7741,
+  "cost": 0.0042945,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042945,
+   "upstream_inference_prompt_cost": 0.002439,
+   "upstream_inference_completions_cost": 0.0018555
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042945,
+ "elapsed_s": 4.4
+}

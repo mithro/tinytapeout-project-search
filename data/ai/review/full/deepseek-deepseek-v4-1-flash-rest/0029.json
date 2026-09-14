@@ -1,0 +1,408 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b1088173a722",
+  "0281089f59ab",
+  "e084652aa7ea",
+  "a3fa5da685d4",
+  "d18f32b10dbc",
+  "08dbc7093425"
+ ],
+ "results": [
+  {
+   "key": "b1088173a722",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The source does not clearly establish purely combinational logic; documentation is gibberish."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the project is a Wokwi simulation."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is gibberish and the design is a first tapeout attempt with unclear function."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is too sparse to describe the design."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Pin names reference NAND gates (Nand1, ONand1)."
+    }
+   ],
+   "notes": "Removed unsupported education/combinational tags and added incomplete/insufficient-doc/logic-gate based on the source.",
+   "tags_before": [
+    "education",
+    "wokwi",
+    "combinational"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc",
+    "logic-gate"
+   ],
+   "summary_before": "This project appears to be a first tapeout attempt with a NAND gate and other unspecified logic. The design's purpose and operation cannot be determined from the provided information. Currently AND gate is on input a and b and produced output 0. External hardware is not specified.",
+   "summary": "This project appears to be a first tapeout attempt with a NAND gate and other unspecified logic. The design's purpose and operation cannot be determined from the provided information. The documentation is gibberish and does not explain how the design works or how to test it. External hardware is not specified.",
+   "summary_changed": true
+  },
+  {
+   "key": "0281089f59ab",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adc",
+     "reason": "No ADC is described; the project is a full subtractor."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "No sigma-delta modulator or converter is described."
+    },
+    {
+     "tag": "fir-filter",
+     "reason": "No FIR filter is described."
+    },
+    {
+     "tag": "fpga",
+     "reason": "No FPGA target or port is mentioned."
+    },
+    {
+     "tag": "analog",
+     "reason": "No analog circuitry is described."
+    },
+    {
+     "tag": "characterization",
+     "reason": "No process or device characterization is described."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the project is a Wokwi simulation."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "The project is explicitly a full subtractor."
+    },
+    {
+     "tag": "combinational",
+     "reason": "A full subtractor is purely combinational logic."
+    },
+    {
+     "tag": "led",
+     "reason": "External hardware lists LEDs."
+    }
+   ],
+   "notes": "Replaced hallucinated ADC/sigma-delta/FIR/FPGA tags with subtractor, combinational, wokwi, and led.",
+   "tags_before": [
+    "adc",
+    "sigma-delta",
+    "fir-filter",
+    "fpga",
+    "analog",
+    "characterization",
+    "sensor-interface"
+   ],
+   "tags": [
+    "wokwi",
+    "subtractor",
+    "combinational",
+    "led"
+   ],
+   "summary_before": "This project is an analog-to-digital converter (ADC) using sigma-delta modulation. It includes a FIR filter for signal processing and is implemented on an FPGA. The design is intended for sensor interface applications and includes analog circuitry. It is a mixed-signal design that converts analog signals to digital.",
+   "summary": "This project is a full subtractor implemented in Wokwi. It takes three input values and produces two outputs: the result and the borrow. The design is purely combinational logic. External hardware consists of LEDs for observing the outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "e084652aa7ea",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "The source mentions a VGA board but no VGA interface pins or timing details are documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game-of-life",
+     "reason": "The project is explicitly a Game of Life implementation."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "The title and description explicitly call it a demoscene."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The design renders the Game of Life as visual output."
+    },
+    {
+     "tag": "video",
+     "reason": "The output is intended to be shown on a VGA board, a video signal."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed vga tag because no VGA interface is documented; added verilog and confirmed game-of-life/demoscene/graphics/video.",
+   "tags_before": [
+    "game-of-life",
+    "vga",
+    "video",
+    "demoscene",
+    "graphics"
+   ],
+   "tags": [
+    "game-of-life",
+    "video",
+    "demoscene",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "This project is a demoscene implementation of Conway's Game of Life intended to display on a VGA board. The documentation states only that it shows the Game of Life on the VGA board, with no details on resolution, timing, or control interface. The design uses a VGA PMOD that provides the VGA connector and resistor-ladder DAC. The output is a video signal that can be observed on a VGA monitor.",
+   "summary": "This project is a demoscene implementation of Conway's Game of Life intended to display on a VGA board. The documentation states only that it shows the Game of Life on the VGA board, with no details on resolution, timing, or control interface. The design is written in Verilog. The output is a video signal that can be observed on a VGA monitor.",
+   "summary_changed": true
+  },
+  {
+   "key": "a3fa5da685d4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The project is an LFSR, not a basic logic gate implementation."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "No DIP switch input is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "The project is explicitly an 8-bit LFSR."
+    },
+    {
+     "tag": "prng",
+     "reason": "The one-line description calls it a pseudo random number generator."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the project is a Wokwi simulation."
+    },
+    {
+     "tag": "led",
+     "reason": "External hardware lists LEDs connected to the outputs."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "An LFSR is a shift register with feedback."
+    }
+   ],
+   "notes": "Replaced incorrect logic-gate/education/dip-switch tags with lfsr, prng, wokwi, led, and shift-register.",
+   "tags_before": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "led",
+    "dip-switch"
+   ],
+   "tags": [
+    "wokwi",
+    "led",
+    "lfsr",
+    "prng",
+    "shift-register"
+   ],
+   "summary_before": "This Wokwi project is a simple logic gate demonstration using LEDs and switches. It is designed for educational purposes to show basic digital logic. The project includes a Wokwi implementation with LED outputs. It is a minimal example of combinational logic.",
+   "summary": "This Wokwi project is a simple 8-bit LFSR, also described as an 8-bit pseudo random number generator. The design outputs a pseudo random 8-bit number on the eight output pins, about once per second. The eight output pins can be connected to LEDs. It is a minimal shift-register-based design.",
+   "summary_changed": true
+  },
+  {
+   "key": "d18f32b10dbc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No seven-segment display is mentioned in the source."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Verilog, not Wokwi."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate implementation is described."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Generic pins alone do not establish a GPIO interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "The project is titled ToDo, described as 'Nothing yet', and says it does not work."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The documentation explicitly states the design is unfinished and should not be used."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is too sparse to describe the design."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed hallucinated display/wokwi/logic-gate tags and added placeholder/incomplete/insufficient-doc/verilog.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "logic-gate",
+    "education",
+    "gpio"
+   ],
+   "tags": [
+    "placeholder",
+    "incomplete",
+    "insufficient-doc",
+    "verilog"
+   ],
+   "summary_before": "This project is titled 'Tiny Tapeout Chip' and has eight inputs and eight outputs with generic names. The documentation is minimal: the one-line description is empty, the how-it-works section says 'Don't know', and the how-to-test section says 'For decoration'. The external hardware listed is a seven-segment display, but the exact behavior is unclear. The design likely drives a seven-segment display based on logic gate outputs, but the documentation is too sparse to confirm.",
+   "summary": "This project is titled 'ToDo' and has eight inputs and three outputs with generic names. The documentation is minimal: the one-line description says 'Nothing yet', the how-it-works section says 'It does not. Do not use this under any conditions.', and the how-to-test section says 'Please don't test anything. You will be disappointed.' The design is written in Verilog and is clearly unfinished. No external hardware is specified.",
+   "summary_changed": true
+  },
+  {
+   "key": "08dbc7093425",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described; the design compares an input code."
+    },
+    {
+     "tag": "led",
+     "reason": "The output is a 7-segment display, not discrete LEDs."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generator is described."
+    },
+    {
+     "tag": "template",
+     "reason": "The project is a specific secret-code design, not a boilerplate template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and the project is a Wokwi simulation."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "External hardware lists a 7-segment display for outputs."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "External hardware lists a DIP switch for inputs."
+    },
+    {
+     "tag": "education",
+     "reason": "The project follows the TinyTapeout workshop secret-code exercise."
+    },
+    {
+     "tag": "workshop",
+     "reason": "The project is explicitly part of a TinyTapeout workshop."
+    },
+    {
+     "tag": "comparator",
+     "reason": "The design compares the input code against a fixed value."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The design registers the output based on input comparison."
+    }
+   ],
+   "notes": "Replaced hallucinated shift-register/led/clock-generator/template tags with wokwi, 7-segment, dip-switch, education, workshop, comparator, and sequential-logic.",
+   "tags_before": [
+    "wokwi",
+    "shift-register",
+    "led",
+    "7-segment",
+    "clock-generator",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "wokwi",
+    "7-segment",
+    "education",
+    "dip-switch",
+    "workshop",
+    "comparator",
+    "sequential-logic"
+   ],
+   "summary_before": "This Wokwi project implements a shift register with LED and 7-segment display outputs, controlled by a clock generator. The design requires external hardware including a clock source, a button, and a 7-segment LED display. The documentation is minimal, describing only the basic function and test procedure. The design is a simple sequential logic demonstration.",
+   "summary": "This Wokwi project implements the 'secret code' exercise from the TinyTapeout workshop. If the correct code 10101010 is set on IN0 through IN7, the design outputs 10001100 on OUT0 through OUT7 to display the letter 'r' on a 7-segment display. Any other input outputs 00000000. External hardware includes a DIP switch for inputs and a 7-segment display for outputs.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "d18f32b10dbc: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 5439,
+  "completion_tokens": 2243,
+  "total_tokens": 7682,
+  "cost": 0.0043233,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043233,
+   "upstream_inference_prompt_cost": 0.0016317,
+   "upstream_inference_completions_cost": 0.0026916
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043233,
+ "elapsed_s": 97.8
+}

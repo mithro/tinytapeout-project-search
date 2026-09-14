@@ -1,0 +1,260 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "175fe23b799d",
+  "fc720da4c784",
+  "dd8a75a2a30a",
+  "9b70a992be12",
+  "5ebaccfcc931",
+  "565f45d496aa"
+ ],
+ "results": [
+  {
+   "key": "175fe23b799d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Source does not state any teaching or learning intent; it is just a K-map implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Full-adder is a basic combinational logic building block."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added logic-gate for the full-adder.",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "logic-gate"
+   ],
+   "summary_before": "This project implements a full-adder directly from Karnaugh maps for both the sum and carry-out outputs, taking inputs A, B, and C-IN. It behaves as a standard full-adder and requires no external hardware. The design is a straightforward combinational circuit intended to demonstrate a K-map-based implementation. The documentation is short but sufficient to understand the function.",
+   "summary": "This project implements a full-adder directly from Karnaugh maps for both the sum and carry-out outputs, taking inputs A, B, and C-IN. It behaves as a standard full-adder and requires no external hardware. The design is a straightforward combinational circuit built from K-map-derived logic. The documentation is short but sufficient to understand the function.",
+   "summary_changed": true
+  },
+  {
+   "key": "fc720da4c784",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "Memory is provided by external QSPI flash/PSRAM, not an on-chip memory block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states the design was tested and working."
+    },
+    {
+     "tag": "qspi",
+     "reason": "Uses QSPI for flash and PSRAM access, matching the QSPI pinout."
+    },
+    {
+     "tag": "lcd",
+     "reason": "SPI controller is intended to drive an ST7789 LCD display."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Designed to pair with RP2040 demo board scripts and hardware UART."
+    }
+   ],
+   "notes": "Removed memory (external RAM) and added silicon-tested, qspi, lcd, rp2040 supported by the source.",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "qspi",
+    "uart",
+    "spi",
+    "microcontroller",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "qspi",
+    "uart",
+    "spi",
+    "microcontroller",
+    "verilog",
+    "silicon-tested",
+    "lcd",
+    "rp2040"
+   ],
+   "summary_before": "TinyQV is a small RISC-V SoC implementing the RV32EC instruction set with Zcb and Zicond extensions, using QSPI flash for program storage and QSPI PSRAM for data memory. It includes a UART and an SPI controller intended for driving an ST7789 LCD, and is designed to work with a QSPI Pmod containing flash and RAM. Testing requires loading an image into flash and following a specific reset and clocking sequence, with MicroPython scripts on the RP2040 handling the setup. Silicon tests confirmed it runs CoreMark and MicroPython at 64 MHz with latency 1 or 2, and up to 100 MHz with latency 2.",
+   "summary": "TinyQV is a small RISC-V SoC implementing the RV32EC instruction set with Zcb and Zicond extensions, using QSPI flash for program storage and QSPI PSRAM for data memory. It includes a UART and an SPI controller intended for driving an ST7789 LCD, and is designed to work with a QSPI Pmod containing flash and RAM. Testing requires loading an image into flash and following a specific reset and clocking sequence, with MicroPython scripts on the RP2040 handling the setup. Silicon tests confirmed it runs CoreMark and MicroPython at 64 MHz with latency 1 or 2, and up to 100 MHz with latency 2.",
+   "summary_changed": false
+  },
+  {
+   "key": "dd8a75a2a30a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rom",
+     "reason": "The EEPROM is external I2C hardware, not an on-chip ROM block."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "The design drives multiplexer control signals but is not itself a multiplexer circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rp2040",
+     "reason": "Intended for the TT demo board's RP2040-driven project selection flow."
+    }
+   ],
+   "notes": "Removed rom and multiplexer tags that misdescribe the design; added rp2040 for the demo-board context.",
+   "tags_before": [
+    "i2c",
+    "uart",
+    "rom",
+    "multiplexer",
+    "verilog"
+   ],
+   "tags": [
+    "i2c",
+    "uart",
+    "verilog",
+    "rp2040"
+   ],
+   "summary_before": "This prototype reads a 16-bit design ID from an I2C EEPROM and uses it to select the corresponding Tiny Tapeout project by driving control signals for the multiplexer. It also prints the read value over UART at 115200 baud for debugging. It requires an external 1 kbit or 2 kbit I2C EEPROM such as a 24C01 or 24C02 with 10k pull-up resistors on SCL and SDA. The design is intended for automatic project selection in Tiny Tapeout and is documented with specific expected behavior for the control outputs.",
+   "summary": "This prototype reads a 16-bit design ID from an I2C EEPROM and uses it to select the corresponding Tiny Tapeout project by driving control signals for the multiplexer. It also prints the read value over UART at 115200 baud for debugging. It requires an external 1 kbit or 2 kbit I2C EEPROM such as a 24C01 or 24C02 with 10k pull-up resistors on SCL and SDA. The design is intended for automatic project selection in Tiny Tapeout and is documented with specific expected behavior for the control outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "9b70a992be12",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A standalone multiplier is not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "structural",
+     "reason": "Documentation explicitly describes a structural array multiplier built from partial products and full adders."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Multiplier is purely combinational logic."
+    }
+   ],
+   "notes": "Removed alu and added structural and combinational tags supported by the description.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "adder",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "education",
+    "verilog",
+    "structural",
+    "combinational"
+   ],
+   "summary_before": "This is a 4x4 structural array multiplier that multiplies two 4-bit numbers (m and q) to produce an 8-bit product p. It uses partial products and full adders in a ripple-carry addition scheme. The project is described as an educational exercise from ECE2204, and testing is done through a testbench with various input combinations. No external hardware is mentioned, and the documentation is relatively detailed including a block diagram.",
+   "summary": "This is a 4x4 structural array multiplier that multiplies two 4-bit numbers (m and q) to produce an 8-bit product p. It uses partial products and full adders in a ripple-carry addition scheme. The project is described as an educational exercise from ECE2204, and testing is done through a testbench with various input combinations. No external hardware is mentioned, and the documentation is relatively detailed including a block diagram.",
+   "summary_changed": false
+  },
+  {
+   "key": "5ebaccfcc931",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A standalone multiplier is not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported alu tag; rest of the entry is accurate.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "This project implements a 4-bit unsigned multiplier using an array multiplier architecture in Verilog. It takes two 4-bit inputs and produces an 8-bit product through partial product generation, shifting, and summation. The design is purely combinational and fits in a 1x1 tile. It was tested with a testbench covering various input pairs, and no external hardware is required.",
+   "summary": "This project implements a 4-bit unsigned multiplier using an array multiplier architecture in Verilog. It takes two 4-bit inputs and produces an 8-bit product through partial product generation, shifting, and summation. The design is purely combinational and fits in a 1x1 tile. It was tested with a testbench covering various input pairs, and no external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "565f45d496aa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A standalone multiplier is not an arithmetic logic unit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported alu tag; rest of the entry is accurate.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "This project is a 4-bit unsigned multiplier implemented in Verilog, accepting two 4-bit inputs and producing an 8-bit product. It uses an array multiplier architecture with partial products and summation. The design is combinational and fits in a 1x1 tile. Testing involves applying several input pairs and checking the output against expected products.",
+   "summary": "This project is a 4-bit unsigned multiplier implemented in Verilog, accepting two 4-bit inputs and producing an 8-bit product. It uses an array multiplier architecture with partial products and summation. The design is combinational and fits in a 1x1 tile. Testing involves applying several input pairs and checking the output against expected products.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7346,
+  "completion_tokens": 1235,
+  "total_tokens": 8581,
+  "cost": 0.002339778,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002339778,
+   "upstream_inference_prompt_cost": 0.001080078,
+   "upstream_inference_completions_cost": 0.0012597
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002339778,
+ "elapsed_s": 27.0
+}

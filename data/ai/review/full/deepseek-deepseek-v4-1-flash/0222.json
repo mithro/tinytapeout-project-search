@@ -1,0 +1,245 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8b66204606b7",
+  "1d1b5335725b",
+  "d1935aa74097",
+  "f80722606a1b",
+  "42402e56aff8",
+  "b8d80ef46eda"
+ ],
+ "results": [
+  {
+   "key": "8b66204606b7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a floating-point unit, not an integer arithmetic logic unit; the source describes an FPU datapath, not an ALU."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "The source explicitly mentions an FPGA as one possible host for operating the FPU."
+    },
+    {
+     "tag": "divider",
+     "reason": "The source states divide and sqrt share an iterative variable-latency unit, supporting the divider tag."
+    }
+   ],
+   "notes": "Removed alu (integer ALU, not FPU) and added fpga and divider based on explicit source statements.",
+   "tags_before": [
+    "floating-point",
+    "alu",
+    "divider",
+    "pipeline",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "floating-point",
+    "divider",
+    "pipeline",
+    "cocotb",
+    "verilog",
+    "fpga"
+   ],
+   "summary_before": "This project is an 8-bit floating-point unit in FP8 E4M3 format, implementing 18 operations including add, subtract, multiply, divide, square root, comparisons, and integer conversions, with support for five IEEE rounding modes. The core is a pipelined, elastic datapath with variable-latency divide and sqrt, and it uses a byte-stream interface with independent valid/ready handshakes to multiplex the wide internal datapath onto the limited Tiny Tapeout pins. The design has been exhaustively verified against a reference model for all 1,843,968 input combinations at both RTL and gate level. No external hardware is required; any host that can drive the handshake pins and data bus can operate the FPU.",
+   "summary": "This project is an 8-bit floating-point unit in FP8 E4M3 format, implementing 18 operations including add, subtract, multiply, divide, square root, comparisons, and integer conversions, with support for five IEEE rounding modes. The core is a pipelined, elastic datapath with variable-latency divide and sqrt, and it uses a byte-stream interface with independent valid/ready handshakes to multiplex the wide internal datapath onto the limited Tiny Tapeout pins. The design has been exhaustively verified against a reference model for all 1,843,968 input combinations at both RTL and gate level. No external hardware is required; any host that can drive the handshake pins and data bus can operate the FPU.",
+   "summary_changed": false
+  },
+  {
+   "key": "1d1b5335725b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fixed-point",
+     "reason": "The design uses signed int8 operands and an integer accumulator, not fixed-point arithmetic."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "The source explicitly describes a single multiply-accumulate unit."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "The source frames the MAC as a building block of neural network accelerators and TPU systolic arrays."
+    },
+    {
+     "tag": "dsp",
+     "reason": "The MAC computes dot products, a core DSP operation."
+    }
+   ],
+   "notes": "Removed fixed-point (integer int8 MAC) and added mac-unit, neural-network, dsp which are directly supported.",
+   "tags_before": [
+    "mac-unit",
+    "fixed-point",
+    "dsp",
+    "neural-network",
+    "verilog"
+   ],
+   "tags": [
+    "mac-unit",
+    "dsp",
+    "neural-network",
+    "verilog"
+   ],
+   "summary_before": "This project is a single int8 multiply-accumulate unit that computes the dot product of two signed 8-bit vectors by time-multiplexing operands onto an 8-bit input port. It uses a two-state FSM to alternately capture an operand and then multiply-accumulate, and reads out a 24-bit accumulator over two clock cycles by using both the dedicated and bidirectional output pins. The design is a fundamental building block for neural network accelerators, and its operation is verified by feeding component pairs and reading the accumulated result, with overlapping output windows providing error checking. No external hardware is required, though a host must drive the inputs and read the outputs according to the phase timing.",
+   "summary": "This project is a single int8 multiply-accumulate unit that computes the dot product of two signed 8-bit vectors by time-multiplexing operands onto an 8-bit input port. It uses a two-state FSM to alternately capture an operand and then multiply-accumulate, and reads out a 24-bit accumulator over two clock cycles by using both the dedicated and bidirectional output pins. The design is a fundamental building block for neural network accelerators, and its operation is verified by feeding component pairs and reading the accumulated result, with overlapping output windows providing error checking. No external hardware is required, though a host must drive the inputs and read the outputs according to the phase timing.",
+   "summary_changed": false
+  },
+  {
+   "key": "d1935aa74097",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "perceptron",
+     "reason": "The design is a Hamming-distance prototype classifier, not a perceptron classifier."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "The source describes an HDC classifier, a machine learning inference design."
+    }
+   ],
+   "notes": "Removed perceptron (not a perceptron) and added machine-learning which is clearly supported.",
+   "tags_before": [
+    "machine-learning",
+    "perceptron",
+    "verilog"
+   ],
+   "tags": [
+    "machine-learning",
+    "verilog"
+   ],
+   "summary_before": "The HDC Classifier is an 8-bit hyperdimensional computing classifier that compares an input vector against two class prototypes and selects the class with the smaller Hamming distance. Input data arrives on the eight input pins, while mode, class selection, valid and start controls are driven on the bidirectional pins and the six-bit distance, winner and done signals appear on the outputs. The workflow is to reset, present data and control signals, assert start, then read the winner and distance once done is high. No external hardware is required beyond the standard clock and reset, and the documentation is brief but sufficient for the interface.",
+   "summary": "The HDC Classifier is an 8-bit hyperdimensional computing classifier that compares an input vector against two class prototypes and selects the class with the smaller Hamming distance. Input data arrives on the eight input pins, while mode, class selection, valid and start controls are driven on the bidirectional pins and the six-bit distance, winner and done signals appear on the outputs. The workflow is to reset, present data and control signals, assert start, then read the winner and distance once done is high. No external hardware is required beyond the standard clock and reset, and the documentation is brief but sufficient for the interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "f80722606a1b",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "image-processing",
+     "reason": "The design performs streaming pixel-based face detection, an image processing task."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The source mentions a cocotb testbench as a way to feed pixels."
+    }
+   ],
+   "notes": "Added image-processing and cocotb, both directly supported by the source.",
+   "tags_before": [
+    "image-processing",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "image-processing",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This design performs streaming pixel-based face detection by classifying skin tone and counting dark pixels in eye, nose, and mouth zones. Pixels are input serially one channel at a time, along with channel select, pixel valid, frame done, and zone metadata. At the end of a frame, it evaluates conditions and outputs detection flags. Testing requires a MATLAB preprocessing script to convert images into a pixel stream, and the design is intended to be driven by a microcontroller or cocotb testbench.",
+   "summary": "This design performs streaming pixel-based face detection by classifying skin tone and counting dark pixels in eye, nose, and mouth zones. Pixels are input serially one channel at a time, along with channel select, pixel valid, frame done, and zone metadata. At the end of a frame, it evaluates conditions and outputs detection flags. Testing requires a MATLAB preprocessing script to convert images into a pixel stream, and the design is intended to be driven by a microcontroller or cocotb testbench.",
+   "summary_changed": false
+  },
+  {
+   "key": "42402e56aff8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "full-custom"
+   ],
+   "tags": [
+    "opamp",
+    "analog",
+    "full-custom"
+   ],
+   "summary_before": "This is a fully-differential Class-AB folded-cascode operational amplifier implemented in SKY130A. It achieves 100.3 dB open-loop gain, 9.34 MHz GBW, and 0.71 mW power consumption, with an on-chip bias generator requiring only two external bias voltages. The amplifier is tested in a closed-loop configuration with external resistors and a differential signal source. Notable limitations include non-rail-to-rail output and reduced phase margin at low temperatures.",
+   "summary": "This is a fully-differential Class-AB folded-cascode operational amplifier implemented in SKY130A. It achieves 100.3 dB open-loop gain, 9.34 MHz GBW, and 0.71 mW power consumption, with an on-chip bias generator requiring only two external bias voltages. The amplifier is tested in a closed-loop configuration with external resistors and a differential signal source. Notable limitations include non-rail-to-rail output and reduced phase margin at low temperatures.",
+   "summary_changed": false
+  },
+  {
+   "key": "b8d80ef46eda",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design is a single adaptive pixel register, not a multi-register file."
+    },
+    {
+     "tag": "edge-detector",
+     "reason": "Edge activity is one of several awareness conditions, but the design is not an edge detector circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "low-power",
+     "reason": "The source explicitly states the design is for low-power image and video processing and aims to reduce dynamic power."
+    },
+    {
+     "tag": "image-processing",
+     "reason": "The design targets image and video processing applications."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The source states the design can be tested with a Cocotb test."
+    }
+   ],
+   "notes": "Removed register-file and edge-detector (not supported) and added low-power, image-processing, cocotb.",
+   "tags_before": [
+    "image-processing",
+    "low-power",
+    "register-file",
+    "edge-detector",
+    "verilog",
+    "cocotb"
+   ],
+   "tags": [
+    "image-processing",
+    "low-power",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "VITAL-AP is an adaptive 8-bit pixel register designed for low-power image and video processing, deciding whether to update or hold its value based on pixel value, transition magnitude, temporal behavior, edge activity, and motion activity. It aims to reduce switching activity and dynamic power by suppressing unnecessary updates, with controls for sensitivity, prediction enable, force update, and various awareness modes. The design can be tested with provided Verilog and Cocotb testbenches covering static, small, and large transitions, sequences, and force-update. It is a research-oriented project, but no silicon results are reported.",
+   "summary": "VITAL-AP is an adaptive 8-bit pixel register designed for low-power image and video processing, deciding whether to update or hold its value based on pixel value, transition magnitude, temporal behavior, edge activity, and motion activity. It aims to reduce switching activity and dynamic power by suppressing unnecessary updates, with controls for sensitivity, prediction enable, force update, and various awareness modes. The design can be tested with provided Verilog and Cocotb testbenches covering static, small, and large transitions, sequences, and force-update. It is a research-oriented project, but no silicon results are reported.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10089,
+  "completion_tokens": 1454,
+  "total_tokens": 11543,
+  "cost": 0.003262623,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003262623,
+   "upstream_inference_prompt_cost": 0.001779543,
+   "upstream_inference_completions_cost": 0.00148308
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003262623,
+ "elapsed_s": 39.4
+}

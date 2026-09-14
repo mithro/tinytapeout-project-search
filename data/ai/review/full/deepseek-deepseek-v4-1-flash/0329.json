@@ -1,0 +1,222 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3322fccea8e2",
+  "caf6df42b939",
+  "d63d7dd917cf",
+  "34282bb584a4",
+  "91aa71f89e40",
+  "b65fc677509a"
+ ],
+ "results": [
+  {
+   "key": "3322fccea8e2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "It is a single 8-bit configuration register, not a multi-register storage block."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design is purely digital; analog/mixed-signal is only mentioned as a future use case."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "No analog circuitry is present; the design is digital-only."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "Already present and supported by the SCLK/MOSI/CSN pins and description."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Already present and supported by the shift-register implementation."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present and supported by the language."
+    }
+   ],
+   "notes": "Removed analog/mixed-signal and register-file tags; the design is a single digital SPI shift register, not an analog or multi-register block.",
+   "tags_before": [
+    "spi",
+    "shift-register",
+    "register-file",
+    "analog",
+    "mixed-signal",
+    "verilog"
+   ],
+   "tags": [
+    "spi",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This design implements an 8-bit unidirectional SPI configuration register intended for external configuration of future analog/mixed-signal designs. It consists of a shift register and an output latch, shifting in data MSB-first on MOSI when chip select is low, and updating the parallel output when chip select goes high. An active-high asynchronous clear resets the register to a default value of 0xAA. The design is tested by writing to the register via SPI and observing the parallel output pins.",
+   "summary": "This design implements an 8-bit unidirectional SPI configuration register intended for external configuration of future analog/mixed-signal designs. It consists of a shift register and an output latch, shifting in data MSB-first on MOSI when chip select is low, and updating the parallel output when chip select goes high. An active-high asynchronous clear resets the register to a default value of 0xAA. The design is tested by writing to the register via SPI and observing the parallel output pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "caf6df42b939",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "frequency-counter",
+    "counter",
+    "spi",
+    "register-file",
+    "instrumentation"
+   ],
+   "tags": [
+    "frequency-counter",
+    "counter",
+    "spi",
+    "register-file",
+    "instrumentation"
+   ],
+   "summary_before": "This design is a two-channel reciprocal frequency counter that measures two asynchronous digital oscillator signals against the 7.2 MHz system clock. Each channel synchronizes its input, counts reference-clock cycles over a programmed number of input cycles, and stores the result in a COUNT register with a measurement counter, all configured through an SPI register interface. Channels are armed by writing a non-zero GATE_CYCLES value and include timeout and overflow detection with sticky status bits. The cocotb testbench covers reset, SPI readback, single and simultaneous channel operation, disabling, timeout and overflow behavior, and the documentation recommends exercising the SPI path on an FPGA before final submission.",
+   "summary": "This design is a two-channel reciprocal frequency counter that measures two asynchronous digital oscillator signals against the 7.2 MHz system clock. Each channel synchronizes its input, counts reference-clock cycles over a programmed number of input cycles, and stores the result in a COUNT register with a measurement counter, all configured through an SPI register interface. Channels are armed by writing a non-zero GATE_CYCLES value and include timeout and overflow detection with sticky status bits. The cocotb testbench covers reset, SPI readback, single and simultaneous channel operation, disabling, timeout and overflow behavior, and the documentation recommends exercising the SPI path on an FPGA before final submission.",
+   "summary_changed": false
+  },
+  {
+   "key": "d63d7dd917cf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "The project language is Analog, not Verilog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "Combines a digital SERDES core with full-custom analog TX driver and RX slicer."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Not applicable; no silicon test reports are present, so this tag should not be added."
+    }
+   ],
+   "notes": "Removed verilog tag (language is Analog) and added mixed-signal; no silicon test reports so silicon-tested is not added.",
+   "tags_before": [
+    "communication",
+    "bist",
+    "analog",
+    "driver",
+    "lfsr",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "bist",
+    "analog",
+    "driver",
+    "lfsr",
+    "mixed-signal",
+    "silicon-tested"
+   ],
+   "summary_before": "This design implements a UCIe-style SERDES with an 8b/10b encoder/decoder, PRBS BIST, and a 3x-oversampling CDR. It includes a custom analog TX driver and RX slicer for full analog loopback, as well as a digital loopback mode. The link self-trains and can recover from disconnection. It requires a 66.5 MHz clock and minimal external hardware for analog loopback (a resistor and jumper wire).",
+   "summary": "This design implements a UCIe-style SERDES with an 8b/10b encoder/decoder, PRBS BIST, and a 3x-oversampling CDR. It includes a custom analog TX driver and RX slicer for full analog loopback, as well as a digital loopback mode. The link self-trains and can recover from disconnection. It requires a 66.5 MHz clock and minimal external hardware for analog loopback (a resistor and jumper wire).",
+   "summary_changed": false
+  },
+  {
+   "key": "34282bb584a4",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game-of-life",
+    "cellular-automaton",
+    "game",
+    "display",
+    "led-matrix",
+    "max7219"
+   ],
+   "tags": [
+    "game-of-life",
+    "cellular-automaton",
+    "game",
+    "display",
+    "led-matrix",
+    "max7219"
+   ],
+   "summary_before": "This project is a silicon implementation of Conway's Game of Life on an 8x32 grid, with optional output to a MAX7219 LED dot matrix. It supports both manual mode, where the grid is loaded row by row, and a demo mode that cycles through pre-defined patterns. The game advances one generation per clock cycle when enabled, or every 0.4 seconds in demo mode with a 10 MHz clock. Silicon testing showed it works well with the LED matrix, though a delay before animation starts was noted, and one tester reported issues with demo patterns progressing.",
+   "summary": "This project is a silicon implementation of Conway's Game of Life on an 8x32 grid, with optional output to a MAX7219 LED dot matrix. It supports both manual mode, where the grid is loaded row by row, and a demo mode that cycles through pre-defined patterns. The game advances one generation per clock cycle when enabled, or every 0.4 seconds in demo mode with a 10 MHz clock. Silicon testing showed it works well with the LED matrix, though a delay before animation starts was noted, and one tester reported issues with demo patterns progressing.",
+   "summary_changed": false
+  },
+  {
+   "key": "91aa71f89e40",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "robotics",
+    "sensor-interface",
+    "motor-control",
+    "comparator"
+   ],
+   "tags": [
+    "robotics",
+    "sensor-interface",
+    "motor-control",
+    "comparator"
+   ],
+   "summary_before": "This Verilog design takes two sensor inputs and a reset, and outputs two signals intended for motors or buzzers. It compares each sensor value against a threshold and, if only one side is active, sends a signal to the opposite motor; if both are active, it sends a signal to both motors. Testing involves driving the sensor pins with 0 or 1 and reading the outputs; a reset pin clears all outputs. External hardware includes ultrasonic sensors, a microcontroller, and haptic motors.",
+   "summary": "This Verilog design takes two sensor inputs and a reset, and outputs two signals intended for motors or buzzers. It compares each sensor value against a threshold and, if only one side is active, sends a signal to the opposite motor; if both are active, it sends a signal to both motors. Testing involves driving the sensor pins with 0 or 1 and reading the outputs; a reset pin clears all outputs. External hardware includes ultrasonic sensors, a microcontroller, and haptic motors.",
+   "summary_changed": false
+  },
+  {
+   "key": "b65fc677509a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "sensor-interface",
+    "led",
+    "education"
+   ],
+   "tags": [
+    "sensor-interface",
+    "led",
+    "education"
+   ],
+   "summary_before": "This project implements a fuzzy logic system that estimates a risk value based on rainfall and soil moisture inputs. It uses triangular membership functions to evaluate inputs as low, medium, or high, and applies three fuzzy rules to compute a weighted average risk output. The design requires external hardware: eight switches for sensor inputs, one switch for sensor selection, and an 8-bit LED display for the risk output. Testing involves feeding different sensor data and verifying the expected risk levels (high, low, medium).",
+   "summary": "This project implements a fuzzy logic system that estimates a risk value based on rainfall and soil moisture inputs. It uses triangular membership functions to evaluate inputs as low, medium, or high, and applies three fuzzy rules to compute a weighted average risk output. The design requires external hardware: eight switches for sensor inputs, one switch for sensor selection, and an 8-bit LED display for the risk output. Testing involves feeding different sensor data and verifying the expected risk levels (high, low, medium).",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8283,
+  "completion_tokens": 1296,
+  "total_tokens": 9579,
+  "cost": 0.005050125,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.005050125,
+   "upstream_inference_prompt_cost": 0.003106125,
+   "upstream_inference_completions_cost": 0.001944
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.005050125,
+ "elapsed_s": 5.4
+}

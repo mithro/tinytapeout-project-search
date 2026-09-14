@@ -1,0 +1,216 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1598350bdea2",
+  "ac73a89a21af",
+  "f912427fdf49",
+  "1d8a12dc5dad",
+  "cfcc2a2a5103",
+  "fa0445f1064b"
+ ],
+ "results": [
+  {
+   "key": "1598350bdea2",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "signal-generator",
+    "waveform-generator",
+    "level-shifter",
+    "analog",
+    "verilog"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "signal-generator",
+    "waveform-generator",
+    "level-shifter",
+    "analog",
+    "verilog"
+   ],
+   "summary_before": "This design is an 8-bit R-2R ladder digital-to-analog converter that can be driven either by external digital inputs or by an internal digitally generated sine waveform generator. It provides a 3.3 V analog output on a single analog pin, achieved through level-shifting drivers. The converter is tested by measuring the output voltage on the analog pin with a multimeter. The documentation is short but describes the core function and testing method clearly.",
+   "summary": "This design is an 8-bit R-2R ladder digital-to-analog converter that can be driven either by external digital inputs or by an internal digitally generated sine waveform generator. It provides a 3.3 V analog output on a single analog pin, achieved through level-shifting drivers. The converter is tested by measuring the output voltage on the analog pin with a multimeter. The documentation is short but describes the core function and testing method clearly.",
+   "summary_changed": false
+  },
+  {
+   "key": "ac73a89a21af",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "waveform-generator",
+    "dac",
+    "spi",
+    "r2r-dac",
+    "clock-divider",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "waveform-generator",
+    "dac",
+    "spi",
+    "r2r-dac",
+    "clock-divider",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This project is a streaming arbitrary waveform generator that outputs 8-bit digital samples on eight output pins, which must be connected to an external R-2R ladder or similar DAC to produce an analog waveform. Waveform data is loaded via SPI into a shift register and then transferred to an active register when the load signal is asserted, allowing data to be changed while streaming. The output frequency is derived from the clock with optional dividers of 2x, 4x, 16x, and 256x, which can be stacked for up to 32768x division. Testing requires an external microcontroller to provide SPI data and a DAC circuit to convert the digital outputs to analog.",
+   "summary": "This project is a streaming arbitrary waveform generator that outputs 8-bit digital samples on eight output pins, which must be connected to an external R-2R ladder or similar DAC to produce an analog waveform. Waveform data is loaded via SPI into a shift register and then transferred to an active register when the load signal is asserted, allowing data to be changed while streaming. The output frequency is derived from the clock with optional dividers of 2x, 4x, 16x, and 256x, which can be stacked for up to 32768x division. Testing requires an external microcontroller to provide SPI data and a DAC circuit to convert the digital outputs to analog.",
+   "summary_changed": false
+  },
+  {
+   "key": "f912427fdf49",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The design is a reaction-time measurement instrument, not an interactive game."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'game' tag because the source describes a reaction-time measurement instrument, not a game.",
+   "tags_before": [
+    "vga",
+    "instrumentation",
+    "lfsr",
+    "button",
+    "display",
+    "game"
+   ],
+   "tags": [
+    "vga",
+    "instrumentation",
+    "lfsr",
+    "button",
+    "display"
+   ],
+   "summary_before": "This design measures human reaction time with microsecond precision using a VGA monitor and a single button. It displays a green screen after a random delay, and the user must press the button as quickly as possible; pressing too early results in a red screen. The design requires a Tiny VGA PMOD and a pulled-up button connected to ui[0]. It is an ASIC adaptation of the r0 project, optimized for area, and includes an LFSR debug block that appears as noise when idle.",
+   "summary": "This design measures human reaction time with microsecond precision using a VGA monitor and a single button. It displays a green screen after a random delay, and the user must press the button as quickly as possible; pressing too early results in a red screen. The design requires a Tiny VGA PMOD and a pulled-up button connected to ui[0]. It is an ASIC adaptation of the r0 project, optimized for area, and includes an LFSR debug block that appears as noise when idle.",
+   "summary_changed": false
+  },
+  {
+   "key": "1d8a12dc5dad",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "modulator",
+    "signal-generator",
+    "communication",
+    "dsp",
+    "radio"
+   ],
+   "tags": [
+    "uart",
+    "modulator",
+    "signal-generator",
+    "communication",
+    "dsp",
+    "radio"
+   ],
+   "summary_before": "This design accepts a byte from a UART input and produces a chirp waveform as an 8-bit parallel output, using LoRa-style modulation with a bandwidth of 125 kHz and spreading factor 8. It requires a UART transmitter, a 10 MHz clock source, and a digital signal analyzer for testing. The chirp is output on uo[7:0], and a done signal is available on uio[0]. The design is intended for generating chirp signals for communication or testing purposes.",
+   "summary": "This design accepts a byte from a UART input and produces a chirp waveform as an 8-bit parallel output, using LoRa-style modulation with a bandwidth of 125 kHz and spreading factor 8. It requires a UART transmitter, a 10 MHz clock source, and a digital signal analyzer for testing. The chirp is output on uo[7:0], and a done signal is available on uio[0]. The design is intended for generating chirp signals for communication or testing purposes.",
+   "summary_changed": false
+  },
+  {
+   "key": "cfcc2a2a5103",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "The documented design is a pulse-width encoder producing a one-shot pulse of programmable width, not a PWM duty-cycle modulator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sequential-logic",
+     "reason": "The pulse generation is clock-driven and fully synchronous sequential logic."
+    }
+   ],
+   "notes": "Removed incorrect 'pwm' tag; the design is a one-shot programmable-width pulse encoder, not a duty-cycle PWM generator.",
+   "tags_before": [
+    "pwm",
+    "timer",
+    "counter",
+    "signal-generator",
+    "encoder",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "timer",
+    "counter",
+    "signal-generator",
+    "encoder",
+    "fsm",
+    "verilog",
+    "sequential-logic"
+   ],
+   "summary_before": "A pulse width encoder that generates a digital pulse of programmable width based on a 4-bit input and control signals. An FSM coordinates the pulse generation across idle, counting, and done states. The design is fully synchronous and includes a testbench for simulation. It has no mandatory external hardware and can be used in larger digital systems.",
+   "summary": "A pulse width encoder that generates a digital pulse of programmable width based on a 4-bit input and control signals. An FSM coordinates the pulse generation across idle, counting, and done states. The design is fully synchronous and includes a testbench for simulation. It has no mandatory external hardware and can be used in larger digital systems.",
+   "summary_changed": false
+  },
+  {
+   "key": "fa0445f1064b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spi",
+    "ws2812",
+    "led",
+    "driver",
+    "vhdl",
+    "communication"
+   ],
+   "tags": [
+    "spi",
+    "ws2812",
+    "led",
+    "driver",
+    "vhdl",
+    "communication"
+   ],
+   "summary_before": "This VHDL design translates an SPI stream into eight parallel WS2811 LED strip output channels. A microcontroller drives CS and COPI at roughly 14 MHz, sending interleaved RGB bytes for the eight strips followed by eight null bytes to keep the clock and chip select active. Each of the eight output pins then emits a WS2811 frame for its strip, and the design is flexible about SPI timing. An IceStick was used for testing, and the documentation gives a clear frame format example.",
+   "summary": "This VHDL design translates an SPI stream into eight parallel WS2811 LED strip output channels. A microcontroller drives CS and COPI at roughly 14 MHz, sending interleaved RGB bytes for the eight strips followed by eight null bytes to keep the clock and chip select active. Each of the eight output pins then emits a WS2811 frame for its strip, and the design is flexible about SPI timing. An IceStick was used for testing, and the documentation gives a clear frame format example.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6888,
+  "completion_tokens": 1083,
+  "total_tokens": 7971,
+  "cost": 0.003366,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003366,
+   "upstream_inference_prompt_cost": 0.0020664,
+   "upstream_inference_completions_cost": 0.0012996
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003366,
+ "elapsed_s": 4.9
+}

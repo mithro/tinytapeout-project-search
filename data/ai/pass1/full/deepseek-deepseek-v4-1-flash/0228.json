@@ -1,0 +1,187 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "64ff133d7ee8",
+  "6f8d2c02b279",
+  "2d5748323f0d",
+  "e7ff11771646",
+  "3923b0149c72",
+  "5b1f8520258f",
+  "dc466a5ef530",
+  "c831921ec3b0",
+  "7b5a78cb460b",
+  "a8582d6fc534"
+ ],
+ "results": [
+  {
+   "key": "64ff133d7ee8",
+   "tags": [
+    "counter",
+    "7-segment",
+    "wokwi",
+    "clock",
+    "led",
+    "education"
+   ],
+   "summary": "This design is an 8-bit counter intended to behave like a TI CD4022B decade counter with eight outputs. It is driven by an external clock signal and an enable input, although the documentation notes that the enable does not actually work and the counter is always enabled. Testing requires a microcontroller such as an Arduino or ESP32 to generate the clock, and the outputs can drive the segments of a 7-segment LED display. The project is a first chip made in Wokwi and is documented only briefly, with the known enable bug being the main limitation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6f8d2c02b279",
+   "tags": [
+    "multiplier",
+    "shift-register",
+    "wokwi",
+    "arithmetic",
+    "serial",
+    "parallel"
+   ],
+   "summary": "This design is an 8x8-bit multiplier that shifts two bytes in serially, MSB first, and presents the result as parallel data on the output pins. It is tested by supplying a clock and data signal to shift in the two operands, with the documentation giving a worked example of 53 times 77 equalling 4081. As of the documentation date only the least significant byte of the result appears on the outputs, and the author plans to add an output buffer and shift register. The project is a Wokwi-based arithmetic block with a clear but currently limited output interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2d5748323f0d",
+   "tags": [
+    "logic-gates",
+    "clock-divider",
+    "dip-switch",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "summary": "This design exposes basic logic functions including AND, NAND and OR, plus divided clock outputs at divide-by-16 and divide-by-12. The documentation claims that a coded DIP switch sequence should display an 'A.' on a connected 8-segment display, but the description is unclear and the title still says TBD. Testing requires connecting DIP switches to the input pins and an 8-segment LED cell to the outputs, along with a 5V supply. The documentation is thin and partly garbled, so the exact intended behaviour is difficult to confirm.",
+   "confidence": "low",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e7ff11771646",
+   "tags": [
+    "counter",
+    "led",
+    "clock",
+    "flip-flop",
+    "wokwi",
+    "binary"
+   ],
+   "summary": "This design is an 8-bit binary counter driven by an internal 1 Hz clock and a chain of D flip-flops, with each output intended to light an LED to show the binary count. It is tested simply by powering the chip and connecting up to eight LEDs, with resistors recommended to limit current. The documentation notes that the flip-flops may power up in an unknown state because the author could not implement a reset, so the LEDs may already be lit at boot. No external hardware beyond the LEDs is required, and the project is a straightforward Wokwi counter with a known reset limitation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3923b0149c72",
+   "tags": [
+    "game",
+    "tic-tac-toe",
+    "rgb-led",
+    "button",
+    "multiplexing",
+    "wokwi"
+   ],
+   "summary": "This design implements a two-player Tic-Tac-Toe game using nine multiplexed common-cathode RGB LEDs and nine push-buttons. Pressing a button places a move in the corresponding cell, the logic evaluates the game state, and a separate RGB LED indicates the winner's colour when a winning combination is detected. Testing is done by wiring the Wokwi circuit with buttons, RGB LEDs and resistors and running the simulation at around 100 Hz or faster. The project is a complete interactive game on a single tile, with the main external requirement being the LED and button array.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5b1f8520258f",
+   "tags": [
+    "7-segment",
+    "dip-switch",
+    "puzzle",
+    "game",
+    "wokwi",
+    "pcb"
+   ],
+   "summary": "This design is a puzzle in which the user flips combinations of eight DIP switches to discover hidden numbers from 0 to 9, which are then shown on a 7-segment display. A valid combination lights the corresponding digit, while an invalid one shows nothing or lights the red decimal point, and combinations may be one to eight switches long. The documentation gives no testing procedure beyond saying there is no clue, and it expects the design to be used with the Tiny Tapeout PCB that carries the DIP switches and 7-segment display. The project is a small interactive fidget puzzle whose exact logic is intentionally undocumented.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "dc466a5ef530",
+   "tags": [
+    "led",
+    "pwm",
+    "scanner",
+    "animation",
+    "verilog",
+    "state-machine"
+   ],
+   "summary": "This design is a controller for K.I.T.T.-style scanner lights, with eight LED outputs and eight PWM outputs plus mode, speed, inversion and output-select inputs. It is used by setting the mode, speed, inversion and output-select pins, then raising the enable input to activate the LED scanning pattern and lowering it to stop. External hardware consists of eight LEDs and switches for configuration and triggering. The project is a Verilog LED animation controller with a documented pin table but only a placeholder image for the internal description.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c831921ec3b0",
+   "tags": [
+    "vga",
+    "video",
+    "screensaver",
+    "gamepad",
+    "animation",
+    "verilog",
+    "display"
+   ],
+   "summary": "This design drives a 640x480 VGA output showing a bouncing Zero to ASIC logo, with options for tiled mode and an animated colour gradient. It is tested by connecting a VGA monitor and setting the tile and solid-colour inputs, and an optional Gamepad Pmod can start, pause and steer the logo. External hardware is the Tiny VGA Pmod and optionally the Gamepad Pmod. A silicon test report confirms it works after setting the clock, making it a verified VGA animation design.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7b5a78cb460b",
+   "tags": [
+    "ble",
+    "bluetooth",
+    "baseband",
+    "receiver",
+    "demodulation",
+    "crc",
+    "systemverilog",
+    "wireless"
+   ],
+   "summary": "This design is a Bluetooth Low Energy digital baseband receiver for the SCuM single-chip micro-mote platform, taking I/Q samples and performing GFSK matched filtering, clock and data recovery, preamble detection and packet decoding with de-whitening and CRC checking. It is tested by connecting the SCuM RF front-end I/Q outputs, configuring it to receive BLE packets, and observing decoded data through the Tiny Tapeout output interface with a Digital Discovery and computer. External hardware includes the SCuM chip, a Digital Discovery for probing and a computer for serial communication and logging. The project is a large 3x4-tile SystemVerilog wireless receiver with detailed processing-stage documentation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a8582d6fc534",
+   "tags": [
+    "pal",
+    "programmable-logic",
+    "shift-register",
+    "lut",
+    "verilog",
+    "education"
+   ],
+   "summary": "This design is a simple programmable array logic device whose AND/OR matrix is configured by shifting a bitstream into an internal shift register. It is tested by clocking in a configuration bitstream from a microcontroller, then applying inputs through switches and observing the resulting boolean functions on LEDs connected to the outputs. No external hardware is strictly required, though switches and LEDs make the logic visible. The design is parametric in the Verilog sources and was originally written by Matthias Musch and included in TTGF180 by Ken, making it an educational programmable-logic block.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5124,
+  "completion_tokens": 1779,
+  "total_tokens": 6903,
+  "cost": 0.002125056,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002125056,
+   "upstream_inference_prompt_cost": 0.000950916,
+   "upstream_inference_completions_cost": 0.00117414
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002125056,
+ "elapsed_s": 21.9
+}

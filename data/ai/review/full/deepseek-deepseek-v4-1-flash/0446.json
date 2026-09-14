@@ -1,0 +1,232 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "58be190637ac",
+  "d9c70c405cbb",
+  "0bccffb6888f",
+  "7f850687eb42",
+  "d001469112c7",
+  "29ef3d63b559"
+ ],
+ "results": [
+  {
+   "key": "58be190637ac",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "No general purpose IO interface is described; pins are dedicated gate inputs and outputs."
+    },
+    {
+     "tag": "education",
+     "reason": "Source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education and gpio tags; summary trimmed to avoid claiming intent not in source.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education",
+    "gpio"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This design implements two AND gates and two NAND gates, each taking two inputs and producing one output. The documentation clearly describes the connections and includes a truth table for testing. It requires no external hardware and is intended as a simple logic gate test on the Tiny Tapeout platform. The project is straightforward and well-documented for its purpose.",
+   "summary": "This design implements two AND gates and two NAND gates, each taking two inputs and producing one output. The documentation describes the connections and includes a truth table for testing. It requires no external hardware and is presented as a simple logic gate test on the Tiny Tapeout platform. The project is straightforward and documented for its purpose.",
+   "summary_changed": true
+  },
+  {
+   "key": "d9c70c405cbb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; summary no longer asserts educational intent.",
+   "tags_before": [
+    "logic-gate",
+    "latch",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "latch",
+    "wokwi"
+   ],
+   "summary_before": "This project implements AND, NAND, and NOT gates, as well as an SR latch built from two NOR gates with feedback. The documentation provides detailed instructions for testing, including power setup, verifying basic gates, and testing the latch behavior. It is an educational design intended to demonstrate combinational and sequential logic. External hardware includes momentary pushbuttons, pull-up resistors, LEDs or a 7-segment display, and a breadboard with a regulated supply.",
+   "summary": "This project implements AND, NAND, and NOT gates, as well as an SR latch built from two NOR gates with feedback. The documentation provides detailed instructions for testing, including power setup, verifying basic gates, and testing the latch behavior. It demonstrates combinational and sequential logic. External hardware includes momentary pushbuttons, pull-up resistors, LEDs or a 7-segment display, and a breadboard with a regulated supply.",
+   "summary_changed": true
+  },
+  {
+   "key": "0bccffb6888f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; summary adjusted to avoid claiming clarity not stated.",
+   "tags_before": [
+    "logic-gate",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "combinational",
+    "wokwi"
+   ],
+   "summary_before": "This combinational design feeds four pairs of inputs through XOR gates, combines those results with two AND gates, and passes the final result through an XNOR gate to all eight outputs. The intended test is to set all inputs low, or to set one input of each pair high and the other low, and confirm the outputs are asserted in both cases. No external hardware is needed. The documentation is clear about the gate topology but does not explain a practical application.",
+   "summary": "This combinational design feeds four pairs of inputs through XOR gates, combines those results with two AND gates, and passes the final result through an XNOR gate to all eight outputs. The intended test is to set all inputs low, or to set one input of each pair high and the other low, and confirm the outputs are asserted in both cases. No external hardware is needed. The documentation describes the gate topology but does not explain a practical application.",
+   "summary_changed": true
+  },
+  {
+   "key": "7f850687eb42",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "Inverters are used as delay elements, not as a logic gate implementation."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock or timing signal generation is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed logic-gate and clock-generator tags not supported by the source.",
+   "tags_before": [
+    "delay-line",
+    "characterization",
+    "logic-gate",
+    "flip-flop",
+    "wokwi",
+    "clock-generator"
+   ],
+   "tags": [
+    "delay-line",
+    "characterization",
+    "flip-flop",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a tapped delay line using a chain of inverters and flip-flops, with eight tap outputs and a multiplexer to select which tap to observe. It is designed to measure the propagation delay between start and stop signals, serving as a characterization test for future projects. External hardware such as a signal generator and possibly an FPGA is suggested for testing. The design's main purpose is to evaluate timing characteristics, and no silicon results are provided.",
+   "summary": "This project implements a tapped delay line using a chain of inverters and flip-flops, with eight tap outputs and a multiplexer to select which tap to observe. It is intended to measure the propagation delay between start and stop signals, serving as a characterization test for future projects. External hardware such as a signal generator and possibly an FPGA is suggested for testing. The design's main purpose is to evaluate timing characteristics, and no silicon results are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "d001469112c7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design divides an input clock; it does not generate a clock or timing signal."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Outputs are square waves from a counter, not a waveform/signal generation circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "Outputs toggle at one-quarter of the input clock frequency, i.e. clock division."
+    }
+   ],
+   "notes": "Replaced unsupported clock-generator and signal-generator tags with clock-divider.",
+   "tags_before": [
+    "johnson-counter",
+    "counter",
+    "clock-generator",
+    "wokwi",
+    "signal-generator",
+    "flip-flop"
+   ],
+   "tags": [
+    "johnson-counter",
+    "counter",
+    "wokwi",
+    "flip-flop",
+    "clock-divider"
+   ],
+   "summary_before": "This design is a 4-bit Johnson counter that generates four offset square waves at one-quarter of the input clock frequency. It is built from four D flip-flops connected in a ring with the inverted output of the last stage fed back to the first. The outputs can be verified with a logic analyzer to observe the expected repeating pattern. No external hardware is required, and the design is a straightforward sequential logic example.",
+   "summary": "This design is a 4-bit Johnson counter that generates four offset square waves at one-quarter of the input clock frequency. It is built from four D flip-flops connected in a ring with the inverted output of the last stage fed back to the first. The outputs can be verified with a logic analyzer to observe the expected repeating pattern. No external hardware is required, and the design is a straightforward sequential logic example.",
+   "summary_changed": false
+  },
+  {
+   "key": "29ef3d63b559",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "The source says 3-bit binary coded decimal, but a 3-bit value 0-7 is plain binary; BCD is not actually implemented."
+    },
+    {
+     "tag": "education",
+     "reason": "Source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "decoder",
+     "reason": "Converts a 3-bit binary value into seven-segment drive signals, i.e. code-to-signal decoding."
+    }
+   ],
+   "notes": "Removed unsupported bcd and education tags; added decoder for the seven-segment conversion.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "bcd",
+    "wokwi",
+    "display",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "wokwi",
+    "display",
+    "decoder"
+   ],
+   "summary_before": "This project counts from 0 to 7 and displays the digit on a 7-segment LCD, incrementing every second. It converts a 3-bit binary-coded decimal to the seven segment outputs using truth tables, sum-of-products, Boolean simplification, and Karnaugh mapping. The design is controlled by a clock switch and a reset button to start from zero. No external hardware is needed, and it appears to be an educational exercise in combinational logic design.",
+   "summary": "This project counts from 0 to 7 and displays the digit on a 7-segment LCD, incrementing every second. It converts a 3-bit binary value to the seven segment outputs using truth tables, sum-of-products, Boolean simplification, and Karnaugh mapping. The design is controlled by a clock switch and a reset button to start from zero. No external hardware is needed, and it is an exercise in combinational logic design.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6328,
+  "completion_tokens": 1091,
+  "total_tokens": 7419,
+  "cost": 0.001933308,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001933308,
+   "upstream_inference_prompt_cost": 0.000820488,
+   "upstream_inference_completions_cost": 0.00111282
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001933308,
+ "elapsed_s": 58.8
+}

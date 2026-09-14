@@ -1,0 +1,423 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "03b5f289583f",
+  "3444ec3b9a56",
+  "370013d5c9ef",
+  "cbf1987e9229",
+  "f6d2568f52ce",
+  "69030bd11971"
+ ],
+ "results": [
+  {
+   "key": "03b5f289583f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output mentioned; pins are serial shift register control/data."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Design is a Collatz checker, not a waveform/signal generator."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics or display output described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output described."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "bit-serial",
+     "reason": "Title and description explicitly state bit-serial implementation."
+    },
+    {
+     "tag": "fsm",
+     "reason": "How it works lists a state machine coordinating the design."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Main shift register and step counter register are core components."
+    },
+    {
+     "tag": "counter",
+     "reason": "Step counter register counts iterations/orbit length."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the documented bit-serial Collatz checker.",
+   "tags_before": [
+    "vga",
+    "signal-generator",
+    "graphics",
+    "display",
+    "video"
+   ],
+   "tags": [
+    "bit-serial",
+    "fsm",
+    "shift-register",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "The design is intended to mimic moving a cursor on a screen, and no testing or silicon results are documented. It likely generates VGA signals to display a cursor on a monitor. The design uses a signal generator to produce the cursor movement pattern. External hardware would include a VGA monitor.",
+   "summary": "The design implements a Collatz conjecture checker using a bit-serial datapath to save area. It contains a main shift register storing the current number and a step counter register tracking the number of steps to reach 1. A state machine coordinates the operation of the registers and processing. No testing procedure or silicon results are documented.",
+   "summary_changed": true
+  },
+  {
+   "key": "3444ec3b9a56",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator described; design displays a logo/image via VGA."
+    },
+    {
+     "tag": "dac",
+     "reason": "No DAC mentioned; outputs are VGA color and sync signals."
+    },
+    {
+     "tag": "analog",
+     "reason": "Design is digital VGA display logic, not analog."
+    },
+    {
+     "tag": "vco",
+     "reason": "No voltage-controlled oscillator described."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "No transistor-level implementation indicated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Uses VGA interface to display logo or author image; pinout matches Tiny VGA."
+    },
+    {
+     "tag": "display",
+     "reason": "Outputs to a VGA monitor."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Displays graphical logo/author image."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "image-processing",
+     "reason": "Selects and displays stored images, though simple; supported by display of logo/author image."
+    }
+   ],
+   "notes": "Corrected tags and summary to reflect VGA image display rather than analog oscillator.",
+   "tags_before": [
+    "oscillator",
+    "dac",
+    "analog",
+    "vco",
+    "transistor-level"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "graphics",
+    "verilog",
+    "image-processing"
+   ],
+   "summary_before": "This analog design implements a voltage-controlled ring oscillator with an 8-bit DAC for frequency tuning. It uses input pins to select the image and control color, and outputs standard VGA signals. The design is notable for its trimming capability and analog implementation.",
+   "summary": "The design displays either the Automation Laboratory logo or an author image through a VGA interface. Input pins select the image and control color. It outputs standard VGA red, green, blue, horizontal sync, and vertical sync signals. The design is intended to be connected to a VGA monitor using a VGA PMOD board.",
+   "summary_changed": true
+  },
+  {
+   "key": "370013d5c9ef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output; design is an SPI bridge."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics output."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output."
+    },
+    {
+     "tag": "game",
+     "reason": "No game functionality."
+    },
+    {
+     "tag": "retro",
+     "reason": "No retro computing/gaming style described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "Implements custom SPI module for RHD2164 and MCU communication."
+    },
+    {
+     "tag": "biomedical",
+     "reason": "Interfaces with RHD2164 neural amplifier chips."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Register bank accessible via scanchain/shift register."
+    },
+    {
+     "tag": "communication",
+     "reason": "SPI bridge for data communication."
+    }
+   ],
+   "notes": "Corrected tags and summary to match SPI bridge and neural amplifier interface.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "game",
+    "retro"
+   ],
+   "tags": [
+    "spi",
+    "biomedical",
+    "verilog",
+    "shift-register",
+    "communication"
+   ],
+   "summary_before": "This design is a game that outputs video via VGA, with graphics and display capabilities. It is written in Verilog and targets the Tiny Tapeout ASIC shuttle. The design requires a VGA monitor and possibly input devices such as buttons or a gamepad. It is notable for its retro-style graphics and gameplay.",
+   "summary": "This design implements a custom SPI module to interface with RHD2164 neural amplifier chips and transfer selected channel data to an MCU via SPI. It also includes a register bank accessible either by SPI or a scanchain/shift register. The design can be tested with an FPGA using RHD2164 and MCU-SPI emulators, or connected directly to an RHD2164 chip and MCU. No silicon test results are documented.",
+   "summary_changed": true
+  },
+  {
+   "key": "cbf1987e9229",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "No game functionality described."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA interface; output is UART/RS232."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics output."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No FSM explicitly described; design is oscillator with AXI4-Lite and UART."
+    }
+   ],
+   "add": [
+    {
+     "tag": "oscillator",
+     "reason": "Title and description state digital oscillator."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Generates a 500 Hz waveform output."
+    },
+    {
+     "tag": "uart",
+     "reason": "Outputs waveform via UART at 115200 bps."
+    },
+    {
+     "tag": "axi",
+     "reason": "Internal communication between oscillator and TX115 uses AXI4-Lite."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "rs232",
+     "reason": "Output pin TX_232 indicates RS232 serial output."
+    }
+   ],
+   "notes": "Corrected tags and summary to match digital oscillator with UART/AXI4-Lite.",
+   "tags_before": [
+    "game",
+    "vga",
+    "graphics",
+    "display",
+    "fsm"
+   ],
+   "tags": [
+    "oscillator",
+    "signal-generator",
+    "uart",
+    "axi",
+    "verilog",
+    "rs232"
+   ],
+   "summary_before": "This design is a dragon-themed tamagotchi game rendered live to a VGA monitor. The player feeds, waters, sleeps, and plays with a virtual dragon, with mechanics based on variety of actions and a treasure chest gamble. It outputs VGA signals and game state on bidirectional pins, and requires a TinyVGA PMOD, a VGA monitor (rotated 90 degrees), and eight push buttons. The design is notable for its extensive cocotb test suite and visual sprite testing.",
+   "summary": "The design is a simple digital oscillator that outputs a 500 Hz waveform via UART at 115200 bps 8n1. It has an asynchronous reset and synchronous assertion. Internal communication between the oscillator and the TX115 transmitter is done via AXI4-Lite. The output can be sent to a PC via UART, and no external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "f6d2568f52ce",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "No adder mentioned; design is a Wokwi platform test."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "No subtractor mentioned."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No register file described."
+    },
+    {
+     "tag": "alu",
+     "reason": "No ALU described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi and title/description state Wokwi test."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "Design is only a test for Wokwi platform with no substantive function."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not describe actual logic."
+    },
+    {
+     "tag": "template",
+     "reason": "Acts as a boilerplate/test submission for Wokwi."
+    }
+   ],
+   "notes": "Corrected tags and summary to reflect placeholder Wokwi test design.",
+   "tags_before": [
+    "adder",
+    "subtractor",
+    "register-file",
+    "alu",
+    "wokwi"
+   ],
+   "tags": [
+    "wokwi",
+    "placeholder",
+    "insufficient-doc",
+    "template"
+   ],
+   "summary_before": "This project implements a full adder and full subtractor with two 4-bit registers, selecting the operation and destination register via control inputs. Data is entered in binary on four input pins, the register is chosen with one input, and add or subtract is chosen with another.",
+   "summary": "This project is a test design for the Wokwi platform. It provides eight inputs and eight outputs but does not describe any specific logic function. The documentation states it is only a test for Wokwi. No external hardware or silicon test results are documented.",
+   "summary_changed": true
+  },
+  {
+   "key": "69030bd11971",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "No cryptographic function mentioned."
+    },
+    {
+     "tag": "automotive",
+     "reason": "No automotive application mentioned."
+    },
+    {
+     "tag": "security",
+     "reason": "No security focus mentioned."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "Documentation is boilerplate with no actual design description."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not describe functionality."
+    },
+    {
+     "tag": "template",
+     "reason": "Appears to be a starter/boilerplate project with generic pin names."
+    }
+   ],
+   "notes": "Corrected tags and summary to reflect placeholder/insufficient documentation.",
+   "tags_before": [
+    "crypto",
+    "automotive",
+    "security",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "placeholder",
+    "insufficient-doc",
+    "template"
+   ],
+   "summary_before": "This design is a hardware IP block that performs low-latency ECDSA verification for V2X communication. The documentation states the purpose and timing goal but does not describe the internal datapath, curve parameters, or how the signature data is actually loaded and processed. The design is intended for automotive V2X security applications. The documentation does not provide silicon test results.",
+   "summary": "This project is a placeholder Verilog design with generic input, output, and bidirectional pins. The documentation does not describe any actual functionality beyond boilerplate text. No external hardware is specified. No silicon test results are documented.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5676,
+  "completion_tokens": 2335,
+  "total_tokens": 8011,
+  "cost": 0.02092365,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.02092365,
+   "upstream_inference_prompt_cost": 0.0093654,
+   "upstream_inference_completions_cost": 0.01155825
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.02092365,
+ "elapsed_s": 15.7
+}

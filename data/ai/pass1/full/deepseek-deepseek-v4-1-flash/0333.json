@@ -1,0 +1,192 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9694b6ba2e4b",
+  "3f087c09be91",
+  "4105178d42e6",
+  "d89ae77dac79",
+  "410e4538b130",
+  "f85d40941c7e",
+  "1b3f866ddd4c",
+  "a90ab41cc7e0",
+  "5d785f7ff982",
+  "2a6f4a238042"
+ ],
+ "results": [
+  {
+   "key": "9694b6ba2e4b",
+   "tags": [
+    "cpu",
+    "little-man-computer",
+    "isa",
+    "ram",
+    "education",
+    "state-machine"
+   ],
+   "summary": "This project implements a CPU that executes the Little Man Computer instruction set architecture. It interfaces with an external RAM module for program and data storage. The documentation is essentially a template with placeholder text, providing no details on how the CPU works, how to test it, or what external hardware is required. As a result, the design's capabilities and limitations cannot be assessed from the available information.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "3f087c09be91",
+   "tags": [
+    "processor",
+    "uart",
+    "alu",
+    "register-file",
+    "fifo",
+    "clock-domain-crossing",
+    "serial"
+   ],
+   "summary": "TinyProcessor is a 4-command UART-controlled processor that supports read, write, ALU operation, and ALU no-operand commands. It integrates a UART receiver and transmitter, a system controller, a register file, an ALU, and an asynchronous FIFO across two clock domains. The design is tested via a provided testbench, and it requires no external hardware beyond a UART connection. Notable features include parity and framing error outputs and the use of an asynchronous FIFO for clock domain crossing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4105178d42e6",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "rv32e",
+    "spi",
+    "ram",
+    "gpio",
+    "7-segment",
+    "bit-serial",
+    "bare-metal"
+   ],
+   "summary": "NanoV is a compact bit-serial RV32E RISC-V processor that executes base integer instructions over multiple clock cycles to reduce area. It uses external SPI RAM for instructions and data, and provides eight GPIO inputs and eight GPIO outputs that can also drive a seven-segment display. The design is tested with a self-checking program that exercises ALU operations, branches, jumps, memory access, and GPIO, writing success or failure codes to the output. Notable limitations include the absence of multiply, UART, traps, interrupts, and caches, making it a bare-metal processor rather than a full SoC.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d89ae77dac79",
+   "tags": [
+    "fft",
+    "dsp",
+    "adaptive-precision",
+    "butterfly",
+    "multiplier",
+    "fsm",
+    "error-budget",
+    "time-multiplexed"
+   ],
+   "summary": "This project implements an adaptive-precision radix-2 FFT butterfly processing element that selects between 4-bit, 6-bit, and 8-bit precision based on a programmable error budget. It accepts two complex 8-bit inputs sequentially over an 8-bit interface and outputs the four result bytes sequentially. The design uses a time-multiplexed multiplier and a finite-state machine to control input capture, precision selection, multiplication, and output sequencing. It is verified through RTL simulation with directed tests covering precision selection, error budgets, and status signals, and requires no external hardware for the butterfly itself.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "410e4538b130",
+   "tags": [
+    "ecc",
+    "memory",
+    "hamming",
+    "secded",
+    "parity",
+    "error-correction",
+    "runtime-reconfigurable"
+   ],
+   "summary": "This design is a runtime-reconfigurable memory that supports four error-control modes: off, parity, Hamming, and SECDED. It provides 8-bit data storage across 8 addresses, with mode selection via input pins and error status outputs. The memory encodes data on write and decodes on read, correcting single-bit errors in Hamming and SECDED modes and detecting double-bit errors in SECDED mode. It is tested using the standard Tiny Tapeout digital interface and requires no external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f85d40941c7e",
+   "tags": [
+    "counter",
+    "up-down-counter",
+    "synchronous",
+    "education",
+    "first-tapeout",
+    "wokwi"
+   ],
+   "summary": "This is a synchronous 4-bit up/down counter with enable and direction controls. The count value is output on four pins, and the counter wraps at both ends. It is tested with a cocotb testbench covering reset, count up, hold, count down, underflow wraparound, and a second reset. The design was built as a first Tiny Tapeout submission, intentionally kept simple to maximize the odds of a clean first tapeout, and requires no external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1b3f866ddd4c",
+   "tags": [
+    "ecc",
+    "register-file",
+    "spi",
+    "secded",
+    "error-injection",
+    "housekeeping-spi"
+   ],
+   "summary": "This project is an ECC-protected 32-bit register bank with four registers, controlled over a housekeeping SPI interface. Each 32-bit word is stored with 7 SEC-DED checkbits, allowing single-bit error correction and double-bit error detection on read. Error-injection masks enable flipping bits in stored data or checkbits to verify the ECC logic. The design is tested by sending SPI writes and reads, and it requires only a standard SPI controller connected to the pins.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a90ab41cc7e0",
+   "tags": [
+    "floating-point",
+    "fma",
+    "bfloat16",
+    "pipeline",
+    "serial",
+    "arithmetic"
+   ],
+   "summary": "This project implements a single-rounded bfloat16 fused multiply-add (FMA) unit with a byte-serial I/O interface. It uses a six-stage pipeline to reduce the critical path delay, which is particularly useful because the limited I/O requires three clock cycles to load each set of operands. The design handles special values such as zero, infinity, and NaN, and rounds results using round-to-nearest, ties-to-even. It is intended for integration into larger systems and requires no external hardware beyond the Tiny Tapeout interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5d785f7ff982",
+   "tags": [
+    "analog",
+    "ring-oscillator",
+    "dac",
+    "current-steering",
+    "sky130",
+    "transistor-level",
+    "oscillator"
+   ],
+   "summary": "This project contains custom analog experiments in a 1x1 Tiny Tapeout tile, including a current-steering DAC and a 21-stage ring oscillator. The DAC acts as a current sink for the ring oscillator, allowing variable oscillation from about 8.7 MHz to 26 MHz. The design is tested by setting bias levels, sweeping DAC input codes, and measuring the oscillator output, ideally with an oscilloscope. It is notable for using custom layout in a standard digital tile and is based on a prior DAC submission.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2a6f4a238042",
+   "tags": [
+    "neural-network",
+    "snn",
+    "lif-neuron",
+    "spiking",
+    "accelerator",
+    "cocotb"
+   ],
+   "summary": "This project implements a two-neuron leaky integrate-and-fire spiking neural network accelerator on a single tile. It uses an 8-bit input bus for data and control signals to load inputs, write and read weights, perform neuron steps, and select the output neuron. The membrane potential and spike output are provided on the output pins. The design is functionally verified with a cocotb testbench and requires no external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6852,
+  "completion_tokens": 1858,
+  "total_tokens": 8710,
+  "cost": 0.0042852,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042852,
+   "upstream_inference_prompt_cost": 0.0020556,
+   "upstream_inference_completions_cost": 0.0022296
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042852,
+ "elapsed_s": 14.6
+}

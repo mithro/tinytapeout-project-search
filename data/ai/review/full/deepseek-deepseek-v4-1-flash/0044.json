@@ -1,0 +1,225 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "691fce92884c",
+  "7f67513d7885",
+  "5a6c43f3e7d5",
+  "f304afa5cd75",
+  "f82a4f474f54",
+  "0f2b133358f1"
+ ],
+ "results": [
+  {
+   "key": "691fce92884c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design is a clock/display, not a clock signal generator; the pin names indicate timekeeping and 7-segment driving, not clock generation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "A timekeeping clock is a counting circuit, supported by the title and pin names."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text ('Explain how your project works'), so the design cannot be fully described."
+    }
+   ],
+   "notes": "Removed clock-generator (wrong type) and added counter and insufficient-doc to match the timekeeping design and placeholder documentation.",
+   "tags_before": [
+    "clock-generator",
+    "7-segment",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "verilog",
+    "counter",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a clock that displays the time on a multiplexed 7-segment display. Input pins select display type, format, programming mode and time adjustment, while outputs provide an AM/PM indicator plus segment, digit-select and segment-select lines. The documentation is placeholder text, so the timekeeping source, programming procedure and test method are not described. It is a 1x1 Verilog design whose functionality is inferred mainly from the title and pin names.",
+   "summary": "This project is a clock that displays the time on a multiplexed 7-segment display. Input pins select display type, format, programming mode and time adjustment, while outputs provide an AM/PM indicator plus segment, digit-select and segment-select lines. The documentation is placeholder text, so the timekeeping source, programming procedure and test method are not described. It is a 1x1 Verilog design whose functionality is inferred mainly from the title and pin names.",
+   "summary_changed": false
+  },
+  {
+   "key": "7f67513d7885",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no explanation of operation or testing."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added insufficient-doc for the placeholder documentation.",
+   "tags_before": [
+    "decoder",
+    "combinational",
+    "education"
+   ],
+   "tags": [
+    "decoder",
+    "combinational",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements a 3-bit one-hot decoder in Verilog. It takes three input bits and produces eight output bits, with exactly one output asserted for each valid input combination. The documentation is essentially a template with no explanation of how it works or how to test it. No external hardware or testing details are provided.",
+   "summary": "This project implements a 3-bit one-hot decoder in Verilog. It takes three input bits and produces eight output bits, with exactly one output asserted for each valid input combination. The documentation is essentially a template with no explanation of how it works or how to test it. No external hardware or testing details are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "5a6c43f3e7d5",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "edge-detector",
+    "flip-flop",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "edge-detector",
+    "flip-flop",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a custom edge detection circuit built using flip-flops. It is designed to detect rising and falling edges of a signal. The documentation is essentially empty, providing no explanation of how the circuit works or how to test it. The only information available is the title and the author's tag 'testing'.",
+   "summary": "This project is a custom edge detection circuit built using flip-flops. It is designed to detect rising and falling edges of a signal. The documentation is essentially empty, providing no explanation of how the circuit works or how to test it. The only information available is the title and the author's tag 'testing'.",
+   "summary_changed": false
+  },
+  {
+   "key": "f304afa5cd75",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The counter is only mentioned in the contradictory documentation; the pin names and title indicate SPI/I2C, so counter is not a supported primary function."
+    },
+    {
+     "tag": "i2c",
+     "reason": "Pin names include i2c_* signals, but the documentation does not describe an I2C interface, so the tag is not supported by the source text."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "The title and pin names (sck_o, mosi_o, miso_i) indicate an SPI master interface."
+    }
+   ],
+   "notes": "Removed counter and i2c as unsupported by the contradictory documentation, and added spi based on the title and pin names.",
+   "tags_before": [
+    "insufficient-doc",
+    "counter",
+    "spi",
+    "i2c"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "spi"
+   ],
+   "summary_before": "Although titled as an SPI master, the documentation for this design describes a simple counter and mirroring function controlled by a 'sel' signal, not an SPI interface. When 'sel' is high, a counter is output; when low, bidirectional pins are mirrored to outputs. The pin names suggest I2C and SPI signals, but the provided description does not match the title, indicating a discrepancy or missing documentation. The design is not tested and its actual functionality is unclear from the text.",
+   "summary": "Although titled as an SPI master, the documentation for this design describes a simple counter and mirroring function controlled by a 'sel' signal, not an SPI interface. When 'sel' is high, a counter is output; when low, bidirectional pins are mirrored to outputs. The pin names suggest I2C and SPI signals, but the provided description does not match the title, indicating a discrepancy or missing documentation. The design is not tested and its actual functionality is unclear from the text.",
+   "summary_changed": false
+  },
+  {
+   "key": "f82a4f474f54",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "No evidence in the source that this is for measurement or instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and refers to an external repository for testing details."
+    }
+   ],
+   "notes": "Removed unsupported instrumentation tag and added insufficient-doc for the very thin documentation.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "spi",
+    "instrumentation",
+    "verilog"
+   ],
+   "tags": [
+    "time-to-digital-converter",
+    "spi",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a time-to-digital converter with an SPI interface, based on a previous ALU design. It includes pins for SPI communication and start/stop signals, and outputs a busy signal. The documentation is very thin, referring to an external GitHub repository for testing details. No external hardware is required, but the design's functionality and testing are not well described.",
+   "summary": "This is a time-to-digital converter with an SPI interface, based on a previous ALU design. It includes pins for SPI communication and start/stop signals, and outputs a busy signal. The documentation is very thin, referring to an external GitHub repository for testing details. No external hardware is required, but the design's functionality and testing are not well described.",
+   "summary_changed": false
+  },
+  {
+   "key": "0f2b133358f1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text repeating 'this is a half adder' with no real explanation."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added insufficient-doc for the placeholder documentation.",
+   "tags_before": [
+    "adder",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a half adder implemented in Wokwi, designed to add two single-bit inputs. The documentation is essentially a placeholder, repeating 'this is a half adder' without explaining how it works or how to test it. No external hardware is specified. The project lacks sufficient detail to describe its operation or usage.",
+   "summary": "This is a half adder implemented in Wokwi, designed to add two single-bit inputs. The documentation is essentially a placeholder, repeating 'this is a half adder' without explaining how it works or how to test it. No external hardware is specified. The project lacks sufficient detail to describe its operation or usage.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5245,
+  "completion_tokens": 1358,
+  "total_tokens": 6603,
+  "cost": 0.0022623,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0022623,
+   "upstream_inference_prompt_cost": 0.0006327,
+   "upstream_inference_completions_cost": 0.0016296
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0022623,
+ "elapsed_s": 11.0
+}

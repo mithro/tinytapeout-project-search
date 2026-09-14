@@ -1,0 +1,403 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1576f9c7c9f5",
+  "b52c92a8c3dc",
+  "3652fd4bd863",
+  "08778e566bbf",
+  "63c904d190cc",
+  "48ba5113a79c"
+ ],
+ "results": [
+  {
+   "key": "1576f9c7c9f5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "no evidence of teaching intent; documentation is placeholder text"
+    },
+    {
+     "tag": "template",
+     "reason": "not described as a template or starter project"
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "one-line description states 'simple logic gate' with two inputs and two outputs"
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "documentation is placeholder text ('Testing', 'Here is my hardware')"
+    }
+   ],
+   "notes": "Removed unsupported education/template tags, added logic-gate and insufficient-doc; summary rewritten to match the thin source.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design claims that, after a very long delay, it will render the letter V, though the exact output encoding is not specified. The external hardware section is left as the default placeholder text, giving no real information. The documentation is extremely thin and partly unreliable, so the design cannot be clearly characterised.",
+   "summary": "This design is described only as a simple logic gate with two inputs and two outputs. The documentation consists of placeholder text such as 'Testing' and 'Here is my hardware'. No functional detail, testing procedure or external hardware is actually specified. The submission is too sparsely documented to characterise further.",
+   "summary_changed": true
+  },
+  {
+   "key": "b52c92a8c3dc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "no state machine is described; the design is a ring oscillator with DAC control"
+    },
+    {
+     "tag": "uart",
+     "reason": "no UART interface or protocol appears in the pins or text"
+    },
+    {
+     "tag": "communication",
+     "reason": "no data communication protocol is described"
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "language is Analog and the design is a voltage-controlled ring oscillator with an 8-bit DAC"
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "title and description state a voltage controlled ring oscillator"
+    },
+    {
+     "tag": "dac",
+     "reason": "an 8-bit DAC sets the oscillator control voltage"
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "the DAC is built from 8 digital input bits (DAC_bit0..7) suggesting a resistor-ladder DAC"
+    },
+    {
+     "tag": "oscillator",
+     "reason": "the core block is an oscillator"
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "OSC_OUT_DIV is OSC_OUT divided by 64"
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "testing requires a power supply and oscilloscope to measure frequency"
+    }
+   ],
+   "notes": "Proposed tags were entirely unrelated to the analog ring-oscillator/DAC design; replaced with supported analog and oscillator tags.",
+   "tags_before": [
+    "fsm",
+    "uart",
+    "communication"
+   ],
+   "tags": [
+    "analog",
+    "ring-oscillator",
+    "dac",
+    "r2r-dac",
+    "oscillator",
+    "clock-divider",
+    "instrumentation"
+   ],
+   "summary_before": "This design implements a robust finite state machine that handles a custom UART protocol for real-time configuration and data reporting. It uses a UART interface for communication and includes a protocol FSM for handling data. The design is notable for its robust protocol handling and real-time capabilities.",
+   "summary": "This design is a voltage-controlled ring oscillator whose frequency can be set either by the analog VCTRL pin or by an 8-bit DAC when VCTRL is left open. The DAC_enable pin must be held high for DAC control, and the oscillator output is also provided divided by 64 on OSC_OUT_DIV. Testing involves varying VCTRL or the DAC bits and measuring the output frequency with an oscilloscope. External hardware needed is a power supply for VCTRL and an oscilloscope.",
+   "summary_changed": true
+  },
+  {
+   "key": "3652fd4bd863",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "no compute acceleration hardware is described"
+    },
+    {
+     "tag": "neural-network",
+     "reason": "no neural network appears anywhere in the source"
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "no spiking neurons or synapses are described"
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "only integer clock division and binary-to-decimal conversion are described"
+    }
+   ],
+   "add": [
+    {
+     "tag": "timer",
+     "reason": "the design is a programmable clock divider/counter that ticks once per second"
+    },
+    {
+     "tag": "counter",
+     "reason": "it counts seconds and outputs the low 8 bits of the counter"
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "it divides the 10 MHz clock using a 24-bit compare register"
+    },
+    {
+     "tag": "7-segment",
+     "reason": "outputs segment a-g plus dot drive a seven-segment display"
+    },
+    {
+     "tag": "bcd",
+     "reason": "combinational logic converts the binary count to decimal for the display"
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "the eight ui inputs program the compare value, acting as switch inputs"
+    }
+   ],
+   "notes": "Tags and summary described a spiking neural network that does not exist in this timer/counter design; corrected to the documented functionality.",
+   "tags_before": [
+    "accelerator",
+    "neural-network",
+    "spiking-neural-network",
+    "fixed-point"
+   ],
+   "tags": [
+    "timer",
+    "counter",
+    "clock-divider",
+    "7-segment",
+    "bcd",
+    "dip-switch"
+   ],
+   "summary_before": "This design is an accelerator for neural networks, specifically a spiking neural network. It uses fixed-point arithmetic. The documentation provides a detailed protocol for testing but does not include silicon results.",
+   "summary": "This design divides the 10 MHz input clock with a 24-bit compare register to produce a counter that increments once per second by default. The eight inputs program bits 11 to 18 of the compare register, so non-zero inputs change the counting rate. The low eight bits of the counter are driven onto the bidirectional pins, and combinational logic converts the count to decimal for a seven-segment display. After reset the counter should advance once per second with a 10 MHz clock, and the inputs can be changed to experiment with the speed.",
+   "summary_changed": true
+  },
+  {
+   "key": "08778e566bbf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "no neural network content; the design is a ROM macro test structure"
+    },
+    {
+     "tag": "neural-network",
+     "reason": "no neural network content in the source"
+    },
+    {
+     "tag": "spi",
+     "reason": "no SPI interface is present; control is via individual clock pins"
+    }
+   ],
+   "add": [
+    {
+     "tag": "rom",
+     "reason": "the design places registers in front of prototype ROM macros to read them"
+    },
+    {
+     "tag": "memory",
+     "reason": "it is a ROM memory macro test structure"
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "it tests prototype ROM macros with the LVT implant removed on the bitcell"
+    },
+    {
+     "tag": "characterization",
+     "reason": "the purpose is timing characterisation of the ROM macros"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon test report states working, with all ROM read successfully at 10 ns propagation"
+    },
+    {
+     "tag": "analog",
+     "reason": "language is Analog and the submission is a custom macro test structure"
+    },
+    {
+     "tag": "register-file",
+     "reason": "address preload, address and data registers surround the ROM macros"
+    },
+    {
+     "tag": "fpga",
+     "reason": "meaningful timing testing requires FPGA hardware to drive control signals"
+    }
+   ],
+   "notes": "Tags and summary were copied from an unrelated neural-network project; replaced with ROM test, process-experiment and silicon-tested tags matching the source.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi"
+   ],
+   "tags": [
+    "rom",
+    "memory",
+    "process-experiment",
+    "characterization",
+    "silicon-tested",
+    "analog",
+    "register-file",
+    "fpga"
+   ],
+   "summary_before": "This project implements a spiking neural network with 18 programmable digital LIF neurons and 144 synapses arranged in three fully connected layers. The design is notable for being generated by ChatGPT and for its use of programmable delays, but it lacks silicon test results.",
+   "summary": "This project tests prototype SKY130 ROM macros modified to remove the LVT implant on the bitcell. Registers in front of the ROM macros let the user load an address and capture data at controlled intervals using the various clock pins. Meaningful timing testing requires FPGA hardware to drive the control signals with precise timing, and the exact platform is still to be determined. Silicon test reports say it works, with all ROM read successfully at 10 ns propagation time, though more precise hardware would be needed for full timing characterisation.",
+   "summary_changed": true
+  },
+  {
+   "key": "63c904d190cc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "no neural network content; the design is a ROM macro test structure"
+    },
+    {
+     "tag": "neural-network",
+     "reason": "no neural network content in the source"
+    },
+    {
+     "tag": "spi",
+     "reason": "no SPI interface is present; control is via individual clock pins"
+    }
+   ],
+   "add": [
+    {
+     "tag": "rom",
+     "reason": "the design places registers in front of prototype ROM macros to read them"
+    },
+    {
+     "tag": "memory",
+     "reason": "it is a ROM memory macro test structure"
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "it tests prototype ROM macros"
+    },
+    {
+     "tag": "characterization",
+     "reason": "the purpose is timing characterisation of the ROM macros"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon test report states working, with all ROM read successfully at 10 ns propagation"
+    },
+    {
+     "tag": "analog",
+     "reason": "language is Analog and the submission is a custom macro test structure"
+    },
+    {
+     "tag": "register-file",
+     "reason": "address preload, address and data registers surround the ROM macros"
+    },
+    {
+     "tag": "fpga",
+     "reason": "meaningful timing testing requires FPGA hardware to drive control signals"
+    }
+   ],
+   "notes": "Tags and summary were copied from an unrelated neural-network project; replaced with ROM test, process-experiment and silicon-tested tags matching the source.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "spi"
+   ],
+   "tags": [
+    "rom",
+    "memory",
+    "process-experiment",
+    "characterization",
+    "silicon-tested",
+    "analog",
+    "register-file",
+    "fpga"
+   ],
+   "summary_before": "This project implements a spiking neural network with 18 programmable digital LIF neurons and 144 synapses arranged in three fully connected layers. The design is notable for being generated by ChatGPT and for its use of programmable delays, but it lacks silicon test results.",
+   "summary": "This project tests prototype SKY130 ROM macros. Registers in front of the ROM macros let the user load an address and capture data at controlled intervals using the various clock pins. Meaningful timing testing requires FPGA hardware to drive the control signals with precise timing, and the exact platform is still to be determined. Silicon test reports say it works, with all ROM read successfully at 10 ns propagation time, though more precise hardware would be needed for full timing characterisation.",
+   "summary_changed": true
+  },
+  {
+   "key": "48ba5113a79c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "no seven-segment display is mentioned; the text only says 'LED digit'"
+    },
+    {
+     "tag": "decoder",
+     "reason": "no decoding logic is described; the text only says 'Flip da switches'"
+    },
+    {
+     "tag": "display",
+     "reason": "no display interface is documented beyond the vague 'LED digit' note"
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "the inputs are generic ui pins, not documented as dip switches"
+    }
+   ],
+   "add": [
+    {
+     "tag": "template",
+     "reason": "the title is 'Tiny Tapeout 9 Template' and it is a starter project"
+    },
+    {
+     "tag": "led",
+     "reason": "the only functional note is 'Testing the LED digit'"
+    }
+   ],
+   "notes": "Removed unsupported 7-segment/decoder/display/dip-switch tags and the invented switch-to-number mapping; kept template and led.",
+   "tags_before": [
+    "7-segment",
+    "led",
+    "decoder",
+    "wokwi",
+    "education",
+    "display",
+    "dip-switch"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "summary_before": "This Wokwi design outputs a number on a seven-segment display corresponding to which input switch is high, so switch 0 shows 1, switch 2 shows 2, and so on. It is controlled by dip switches and uses a decoder to map the switch input to the display. The project is described as the author's first Wokwi design and is a simple educational switch-to-display exercise.",
+   "summary": "This is the Tiny Tapeout 9 template project, described as 'Flip da switches'. The only functional note is that it tests the LED digit, with the eight inputs and eight outputs passed through. The external hardware section is left as the default placeholder text with a stray 'LED number' line. The documentation is too thin to describe any specific behaviour beyond a switch-to-output exercise.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6381,
+  "completion_tokens": 2014,
+  "total_tokens": 8395,
+  "cost": 0.002888283,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002888283,
+   "upstream_inference_prompt_cost": 0.000834003,
+   "upstream_inference_completions_cost": 0.00205428
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002888283,
+ "elapsed_s": 78.9
+}

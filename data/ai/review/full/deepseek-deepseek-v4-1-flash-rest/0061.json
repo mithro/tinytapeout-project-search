@@ -1,0 +1,343 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1deb4dcce0b9",
+  "6b19a2bca93c",
+  "e534a385691a",
+  "a18af1dcc7ae",
+  "9e1bca5fe30a",
+  "774fe269066a"
+ ],
+ "results": [
+  {
+   "key": "1deb4dcce0b9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The design is four logic gates (NOT, AND, OR), not a counter."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that it is intended for teaching."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Implements NOT, AND and OR gates."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Purely combinational gate logic with no state."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    }
+   ],
+   "notes": "Proposed tags and summary described a counter, but the source is four combinational logic gates.",
+   "tags_before": [
+    "counter",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "combinational"
+   ],
+   "summary_before": "This design is a simple event accumulator that counts rising edges on an input pin and outputs a 4-bit activity value. It includes a clock and active-low reset, and can be tested in simulation by driving the input with pulses and observing the outputs. The design is minimal and intended to illustrate basic stream processing without complex control logic. The documentation is sparse but sufficient to understand the basic functionality.",
+   "summary": "This design implements four logic gates: a NOT gate on input a, an AND gate on inputs b and c, and an OR gate on inputs d and e. The outputs are labelled not, and and or. It is a purely combinational design with no clocked logic. The documentation is minimal and the one-line description is 'nothing'.",
+   "summary_changed": true
+  },
+  {
+   "key": "6b19a2bca93c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "No factory test or self-test structure is described."
+    },
+    {
+     "tag": "timer",
+     "reason": "No timer block is described."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "No ring oscillator is described."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described; the design uses a phase accumulator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "Configuration is done over a write-only SPI interface."
+    },
+    {
+     "tag": "audio",
+     "reason": "Produces a 1-bit audio output."
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "It is a programmable sound generator with tone channels and waveforms."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "Generates tones with selectable waveforms and envelope."
+    },
+    {
+     "tag": "dac",
+     "reason": "A 1-bit DAC drives the audio output."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "A cocotb testbench is provided."
+    }
+   ],
+   "notes": "Proposed tags and summary described a factory test structure with timer and ring oscillator, none of which appear in the source.",
+   "tags_before": [
+    "factory-test",
+    "timer",
+    "spi",
+    "ring-oscillator",
+    "counter"
+   ],
+   "tags": [
+    "spi",
+    "audio",
+    "sound-generator",
+    "synthesizer",
+    "dac",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This project is a factory test structure that includes a timer, SPI interface, and ring oscillator. It is designed for testing chip functionality and performance. The SPI interface allows external control, and the ring oscillator provides a clock source. It is notable for its use in chip validation.",
+   "summary": "Mini PSG is a compact SPI-programmable sound generator with two tone channels, a shared 3-bit envelope and a 1-bit audio output on uo_out[7]. Each channel stores a tone code and octave value that set the phase step of a 23-bit phase accumulator, which drives square, pulse, saw or triangle waveforms. The two channel outputs are scaled by volume or envelope, mixed, and sent to a 1-bit DAC. Configuration is over a write-only SPI interface, and a cocotb testbench is provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "e534a385691a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "The title mentions a clock divider but the documentation is placeholder text and no divider is described."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Pins and title indicate AND, NAND and OR gates."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The described gates are combinational logic."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no functional detail."
+    }
+   ],
+   "notes": "Documentation is placeholder text; tags trimmed to what the pins and title support.",
+   "tags_before": [
+    "clock-divider",
+    "education",
+    "wokwi",
+    "combinational"
+   ],
+   "tags": [
+    "wokwi",
+    "combinational",
+    "logic-gate",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements basic logic gates (AND, NAND, OR) and a clock divider. The documentation is a template with placeholder text, providing no specific details on functionality or testing. External hardware is not specified. The project appears to be an incomplete or placeholder submission.",
+   "summary": "This design is titled 'Test some logic gates and a clock divider' and its pins expose AND, NAND and OR gate outputs from inputs a and b. The documentation is placeholder text with no explanation of how the project works or how to test it. No external hardware is specified. The submission is effectively undocumented and appears to be a starter or incomplete project.",
+   "summary_changed": true
+  },
+  {
+   "key": "a18af1dcc7ae",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "oscillator",
+    "clock-generator",
+    "counter",
+    "clock-divider"
+   ],
+   "tags": [
+    "oscillator",
+    "clock-generator",
+    "counter",
+    "clock-divider"
+   ],
+   "summary_before": "The design is a digitally controlled oscillator that generates a frequency-adjustable clock signal based on an 8-bit control input. The control input selects an oscillation period from 3 to 50 clock cycles using a priority-based scheme, and the output toggles when a counter reaches the selected period. The design is purely digital and requires no external hardware, but the documentation is limited to a basic testbench and frequency table. The oscillator is implemented with a counter and a clock divider, and unused outputs are tied low.",
+   "summary": "The design is a digitally controlled oscillator that generates a frequency-adjustable clock signal based on an 8-bit control input. The control input selects an oscillation period from 3 to 50 clock cycles using a priority-based scheme, and the output toggles when a counter reaches the selected period. The design is purely digital and requires no external hardware, but the documentation is limited to a basic testbench and frequency table. The oscillator is implemented with a counter and a clock divider, and unused outputs are tied low.",
+   "summary_changed": false
+  },
+  {
+   "key": "9e1bca5fe30a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The design is a cipher core, not a game."
+    },
+    {
+     "tag": "puzzle",
+     "reason": "No puzzle logic is present."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR is described."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is SystemVerilog, which has its own tag."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "Implements the ChaCha20 stream cipher."
+    },
+    {
+     "tag": "cipher",
+     "reason": "It is a symmetric stream-cipher core."
+    },
+    {
+     "tag": "uart",
+     "reason": "UART 8N1 host interface in MODE 0."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The controller is a command FSM."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "UART mode is driven over the demo board's RP2040 USB-serial bridge."
+    },
+    {
+     "tag": "pio",
+     "reason": "Parallel mode is intended for a clock-synchronous host such as an RP2040 PIO program."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated game; corrected to the ChaCha20 cipher core.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "lfsr",
+    "fsm",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "fsm",
+    "crypto",
+    "cipher",
+    "uart",
+    "systemverilog",
+    "rp2040",
+    "pio"
+   ],
+   "summary_before": "This design is a game that uses a linear feedback shift register to search for empty tiles and calculates scores based on adjacent elemental pattern matches using a combinational adder tree. The game logic is implemented with an LFSR and a combinational adder tree for scoring. The design is intended for educational purposes and is implemented in Verilog. The documentation does not provide silicon test results.",
+   "summary": "This is a hardware implementation of the ChaCha20 stream cipher as specified in RFC 8439, with a 256-bit key, 96-bit nonce and 32-bit block counter. A host loads the key, nonce and counter and issues GEN to emit raw keystream or CRYPT to XOR data with the keystream for encryption or decryption. The core runs 20 rounds through four parallel quarter-round units and streams results one 32-bit word at a time. A runtime MODE pin selects between a UART 8N1 interface and a synchronous parallel byte bus, and no external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "774fe269066a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter is described; the documentation is placeholder text."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Six outputs OUTa-OUTf are not enough for a 7-segment display and no display type is stated."
+    },
+    {
+     "tag": "display",
+     "reason": "The display type is not specified in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no functional detail."
+    }
+   ],
+   "notes": "Documentation is placeholder text; display and counter tags were unsupported.",
+   "tags_before": [
+    "7-segment",
+    "counter",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project displays the name of the author's dog one character at a time on a 7-segment display. The design uses a counter to sequence through the characters. It is created with Wokwi and is intended for educational purposes. No external hardware or silicon results are described.",
+   "summary": "This project is titled 'Display showing the name of my dog one by one' and exposes six outputs OUTa through OUTf plus CLK, RST and two inputs. The documentation is placeholder text with no explanation of how the project works or how to test it. No external hardware is specified. The submission is effectively undocumented and the display type cannot be determined from the source.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7680,
+  "completion_tokens": 1921,
+  "total_tokens": 9601,
+  "cost": 0.0026886,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0026886,
+   "upstream_inference_prompt_cost": 0.001536,
+   "upstream_inference_completions_cost": 0.0011526
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0026886,
+ "elapsed_s": 77.7
+}

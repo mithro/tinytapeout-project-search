@@ -1,0 +1,241 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "def47d144625",
+  "884d14b0ee36",
+  "bb88e6bd3a5b",
+  "13c5e065a5df",
+  "f5b9d3f6a397",
+  "b84d03e55025"
+ ],
+ "results": [
+  {
+   "key": "def47d144625",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a multiplier built from AND gates and full adders, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Already proposed; keep. No new tags needed."
+    }
+   ],
+   "notes": "Removed 'alu' since the design is a dedicated multiplier, not an ALU; 'adder' is already present.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "education",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "education",
+    "structural",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit multiplier that takes two 4-bit inputs and produces an 8-bit product. It uses a manual structural design with AND gates and full adders to compute the multiplication. The design was created for a digital logic course lab and includes a Python test script for verification. No external hardware is required.",
+   "summary": "This project implements a 4-bit multiplier that takes two 4-bit inputs and produces an 8-bit product. It uses a manual structural design with AND gates and full adders to compute the multiplication. The design was created for a digital logic course lab and includes a Python test script for verification. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "884d14b0ee36",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a clock input; it does not generate one."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "Documentation lists a DIP switch for inputs."
+    },
+    {
+     "tag": "button",
+     "reason": "Documentation lists a push button for reset."
+    },
+    {
+     "tag": "led",
+     "reason": "Documentation lists an LED for output."
+    }
+   ],
+   "notes": "Removed unsupported 'clock-generator'; added interface tags for the documented external hardware.",
+   "tags_before": [
+    "logic-gate",
+    "flip-flop",
+    "wokwi",
+    "education",
+    "clock-generator"
+   ],
+   "tags": [
+    "logic-gate",
+    "flip-flop",
+    "wokwi",
+    "education",
+    "dip-switch",
+    "button",
+    "led"
+   ],
+   "summary_before": "This design implements an XOR gate with a registered output using a flip-flop. It is tested by applying input combinations and observing the output according to a truth table, with a clock and reset input. External hardware includes a push button for reset, a DIP switch for inputs, and an LED for output. The documentation clearly explains the operation and testing.",
+   "summary": "This design implements an XOR gate with a registered output using a flip-flop. It is tested by applying input combinations and observing the output according to a truth table, with a clock and reset input. External hardware includes a push button for reset, a DIP switch for inputs, and an LED for output. The documentation clearly explains the operation and testing.",
+   "summary_changed": false
+  },
+  {
+   "key": "bb88e6bd3a5b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "oscillator",
+     "reason": "The source mentions an oscillator in the one-line description but the design itself is a single AND gate; no oscillator circuit is documented as part of the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "The design drives a 7-segment display; '7-segment' already covers the display, but no LED tag is needed. No new tags required."
+    }
+   ],
+   "notes": "Removed 'oscillator' as the design is just an AND gate; the oscillator is external/implied, not implemented.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "oscillator",
+    "logic-gate",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "This design blinks the number 7 on a 7-segment display using a single AND gate and an oscillator. The blinking is activated by a high signal on input 6. It is tested by turning on switch 7. External hardware includes a 7-segment display.",
+   "summary": "This design blinks the number 7 on a 7-segment display using a single AND gate. The blinking is activated by a high signal on input 6. It is tested by turning on switch 7. External hardware includes a 7-segment display.",
+   "summary_changed": true
+  },
+  {
+   "key": "13c5e065a5df",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design performs matrix multiplication, not general ALU operations."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is a fixed-function matrix multiplier, not a general compute accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "Documentation explicitly describes a state machine controlling the UART receive/compute/transmit sequence."
+    }
+   ],
+   "notes": "Removed 'alu' and 'accelerator'; 'fsm' is already present and supported by the documented state machine.",
+   "tags_before": [
+    "accelerator",
+    "multiplier",
+    "uart",
+    "fsm",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "uart",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 2x2 matrix multiplier that receives two matrices over UART and transmits the resulting matrix back. It also provides the four result bytes on parallel output pins, and operates with a 100 MHz clock and a 115200 baud UART interface. The design was tested using a USB-UART bridge and documented with example test cases, including notes on overflow for results exceeding 255. The project credits mentorship and was completed as a student project.",
+   "summary": "This project implements a 2x2 matrix multiplier that receives two matrices over UART and transmits the resulting matrix back. It also provides the four result bytes on parallel output pins, and operates with a 100 MHz clock and a 115200 baud UART interface. The design was tested using a USB-UART bridge and documented with example test cases, including notes on overflow for results exceeding 255. The project credits mentorship and was completed as a student project.",
+   "summary_changed": false
+  },
+  {
+   "key": "f5b9d3f6a397",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "spi",
+    "memory",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "spi",
+    "memory",
+    "gpio",
+    "verilog"
+   ],
+   "summary_before": "This project is a simple RISC-V processor supporting the RV32E base instruction set plus Zicond and Zbs extensions. It uses two independent SPI memory interfaces for instruction and data storage, and provides 8 GPIO inputs and 8 GPIO outputs. The processor begins execution from address 0x0 and requires external SPI ROM and RAM for operation. A test program is provided that records GPIO inputs and outputs them after a delay to verify functionality.",
+   "summary": "This project is a simple RISC-V processor supporting the RV32E base instruction set plus Zicond and Zbs extensions. It uses two independent SPI memory interfaces for instruction and data storage, and provides 8 GPIO inputs and 8 GPIO outputs. The processor begins execution from address 0x0 and requires external SPI ROM and RAM for operation. A test program is provided that records GPIO inputs and outputs them after a delay to verify functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "b84d03e55025",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "timer",
+    "7-segment",
+    "led",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "timer",
+    "7-segment",
+    "led",
+    "button",
+    "verilog"
+   ],
+   "summary_before": "This chip implements a reaction time test where a user presses a start button, waits for an LED to light up after a random delay, and then presses a react button as quickly as possible. The reaction time is displayed in milliseconds on a 4-digit 7-segment display, and cumulative times are shown until reset. If the react button is pressed before the LED, an error message is displayed. Silicon testing revealed that the design is broken: the start button does not start the test, reset does not work, and pressing react puts it in an error state, though it worked on an FPGA.",
+   "summary": "This chip implements a reaction time test where a user presses a start button, waits for an LED to light up after a random delay, and then presses a react button as quickly as possible. The reaction time is displayed in milliseconds on a 4-digit 7-segment display, and cumulative times are shown until reset. If the react button is pressed before the LED, an error message is displayed. Silicon testing revealed that the design is broken: the start button does not start the test, reset does not work, and pressing react puts it in an error state, though it worked on an FPGA.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7830,
+  "completion_tokens": 1168,
+  "total_tokens": 8998,
+  "cost": 0.001773966,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001773966,
+   "upstream_inference_prompt_cost": 0.001003086,
+   "upstream_inference_completions_cost": 0.00077088
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001773966,
+ "elapsed_s": 14.9
+}

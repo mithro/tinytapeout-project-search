@@ -1,0 +1,324 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2f6afa8bd9c3",
+  "16d29871532d",
+  "bd7e21f55a4d",
+  "6aff4abf7081",
+  "7ffcfd22efdd",
+  "0f9d7a4e2ea8"
+ ],
+ "results": [
+  {
+   "key": "2f6afa8bd9c3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "nco",
+     "reason": "The design is a DDS waveform generator, not a numerically controlled oscillator; the source never describes an NCO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "The source explicitly describes a programmable waveform generator."
+    },
+    {
+     "tag": "lookup-table",
+     "reason": "The sine waveform is generated via a 16-entry lookup table."
+    }
+   ],
+   "notes": "Removed unsupported nco tag and trimmed an unsupported 'notable' claim from the summary.",
+   "tags_before": [
+    "nco",
+    "waveform-generator",
+    "signal-generator",
+    "lookup-table",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "waveform-generator",
+    "signal-generator",
+    "lookup-table",
+    "dsp",
+    "verilog"
+   ],
+   "summary_before": "This project implements a Direct Digital Synthesis waveform generator with a phase accumulator and a 16-entry lookup table, producing sine, sawtooth, square, triangle, and quadratic waveforms. Inputs select the waveform function, amplitude, and frequency control word, and an 8-bit digital output carries the generated samples. An external DAC and oscilloscope are required to view the analog waveform, and the design is notable for offering multiple waveform types and programmable frequency and amplitude in a single tile. The documentation is clear and includes the DDS frequency formula and test steps.",
+   "summary": "This project implements a Direct Digital Synthesis waveform generator with a phase accumulator and a 16-entry lookup table, producing sine, sawtooth, square, triangle, and quadratic waveforms. Inputs select the waveform function, amplitude, and frequency control word, and an 8-bit digital output carries the generated samples. An external DAC and oscilloscope are required to view the analog waveform. The documentation includes the DDS frequency formula and test steps.",
+   "summary_changed": true
+  },
+  {
+   "key": "16d29871532d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adc",
+     "reason": "The design is a digital FIR filter; the ADC is external hardware, not implemented on-chip."
+    },
+    {
+     "tag": "dac",
+     "reason": "The design is a digital FIR filter; the DAC is external hardware, not implemented on-chip."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "The source explicitly describes a digital signal processing FIR filter."
+    },
+    {
+     "tag": "fir-filter",
+     "reason": "The source explicitly describes an 8-tap FIR filter."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Coefficients are represented in Q1.7 fixed-point format."
+    }
+   ],
+   "notes": "Removed adc/dac tags because those converters are external, not on-chip.",
+   "tags_before": [
+    "dsp",
+    "fir-filter",
+    "fixed-point",
+    "adc",
+    "dac",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "fir-filter",
+    "fixed-point",
+    "verilog"
+   ],
+   "summary_before": "This is an 8-bit, 8-tap Finite Impulse Response filter with parallel 8-bit input and output buses, using Q1.7 fixed-point coefficients that can be generated with MATLAB or Scilab. It requires an external MCU for clock generation and coefficient loading, and is intended to interface with an ADC08100 and AD9708 converter on a companion PCB. The design was verified with FPGA testing before tapeout. The documentation notes that a supporting PCB is planned but does not report silicon measurements.",
+   "summary": "This is an 8-bit, 8-tap Finite Impulse Response filter with parallel 8-bit input and output buses, using Q1.7 fixed-point coefficients that can be generated with MATLAB or Scilab. It requires an external MCU for clock generation and coefficient loading, and is intended to interface with an ADC08100 and AD9708 converter on a companion PCB. The design was verified with FPGA testing before tapeout. The documentation notes that a supporting PCB is planned but does not report silicon measurements.",
+   "summary_changed": false
+  },
+  {
+   "key": "bd7e21f55a4d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "The source describes a CTF language implementation, not a hardware security design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design was successfully run on fabricated silicon."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The silicon test used a 7-segment display attached to uio."
+    }
+   ],
+   "notes": "Removed unsupported security tag and added silicon-tested and 7-segment evidence from the test report.",
+   "tags_before": [
+    "cpu",
+    "stack-machine",
+    "esoteric",
+    "security",
+    "shift-register",
+    "gpio"
+   ],
+   "tags": [
+    "cpu",
+    "stack-machine",
+    "esoteric",
+    "shift-register",
+    "gpio",
+    "silicon-tested",
+    "7-segment"
+   ],
+   "summary_before": "SPELL is a hardware implementation of a minimal, stack-based programming language created for The Skull CTF. It features 32 bytes of program memory, 32 bytes of stack, and 8 I/O pins, with a serial interface for loading programs and inspecting state. The design is tested by loading and executing SPELL programs, and silicon tests confirm it can run a program that spells 'SPELL' on a 7-segment display.",
+   "summary": "SPELL is a hardware implementation of a minimal, stack-based programming language created for The Skull CTF. It features 32 bytes of program memory, 32 bytes of stack, and 8 I/O pins, with a serial interface for loading programs and inspecting state. The design is tested by loading and executing SPELL programs, and silicon tests confirm it can run a program that spells 'SPELL' on a 7-segment display. It is an esoteric stack-machine processor implemented in Verilog.",
+   "summary_changed": true
+  },
+  {
+   "key": "6aff4abf7081",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The source describes a terrain renderer based on a game algorithm, not an interactive game design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design was tested successfully at 17MHz."
+    },
+    {
+     "tag": "retro",
+     "reason": "The design recreates the 1992 Voxel Space algorithm used in the Comanche game."
+    }
+   ],
+   "notes": "Removed unsupported game tag and added silicon-tested and retro tags supported by the source.",
+   "tags_before": [
+    "graphics",
+    "qspi",
+    "memory",
+    "spi",
+    "display",
+    "game",
+    "button"
+   ],
+   "tags": [
+    "graphics",
+    "qspi",
+    "memory",
+    "spi",
+    "display",
+    "button",
+    "silicon-tested",
+    "retro"
+   ],
+   "summary_before": "Explorer implements a 2D voxel raycasting terrain renderer in hardware, based on the 1992 Voxel Space algorithm used in Comanche. It is written in Silice and interfaces with a QSPI PSRAM for terrain data and an SPI ST7789V screen for output, with four buttons as inputs. Terrain data must be uploaded to the PSRAM before operation, planned from an RP2040 on the PCB, and the design has been tested successfully at 17MHz. It is notable for bringing a classic software rendering algorithm into a hardware implementation on Tiny Tapeout.",
+   "summary": "Explorer implements a 2D voxel raycasting terrain renderer in hardware, based on the 1992 Voxel Space algorithm used in Comanche. It is written in Silice and interfaces with a QSPI PSRAM for terrain data and an SPI ST7789V screen for output, with four buttons as inputs. Terrain data must be uploaded to the PSRAM before operation, planned from an RP2040 on the PCB, and the design has been tested successfully at 17MHz. It brings a classic software rendering algorithm into a hardware implementation on Tiny Tapeout.",
+   "summary_changed": true
+  },
+  {
+   "key": "7ffcfd22efdd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a comparator built from gates, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "comparator",
+     "reason": "The source explicitly describes a 3-bit magnitude comparator."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The comparison result is displayed on a 7-segment display."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The design is purely combinational logic."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "The project is an IEEE IC Bootcamp educational example."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate tag and trimmed an unsupported educational claim from the summary.",
+   "tags_before": [
+    "comparator",
+    "7-segment",
+    "display",
+    "combinational",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "comparator",
+    "7-segment",
+    "display",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This project implements a 3-bit magnitude comparator that takes two 3-bit unsigned integers A and B and displays the comparison result on a 7-segment display. The circuit uses XOR gates to detect differences and logic gates to determine greater than, equal, or less than, which are then encoded to drive the display segments. To test, set six switches for A and B, and the display shows the corresponding relationship. External hardware includes a common-cathode 7-segment display connected to the outputs. The design is an educational example of combinational logic and is intended for the IEEE IC Bootcamp at Khalifa University.",
+   "summary": "This project implements a 3-bit magnitude comparator that takes two 3-bit unsigned integers A and B and displays the comparison result on a 7-segment display. The circuit uses XOR gates to detect differences and logic gates to determine greater than, equal, or less than, which are then encoded to drive the display segments. To test, set six switches for A and B, and the display shows the corresponding relationship. External hardware includes a common-cathode 7-segment display connected to the outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "0f9d7a4e2ea8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The design routes AER spike events but does not implement a spiking neural network."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The source describes an AER spike router for neuromorphic event-based systems."
+    },
+    {
+     "tag": "neuromorphic",
+     "reason": "The source describes a neuromorphic AER spike router."
+    },
+    {
+     "tag": "fifo",
+     "reason": "Incoming events are queued in a 4-deep FIFO."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "The design uses double-flop synchronisation for the REQ/ACK handshake."
+    },
+    {
+     "tag": "spi",
+     "reason": "The design includes an SPI interface for programming."
+    },
+    {
+     "tag": "communication",
+     "reason": "The design implements an event communication routing protocol."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported spiking-neural-network tag; the design is an AER router, not an SNN.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "spi",
+    "fifo",
+    "synchronizer",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "neuromorphic",
+    "spi",
+    "fifo",
+    "synchronizer",
+    "communication",
+    "verilog",
+    "spiking-neural-network"
+   ],
+   "summary_before": "This design is a 4-input, 4-output asynchronous address-event-representation (AER) spike router implemented in GF180mcuD digital logic. It uses a 4-phase bundled-data REQ/ACK handshake, double-flop synchronised into a single clock domain, and routes events through a 16-entry routing table or bypasses them unchanged. Incoming events are queued in a 4-deep FIFO and emitted with another handshake. It requires external AER-compliant sources and sinks, and is programmable via SPI.",
+   "summary": "This design is a 4-input, 4-output asynchronous address-event-representation (AER) spike router implemented in GF180mcuD digital logic. It uses a 4-phase bundled-data REQ/ACK handshake, double-flop synchronised into a single clock domain, and routes events through a 16-entry routing table or bypasses them unchanged. Incoming events are queued in a 4-deep FIFO and emitted with another handshake. It requires external AER-compliant sources and sinks, and is programmable via SPI.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8941,
+  "completion_tokens": 1875,
+  "total_tokens": 10816,
+  "cost": 0.0039915,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039915,
+   "upstream_inference_prompt_cost": 0.0017415,
+   "upstream_inference_completions_cost": 0.00225
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039915,
+ "elapsed_s": 59.6
+}

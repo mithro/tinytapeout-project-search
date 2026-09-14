@@ -1,0 +1,180 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4f35d3948e9a",
+  "46724fb440e6",
+  "3d297fc5d528",
+  "cea2e502d65e",
+  "f2aee03e4bcf",
+  "460da86981da"
+ ],
+ "results": [
+  {
+   "key": "4f35d3948e9a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "signal-generator",
+    "clock-divider",
+    "led",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "clock-divider",
+    "led",
+    "verilog"
+   ],
+   "summary_before": "This PWM generator produces a PWM signal with a selectable duty cycle from 0% to 100% in 10% steps, and includes a clock divider for frequency selection. It uses a 4-bit input to set the duty cycle and 2 bits to select the clock division (1x, 1/2x, 1/4x, 1/8x). The design is tested by connecting switches to the duty and frequency inputs and an LED to the PWM output to observe the intensity. It is a straightforward PWM generator with flexible control.",
+   "summary": "This PWM generator produces a PWM signal with a selectable duty cycle from 0% to 100% in 10% steps, and includes a clock divider for frequency selection. It uses a 4-bit input to set the duty cycle and 2 bits to select the clock division (1x, 1/2x, 1/4x, 1/8x). The design is tested by connecting switches to the duty and frequency inputs and an LED to the PWM output to observe the intensity. It is a straightforward PWM generator with flexible control.",
+   "summary_changed": false
+  },
+  {
+   "key": "46724fb440e6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This design counts from 0 to 9, incrementing once per second, and displays the count on a 7-segment display. It is implemented in Wokwi using a counter and combinational logic, and is tested by setting the clock to 1 Hz and toggling reset. No external hardware is required aside from the display. The project is a simple demonstration of a slow counter and display driver.",
+   "summary": "This design counts from 0 to 9, incrementing once per second, and displays the count on a 7-segment display. It is implemented in Wokwi using a counter and combinational logic, and is tested by setting the clock to 1 Hz and toggling reset. No external hardware is required aside from the display. The project is a simple demonstration of a slow counter and display driver.",
+   "summary_changed": false
+  },
+  {
+   "key": "3d297fc5d528",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "error-correction",
+    "shift-register",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "error-correction",
+    "shift-register",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a (7, 1/2) convolutional encoder following the CCSDS 131.0-B-4 standard, adding error-correction bits to a data stream for space applications. It uses a clock, a write_not_shift control, and six shift inputs, and displays each encoded output bit on an 8-segment display with the decimal point indicating the clock. Testing involves writing a 6-bit input with write_not_shift high, then shifting for 24 clock cycles and reading the encoded bits, with the first six bits discarded. The documentation is detailed and includes a worked example, making the design well specified for its intended error-correction use.",
+   "summary": "This project implements a (7, 1/2) convolutional encoder following the CCSDS 131.0-B-4 standard, adding error-correction bits to a data stream for space applications. It uses a clock, a write_not_shift control, and six shift inputs, and displays each encoded output bit on an 8-segment display with the decimal point indicating the clock. Testing involves writing a 6-bit input with write_not_shift high, then shifting for 24 clock cycles and reading the encoded bits, with the first six bits discarded. The documentation is detailed and includes a worked example, making the design well specified for its intended error-correction use.",
+   "summary_changed": false
+  },
+  {
+   "key": "cea2e502d65e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design is a FIFO, not a multi-register storage block; the last four entries are a ring of flip-flops, not a register file."
+    }
+   ],
+   "add": [],
+   "notes": "Removed register-file tag because the design is a FIFO, not a register file.",
+   "tags_before": [
+    "fifo",
+    "memory",
+    "latch",
+    "register-file"
+   ],
+   "tags": [
+    "fifo",
+    "memory",
+    "latch"
+   ],
+   "summary_before": "This design implements a 52-entry, 6-bit FIFO where the first 48 entries are a chain of latches for high density and the last four are a ring of flip-flops allowing random access for peeking. Because data must propagate down the latch chain, the FIFO can refuse writes when nearly full even if not completely full, and a ready output indicates when the chain can accept more data; reads have minimal delay except for a two-cycle input buffering latency. The write enable pin doubles as a mode selector for the shared input pins, which control reset, pop and peek address when not writing. The documentation is detailed and notes that peeking at unoccupied entries returns stale data.",
+   "summary": "This design implements a 52-entry, 6-bit FIFO where the first 48 entries are a chain of latches for high density and the last four are a ring of flip-flops allowing random access for peeking. Because data must propagate down the latch chain, the FIFO can refuse writes when nearly full even if not completely full, and a ready output indicates when the chain can accept more data; reads have minimal delay except for a two-cycle input buffering latency. The write enable pin doubles as a mode selector for the shared input pins, which control reset, pop and peek address when not writing. The documentation is detailed and notes that peeking at unoccupied entries returns stale data.",
+   "summary_changed": false
+  },
+  {
+   "key": "f2aee03e4bcf",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "i2s",
+    "audio",
+    "dsp",
+    "communication"
+   ],
+   "tags": [
+    "i2s",
+    "audio",
+    "dsp",
+    "communication"
+   ],
+   "summary_before": "This design receives two I2S audio streams, mixes them according to a selection input, and transmits the result as an I2S stream. It supports mute, channel 1, channel 2, or a sum of both channels, with the LSB truncated during addition. The design requires an external I2S master to provide clocks and word select signals. It is a simple audio mixer for I2S digital audio.",
+   "summary": "This design receives two I2S audio streams, mixes them according to a selection input, and transmits the result as an I2S stream. It supports mute, channel 1, channel 2, or a sum of both channels, with the LSB truncated during addition. The design requires an external I2S master to provide clocks and word select signals. It is a simple audio mixer for I2S digital audio.",
+   "summary_changed": false
+  },
+  {
+   "key": "460da86981da",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "gray-code",
+    "bcd",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "counter",
+    "gray-code",
+    "bcd",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This is a base-10 grey counter that counts from zero to a trillion, changing only one output bit per count. It groups bits into decimal digits and provides various output selections via input pins to view different digits on the 8 outputs. The design is tested with cocotb, and the documentation explains the decoding scheme and potential race conditions. It is a novel take on grey counters with decimal digit grouping.",
+   "summary": "This is a base-10 grey counter that counts from zero to a trillion, changing only one output bit per count. It groups bits into decimal digits and provides various output selections via input pins to view different digits on the 8 outputs. The design is tested with cocotb, and the documentation explains the decoding scheme and potential race conditions. It is a novel take on grey counters with decimal digit grouping.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8193,
+  "completion_tokens": 1042,
+  "total_tokens": 9235,
+  "cost": 0.004635375,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004635375,
+   "upstream_inference_prompt_cost": 0.003072375,
+   "upstream_inference_completions_cost": 0.001563
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004635375,
+ "elapsed_s": 4.5
+}

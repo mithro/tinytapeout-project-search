@@ -1,0 +1,328 @@
+{
+ "model": "deepseek/deepseek-v4-pro-0813",
+ "requested_model": "deepseek/deepseek-v4-pro-0813",
+ "keys": [
+  "b5bb434ddfd6",
+  "8a1ce99ece27",
+  "e09fc6b5d3c3",
+  "a1bcf320d879",
+  "fa9284b41426",
+  "331585e53981"
+ ],
+ "results": [
+  {
+   "key": "b5bb434ddfd6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text and too sparse to describe the design."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The project is a boilerplate/template submission with no described functionality."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added placeholder/insufficient-doc tags.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "template",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "incomplete",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "summary_before": "The documentation is placeholder text, so the exact implementation, testing procedure, and any external hardware requirements are not described. It appears to be an educational project with insufficient documentation to determine its specific behavior.",
+   "summary": "The documentation is placeholder text, so the exact implementation, testing procedure, and any external hardware requirements are not described. It appears to be a template project with insufficient documentation to determine its specific behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "8a1ce99ece27",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The source describes a 7-segment seconds counter, not a processor."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is mentioned or evidenced by the pins."
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "No scan chain or design-for-test structure is described."
+    },
+    {
+     "tag": "security",
+     "reason": "No hardware security or logic locking is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design counts up to 10, one second at a time."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive segments a through g of a seven-segment display."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The design divides the input clock to produce one-second timing."
+    },
+    {
+     "tag": "timer",
+     "reason": "It functions as a one-second interval timer/counter."
+    },
+    {
+     "tag": "bcd",
+     "reason": "The design converts binary to decimal for the display."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the actual 7-segment counter design.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "spi",
+    "scan-chain",
+    "security",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "counter",
+    "7-segment",
+    "clock-divider",
+    "timer",
+    "bcd"
+   ],
+   "summary_before": "This is a logic-locked version of the QTCore-A1 8-bit microprocessor, where parts of the ALU, control unit, and instruction decoding are locked using a key. The correct key must be provided in the program for the processor to function, and it is loaded via the scan chain. The design includes a 7-segment display driver and uses SPI for program loading and execution. It demonstrates RTL locking techniques for hardware security.",
+   "summary": "This project is a 7-segment seconds counter that counts up to 10, one second at a time. It uses registers to divide the clock and combinational logic to convert binary to decimal for the display. A slower square wave is output on output 7. After reset, the counter should increase by one every second.",
+   "summary_changed": true
+  },
+  {
+   "key": "e09fc6b5d3c3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design is specifically a spiking neural network, not a generic artificial neural network."
+    }
+   ],
+   "add": [],
+   "notes": "Removed generic neural-network tag; spiking-neural-network and neuromorphic are sufficient.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "neuromorphic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic"
+   ],
+   "summary_before": "This project implements a basic spiking neural network that takes spiking patterns from three input neurons and produces spikes from two output neurons based on predefined weights. It is intended for studying spike generation and can be tested by feeding different input spike patterns and observing the output spikes. The documentation is minimal, with many pins marked as unspecified and no details on the network architecture or testing methodology. The design appears to be a simple feedforward network with limited configurability.",
+   "summary": "This project implements a basic spiking neural network that takes spiking patterns from three input neurons and produces spikes from two output neurons based on predefined weights. It is intended for studying spike generation and can be tested by feeding different input spike patterns and observing the output spikes. The documentation is minimal, with many pins marked as unspecified and no details on the network architecture or testing methodology. The design appears to be a simple feedforward network with limited configurability.",
+   "summary_changed": false
+  },
+  {
+   "key": "a1bcf320d879",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface or video output is described."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation circuit is described; the design uses an external 50 MHz clock."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics output is described."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is explicitly described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "The title and description state it is a RISC-V RV32E SoC."
+    },
+    {
+     "tag": "cpu",
+     "reason": "It contains a RISC-V processor core."
+    },
+    {
+     "tag": "soc",
+     "reason": "The design integrates a CPU with UART, SPI, QSPI memory controller, and audio output."
+    },
+    {
+     "tag": "uart",
+     "reason": "UART RX and TX pins are present and described."
+    },
+    {
+     "tag": "spi",
+     "reason": "Generic SPI and QSPI memory controller interfaces are described and pinned out."
+    },
+    {
+     "tag": "qspi",
+     "reason": "A QSPI memory controller for flash/PSRAM is described."
+    },
+    {
+     "tag": "audio",
+     "reason": "A sigma-delta emulator is included for playing audio files."
+    },
+    {
+     "tag": "pwm",
+     "reason": "A PWM output pin is present."
+    },
+    {
+     "tag": "led",
+     "reason": "Three LED output pins are present."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "A sigma-delta emulator is used for audio playback."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "The design spans a 4x2 tile area."
+    }
+   ],
+   "notes": "Corrected tags and summary to reflect the RISC-V SoC with UART, SPI, QSPI, and audio.",
+   "tags_before": [
+    "vga",
+    "clock-generator",
+    "graphics",
+    "fsm",
+    "display"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "soc",
+    "uart",
+    "spi",
+    "qspi",
+    "audio",
+    "pwm",
+    "led",
+    "sigma-delta",
+    "multi-tile"
+   ],
+   "summary_before": "This project is a VGA graphics design that includes a clock generator, FSM, and display output. It is intended for educational purposes, demonstrating VGA signal generation. The design is not fully verified and the documentation is sparse. The project is notable for its use of VGA and graphics output.",
+   "summary": "This project is a baremetal RISC-V RV32E SoC based on the KianV architecture. It includes a UART, QSPI memory controller for flash and PSRAM, a generic SPI interface, and a sigma-delta emulator for audio playback. The CPU starts executing instructions from NOR flash at a 1 MiB offset. The design requires a PMOD flash and PSRAM module for operation.",
+   "summary_changed": true
+  },
+  {
+   "key": "fa9284b41426",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "The project has no described functionality and appears to be a placeholder submission."
+    }
+   ],
+   "notes": "Added placeholder tag to better characterize the submission.",
+   "tags_before": [
+    "incomplete",
+    "insufficient-doc",
+    "verilog"
+   ],
+   "tags": [
+    "incomplete",
+    "insufficient-doc",
+    "verilog",
+    "placeholder"
+   ],
+   "summary_before": "This project has no functional description and its purpose is unknown. The documentation states the author does not know how it works or how to test it. The pin names are generic input and output labels. It is an incomplete or placeholder submission.",
+   "summary": "This project has no functional description and its purpose is unknown. The documentation states the author does not know how it works or how to test it. The pin names are generic input and output labels. It is an incomplete or placeholder submission.",
+   "summary_changed": false
+  },
+  {
+   "key": "331585e53981",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "placeholder",
+     "reason": "The project has no implemented functionality and is a placeholder Wokwi design."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not describe the intended design."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added placeholder/insufficient-doc tags.",
+   "tags_before": [
+    "wokwi",
+    "incomplete",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a placeholder Wokwi design with no implemented functionality. The documentation states that it does not work yet and that testing is to be determined. It requires no external hardware. The design is notable only as an incomplete student exercise.",
+   "summary": "This project is a placeholder Wokwi design with no implemented functionality. The documentation states that it does not work yet and that testing is to be determined. It requires no external hardware. The design is notable only as an incomplete submission.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "b5bb434ddfd6: 2 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6080,
+  "completion_tokens": 1806,
+  "total_tokens": 7886,
+  "cost": 0.009819432,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2048,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.009819432,
+   "upstream_inference_prompt_cost": 0.00430752,
+   "upstream_inference_completions_cost": 0.005511912
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.009819432,
+ "elapsed_s": 45.8
+}

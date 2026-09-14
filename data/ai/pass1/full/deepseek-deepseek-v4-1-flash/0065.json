@@ -1,0 +1,189 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "af123fcadc53",
+  "04e99ee575fc",
+  "cf3ddbb4a214",
+  "c342ed5af048",
+  "8fb0a9890e38",
+  "57869ee2a3ff",
+  "a309d53f5fbf",
+  "5fc98e2bd929",
+  "af82ad1e75ae",
+  "32997e026969"
+ ],
+ "results": [
+  {
+   "key": "af123fcadc53",
+   "tags": [
+    "analog",
+    "voltage-conveyor",
+    "transistor-level",
+    "current-conveyor",
+    "tia",
+    "analog-frontend",
+    "amplifier"
+   ],
+   "summary": "VCII is a second-generation voltage conveyor analog block with current input y, current output x, voltage output z, and a reference input for virtual ground. It is intended to be used in a transimpedance amplifier configuration, where a current of a few microamps injected into y and an external resistor between x and Vref produce a voltage at z. Testing requires the external gain resistor, power supplies, and an oscilloscope to observe the output. The design targets unity current gain beta and unity voltage gain alpha, but the documentation gives no measured silicon results or detailed characterization.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "04e99ee575fc",
+   "tags": [
+    "vga",
+    "video",
+    "dac",
+    "analog",
+    "r2r",
+    "pattern-generator",
+    "display",
+    "mixed-signal"
+   ],
+   "summary": "TT06 Grab Bag combines several analog and mixed-signal experiments, with a 24-bit VGA pattern generator as the main feature. A digital VGA controller produces 8-bit RGB outputs that feed three internal R2R DACs, driving analog pins with 0-1.8V signals, while mode selection is latched from ui_in during reset. Testing needs a 25MHz clock, reset, and an oscilloscope; real VGA output requires external op-amp buffers and level shifting to 0-0.7V into 75 ohms. Silicon reports say the analog outputs worked as expected and the author saw vivid VGA images, though the unbuffered DAC outputs have limited slew rate and high impedance.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cf3ddbb4a214",
+   "tags": [
+    "alu",
+    "uart",
+    "adder",
+    "register-file",
+    "serial",
+    "4-bit",
+    "microcontroller"
+   ],
+   "summary": "SumLatchUART_System is a 4-bit arithmetic system that stores input data in register A or B, applies an operation selected by a 4-bit opcode, and sends the result over a UART transmitter. The design includes addition, subtraction, and bitwise logic operations, with control pins for clock, reset, register saves, and UART transmit enable. External hardware includes a UART receiver, two pull-up push buttons, an LED for the busy indicator, and a 50MHz oscillator or function generator. The documentation describes the intended flow but does not report any silicon test results or measured behavior.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c342ed5af048",
+   "tags": [
+    "factory-test",
+    "analog",
+    "test",
+    "bias",
+    "loopback",
+    "sense"
+   ],
+   "summary": "TT06 Analog Factory Test is a set of test structures intended to support analog characterization on the TT06 shuttle. The pins suggest bias generation, ground and power sensing, and three analog loopback connections, with two digital enable inputs. The documentation consists only of FIXME placeholders for how it works, how to test, and external hardware, so the exact function cannot be determined. No silicon test reports are provided, and the design is essentially undocumented beyond its title and pin names.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "8fb0a9890e38",
+   "tags": [
+    "analog",
+    "loopback",
+    "test",
+    "analog-mux",
+    "characterization",
+    "factory-test"
+   ],
+   "summary": "Analog loopback is a simple test structure in which each pair of analog pins is shorted together on the die. It is used to measure resistance and step response through each pair in order to characterize the analog multiplexer. No external hardware is required beyond the chip and measurement equipment such as a multimeter or oscilloscope. A silicon report notes that the first two loops worked, but only when the board was powered.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "57869ee2a3ff",
+   "tags": [
+    "pwm",
+    "duty-cycle",
+    "configurable",
+    "digital",
+    "signal-generator",
+    "control"
+   ],
+   "summary": "This project is a configurable PWM generator whose duty cycle is selected by three digital input signals, with an enable input and a clock. The duty cycle steps in 12.5% increments from 12.5% to 100% depending on the three-bit combination, and the PWM signal appears on a single output pin. Testing requires a signal generator for a 10MHz clock and an oscilloscope to observe the pulse width. The documentation is in Spanish and provides a clear truth table, but no silicon test results are reported.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a309d53f5fbf",
+   "tags": [
+    "cellular-automaton",
+    "rule-30",
+    "uart",
+    "serial",
+    "prng",
+    "random-number-generator"
+   ],
+   "summary": "Rule 30 Engine iterates a 56-bit Rule 30 cellular automaton starting from an 8-bit initial value supplied on the input bus. Each iteration is transmitted over an 8N1 UART at 115,200 baud on output pin uo[4], with zero boundary conditions around the 56-bit field. The only external hardware needed is a UART receiver to capture the serial output. The documentation is brief and does not include silicon test results or details about the internal implementation.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5fc98e2bd929",
+   "tags": [
+    "counter",
+    "up-down-counter",
+    "sn74169",
+    "ttl",
+    "4-bit",
+    "loadable",
+    "ripple-carry"
+   ],
+   "summary": "sn74169 is a Verilog model of the SN74169 synchronous 4-bit up/down counter, including parallel load, enable inputs, and ripple carry output. The input pins provide the 4-bit load value, enable P and T, active-low load, and up/down select, while outputs give the 4-bit count and carry out. Testing is done by applying the control signals and observing the outputs with an oscilloscope. The documentation is minimal and no silicon test results are reported.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "af82ad1e75ae",
+   "tags": [
+    "opamp",
+    "analog",
+    "amplifier",
+    "two-stage",
+    "transistor-level",
+    "analog-frontend"
+   ],
+   "summary": "Tiny Opamp is a simple two-stage op-amp without Miller compensation, operating from a 1.8V single supply with inputs biased around 0.9V. It provides two op-amp channels with differential plus and minus inputs and analog voltage outputs, and is intended to be tested in closed-loop configurations only. External hardware needed is at minimum a resistor at the output for a source-follower test, plus a multimeter or oscilloscope. A silicon report notes that the first op-amp worked in an inverting unity configuration but showed some self-oscillation, and the documentation warns against loads drawing more than a few milliamps.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "32997e026969",
+   "tags": [
+    "multiplier",
+    "wallace-tree",
+    "array-multiplier",
+    "4-bit",
+    "arithmetic",
+    "adder"
+   ],
+   "summary": "Array Multiplier is a Verilog implementation of a 4-bit Wallace tree multiplier built from half-adder and full-adder modules. The eight input pins carry the operands and the eight output pins present the product, though the pin names are generic and do not indicate bit ordering. Testing is described only through a provided testbench file, wallace_tb.v, rather than through hardware measurements. The documentation is very thin and does not report any silicon results or explain the pin mapping in detail.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5151,
+  "completion_tokens": 1721,
+  "total_tokens": 6872,
+  "cost": 0.002092716,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002092716,
+   "upstream_inference_prompt_cost": 0.000956856,
+   "upstream_inference_completions_cost": 0.00113586
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002092716,
+ "elapsed_s": 20.1
+}

@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f951329264ae",
+  "43fe63e245e0",
+  "a9a8f35965ae",
+  "7d4dc69d7b03",
+  "fbe8353ff597",
+  "e6ee3e632443"
+ ],
+ "results": [
+  {
+   "key": "f951329264ae",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "The documentation and pin list only describe AND/NOT/OR gates; no clock divider is documented or evidenced in the pins."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported clock-divider tag and the invented clock-division sentence; the source only documents three logic gates.",
+   "tags_before": [
+    "clock-divider",
+    "education",
+    "wokwi",
+    "combinational"
+   ],
+   "tags": [
+    "education",
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This design implements basic logic gates (AND, NOT, OR) and a clock divider on a Tiny Tapeout tile. The gates are wired to specific inputs: NOT to input a, AND to inputs b and c, and OR to inputs b and c. The circuit is intended for educational purposes and requires no external hardware beyond the display itself. The design is a simple demonstration of combinational logic and clock division.",
+   "summary": "This design implements basic logic gates (AND, NOT, OR) on a Tiny Tapeout tile. The gates are wired to specific inputs: NOT to input a, AND to inputs b and c, and OR to inputs b and c. The circuit is intended for educational purposes and requires no external hardware. The design is a simple demonstration of combinational logic.",
+   "summary_changed": true
+  },
+  {
+   "key": "43fe63e245e0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The source says a 7-segment display is external hardware, not part of the design; the design only drives display pins."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 7-segment interface tag since the display is external hardware, not an on-chip interface.",
+   "tags_before": [
+    "security",
+    "latch",
+    "logic-gate",
+    "7-segment",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "security",
+    "latch",
+    "logic-gate",
+    "education",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a 4-bit digital lock that compares a 4-bit input against the fixed password 1010 using discrete logic gates. When the correct combination is entered, an output goes high to turn on a display showing 'U' for unlocked. An SR latch provides a permanent lock condition: entering 1111 triggers the latch and prevents any future unlocking, even with the correct password. The design is intended for educational purposes and requires external switches, logic gates, a 7-segment display, and optionally an LED for debugging.",
+   "summary": "This project implements a 4-bit digital lock that compares a 4-bit input against the fixed password 1010 using discrete logic gates. When the correct combination is entered, an output goes high to turn on a display showing 'U' for unlocked. An SR latch provides a permanent lock condition: entering 1111 triggers the latch and prevents any future unlocking, even with the correct password. The design is intended for educational purposes and requires external switches, logic gates, a 7-segment display, and optionally an LED for debugging.",
+   "summary_changed": false
+  },
+  {
+   "key": "a9a8f35965ae",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Replaced the unsupported 'notable for its small size' claim with the source's own 'compact' description.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "analog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "analog"
+   ],
+   "summary_before": "This analog circuit implements a compact spiking neuron that generates firing patterns based on five external bias and input controls. It is tested by tuning the analog inputs (IREFA, IREFB, BIASC, BIASD, and VCORE) and observing the output waveform on VOUT with an oscilloscope or DAQ. External hardware includes adjustable analog sources and a clean analog supply with decoupling. The design is notable for its small size and potential use in neuromorphic systems.",
+   "summary": "This analog circuit implements a compact spiking neuron that generates firing patterns based on five external bias and input controls. It is tested by tuning the analog inputs (IREFA, IREFB, BIASC, BIASD, and VCORE) and observing the output waveform on VOUT with an oscilloscope or DAQ. External hardware includes adjustable analog sources and a clean analog supply with decoupling. The design is a compact analog spiking neuron intended for neuromorphic use.",
+   "summary_changed": true
+  },
+  {
+   "key": "7d4dc69d7b03",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Removed the unsupported claim that implementation details are lacking; the source does not state this.",
+   "tags_before": [
+    "dsp",
+    "fir-filter",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "fir-filter",
+    "verilog"
+   ],
+   "summary_before": "This project implements a moving average digital low-pass filter, which is a type of FIR filter with equal coefficients. It processes a 12-bit input and produces a 12-bit filtered output, using the input pins and bidirectional pins for data. An external MCU or FPGA is needed to provide input data and collect the output, which can be observed with a logic analyzer. The design is part of the IEEE Open-Silicon initiative and is documented with its mathematical basis but lacks implementation details.",
+   "summary": "This project implements a moving average digital low-pass filter, which is a type of FIR filter with equal coefficients. It processes a 12-bit input and produces a 12-bit filtered output, using the input pins and bidirectional pins for data. An external MCU or FPGA is needed to provide input data and collect the output, which can be observed with a logic analyzer. The design is part of the IEEE Open-Silicon initiative and is documented with its mathematical basis.",
+   "summary_changed": true
+  },
+  {
+   "key": "fbe8353ff597",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sensor-interface",
+     "reason": "The sensors are simple active-high digital inputs on ui pins, not a generic sensor interface block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "automotive",
+     "reason": "Traffic light control with emergency-vehicle priority is an automotive/road-infrastructure application."
+    }
+   ],
+   "notes": "Swapped sensor-interface for automotive, which better matches the traffic-control application.",
+   "tags_before": [
+    "industrial",
+    "fsm",
+    "sensor-interface",
+    "verilog"
+   ],
+   "tags": [
+    "industrial",
+    "fsm",
+    "verilog",
+    "automotive"
+   ],
+   "summary_before": "This design implements a seven-state Moore finite state machine controlling a two-road traffic intersection with N/S and E/W signals. Vehicle sensors on each road allow adaptive green-phase extension, and emergency-vehicle inputs on either axis trigger a hardware priority override. Outputs drive the green and yellow lamps for each road, an emergency-active flag, and three FSM state bits for 7-segment debug display. The documentation describes the state machine at a high level but does not detail the timing or override behaviour.",
+   "summary": "This design implements a seven-state Moore finite state machine controlling a two-road traffic intersection with N/S and E/W signals. Vehicle sensors on each road allow adaptive green-phase extension, and emergency-vehicle inputs on either axis trigger a hardware priority override. Outputs drive the green and yellow lamps for each road, an emergency-active flag, and three FSM state bits for 7-segment debug display. The documentation describes the state machine at a high level but does not detail the timing or override behaviour.",
+   "summary_changed": false
+  },
+  {
+   "key": "e6ee3e632443",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The submission is an unfilled placeholder, not a reusable starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin with all sections left as unfilled placeholders."
+    }
+   ],
+   "notes": "Replaced template with insufficient-doc to match the empty placeholder submission.",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "placeholder"
+   ],
+   "tags": [
+    "wokwi",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a placeholder titled 'TinyTapeout_Hackaday_Daniel' with a one-line description of 'Test'. All documentation sections are unfilled template placeholders. There is no indication of what the design does, how to test it, or what hardware it requires. It is essentially an empty submission with insufficient documentation.",
+   "summary": "This project is a placeholder titled 'TinyTapeout_Hackaday_Daniel' with a one-line description of 'Test'. All documentation sections are unfilled template placeholders. There is no indication of what the design does, how to test it, or what hardware it requires. It is essentially an empty submission with insufficient documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6275,
+  "completion_tokens": 1030,
+  "total_tokens": 7305,
+  "cost": 0.002650725,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002650725,
+   "upstream_inference_prompt_cost": 0.001600125,
+   "upstream_inference_completions_cost": 0.0010506
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002650725,
+ "elapsed_s": 23.4
+}

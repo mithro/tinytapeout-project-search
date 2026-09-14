@@ -1,0 +1,329 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e96edec09e4e",
+  "aea06a317cd4",
+  "473577cc51ce",
+  "9c3f27901216",
+  "1805dd64a5f8",
+  "88016cd59494"
+ ],
+ "results": [
+  {
+   "key": "e96edec09e4e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a ring of D flip-flops driving LED segments, not a basic logic gate implementation."
+    },
+    {
+     "tag": "template",
+     "reason": "The source describes a concrete working circuit (rotating LED segments), not boilerplate."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led",
+     "reason": "Outputs drive 7-segment LED segments."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "External hardware is a 7-seg LED and outputs illuminate segments."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "A string of D flip-flops shifting a lit segment around is a shift-register style structure."
+    },
+    {
+     "tag": "button",
+     "reason": "A button is used to step the clock."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "External clock input drives the flip-flop chain."
+    }
+   ],
+   "notes": "Removed logic-gate/template; design is a flip-flop ring driving LED segments.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "led",
+    "7-segment",
+    "shift-register",
+    "button",
+    "clock-generator"
+   ],
+   "summary_before": "This Wokwi project implements a simple logic gate circuit for educational purposes. The design is a template with minimal functionality, likely demonstrating basic gate behavior. External hardware includes buttons for inputs and an LED for output. The documentation is minimal, describing only the basic function and test procedure.",
+   "summary": "This Wokwi project drives a string of D flip-flops so that LED segments illuminate in a circle. A clock input advances the pattern, and a reset clears the flip-flops if more than one segment is lit. Testing is done by turning on the clock switch or pressing the step button. External hardware includes a clock, a button and a 7-seg LED.",
+   "summary_changed": true
+  },
+  {
+   "key": "aea06a317cd4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "puzzle",
+     "reason": "The source describes a letter-display decoder, not a puzzle game."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "It is a combinational decoder mapping input combinations to letters, not a basic gate."
+    },
+    {
+     "tag": "led",
+     "reason": "Output is a 7-segment display, not discrete LEDs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "decoder",
+     "reason": "Maps input combinations to corresponding letter outputs."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "External hardware is a 7-seg display used for the letter output."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is a display of letters."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Output depends purely on the current input combination."
+    }
+   ],
+   "notes": "Replaced puzzle/logic-gate/led with decoder, 7-segment, display and combinational.",
+   "tags_before": [
+    "puzzle",
+    "education",
+    "wokwi",
+    "logic-gate",
+    "led"
+   ],
+   "tags": [
+    "education",
+    "wokwi",
+    "decoder",
+    "7-segment",
+    "display",
+    "combinational"
+   ],
+   "summary_before": "This design implements a switch-combination puzzle where the correct pattern of inputs turns on a light output. The documentation is thin and does not state the exact winning combination or the full truth table. Testing is listed as to-be-determined, with a logic analyzer suggested as helpful external hardware. The project is notable mainly as a beginner class exercise rather than for any specific circuit capability.",
+   "summary": "This Wokwi design displays a letter for each input combination, for example IN0 on gives A and IN1 on gives B. Combinations such as IN2 or IN0 and IN1 together give further letters. Testing is done by switching IN0 and IN1 and observing the result. The external hardware is a 7-seg display.",
+   "summary_changed": true
+  },
+  {
+   "key": "473577cc51ce",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "nco",
+     "reason": "No numerically controlled oscillator is described in the source."
+    },
+    {
+     "tag": "cordic",
+     "reason": "No CORDIC algorithm is mentioned anywhere in the source."
+    },
+    {
+     "tag": "lookup-table",
+     "reason": "The source describes a 256-byte RAM sample store, not a lookup table."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Not clearly supported; the design is a UART-programmable waveform/PWM generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "Samples are loaded over UART_RX."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Provides 8 independent PWM channels."
+    },
+    {
+     "tag": "dac",
+     "reason": "8-bit parallel DAC output mode is described."
+    },
+    {
+     "tag": "memory",
+     "reason": "Samples are stored in a 256-byte RAM."
+    },
+    {
+     "tag": "audio",
+     "reason": "Recommended pinout is TT Audio and it generates waveforms."
+    }
+   ],
+   "notes": "Removed unsupported nco/cordic/lookup-table/dsp; added uart, pwm, dac, memory, audio.",
+   "tags_before": [
+    "waveform-generator",
+    "signal-generator",
+    "dsp",
+    "nco",
+    "cordic",
+    "lookup-table"
+   ],
+   "tags": [
+    "waveform-generator",
+    "signal-generator",
+    "uart",
+    "pwm",
+    "dac",
+    "memory",
+    "audio"
+   ],
+   "summary_before": "This design is a waveform generator that produces various waveforms using a lookup table and NCO techniques. It includes a CORDIC algorithm for phase-to-amplitude conversion. The waveform selection and configuration are controlled through the Tiny Tapeout input and bidirectional pins. It is notable for its DSP-oriented signal generation capabilities.",
+   "summary": "This Verilog design is a UART-programmable waveform and PWM generator. Samples sent over UART are stored in a 256-byte RAM and played back either as an 8-bit parallel DAC output or as eight independent PWM channels. The mode and load pins select operation, and the outputs carry the DAC data or PWM channels. The recommended pinout is TT Audio.",
+   "summary_changed": true
+  },
+  {
+   "key": "9c3f27901216",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not state it is a template; it is an undocumented personal demo."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching intent is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin with only placeholder text."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "No behavior, test procedure or hardware is specified."
+    }
+   ],
+   "notes": "Removed template/education; documentation is placeholder-only, so insufficient-doc and incomplete added.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi Tiny Tapeout project is described only as a personal test and has no functional documentation. The pin names suggest eight inputs and eight outputs, but no behavior is specified. No test procedure or external hardware is documented. The design appears to be a template or first attempt, so its actual logic cannot be determined.",
+   "summary": "This Wokwi Tiny Tapeout project is described only as a demo and has no functional documentation. The how-it-works, how-to-test and external-hardware sections still contain the placeholder text. No pin behavior or test procedure is specified. The design's actual logic cannot be determined from the source.",
+   "summary_changed": true
+  },
+  {
+   "key": "1805dd64a5f8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not state it is a template; it is an undocumented test submission."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching intent is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin with only placeholder text."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "No behavior, test procedure or hardware is specified."
+    }
+   ],
+   "notes": "Removed template/education; documentation is placeholder-only, so insufficient-doc and incomplete added.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi Tiny Tapeout project is described only as a personal test and has no functional documentation. The pin names suggest eight inputs and eight outputs, but no behavior is specified. No test procedure or external hardware is documented. The design appears to be a template or first attempt, so its actual logic cannot be determined.",
+   "summary": "This Wokwi Tiny Tapeout project is described only as a test and has no functional documentation. The how-it-works, how-to-test and external-hardware sections still contain the placeholder text. No pin behavior or test procedure is specified. The design's actual logic cannot be determined from the source.",
+   "summary_changed": true
+  },
+  {
+   "key": "88016cd59494",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not state it is a template; it is an undocumented beginner submission."
+    },
+    {
+     "tag": "education",
+     "reason": "The one-line description says beginner project, but no teaching content or intent is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin with only placeholder text."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "No behavior, test procedure or hardware is specified."
+    }
+   ],
+   "notes": "Removed template/education; documentation is placeholder-only, so insufficient-doc and incomplete added.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi Tiny Tapeout project is described only as a personal test and has no functional documentation. The pin names suggest eight inputs and eight outputs, but no behavior is specified. No test procedure or external hardware is documented. The design appears to be a template or first attempt, so its actual logic cannot be determined.",
+   "summary": "This Wokwi Tiny Tapeout project is described as a beginner project and has no functional documentation. The how-it-works, how-to-test and external-hardware sections still contain the placeholder text. No pin behavior or test procedure is specified. The design's actual logic cannot be determined from the source.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5338,
+  "completion_tokens": 1653,
+  "total_tokens": 6991,
+  "cost": 0.001545826,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001545826,
+   "upstream_inference_prompt_cost": 0.000454846,
+   "upstream_inference_completions_cost": 0.00109098
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001545826,
+ "elapsed_s": 25.5
+}

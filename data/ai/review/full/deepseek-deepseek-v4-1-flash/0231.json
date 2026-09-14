@@ -1,0 +1,224 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b65c6e582fd9",
+  "670a59db7da9",
+  "2c1f3855d173",
+  "3be598dc771d",
+  "fb41ae85e7d7",
+  "f2a77872e63c"
+ ],
+ "results": [
+  {
+   "key": "b65c6e582fd9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "spi",
+    "machine-learning",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "neural-network",
+    "spi",
+    "machine-learning",
+    "verilog"
+   ],
+   "summary_before": "This design is a 4-neuron digital spiking neural network (SNN) inference engine with hard winner-take-all lateral inhibition. Each neuron accumulates a MAC of its bias, input currents, and synaptic weights, with programmable threshold, leak, and refractory parameters. It is SPI-configurable and provides spike outputs, winner ID, and status flags. It requires an SPI master for programming and an input pattern generator, with optional oscilloscope for spike capture.",
+   "summary": "This design is a 4-neuron digital spiking neural network (SNN) inference engine with hard winner-take-all lateral inhibition. Each neuron accumulates a MAC of its bias, input currents, and synaptic weights, with programmable threshold, leak, and refractory parameters. It is SPI-configurable and provides spike outputs, winner ID, and status flags. It requires an SPI master for programming and an input pattern generator, with optional oscilloscope for spike capture.",
+   "summary_changed": false
+  },
+  {
+   "key": "670a59db7da9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rtc",
+     "reason": "No real-time clock/calendar functionality is described; it is a simple time-of-day clock."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a reference clock rather than generating one."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed rtc and clock-generator tags that are not supported by the source.",
+   "tags_before": [
+    "max7219",
+    "7-segment",
+    "spi",
+    "counter",
+    "display",
+    "timer",
+    "rtc",
+    "clock-generator",
+    "verilog"
+   ],
+   "tags": [
+    "max7219",
+    "7-segment",
+    "spi",
+    "counter",
+    "display",
+    "timer",
+    "verilog"
+   ],
+   "summary_before": "This design implements a digital desk clock that displays hours, minutes, and seconds in 24-hour format. It uses SPI to drive a MAX7219 7-segment display driver because there are not enough output pins to directly control six 7-segment displays. The time can be set using dedicated buttons for hours and minutes, with a fast/slow adjustment mode and a 12-hour mode option. The design requires an external MAX7219 module and a 32.768 kHz reference clock for accurate timekeeping.",
+   "summary": "This design implements a digital desk clock that displays hours, minutes, and seconds in 24-hour format. It uses SPI to drive a MAX7219 7-segment display driver because there are not enough output pins to directly control six 7-segment displays. The time can be set using dedicated buttons for hours and minutes, with a fast/slow adjustment mode and a 12-hour mode option. The design requires an external MAX7219 module and a 32.768 kHz reference clock for accurate timekeeping.",
+   "summary_changed": false
+  },
+  {
+   "key": "2c1f3855d173",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "A rolling average is not described as an FIR filter in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "Moving-average computation is a digital signal processing operation."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The implementation explicitly uses a shift register line."
+    }
+   ],
+   "notes": "Removed unsupported fir-filter tag; kept dsp and shift-register which are supported.",
+   "tags_before": [
+    "dsp",
+    "shift-register",
+    "fir-filter"
+   ],
+   "tags": [
+    "dsp",
+    "shift-register"
+   ],
+   "summary_before": "This design computes a 5-bit rolling average over 8 banks. It uses a shift register and a rolling sum trick to generate the average. Data is clocked in via i_data_clk and the 5-bit value is output on io_out[4:0]. It requires external GPIO connections to provide input and read the output.",
+   "summary": "This design computes a 5-bit rolling average over 8 banks. It uses a shift register and a rolling sum trick to generate the average. Data is clocked in via i_data_clk and the 5-bit value is output on io_out[4:0]. It requires external GPIO connections to provide input and read the output.",
+   "summary_changed": false
+  },
+  {
+   "key": "3be598dc771d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "led",
+    "ring-counter",
+    "shift-register",
+    "education"
+   ],
+   "tags": [
+    "led",
+    "ring-counter",
+    "shift-register",
+    "education"
+   ],
+   "summary_before": "This is a Logisim demo showing how to use Logisim Evolution generated Verilog for TinyTapeout. It implements a 4-bit ring shift register with a single '1' cycling through it after reset. The design has four outputs that blink in sequence and requires a button for reset and LEDs or another display for the outputs. It serves as an educational example for using Logisim with TinyTapeout.",
+   "summary": "This is a Logisim demo showing how to use Logisim Evolution generated Verilog for TinyTapeout. It implements a 4-bit ring shift register with a single '1' cycling through it after reset. The design has four outputs that blink in sequence and requires a button for reset and LEDs or another display for the outputs. It serves as an educational example for using Logisim with TinyTapeout.",
+   "summary_changed": false
+  },
+  {
+   "key": "fb41ae85e7d7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fpga",
+    "lookup-table",
+    "sram"
+   ],
+   "tags": [
+    "fpga",
+    "lookup-table",
+    "sram"
+   ],
+   "summary_before": "This design implements a single fracturable 5-input lookup table (LUT) that can be configured via serial SRAM or FLASH frames. It receives 92-bit LUT configuration frames serially, four bits per cycle, and evaluates the LUT every 23 clock cycles. The last 283 LUT output values are stored on-chip to serve as inputs for subsequent LUTs, and the design includes two FPGA input pins and seven output pins plus a debug pin. Testing is described as tricky, and external serial memory is required for configuration.",
+   "summary": "This design implements a single fracturable 5-input lookup table (LUT) that can be configured via serial SRAM or FLASH frames. It receives 92-bit LUT configuration frames serially, four bits per cycle, and evaluates the LUT every 23 clock cycles. The last 283 LUT output values are stored on-chip to serve as inputs for subsequent LUTs, and the design includes two FPGA input pins and seven output pins plus a debug pin. Testing is described as tricky, and external serial memory is required for configuration.",
+   "summary_changed": false
+  },
+  {
+   "key": "f2a77872e63c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a dedicated multiplier, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; no change needed."
+    }
+   ],
+   "notes": "Removed alu tag; the source describes only a multiplier.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This design is a purely combinational 4-bit multiplier that takes two 4-bit numbers on its input pins and produces an 8-bit product on its output pins. It is implemented using AND gates and several adders, without any sequential logic. To use it, a user would apply the two operands via switches or other sources and read the binary result on LEDs. The project is a straightforward arithmetic building block and requires external hardware such as DIP switches and LEDs for input and output.",
+   "summary": "This design is a purely combinational 4-bit multiplier that takes two 4-bit numbers on its input pins and produces an 8-bit product on its output pins. It is implemented using AND gates and several adders, without any sequential logic. To use it, a user would apply the two operands via switches or other sources and read the binary result on LEDs. The project is a straightforward arithmetic building block and requires external hardware such as DIP switches and LEDs for input and output.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6606,
+  "completion_tokens": 1230,
+  "total_tokens": 7836,
+  "cost": 0.0034578,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034578,
+   "upstream_inference_prompt_cost": 0.0019818,
+   "upstream_inference_completions_cost": 0.001476
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034578,
+ "elapsed_s": 29.6
+}

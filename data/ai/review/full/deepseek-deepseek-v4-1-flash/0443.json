@@ -1,0 +1,242 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b26c935daefd",
+  "2218ff8ae75a",
+  "ea9fedc204bd",
+  "9bd62984d583",
+  "afdbd9ab2d8b",
+  "975d4103b0ca"
+ ],
+ "results": [
+  {
+   "key": "b26c935daefd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning; it is a personal Wokwi exercise."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "Documentation explicitly says to generate the A and B operands using the dip switch."
+    },
+    {
+     "tag": "led",
+     "reason": "Documentation states the result can be verified using LEDs."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added dip-switch and led interfaces that are explicitly documented.",
+   "tags_before": [
+    "adder",
+    "latch",
+    "flip-flop",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "latch",
+    "flip-flop",
+    "wokwi",
+    "dip-switch",
+    "led"
+   ],
+   "summary_before": "This is a 4-bit adder built from four full adder stages, with the sum latched by D flip-flops on each clock rising edge. The carry-out is not latched and is available directly. It is tested by applying two 4-bit numbers via the ui pins and observing the sum on the uo pins, with a 1 Hz clock. External hardware needed is just LEDs to display the result.",
+   "summary": "This is a 4-bit adder built from four full adder stages, with the sum latched by D flip-flops on each clock rising edge. The carry-out is not latched and is available directly as an output. It is tested by applying two 4-bit numbers via the ui pins using the dip switch and observing the sum on the uo pins, with a 1 Hz clock. External hardware needed is just LEDs to display the result.",
+   "summary_changed": true
+  },
+  {
+   "key": "2218ff8ae75a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning."
+    },
+    {
+     "tag": "bcd",
+     "reason": "The BCD-to-7-segment decoder is external hardware, not part of this design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education and bcd tags because the BCD decoder is external and no educational intent is stated.",
+   "tags_before": [
+    "adder",
+    "subtractor",
+    "bcd",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "subtractor",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This circuit performs 4-bit addition or subtraction based on a control pin: low for addition, high for subtraction using two's complement. The binary result is output on the uo pins and can be converted to decimal via an external BCD-to-7-segment decoder for display. It is tested by providing two 4-bit numbers and toggling the control pin. The design requires a 7-segment display and decoder for easy reading of the result.",
+   "summary": "This circuit performs 4-bit addition or subtraction based on a control pin: low for addition, high for subtraction using two's complement. The binary result is output on the uo pins and can be converted to decimal via an external BCD-to-7-segment decoder for display. It is tested by providing two 4-bit numbers and toggling the control pin. The design requires a 7-segment display and decoder for easy reading of the result.",
+   "summary_changed": false
+  },
+  {
+   "key": "ea9fedc204bd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag; the rest of the description matches the source.",
+   "tags_before": [
+    "counter",
+    "shift-register",
+    "flip-flop",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "shift-register",
+    "flip-flop",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This design implements an 8-bit binary counter and shift register using D or RS flip-flops, selectable via control inputs. It can operate as a ripple counter or a serial shift register, with outputs shown on LEDs. Testing involves providing a clock, reset, and control signals to select the mode and flip-flop type. External hardware needed is basic LEDs and switches.",
+   "summary": "This design implements an 8-bit binary counter and shift register using D or RS flip-flops, selectable via control inputs. It can operate as a ripple counter or a serial shift register, with outputs shown on LEDs. Testing involves providing a clock, reset, and control signals to select the mode and flip-flop type. External hardware needed is basic LEDs and switches.",
+   "summary_changed": false
+  },
+  {
+   "key": "9bd62984d583",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning."
+    },
+    {
+     "tag": "decoder",
+     "reason": "The design is an encoder (BCD to segment signals), not a decoder."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education and incorrect decoder tag; also dropped the unsupported common-cathode claim from the summary.",
+   "tags_before": [
+    "bcd",
+    "7-segment",
+    "encoder",
+    "decoder",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "bcd",
+    "7-segment",
+    "encoder",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This is a BCD to 7-segment encoder that converts a 4-bit BCD input into segment drive signals for a 7-segment display. It includes additional gates to control the decimal point. The design is tested by applying BCD values to the ui pins and observing the segment outputs on the uo pins. It requires a common-cathode 7-segment display for visual output.",
+   "summary": "This is a BCD to 7-segment encoder that converts a 4-bit BCD input into segment drive signals for a 7-segment display. It includes additional gates to control the decimal point. The design is tested by applying BCD values to the ui pins and observing the segment outputs on the uo pins. It requires a 7-segment display for visual output.",
+   "summary_changed": true
+  },
+  {
+   "key": "afdbd9ab2d8b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The design uses standard cells and a hardened digital controller, not discrete transistors."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "Combines analog current-steering DACs with a digital VGA controller."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Documentation mentions using the TinyVGA PMOD with the design."
+    }
+   ],
+   "notes": "Removed transistor-level tag and added mixed-signal and pmod based on the documented analog/digital mix and PMOD usage.",
+   "tags_before": [
+    "vga",
+    "dac",
+    "analog",
+    "display",
+    "pattern-generator",
+    "opamp",
+    "transistor-level"
+   ],
+   "tags": [
+    "vga",
+    "dac",
+    "analog",
+    "display",
+    "pattern-generator",
+    "opamp",
+    "mixed-signal",
+    "pmod"
+   ],
+   "summary_before": "This project implements three current-switching DACs for generating analog VGA display signals, using a 16x16 matrix of unit current sources to convert 8-bit digital inputs to analog current sinks. It includes a digital controller that generates VGA control signals and test patterns, and supports both digital RGB222 output via the TinyVGA PMOD and analog outputs requiring external pull-up resistors and opamp circuits. The design is an experiment in analog VGA signal generation, with documentation referencing a previous version for test modes. External hardware includes a VGA display, optional PMOD, and opamp circuits for current-to-voltage conversion.",
+   "summary": "This project implements three current-switching DACs for generating analog VGA display signals, using a 16x16 matrix of unit current sources to convert 8-bit digital inputs to analog current sinks. It includes a digital controller that generates VGA control signals and test patterns, and supports both digital RGB222 output via the TinyVGA PMOD and analog outputs requiring external pull-up resistors and opamp circuits. The design is an experiment in analog VGA signal generation, with documentation referencing a previous version for test modes. External hardware includes a VGA display, optional PMOD, and opamp circuits for current-to-voltage conversion.",
+   "summary_changed": false
+  },
+  {
+   "key": "975d4103b0ca",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "vhdl",
+    "up-down-counter"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "vhdl",
+    "up-down-counter"
+   ],
+   "summary_before": "This is a 4-bit saturating counter with a seven-segment display output, written in VHDL. The counting direction is controlled by input pin 0, and the counter saturates at 15 when counting up and at 0 when counting down. The seven-segment output is active-low with the decimal point as the most significant bit. Testing requires an external clock and a seven-segment display; no other external hardware is specified.",
+   "summary": "This is a 4-bit saturating counter with a seven-segment display output, written in VHDL. The counting direction is controlled by input pin 0, and the counter saturates at 15 when counting up and at 0 when counting down. The seven-segment output is active-low with the decimal point as the most significant bit. Testing requires an external clock and a seven-segment display; no other external hardware is specified.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7597,
+  "completion_tokens": 1302,
+  "total_tokens": 8899,
+  "cost": 0.0038415,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0038415,
+   "upstream_inference_prompt_cost": 0.0022791,
+   "upstream_inference_completions_cost": 0.0015624
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0038415,
+ "elapsed_s": 20.1
+}

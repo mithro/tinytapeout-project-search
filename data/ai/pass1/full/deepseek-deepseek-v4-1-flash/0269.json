@@ -1,0 +1,204 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bcc779ac7df7",
+  "662df3369771",
+  "66c6aa26a7c1",
+  "005391968662",
+  "887957f27450",
+  "955eea1d8467",
+  "6de1f17fc259",
+  "c70f90e6af86",
+  "ccf8f6db1f08",
+  "3c374ff33a69"
+ ],
+ "results": [
+  {
+   "key": "bcc779ac7df7",
+   "tags": [
+    "game",
+    "frogger",
+    "vga",
+    "gamepad",
+    "audio",
+    "dds",
+    "collision-detection",
+    "state-machine",
+    "procedural-graphics"
+   ],
+   "summary": "Frogger is a hardware clone of the arcade game Frogger rendered procedurally to a 640x480 VGA display with no framebuffer, multipliers or dividers. It uses a Psychogenic Gamepad PMOD as its primary input, falling back to direct up/down/left/right buttons on ui_in[3:0], and outputs 1-bit square-wave sound effects via a DDS phase accumulator. The design is tested with a cocotb VGA-timing smoke test and can be run in a browser VGA playground. It requires a Tiny VGA Pmod, optionally a gamepad Pmod and a TT Audio Pmod.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "662df3369771",
+   "tags": [
+    "cpu",
+    "alu",
+    "accumulator",
+    "4-bit",
+    "harvard",
+    "instruction-set",
+    "program-counter",
+    "external-memory"
+   ],
+   "summary": "Nibble is a minimalistic 4-bit accumulator CPU with a Harvard architecture and a 16-instruction ISA executing over a 2-cycle fetch-execute pipeline. It exposes instruction bits, program counter, input port, accumulator, carry, zero, halted and phase signals on its pins, and requires external program memory such as an RP2040, EEPROM or SRAM. Optional LEDs can visualize the accumulator and status flags. It is designed to fit in a single Tiny Tapeout tile on Sky130 and is intended as an educational minimal CPU.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "66c6aa26a7c1",
+   "tags": [
+    "puf",
+    "ring-oscillator",
+    "crypto",
+    "spi",
+    "security",
+    "lehmer-code",
+    "fingerprint",
+    "analog"
+   ],
+   "summary": "This project implements a Physically Unclonable Function that derives a chip-unique fingerprint from pairwise frequency comparisons of 16 ring oscillators, producing a 49-bit Lehmer code. It is triggered by a start pulse and read out over a MISO-only SPI slave interface, with busy and done handshake pins. The design exploits random manufacturing variation between nominally identical oscillators and requires only a connected microcontroller to operate. Results are expected to be near-identical on the same chip but different across chips.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "005391968662",
+   "tags": [
+    "vga",
+    "metaballs",
+    "graphics",
+    "demo",
+    "animation",
+    "procedural-graphics"
+   ],
+   "summary": "Metaballs v2 is a VGA graphics demo that renders animated metaballs to a 640x480 display. The documentation is very thin, noting only that it fixes a ball-position reset bug from a previous failed attempt and that it works like other VGA projects with no sound. It requires a Tiny VGA Pmod and a VGA monitor. Because the description gives almost no detail on the rendering technique or parameters, most of the design's behaviour cannot be described from the available text.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "887957f27450",
+   "tags": [
+    "frequency-counter",
+    "i2c",
+    "spi",
+    "dac",
+    "adc",
+    "oscillator",
+    "sensor",
+    "industrial",
+    "measurement"
+   ],
+   "summary": "This design is a 9-channel oscillator frequency counter with programmable gate time, controlled over I2C and supplemented by SPI DAC outputs and SPI ADC sampling. Counts are latched into a snapshot register bank readable over I2C, and two DAC channels plus a 12-bit external ADC are integrated into the measurement stream. It is intended for resonant sensor applications such as QCM, FBAR and SAW devices, and requires a 50 MHz clock, an I2C master, up to nine oscillator sources, and external SPI DAC and ADC parts. The documentation provides concrete register addresses and expected count behaviour for testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "955eea1d8467",
+   "tags": [
+    "pll",
+    "analog",
+    "frequency-synthesizer",
+    "vco",
+    "bandgap",
+    "charge-pump",
+    "2.4ghz",
+    "transistor-level"
+   ],
+   "summary": "This is an analog phase-locked loop targeting a 2.4 GHz output, including a bandgap reference for the charge pump. It is tested by applying a 20 MHz, 1.8 Vpp reference to REF_FREQ and observing OUT_FREQ, which should settle to 2.4 GHz within about 3 microseconds. The author notes doubt that the output will reach the target frequency and suggests increasing the input frequency if it does not. External hardware needed is a signal generator for the reference and a multimeter or frequency counter for the output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6de1f17fc259",
+   "tags": [
+    "vga",
+    "cellular-automata",
+    "demo",
+    "animation",
+    "wolfram",
+    "procedural-graphics",
+    "education"
+   ],
+   "summary": "Katomata is a demoscene entry that visualizes 1D elementary cellular automata on a 640x480 VGA display, cycling through all 256 Wolfram rules. It draws the time evolution of each rule with a rule indicator strip advancing roughly every 1.67 seconds, and has no input pins to drive. It requires a Tiny VGA Pmod and a VGA monitor driven by a 25.175 MHz pixel clock. The design is purely a visualizer and does not accept external control.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c70f90e6af86",
+   "tags": [
+    "vga",
+    "graphics",
+    "animation",
+    "lissajous",
+    "wave-interference",
+    "procedural-graphics",
+    "demo",
+    "no-cpu"
+   ],
+   "summary": "Wave Lattice renders a 40x30 dot lattice on VGA that is displaced by two interfering radial wave sources, one at a virtual pointer tracing a Lissajous figure and the other at its point mirror. It is a port of a browser sketch to pure logic with no CPU or memory, and all input pins are unused. The design expects a 50.35 MHz clock, twice the VGA pixel rate, and requires a Tiny VGA Pmod and monitor. The lattice warps into compression rings around the sources, completing a full woven cycle roughly every 17 seconds.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "ccf8f6db1f08",
+   "tags": [
+    "demo",
+    "vga",
+    "audio",
+    "chiptune",
+    "music",
+    "animation",
+    "scroller",
+    "intro"
+   ],
+   "summary": "Journey is a two-tile intro demo showing dark tunnels, a cat on a red balloon casting spells, chiptune music and a scrolling text overlay. It outputs 640x480 VGA and 1-bit sigma-delta audio on uio[7], starting automatically after reset with a 25 MHz clock. It requires a Tiny VGA Pmod and a TT Audio Pmod. The documentation is brief and mostly describes the visual theme rather than the internal implementation.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3c374ff33a69",
+   "tags": [
+    "clock",
+    "rtc",
+    "calendar",
+    "7-segment",
+    "shift-register",
+    "alarm",
+    "bcd",
+    "buzzer",
+    "state-machine"
+   ],
+   "summary": "Lambda Clock is a 10-digit digital clock and calendar with alarm logic, driving three cascaded 74HC595 shift registers to multiplex 7-segment displays. It runs from a 32.768 kHz clock, uses a tick-based synchronous clock-enable domain, handles leap years, and provides an 8-state settings menu for editing time, date and alarm via four buttons. It outputs a buzzer signal and status LEDs, and requires external 74HC595 registers, 5641AS and 5621AS displays, and an active buzzer. The design is notable for its BCD-native limit handling to avoid binary-to-BCD resource explosion.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5981,
+  "completion_tokens": 1815,
+  "total_tokens": 7796,
+  "cost": 0.00233693,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 830,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00233693,
+   "upstream_inference_prompt_cost": 0.00113903,
+   "upstream_inference_completions_cost": 0.0011979
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00233693,
+ "elapsed_s": 21.7
+}

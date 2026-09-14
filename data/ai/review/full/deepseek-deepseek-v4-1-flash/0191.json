@@ -1,0 +1,267 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bce5a5864407",
+  "907ba02d2ef7",
+  "5b27a8ffc1ee",
+  "bf77ff8df385",
+  "68b798f440c1",
+  "b045d3d5f5e0"
+ ],
+ "results": [
+  {
+   "key": "bce5a5864407",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "No UART interface is described; configuration is via the input pins, not a serial UART protocol."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The design performs multiplication with filter-tap values."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Multiply-accumulate operations are the core of the FIR filter."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported uart tag; added verilog and arithmetic tags supported by the source.",
+   "tags_before": [
+    "fir-filter",
+    "dsp",
+    "education",
+    "multiplier",
+    "mac-unit",
+    "uart"
+   ],
+   "tags": [
+    "fir-filter",
+    "dsp",
+    "education",
+    "multiplier",
+    "mac-unit",
+    "verilog"
+   ],
+   "summary_before": "This project implements an FIR filter with adaptable coefficients that can be configured via a serial interface. The filter uses a symmetric step response to reduce memory requirements, and coefficients can be updated by enabling a configuration mode. It has been tested with impulse and step responses, and requires an external microcontroller or simple buttons for configuration and data input. The design is useful for learning about digital filters.",
+   "summary": "This project implements an FIR filter with adaptable coefficients that can be configured through the input pins. The filter uses the symmetric step response property to store only half the coefficients, reducing memory requirements, and coefficients can be updated by enabling a configuration bit. It was tested with impulse and step responses, and can be driven by any microcontroller or even buttons and LEDs. The design is useful for learning about digital filters.",
+   "summary_changed": true
+  },
+  {
+   "key": "907ba02d2ef7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design is a shift register, not a multi-register addressable file."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Removed register-file tag; the source describes a shift register only.",
+   "tags_before": [
+    "shift-register",
+    "register-file",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "shift-register",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project implements a serial-in serial-out shift register with four internal registers and selectable left or right shifting. It has inputs for data, clock, reset, enable, and shift direction, and a single data output. Testing involves applying clock edges with reset low and enable high, and observing the shifted data. External hardware may include a signal generator for clock and buttons or switches for inputs.",
+   "summary": "This project implements a serial-in serial-out shift register with four internal registers and selectable left or right shifting. It has inputs for data, clock, reset, enable, and shift direction, and a single data output. Testing involves applying clock edges with reset low and enable high, and observing the shifted data. External hardware may include a signal generator for clock and buttons or switches for inputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "5b27a8ffc1ee",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "opamp",
+     "reason": "The source describes a biased inverter, not an operational amplifier."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working."
+    }
+   ],
+   "notes": "Removed opamp tag since the source describes a biased inverter; silicon-tested is supported by the test reports.",
+   "tags_before": [
+    "analog",
+    "opamp",
+    "multiplexer",
+    "mixed-signal",
+    "silicon-tested"
+   ],
+   "tags": [
+    "analog",
+    "multiplexer",
+    "mixed-signal",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog design biases an inverter for linear mode operation to act as an amplifier, with a multiplexer selecting parallel feedback resistors to change the gain. It requires an external 20 nF capacitor at the input and an oscilloscope to observe the output. Silicon tests show it works, with different output levels for each MUX setting. The design demonstrates a mixed-signal amplifier with programmable gain.",
+   "summary": "This analog design biases an inverter for linear mode operation to act as an amplifier, with a multiplexer selecting parallel feedback resistors to change the gain. It requires an external 20 nF capacitor at the input and an oscilloscope to observe the output. Silicon tests show it works, with different output levels for each MUX setting. The design demonstrates a mixed-signal amplifier with programmable gain.",
+   "summary_changed": false
+  },
+  {
+   "key": "bf77ff8df385",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the design models a PLC scan cycle."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The design is described as combinational or sequential depending on configuration, so a purely combinational tag is unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "industrial",
+     "reason": "It implements a PLC-style controller for automation tasks."
+    }
+   ],
+   "notes": "Removed unsupported fsm and combinational tags; added verilog and industrial tags.",
+   "tags_before": [
+    "industrial",
+    "gpio",
+    "fsm",
+    "combinational",
+    "sequential-logic",
+    "button",
+    "led"
+   ],
+   "tags": [
+    "industrial",
+    "gpio",
+    "sequential-logic",
+    "button",
+    "led",
+    "verilog"
+   ],
+   "summary_before": "Implements a simple PLC-style programmable logic controller in Verilog that reads eight digital inputs and drives eight digital outputs based on programmed control rules. It mimics the scan cycle of a PLC: read inputs, execute logic, update outputs. The design can be used with switches and LEDs for testing, and optional external hardware includes buttons and relays. It is a combinational or sequential design depending on configuration and is intended for prototyping small automation tasks.",
+   "summary": "Implements a simple PLC-style programmable logic controller in Verilog that reads eight digital inputs and drives eight digital outputs based on programmed control rules. It mimics the scan cycle of a PLC: read inputs, execute logic, update outputs. The design can be used with switches and LEDs for testing, and optional external hardware includes buttons and relays. It is a combinational or sequential design depending on configuration and is intended for prototyping small automation tasks.",
+   "summary_changed": false
+  },
+  {
+   "key": "68b798f440c1",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "serial",
+     "reason": "The design uses SERDES serial communication."
+    }
+   ],
+   "notes": "Added verilog and serial tags supported by the source.",
+   "tags_before": [
+    "fir-filter",
+    "cipher",
+    "pipeline",
+    "crypto",
+    "dsp"
+   ],
+   "tags": [
+    "fir-filter",
+    "cipher",
+    "pipeline",
+    "crypto",
+    "dsp",
+    "verilog",
+    "uart"
+   ],
+   "summary_before": "This design implements a serial data pipeline that combines SERDES, a 4-tap FIR filter, and XOR encryption. It deserializes 8-bit words from a serial input, filters and encrypts them, then serializes the result. The design includes a done pulse to indicate completion of each byte transmission. It requires no external hardware and can be tested with a logic analyzer or LEDs.",
+   "summary": "This design implements a serial data pipeline that combines SERDES, a 4-tap FIR filter, and XOR encryption. It deserializes 8-bit words from a serial input, filters and encrypts them, then serializes the result. The design includes a done pulse to indicate completion of each byte transmission. It requires no external hardware and can be tested with a logic analyzer or LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "b045d3d5f5e0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "The design is a random number generator, not a cryptographic algorithm implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systemverilog",
+     "reason": "Design is written in SystemVerilog."
+    },
+    {
+     "tag": "trng",
+     "reason": "The design is a true random number generator."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "Entropy is harvested from free-running ring oscillators."
+    }
+   ],
+   "notes": "Removed crypto tag; the source describes a TRNG, not a cryptographic algorithm.",
+   "tags_before": [
+    "trng",
+    "ring-oscillator",
+    "crypto",
+    "systemverilog"
+   ],
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "systemverilog"
+   ],
+   "summary_before": "This SystemVerilog design implements a true random number generator that harvests entropy from the jitter of free-running ring oscillators. It outputs an 8-bit random byte after whitening the sampled bitstream to remove bias. The module uses a handshake protocol with ready/valid signals to indicate when data is available. Testing involves streaming bytes to a host PC and running statistical tests like NIST SP 800-22, requiring a Tiny Tapeout demo board and an RP2040 microcontroller for data capture.",
+   "summary": "This SystemVerilog design implements a true random number generator that harvests entropy from the jitter of free-running ring oscillators. It outputs an 8-bit random byte after whitening the sampled bitstream to remove bias. The module uses a handshake protocol with ready/valid signals to indicate when data is available. Testing involves streaming bytes to a host PC and running statistical tests like NIST SP 800-22, requiring a Tiny Tapeout demo board and an RP2040 microcontroller for data capture.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7815,
+  "completion_tokens": 1307,
+  "total_tokens": 9122,
+  "cost": 0.002532813,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002532813,
+   "upstream_inference_prompt_cost": 0.001199673,
+   "upstream_inference_completions_cost": 0.00133314
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002532813,
+ "elapsed_s": 33.2
+}

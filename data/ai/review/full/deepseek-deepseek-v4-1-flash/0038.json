@@ -1,0 +1,345 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cb904b63e60a",
+  "5b06c000efa3",
+  "69f80637132b",
+  "1c118c4719a1",
+  "e24ab16d513e",
+  "edbb78bf3536"
+ ],
+ "results": [
+  {
+   "key": "cb904b63e60a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "flip-flop",
+     "reason": "The source only says 'series of flip flops' in the one-line description; the implementation detail is not documented and the design is described as a clock divider, so flip-flop is not independently supported."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Not explicitly stated in the source; the design is only described as a clock divider using flip-flops, and the documentation is too thin to support this as a distinct tag."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "Already present; no change needed."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; pin names io_out[0..6] are segment a through g."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; language is Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Already present; documentation is very thin with 'todo' sections."
+    }
+   ],
+   "notes": "Removed flip-flop and sequential-logic because the source does not document the internal implementation beyond the one-line description.",
+   "tags_before": [
+    "clock-divider",
+    "flip-flop",
+    "wokwi",
+    "sequential-logic",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "clock-divider",
+    "wokwi",
+    "7-segment",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a clock divider implemented using a series of flip-flops. The documentation is minimal, with only the title and a brief description, and no testing instructions are provided. It is implemented in Wokwi and uses a 7-segment display for output, but the exact functionality and usage are not described. No external hardware is mentioned.",
+   "summary": "This design is a clock divider implemented using a series of flip-flops. The documentation is minimal, with only the title and a brief description, and no testing instructions are provided. It is implemented in Wokwi and uses a 7-segment display for output, but the exact functionality and usage are not described. No external hardware is mentioned.",
+   "summary_changed": false
+  },
+  {
+   "key": "5b06c000efa3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "timer",
+     "reason": "The source describes a counter and loopback tile with input skew measurement, not a programmable timer block."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The source mentions input skew measurement but does not clearly describe a measurement or instrumentation application; the documentation is too thin to support this tag."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "Already present; the design counts up to 10 one second at a time."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; uo[0..6] are segment a through g and uo[7] is dot."
+    },
+    {
+     "tag": "delay-line",
+     "reason": "Already present; external hardware includes programmable delay lines on inputs."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is essentially empty with 'Need to write this' for both how-it-works and how-to-test."
+    }
+   ],
+   "notes": "Removed timer and instrumentation; added insufficient-doc because the documentation is empty.",
+   "tags_before": [
+    "counter",
+    "timer",
+    "7-segment",
+    "delay-line",
+    "instrumentation",
+    "verilog"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "delay-line",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a loopback tile with input skew measurement, described as counting up to 10 one second at a time. It has an 8-bit compare input, an 8-bit second counter on bidirectional pins, and 7-segment display outputs. The documentation is essentially empty, with 'Need to write this' for both the how-it-works and how-to-test sections, so the exact function cannot be determined from the provided text. External hardware mentioned is programmable delay lines on the inputs.",
+   "summary": "This project is a loopback tile with input skew measurement, described as counting up to 10 one second at a time. It has an 8-bit compare input, an 8-bit second counter on bidirectional pins, and 7-segment display outputs. The documentation is essentially empty, with 'Need to write this' for both the how-it-works and how-to-test sections, so the exact function cannot be determined from the provided text. External hardware mentioned is programmable delay lines on the inputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "69f80637132b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "The title says I2S to PWM, but the pin names and description describe PCM outputs and PDM microphone inputs; PWM is not evidenced in the pins or detailed text."
+    },
+    {
+     "tag": "dsp",
+     "reason": "The source mentions beamforming and delay selection, but the documentation is placeholder text and does not clearly describe a DSP design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "i2s",
+     "reason": "Already present; ui[0] is Bit Clock and ui[1] is LR Clock, indicating I2S."
+    },
+    {
+     "tag": "audio",
+     "reason": "Already present; the design handles audio input and output."
+    },
+    {
+     "tag": "microphone",
+     "reason": "Already present; ui[2..5] are PDM input mics and uio[6] is Mic Clock."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation uses placeholder text like 'cool stuff' and does not describe the actual functionality."
+    }
+   ],
+   "notes": "Removed pwm and dsp; added insufficient-doc because the documentation is placeholder text.",
+   "tags_before": [
+    "i2s",
+    "pwm",
+    "audio",
+    "microphone",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "i2s",
+    "audio",
+    "microphone",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design converts I2S audio input to PWM output, with support for up to eight PDM microphones and beamforming via delay selection. It outputs PCM data for each microphone and a beamformed PCM output. The documentation is extremely sparse, using placeholder text like 'cool stuff', so the exact functionality and usage are unclear. External hardware needed includes PDM microphones, a clock generator, and an I2S receiver.",
+   "summary": "This design converts I2S audio input to PWM output, with support for up to eight PDM microphones and beamforming via delay selection. It outputs PCM data for each microphone and a beamformed PCM output. The documentation is extremely sparse, using placeholder text like 'cool stuff', so the exact functionality and usage are unclear. External hardware needed includes PDM microphones, a clock generator, and an I2S receiver.",
+   "summary_changed": false
+  },
+  {
+   "key": "1c118c4719a1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The source specifies a seven-segment display, so the more specific 7-segment tag is sufficient; display is redundant."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Already present; external hardware is a seven-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; language is Wokwi."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "Already present; the design uses an AND gate and a NAND gate."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Already present; the description mentions flipping the second switch on the dip switch 8."
+    }
+   ],
+   "notes": "Removed display and education; display is redundant with 7-segment and education is not supported by the source.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "logic-gate",
+    "dip-switch"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "logic-gate",
+    "dip-switch"
+   ],
+   "summary_before": "This design uses an AND gate and a NAND gate to control a 7-segment display, changing the displayed number between 1 and 5 when the second switch is toggled. The documentation is minimal and the exact mapping of inputs to segments is not fully explained. It is a simple educational project built in Wokwi. Required external hardware is a 7-segment display.",
+   "summary": "This design uses an AND gate and a NAND gate to control a 7-segment display, changing the displayed number between 1 and 5 when the second switch is toggled. The documentation is minimal and the exact mapping of inputs to segments is not fully explained. It is a simple educational project built in Wokwi. Required external hardware is a 7-segment display.",
+   "summary_changed": false
+  },
+  {
+   "key": "e24ab16d513e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multi-tile",
+     "reason": "The project uses 1x1 tiles, so it does not span multiple tiles."
+    }
+   ],
+   "add": [
+    {
+     "tag": "maze",
+     "reason": "Already present; the description says the player can walk around the maze."
+    },
+    {
+     "tag": "game",
+     "reason": "Already present; the design is an interactive maze game."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Already present; the description says adjacent walls are shown on the 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Already present; the 7-segment display is a display output."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already present; language is Verilog."
+    }
+   ],
+   "notes": "Removed multi-tile because the project is 1x1 tiles.",
+   "tags_before": [
+    "maze",
+    "game",
+    "7-segment",
+    "display",
+    "verilog",
+    "multi-tile"
+   ],
+   "tags": [
+    "maze",
+    "game",
+    "7-segment",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "This design implements a maze game where the player can walk around and see adjacent walls on a 7-segment display. It uses the first four inputs to move up, down, left, or right. No external hardware is required beyond the standard Tiny Tapeout PCB. The documentation is minimal and does not provide details on the maze layout or game mechanics.",
+   "summary": "This design implements a maze game where the player can walk around and see adjacent walls on a 7-segment display. It uses the first four inputs to move up, down, left, or right. No external hardware is required beyond the standard Tiny Tapeout PCB. The documentation is minimal and does not provide details on the maze layout or game mechanics.",
+   "summary_changed": false
+  },
+  {
+   "key": "edbb78bf3536",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "The source does not describe a chip factory self-test structure; it is a simple logic test with minimal documentation."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state that the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Already present; the title is 'Logic Test' and the how-it-works says 'Logic'."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; language is Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Already present; documentation is very thin with only 'Logic' and 'Test'."
+    }
+   ],
+   "notes": "Removed factory-test and education; factory-test is not supported and education is not stated.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education",
+    "factory-test",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "The Logic Test project is a simple design intended to verify basic logic functionality. It has eight input pins and two output pins, but the documentation provides no details on the logic implemented or how the outputs are derived. The design is likely a template or placeholder for testing purposes. There is insufficient documentation to determine its exact behavior or use.",
+   "summary": "The Logic Test project is a simple design intended to verify basic logic functionality. It has eight input pins and two output pins, but the documentation provides no details on the logic implemented or how the outputs are derived. The design is likely a template or placeholder for testing purposes. There is insufficient documentation to determine its exact behavior or use.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5565,
+  "completion_tokens": 2089,
+  "total_tokens": 7654,
+  "cost": 0.0023664,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0023664,
+   "upstream_inference_prompt_cost": 0.001113,
+   "upstream_inference_completions_cost": 0.0012534
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0023664,
+ "elapsed_s": 103.9
+}

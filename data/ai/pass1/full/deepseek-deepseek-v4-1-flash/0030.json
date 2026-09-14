@@ -1,0 +1,199 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "43c7e7bb7139",
+  "bacb10f678f1",
+  "5cb028efe9ca",
+  "6e42515b258b",
+  "1c7b0fe4bf22",
+  "574c9d944577",
+  "3ceec0777049",
+  "358e41e56fa1",
+  "f74610dfdc85",
+  "a3d88f60f74f"
+ ],
+ "results": [
+  {
+   "key": "43c7e7bb7139",
+   "tags": [
+    "temperature-sensor",
+    "ring-oscillator",
+    "uart",
+    "hysteresis",
+    "counter",
+    "sensor",
+    "oscillator",
+    "timer"
+   ],
+   "summary": "This design implements a temperature sensor using a ring oscillator whose frequency varies with temperature, counted over a clock period and averaged over four samples. The averaged value is output via UART and the standard I/O pins, and a hysteresis module provides a temperature warning output. The design can be tested by sending UART commands to start data transmission and to configure the hysteresis thresholds. It requires an external clock (around 1 MHz) and a UART interface for communication.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "bacb10f678f1",
+   "tags": [
+    "adder",
+    "alu",
+    "arithmetic",
+    "4-bit",
+    "combinational",
+    "digital"
+   ],
+   "summary": "This is a 4-bit adder that takes two 4-bit numbers as inputs and produces a 5-bit sum. It is built from one half adder and three full adders. The design is purely combinational and requires no clock. Testing is done by setting the two 4-bit inputs on the ui pins and observing the sum on the uo pins.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5cb028efe9ca",
+   "tags": [
+    "counter",
+    "pulse-counter",
+    "rtc",
+    "serial",
+    "state-machine",
+    "sensor-interface",
+    "overflow",
+    "acoustic-emission",
+    "piso"
+   ],
+   "summary": "This design counts digital pulses on four input channels within a real-time clock interval and periodically outputs the counts via a serial interface. It includes four 12-bit counters with overflow detection, an mm:ss RTC, and a parallel-in-serial-out readout state machine. The design is an early work-in-progress implementation of a low-power sensor interface for a multichannel acoustic emission detector. Testing involves applying pulses to the input channels and reading the serial output after an overflow event.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6e42515b258b",
+   "tags": [
+    "vga",
+    "raycasting",
+    "game",
+    "3d",
+    "graphics",
+    "spi",
+    "demo",
+    "retro",
+    "framebuffer-less"
+   ],
+   "summary": "This design is a framebuffer-less VGA ray caster that renders a simple 3D game map in real time, inspired by Wolf3D. It uses SPI to receive point-of-view data from a host controller and outputs VGA signals (RGB222, HSYNC, VSYNC) for a 640x480 display. The design includes a hard-coded 16x16 map with textures and supports debug and demo modes. It requires external VGA hardware with a DAC and an SPI host, and silicon tests have shown it working well.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1c7b0fe4bf22",
+   "tags": [
+    "alu",
+    "4-bit",
+    "arithmetic",
+    "logic",
+    "addition",
+    "subtraction",
+    "multiplication",
+    "division",
+    "bitwise-and"
+   ],
+   "summary": "This is a 4-bit ALU that performs addition, subtraction, multiplication, division, and bitwise AND on two 4-bit inputs. The operation is selected by a 3-bit input S. The result is output on 8 bits. Testing requires setting the A and B inputs and the operation select, then observing the result; external buttons or dip switches are suggested for input.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "574c9d944577",
+   "tags": [
+    "pwm",
+    "alu",
+    "4-bit",
+    "pulse-width-modulation",
+    "arithmetic",
+    "logic"
+   ],
+   "summary": "This design combines a 4-bit 1-channel PWM module and a 4-bit ALU. The documentation is very sparse, providing only that the input is set on ui_in[7:0] and the output is read from uo_out. There is no explanation of how the PWM and ALU are configured or selected. Testing is limited to setting inputs and reading outputs, but the lack of detail makes it difficult to use.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "3ceec0777049",
+   "tags": [
+    "delay-line",
+    "uart",
+    "sensor",
+    "process-voltage-temperature",
+    "instrumentation",
+    "edge-detection",
+    "sampling"
+   ],
+   "summary": "This design implements a tapped delay line with instrumentation to measure process, voltage, and temperature variations. It uses a chain of inverters, edge detection, and a bank of flip-flops to sample the delay line, with a UART interface for control and data readout. The UART protocol supports commands to shift data in/out, take full samples, and capture scope samples. Testing is done via a Python script over UART, requiring an FTDI cable.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "358e41e56fa1",
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "random-number-generator",
+    "analog",
+    "duty-cycle",
+    "vco",
+    "entropy"
+   ],
+   "summary": "This design generates a random bit with a variable probability using a ring oscillator-based true random number generator. It employs seven 7-stage ring oscillators with a NAND gate, an inverter bias system controlled by a DAC, and flip-flops to sample the output. The design is analog-intensive and requires simulation to verify. Testing is suggested only through analog simulation, indicating limited testability.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f74610dfdc85",
+   "tags": [
+    "game",
+    "bulls-and-cows",
+    "7-segment",
+    "puzzle",
+    "logic",
+    "display"
+   ],
+   "summary": "This design implements the Bulls and Cows game, where a secret 4-digit code must be guessed. Inputs are provided via pins for the guess and a save signal, and outputs drive a 7-segment display to show bulls and cows counts. The game logic compares the guess to the secret and indicates correct digits in correct positions (bulls) and correct digits in wrong positions (cows). Testing involves setting a secret code, making guesses, and observing the display.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a3d88f60f74f",
+   "tags": [
+    "collatz",
+    "conjecture",
+    "math",
+    "iteration",
+    "counter",
+    "computation"
+   ],
+   "summary": "This circuit computes the Collatz orbit for an 8-bit input number, outputting the number of iterations required to reach 1 and a busy status bit. It takes a clock, enable, and reset as inputs, and the result is held indefinitely after completion. Testing requires providing a clock and an 8-bit number, then observing the iteration count and busy signal.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "a3d88f60f74f: 3 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 6282,
+  "completion_tokens": 1539,
+  "total_tokens": 7821,
+  "cost": 0.002221416,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002221416,
+   "upstream_inference_prompt_cost": 0.001205676,
+   "upstream_inference_completions_cost": 0.00101574
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002221416,
+ "elapsed_s": 19.3
+}

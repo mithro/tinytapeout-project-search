@@ -1,0 +1,225 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5eecdc74d6c0",
+  "ce2c4e13a4c2",
+  "eb0b8dfae19b",
+  "1e13bb478672",
+  "be2d3981eb71",
+  "6afc5907387f"
+ ],
+ "results": [
+  {
+   "key": "5eecdc74d6c0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The source describes analog blocks built with open-source analog EDA tools, not discrete transistors."
+    },
+    {
+     "tag": "education",
+     "reason": "The source says the blocks were designed by participants under the Saudi Semiconductor Program, which is not stated to be a teaching or learning activity."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The tile contains both analog blocks (charge pump, VCO) and digital blocks (PFD, frequency dividers)."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level and education tags; added mixed-signal because the tile combines analog and digital PLL blocks.",
+   "tags_before": [
+    "pll",
+    "vco",
+    "phase-detector",
+    "charge-pump",
+    "ring-oscillator",
+    "clock-divider",
+    "analog",
+    "transistor-level",
+    "education"
+   ],
+   "tags": [
+    "pll",
+    "vco",
+    "phase-detector",
+    "charge-pump",
+    "ring-oscillator",
+    "clock-divider",
+    "analog",
+    "mixed-signal"
+   ],
+   "summary_before": "This analog tile collects separate PLL building blocks: two phase frequency detectors, a charge pump, a ring-oscillator VCO and four D flip-flop frequency dividers, each contributed by a different participant of the Saudi Semiconductor Program. Testing requires a two-channel function generator to drive the PFD and divider inputs and a two-channel oscilloscope to observe the QA/QB pulses, charge-pump output and divided frequencies. The VCO is tuned by a control voltage around 0.75V to 1V, and the dividers are expected to produce one-eighth of a 40 to 80MHz input. The blocks are documented individually but are not wired together into a complete closed-loop PLL on this tile.",
+   "summary": "This analog tile collects separate PLL building blocks: two phase frequency detectors, a charge pump, a ring-oscillator VCO and four D flip-flop frequency dividers, each contributed by a different participant of the Saudi Semiconductor Program. Testing requires a two-channel function generator to drive the PFD and divider inputs and a two-channel oscilloscope to observe the QA/QB pulses, charge-pump output and divided frequencies. The VCO is tuned by a control voltage around 0.75V to 1V, and the dividers are expected to produce one-eighth of a 40 to 80MHz input. The blocks are documented individually but are not wired together into a complete closed-loop PLL on this tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "ce2c4e13a4c2",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "puzzle",
+    "logic-gate",
+    "dip-switch",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "puzzle",
+    "logic-gate",
+    "dip-switch",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This Wokwi puzzle uses eight DIP switches, each mapped to a Notre Dame dormitory, and lights an LED when a valid combination of three dorms is selected. The valid set requires one of the best male dorms, one of the best female dorms and the best gender-neutral dorm, for example Alumni, Flaherty and Fischer Grad. It is intended as a trial-and-error exercise for students learning about logic gates. One external LED is needed, and no silicon test results are reported.",
+   "summary": "This Wokwi puzzle uses eight DIP switches, each mapped to a Notre Dame dormitory, and lights an LED when a valid combination of three dorms is selected. The valid set requires one of the best male dorms, one of the best female dorms and the best gender-neutral dorm, for example Alumni, Flaherty and Fischer Grad. It is intended as a trial-and-error exercise for students learning about logic gates. One external LED is needed, and no silicon test results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "eb0b8dfae19b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design uses a clock input but does not generate a clock signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working on fabricated silicon."
+    }
+   ],
+   "notes": "Removed clock-generator because the design only consumes a clock; added silicon-tested based on the working test reports.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "bcd",
+    "decoder",
+    "text",
+    "wokwi",
+    "clock-generator"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "bcd",
+    "decoder",
+    "text",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This Wokwi design drives a 7-segment display to spell out PILIPINASLASALLE one character per clock cycle, with the decimal point toggling each cycle. Setting input pin 7 high enables a manual mode in which pins 0 to 3 select a BCD value that maps to a specific character according to a documented table. It is based on an earlier Wokwi project and requires an external 7-segment display. Multiple testers, including the author, report that the message appears correctly on silicon and that manual mode works, although one tester noted the reset signal appears to have no effect and the sequence starts at a random point.",
+   "summary": "This Wokwi design drives a 7-segment display to spell out PILIPINASLASALLE one character per clock cycle, with the decimal point toggling each cycle. Setting input pin 7 high enables a manual mode in which pins 0 to 3 select a BCD value that maps to a specific character according to a documented table. It is based on an earlier Wokwi project and requires an external 7-segment display. Multiple testers, including the author, report that the message appears correctly on silicon and that manual mode works, although one tester noted the reset signal appears to have no effect and the sequence starts at a random point.",
+   "summary_changed": false
+  },
+  {
+   "key": "1e13bb478672",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "keypad",
+    "decoder",
+    "7-segment",
+    "wokwi",
+    "gpio"
+   ],
+   "tags": [
+    "keypad",
+    "decoder",
+    "7-segment",
+    "wokwi",
+    "gpio"
+   ],
+   "summary_before": "This design scans a 4x4 keypad matrix and displays the pressed key on a 7-segment display. It uses a 16-bit register to store the key state and combinatorial logic to drive the segments. External hardware includes a 4x4 keypad matrix and a 7-segment display. The design lacks debouncing and latching, making it a simple demonstration of keypad interfacing.",
+   "summary": "This design scans a 4x4 keypad matrix and displays the pressed key on a 7-segment display. It uses a 16-bit register to store the key state and combinatorial logic to drive the segments. External hardware includes a 4x4 keypad matrix and a 7-segment display. The design lacks debouncing and latching, making it a simple demonstration of keypad interfacing.",
+   "summary_changed": false
+  },
+  {
+   "key": "be2d3981eb71",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "keypad",
+    "security",
+    "shift-register",
+    "wokwi",
+    "fsm"
+   ],
+   "tags": [
+    "keypad",
+    "security",
+    "shift-register",
+    "wokwi",
+    "fsm"
+   ],
+   "summary_before": "This project implements a 4-digit password locker using a 4x4 matrix keypad. It registers a password and then compares subsequent entries, indicating success via an output pin. External hardware includes a keypad, a reset button, and LEDs. The design uses shift registers and state machines to manage password registration and verification.",
+   "summary": "This project implements a 4-digit password locker using a 4x4 matrix keypad. It registers a password and then compares subsequent entries, indicating success via an output pin. External hardware includes a keypad, a reset button, and LEDs. The design uses shift registers and state machines to manage password registration and verification.",
+   "summary_changed": false
+  },
+  {
+   "key": "6afc5907387f",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working on fabricated silicon."
+    }
+   ],
+   "notes": "Added silicon-tested because the source reports working silicon test results.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "wokwi"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a 32-bit Fibonacci linear feedback shift register with taps at bits 32, 30, 26, and 25. It includes a fail-safe to prevent all-zero lock-up and allows manual initialization via input pins. The design outputs the lower 8 bits and can be tested with a logic analyzer. Silicon testing confirmed it generates a random-looking output.",
+   "summary": "This is a 32-bit Fibonacci linear feedback shift register with taps at bits 32, 30, 26, and 25. It includes a fail-safe to prevent all-zero lock-up and allows manual initialization via input pins. The design outputs the lower 8 bits and can be tested with a logic analyzer. Silicon testing confirmed it generates a random-looking output.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 11018,
+  "completion_tokens": 1203,
+  "total_tokens": 12221,
+  "cost": 0.0023046,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0023046,
+   "upstream_inference_prompt_cost": 0.0015828,
+   "upstream_inference_completions_cost": 0.0007218
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0023046,
+ "elapsed_s": 54.6
+}

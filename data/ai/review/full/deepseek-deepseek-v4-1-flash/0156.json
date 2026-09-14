@@ -1,0 +1,200 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6f61a2a85c0d",
+  "63feb951c64e",
+  "8cafb7c55660",
+  "8b288fa27ee8",
+  "7e8a33be0aae",
+  "a1ecfd2d439c"
+ ],
+ "results": [
+  {
+   "key": "6f61a2a85c0d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is fully digital, implemented only with standard logic cells; no analog blocks are present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "The DACs and counters generate analog ramp signals for testing."
+    }
+   ],
+   "notes": "Removed mixed-signal because the design is entirely digital standard-cell logic; added signal-generator for the ramp generation.",
+   "tags_before": [
+    "dac",
+    "comparator",
+    "standard-cell",
+    "counter",
+    "analog",
+    "mixed-signal"
+   ],
+   "tags": [
+    "dac",
+    "comparator",
+    "standard-cell",
+    "counter",
+    "analog",
+    "signal-generator"
+   ],
+   "summary_before": "This design implements two digital-to-analog converters and three analog comparators using only standard logic cells, based on published work by Sala et al. and Yang et al. Two 5-bit counters drive the DACs to generate analog ramp signals that exercise the comparators. A SEL pin selects whether the counters operate together for a 10-bit sequence or independently. An oscilloscope is required to observe the DAC and comparator outputs, and the design is notable for being fully synthesizable from standard cells rather than custom analog blocks.",
+   "summary": "This design implements two digital-to-analog converters and three analog comparators using only standard logic cells, based on published work by Sala et al. and Yang et al. Two 5-bit counters drive the DACs to generate analog ramp signals that exercise the comparators. A SEL pin selects whether the counters operate together for a 10-bit sequence or independently. An oscilloscope is required to observe the DAC and comparator outputs, and the design is notable for being fully synthesizable from standard cells rather than custom analog blocks.",
+   "summary_changed": false
+  },
+  {
+   "key": "63feb951c64e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "memory",
+    "verilog",
+    "cocotb"
+   ],
+   "tags": [
+    "memory",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This module implements a 16x7 content-addressable memory (CAM) that is addressed by its contents rather than explicit addresses. It uses behavioral Verilog to infer comparators and registers, and supports writing with automatic replacement of the oldest entry. The design is tested using a cocotb testbench and requires no external hardware. It is notable for being a simple, purely behavioral CAM implementation.",
+   "summary": "This module implements a 16x7 content-addressable memory (CAM) that is addressed by its contents rather than explicit addresses. It uses behavioral Verilog to infer comparators and registers, and supports writing with automatic replacement of the oldest entry. The design is tested using a cocotb testbench and requires no external hardware. It is notable for being a simple, purely behavioral CAM implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "8cafb7c55660",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "The design is a game, not a dedicated compute accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "puzzle",
+     "reason": "The gameplay involves aiming and trajectory calculation to hit a target."
+    }
+   ],
+   "notes": "Removed accelerator because the project is a game; added puzzle for the aiming/trajectory gameplay.",
+   "tags_before": [
+    "game",
+    "accelerator",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "button",
+    "verilog",
+    "puzzle"
+   ],
+   "summary_before": "This design implements a simple shooting game in a 32x32 grid where the player controls a cannon to hit a randomly placed target. The cannon can be moved left or right and aimed in seven different directions, and the projectile bounces off side walls. The game outputs the target coordinates and a hit/miss result, and is controlled via five input pins. The design is a projectile positioning calculation accelerator, but the documentation focuses on gameplay rather than hardware implementation.",
+   "summary": "This design implements a simple shooting game in a 32x32 grid where the player controls a cannon to hit a randomly placed target. The cannon can be moved left or right and aimed in seven different directions, and the projectile bounces off side walls. The game outputs the target coordinates and a hit/miss result, and is controlled via five input pins. The design is a projectile positioning calculation accelerator, but the documentation focuses on gameplay rather than hardware implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "8b288fa27ee8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "asynchronous",
+    "multiplier",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "asynchronous",
+    "multiplier",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This design implements an asynchronous self-timed bundled-data multiplier. It uses a four-phase request-acknowledge handshake to indicate data validity and provides a 15-bit result via req and ack signals, with the result presented as x*(x+1) transformed by x ^ (x >> 15). Testing can be done by manually driving the ack signal and observing the outputs; tying ack to req may produce a continuous stream, though output bandwidth limitations are noted. The design is an educational exercise in asynchronous logic, with results directly observable from the RP2040 on the demoboard.",
+   "summary": "This design implements an asynchronous self-timed bundled-data multiplier. It uses a four-phase request-acknowledge handshake to indicate data validity and provides a 15-bit result via req and ack signals, with the result presented as x*(x+1) transformed by x ^ (x >> 15). Testing can be done by manually driving the ack signal and observing the outputs; tying ack to req may produce a continuous stream, though output bandwidth limitations are noted. The design is an educational exercise in asynchronous logic, with results directly observable from the RP2040 on the demoboard.",
+   "summary_changed": false
+  },
+  {
+   "key": "7e8a33be0aae",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This project implements an Adaptive Exponential Integrate-and-Fire (AdExp) neuron in Verilog, consisting of a neuron core and a parameter loader. It supports loading parameters via a nibble interface and provides a spike output and debug values. The design is self-contained and requires no external components. Testing involves loading parameters to induce spiking and observing the spike output within a set time limit.",
+   "summary": "This project implements an Adaptive Exponential Integrate-and-Fire (AdExp) neuron in Verilog, consisting of a neuron core and a parameter loader. It supports loading parameters via a nibble interface and provides a spike output and debug values. The design is self-contained and requires no external components. Testing involves loading parameters to induce spiking and observing the spike output within a set time limit.",
+   "summary_changed": false
+  },
+  {
+   "key": "a1ecfd2d439c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The design is a chip-select decoder, not a processor core."
+    }
+   ],
+   "add": [],
+   "notes": "Removed cpu because the project is a chip-select decoder, not a processor core.",
+   "tags_before": [
+    "decoder",
+    "retro",
+    "cpu",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "decoder",
+    "retro",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This design is a chip selector for Ben Eater's breadboard 6502 computer. It takes the high address bits and clock, and generates active-low or active-high chip select signals for ROM, RAM, VIA, UART, and SID. It is intended to be used with the actual breadboard computer or with an LED bar graph for testing. The design is a simple combinational decoder with no internal state, and its behavior is documented with a truth table.",
+   "summary": "This design is a chip selector for Ben Eater's breadboard 6502 computer. It takes the high address bits and clock, and generates active-low or active-high chip select signals for ROM, RAM, VIA, UART, and SID. It is intended to be used with the actual breadboard computer or with an LED bar graph for testing. The design is a simple combinational decoder with no internal state, and its behavior is documented with a truth table.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "6f61a2a85c0d: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 7542,
+  "completion_tokens": 1130,
+  "total_tokens": 8672,
+  "cost": 0.0036186,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036186,
+   "upstream_inference_prompt_cost": 0.0022626,
+   "upstream_inference_completions_cost": 0.001356
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036186,
+ "elapsed_s": 6.2
+}

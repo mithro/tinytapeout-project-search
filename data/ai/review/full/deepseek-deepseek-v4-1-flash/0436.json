@@ -1,0 +1,262 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "26f98b195296",
+  "5b6cc8533fff",
+  "d79312c1d6ed",
+  "9492e23a6d8c",
+  "f4efea735220",
+  "326c27f3d64c"
+ ],
+ "results": [
+  {
+   "key": "26f98b195296",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a basic 8-bit R-2R resistor ladder DAC using 25 identical resistors plus two dummies. It is tested by applying a binary input on ui_in[7:0] and measuring the analog output voltage on ua[0] with a multimeter, ADC, or oscilloscope. Silicon test reports indicate it is working, though the tester noted a discontinuity on the MSB and imperfect grounding. It requires external measurement equipment to observe the output.",
+   "summary": "This project implements a basic 8-bit R-2R resistor ladder DAC using 25 identical resistors plus two dummies. It is tested by applying a binary input on ui_in[7:0] and measuring the analog output voltage on ua[0] with a multimeter, ADC, or oscilloscope. Silicon test reports indicate it is working, though the tester noted a discontinuity on the MSB and imperfect grounding. It requires external measurement equipment to observe the output.",
+   "summary_changed": false
+  },
+  {
+   "key": "5b6cc8533fff",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adc",
+     "reason": "canonical type tag is sar-adc, which already covers this"
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "not supported, do not add"
+    }
+   ],
+   "notes": "Removed redundant duplicate tag 'adc'; no other changes needed.",
+   "tags_before": [
+    "sar-adc",
+    "adc",
+    "analog"
+   ],
+   "tags": [
+    "sar-adc",
+    "analog",
+    "signal-generator"
+   ],
+   "summary_before": "This is a 4-bit successive approximation analog-to-digital converter that converts a constant analog input voltage to a 4-bit digital output. It requires an external sample-and-hold circuit to keep the input stable during the 5-clock-cycle conversion, and a 5 MHz clock, producing a 1 MHz conversion rate. The digital result appears on four output pins with an end-of-conversion signal. The design is purely analog and includes no digital interface beyond the ADC outputs.",
+   "summary": "This is a 4-bit successive approximation analog-to-digital converter that converts a constant analog input voltage to a 4-bit digital output. It requires an external sample-and-hold circuit to keep the input stable during the 5-clock-cycle conversion, and a 5 MHz clock, producing a 1 MHz conversion rate. The digital result appears on four output pins along with an end-of-conversion signal. The design is an analog implementation and its digital outputs are the ADC result.",
+   "summary_changed": true
+  },
+  {
+   "key": "d79312c1d6ed",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "opamp",
+     "reason": "source does not implement or claim an operational amplifier, only a biased inverter"
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "the inverter is biased for linear/analog operation, not used as a logic gate"
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "source does not state that the design is built from discrete transistors rather than standard cells"
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "documentation is extremely brief and the design is only described as a minimal analog test block"
+    }
+   ],
+   "notes": "Removed unsupported opamp/logic-gate/transistor-level tags and added incomplete due to sparse documentation.",
+   "tags_before": [
+    "analog",
+    "opamp",
+    "logic-gate",
+    "transistor-level"
+   ],
+   "tags": [
+    "analog",
+    "incomplete"
+   ],
+   "summary_before": "This is an analog design that biases a standard inverter for linear-mode operation, effectively creating a simple amplifier. It has one analog input and one analog output, and requires an external 20 nF capacitor and a small-signal sine wave to test, with an oscilloscope for observation. The documentation is extremely brief, providing only the title and a minimal test suggestion. This appears to be a basic analog building block or educational experiment.",
+   "summary": "This is an analog design that biases an inverter for linear-mode operation, producing an analog output. It has one analog input and one analog output, and the minimal test suggestion is to add an external 20 nF capacitor, apply a small-signal sine wave, and observe the output with an oscilloscope. The documentation consists primarily of the title and that test description, with no further circuit details. This appears to be a basic analog building block or experiment.",
+   "summary_changed": true
+  },
+  {
+   "key": "9492e23a6d8c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "generic display output is too broad; the design specifically targets VGA"
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "combines a digital control block with analog DAC current-steering outputs"
+    },
+    {
+     "tag": "characterization",
+     "reason": "design is described as a test chip for exercising the analog VGA DAC channels"
+    }
+   ],
+   "notes": "Removed overly broad display tag; added mixed-signal and characterization supported by the analog/digital test-chip description.",
+   "tags_before": [
+    "vga",
+    "dac",
+    "analog",
+    "display",
+    "video"
+   ],
+   "tags": [
+    "vga",
+    "dac",
+    "analog",
+    "video",
+    "mixed-signal",
+    "characterization"
+   ],
+   "summary_before": "This project is a test chip for a 24-bit VGA digital-to-analog converter with a digital control block that generates various test patterns. The analog DAC outputs need external op-amps and a VGA connector to be used. The design includes multiple test modes and a pass-through mode, and the documentation notes potential issues with matching and slew. It is primarily a characterization and prototyping vehicle for analog VGA output.",
+   "summary": "This project is a test chip for an analog VGA digital-to-analog converter with a digital control block that can generate various test patterns after reset. The digital block drives three color channels, each with eight positive and eight negative polarity bits and an estimated 500 microamp current per channel, converted to voltage through pull-up resistors. The first analog output pin exposes the red channel DAC bias voltage for testing. The source documentation notes that the image will not be very clear due to poor matching and simulated slew worse than 40 ns, and that a VGA connector and probably an op-amp on each analog output are needed.",
+   "summary_changed": true
+  },
+  {
+   "key": "f4efea735220",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "r2r-dac",
+     "reason": "source describes a Dempsey-Gorman segmented two-ladder DAC, not an R-2R ladder"
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "source does not state the design is built from discrete transistors rather than standard cells"
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "not supported by source, do not add"
+    }
+   ],
+   "notes": "Removed unsupported r2r-dac and transistor-level tags; architecture is Dempsey-Gorman, not R-2R.",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "transistor-level"
+   ],
+   "tags": [
+    "dac",
+    "analog",
+    "signal-generator"
+   ],
+   "summary_before": "This design implements a Dempsey-Gorman 8-bit segmented DAC using two resistor ladders without voltage buffering. It is tested by setting the 8-bit input and measuring the analog output voltage, which should map to the 0V to 3.3V range. External hardware such as a multimeter or oscilloscope is required to measure the output. The documentation is brief but sufficient, referencing an external tutorial for architecture details.",
+   "summary": "This design implements a Dempsey-Gorman 8-bit segmented DAC using two resistor ladders without voltage buffering. It is tested by setting the 8-bit input and measuring the analog output voltage, which should map to the 0V to 3.3V range. External hardware such as a multimeter or oscilloscope is required to measure the output. The documentation is brief but sufficient, referencing an external tutorial for architecture details.",
+   "summary_changed": false
+  },
+  {
+   "key": "326c27f3d64c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rom",
+     "reason": "program storage is external SPI EEPROM, not an on-chip ROM block"
+    },
+    {
+     "tag": "motor-control",
+     "reason": "servo output is present but the project is not a motor-control application"
+    }
+   ],
+   "add": [
+    {
+     "tag": "industrial",
+     "reason": "source describes a PLC-like controller for small control tasks"
+    },
+    {
+     "tag": "spi",
+     "reason": "uses SPI to read programs from external EEPROM"
+    },
+    {
+     "tag": "servo",
+     "reason": "provides a servo output for actuation"
+    },
+    {
+     "tag": "timer",
+     "reason": "includes two timers and timer outputs"
+    },
+    {
+     "tag": "stack-machine",
+     "reason": "architecture is explicitly a stack machine"
+    }
+   ],
+   "notes": "Removed rom and motor-control, added industrial, spi, servo, timer, and stack-machine as directly supported by the source.",
+   "tags_before": [
+    "industrial",
+    "stack-machine",
+    "timer",
+    "servo",
+    "spi",
+    "rom",
+    "motor-control",
+    "education"
+   ],
+   "tags": [
+    "industrial",
+    "stack-machine",
+    "timer",
+    "servo",
+    "spi",
+    "education"
+   ],
+   "summary_before": "The VSLC is a small PLC-like stack machine controller with 8 inputs, 8 outputs, timers, and servo control, inspired by relay logic and early PLCs. It is programmed via an external EEPROM over SPI and executes scan cycles to handle control tasks such as model train crossing gates. External hardware includes an EEPROM emulator or actual EEPROM, and the design includes a compiler and disassembler for program development. Notable features include edge detection between scan cycles and complementary timer outputs.",
+   "summary": "The VSLC is a small PLC-like stack machine controller with 8 inputs, 8 outputs, and two timers, inspired by relay logic and early PLCs. It is programmed via an external EEPROM over SPI and executes scan cycles to handle small control tasks such as model train crossing gates, flashing lights, and servo actuation. A compiler and disassembler are provided for program development, and the design latches inputs at the start of each scan cycle. Notable features include rising/falling edge detection between scan cycles and complementary timer outputs.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7888,
+  "completion_tokens": 1658,
+  "total_tokens": 9546,
+  "cost": 0.004356,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004356,
+   "upstream_inference_prompt_cost": 0.0023664,
+   "upstream_inference_completions_cost": 0.0019896
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004356,
+ "elapsed_s": 11.4
+}

@@ -1,0 +1,188 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "17de3946373f",
+  "4756e9df7d23",
+  "030de4bc3ca9",
+  "179e79f45bc3",
+  "70273ae15906",
+  "0e9668fa3394",
+  "98fb7b5497a5",
+  "ba85d4ef3693",
+  "e55e082e8188",
+  "c1ab972ba5c7"
+ ],
+ "results": [
+  {
+   "index": 1,
+   "key": "17de3946373f",
+   "tags": [
+    "adder",
+    "alu",
+    "combinational",
+    "structural",
+    "education",
+    "verilog"
+   ],
+   "summary": "This project is a structural 4-bit ripple carry adder built from one half adder and three full adders, producing a 5-bit sum from two 4-bit unsigned inputs. The eight input pins carry operands A and B, and the five low output pins carry the sum and final carry-out, with the upper outputs tied low. It is purely combinational, with clock, reset and enable tied off internally to satisfy the synthesis flow. No external hardware is required beyond the demoboard switches and LEDs, and the documentation is clear and complete.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 2,
+   "key": "4756e9df7d23",
+   "tags": [
+    "ring-oscillator",
+    "characterization",
+    "clock-divider",
+    "analog",
+    "transistor-level",
+    "oscillator"
+   ],
+   "summary": "This is a 13-stage ring oscillator with an integrated 12-stage divider that scales the native frequency down by 4096 for off-chip measurement. It is intended for silicon aging studies, where elevated supply stress accelerates bias temperature instability and hot carrier injection, and the resulting frequency drop quantifies degradation. The analog pins expose the oscillator output plus header, footer, gate and drain sense/force nodes for the device under test. Testing needs a 1.8 V supply, a low-capacitance probe, an oscilloscope or frequency counter, and a way to drive the enable input.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 3,
+   "key": "030de4bc3ca9",
+   "tags": [
+    "vga",
+    "display",
+    "graphics",
+    "video",
+    "demoscene"
+   ],
+   "summary": "This design generates a 640x480 VGA signal at 25.175 MHz showing the letters IEEE bouncing around the screen. It has no user controls and simply runs from the clock and reset, with the eight outputs wired to the Tiny VGA PMOD pinout. The only external hardware needed is a VGA PMOD and a compatible monitor. The documentation is very thin, noting only that the Verilog was produced with Gemini, so little can be said about the internal implementation.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 4,
+   "key": "179e79f45bc3",
+   "tags": [
+    "uart",
+    "frequency-counter",
+    "timer",
+    "counter",
+    "instrumentation"
+   ],
+   "summary": "This design combines a programmable countdown timer, a frequency meter with a one-second gate window, and a falling-edge pulse counter in a single tile. It is controlled over a 115200 baud 8N1 UART using ASCII commands such as setting an HH:MM:SS window and starting a measurement, and it returns telemetry frames on the transmit pin. An external signal source connects to the measurement input, and status pins indicate frame completion and active measurement. Testing requires a USB-to-UART bridge, a serial terminal and a signal or pulse generator.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 5,
+   "key": "70273ae15906",
+   "tags": [
+    "ldo",
+    "analog",
+    "power-management",
+    "voltage-reference"
+   ],
+   "summary": "This is a low dropout voltage regulator that regulates its output using a reference voltage. The four analog pins provide the input, an output capacitor node, analog ground and the regulator output. Testing is described only as using a voltage source, with a power source and oscilloscope listed as external equipment. The documentation is extremely sparse, giving no information on dropout, load range, current capability or measured performance.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 6,
+   "key": "0e9668fa3394",
+   "tags": [
+    "graphics",
+    "vga",
+    "game",
+    "lookup-table",
+    "video",
+    "display",
+    "maze"
+   ],
+   "summary": "This is a Wolfenstein-style raycaster that renders a 3D maze from a hardcoded 32x32 grid into a 640x480 VGA signal at 25 MHz, using one scanline per vertical scene column. Player position and angle are updated once per vsync, with direction stored as a 6-bit index into a 64-entry lookup table and wall height derived from a reciprocal lookup. Buttons on the inputs move and turn the player, a demo mode walks forward automatically, and two bits select the wall colour. It needs a VGA PMOD and a 640x480 monitor, and the bidirectional pins expose the angle index and debug position bits.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 7,
+   "key": "98fb7b5497a5",
+   "tags": [
+    "vco",
+    "ring-oscillator",
+    "analog",
+    "oscillator",
+    "transistor-level",
+    "current-mirror"
+   ],
+   "summary": "This is a current-controlled 4-stage differential ring VCO in SKY130 with buffered rail-to-rail outputs providing four quadrature phases at 45 degree spacing. Frequency is set by an external control current mirrored into the PFET loads and NFET tail sources of each stage, with a tuning range of roughly 200 kHz to 3 MHz. One analog pin takes the control current and another exposes the internal bias voltage for monitoring. Testing requires a current source or resistor network plus an oscilloscope or frequency counter, and the design is based on a published reference circuit.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 8,
+   "key": "ba85d4ef3693",
+   "tags": [
+    "compression",
+    "dsp",
+    "instrumentation",
+    "fpga"
+   ],
+   "summary": "This block compresses 8-bit trace data in a single clock cycle using four packet types: run-length encoding, delta run-length encoding, small signed delta, and raw. It was originally developed for an FPGA and is meant to reduce the memory needed to store high-rate signal traces before readout. Input data arrives on the eight input pins, and the outputs carry the compressed byte, a two-bit packet code and a save strobe that indicates whether the value should be stored. Testing is expected on a Basys3 FPGA board that supplies inputs and captures outputs, and the documentation notes that run-length modes emit no packets until interrupted or overflowing.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 9,
+   "key": "e55e082e8188",
+   "tags": [
+    "timer",
+    "rtc",
+    "7-segment",
+    "spi",
+    "max7219",
+    "button",
+    "display"
+   ],
+   "summary": "This design is a three-mode clock and timer that shows a clock, a date, or a Pomodoro countdown on an external MAX7219 8-digit 7-segment display driven over SPI. Four breadboard buttons enter and leave setup mode, cycle modes and fields, increment or decrement values, and start, pause or reset the Pomodoro. Eight LED outputs report the display mode, setup state, work and break phases, alarm, and selected field. It needs the MAX7219 display and buttons as external hardware, and the documentation is brief but consistent with the pin names.",
+   "changed": false,
+   "sentences": 4
+  },
+  {
+   "index": 10,
+   "key": "c1ab972ba5c7",
+   "tags": [
+    "dma",
+    "spi",
+    "memory",
+    "qspi"
+   ],
+   "summary": "This is a two-channel byte DMA engine that moves data to and from an external SPI PSRAM device. Configuration bytes are loaded on the input pins with a valid strobe, a start pin triggers operation, and the SPI master pins connect to the memory. Status outputs report DMA activity, completion pulses per channel, pending configuration and configuration errors. It targets a QSPI PMOD with an APS6404 PSRAM used in single-bit SPI mode, and the documentation covers the pin mapping but not the internal architecture or measured throughput.",
+   "changed": false,
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10019,
+  "completion_tokens": 1833,
+  "total_tokens": 11852,
+  "cost": 0.0011038559,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 2816,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0011038559,
+   "upstream_inference_prompt_cost": 0.0007510034,
+   "upstream_inference_completions_cost": 0.0003528525
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0011038559,
+ "elapsed_s": 37.0
+}

@@ -1,0 +1,497 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5e14744b5bc4",
+  "cfb614644f33",
+  "a56a81730a0b",
+  "69e2e7808347",
+  "398d19f35aab",
+  "e6d7986eef68"
+ ],
+ "results": [
+  {
+   "key": "5e14744b5bc4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "No game; source describes a UART-driven ALU processor."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA interface; pins are uio[0] RX and uio[1] TX only."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described or present in pins."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output is described or present in pins."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "Design is controlled over UART RX/TX with an 8N1 protocol."
+    },
+    {
+     "tag": "alu",
+     "reason": "Source explicitly describes an 8-bit ALU computing results."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Source lists language as Verilog."
+    },
+    {
+     "tag": "cpu",
+     "reason": "Described as a small UART-driven ALU processor."
+    }
+   ],
+   "notes": "Tags and summary replaced VGA/game claims with the documented UART ALU behavior.",
+   "tags_before": [
+    "game",
+    "vga",
+    "graphics",
+    "display",
+    "video"
+   ],
+   "tags": [
+    "uart",
+    "alu",
+    "verilog",
+    "cpu"
+   ],
+   "summary_before": "This project is a simple VGA-based game where the user controls a box on the screen. The game uses a VGA output to display the graphics and likely accepts input from switches or buttons. The design is interactive and requires a VGA monitor to play. The documentation is minimal, but the game appears to be a basic interactive demonstration.",
+   "summary": "This project is a small UART-driven ALU processor implemented in Verilog. It receives three bytes over UART (opcode, operand A, operand B), computes the result with an 8-bit ALU, and returns the result byte over UART. The UART protocol is 8N1 at 115200 baud with a 50 MHz clock. Testing involves connecting a UART adapter to uio[0] and uio[1], sending three bytes, and reading back the result byte.",
+   "summary_changed": true
+  },
+  {
+   "key": "cfb614644f33",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface; pins are generic ui inputs and uo outputs."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output is described or present in pins."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described or present in pins."
+    },
+    {
+     "tag": "image-processing",
+     "reason": "No image processing is described."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Source lists language as Verilog."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Source describes computing (A+B)*C, a multiply-accumulate operation."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "The operation includes multiplication of the sum by C."
+    },
+    {
+     "tag": "adder",
+     "reason": "The operation includes addition of A and B."
+    }
+   ],
+   "notes": "Tags and summary replaced VGA/image-processing claims with the documented multiply-add function.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "image-processing",
+    "graphics"
+   ],
+   "tags": [
+    "verilog",
+    "mac-unit",
+    "multiplier",
+    "adder"
+   ],
+   "summary_before": "This project is a simple Verilog design that shifts a VGA image on the screen. It outputs a VGA video signal and likely uses a framebuffer or image data. The design is intended for graphics display and demonstrates image shifting. It requires a VGA monitor and possibly external memory for the image.",
+   "summary": "This project is a Verilog multiply-add design that inputs three 8-bit numbers A, B, and C sequentially on consecutive positive clock edges. On the fourth positive clock edge it outputs the result (A+B)*C on the eight uo pins. Testing is done by inserting three numbers and checking the result. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "a56a81730a0b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No ALU is described; the design is a ray casting VGA renderer."
+    },
+    {
+     "tag": "register-file",
+     "reason": "POV registers are mentioned, but no general register-file block is documented."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described; inc_px/inc_py increment position registers, not a counter block."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is described or present in pins."
+    },
+    {
+     "tag": "button",
+     "reason": "No button input is described or present in pins."
+    },
+    {
+     "tag": "education",
+     "reason": "Not described as intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Pins match Tiny VGA and the design generates a VGA display signal."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The design renders 3D-like ray casting graphics."
+    },
+    {
+     "tag": "display",
+     "reason": "It is a framebuffer-less VGA display generator."
+    },
+    {
+     "tag": "video",
+     "reason": "Produces a VGA video signal."
+    },
+    {
+     "tag": "game",
+     "reason": "Described as a ray casting game engine demo."
+    },
+    {
+     "tag": "spi",
+     "reason": "A single SPI interface controls POV and other registers."
+    },
+    {
+     "tag": "qspi",
+     "reason": "Optional off-chip QSPI memory is used for textures."
+    },
+    {
+     "tag": "pmod",
+     "reason": "External Tiny VGA PMOD and optional QSPI PMODs are used."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Source lists language as Verilog."
+    },
+    {
+     "tag": "framebuffer",
+     "reason": "The design is explicitly framebuffer-less, rendering by racing the beam."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "It is a visual ray casting demo with rendering effects."
+    }
+   ],
+   "notes": "Replaced unrelated ALU/register tags and summary with the documented VGA ray caster facts.",
+   "tags_before": [
+    "alu",
+    "register-file",
+    "counter",
+    "7-segment",
+    "button",
+    "education"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "display",
+    "video",
+    "game",
+    "spi",
+    "qspi",
+    "pmod",
+    "verilog",
+    "framebuffer",
+    "demoscene"
+   ],
+   "summary_before": "This project is a simple ALU with embedded registers, but the documentation is inconsistent, mentioning a 4-bit counter and 7-segment display. It likely performs arithmetic or logic operations on register values and may output results to a display. The design is intended for educational purposes, demonstrating basic ALU and register functionality. The exact behavior is unclear due to incomplete documentation.",
+   "summary": "This project is an experimental GF180 submission of raybox-zero, a framebuffer-less VGA display generator that implements a simple 3D-like ray casting game engine. It is inspired by Wolfenstein 3D, using a grid of wall blocks with textured walls that can be internally generated or read from off-chip QSPI memory, plus optional sliding doors and flat-coloured floor and ceiling. The player POV registers and other visual effects are controlled through a single SPI interface. It outputs a standard VGA 640x480@59.94Hz signal on the Tiny VGA pinout and requires a clock around 25.175 MHz.",
+   "summary_changed": true
+  },
+  {
+   "key": "69e2e7808347",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is described or present in pins."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "No RP2040 pairing is described."
+    },
+    {
+     "tag": "communication",
+     "reason": "The project is a demo, not a data communication protocol design."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory block is described."
+    },
+    {
+     "tag": "education",
+     "reason": "Not described as intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "Pins match Tiny VGA and output is VGA 640x480@60Hz."
+    },
+    {
+     "tag": "video",
+     "reason": "Produces a VGA video signal."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The demo renders logos, star field, twister, and spiralling balls."
+    },
+    {
+     "tag": "audio",
+     "reason": "Pins match TT Audio and include audio_out."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "It is a submission to the TT10 demo competition."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "Documentation describes a synthesizer and sequencer."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "Documentation describes a sequencer."
+    },
+    {
+     "tag": "floating-point",
+     "reason": "A floating point unit is used for the twister and spiralling balls."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Source lists language as Verilog."
+    }
+   ],
+   "notes": "Replaced SPI/RP2040 bridge tags and summary with the documented VGA/audio demo facts.",
+   "tags_before": [
+    "spi",
+    "rp2040",
+    "communication",
+    "memory",
+    "education"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "audio",
+    "demoscene",
+    "synthesizer",
+    "sequencer",
+    "floating-point",
+    "verilog"
+   ],
+   "summary_before": "This project provides a bridge between an RP2040 microcontroller and a Tiny Tapeout chip using SPI. It is designed for educational purposes and demonstrates how to interface a microcontroller with custom hardware. The design includes memory-mapped registers and is tested by sending commands over SPI. It is notable for enabling easy control of Tiny Tapeout projects from an RP2040.",
+   "summary": "This project is a Verilog demo submitted to the TT10 demo competition, containing a logo, star field, twister, and spiralling balls. It includes a floating point unit used for the twister and spiralling balls, plus a synthesizer and sequencer. The video output is VGA 640x480@60Hz clocked at 50.4 MHz, giving two clock cycles per pixel. Testing requires a TinyVGA-compatible Pmod and Mike's audio Pmod, with all inputs set to zero for default behavior.",
+   "summary_changed": true
+  },
+  {
+   "key": "398d19f35aab",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR is described; the design is an 8b10 serdes."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudorandom number generation is described."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio output is described or present in pins."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "No waveform generator is described; clocks are related to the serdes."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systemverilog",
+     "reason": "Source lists language as SystemVerilog."
+    },
+    {
+     "tag": "serial",
+     "reason": "Implements 8b10 encoder/decoder serialization."
+    },
+    {
+     "tag": "encoder",
+     "reason": "Contains an 8b10 encoder."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Contains an 8b10 decoder."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "Manual clock is divided by 10 to generate internal clocks."
+    }
+   ],
+   "notes": "Tags and summary replaced unrelated LFSR/audio claims with the documented 8b10 serdes behavior.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "audio",
+    "signal-generator"
+   ],
+   "tags": [
+    "systemverilog",
+    "uart",
+    "encoder",
+    "decoder",
+    "clock-divider"
+   ],
+   "summary_before": "This project uses a 16-bit LFSR to generate pseudo-random tones. It is designed to demonstrate the use of an LFSR for sound generation. The output is a square wave whose frequency is controlled by the LFSR state. It is tested by connecting an audio output and listening to the generated tones.",
+   "summary": "This project is a SystemVerilog test for an 8b10 serializer/deserializer, containing an 8b10 encoder and decoder. Nine-bit symbols can be pushed in and results pop out a number of clocks later. The manual clock is divided by 10 to generate internal clocks, and both transmitter and receiver use handshake strobes on the bidirectional pins. Testing involves setting up a manual clock, sending the COM character, waiting for link lock on uio[7], and checking that received characters match what was sent.",
+   "summary_changed": true
+  },
+  {
+   "key": "e6d7986eef68",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "No VGA interface is described or present in pins."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output is described; output is pwm_out."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering is described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described or present in pins."
+    },
+    {
+     "tag": "art",
+     "reason": "Not described as artistic or decorative silicon design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Source lists language as Verilog."
+    },
+    {
+     "tag": "music",
+     "reason": "The design generates melodies."
+    },
+    {
+     "tag": "chip-tune",
+     "reason": "It produces chiptune-style PWM tones on a pentatonic scale."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "It synthesizes notes via a PWM generator."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Uses a 16-bit LFSR entropy source."
+    },
+    {
+     "tag": "prng",
+     "reason": "LFSR produces pseudorandom numbers for Markov chain transitions."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Two finite state machines model the Markov chains."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Final module is a PWM generator outputting pwm_out."
+    },
+    {
+     "tag": "buzzer",
+     "reason": "Requires a PMOD buzzer for audio output."
+    }
+   ],
+   "notes": "Replaced VGA/hearts tags and summary with the documented Markov chain music generator facts.",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "verilog",
+    "art"
+   ],
+   "tags": [
+    "verilog",
+    "music",
+    "chiptune",
+    "synthesizer",
+    "lfsr",
+    "prng",
+    "fsm",
+    "pwm",
+    "buzzer"
+   ],
+   "summary_before": "This design generates a VGA video signal that animates columns of pink hearts transitioning on and off the screen. It is implemented in Verilog using the VGA Playground environment and is intended to be tested by running the simulation and observing the output. The design requires a VGA monitor connected to the Tiny VGA PMOD pinout. The project is a playful visual demonstration rather than a practical application.",
+   "summary": "This design is a Verilog melody generator that uses two Markov chains, one for note selection and one for note duration, on a pentatonic scale. An LFSR generates two 8-bit pseudorandom numbers that drive the Markov chain transitions, and two FSMs model the chains while a PWM generator outputs the target note. Inputs allow selecting one of sixteen melodies via the last four seed bits, plus adjustable BPM and duration matrix selection. A buzzer PMOD is required to hear the generated melodies.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7794,
+  "completion_tokens": 2821,
+  "total_tokens": 10615,
+  "cost": 0.0057234,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0057234,
+   "upstream_inference_prompt_cost": 0.0023382,
+   "upstream_inference_completions_cost": 0.0033852
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0057234,
+ "elapsed_s": 14.5
+}

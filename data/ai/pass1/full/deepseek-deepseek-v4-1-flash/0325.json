@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "061b2d089b9d",
+  "9e1bca5fe30a",
+  "cafc1205d48f",
+  "a05448c06ea3",
+  "8c7a933f3f65",
+  "69030bd11971",
+  "12ffc72c3bfc",
+  "3f0a3b63a561",
+  "0b75fc5f13f7",
+  "4b62730c6e18"
+ ],
+ "results": [
+  {
+   "key": "061b2d089b9d",
+   "tags": [
+    "crypto",
+    "ecdsa",
+    "signature-verification",
+    "security",
+    "v2x",
+    "automotive",
+    "accelerator"
+   ],
+   "summary": "This design is a simplified ECDSA digital signature verification module intended for firmware authentication in automotive V2X systems. Firmware data is presented on the eight input pins after reset and enable, and the result is indicated on the output pins as either a valid or invalid signature. The documentation describes the intended security purpose but does not specify the elliptic curve, key sizes, or internal datapath, and the pin names are generic. No external hardware is mentioned, and no silicon test results are provided.",
+   "confidence": "low",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9e1bca5fe30a",
+   "tags": [
+    "crypto",
+    "chacha20",
+    "stream-cipher",
+    "encryption",
+    "uart",
+    "serial",
+    "fsm",
+    "systemverilog"
+   ],
+   "summary": "This is a hardware implementation of the RFC 8439 ChaCha20 stream cipher with a 256-bit key, 96-bit nonce, and 32-bit block counter, supporting keystream generation and XOR-based encryption or decryption. A command-driven controller loads key, nonce, and counter and then streams keystream or ciphertext bytes through either a UART at clock/200 baud or a synchronous parallel byte bus selected by the MODE pin. The core runs the 20 rounds through four parallel quarter-round units and reads out one 32-bit word at a time, and the design is verified against RFC 8439 test vectors and a bit-exact Python reference. No external hardware is required in UART mode, which uses the demo board's USB-serial bridge, while parallel mode targets a clock-synchronous host such as an RP2040 PIO or FPGA.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cafc1205d48f",
+   "tags": [
+    "game",
+    "puzzle",
+    "strategy",
+    "lfsr",
+    "fsm",
+    "state-machine",
+    "grid",
+    "education"
+   ],
+   "summary": "Elemental Harmony is a 4x4 strategy puzzle game implemented in silicon where a human player places elemental patterns against an internal logic engine that uses an LFSR to find empty tiles and a combinational adder tree to score adjacent pattern matches. Moves are entered as a 4-bit tile address and 3-bit pattern on the inputs followed by a start pulse, and the resulting harmony score appears on the outputs when the done strobe is high. A tri-state error reporting scheme streams the occupancy map and fill count back through ERROR1 to ERROR3 states when a player selects an occupied tile, allowing recovery without a full reset. The design is documented as a Tiny Tapeout-compatible module and requires no external hardware beyond the standard interface.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a05448c06ea3",
+   "tags": [
+    "game",
+    "dice",
+    "random-number-generator",
+    "counter",
+    "7-segment",
+    "led",
+    "display"
+   ],
+   "summary": "This design recreates an electronic six-sided dice that produces a random number from 1 to 6 on a 7-segment display after a button press. Holding the trigger starts a fast counter that slows down to simulate a roll-off, with a pulsecount LED flashing on each count and a finish LED lighting when the result is stable. It needs two active-low LEDs on bidirectional pins, a common-anode 7-segment display, and an active-high push button, and the COMMON pin can be ignored with a general-purpose display. The documentation is clear about operation and wiring but does not report silicon test results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8c7a933f3f65",
+   "tags": [
+    "biss-c",
+    "encoder",
+    "position",
+    "spi",
+    "sensor",
+    "industrial",
+    "motor-control",
+    "pulse-generator"
+   ],
+   "summary": "Lightscan is a BISS-C master that acquires absolute position from an encoder and emits a synchronized pulse output to trigger external equipment such as a camera. It is configured through an SPI register interface using CPOL=1 and CPHA=1 with an 8-bit command and 32-bit data frame, and it supports BISS-C delay compensation plus spare UIO control synchronized with the trigger. Testing requires a BISS-C encoder connected through an RS422 transceiver and optionally an external instrument on the pulse output, with position read from a register when the position-ready event fires. The documentation gives concrete register values for a 10-second acquisition at 0.1-second intervals with a 1 MHz BISS-C bitrate and 14-bit encoder.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "69030bd11971",
+   "tags": [
+    "template",
+    "placeholder",
+    "unimplemented",
+    "wokwi",
+    "education",
+    "verilog"
+   ],
+   "summary": "This project has only placeholder text for its title, description, and documentation, with no indication of what the design actually does. The pins are labelled with single letters A through X and I through P, which reveals nothing about function or interface. The how-it-works and how-to-test sections contain only generic filler sentences, and no external hardware is listed. There is essentially no usable documentation, so no meaningful tags or behaviour can be determined.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "12ffc72c3bfc",
+   "tags": [
+    "crypto",
+    "ecdsa",
+    "signature-verification",
+    "security",
+    "v2x",
+    "automotive",
+    "accelerator",
+    "low-latency"
+   ],
+   "summary": "This hardware IP block performs low-latency ECDSA signature verification for V2X communication, targeting the IEEE 1609.2 automotive security requirement of authenticating messages in under one millisecond. It is controlled through start, soft reset, and mode select pins, with data presented on the upper input bits and status outputs indicating authentication valid, rejection, busy, ECC completion, key loaded, and packet ready. The documentation states the purpose and timing goal but does not describe the internal datapath, curve parameters, or how the signature data is actually loaded and processed. No external hardware is required, and no silicon test results are reported.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3f0a3b63a561",
+   "tags": [
+    "dsp",
+    "dds",
+    "oscillator",
+    "sine",
+    "quadrature",
+    "sigma-delta",
+    "spi",
+    "audio"
+   ],
+   "summary": "This design is a quadrature sine direct digital synthesizer that generates two sinusoidal waveforms with a fixed 90-degree phase offset as I/Q signals. The outputs are produced as pulse-code-modulated streams through two first-order sigma-delta modulators, and the DDS prescaler can be programmed over an SPI port. The oscillator algorithm is based on a published recursive sinusoid generation paper, and the recommended external hardware is a digital buffer plus two RC filters for reconstruction. The documentation is specific about the architecture and external filtering but does not include silicon measurements.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0b75fc5f13f7",
+   "tags": [
+    "lfsr",
+    "prng",
+    "random-number-generator",
+    "counter",
+    "sequence-generator",
+    "shift-register"
+   ],
+   "summary": "This project is a 4-bit maximum-length linear feedback shift register using the polynomial x4+x+1 with taps at bits 3 and 0, seeded with 0x1 on active-low reset. It shifts left on each rising clock edge and cycles through all 15 non-zero states before repeating, with the 4-bit value on the low output nibble and the upper nibble always zero. Testing consists of asserting reset for at least two clock cycles, confirming the output reads 0x1, then observing the documented sequence advance on each clock. No external hardware is required, and the documentation is complete and precise.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4b62730c6e18",
+   "tags": [
+    "machine-learning",
+    "neural-network",
+    "anomaly-detection",
+    "security",
+    "v2x",
+    "mac",
+    "uart",
+    "serial"
+   ],
+   "summary": "This design is a lightweight machine-learning anomaly detection engine that analyzes 64-bit V2X packets fed serially into a shift register and classifies them by threat level. It extracts velocity and heading features, applies hardcoded weights in a multiply-accumulate unit, passes the result through a ReLU and threshold comparison, and outputs an 8-bit threat score with done and interrupt flags. Testing requires a microcontroller such as an RP2040 to bit-bang the serial input and monitor the flags, with optional LEDs or a logic analyzer for observation. The documentation gives concrete test vectors and describes a six-stage pipeline, though no silicon results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6877,
+  "completion_tokens": 1950,
+  "total_tokens": 8827,
+  "cost": 0.003537003,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 896,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003537003,
+   "upstream_inference_prompt_cost": 0.001548003,
+   "upstream_inference_completions_cost": 0.001989
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003537003,
+ "elapsed_s": 46.9
+}

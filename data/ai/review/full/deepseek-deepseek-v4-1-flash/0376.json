@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "495cf2f44daa",
+  "d7b03f960662",
+  "5deb154934a6",
+  "8c64066c0641",
+  "b4f64c1274ca",
+  "d72c5695b388"
+ ],
+ "results": [
+  {
+   "key": "495cf2f44daa",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "education",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "education",
+    "alu",
+    "verilog"
+   ],
+   "summary_before": "This is a simple single-stage RISC-V CPU based on a university lecture, loading 32-bit instructions four bytes at a time over an 8-bit input bus. It exposes the instruction byte inputs, a reset and instruction-memory write-enable on the bidirectional pins, and the ALU output byte on the outputs. Testing is done with a testbench containing simple instructions to verify calculations are correct. The documentation notes the chip is not being shipped at this time, and no silicon results are available.",
+   "summary": "This is a simple single-stage RISC-V CPU based on a university lecture, loading 32-bit instructions four bytes at a time over an 8-bit input bus. It exposes the instruction byte inputs, a reset and instruction-memory write-enable on the bidirectional pins, and the ALU output byte on the outputs. Testing is done with a testbench containing simple instructions to verify calculations are correct. The documentation notes the chip is not being shipped at this time, and no silicon results are available.",
+   "summary_changed": false
+  },
+  {
+   "key": "d7b03f960662",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source never states the design is intended for teaching or learning; the title mentions lectures but the purpose given is silicon testing of the microprocessor and peripherals."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The test description says the output value is displayed on a 7-segment display."
+    },
+    {
+     "tag": "keypad",
+     "reason": "External hardware lists a keypad and the input pins are labeled keyboard 0-7."
+    }
+   ],
+   "notes": "Removed education (not stated as a teaching purpose) and added 7-segment and keypad tags supported by the test and external-hardware text.",
+   "tags_before": [
+    "soc",
+    "cpu",
+    "spi",
+    "pwm",
+    "timer",
+    "rom",
+    "memory",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "soc",
+    "cpu",
+    "spi",
+    "pwm",
+    "timer",
+    "rom",
+    "memory",
+    "verilog",
+    "7-segment",
+    "keypad"
+   ],
+   "summary_before": "This design is a tiny system-on-chip with a 16-bit microprocessor, boot ROM, PWM, timer, and SPI interface. It is used by powering on the chip, after which the boot ROM runs a program that reads input from an 8-bit port and displays it on an 8-bit output port, while also exercising the SPI, PWM, and timer peripherals. External hardware such as a keypad, 7-segment display, or LCD is suggested but not finalized. The project is intended to test the microprocessor and peripherals on silicon, but no silicon results are reported.",
+   "summary": "This design is a tiny system-on-chip with a 16-bit microprocessor, boot ROM, PWM, timer, and SPI interface. After power-on the boot ROM runs a program that reads input from an 8-bit port and displays it on an 8-bit output port, while also exercising the SPI, PWM, and timer peripherals. External hardware such as a keypad, 7-segment display, or LCD is suggested but not finalized. The project is intended to test the microprocessor and peripherals on silicon, but no silicon results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "5deb154934a6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "audio",
+    "graphics",
+    "spi",
+    "oled",
+    "pwm",
+    "led",
+    "display",
+    "pattern-generator",
+    "rotary-encoder"
+   ],
+   "tags": [
+    "audio",
+    "graphics",
+    "spi",
+    "oled",
+    "pwm",
+    "led",
+    "display",
+    "pattern-generator",
+    "rotary-encoder"
+   ],
+   "summary_before": "Infinity Core is a hardware audio visualizer that takes a digital beat pulse and drives both an SPI OLED display and PWM-controlled infinity mirror LEDs. It contains a 24-bit heartbeat counter, a PWM comparator engine, and a hardware SPI serializer that pushes pixel data without any CPU or RAM. Two rotary encoders adjust brightness, density, and decay speed, and an external comparator circuit provides analog sensitivity control. It requires an SSD1306-compatible 128x64 SPI OLED, encoders, and high-brightness LEDs, and the documentation is detailed about architecture and wiring.",
+   "summary": "Infinity Core is a hardware audio visualizer that takes a digital beat pulse and drives both an SPI OLED display and PWM-controlled infinity mirror LEDs. It contains a 24-bit heartbeat counter, a PWM comparator engine, and a hardware SPI serializer that pushes pixel data without any CPU or RAM. Two rotary encoders adjust brightness, density, and decay speed, and an external comparator circuit provides analog sensitivity control. It requires an SSD1306-compatible 128x64 SPI OLED, encoders, and high-brightness LEDs, and the documentation is detailed about architecture and wiring.",
+   "summary_changed": false
+  },
+  {
+   "key": "8c64066c0641",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spi",
+    "adc",
+    "accelerator",
+    "fpga",
+    "verilog"
+   ],
+   "tags": [
+    "spi",
+    "adc",
+    "accelerator",
+    "fpga",
+    "verilog"
+   ],
+   "summary_before": "This design aggregates four SPI mode 0 ADC inputs and serializes them into a single faster SPI output stream. It includes configuration pins for bit depth, null bits, and clock divider, and outputs a frame containing the concatenated ADC samples. The receiver, such as an FPGA, samples the output using TX_CS_N and TX_SCLK. External hardware includes four SPI ADCs like the MCP3201 and an SPI-capable receiver, and the design is notable for enabling efficient readout of multiple ADCs through a single interface.",
+   "summary": "This design aggregates four SPI mode 0 ADC inputs and serializes them into a single faster SPI output stream. It includes configuration pins for bit depth, null bits, and clock divider, and outputs a frame containing the concatenated ADC samples. The receiver, such as an FPGA, samples the output using TX_CS_N and TX_SCLK. External hardware includes four SPI ADCs like the MCP3201 and an SPI-capable receiver, and the design is notable for enabling efficient readout of multiple ADCs through a single interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "b4f64c1274ca",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "Nothing in the source describes a clock or timing signal generation circuit; the 1 Hz clock is just the project clock."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the test section states there is nothing to test right now."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "The design is controlled by a switch input (switch 1) to enable the blink."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator tag and added incomplete and dip-switch tags reflecting the thin docs and switch input.",
+   "tags_before": [
+    "led",
+    "7-segment",
+    "wokwi",
+    "clock-generator"
+   ],
+   "tags": [
+    "led",
+    "7-segment",
+    "wokwi",
+    "incomplete",
+    "dip-switch"
+   ],
+   "summary_before": "This Wokwi project blinks an LED on a 7-segment display when switch 1 is set to on. It is tested by turning on switch 1, though the documentation notes there is nothing to test right now. No external hardware is required. The project is a simple LED blink test.",
+   "summary": "This Wokwi project blinks an LED on a 7-segment display when switch 1 is set to on. It is tested by turning on switch 1, though the documentation notes there is nothing to test right now. No external hardware is required. The project is a simple LED blink test.",
+   "summary_changed": false
+  },
+  {
+   "key": "d72c5695b388",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design is a 4-bit ripple carry adder that takes two 4-bit numbers as inputs and produces a 4-bit sum plus a carry output. It is implemented using four 1-bit full adders connected in a ripple carry configuration. The design requires no external hardware and can be tested by setting the input switches. It is a straightforward educational example created in Wokwi.",
+   "summary": "This design is a 4-bit ripple carry adder that takes two 4-bit numbers as inputs and produces a 4-bit sum plus a carry output. It is implemented using four 1-bit full adders connected in a ripple carry configuration. The design requires no external hardware and can be tested by setting the input switches. It is a straightforward educational example created in Wokwi.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7748,
+  "completion_tokens": 1019,
+  "total_tokens": 8767,
+  "cost": 0.001657586,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001657586,
+   "upstream_inference_prompt_cost": 0.000985046,
+   "upstream_inference_completions_cost": 0.00067254
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001657586,
+ "elapsed_s": 13.2
+}

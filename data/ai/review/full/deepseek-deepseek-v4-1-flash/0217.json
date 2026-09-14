@@ -1,0 +1,208 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d92a9d143d54",
+  "69d2d289e8df",
+  "dfa7d1c70145",
+  "55fdcda8df60",
+  "053380201cc8",
+  "df9278ce1375"
+ ],
+ "results": [
+  {
+   "key": "d92a9d143d54",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working status."
+    }
+   ],
+   "notes": "Added silicon-tested tag to match the working silicon test reports.",
+   "tags_before": [
+    "prng",
+    "verilog",
+    "sequential-logic"
+   ],
+   "tags": [
+    "prng",
+    "verilog",
+    "sequential-logic",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements an 8-bit pseudo-random number generator based on the Xorshift algorithm. It accepts an 8-bit seed on the input pins and, after a two-cycle latency, produces a new pseudo-random 8-bit value on the output pins every clock cycle. The design is purely digital and requires no external hardware; it can be tested by applying a seed and observing the output sequence. Silicon tests confirm that it works as intended, with the same seed always producing the same first random output.",
+   "summary": "This project implements an 8-bit pseudo-random number generator based on the Xorshift algorithm. It accepts an 8-bit seed on the input pins and, after a two-cycle latency, produces a new pseudo-random 8-bit value on the output pins every clock cycle. The design is purely digital and requires no external hardware; it can be tested by applying a seed and observing the output sequence. Silicon tests confirm that it works as intended, with the same seed always producing the same first random output.",
+   "summary_changed": false
+  },
+  {
+   "key": "69d2d289e8df",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is partial, not fully working."
+    }
+   ],
+   "add": [],
+   "notes": "Removed silicon-tested because silicon status is partial; added a supported sentence about the inverter-chain implementation.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "clock-generator",
+    "silicon-tested"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "analog",
+    "transistor-level",
+    "clock-generator"
+   ],
+   "summary_before": "This analog design implements two ring oscillators, one targeting 600 MHz and the other 300 MHz, with enable inputs and analog outputs. Silicon tests show that the first oscillator works at around 500 MHz with reduced amplitude, while the second oscillator is broken due to a missing via. The documentation notes that only analog outputs are connected, not digital ones.",
+   "summary": "This analog design implements two ring oscillators, one targeting 600 MHz and the other 300 MHz, with enable inputs and analog outputs. Silicon tests show that the first oscillator works at around 500 MHz with reduced amplitude, while the second oscillator is broken due to a missing via. The documentation notes that only analog outputs are connected, not digital ones. The design uses inverter chains with NAND gates for enable and a two-stage inverter driver for the analog outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "dfa7d1c70145",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working status."
+    }
+   ],
+   "notes": "Added silicon-tested tag to match the working silicon test reports.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "audio",
+    "sigma-delta",
+    "lfsr",
+    "synthesizer",
+    "demoscene",
+    "music",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "audio",
+    "sigma-delta",
+    "lfsr",
+    "synthesizer",
+    "demoscene",
+    "music",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a standalone VGA and sound demo that loops after about 25 seconds, developed for a 48 MHz clock and using a non-standard 1220-pixel horizontal VGA mode with RGB222 dithered output. It generates sound through a 16-bit sigma-delta DAC on one pin from an internal three-channel synthesizer with triangle, noise, and square waves. The graphics include a procedurally rendered plane, a starfield from an LFSR, and a TT08 logo, with a soundtrack based on a riff from a demoscene track. It requires a Tiny VGA Pmod and either a Tiny Tapeout Audio Pmod or a simple RC filter for sound, and silicon tests confirm it works as expected.",
+   "summary": "This is a standalone VGA and sound demo that loops after about 25 seconds, developed for a 48 MHz clock and using a non-standard 1220-pixel horizontal VGA mode with RGB222 dithered output. It generates sound through a 16-bit sigma-delta DAC on one pin from an internal three-channel synthesizer with triangle, noise, and square waves. The graphics include a procedurally rendered plane, a starfield from an LFSR, and a TT08 logo, with a soundtrack based on a riff from a demoscene track. It requires a Tiny VGA Pmod and either a Tiny Tapeout Audio Pmod or a simple RC filter for sound, and silicon tests confirm it works as expected.",
+   "summary_changed": false
+  },
+  {
+   "key": "55fdcda8df60",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This project implements a variable-length LFSR with configurable 2-tap or 4-tap feedback, controlled by input pins for length, number of taps, hold, and step. It outputs the low-order 15 bits of the LFSR value and a valid signal indicating whether the configuration is supported. The design was tested using hand-generated test modules and simulation, but no automated test is included. It requires no external hardware and can be used as a configurable pseudo-random number generator.",
+   "summary": "This project implements a variable-length LFSR with configurable 2-tap or 4-tap feedback, controlled by input pins for length, number of taps, hold, and step. It outputs the low-order 15 bits of the LFSR value and a valid signal indicating whether the configuration is supported. The design was tested using hand-generated test modules and simulation, but no automated test is included. It requires no external hardware and can be used as a configurable pseudo-random number generator.",
+   "summary_changed": false
+  },
+  {
+   "key": "053380201cc8",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "wokwi",
+    "education",
+    "combinational",
+    "logic-gate",
+    "led"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "education",
+    "combinational",
+    "logic-gate",
+    "led"
+   ],
+   "summary_before": "This design is a 4-bit adder with carry output built from XOR, AND, and OR gates based on a reference schematic. It takes two 4-bit inputs and produces a 4-bit sum and carry. Testing requires switches for input and LEDs for output. It is an educational exercise created in Wokwi.",
+   "summary": "This design is a 4-bit adder with carry output built from XOR, AND, and OR gates based on a reference schematic. It takes two 4-bit inputs and produces a 4-bit sum and carry. Testing requires switches for input and LEDs for output. It is an educational exercise created in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "df9278ce1375",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "wokwi",
+    "education",
+    "combinational",
+    "logic-gate",
+    "led"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "education",
+    "combinational",
+    "logic-gate",
+    "led"
+   ],
+   "summary_before": "This project implements a 3-bit full adder with inputs A (IN0-IN2), B (IN3-IN5), and carry-in (IN6), producing a 3-bit sum and carry-out. Testing uses switches for input and hex 7-segment LEDs for output. The documentation contains a discrepancy in bit assignments but the intended function is clear. It is an educational Wokwi design.",
+   "summary": "This project implements a 3-bit full adder with inputs A (IN0-IN2), B (IN3-IN5), and carry-in (IN6), producing a 3-bit sum and carry-out. Testing uses switches for input and hex 7-segment LEDs for output. The documentation contains a discrepancy in bit assignments but the intended function is clear. It is an educational Wokwi design.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7216,
+  "completion_tokens": 1049,
+  "total_tokens": 8265,
+  "cost": 0.003197808,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 768,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003197808,
+   "upstream_inference_prompt_cost": 0.001939008,
+   "upstream_inference_completions_cost": 0.0012588
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003197808,
+ "elapsed_s": 19.7
+}

@@ -1,0 +1,276 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "dd35fd98ed59",
+  "ad8c695c7a92",
+  "d9b25b16a926",
+  "baf1223d4020",
+  "727d47474139",
+  "d6a19acdefb0"
+ ],
+ "results": [
+  {
+   "key": "dd35fd98ed59",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a 4-bit adder with hex-to-7-segment conversion, not a basic logic gate implementation."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "No clock divider is described anywhere in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The project explicitly adds two 4-bit inputs."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output pins are labeled as seven-segment display segments A-G and Dp."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The adder and hex conversion are purely combinational logic."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate and clock-divider tags; added adder, 7-segment and combinational based on the documented 4-bit adder and hex display.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "adder",
+    "7-segment",
+    "combinational"
+   ],
+   "summary_before": "This project implements basic logic gates and a clock divider. The logic gates are tested with a truth table, and the clock divider can be observed with a 10 kHz clock. The design is implemented in Wokwi and is intended for educational purposes. The project demonstrates fundamental digital logic concepts.",
+   "summary": "This project takes two 4-bit inputs, adds them, and converts the result to a seven-segment display output. The first four input pins are the A-side bits and the second four are the B-side bits. It is tested by inputting two 4-bit numbers and checking that the displayed output is correct. The design is implemented in Wokwi and uses switch banks and a seven-segment display as external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "ad8c695c7a92",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any educational or teaching purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "The OTP generation is explicitly based on a 16-bit LFSR."
+    },
+    {
+     "tag": "fsm",
+     "reason": "An FSM controls authentication, retry and timeout operations."
+    },
+    {
+     "tag": "security",
+     "reason": "The design is a hardware authentication/OTP engine."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "External hardware and pins include seven-segment displays driven by lfsr_out, user_out and an."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added lfsr, fsm, security and 7-segment supported by the documentation and pins.",
+   "tags_before": [
+    "fpga",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "fpga",
+    "verilog",
+    "lfsr",
+    "fsm",
+    "security",
+    "7-segment"
+   ],
+   "summary_before": "This project is a lightweight design that is Tiny Tapeout friendly and has observable outputs on FPGA. It is likely a simple digital circuit or demonstration. The design is suitable for educational purposes. External hardware includes an FPGA board for implementation and testing.",
+   "summary": "This project is a self-contained hardware authentication engine that generates, stores and verifies a 4-digit (16-bit) one-time password using a 16-bit LFSR and an FSM. The FSM controls authentication, retry and timeout operations, and the result is shown on seven-segment displays as unlocked, locked or expired. It is tested by latching an OTP, entering four digits with user_in and user_latch, and observing the displayed result. The design is implemented in Verilog and is described as lightweight and Tiny Tapeout friendly, with observable outputs on FPGA using LEDs and seven-segment displays.",
+   "summary_changed": true
+  },
+  {
+   "key": "d9b25b16a926",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The source describes NAND, AND and OR gates, not a game."
+    },
+    {
+     "tag": "cipher",
+     "reason": "No cipher or cryptographic function is described."
+    },
+    {
+     "tag": "led",
+     "reason": "No LED output is documented; outputs are logic gate results."
+    },
+    {
+     "tag": "button",
+     "reason": "No buttons are documented; inputs are logic signals a-f."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design implements NAND, AND and OR gates."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The gate outputs depend only on current inputs."
+    }
+   ],
+   "notes": "Replaced unsupported game, cipher, led and button tags with logic-gate and combinational based on the documented gate behavior.",
+   "tags_before": [
+    "game",
+    "cipher",
+    "wokwi",
+    "led",
+    "button"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "combinational"
+   ],
+   "summary_before": "This project is described as a game, but the documentation is essentially placeholder text, providing no details on how the game works or how to test it. The design likely uses a cipher mechanism, but the specifics are unknown. It is implemented in Wokwi and may use LEDs and buttons for interaction. The lack of documentation makes it difficult to determine the full functionality.",
+   "summary": "This project implements NAND, AND and OR logic gates. Inputs a and b feed a NAND gate on output 0, inputs c and d feed an AND gate on output 1, and inputs e and f feed an OR gate on output 2. It is tested by applying the truth-table input combinations and checking the corresponding gate outputs. The design is implemented in Wokwi and requires no external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "baf1223d4020",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "sigma-delta",
+    "adc",
+    "analog",
+    "mixed-signal",
+    "filter-analog"
+   ],
+   "tags": [
+    "sigma-delta",
+    "adc",
+    "analog",
+    "mixed-signal",
+    "filter-analog"
+   ],
+   "summary_before": "This project implements a first-order passive sigma-delta analog-to-digital converter that requires external resistors and a capacitor connected to a digital input pin. The analog input is sampled and converted to a digital output using sigma-delta modulation. It is tested by applying an analog voltage and observing the digital output. The design is notable for its use of passive components and sigma-delta technique.",
+   "summary": "This project implements a first-order passive sigma-delta analog-to-digital converter that requires external resistors and a capacitor connected to a digital input pin. The analog input is sampled and converted to a digital output using sigma-delta modulation. It is tested by applying an analog voltage and observing the digital output. The design is notable for its use of passive components and sigma-delta technique.",
+   "summary_changed": false
+  },
+  {
+   "key": "727d47474139",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "voltage-reference",
+     "reason": "No bandgap or reference voltage generator is described; the design is a DAC plus ring oscillator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "The documentation explicitly includes a 500 kHz ring oscillator."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "The design provides a clock output from the ring oscillator."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The tile combines digital DAC inputs with analog DAC and clock outputs."
+    }
+   ],
+   "notes": "Removed unsupported voltage-reference tag; added ring-oscillator, oscillator and mixed-signal based on the documented ring oscillator and DAC.",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "voltage-reference"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "analog",
+    "ring-oscillator",
+    "oscillator",
+    "mixed-signal"
+   ],
+   "summary_before": "This project implements an R-2R resistor ladder DAC that converts digital signals to analog voltages. The design uses a resistor network to produce an analog output proportional to the digital input. It is intended for analog output applications. The project is notable for its simple and accurate digital-to-analog conversion.",
+   "summary": "This project implements a 3-bit R-2R DAC together with a ring oscillator, based on an analog design by Harald Pretl and Jakob Ratschenberger for Tiny Tapeout 5. The DAC output voltage is nominally 1.8 V divided by 8 times the 3-bit input value, and the ring oscillator provides a rail-to-rail clock output at about 500 kHz. It is tested by applying digital bits to inputs 0-2 and measuring the analog output with a voltmeter or oscilloscope. The design is an analog mixed-signal circuit with a nominal 1.8 V supply.",
+   "summary_changed": true
+  },
+  {
+   "key": "d6a19acdefb0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational or teaching purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "The project drives a digit display, i.e. a seven-segment display."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added 7-segment for the digit display output.",
+   "tags_before": [
+    "decoder",
+    "education",
+    "wokwi",
+    "combinational"
+   ],
+   "tags": [
+    "decoder",
+    "wokwi",
+    "combinational",
+    "7-segment"
+   ],
+   "summary_before": "This circuit drives a seven-segment display to show the characters 'R.' when the input combination 10101010 is applied. It uses a combination of XOR and NOT gates to decode the input into the appropriate segment signals. The design is intended for educational purposes and requires no external hardware beyond the display itself. The project is a simple demonstration of combinational logic and display driving.",
+   "summary": "This circuit drives a digit display to show the characters 'R.' when the input combination 10101010 is applied. It uses a combination of XOR and NOT gates to decode the input into the appropriate segment signals. The design is tested by providing the input combination 10101010 and observing the 'R.' on the display. It is implemented in Wokwi and requires no external hardware.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6411,
+  "completion_tokens": 1640,
+  "total_tokens": 8051,
+  "cost": 0.0038913,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0038913,
+   "upstream_inference_prompt_cost": 0.0019233,
+   "upstream_inference_completions_cost": 0.001968
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0038913,
+ "elapsed_s": 13.7
+}

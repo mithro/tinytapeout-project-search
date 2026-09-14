@@ -1,0 +1,297 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "67265de102c3",
+  "e0df5893acb4",
+  "7d07c2a00d24",
+  "40072674ccb3",
+  "3d395e6f1897",
+  "294d4cdfecd3"
+ ],
+ "results": [
+  {
+   "key": "67265de102c3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synchronizer",
+     "reason": "The design generates timecode for A/V sync; it is not a clock-domain-crossing synchronizer circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "Generates an LTC waveform/serial signal output."
+    },
+    {
+     "tag": "audio",
+     "reason": "Already present; LTC is an audio/video timecode signal."
+    }
+   ],
+   "notes": "Removed synchronizer (not a CDC block) and added signal-generator for the LTC waveform output.",
+   "tags_before": [
+    "audio",
+    "synchronizer",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "audio",
+    "counter",
+    "verilog",
+    "signal-generator"
+   ],
+   "summary_before": "This design generates Linear Timecode (LTC) for audio and video synchronisation, using counters to track time and frame count and serialising 80-bit biphase mark coded frames. It is driven by a 12 MHz clock and starts counting from 00:00:00:00 after reset, with the frame rate selected by two input pins for 24, 25, or 30 fps. The LTC output appears on a bidirectional pin and can be fed to an audio PMOD for levels usable by audio equipment, or connected directly to a logic analyser. The 29.97 fps mode is documented as not implemented, and the project is a small single-tile Verilog design.",
+   "summary": "This design generates Linear Timecode (LTC) for audio and video synchronisation, using counters to track time and frame count and serialising 80-bit biphase mark coded frames. It is driven by a 12 MHz clock and starts counting from 00:00:00:00 after reset, with the frame rate selected by two input pins for 24, 25, or 30 fps. The LTC output appears on a bidirectional pin and can be fed to an audio PMOD for levels usable by audio equipment, or connected directly to a logic analyser. The 29.97 fps mode is documented as not implemented, and the project is a small single-tile Verilog design.",
+   "summary_changed": false
+  },
+  {
+   "key": "e0df5893acb4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rom",
+     "reason": "ROM is described as part of the original 1988 hardware, not implemented in this digital PoC."
+    }
+   ],
+   "add": [
+    {
+     "tag": "modulator",
+     "reason": "Already present; 2FSK modulation is the core function."
+    },
+    {
+     "tag": "demodulator",
+     "reason": "The design includes RX data path and Rx clock, i.e. FSK demodulation."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Author states it is a proof-of-concept not expected to yield good results and testing regime is pending."
+    }
+   ],
+   "notes": "Removed rom (only in original hardware description) and added demodulator and incomplete.",
+   "tags_before": [
+    "modulator",
+    "communication",
+    "radio",
+    "uart",
+    "spinalhdl",
+    "lookup-table",
+    "rom"
+   ],
+   "tags": [
+    "modulator",
+    "communication",
+    "radio",
+    "uart",
+    "spinalhdl",
+    "lookup-table",
+    "demodulator",
+    "incomplete"
+   ],
+   "summary_before": "This project is a proof-of-concept digital FSK modem with HDLC framing and UART interface, targeting amateur radio packet communication at data rates from 4800 to 64000 baud. It uses a lookup-table-based waveform generator for 2FSK modulation and includes UART flow control signals. The design is intended to be paired with a future CPU to form a complete terminal node controller (TNC). Testing requires external hardware such as an RP2040 or FPGA to validate the interface.",
+   "summary": "This project is a proof-of-concept digital FSK modem with HDLC framing and UART interface, targeting amateur radio packet communication at data rates from 4800 to 64000 baud. It uses a lookup-table-based waveform generator for 2FSK modulation and includes UART flow control signals. The design is intended to be paired with a future CPU to form a complete terminal node controller (TNC). Testing requires external hardware such as an RP2040 or FPGA to validate the interface.",
+   "summary_changed": false
+  },
+  {
+   "key": "7d07c2a00d24",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "No evidence of clock generation; title mentions a clock but documentation is placeholder."
+    },
+    {
+     "tag": "timer",
+     "reason": "No timer functionality is documented."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter functionality is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no functional description."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Placeholder documentation indicates an unfinished submission."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator/timer/counter and added insufficient-doc and incomplete.",
+   "tags_before": [
+    "clock-generator",
+    "7-segment",
+    "display",
+    "timer",
+    "counter"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This project is described as a 7-segment clock, but the documentation is a placeholder with no explanation of how it works or how to test it. The pin names suggest a serial data input and a data output with a valid signal, but the functionality is unclear. No external hardware or testing details are provided. The design is likely incomplete or undocumented.",
+   "summary": "This project is described as a 7-segment clock, but the documentation is a placeholder with no explanation of how it works or how to test it. The pin names suggest a serial data input and a data output with a valid signal, but the functionality is unclear. No external hardware or testing details are provided. The design is likely incomplete or undocumented.",
+   "summary_changed": false
+  },
+  {
+   "key": "40072674ccb3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "No evidence this is a template; it is a Wokwi design with placeholder docs."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no functional description."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Placeholder documentation indicates an unfinished submission."
+    }
+   ],
+   "notes": "Removed unsupported template/education and added insufficient-doc and incomplete.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This project is a Wokwi-based design that drives a 7-segment display to show even digits. The documentation consists only of placeholder text, so the exact behavior and implementation are not described. The pin names indicate that the outputs connect directly to the segments of a 7-segment display. No testing procedure or external hardware requirements are documented.",
+   "summary": "This project is a Wokwi-based design that drives a 7-segment display to show even digits. The documentation consists only of placeholder text, so the exact behavior and implementation are not described. The pin names indicate that the outputs connect directly to the segments of a 7-segment display. No testing procedure or external hardware requirements are documented.",
+   "summary_changed": false
+  },
+  {
+   "key": "3d395e6f1897",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "No evidence this is a template; it is a Wokwi design with placeholder docs."
+    },
+    {
+     "tag": "education",
+     "reason": "Title 'Tutorial4' is suggestive but the source does not state educational intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no functional description."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Placeholder documentation indicates an unfinished submission."
+    }
+   ],
+   "notes": "Removed unsupported template/education and added insufficient-doc and incomplete.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This project is a Wokwi-based design that likely drives a 7-segment display, but the documentation is only placeholder text. The title 'Tutorial4' suggests it may be an educational exercise, but no details are provided. The pin names show outputs for the seven segments and decimal point. Without further documentation, the exact function and testing method cannot be determined.",
+   "summary": "This project is a Wokwi-based design that likely drives a 7-segment display, but the documentation is only placeholder text. The title 'Tutorial4' suggests it may be an educational exercise, but no details are provided. The pin names show outputs for the seven segments and decimal point. Without further documentation, the exact function and testing method cannot be determined.",
+   "summary_changed": false
+  },
+  {
+   "key": "294d4cdfecd3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No state machine is documented; only the title implies a traffic light sequence."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent in the source."
+    },
+    {
+     "tag": "template",
+     "reason": "No evidence this is a template; it is a Wokwi design with placeholder docs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no functional description."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Placeholder documentation indicates an unfinished submission."
+    }
+   ],
+   "notes": "Removed unsupported fsm/education/template and added insufficient-doc and incomplete.",
+   "tags_before": [
+    "led",
+    "fsm",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This project simulates a German traffic light, with outputs for red, yellow, and green LEDs. The documentation is placeholder text, so the exact sequence and timing are not described. The design likely implements a state machine to cycle through the traffic light phases. No testing procedure or external hardware requirements are documented.",
+   "summary": "This project simulates a German traffic light, with outputs for red, yellow, and green LEDs. The documentation is placeholder text, so the exact sequence and timing are not described. The design likely implements a state machine to cycle through the traffic light phases. No testing procedure or external hardware requirements are documented.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6324,
+  "completion_tokens": 1623,
+  "total_tokens": 7947,
+  "cost": 0.002904,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002904,
+   "upstream_inference_prompt_cost": 0.0009564,
+   "upstream_inference_completions_cost": 0.0019476
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002904,
+ "elapsed_s": 36.3
+}

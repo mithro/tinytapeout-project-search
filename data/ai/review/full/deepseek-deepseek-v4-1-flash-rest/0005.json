@@ -1,0 +1,432 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "bdbe2bb3a126",
+  "3dfd60f3fb83",
+  "457d01e0c335",
+  "12ffc72c3bfc",
+  "ec730bd64209",
+  "2fd250396929"
+ ],
+ "results": [
+  {
+   "key": "bdbe2bb3a126",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The source describes a register file validation design, not a digital-to-analog converter."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "No sigma-delta modulator is mentioned in the source."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio functionality is described in the source."
+    },
+    {
+     "tag": "pwm",
+     "reason": "No pulse-width modulation is mentioned in the source."
+    },
+    {
+     "tag": "filter-analog",
+     "reason": "No analog filter is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "register-file",
+     "reason": "The design is explicitly a validation design for a register file macro."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The source describes advanced timing testing to measure setup/hold times and skew, characterizing the register file."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The source states basic functional testing is possible with the default demo board, controlling signals through the pico microcontroller."
+    },
+    {
+     "tag": "analog",
+     "reason": "The language is listed as Analog."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "No test procedure has been written yet and the exact testing platform is still TBD."
+    }
+   ],
+   "notes": "Replaced hallucinated DAC/audio tags with register-file, characterization, rp2040, analog, and incomplete based on the source.",
+   "tags_before": [
+    "dac",
+    "sigma-delta",
+    "audio",
+    "pwm",
+    "filter-analog"
+   ],
+   "tags": [
+    "register-file",
+    "characterization",
+    "rp2040",
+    "analog",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a 16-bit noise-shaping delta-sigma DAC that outputs a single-bit digital signal via pulse-width modulation. The design uses a delta-sigma modulator to shape quantization noise and a PWM stage to generate the analog output. It is intended for audio applications and can be interfaced with external analog filters. The project is notable for its high-resolution digital-to-analog conversion using a simple one-bit output.",
+   "summary": "This project is a validation design for a register file macro. It provides control and capture signals for the register file, along with comparison and feedback outputs. Basic functional testing is possible using the default demo board and its pico microcontroller, but advanced timing characterization requires external equipment. No test procedure has been written yet and the exact testing platform is still to be determined.",
+   "summary_changed": true
+  },
+  {
+   "key": "3dfd60f3fb83",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "scan-chain",
+     "reason": "No scan chain is mentioned in the source."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is present in the pins or described in the source."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "No standard cell library usage is stated in the source."
+    },
+    {
+     "tag": "low-power",
+     "reason": "No low-power optimization is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The pins match the Tiny VGA pinout and include VGA color and sync signals."
+    },
+    {
+     "tag": "video",
+     "reason": "The design outputs a VGA video signal."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The project shifts around a VGA image, producing rendered graphics."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "The one-line description states it is a simple verilog project shifting around a VGA image."
+    }
+   ],
+   "notes": "Corrected tags to match the VGA video design; removed unsupported scan-chain, SPI, standard-cell, and low-power tags.",
+   "tags_before": [
+    "scan-chain",
+    "shift-register",
+    "spi",
+    "counter",
+    "standard-cell",
+    "low-power"
+   ],
+   "tags": [
+    "shift-register",
+    "counter",
+    "vga",
+    "video",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "This project implements a scan chain for testing and debug, with a granularity of 4 steps per bit. It is controlled by a microcontroller or CPU via an SPI interface. The design uses standard cells to minimize area and is notable for its low-power operation. It integrates test and debug features into the chip.",
+   "summary": "This is a simple Verilog project that shifts around a VGA image. It outputs VGA color and sync signals using the Tiny VGA pinout. The design is implemented in Verilog and uses shift-register style logic to move the image. Currently, the tests are being bypassed.",
+   "summary_changed": true
+  },
+  {
+   "key": "457d01e0c335",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source."
+    },
+    {
+     "tag": "adc",
+     "reason": "No analog-to-digital converter is mentioned in the source."
+    },
+    {
+     "tag": "radio",
+     "reason": "No radio functionality is described in the source."
+    },
+    {
+     "tag": "memory",
+     "reason": "No memory block is described in the source."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "The pins include spi_mosi, spi_sck, spi_cs_n, and spi_miso."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "The design is a multiplier-less EML gate using Mitchell's approximation, which relates to multiplier functionality."
+    },
+    {
+     "tag": "approximate-computing",
+     "reason": "The design uses Mitchell's approximation for energy-efficient transcendental processing, trading accuracy for efficiency."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the design is a work in progress."
+    }
+   ],
+   "notes": "Replaced hallucinated tags with SPI, multiplier, approximate-computing, verilog, and incomplete based on the source.",
+   "tags_before": [
+    "fsm",
+    "spi",
+    "adc",
+    "radio",
+    "memory",
+    "sensor-interface"
+   ],
+   "tags": [
+    "spi",
+    "multiplier",
+    "approximate-computing",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "This design implements a finite state machine with SPI interface and ADC for radio applications. It includes memory and sensor interface for data acquisition. The design is notable for its integration of multiple functions in a single design.",
+   "summary": "This design implements a multiplier-less exponential-minus-logarithm (EML) gate using Mitchell's approximation for energy-efficient transcendental processing in ASICs. It includes an SPI interface for communication. The design is implemented in Verilog and targets approximate computing. Documentation is very thin, providing limited details on its operation.",
+   "summary_changed": true
+  },
+  {
+   "key": "12ffc72c3bfc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing is described in the source."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator is mentioned in the source."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "No signal generator is described in the source."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "No sigma-delta modulator is mentioned in the source."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio functionality is described in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "The design performs ECDSA verification, a cryptographic operation."
+    },
+    {
+     "tag": "security",
+     "reason": "It is a hardware security IP block for authentication."
+    },
+    {
+     "tag": "automotive",
+     "reason": "It targets V2X communication and meets IEEE 1609.2 automotive security requirements."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is a dedicated hardware IP block that accelerates ECDSA verification."
+    }
+   ],
+   "notes": "Replaced hallucinated audio/DSP tags with crypto, security, automotive, verilog, and accelerator based on the source.",
+   "tags_before": [
+    "dsp",
+    "oscillator",
+    "signal-generator",
+    "sigma-delta",
+    "audio",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "crypto",
+    "security",
+    "automotive",
+    "accelerator"
+   ],
+   "summary_before": "This design outputs audio in Pulse Code Modulation via two first-order Sigma-Delta modulators. The design includes a numerically controlled oscillator and a signal generator. The output is presented on an audio output. The design is implemented in Verilog and is intended for audio generation.",
+   "summary": "This project implements a dedicated hardware IP block that performs low-latency ECDSA verification for V2X communication. It authenticates digital signatures in under 1 ms, meeting IEEE 1609.2 automotive security requirements. The design is implemented in Verilog and includes control and status signals for operation. It requires no external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "ec730bd64209",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is mentioned in the source or pins."
+    },
+    {
+     "tag": "display",
+     "reason": "The design outputs VGA video, not a generic display."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described in the source."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The pins match the Tiny VGA pinout and include VGA color and sync signals."
+    },
+    {
+     "tag": "video",
+     "reason": "The design outputs a VGA video signal."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The project is a VGA scene with flash palette and mirrored dual-PSRAM state."
+    },
+    {
+     "tag": "gamepad",
+     "reason": "The pins include gamepad latch, clock, and serial data signals."
+    },
+    {
+     "tag": "qspi",
+     "reason": "The pins include QSPI flash and PSRAM signals."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The language is Verilog."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin, providing no explanation of how it works."
+    }
+   ],
+   "notes": "Replaced hallucinated 7-segment/display/counter/education tags with VGA, video, graphics, gamepad, QSPI, verilog, and incomplete based on the source.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "counter",
+    "education"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "gamepad",
+    "qspi",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "This design is likely a simple display driver or counter-based design that outputs to a 7-segment display. It is intended for educational purposes, demonstrating basic digital logic. The documentation is essentially empty, providing no explanation of how it works, how to test it, or what external hardware is required. The design is notable for its simplicity.",
+   "summary": "This design is a VGA scene with a flash palette, mirrored dual-PSRAM state, and two independent gamepads. It outputs VGA video and interfaces with QSPI flash and PSRAM. The design is implemented in Verilog and includes gamepad inputs. Documentation is very thin, providing no explanation of how it works, how to test it, or what external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "2fd250396929",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is mentioned in the source or pins."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No decoder is described in the source."
+    },
+    {
+     "tag": "display",
+     "reason": "No display is mentioned in the source or pins."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "The project is a Simon memory game."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The language is Wokwi."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is very thin and contains placeholders."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The how-to-test and external hardware sections are placeholders."
+    }
+   ],
+   "notes": "Replaced hallucinated 7-segment/decoder/display/education tags with game, wokwi, incomplete, and placeholder based on the source.",
+   "tags_before": [
+    "7-segment",
+    "decoder",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "game",
+    "incomplete",
+    "placeholder"
+   ],
+   "summary_before": "This project is a 7-segment display driver with a decoder, likely used to display numbers or characters. The design uses a 7-segment display and is implemented in Wokwi. It serves as an educational example of driving a 7-segment display. The documentation is sparse but the functionality is clear from the description.",
+   "summary": "This project is a Simon memory game where the player must memorize and repeat the order of colours. It is implemented in Wokwi and includes inputs and outputs for the game logic. The documentation is sparse, with placeholder text for how it works and how to test it. The design is notable for its simplicity.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5799,
+  "completion_tokens": 2372,
+  "total_tokens": 8171,
+  "cost": 0.0045861,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0045861,
+   "upstream_inference_prompt_cost": 0.0017397,
+   "upstream_inference_completions_cost": 0.0028464
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0045861,
+ "elapsed_s": 106.8
+}

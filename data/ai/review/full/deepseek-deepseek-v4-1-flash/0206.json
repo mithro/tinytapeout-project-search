@@ -1,0 +1,240 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cc85c4ec58e9",
+  "30ade2c59ee1",
+  "79c57e61511b",
+  "c50d4be0b130",
+  "978c1628dfa3",
+  "ab24872177ff"
+ ],
+ "results": [
+  {
+   "key": "cc85c4ec58e9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The design uses a BJT bandgap, op-amps and a PMOS pass device, not a discrete-transistor logic build."
+    }
+   ],
+   "add": [],
+   "notes": "Removed transistor-level: the design is an analog LDO built from a bandgap, op-amps and a pass PMOS, not a discrete-transistor implementation.",
+   "tags_before": [
+    "ldo",
+    "bandgap",
+    "opamp",
+    "voltage-reference",
+    "analog",
+    "power-management",
+    "transistor-level"
+   ],
+   "tags": [
+    "ldo",
+    "bandgap",
+    "opamp",
+    "voltage-reference",
+    "analog",
+    "power-management"
+   ],
+   "summary_before": "This project is a low-dropout (LDO) linear regulator implemented in an analog process, capable of supplying 0.1 to 4 mA at an output voltage of 1.4 to 1.8V. It consists of a BJT bandgap reference, two op-amps, and a pass PMOS transistor, with an external reference current set by a 90k resistor. The output voltage is available on ua[0], and testing requires a multimeter. The documentation is brief but provides the essential information for basic operation.",
+   "summary": "This project is a low-dropout (LDO) linear regulator implemented in an analog process, capable of supplying 0.1 to 4 mA at an output voltage of 1.4 to 1.8V. It consists of a BJT bandgap reference, two op-amps, and a pass PMOS transistor, with an external reference current set by a 90k resistor. The output voltage is available on ua[0], and testing requires a multimeter. The documentation is brief but provides the essential information for basic operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "30ade2c59ee1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The source describes only a systolic array for matrix multiplication; no neural network inference is documented."
+    }
+   ],
+   "add": [],
+   "notes": "Removed neural-network: only matrix-multiply systolic array behavior is documented, with no neural network inference described.",
+   "tags_before": [
+    "systolic-array",
+    "accelerator",
+    "mac-unit",
+    "spi",
+    "tpu",
+    "neural-network",
+    "verilog"
+   ],
+   "tags": [
+    "systolic-array",
+    "accelerator",
+    "mac-unit",
+    "spi",
+    "tpu",
+    "verilog"
+   ],
+   "summary_before": "Mini TPU v2 is a 3x3 systolic array of processing elements that performs multiply-accumulate operations for matrix multiplication. Inputs and weights are fetched externally over SPI, and the eight-bit result is presented on the output pins. The design is a compact 1x1 accelerator built with IEEE funding, and the documentation is limited to the one-line description and pin names. No test procedure or external hardware details beyond the SPI host are given.",
+   "summary": "Mini TPU v2 is a 3x3 systolic array of processing elements that performs multiply-accumulate operations for matrix multiplication. Inputs and weights are fetched externally over SPI, and the eight-bit result is presented on the output pins. The design is a compact 1x1 accelerator built with IEEE funding, and the documentation is limited to the one-line description and pin names. No test procedure or external hardware details beyond the SPI host are given.",
+   "summary_changed": false
+  },
+  {
+   "key": "79c57e61511b",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Removed the unsupported 640x480 resolution claim from the summary; all tags are supported.",
+   "tags_before": [
+    "maze",
+    "game",
+    "vga",
+    "button",
+    "display",
+    "systemverilog"
+   ],
+   "tags": [
+    "maze",
+    "game",
+    "vga",
+    "button",
+    "display",
+    "systemverilog"
+   ],
+   "summary_before": "Chasey is a maze game where the player controls a character to escape a ghost, rendered over VGA at 640x480 resolution. It uses five active-high buttons for reset and directional movement, and outputs VGA color and sync signals through a Tiny VGA PMOD. The design is implemented in SystemVerilog and runs on a 25 MHz clock. Silicon test results are not provided, so correct operation on hardware is not confirmed.",
+   "summary": "Chasey is a maze game where the player controls a character to escape a ghost, rendered over VGA. It uses five active-high buttons for reset and directional movement, and outputs VGA color and sync signals through a Tiny VGA PMOD. The design is implemented in SystemVerilog and runs on a 25 MHz clock. Silicon test results are not provided, so correct operation on hardware is not confirmed.",
+   "summary_changed": true
+  },
+  {
+   "key": "c50d4be0b130",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design performs averaging, threshold comparison and Manhattan distance, not digital signal processing."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "No machine learning or AI inference is described; the processing is environmental and spatial."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "The ASIC is an environmental sensor processing and mapping device for field measurements."
+    }
+   ],
+   "notes": "Removed dsp and edge-ai as unsupported by the environmental/spatial processing description; added instrumentation.",
+   "tags_before": [
+    "sensor-interface",
+    "temperature-sensor",
+    "dsp",
+    "edge-ai",
+    "asic",
+    "low-power",
+    "verilog"
+   ],
+   "tags": [
+    "sensor-interface",
+    "temperature-sensor",
+    "asic",
+    "low-power",
+    "verilog",
+    "instrumentation"
+   ],
+   "summary_before": "The Environmental Mapping Processor is a small digital ASIC that averages and thresholds temperature, humidity and pressure samples and also computes whether a position is within a Manhattan distance of a target location. It takes sensor type, sample validity, output selection, clear and mode signals on the inputs, an 8-bit sensor data word on the bidirectional pins, and returns an 8-bit result plus status. The chip has no sensors or radio of its own; a portable implementation would pair it with a BME280, a GNSS receiver, a low-power microcontroller, a memory LCD, microSD storage and a LiPo battery. Reset and enable sequences are the only test guidance given, and the spatial grid is defined by the external controller.",
+   "summary": "The Environmental Mapping Processor is a small digital ASIC that averages and thresholds temperature, humidity and pressure samples and also computes whether a position is within a Manhattan distance of a target location. It takes sensor type, sample validity, output selection, clear and mode signals on the inputs, an 8-bit sensor data word on the bidirectional pins, and returns an 8-bit result plus status. The chip has no sensors or radio of its own; a portable implementation would pair it with a BME280, a GNSS receiver, a low-power microcontroller, a memory LCD, microSD storage and a LiPo battery. Reset and enable sequences are the only test guidance given, and the spatial grid is defined by the external controller.",
+   "summary_changed": false
+  },
+  {
+   "key": "978c1628dfa3",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is the unedited template placeholder text, so the design is effectively undocumented."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The how-it-works, test and external-hardware sections are placeholder text with no real content."
+    }
+   ],
+   "notes": "Added incomplete and insufficient-doc because the documentation is unedited template placeholder text.",
+   "tags_before": [
+    "pong",
+    "game",
+    "vga",
+    "video",
+    "audio",
+    "verilog"
+   ],
+   "tags": [
+    "pong",
+    "game",
+    "vga",
+    "video",
+    "audio",
+    "verilog",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a two-player Pong game rendered on a VGA display. It accepts button inputs for each player's paddle movement and select, and outputs VGA sync and color signals along with a sound output. The documentation is minimal and does not describe the internal implementation or testing procedure in detail. External hardware likely includes a VGA monitor and buttons, but this is not explicitly stated.",
+   "summary": "This design implements a two-player Pong game rendered on a VGA display. It accepts button inputs for each player's paddle movement and select, and outputs VGA sync and color signals along with a sound output. The documentation is minimal and does not describe the internal implementation or testing procedure in detail. External hardware likely includes a VGA monitor and buttons, but this is not explicitly stated.",
+   "summary_changed": false
+  },
+  {
+   "key": "ab24872177ff",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The VDAC pin is an analog output of the tracking ADC loop, not a documented standalone digital-to-analog converter block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dac: the VDAC pin is part of the tracking ADC loop, not a documented standalone DAC.",
+   "tags_before": [
+    "adc",
+    "mixed-signal",
+    "analog",
+    "process-experiment",
+    "ring-oscillator",
+    "dac",
+    "instrumentation"
+   ],
+   "tags": [
+    "adc",
+    "mixed-signal",
+    "analog",
+    "process-experiment",
+    "ring-oscillator",
+    "instrumentation"
+   ],
+   "summary_before": "This mixed-signal chip integrates an 8-bit tracking analog-to-digital converter and an on-chip process variation monitor. The ADC uses analog pins for a reference voltage and input signal, while the process monitor outputs ring oscillator frequencies to assess fabrication variations. It is designed for analog and variation-sensing applications, with digital outputs for the ADC count and oscillator signals. The design is notable for combining these functions in a single Tiny Tapeout tile, but detailed usage and test procedures are not provided.",
+   "summary": "This mixed-signal chip integrates an 8-bit tracking analog-to-digital converter and an on-chip process variation monitor. The ADC uses analog pins for a reference voltage and input signal, while the process monitor outputs ring oscillator frequencies to assess fabrication variations. It is designed for analog and variation-sensing applications, with digital outputs for the ADC count and oscillator signals. The design is notable for combining these functions in a single Tiny Tapeout tile, but detailed usage and test procedures are not provided.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6319,
+  "completion_tokens": 1346,
+  "total_tokens": 7665,
+  "cost": 0.0035109,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035109,
+   "upstream_inference_prompt_cost": 0.0018957,
+   "upstream_inference_completions_cost": 0.0016152
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035109,
+ "elapsed_s": 88.8
+}

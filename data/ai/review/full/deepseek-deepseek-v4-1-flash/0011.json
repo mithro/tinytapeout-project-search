@@ -1,0 +1,216 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1ff213971c31",
+  "0ba444f421bf",
+  "3fd6332f4396",
+  "3f9b2b08f679",
+  "111a1c6b15ed",
+  "01059934908c"
+ ],
+ "results": [
+  {
+   "key": "1ff213971c31",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cipher",
+     "reason": "No cipher or encryption content in the source; the design is a RISC-V SoC."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptography in the source."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display in the pins or text."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output described."
+    },
+    {
+     "tag": "amaranth",
+     "reason": "Design is Verilog, not Amaranth."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "Title and description state it is a RISC-V based design."
+    },
+    {
+     "tag": "cpu",
+     "reason": "Implements a processor core executing instructions from SPI flash."
+    },
+    {
+     "tag": "spi",
+     "reason": "Uses SPI bus (sclk, cs_n, mosi, miso) to access flash in XIP mode."
+    },
+    {
+     "tag": "gpio",
+     "reason": "GPIO pins gpio0-gpio4 are provided for output."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "soc",
+     "reason": "Integrates a CPU core with an SPI XIP flash controller."
+    },
+    {
+     "tag": "uart",
+     "reason": "Text notes GPIO can be used as a bitbanged UART."
+    }
+   ],
+   "notes": "Proposed tags and summary described an Enigma cipher in Amaranth, which does not match the RISC-V SoC source.",
+   "tags_before": [
+    "cipher",
+    "crypto",
+    "7-segment",
+    "display",
+    "amaranth"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "spi",
+    "gpio",
+    "verilog",
+    "soc",
+    "uart"
+   ],
+   "summary_before": "This is a silicon implementation of an Enigma I cipher machine with a limited three-wire plugboard and a 52-bit key length. It takes 5-bit data and 3-bit command inputs, returns data on the bidirectional pins with a ready signal, and drives the on-board 7-segment display. No external hardware is needed because it uses the PCB's built-in display. The design is notable for implementing a historical rotor cipher machine in Amaranth on a single tile.",
+   "summary": "This is a RISC-V based system that boots by accessing an SPI flash over the SPI bus, configuring it in XIP mode and executing instructions from it. It exposes four GPIO pins that can be used to output data, for example as a bitbanged UART. The design is written in Verilog and targets a 2x2 tile area. Testing uses a testbench containing an SPI flash model preloaded with a program in Verilog Hex format, and the project can be run locally with FuseSoC.",
+   "summary_changed": true
+  },
+  {
+   "key": "0ba444f421bf",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "analog",
+    "silicon-art",
+    "art"
+   ],
+   "tags": [
+    "analog",
+    "silicon-art",
+    "art"
+   ],
+   "summary_before": "This is an analog design intended to generate colorful stripes when viewed under a microscope. It is tested by viewing the chip under a microscope or smartphone camera. The design has essentially no documentation beyond the one-line description and a single unconnected input pin. It is notable only as a simple optical experiment.",
+   "summary": "This is an analog design intended to generate colorful stripes when viewed under a microscope. It is tested by viewing the chip under a microscope or smartphone camera. The design has essentially no documentation beyond the one-line description and a single unconnected input pin. It is notable only as a simple optical experiment.",
+   "summary_changed": false
+  },
+  {
+   "key": "3fd6332f4396",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "wokwi",
+    "template"
+   ],
+   "tags": [
+    "pwm",
+    "wokwi",
+    "template"
+   ],
+   "summary_before": "This project is titled RGB PWM and described as a small PWM module, with eight input pins labelled as bits 7 down to 0 of a value and a single output pin. The documentation consists entirely of the unedited template placeholders 'Explain how your project works', 'Explain how to use your project' and the external hardware prompt, so no actual behaviour, clocking or usage is described. The pin naming suggests an 8-bit duty-cycle input driving one PWM output, but this is inferred only from the pin labels. No test procedure or external hardware is documented, and the project appears to be an unfinished template.",
+   "summary": "This project is titled RGB PWM and described as a small PWM module, with eight input pins labelled as bits 7 down to 0 of a value and a single output pin. The documentation consists entirely of the unedited template placeholders 'Explain how your project works', 'Explain how to use your project' and the external hardware prompt, so no actual behaviour, clocking or usage is described. The pin naming suggests an 8-bit duty-cycle input driving one PWM output, but this is inferred only from the pin labels. No test procedure or external hardware is documented, and the project appears to be an unfinished template.",
+   "summary_changed": false
+  },
+  {
+   "key": "3f9b2b08f679",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "insufficient-doc",
+    "wokwi",
+    "incomplete"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "The documentation for this project is essentially non-existent, consisting of humorous phrases in French and unrelated references. The pin names suggest it may contain inverters, but the actual function is unclear. No meaningful description of the design's purpose or operation is provided. It is impossible to determine what the design does or how to test it.",
+   "summary": "The documentation for this project is essentially non-existent, consisting of humorous phrases in French and unrelated references. The pin names suggest it may contain inverters, but the actual function is unclear. No meaningful description of the design's purpose or operation is provided. It is impossible to determine what the design does or how to test it.",
+   "summary_changed": false
+  },
+  {
+   "key": "111a1c6b15ed",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "insufficient-doc",
+    "wokwi",
+    "incomplete"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "The documentation for this project is placeholder text with no meaningful information about its function. Pin names indicate some inputs and outputs, with one output labeled as an AND gate, but the rest are unspecified. There is no description of how the design works or how to test it. It appears to be an incomplete or abandoned project.",
+   "summary": "The documentation for this project is placeholder text with no meaningful information about its function. Pin names indicate some inputs and outputs, with one output labeled as an AND gate, but the rest are unspecified. There is no description of how the design works or how to test it. It appears to be an incomplete or abandoned project.",
+   "summary_changed": false
+  },
+  {
+   "key": "01059934908c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "insufficient-doc",
+    "wokwi",
+    "incomplete"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "The documentation for this project is extremely sparse and unhelpful, with no clear explanation of its function. Pin names suggest it involves logic gates with eight inputs, eight outputs, and eight bidirectional pins, but the actual behavior is unspecified. The description and testing instructions are flippant and provide no useful information. It appears to be a workshop experiment with minimal documentation.",
+   "summary": "The documentation for this project is extremely sparse and unhelpful, with no clear explanation of its function. Pin names suggest it involves logic gates with eight inputs, eight outputs, and eight bidirectional pins, but the actual behavior is unspecified. The description and testing instructions are flippant and provide no useful information. It appears to be a workshop experiment with minimal documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5785,
+  "completion_tokens": 1076,
+  "total_tokens": 6861,
+  "cost": 0.002572695,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002572695,
+   "upstream_inference_prompt_cost": 0.001475175,
+   "upstream_inference_completions_cost": 0.00109752
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002572695,
+ "elapsed_s": 32.8
+}

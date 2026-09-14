@@ -1,0 +1,201 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e91021943569",
+  "e20f73db843c",
+  "590261e38807",
+  "44134e629c70",
+  "147ce234d27f",
+  "3e8d54a51662",
+  "af37256ef519",
+  "e96e819101f9",
+  "f5686374d0f9",
+  "dd19c0bba1d0"
+ ],
+ "results": [
+  {
+   "key": "e91021943569",
+   "tags": [
+    "differential-receiver",
+    "analog",
+    "test",
+    "receiver",
+    "bias",
+    "debug",
+    "transistor-level"
+   ],
+   "summary": "This is a small analog test module for a differential input receiver. It takes differential clock and data inputs along with a bias current and bias select, and produces an 8-bit output. The documentation is essentially missing, with all sections marked FIXME, so its internal operation and intended use cannot be determined. It is likely a characterization or test vehicle for a differential receiver cell, but no test procedure or external hardware requirements are described.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "e20f73db843c",
+   "tags": [
+    "cpu",
+    "serial",
+    "alu",
+    "register-file",
+    "memory",
+    "uart",
+    "risc-v",
+    "2-bit"
+   ],
+   "summary": "Basilisc-2816 is a small 2-bit serial CPU that executes 8/16-bit instructions and communicates with external memory over a serial interface. It includes a memory interface, arbiter, prefetcher, decoder, scheduler, ALU, and register file, and uses UART pins for memory transactions and debug signals. The design requires an external RP2040 microcontroller, such as on the Tiny Tapeout 7 demo board, to act as a RAM emulator. The documentation describes the architecture in detail but provides no test procedure, and no silicon results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "590261e38807",
+   "tags": [
+    "cpu",
+    "serial",
+    "alu",
+    "register-file",
+    "memory",
+    "uart",
+    "risc-v",
+    "2-bit"
+   ],
+   "summary": "This is version 0.1b of the Basilisc-2816, a small 2-bit serial CPU that executes 8/16-bit instructions and communicates with external memory over a serial interface. It shares the same pinout and architecture as the v0.1a design, using UART pins for memory transactions and debug signals. The design requires an external RP2040 microcontroller, such as on the Tiny Tapeout 7 demo board, to act as a RAM emulator. The documentation for this specific version is minimal, with no test procedure or silicon results provided.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "44134e629c70",
+   "tags": [
+    "cpu",
+    "serial",
+    "alu",
+    "register-file",
+    "memory",
+    "uart",
+    "risc-v",
+    "2-bit",
+    "experiment"
+   ],
+   "summary": "This is an experimental version 0.1c of the Basilisc-2816, a small 2-bit serial CPU that executes 8/16-bit instructions and communicates with external memory over a serial interface. It shares the same pinout and architecture as the other Basilisc-2816 versions, using UART pins for memory transactions and debug signals. The design requires an external RP2040 microcontroller, such as on the Tiny Tapeout 7 demo board, to act as a RAM emulator. The documentation for this specific version is minimal, with no test procedure or silicon results provided.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "147ce234d27f",
+   "tags": [
+    "dds",
+    "dac",
+    "analog",
+    "sine",
+    "oscillator",
+    "frequency-synthesis",
+    "resistive-dac"
+   ],
+   "summary": "This design implements a direct digital synthesizer (DDS) with a resistive digital-to-analog converter to produce an analog sine wave output. The output frequency is controlled by the 8 input switches, and with a 40 MHz clock, a rail-to-rail sine wave can be observed on the analog pin ua[0]. The DAC output has an impedance of about 10 kOhm, and an external capacitor to ground can be added to smooth or filter the waveform. The documentation is brief but sufficient to understand the basic operation and testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3e8d54a51662",
+   "tags": [
+    "oscillator",
+    "analog",
+    "opamp",
+    "sine",
+    "twin-tee",
+    "notch-filter",
+    "counter",
+    "silicon-tested"
+   ],
+   "summary": "This analog design uses a Twin Tee notch filter with an opamp to generate a sine wave at approximately 4.93 MHz. A 20-bit digital counter is connected to the oscillator output, with the top 8 bits driving the LEDs, so the most significant bit flashes about 5 times per second. An oscilloscope is required to observe the sine wave, and the design is sensitive to loading, so it should be started with no scope connected. Silicon testing by the author shows it oscillates at about 4.6 MHz and the counter works, though the sine wave quality is moderate.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "af37256ef519",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "spi",
+    "qspi",
+    "xip",
+    "gpio",
+    "uart",
+    "serv",
+    "soc"
+   ],
+   "summary": "Underserved is a Tiny Tapeout implementation of SERV, a compact RISC-V CPU that boots from an external SPI flash memory in XIP mode and executes instructions directly from it. It provides GPIO pins that can be used for various purposes, such as bitbanged UART, and uses SPI pins for flash communication. The design expects a compatible SPI flash memory and can be tested using a testbench with a flash model, with FuseSoC used for simulation and linting. The documentation is thorough, describing the boot process and test setup, but no silicon results are reported.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e96e819101f9",
+   "tags": [
+    "uart",
+    "menu",
+    "serial",
+    "gpio",
+    "text-output",
+    "led"
+   ],
+   "summary": "This design implements a UART menu system that waits for user input characters (1-7) and responds with either informative text or toggles output bits. It uses a basic UART driver for TX and RX, operating at 115200 bps with a 50 MHz clock, and requires an external UART transceiver connected to the recommended pins. Two output pins can drive LEDs through MOSFET drivers, and the design is controlled by sending single characters without line endings. The documentation is minimal but provides enough information to understand and test the functionality.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f5686374d0f9",
+   "tags": [
+    "charge-pump",
+    "analog",
+    "dickson",
+    "voltage-booster",
+    "power",
+    "silicon-tested"
+   ],
+   "summary": "This is a 3-stage Dickson charge pump that steps up the input voltage to approximately 5.44 V, with the output divided by two due to the analog pin voltage limit. It requires a 2 MHz clock signal to operate, and the divided output voltage can be measured at the ua[0] pin. Silicon testing by the author shows that at 7.5 MHz the output is about 4.55 V, slightly higher than simulation predicted. The design is a straightforward analog power circuit with no digital interface beyond the clock.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "dd19c0bba1d0",
+   "tags": [
+    "game",
+    "simon-says",
+    "memory",
+    "led",
+    "7-segment",
+    "speaker",
+    "button",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary": "This is a hardware implementation of the Simon Says memory game, where the player must repeat an ever-growing sequence of colors and tones. The game uses four buttons, four LEDs, a speaker, and optionally a two-digit 7-segment display for the score, all connected to the specified pins. It requires a 50 kHz clock and can be simulated online via Wokwi, with the wiring diagram provided. Silicon testing by the author confirms the game works as expected, including improved UX for slow players.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4435,
+  "completion_tokens": 1951,
+  "total_tokens": 6386,
+  "cost": 0.0036717,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036717,
+   "upstream_inference_prompt_cost": 0.0013305,
+   "upstream_inference_completions_cost": 0.0023412
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036717,
+ "elapsed_s": 15.3
+}

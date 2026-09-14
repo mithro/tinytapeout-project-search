@@ -1,0 +1,242 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2a8284796cf7",
+  "32ac9e7c8f21",
+  "37a86056c809",
+  "43d4d266bf6b",
+  "9d72ba89e184",
+  "565d82fc1851"
+ ],
+ "results": [
+  {
+   "key": "2a8284796cf7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design is a RAM array built from DFFs, not a multi-register file with register addressing semantics."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sram",
+     "reason": "It is a static RAM storage block (32x8) implemented from flip-flops."
+    }
+   ],
+   "notes": "Removed register-file (it is a RAM array, not a register file) and added sram as the canonical memory-block tag.",
+   "tags_before": [
+    "memory",
+    "register-file",
+    "flip-flop",
+    "verilog"
+   ],
+   "tags": [
+    "memory",
+    "flip-flop",
+    "verilog",
+    "sram"
+   ],
+   "summary_before": "This project implements a 32x8 dual-port-read single-port-write RAM using D-type flip-flops, described by the author as a 'really bad implementation' due to its inefficiency. The RAM has two read ports (A and B) and one write port (A), with configurable features such as read buffering, write-through policy, and page selection via configuration bits latched on reset release. It is intended to be tested with standard Tiny Tapeout hardware and an RP2040, and a MicroPython interface is planned. The design is notable for its use of flip-flops instead of dedicated RAM blocks and its flexible read/write policies.",
+   "summary": "This project implements a 32x8 dual-port-read single-port-write RAM using D-type flip-flops, described by the author as a 'really bad implementation' due to its inefficiency. The RAM has two read ports (A and B) and one write port (A), with configurable features such as read buffering, write-through policy, and page selection via configuration bits latched on reset release. It is intended to be tested with standard Tiny Tapeout hardware and an RP2040, and a MicroPython interface is planned. The design is notable for its use of flip-flops instead of dedicated RAM blocks and its flexible read/write policies.",
+   "summary_changed": false
+  },
+  {
+   "key": "32ac9e7c8f21",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "esoteric",
+    "education"
+   ],
+   "summary_before": "This is an 8-bit single instruction computer that implements the SUBLEQ instruction, which subtracts and branches if less than or equal to zero. It has 8 input pins for data, 8 output pins for data, and control pins for run, halted, set_pc, load_data, and out_strobe. The design is a hardware implementation of a minimalist computer architecture, likely intended for educational purposes. No specific external hardware or test setup is described in the documentation.",
+   "summary": "This is an 8-bit single instruction computer that implements the SUBLEQ instruction, which subtracts and branches if less than or equal to zero. It has 8 input pins for data, 8 output pins for data, and control pins for run, halted, set_pc, load_data, and out_strobe. The design is a hardware implementation of a minimalist computer architecture, likely intended for educational purposes. No specific external hardware or test setup is described in the documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "37a86056c809",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synthesizer",
+     "reason": "The design is a direct digital synthesizer for RF transmission, not an audio tone synthesizer."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "It generates a digitally synthesized RF waveform from frequency control inputs."
+    }
+   ],
+   "notes": "Removed synthesizer (audio connotation) and added signal-generator for the DDS waveform generation.",
+   "tags_before": [
+    "nco",
+    "synthesizer",
+    "rf",
+    "modulator",
+    "uart",
+    "dac",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "nco",
+    "rf",
+    "modulator",
+    "uart",
+    "dac",
+    "communication",
+    "verilog",
+    "signal-generator"
+   ],
+   "summary_before": "DaDDS is an 8-bit direct digital synthesizer intended as an RF transmitter supporting OOK and FSK modulation. It accepts UART commands and frequency selection inputs, and outputs an 8-bit DAC signal. The documentation references architecture, UART protocol, and application diagrams but provides little textual explanation, so the exact operation and external hardware requirements are not fully described. It is notable for targeting high-frequency RF synthesis with digital modulation in a single tile.",
+   "summary": "DaDDS is an 8-bit direct digital synthesizer intended as an RF transmitter supporting OOK and FSK modulation. It accepts UART commands and frequency selection inputs, and outputs an 8-bit DAC signal. The documentation references architecture, UART protocol, and application diagrams but provides little textual explanation, so the exact operation and external hardware requirements are not fully described. It is notable for targeting high-frequency RF synthesis with digital modulation in a single tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "43d4d266bf6b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "synthesizer",
+     "reason": "The design is a direct digital synthesizer for RF transmission, not an audio tone synthesizer."
+    }
+   ],
+   "add": [
+    {
+     "tag": "signal-generator",
+     "reason": "It generates a digitally synthesized RF waveform from frequency control inputs."
+    }
+   ],
+   "notes": "Removed synthesizer (audio connotation) and added signal-generator for the DDS waveform generation.",
+   "tags_before": [
+    "nco",
+    "synthesizer",
+    "rf",
+    "modulator",
+    "uart",
+    "dac",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "nco",
+    "rf",
+    "modulator",
+    "uart",
+    "dac",
+    "communication",
+    "verilog",
+    "signal-generator"
+   ],
+   "summary_before": "DaDDS is an 8-bit direct digital synthesizer intended as an RF transmitter with on-off keying and frequency-shift keying modulation. It uses a 60 MHz clock and outputs an 8-bit DAC word, and includes UART control for setting frequency and modulation parameters. The documentation is sparse, consisting mainly of images that are not accessible in the provided text, so the exact control protocol and test method are not fully described. External hardware suggested includes a DAC and RF circuitry in a typical application diagram.",
+   "summary": "DaDDS is an 8-bit direct digital synthesizer intended as an RF transmitter with on-off keying and frequency-shift keying modulation. It uses a 60 MHz clock and outputs an 8-bit DAC word, and includes UART control for setting frequency and modulation parameters. The documentation is sparse, consisting mainly of images that are not accessible in the provided text, so the exact control protocol and test method are not fully described. External hardware suggested includes a DAC and RF circuitry in a typical application diagram.",
+   "summary_changed": false
+  },
+  {
+   "key": "9d72ba89e184",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "framebuffer",
+     "reason": "The source describes a bitmap logo, not a pixel framebuffer architecture."
+    }
+   ],
+   "add": [],
+   "notes": "Removed framebuffer because the source only mentions a bitmap logo, not a framebuffer-based display.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "framebuffer",
+    "cocotb",
+    "template"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "cocotb",
+    "template"
+   ],
+   "summary_before": "This project outputs a VGA signal displaying a moving logo from a bitmap. It is based on the VGA playground template and uses the Tiny VGA pinout. Testing is performed through a cocotb Python test file. The documentation does not specify any external hardware beyond a VGA display.",
+   "summary": "This project outputs a VGA signal displaying a moving logo from a bitmap. It is based on the VGA playground template and uses the Tiny VGA pinout. Testing is performed through a cocotb Python test file. The documentation does not specify any external hardware beyond a VGA display.",
+   "summary_changed": false
+  },
+  {
+   "key": "565d82fc1851",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "The source describes a GPU with a programmable pixel shader, not a generic compute accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "gpu",
+     "reason": "The title and description explicitly identify it as a GPU."
+    }
+   ],
+   "notes": "Removed accelerator and added gpu, which is the explicit design type stated in the source.",
+   "tags_before": [
+    "accelerator",
+    "graphics",
+    "vga",
+    "qspi",
+    "gamepad",
+    "video",
+    "display"
+   ],
+   "tags": [
+    "graphics",
+    "vga",
+    "qspi",
+    "gamepad",
+    "video",
+    "display",
+    "accelerator"
+   ],
+   "summary_before": "Tiniest GPU V3 is a standalone GPU with a programmable pixel shader. It outputs VGA video and interfaces with QSPI flash/PSRAM and a gamepad, including support for an SNES controller. The design is implemented in Verilog and occupies a 6x4 tile area. The documentation is incomplete, with testing instructions still being updated.",
+   "summary": "Tiniest GPU V3 is a standalone GPU with a programmable pixel shader. It outputs VGA video and interfaces with QSPI flash/PSRAM and a gamepad, including support for an SNES controller. The design is implemented in Verilog and occupies a 6x4 tile area. The documentation is incomplete, with testing instructions still being updated.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6493,
+  "completion_tokens": 1281,
+  "total_tokens": 7774,
+  "cost": 0.004356375,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004356375,
+   "upstream_inference_prompt_cost": 0.002434875,
+   "upstream_inference_completions_cost": 0.0019215
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004356375,
+ "elapsed_s": 5.5
+}

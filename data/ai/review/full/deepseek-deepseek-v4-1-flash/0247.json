@@ -1,0 +1,244 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3e4892a9383a",
+  "7fe39d38c91b",
+  "96bfdb78ca5a",
+  "29268aca80b0",
+  "53e9f8a93f6b",
+  "a699ba72177a"
+ ],
+ "results": [
+  {
+   "key": "3e4892a9383a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "led",
+    "ws2812",
+    "display",
+    "text",
+    "prng",
+    "lfsr",
+    "cocotb",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "uart",
+    "led",
+    "ws2812",
+    "display",
+    "text",
+    "prng",
+    "lfsr",
+    "cocotb",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design drives a chain of up to four Pixie Chroma WS2812B LED-matrix displays, showing characters received over a 9600-baud 8N1 UART and shifting them left as new ones arrive. It includes reusable blocks such as a WS2812B driver, UART receiver and transmitter, an LFSR-based pseudo-random color selector, and a 5x7 character ROM, with options for dimming, fixed or random colors, and internal or UART-triggered refresh. External hardware needed is one to four chained Pixie Chroma displays with adequate power and a UART terminal or adapter. Silicon testing by the author confirmed working operation with two chained devices, and the project is notable for its cocotb tests of the UART and WS2812B protocol.",
+   "summary": "This design drives a chain of up to four Pixie Chroma WS2812B LED-matrix displays, showing characters received over a 9600-baud 8N1 UART and shifting them left as new ones arrive. It includes reusable blocks such as a WS2812B driver, UART receiver and transmitter, an LFSR-based pseudo-random color selector, and a 5x7 character ROM, with options for dimming, fixed or random colors, and internal or UART-triggered refresh. External hardware needed is one to four chained Pixie Chroma displays with adequate power and a UART terminal or adapter. Silicon testing by the author confirmed working operation with two chained devices, and the project is notable for its cocotb tests of the UART and WS2812B protocol.",
+   "summary_changed": false
+  },
+  {
+   "key": "7fe39d38c91b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "The design is a CPU with a DAC; audio is only an optional external demo, not an audio output interface."
+    },
+    {
+     "tag": "memory",
+     "reason": "The built-in 256-byte demo ROM is already covered by the rom tag; no separate generic memory block is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The source includes a silicon test report marked working by the author."
+    }
+   ],
+   "notes": "Removed audio and memory tags not supported by the design's own interfaces; added silicon-tested based on the author's working report.",
+   "tags_before": [
+    "cpu",
+    "dac",
+    "r2r-dac",
+    "register-file",
+    "rom",
+    "analog",
+    "audio",
+    "memory"
+   ],
+   "tags": [
+    "cpu",
+    "dac",
+    "r2r-dac",
+    "register-file",
+    "rom",
+    "analog",
+    "silicon-tested"
+   ],
+   "summary_before": "DJ8 is an 8-bit CPU with an 8x8-bit register file, a 15-bit address bus, an 8-bit data bus, and an integrated 8-bit R-2R DAC. It includes a built-in 256-byte demo ROM with two demos selected via DIP switches at reset, one of which drives a speaker through the DAC. External hardware can include a parallel Flash ROM and optional SRAM for larger programs, plus a speaker and amplifier for the audio demo. The design is notable for combining a full CPU with an analog DAC on a single Tiny Tapeout tile and for having prior VHDL and Verilog implementations.",
+   "summary": "DJ8 is an 8-bit CPU with an 8x8-bit register file, a 15-bit address bus, an 8-bit data bus, and an integrated 8-bit R-2R DAC. It includes a built-in 256-byte demo ROM with two demos selected via DIP switches at reset, one of which drives a speaker through the DAC. External hardware can include a parallel Flash ROM and optional SRAM for larger programs, plus a speaker and amplifier for the audio demo. The design is notable for combining a full CPU with an analog DAC on a single Tiny Tapeout tile and for having prior VHDL and Verilog implementations.",
+   "summary_changed": false
+  },
+  {
+   "key": "96bfdb78ca5a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sigma-delta",
+     "reason": "The delta decoder is a signed accumulator with leak, not a sigma-delta modulator or converter."
+    },
+    {
+     "tag": "communication",
+     "reason": "The design is a neuromorphic spike codec; SPI is only the programming interface, not a communication protocol design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The source includes a silicon test report marked working by the author."
+    }
+   ],
+   "notes": "Removed sigma-delta and communication tags not supported by the design; added silicon-tested based on the author's working report.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "encoder",
+    "decoder",
+    "lfsr",
+    "sigma-delta",
+    "spi",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "encoder",
+    "decoder",
+    "lfsr",
+    "spi",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a neuromorphic spike codec that combines three encoders (rate, latency, delta) and three symmetric decoders (rate, latency, delta) in a single SPI-programmable block. The encoders convert values to spike trains using methods such as LFSR-based rate coding, time-to-first-spike, and delta modulation, while the decoders reconstruct values from spike trains. It operates on a shared window counter and provides status flags and an IRQ output. It requires an SPI master for configuration and a spike source for decoding, and can be paired with an SNN inference core.",
+   "summary": "This design is a neuromorphic spike codec that combines three encoders (rate, latency, delta) and three symmetric decoders (rate, latency, delta) in a single SPI-programmable block. The encoders convert values to spike trains using methods such as LFSR-based rate coding, time-to-first-spike, and delta modulation, while the decoders reconstruct values from spike trains. It operates on a shared window counter and provides status flags and an IRQ output. It requires an SPI master for configuration and a spike source for decoding, and can be paired with an SNN inference core.",
+   "summary_changed": false
+  },
+  {
+   "key": "29268aca80b0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multi-tile",
+     "reason": "The design is a single 1x1 tile, not spanning multiple tiles."
+    }
+   ],
+   "add": [],
+   "notes": "Removed multi-tile tag because the design occupies only one tile.",
+   "tags_before": [
+    "fpga",
+    "reconfigurable",
+    "logic-gate",
+    "flip-flop",
+    "scan-chain",
+    "puzzle",
+    "multi-tile"
+   ],
+   "tags": [
+    "fpga",
+    "reconfigurable",
+    "logic-gate",
+    "flip-flop",
+    "scan-chain",
+    "puzzle"
+   ],
+   "summary_before": "ROTFPGA v2 is a reconfigurable logic circuit consisting of an 8x8 grid of identical tiles, each containing a NAND gate, a D flip-flop, and a buffer, with each tile individually rotatable and mirrorable via configuration. Configuration and state are managed through a scan chain, and a loop breaker mechanism helps debug combinational loops. The design supports loading and dumping state, single-stepping, and free running, and it has been tested on silicon with a provided test suite. It is notable for being a port of a larger FPGA design to TinyTapeout with significant area optimization.",
+   "summary": "ROTFPGA v2 is a reconfigurable logic circuit consisting of an 8x8 grid of identical tiles, each containing a NAND gate, a D flip-flop, and a buffer, with each tile individually rotatable and mirrorable via configuration. Configuration and state are managed through a scan chain, and a loop breaker mechanism helps debug combinational loops. The design supports loading and dumping state, single-stepping, and free running, and it has been tested on silicon with a provided test suite. It is notable for being a port of a larger FPGA design to TinyTapeout with significant area optimization.",
+   "summary_changed": false
+  },
+  {
+   "key": "53e9f8a93f6b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any educational intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag not supported by the source; adjusted summary to avoid implying educational intent.",
+   "tags_before": [
+    "decoder",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "decoder",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This project converts a binary input into a hexadecimal seven-segment display output, using a clock and reset as inputs and driving the seven segment lines. Testing is simply described as inputting binary and observing the seven-segment hex output. The design requires an external seven-segment display to be useful. The documentation is minimal and does not specify the input width or the exact encoding, so the design is best treated as a simple educational decoder.",
+   "summary": "This project converts a binary input into a hexadecimal seven-segment display output, using a clock and reset as inputs and driving the seven segment lines. Testing is simply described as inputting binary and observing the seven-segment hex output. The design requires an external seven-segment display to be useful. The documentation is minimal and does not specify the input width or the exact encoding, so the design is best treated as a simple decoder.",
+   "summary_changed": true
+  },
+  {
+   "key": "a699ba72177a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crc",
+    "communication",
+    "reconfigurable",
+    "verilog"
+   ],
+   "tags": [
+    "crc",
+    "communication",
+    "reconfigurable",
+    "verilog"
+   ],
+   "summary_before": "The CRC Decelerator is a reconfigurable CRC engine that can be programmed to compute any CRC up to 32 bits with arbitrary length streamed input data. It uses a 2-bit command interface and a 4-bit data path to stream in configuration parameters, message nibbles, and to read out the final CRC value. The design is a follow-up to a full-custom VLSI CRC-32 datapath and is intended for low-speed operation, hence the name 'decelerator'. It requires no external hardware beyond a host that can drive the pins according to the documented protocol.",
+   "summary": "The CRC Decelerator is a reconfigurable CRC engine that can be programmed to compute any CRC up to 32 bits with arbitrary length streamed input data. It uses a 2-bit command interface and a 4-bit data path to stream in configuration parameters, message nibbles, and to read out the final CRC value. The design is a follow-up to a full-custom VLSI CRC-32 datapath and is intended for low-speed operation, hence the name 'decelerator'. It requires no external hardware beyond a host that can drive the pins according to the documented protocol.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 11935,
+  "completion_tokens": 1464,
+  "total_tokens": 13399,
+  "cost": 0.006671625,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.006671625,
+   "upstream_inference_prompt_cost": 0.004475625,
+   "upstream_inference_completions_cost": 0.002196
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.006671625,
+ "elapsed_s": 6.2
+}

@@ -1,0 +1,214 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f731e7a056b0",
+  "0f3d8999ffde",
+  "89da2b1936df",
+  "1163641564f6",
+  "425227a697d5",
+  "c25821f8aa6d"
+ ],
+ "results": [
+  {
+   "key": "f731e7a056b0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "display"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "display"
+   ],
+   "summary_before": "This design is a standalone VGA demo that produces a Matrix-like digital rain animation on a VGA monitor. It supports four different VGA timing modes, selectable via input pins, and allows the user to choose between different colour palettes. The circuit requires a TinyVGA PMOD and a VGA monitor, and it must be clocked at or near 25.175 MHz for the default mode. It is notable for being a visual demo with programmable display options and no external processing requirements.",
+   "summary": "This design is a standalone VGA demo that produces a Matrix-like digital rain animation on a VGA monitor. It supports four different VGA timing modes, selectable via input pins, and allows the user to choose between different colour palettes. The circuit requires a TinyVGA PMOD and a VGA monitor, and it must be clocked at or near 25.175 MHz for the default mode. It is notable for being a visual demo with programmable display options and no external processing requirements.",
+   "summary_changed": false
+  },
+  {
+   "key": "0f3d8999ffde",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence the design is built from discrete transistors rather than standard cells; the source only says 'Amplifier 1.8V'."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported transistor-level tag; documentation is very thin but the analog/opamp tags are supported by the title and pins.",
+   "tags_before": [
+    "analog",
+    "opamp",
+    "transistor-level"
+   ],
+   "tags": [
+    "analog",
+    "opamp"
+   ],
+   "summary_before": "This is an analog folded cascode operational transconductance amplifier (OTA) with N-type input and on-chip bias. It operates from a 1.8V supply and provides a single-ended output. Testing requires applying input signals and measuring the output with an oscilloscope. The documentation is minimal, providing only basic specifications.",
+   "summary": "This is an analog folded cascode operational transconductance amplifier (OTA) with N-type input and on-chip bias. It operates from a 1.8V supply and provides a single-ended output. Testing requires applying input signals and measuring the output with an oscilloscope. The documentation is minimal, providing only basic specifications.",
+   "summary_changed": false
+  },
+  {
+   "key": "89da2b1936df",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "barrel-shifter",
+     "reason": "The source mentions 'shifts' but does not state a barrel shifter implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed barrel-shifter tag since only generic 'shifts' are documented.",
+   "tags_before": [
+    "alu",
+    "multiplier",
+    "popcount",
+    "barrel-shifter",
+    "comparator",
+    "adder",
+    "logic-gate"
+   ],
+   "tags": [
+    "alu",
+    "multiplier",
+    "popcount",
+    "comparator",
+    "adder",
+    "logic-gate"
+   ],
+   "summary_before": "This is a 6-bit multi-functional arithmetic logic unit that supports ripple-carry and carry-lookahead addition, multiplication, logic operations, shifts, popcount and comparison. Two 6-bit operands, a carry-in and a 3-bit opcode are supplied on the input and bidirectional pins, and an 8-bit result appears on the outputs. Testing is done by applying random input values and checking that the result matches the selected operation, with LEDs or a logic analyzer recommended to observe the outputs. The documentation lists the operation set only as empty bullet points, so the exact opcode mapping is not described.",
+   "summary": "This is a 6-bit multi-functional arithmetic logic unit that supports ripple-carry and carry-lookahead addition, multiplication, logic operations, shifts, popcount and comparison. Two 6-bit operands, a carry-in and a 3-bit opcode are supplied on the input and bidirectional pins, and an 8-bit result appears on the outputs. Testing is done by applying random input values and checking that the result matches the selected operation, with LEDs or a logic analyzer recommended to observe the outputs. The documentation lists the operation set only as empty bullet points, so the exact opcode mapping is not described.",
+   "summary_changed": false
+  },
+  {
+   "key": "1163641564f6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design uses a true random number generator (TRNG), not a pseudo random number generator."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "XOR gates are used internally but the design is not a basic logic gate implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed prng and logic-gate tags; the design is a TRNG and ring oscillator, not a PRNG or basic logic gate.",
+   "tags_before": [
+    "ring-oscillator",
+    "trng",
+    "prng",
+    "analog",
+    "oscillator",
+    "logic-gate"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "trng",
+    "analog",
+    "oscillator"
+   ],
+   "summary_before": "This analog block contains a dedicated 33-stage ring oscillator with a divide-by-32 stage expected to run near 15 MHz, plus a separate XOR-based true random number generator built from five distinct ring oscillators. Enable signals select the different ring oscillator configurations, and the oscillator outputs and TRNG output are brought out on analog and output pins. Testing consists of setting all enable signals high and observing the expected frequencies on the output pins, and no external hardware is required. The documentation is short but gives enough detail to understand the two main functions.",
+   "summary": "This analog block contains a dedicated 33-stage ring oscillator with a divide-by-32 stage expected to run near 15 MHz, plus a separate XOR-based true random number generator built from five distinct ring oscillators. Enable signals select the different ring oscillator configurations, and the oscillator outputs and TRNG output are brought out on analog and output pins. Testing consists of setting all enable signals high and observing the expected frequencies on the output pins, and no external hardware is required. The documentation is short but gives enough detail to understand the two main functions.",
+   "summary_changed": false
+  },
+  {
+   "key": "425227a697d5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed fsm and education tags not supported by the very thin documentation.",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "uart",
+    "qspi",
+    "fsm",
+    "education"
+   ],
+   "tags": [
+    "cpu",
+    "esoteric",
+    "uart",
+    "qspi"
+   ],
+   "summary_before": "bfCPU implements a universal Turing machine as a superset of the Brainf*ck language. It is a 2x2 tile SystemVerilog design clocked at 10 MHz, with UART for serial communication and QSPI pins for memory access. The design is intended to be programmed and controlled via UART, though specific usage details are not provided. Documentation is limited to the title and pin names, so the exact instruction set and operation are not fully described.",
+   "summary": "bfCPU implements a universal Turing machine as a superset of the Brainf*ck language. It is a 2x2 tile SystemVerilog design clocked at 10 MHz, with UART for serial communication and QSPI pins for memory access. The design is intended to be programmed and controlled via UART, though specific usage details are not provided. Documentation is limited to the title and pin names, so the exact instruction set and operation are not fully described.",
+   "summary_changed": false
+  },
+  {
+   "key": "c25821f8aa6d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "The design is an NPU and CORDIC accelerator; no digital signal processing application is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dsp tag; the documented functions are NPU and CORDIC, not general DSP.",
+   "tags_before": [
+    "npu",
+    "neural-network",
+    "cordic",
+    "spi",
+    "accelerator",
+    "dsp",
+    "machine-learning"
+   ],
+   "tags": [
+    "npu",
+    "neural-network",
+    "cordic",
+    "spi",
+    "accelerator",
+    "machine-learning"
+   ],
+   "summary_before": "Hey FlexCompute-130 is a hybrid accelerator combining an INT8 neural processing unit (NPU) and a 12-bit CORDIC processor for functions like SINH, COSH, and ATAN. It accepts 8-bit data input and provides an 8-bit accumulator output, with SPI for weight loading and mode pins to select between NPU and CORDIC operation. The design is a 1x1 tile and requires external SPI master for configuration. Documentation is limited to a brief description and pin names, so detailed operation and performance are not fully described.",
+   "summary": "Hey FlexCompute-130 is a hybrid accelerator combining an INT8 neural processing unit (NPU) and a 12-bit CORDIC processor for functions like SINH, COSH, and ATAN. It accepts 8-bit data input and provides an 8-bit accumulator output, with SPI for weight loading and mode pins to select between NPU and CORDIC operation. The design is a 1x1 tile and requires external SPI master for configuration. Documentation is limited to a brief description and pin names, so detailed operation and performance are not fully described.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5898,
+  "completion_tokens": 1298,
+  "total_tokens": 7196,
+  "cost": 0.003327,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003327,
+   "upstream_inference_prompt_cost": 0.0017694,
+   "upstream_inference_completions_cost": 0.0015576
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003327,
+ "elapsed_s": 15.8
+}

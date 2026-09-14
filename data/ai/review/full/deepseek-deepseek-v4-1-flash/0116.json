@@ -1,0 +1,231 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1ab210c68598",
+  "c8cb5a848ec1",
+  "0a0e522899d6",
+  "5518ea60512e",
+  "9ede4e2ecb97",
+  "60d5be7c622b"
+ ],
+ "results": [
+  {
+   "key": "1ab210c68598",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "full-adder",
+     "reason": "The design bills itself as a 2-bit full adder."
+    }
+   ],
+   "notes": "Added full-adder tag for the design's named function; corrected summary to match the documented '2-digit full adder' phrasing.",
+   "tags_before": [
+    "adder",
+    "clock-divider",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "clock-divider",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design implements a 2-bit full adder that outputs a 3-bit sum on specific segments of a 7-segment display, and includes a clock divider that toggles the decimal point at a low frequency. It is tested by applying input combinations and observing the corresponding segment outputs according to a provided truth table. The design requires an external 7-segment display and switches for inputs. It is a simple educational project built in Wokwi.",
+   "summary": "This design implements a 2-digit full adder whose 3-bit sum is displayed on the segments f, b, and e of a 7-segment display. It also includes a clock divider that divides a 10 kHz clock by 2^16 to toggle the decimal point. The included truth table shows the expected segment outputs for several 4-bit input combinations. Built in Wokwi using switches for inputs and an external 7-segment display, it is a small educational project.",
+   "summary_changed": true
+  },
+  {
+   "key": "c8cb5a848ec1",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "sigma-delta",
+    "adc",
+    "dac",
+    "analog",
+    "audio",
+    "comparator",
+    "wokwi"
+   ],
+   "tags": [
+    "sigma-delta",
+    "adc",
+    "dac",
+    "analog",
+    "audio",
+    "comparator",
+    "wokwi"
+   ],
+   "summary_before": "This design implements a first-order sigma-delta analog-to-digital converter and a simple digital-to-analog converter, allowing an analog signal to be converted to a 1-bit digital stream and back to analog. It is intended for audio experimentation, with the input connected to an analog source and the output to an amplifier. External RC components are required for the analog front-end, and the design is noted to be crude and likely to add noise. The project is a basic exploration of sigma-delta modulation in Wokwi.",
+   "summary": "This design implements a first-order sigma-delta analog-to-digital converter and a simple digital-to-analog converter, allowing an analog signal to be converted to a 1-bit digital stream and back to analog. It is intended for audio experimentation, with the input connected to an analog source and the output to an amplifier. External RC components are required for the analog front-end, and the design is noted to be crude and likely to add noise. The project is a basic exploration of sigma-delta modulation in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "0a0e522899d6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning; the documentation only describes function and test."
+    }
+   ],
+   "add": [
+    {
+     "tag": "8-bit",
+     "reason": "The project explicitly produces an 8-bit product."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added 8-bit tag for the documented 8-bit product; summary kept but sentence 4 matches source.",
+   "tags_before": [
+    "multiplier",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4-bit multiplier that takes two 4-bit numbers and produces an 8-bit product by computing partial products and summing them. It was tested with a test bench that applies various input pairs and checks the output against expected multiplication results. No external hardware is needed. The documentation describes the partial product method and testing approach, though the pin list only shows four output pins despite the 8-bit product description.",
+   "summary": "This project is a 4-bit multiplier that takes two 4-bit numbers and produces an 8-bit product by computing partial products and summing them. It was tested with a test bench that applies various input pairs and checks the output against expected multiplication results. No external hardware is needed. The documentation describes the partial-product method and testing approach, though the pin list shows only four output pins despite the 8-bit product description.",
+   "summary_changed": true
+  },
+  {
+   "key": "5518ea60512e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning; the short documentation does not state an educational purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "8-bit",
+     "reason": "The design explicitly calculates an 8-bit product."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added 8-bit tag for the documented 8-bit product.",
+   "tags_before": [
+    "multiplier",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This is a 4-bit multiplier that accepts two unsigned 4-bit integers m and q and calculates their 8-bit product p. It is tested by providing several input pairs and verifying that the output equals the product of the two numbers. No external hardware is required. The documentation is minimal but sufficient to understand the basic function and test method.",
+   "summary": "This is a 4-bit multiplier that accepts two unsigned 4-bit integers m and q and calculates their 8-bit product p. It is tested by providing several input pairs and verifying that the output equals the product of the two numbers. No external hardware is required. The documentation is minimal but sufficient to understand the basic function and test method.",
+   "summary_changed": false
+  },
+  {
+   "key": "9ede4e2ecb97",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "The washing-machine controller description is from the project title/one-liner, but the body says 'Not meant for submission' and gives no functional detail; industrial application is not substantiated."
+    },
+    {
+     "tag": "cpu",
+     "reason": "The one-liner mentions a LiPSi microprocessor, but no processor core is described in the provided documentation and it cannot be verified."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The documentation states 'Not meant for submission' and test/external hardware are TBD."
+    }
+   ],
+   "notes": "Conflicting title vs. 'not meant for submission' body; needs a second opinion on whether this is a real washing-machine controller or a placeholder.",
+   "tags_before": [
+    "industrial",
+    "cpu",
+    "systemverilog"
+   ],
+   "tags": [
+    "systemverilog",
+    "incomplete"
+   ],
+   "summary_before": "This project is described as a dual-mode washing machine controller with a LiPSi microprocessor and a standalone controller selected by a pin. The documentation states it is not meant for submission and gives no functional details, test procedure, or external hardware. Pin names are generic and provide no additional information. As a result, the design cannot be evaluated from the available documentation.",
+   "summary": "This project is titled as a dual-mode washing machine controller with a LiPSi microprocessor and a standalone controller selected by pin configuration. The documentation body states 'Not meant for submission' and provides no functional details, test procedure, or external hardware information. Pin names are generic and add no technical detail. As a result, the design cannot be properly evaluated from the available source.",
+   "summary_changed": true
+  },
+  {
+   "key": "60d5be7c622b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "Although the title says 'Tutorial', the documentation does not describe teaching material or an educational use; it is only a 'Tutorial' label."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The design is a leaky integrate-and-fire neuron, which is a spiking neural network building block."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Testing procedure is 'do something' and documentation is very thin, indicating an unfinished or poorly documented state."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added incomplete for 'do something' test instruction; spiking-neural-network was both proposed and canonical.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a leaky integrate-and-fire (LIF) neuron model in Verilog. It accepts an 8-bit input current on ui_in and outputs an 8-bit state variable on uo_out, with a spike signal on uio[7]. The documentation is very sparse, providing only a brief description and no detailed testing procedure or external hardware requirements. It is presented as a tutorial, but the lack of documentation makes it difficult to assess its completeness or correctness.",
+   "summary": "This project implements a leaky integrate-and-fire (LIF) neuron model in Verilog. It accepts an 8-bit input current on ui_in and outputs an 8-bit state variable on uo_out, with a spike signal on uio[7]. The documentation is very sparse, providing only a brief description and no detailed testing procedure or external hardware requirements. It is labelled as a tutorial, but the lack of documentation makes it difficult to assess its completeness or correctness.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "0a0e522899d6: reviewer added non-canonical tag '8-bit'",
+  "5518ea60512e: reviewer added non-canonical tag '8-bit'"
+ ],
+ "usage": {
+  "prompt_tokens": 6026,
+  "completion_tokens": 1378,
+  "total_tokens": 7404,
+  "cost": 0.0034614,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0034614,
+   "upstream_inference_prompt_cost": 0.0018078,
+   "upstream_inference_completions_cost": 0.0016536
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0034614,
+ "elapsed_s": 7.7
+}

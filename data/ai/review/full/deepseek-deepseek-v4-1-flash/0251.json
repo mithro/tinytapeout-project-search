@@ -1,0 +1,264 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "dc330b393a7b",
+  "af123fcadc53",
+  "8fb0a9890e38",
+  "900fb84fec05",
+  "234a66407baf",
+  "c464e650ab5c"
+ ],
+ "results": [
+  {
+   "key": "dc330b393a7b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design is a shift register, not a multi-register file."
+    },
+    {
+     "tag": "sar-adc",
+     "reason": "The source only mentions SAR ADC as a motivating application; no SAR ADC is implemented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "The design is explicitly a 4-bit serial-to-parallel shift register."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "It is a clocked register with reset and serial shifting."
+    }
+   ],
+   "notes": "Removed register-file and sar-adc because the source implements only a shift register and mentions SAR ADC only as an application.",
+   "tags_before": [
+    "shift-register",
+    "register-file",
+    "sar-adc"
+   ],
+   "tags": [
+    "shift-register",
+    "sequential-logic"
+   ],
+   "summary_before": "This is a 4-bit serial-to-parallel shift register that accepts serial data and outputs it in parallel after four clock cycles. It includes a clock, reset, serial input, and four parallel outputs, and is intended for use in applications like successive approximation registers in ADCs. Testing was performed in simulation with a testbench, and external hardware such as a wave generator, switch, and logic analyzer are suggested for physical testing. The design is a basic building block for data conversion and serial communication.",
+   "summary": "This is a 4-bit serial-to-parallel shift register that accepts serial data and outputs it in parallel after four clock cycles. It includes a clock, reset, serial input, and four parallel outputs, and is described as useful in applications like successive approximation registers in ADCs. Testing was performed in simulation with a testbench, and external hardware such as a wave generator, switch, and logic analyzer are suggested for physical testing. The design is a basic building block for serial-to-parallel data conversion.",
+   "summary_changed": true
+  },
+  {
+   "key": "af123fcadc53",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "opamp",
+     "reason": "No operational amplifier is described; the design is a voltage conveyor."
+    },
+    {
+     "tag": "current-mirror",
+     "reason": "No current mirror is described in the source."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is purely analog with no digital portion."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The design is an analog voltage conveyor block."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "It is an analog circuit block, not a standard-cell digital design."
+    }
+   ],
+   "notes": "Removed opamp, current-mirror and mixed-signal because the source describes a purely analog voltage conveyor with no such blocks.",
+   "tags_before": [
+    "analog",
+    "opamp",
+    "current-mirror",
+    "mixed-signal",
+    "transistor-level"
+   ],
+   "tags": [
+    "analog",
+    "transistor-level"
+   ],
+   "summary_before": "VCII is a second-generation voltage conveyor analog block with current input y, current output x, voltage output z, and a reference input for virtual ground. It is intended to be used in a transimpedance amplifier configuration, where a current of a few microamps injected into y and an external resistor between x and Vref produce a voltage at z. Testing requires the external gain resistor, power supplies, and an oscilloscope to observe the output. The design targets unity current gain beta and unity voltage gain alpha, but the documentation gives no measured silicon results or detailed characterization.",
+   "summary": "VCII is a second-generation voltage conveyor analog block with current input y, current output x, voltage output z, and a reference input for virtual ground. It is intended to be used in a transimpedance amplifier configuration, where a current of a few microamps injected into y and an external resistor between x and Vref produce a voltage at z. Testing requires the external gain resistor, power supplies, and an oscilloscope to observe the output. The design targets unity current gain beta and unity voltage gain alpha, but the documentation gives no measured silicon results or detailed characterization.",
+   "summary_changed": false
+  },
+  {
+   "key": "8fb0a9890e38",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "factory-test",
+     "reason": "The source describes an analog loopback test structure, not a chip factory self-test."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The loopback is implemented with analog pins and analog mux characterization."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The stated purpose is to characterize the analog mux via resistance and step response."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "The source reports working silicon for the first two loops."
+    }
+   ],
+   "notes": "Removed factory-test and added analog, characterization and silicon-tested to match the analog loopback and working silicon report.",
+   "tags_before": [
+    "analog",
+    "characterization",
+    "factory-test"
+   ],
+   "tags": [
+    "analog",
+    "characterization",
+    "silicon-tested"
+   ],
+   "summary_before": "Analog loopback is a simple test structure in which each pair of analog pins is shorted together on the die. It is used to measure resistance and step response through each pair in order to characterize the analog multiplexer. No external hardware is required beyond the chip and measurement equipment such as a multimeter or oscilloscope. A silicon report notes that the first two loops worked, but only when the board was powered.",
+   "summary": "Analog loopback is a simple test structure in which each pair of analog pins is shorted together on the die. It is used to measure resistance and step response through each pair in order to characterize the analog multiplexer. No external hardware is required beyond the chip and measurement equipment such as a multimeter or oscilloscope. A silicon report notes that the first two loops worked, but only when the board was powered.",
+   "summary_changed": false
+  },
+  {
+   "key": "900fb84fec05",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "image-processing",
+     "reason": "The design simulates an image sensor readout; it does not implement image processing algorithms."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sensor-interface",
+     "reason": "The design models an image sensor readout interface."
+    },
+    {
+     "tag": "frequency-counter",
+     "reason": "It uses frequency counters to measure the frequency output representing light levels."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The test plan uses an external RP2040 microcontroller for hardware testing."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed image-processing because the source is a readout prototype, not an image-processing implementation.",
+   "tags_before": [
+    "image-processing",
+    "sensor-interface",
+    "frequency-counter",
+    "rp2040",
+    "verilog"
+   ],
+   "tags": [
+    "sensor-interface",
+    "frequency-counter",
+    "rp2040",
+    "verilog"
+   ],
+   "summary_before": "This project is a prototype that simulates an image sensor to validate a readout method, converting light levels to frequencies and then measuring them with frequency counters. It includes testbenches for both a full 1MP sensor and a smaller pixel array, and is intended to be tested on fabricated hardware using an external RP2040 microcontroller. The design is not an actual image sensor but a test chip for readout circuitry. The documentation notes that the design may not be useful to others, but provides test instructions.",
+   "summary": "This project is a prototype that simulates an image sensor to validate a readout method, converting light levels to frequencies and then measuring them with frequency counters. It includes testbenches for both a full 1MP sensor and a smaller pixel array, and is intended to be tested on fabricated hardware using an external RP2040 microcontroller. The design is not an actual image sensor but a test chip for readout circuitry. The documentation notes that the design may not be useful to others, but provides test instructions.",
+   "summary_changed": false
+  },
+  {
+   "key": "234a66407baf",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fir-filter",
+    "dsp",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "fir-filter",
+    "dsp",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This project implements an 8-bit FIR filter with two coefficients, designed to filter unwanted frequencies from a digital signal. It uses shift registers to load the input signal and coefficients, then performs multiply-accumulate operations to produce the filtered output. The design was limited to two coefficients due to chip capacity, but includes comments for future expansion to four coefficients. Testing is done via a testbench, and no external hardware is specified.",
+   "summary": "This project implements an 8-bit FIR filter with two coefficients, designed to filter unwanted frequencies from a digital signal. It uses shift registers to load the input signal and coefficients, then performs multiply-accumulate operations to produce the filtered output. The design was limited to two coefficients due to chip capacity, but includes comments for future expansion to four coefficients. Testing is done via a testbench, and no external hardware is specified.",
+   "summary_changed": false
+  },
+  {
+   "key": "c464e650ab5c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "The source gives enough detail to identify the LCD interface and test method."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lcd",
+     "reason": "The design drives a character LCD with D4-D7, RS and E signals."
+    },
+    {
+     "tag": "display",
+     "reason": "The output is a character LCD display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The source states it was copied from a Wokwi project."
+    }
+   ],
+   "notes": "Removed insufficient-doc because the source sufficiently identifies the LCD interface and test method.",
+   "tags_before": [
+    "lcd",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "lcd",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This project is a simple display test that interfaces with a character LCD, based on a Wokwi project. It outputs data and control signals to drive the LCD, requiring external hardware in the form of a character LCD. The documentation is minimal, indicating it is just a test with no further details on functionality or testing. No silicon results are provided.",
+   "summary": "This project is a simple display test that interfaces with a character LCD, based on a Wokwi project. It outputs data and control signals to drive the LCD, requiring external hardware in the form of a character LCD. The documentation is minimal, indicating it is just a test with no further details on functionality or testing. No silicon results are provided.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7045,
+  "completion_tokens": 1596,
+  "total_tokens": 8641,
+  "cost": 0.0030879,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0030879,
+   "upstream_inference_prompt_cost": 0.0011727,
+   "upstream_inference_completions_cost": 0.0019152
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0030879,
+ "elapsed_s": 29.2
+}

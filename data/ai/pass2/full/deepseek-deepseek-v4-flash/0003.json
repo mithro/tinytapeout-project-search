@@ -1,0 +1,166 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "9672946a632e",
+  "fe637d6935ab",
+  "83554003c644",
+  "88f089ca7ac2",
+  "fa0a9dd961df",
+  "2c1f3855d173",
+  "e398fa034586",
+  "91b435e81567",
+  "3be598dc771d",
+  "51c72b1f9644"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "key": "9672946a632e",
+   "summary": "This design generates the first 1024 decimal digits of Pi and displays them sequentially on a 7-segment display. It uses combinational logic to decode each digit and drive the segment outputs, with a clock advancing the digit index and a reset pin zeroing it. The project began as a study of how much information could be packed into a 16x8 SRAM circuit and evolved into a Pi digit demonstration. The design directly drives a 7-segment display and requires no external hardware beyond that.",
+   "tags": [
+    "7-segment",
+    "display",
+    "lookup-table",
+    "counter",
+    "combinational"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "fe637d6935ab",
+   "summary": "This design implements a 16x8 SRAM with write, read, and streaming modes. It uses a temporary shift register to load 8-bit data in two 4-bit halves, and supports fast memory operations like memset. In streaming mode, it cycles through all memory values to act as a streaming signal generator. The design is tested via a Verilator testbench and requires no external hardware.",
+   "tags": [
+    "sram",
+    "memory",
+    "signal-generator",
+    "shift-register"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "83554003c644",
+   "summary": "This design converts a 4-bit BCD input into a hexadecimal 7-segment display output. It accepts four binary-coded decimal inputs and generates the corresponding segment signals, with an invert pin to support both common cathode and common anode displays. The decimal dot input is passed through to the dot output. It is tested by connecting the outputs to a 7-segment display and configuring the input value.",
+   "tags": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "display"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "88f089ca7ac2",
+   "summary": "This is a tiny register machine CPU written in Clash. It accepts a 6-bit instruction input and has a reset and clock input, with outputs for a jump signal and five register values. The documentation describes its operation as 'poorly' and provides minimal testing instructions of encoding instructions and ticking the clock. It is notable for being generated from Clash, but the limited documentation makes it difficult to assess its completeness or functionality.",
+   "tags": [
+    "cpu",
+    "register-file",
+    "insufficient-doc"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "fa0a9dd961df",
+   "summary": "This design implements a small asynchronous FIFO with separate write and read clocks. It uses 3-bit data width and provides full and empty flags to indicate status. The FIFO rejects writes when full and returns invalid data when read while empty. It is tested by running both clocks and asserting write and read enables with varying clock ratios, and requires no external hardware.",
+   "tags": [
+    "fifo",
+    "asynchronous",
+    "clock-domain-crossing",
+    "synchronizer"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "2c1f3855d173",
+   "summary": "This design computes a 5-bit rolling average over 8 banks. It uses a shift register and a rolling sum trick to generate the average. Data is clocked in via i_data_clk and the 5-bit value is output on io_out[4:0]. It requires external GPIO connections to provide input and read the output.",
+   "tags": [
+    "dsp",
+    "shift-register",
+    "fir-filter"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "e398fa034586",
+   "summary": "This design is a 3-bit 8-channel PWM driver with 8 PWM levels from 0 to 7. It uses a 3-bit counter to generate PWM signals on 8 output channels, each controlled by a dedicated 3-bit register. The PWM level for each channel is set via address and level pins, with the set pin latching the value. It is tested by setting PWM levels and observing the output pins oscillate.",
+   "tags": [
+    "pwm",
+    "driver",
+    "counter",
+    "register-file",
+    "led"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "91b435e81567",
+   "summary": "This design is a 7-channel PWM driver controlled via an SPI bus, with 256 PWM levels from 0 to 255. It uses an 8-bit counter to generate PWM signals on 7 output channels, each controlled by an 8-bit register. The PWM levels are set via SPI writes to register addresses 0 through 6. It is tested by writing PWM levels over SPI and observing the output pins oscillate.",
+   "tags": [
+    "pwm",
+    "driver",
+    "spi",
+    "counter",
+    "register-file",
+    "led"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "3be598dc771d",
+   "summary": "This is a Logisim demo showing how to use Logisim Evolution generated Verilog for TinyTapeout. It implements a 4-bit ring shift register with a single '1' cycling through it after reset. The design has four outputs that blink in sequence and requires a button for reset and LEDs or another display for the outputs. It serves as an educational example for using Logisim with TinyTapeout.",
+   "tags": [
+    "led",
+    "ring-counter",
+    "shift-register",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "key": "51c72b1f9644",
+   "summary": "This design implements a power supply sequencer that sequentially enables and disables eight channels with configurable delays. It uses counters and registers to control the activation order, with a 5-bit delay input setting the counter threshold. Bringing enable high turns on channels from 0 to 7 sequentially, and bringing it low turns them off from 7 to 0. It is intended for applications like GaAs amplifiers that require sequenced power supplies and requires no external hardware.",
+   "tags": [
+    "sequencer",
+    "counter",
+    "delay-line",
+    "power-management"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7194,
+  "completion_tokens": 1412,
+  "total_tokens": 8606,
+  "cost": 0.000373015888,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 7168,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.000373015888,
+   "upstream_inference_prompt_cost": 0.000127101968,
+   "upstream_inference_completions_cost": 0.00024591392
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.000373015888,
+ "elapsed_s": 23.9
+}

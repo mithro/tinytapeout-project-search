@@ -1,0 +1,260 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "32c8dc6bd77f",
+  "07b6467cfc00",
+  "c6954857d09f",
+  "8cdc09ce10d5",
+  "47a5fc4bbd2e",
+  "4c12ccb30edc"
+ ],
+ "results": [
+  {
+   "key": "32c8dc6bd77f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "No GPIO interface is evidenced; the pins are SPI signals plus debug/status outputs, and the description mentions a GPIO/mem interface only vaguely."
+    },
+    {
+     "tag": "memory",
+     "reason": "A memory interface is only mentioned in the one-line description with no register map or memory details in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Language is stated as Verilog."
+    }
+   ],
+   "notes": "Removed gpio and memory tags that lack support in the thin documentation; added verilog impl tag.",
+   "tags_before": [
+    "spi",
+    "gpio",
+    "memory",
+    "communication",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "spi",
+    "communication",
+    "insufficient-doc",
+    "verilog"
+   ],
+   "summary_before": "This project is an SPI device that provides a GPIO and memory interface. It uses dedicated pins for SPI MOSI, clock and chip select, with MISO, debug, system clock mirror and status outputs. Testing is done with an external USB-to-SPI adapter such as an MCP2210 board, and no other external hardware is required. The documentation refers to a readme file that is not included here, so the register map and protocol details remain unspecified.",
+   "summary": "This project is an SPI device that provides a GPIO and memory interface. It uses dedicated pins for SPI MOSI, clock and chip select, with MISO, debug, system clock mirror and status outputs. Testing is done with an external USB-to-SPI adapter such as an MCP2210 board, and no other external hardware is required. The documentation refers to a readme file that is not included here, so the register map and protocol details remain unspecified.",
+   "summary_changed": false
+  },
+  {
+   "key": "07b6467cfc00",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "prng",
+    "lfsr",
+    "clock-divider",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "prng",
+    "lfsr",
+    "clock-divider",
+    "7-segment",
+    "wokwi"
+   ],
+   "summary_before": "This design is an 8-bit pseudo-random number generator built from four Fibonacci maximum-length LFSRs of 9, 10, 11 and 13 bits, whose outputs are XOR-combined. The chip clock is divided by 14 cascaded divide-by-two stages, giving a total division of 16384, so a 10 kHz clock yields about 0.61 Hz for the LFSRs. The eight random bits appear on the eight output pins and can be observed with a 7-segment LED display, an oscilloscope or a logic analyzer. A 7-segment LED display is recommended as external hardware, and the design is notable for using relatively prime LFSR lengths to reduce correlation.",
+   "summary": "This design is an 8-bit pseudo-random number generator built from four Fibonacci maximum-length LFSRs of 9, 10, 11 and 13 bits, whose outputs are XOR-combined. The chip clock is divided by 14 cascaded divide-by-two stages, giving a total division of 16384, so a 10 kHz clock yields about 0.61 Hz for the LFSRs. The eight random bits appear on the eight output pins and can be observed with a 7-segment LED display, an oscilloscope or a logic analyzer. A 7-segment LED display is recommended as external hardware, and the design is notable for using relatively prime LFSR lengths to reduce correlation.",
+   "summary_changed": false
+  },
+  {
+   "key": "c6954857d09f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No specific logic gate implementation is described; the source only says inputs are turned on."
+    },
+    {
+     "tag": "gpio",
+     "reason": "No GPIO interface is evidenced beyond generic inputs and one output."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting only of 'Turning Input 1 to 4 on' and 'Start'."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is an unfinished experiment with no described function beyond turning inputs on."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate, gpio and education tags; added insufficient-doc and incomplete.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "gpio",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "The design turns on outputs based on inputs 1 through 4, but the documentation is minimal, with only 'Turning Input 1 to 4 on' and 'Start' for testing. No external hardware is required. The project appears to be a basic test of input-output behavior, but lacks detailed explanation.",
+   "summary": "The design turns on outputs based on inputs 1 through 4, but the documentation is minimal, with only 'Turning Input 1 to 4 on' and 'Start' for testing. No external hardware is required. The project appears to be a basic test of input-output behavior, but lacks detailed explanation. The source does not describe any specific logic function, so the exact behavior of the outputs remains unspecified.",
+   "summary_changed": true
+  },
+  {
+   "key": "8cdc09ce10d5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "No decoding logic is described in the source."
+    },
+    {
+     "tag": "gpio",
+     "reason": "No GPIO interface is evidenced; pins are generic INT/OUT signals."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with only a one-line description and a brief note on how it works."
+    }
+   ],
+   "notes": "Removed unsupported decoder, gpio and education tags; added insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "decoder",
+    "display",
+    "wokwi",
+    "education",
+    "gpio"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design lights up a seven-segment display with a number when a corresponding input is pressed. It is a Wokwi project with eight inputs and eight outputs, but the decoding logic and pin mapping are not described. The documentation is very thin, consisting of a one-line description and a brief note on how it works. No external hardware is specified, and no silicon test results are provided.",
+   "summary": "This design lights up a seven-segment display with a number when a corresponding input is pressed. It is a Wokwi project with eight inputs and eight outputs, but the decoding logic and pin mapping are not described. The documentation is very thin, consisting of a one-line description and a brief note on how it works. No external hardware is specified, and no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "47a5fc4bbd2e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is minimal and the author states uncertainty about most inputs and outputs."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The author does not know how to test the project and is unsure how most pins work."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added insufficient-doc and incomplete.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "logic-gate",
+    "display",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This Wokwi design uses a small network of OR and AND gates to drive a seven-segment display. When switches 0 or 1 are turned on, the digit 2 is displayed; turning on switches 5 and 6 shows a decimal point. The author states they are unsure how the remaining inputs and outputs behave, and the project has no test procedure or external hardware listed. Documentation is minimal and partly contradictory, making the exact gate mapping unverifiable.",
+   "summary": "This Wokwi design uses a small network of OR and AND gates to drive a seven-segment display. When switches 0 or 1 are turned on, the digit 2 is displayed; turning on switches 5 and 6 shows a decimal point. The author states they are unsure how the remaining inputs and outputs behave, and the project has no test procedure or external hardware listed. Documentation is minimal and partly contradictory, making the exact gate mapping unverifiable.",
+   "summary_changed": false
+  },
+  {
+   "key": "4c12ccb30edc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "No GPIO interface is evidenced; pins are generic IN/OUT signals."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with only a brief description of blinking lights."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is a vague experiment ('Just try some stuff') with no described relationship between inputs and outputs."
+    }
+   ],
+   "notes": "Removed unsupported gpio tag; added insufficient-doc and incomplete.",
+   "tags_before": [
+    "led",
+    "wokwi",
+    "gpio"
+   ],
+   "tags": [
+    "led",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This project creates blinking lights on its eight outputs based on the states of the input pins, running from a 2 Hz clock. The documentation is minimal, saying only that it creates some blinking lights based on flipped input pins and that testing consists of flipping some pins. No external hardware is required. The design is a simple Wokwi experiment with no further detail on the relationship between inputs and the blinking pattern.",
+   "summary": "This project creates blinking lights on its eight outputs based on the states of the input pins, running from a 2 Hz clock. The documentation is minimal, saying only that it creates some blinking lights based on flipped input pins and that testing consists of flipping some pins. No external hardware is required. The design is a simple Wokwi experiment with no further detail on the relationship between inputs and the blinking pattern.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5795,
+  "completion_tokens": 1312,
+  "total_tokens": 7107,
+  "cost": 0.002815965,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002815965,
+   "upstream_inference_prompt_cost": 0.001477725,
+   "upstream_inference_completions_cost": 0.00133824
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002815965,
+ "elapsed_s": 38.3
+}

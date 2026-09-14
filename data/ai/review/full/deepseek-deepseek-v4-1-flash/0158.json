@@ -1,0 +1,230 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d11a56d73447",
+  "7592b6d9c3f3",
+  "6d33e63871d7",
+  "90d035191ed3",
+  "d0134b27edc3",
+  "bea3bd70265f"
+ ],
+ "results": [
+  {
+   "key": "d11a56d73447",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A multiplier is not an arithmetic logic unit; the source describes only a Booth multiplier."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "already present"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed 'alu' since the design is a multiplier, not an ALU.",
+   "tags_before": [
+    "multiplier",
+    "pipeline",
+    "alu",
+    "wokwi",
+    "education",
+    "silicon-tested"
+   ],
+   "tags": [
+    "multiplier",
+    "pipeline",
+    "wokwi",
+    "education",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a 4-bit pipelined Booth multiplier intended for learning purposes. It has been tested in silicon and verified to work correctly for all input pairs, with pipelining functioning as expected. The design achieved clock speeds of 146MHz at 1.8V and 154MHz at 1.9V core voltage. It is a simple educational project with no external hardware requirements.",
+   "summary": "This design is a 4-bit pipelined Booth multiplier intended for learning purposes. It has been tested in silicon and verified to work correctly for all input pairs, with pipelining functioning as expected. The design achieved clock speeds of 146MHz at 1.8V and 154MHz at 1.9V core voltage. It is a simple educational project with no external hardware requirements.",
+   "summary_changed": false
+  },
+  {
+   "key": "7592b6d9c3f3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design divides an external clock and drives a display; it does not generate a clock signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "already present"
+    },
+    {
+     "tag": "counter",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed 'clock-generator' because the design divides rather than generates a clock.",
+   "tags_before": [
+    "clock-generator",
+    "7-segment",
+    "timer",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "7-segment",
+    "timer",
+    "counter",
+    "verilog"
+   ],
+   "summary_before": "This design is a multi-mode clock with a four-digit seven-segment display. It uses registers to divide the clock and combinational logic to convert binary to decimal for display, with the bottom 8 bits of the counter available on bidirectional outputs. The counting speed can be adjusted by setting the inputs to program a 24-bit compare register, allowing the counter to increment at different rates. It requires an external seven-segment display and a 10MHz clock source.",
+   "summary": "This design is a multi-mode clock with a four-digit seven-segment display. It uses registers to divide the clock and combinational logic to convert binary to decimal for display, with the bottom 8 bits of the counter available on bidirectional outputs. The counting speed can be adjusted by setting the inputs to program a 24-bit compare register, allowing the counter to increment at different rates. It requires an external seven-segment display and a 10MHz clock source.",
+   "summary_changed": false
+  },
+  {
+   "key": "6d33e63871d7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "combinational",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This project is a 4x4 array multiplier that multiplies two 4-bit numbers using a series of full adders to produce an 8-bit product. The design is combinational and the documentation includes a block diagram and a testing procedure with example inputs. No external hardware is required.",
+   "summary": "This project is a 4x4 array multiplier that multiplies two 4-bit numbers using a series of full adders to produce an 8-bit product. The design is combinational and the documentation includes a block diagram and a testing procedure with example inputs. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "90d035191ed3",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "wokwi",
+    "education",
+    "combinational",
+    "led"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "education",
+    "combinational",
+    "led"
+   ],
+   "summary_before": "This circuit is a full adder with two 1-bit operand inputs, a carry-in, and outputs for sum and carry-out. The outputs drive two LEDs (red for sum, blue for carry) to display results. Testing involves applying input combinations and observing the LEDs. It is a basic educational schematic created in Wokwi.",
+   "summary": "This circuit is a full adder with two 1-bit operand inputs, a carry-in, and outputs for sum and carry-out. The outputs drive two LEDs (red for sum, blue for carry) to display results. Testing involves applying input combinations and observing the LEDs. It is a basic educational schematic created in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "d0134b27edc3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "servo",
+     "reason": "The 1-2 ms/20 ms timing is servo-like, but the source never mentions servo control; the tag is unsupported."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "No motor control is described; the design only generates and reads PWM signals."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "already present"
+    },
+    {
+     "tag": "spi",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed 'servo' and 'motor-control' as the source never describes servo or motor control.",
+   "tags_before": [
+    "pwm",
+    "spi",
+    "servo",
+    "gpio",
+    "motor-control",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "spi",
+    "gpio",
+    "verilog"
+   ],
+   "summary_before": "This module provides a PWM generator on output pin 7 and a PWM reader on input pin 7, with the generator duty cycle set by input pins [6:0] and the reader output reflected on output pins [6:0]. The PWM period is assumed to be 20 ms with duty cycle adjustable between 1 ms and 2 ms, suitable for servo control. An SPI interface allows configuration and read/write operations when enabled, and the design can be tested by looping back the generated PWM signal to the input. It requires a development kit and optionally an oscilloscope and signal generator for testing, and is notable for combining PWM input and output with SPI configurability.",
+   "summary": "This module provides a PWM generator on output pin 7 and a PWM reader on input pin 7, with the generator duty cycle set by input pins [6:0] and the reader output reflected on output pins [6:0]. The PWM period is assumed to be 20 ms with duty cycle adjustable between 1 ms and 2 ms. An SPI interface allows configuration and read/write operations when enabled, and the design can be tested by looping back the generated PWM signal to the input. It requires a development kit and optionally an oscilloscope and signal generator for testing, and is notable for combining PWM input and output with SPI configurability.",
+   "summary_changed": true
+  },
+  {
+   "key": "bea3bd70265f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "communication",
+    "asynchronous",
+    "verilog"
+   ],
+   "tags": [
+    "uart",
+    "communication",
+    "asynchronous",
+    "verilog"
+   ],
+   "summary_before": "This design transmits an asynchronous serial UART message on three separate output pins. It is intended to be tested by attaching a UART receiver to each pin and configuring the receiver for 1200 baud. External hardware needed is a serial cable or equivalent receiver for each output. The documentation is extremely thin, consisting only of a one-line description and brief testing instructions, so no further implementation details are available.",
+   "summary": "This design transmits an asynchronous serial UART message on three separate output pins. It is intended to be tested by attaching a UART receiver to each pin and configuring the receiver for 1200 baud. External hardware needed is a serial cable or equivalent receiver for each output. The documentation is extremely thin, consisting only of a one-line description and brief testing instructions, so no further implementation details are available.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "6d33e63871d7: 3 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6267,
+  "completion_tokens": 1051,
+  "total_tokens": 7318,
+  "cost": 0.002670105,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002670105,
+   "upstream_inference_prompt_cost": 0.001598085,
+   "upstream_inference_completions_cost": 0.00107202
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002670105,
+ "elapsed_s": 25.1
+}

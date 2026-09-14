@@ -1,0 +1,208 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1f4430065758",
+  "e1ab53994684",
+  "9aef344e7510",
+  "df6d750d366a",
+  "dc466a5ef530",
+  "1f79e24ac334"
+ ],
+ "results": [
+  {
+   "key": "1f4430065758",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spi",
+    "register-file",
+    "fifo",
+    "communication"
+   ],
+   "tags": [
+    "spi",
+    "register-file",
+    "fifo",
+    "communication"
+   ],
+   "summary_before": "This is a simple SPI slave controller for reading and writing internal registers. It uses standard SPI signals (NCS, CLK, MOSI, MISO) and also provides a FIFO output serial line. The system clock must be at least four times faster than the SPI clock. Testing requires an external SPI controller connected to the SPI pins, and the documentation includes timing diagrams for read and write transactions.",
+   "summary": "This is a simple SPI slave controller for reading and writing internal registers. It uses standard SPI signals (NCS, CLK, MOSI, MISO) and also provides a FIFO output serial line. The system clock must be at least four times faster than the SPI clock. Testing requires an external SPI controller connected to the SPI pins, and the documentation includes timing diagrams for read and write transactions.",
+   "summary_changed": false
+  },
+  {
+   "key": "e1ab53994684",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "phase-detector",
+     "reason": "No phase detection circuit is described; the design outputs multiple phases of a ring oscillator."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator is described; the seed is a shift register, not a PRNG."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports indicate the design was tested and working on fabricated silicon."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The design is intended for studying high-frequency modes using measurement equipment such as a spectrum analyzer."
+    }
+   ],
+   "notes": "Removed unsupported phase-detector and prng tags; added silicon-tested and instrumentation based on source.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "shift-register",
+    "phase-detector",
+    "prng"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "shift-register",
+    "silicon-tested",
+    "instrumentation"
+   ],
+   "summary_before": "This project is an instrumented ring oscillator with a selectable number of stages and a configurable initial state, intended for studying high-frequency modes rather than as a reliable clock source. It provides 16 phase outputs and uses a shift-register-like interface to seed the oscillator state. The design is controlled via input pins for enable, hold, stage selection, and seed data. Silicon tests confirmed functionality, though the slowest configuration runs near 50 MHz, requiring a spectrum analyzer and H-field probe for verification.",
+   "summary": "This project is an instrumented ring oscillator with a selectable number of stages and a configurable initial state, intended for studying high-frequency modes rather than as a reliable clock source. It provides 16 phase outputs and uses a shift-register-like interface to seed the oscillator state. The design is controlled via input pins for enable, hold, stage selection, and seed data. Silicon tests confirmed functionality, though the slowest configuration runs near 50 MHz, requiring a spectrum analyzer and H-field probe for verification.",
+   "summary_changed": false
+  },
+  {
+   "key": "9aef344e7510",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "calculator",
+    "vhdl",
+    "keypad",
+    "alu",
+    "divider"
+   ],
+   "tags": [
+    "calculator",
+    "vhdl",
+    "keypad",
+    "alu",
+    "divider"
+   ],
+   "summary_before": "This is a calculator that accepts two 4-bit operands and an operation (addition, subtraction, multiplication, or division) via input pins, and outputs an 8-bit result. A strobe signal indicates when a button is pressed. Division rounds upwards, and zero is not supported as an operand. It requires an external hexadecimal keypad for input and displays to show the result.",
+   "summary": "This is a calculator that accepts two 4-bit operands and an operation (addition, subtraction, multiplication, or division) via input pins, and outputs an 8-bit result. A strobe signal indicates when a button is pressed. Division rounds upwards, and zero is not supported as an operand. It requires an external hexadecimal keypad for input and displays to show the result.",
+   "summary_changed": false
+  },
+  {
+   "key": "df6d750d366a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "The documentation does not describe a clock divider; the one-line description mentions it but the implementation details do not."
+    }
+   ],
+   "add": [],
+   "notes": "Removed clock-divider tag as unsupported by the detailed documentation.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "clock-divider",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "education"
+   ],
+   "summary_before": "This project implements four logic gates (OR, AND, XOR, NAND) using pairs of inputs, with eight inputs and four outputs. The documentation specifies which inputs feed each gate and how to test by toggling switches in the simulation. No external hardware is required. The design also includes a clock divider, though its role is not detailed.",
+   "summary": "This project implements four logic gates (OR, AND, XOR, NAND) using pairs of inputs, with eight inputs and four outputs. The documentation specifies which inputs feed each gate and how to test by toggling switches in the simulation. No external hardware is required. The design also includes a clock divider, though its role is not detailed.",
+   "summary_changed": false
+  },
+  {
+   "key": "dc466a5ef530",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "led",
+    "pwm",
+    "verilog",
+    "fsm"
+   ],
+   "tags": [
+    "led",
+    "pwm",
+    "verilog",
+    "fsm"
+   ],
+   "summary_before": "This design is a controller for K.I.T.T.-style scanner lights, with eight LED outputs and eight PWM outputs plus mode, speed, inversion and output-select inputs. It is used by setting the mode, speed, inversion and output-select pins, then raising the enable input to activate the LED scanning pattern and lowering it to stop. External hardware consists of eight LEDs and switches for configuration and triggering. The project is a Verilog LED animation controller with a documented pin table but only a placeholder image for the internal description.",
+   "summary": "This design is a controller for K.I.T.T.-style scanner lights, with eight LED outputs and eight PWM outputs plus mode, speed, inversion and output-select inputs. It is used by setting the mode, speed, inversion and output-select pins, then raising the enable input to activate the LED scanning pattern and lowering it to stop. External hardware consists of eight LEDs and switches for configuration and triggering. The project is a Verilog LED animation controller with a documented pin table but only a placeholder image for the internal description.",
+   "summary_changed": false
+  },
+  {
+   "key": "1f79e24ac334",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "audio",
+    "synthesizer",
+    "music",
+    "sound-generator",
+    "pwm",
+    "lfsr",
+    "retro",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "audio",
+    "synthesizer",
+    "music",
+    "sound-generator",
+    "pwm",
+    "lfsr",
+    "retro",
+    "education",
+    "verilog"
+   ],
+   "summary_before": "This is a Verilog replica of the Texas Instruments SN76489 programmable sound generator, providing three square-wave tone channels, a noise channel with white and periodic modes, and 16 attenuation levels. It is programmed through an 8-bit data bus with a write-enable strobe, and outputs either an 8-bit digital audio bus or a PWM audio output, with individual channel outputs also exposed. Testing is done by writing register commands from a microcontroller and listening to the resulting audio, and the design includes a regression test suite against original chip behavior. External hardware includes a DAC or RC filter, amplifier and speaker, plus a microcontroller to send commands; the design is fully digital and omits the original analog op-amp and some control pins.",
+   "summary": "This is a Verilog replica of the Texas Instruments SN76489 programmable sound generator, providing three square-wave tone channels, a noise channel with white and periodic modes, and 16 attenuation levels. It is programmed through an 8-bit data bus with a write-enable strobe, and outputs either an 8-bit digital audio bus or a PWM audio output, with individual channel outputs also exposed. Testing is done by writing register commands from a microcontroller and listening to the resulting audio, and the design includes a regression test suite against original chip behavior. External hardware includes a DAC or RC filter, amplifier and speaker, plus a microcontroller to send commands; the design is fully digital and omits the original analog op-amp and some control pins.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10744,
+  "completion_tokens": 1132,
+  "total_tokens": 11876,
+  "cost": 0.0036408,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036408,
+   "upstream_inference_prompt_cost": 0.0022824,
+   "upstream_inference_completions_cost": 0.0013584
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036408,
+ "elapsed_s": 28.9
+}

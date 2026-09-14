@@ -1,0 +1,197 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5e018e57418b",
+  "a80e7df3b005",
+  "31625b58493e",
+  "866cad908e73",
+  "00e3bd215f44",
+  "5215b538ba45"
+ ],
+ "results": [
+  {
+   "key": "5e018e57418b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "sram",
+    "memory",
+    "full-custom",
+    "asic"
+   ],
+   "tags": [
+    "sram",
+    "memory",
+    "full-custom",
+    "asic"
+   ],
+   "summary_before": "This is a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins for use as a standalone memory. It performs synchronous read and write operations on the rising clock edge, with a write-through behavior where the output reflects the written data during a write. The design is implemented in full-custom layout for 3.3V using standard design rules, not SRAM-specific rules. Testing involves applying addresses, data, and write-enable signals to verify read-back of stored values.",
+   "summary": "This is a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins for use as a standalone memory. It performs synchronous read and write operations on the rising clock edge, with a write-through behavior where the output reflects the written data during a write. The design is implemented in full-custom layout for 3.3V using standard design rules, not SRAM-specific rules. Testing involves applying addresses, data, and write-enable signals to verify read-back of stored values.",
+   "summary_changed": false
+  },
+  {
+   "key": "a80e7df3b005",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "sram",
+    "memory",
+    "full-custom",
+    "asic"
+   ],
+   "tags": [
+    "sram",
+    "memory",
+    "full-custom",
+    "asic"
+   ],
+   "summary_before": "This design is a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins, implemented in full-custom layout for 3.3V using SRAM-specific design rules for the bit cell. It performs synchronous read and write operations on the rising clock edge, with write-through behavior. The block is intended to be used as a standalone memory, and testing involves verifying read and write functionality. The use of SRAM design rules distinguishes it from other variants.",
+   "summary": "This design is a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins, implemented in full-custom layout for 3.3V using SRAM-specific design rules for the bit cell. It performs synchronous read and write operations on the rising clock edge, with write-through behavior. The block is intended to be used as a standalone memory, and testing involves verifying read and write functionality. The use of SRAM design rules distinguishes it from other variants.",
+   "summary_changed": false
+  },
+  {
+   "key": "31625b58493e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "The design is full-custom analog (language=Analog) with no HDL source; the documentation describes a transistor-level skewed-inverter/NOR2/output-buffer chain, not Verilog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design combines analog input/output pins (ua[0..4]) with digital input pins (ui_in[1..7]) for the NAND gates."
+    }
+   ],
+   "notes": "Removed verilog tag because the design is full-custom analog with no HDL; added mixed-signal because it uses both analog and digital pins.",
+   "tags_before": [
+    "analog",
+    "logic-gate",
+    "transistor-level",
+    "verilog"
+   ],
+   "tags": [
+    "analog",
+    "logic-gate",
+    "transistor-level",
+    "mixed-signal"
+   ],
+   "summary_before": "This project is an open-source silicon realization of a 74HCT00 quad 2-input NAND gate on the GlobalFoundries gf180mcuD process at 3.3V. Each gate uses a skewed-inverter/NOR2/output-buffer chain to achieve TTL-compatible input thresholds and ±4mA drive, with outputs routed to analog pins for direct measurement. Gate 1's A input is brought out on an analog pin to allow characterization of the HCT input window without digital pad interference. Testing involves applying power, verifying the NAND truth table, and performing a DC ramp to check the input thresholds.",
+   "summary": "This project is an open-source silicon realization of a 74HCT00 quad 2-input NAND gate on the GlobalFoundries gf180mcuD process at 3.3V. Each gate uses a skewed-inverter/NOR2/output-buffer chain to achieve TTL-compatible input thresholds and ±4mA drive, with outputs routed to analog pins for direct measurement. Gate 1's A input is brought out on an analog pin to allow characterization of the HCT input window without digital pad interference. Testing involves applying power, verifying the NAND truth table, and performing a DC ramp to check the input thresholds.",
+   "summary_changed": false
+  },
+  {
+   "key": "866cad908e73",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "multiplexer",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "uart",
+    "multiplexer",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design implements a bidirectional 6x6 bussbar switch that can route any of six UART receive inputs to one or more of six UART transmit outputs, with each output connected to at most one input at a time. Configuration is loaded through a serial data-in pin and an 18-bit shift register, with a latch signal to apply the configuration and an active-low reset. It is tested by driving the configuration stream from an external microcontroller and connecting UART interfaces to the TXD and RXD pins. No external hardware beyond UART connections is required, making it a compact programmable serial routing block.",
+   "summary": "This Verilog design implements a bidirectional 6x6 bussbar switch that can route any of six UART receive inputs to one or more of six UART transmit outputs, with each output connected to at most one input at a time. Configuration is loaded through a serial data-in pin and an 18-bit shift register, with a latch signal to apply the configuration and an active-low reset. It is tested by driving the configuration stream from an external microcontroller and connecting UART interfaces to the TXD and RXD pins. No external hardware beyond UART connections is required, making it a compact programmable serial routing block.",
+   "summary_changed": false
+  },
+  {
+   "key": "00e3bd215f44",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "pwm",
+    "biomedical",
+    "instrumentation",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "biomedical",
+    "instrumentation",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design generates a PWM signal whose frequency and duty cycle are set by an 8-bit duty ratio input and speed and mode selection pins, intended to model the pulse control of a TENS device. It supports a continuous mode and a burst mode that gates pulses into a 200 ms on, 800 ms off envelope. Testing is done by holding reset, setting the duty ratio, selecting continuous or burst mode, and observing the output on an oscilloscope. The documentation explicitly warns that the design has not been reviewed for safety and must not be used to drive electrical impulses into skin.",
+   "summary": "This Verilog design generates a PWM signal whose frequency and duty cycle are set by an 8-bit duty ratio input and speed and mode selection pins, intended to model the pulse control of a TENS device. It supports a continuous mode and a burst mode that gates pulses into a 200 ms on, 800 ms off envelope. Testing is done by holding reset, setting the duty ratio, selecting continuous or burst mode, and observing the output on an oscilloscope. The documentation explicitly warns that the design has not been reviewed for safety and must not be used to drive electrical impulses into skin.",
+   "summary_changed": false
+  },
+  {
+   "key": "5215b538ba45",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "The design uses a 1T NOR array and StrongARM sense amps, but the documentation does not state it is built from discrete transistors rather than standard cells; the analog front end is a hardened custom GDS, not a discrete-transistor design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "compute-in-memory",
+     "reason": "The design is a mask-programmed ternary compute-in-ROM that performs computation within the memory array, matching the compute-in-memory concept."
+    }
+   ],
+   "notes": "Removed transistor-level because the design uses a 1T NOR array and custom GDS, not discrete transistors; added compute-in-memory as the core function.",
+   "tags_before": [
+    "rom",
+    "analog",
+    "transistor-level",
+    "comparator-analog",
+    "memory",
+    "mixed-signal",
+    "accelerator"
+   ],
+   "tags": [
+    "rom",
+    "analog",
+    "comparator-analog",
+    "memory",
+    "mixed-signal",
+    "accelerator"
+   ],
+   "summary_before": "Azara CiROM is a mask-programmed ternary compute-in-ROM demonstrator that bakes +1/-1/0 weights into a 64x32 1T NOR array and senses a full row in a single strobe. A digital controller precharges bitlines, asserts a one-hot wordline, and pulses a shared strobe so single-ended StrongARM sense amplifiers compare each column's BLP/BLN lines against an external VREF, latching all 32 hits at once and streaming them out as bytes. Reading requires a mid-rail voltage source on ua[0], and ua[1]/ua[2] can be scoped to observe column-0 bitline discharge, which is slower because of probe capacitance. The analog front end is a hardened custom GDS while the read controller is standard digital logic, making this a transistor-level analog/mixed-signal experiment.",
+   "summary": "Azara CiROM is a mask-programmed ternary compute-in-ROM demonstrator that bakes +1/-1/0 weights into a 64x32 1T NOR array and senses a full row in a single strobe. A digital controller precharges bitlines, asserts a one-hot wordline, and pulses a shared strobe so single-ended StrongARM sense amplifiers compare each column's BLP/BLN lines against an external VREF, latching all 32 hits at once and streaming them out as bytes. Reading requires a mid-rail voltage source on ua[0], and ua[1]/ua[2] can be scoped to observe column-0 bitline discharge, which is slower because of probe capacitance. The analog front end is a hardened custom GDS while the read controller is standard digital logic, making this a mixed-signal compute-in-memory experiment.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8768,
+  "completion_tokens": 1378,
+  "total_tokens": 10146,
+  "cost": 0.0033432,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033432,
+   "upstream_inference_prompt_cost": 0.0016896,
+   "upstream_inference_completions_cost": 0.0016536
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033432,
+ "elapsed_s": 9.1
+}

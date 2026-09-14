@@ -1,0 +1,204 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "53d54267df86",
+  "f656f5a67315",
+  "aac58e5ddd12",
+  "7f616bf0fe39",
+  "fd15323b2772",
+  "4a20ce0c206f",
+  "84a270af5921",
+  "b4d8054035c2",
+  "594a01608cba",
+  "7cb7ed1f97f1"
+ ],
+ "results": [
+  {
+   "key": "53d54267df86",
+   "tags": [
+    "crypto",
+    "ntt",
+    "post-quantum",
+    "montgomery",
+    "butterfly",
+    "bit-serial",
+    "ml-kem",
+    "ml-dsa",
+    "fn-dsa",
+    "arithmetic"
+   ],
+   "summary": "This design implements a bit-serial Montgomery NTT butterfly unit that supports the moduli of all three NIST post-quantum cryptography standards (ML-KEM, ML-DSA, and FN-DSA) from a single shared datapath. It computes one Cooley-Tukey butterfly per transaction, with the scheme selected via two input pins and data loaded and unloaded serially over the 8-bit input and output ports. The design is controlled entirely through the Tiny Tapeout pins, requiring no external hardware beyond a host microcontroller such as a Raspberry Pi Pico. Notable features include the ability to switch schemes between transactions without a reset and the use of Montgomery domain twiddle factors, as detailed in the provided test instructions and golden model.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f656f5a67315",
+   "tags": [
+    "crypto",
+    "ascon",
+    "permutation",
+    "bit-serial",
+    "aead",
+    "nist",
+    "lightweight",
+    "streaming"
+   ],
+   "summary": "This project is a bit-serial implementation of the Ascon permutation (NIST SP 800-232) with a streaming column-XOR interface, enabling full Ascon-AEAD128 authenticated encryption when driven by a host. The 320-bit state is processed one 5-bit column per cycle through a shared S-box, with rounds taking 64 cycles per substitution and diffusion lap. The host must be cycle-synchronous with the design clock and supplies columns for each lap, while the chip performs all state processing; no on-chip data buffers are included to save area. The design is verified with known-answer tests and a large KAT sweep, and it requires no external hardware beyond a host microcontroller.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "aac58e5ddd12",
+   "tags": [
+    "mac",
+    "dot-product",
+    "int8",
+    "int4",
+    "transformer",
+    "attention",
+    "accelerator",
+    "streaming",
+    "pipeline"
+   ],
+   "summary": "This chip is a 1x4 INT4 signed dot-product MAC with an INT32 accumulator, designed as a scaled-down demonstrator of a transformer QK^T attention kernel. It features a 3-stage pipeline with four parallel multipliers, an adder tree, and an accumulator, and it uses a stateless streaming byte interface with commands for loading Q and K, resetting the accumulator, and reading the result. The design closes timing at 100 MHz on sky130 with no DRC, LVS, or antenna violations, and it is intended to be driven by a microcontroller or the demoboard's RP2040. A full cocotb testbench with directed and randomized regression is provided.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7f616bf0fe39",
+   "tags": [
+    "prng",
+    "lfsr",
+    "galois",
+    "random-number-generator",
+    "self-seeding",
+    "polynomial-switching",
+    "repetition-detection",
+    "cooldown"
+   ],
+   "summary": "This design implements a compact 16-bit Galois LFSR-based pseudo-random number generator with deterministic self-seeding, automatic polynomial switching, repetition detection, and cooldown control. It uses three internally selectable polynomials and generates an 8-bit output from the lower bits of the LFSR state. The PRNG is enabled via an input pin and seeded externally through 7 bits, with an 8-bit repetition monitor that triggers polynomial switching and reseeding when consecutive outputs repeat. The design is verified with a cocotb testbench covering reset, seeding, LFSR operation, and adaptive behavior.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fd15323b2772",
+   "tags": [
+    "adc",
+    "sigma-delta",
+    "analog",
+    "continuous-time",
+    "modulator",
+    "comparator",
+    "integrator",
+    "dac"
+   ],
+   "summary": "This project is a first-order continuous-time sigma-delta modulator ADC implemented in analog circuitry, featuring an active-RC integrator, a StrongARM comparator, and a return-to-zero resistive feedback DAC. It produces a 50 MHz bitstream that is decimated off-chip for either a fast path (~1 MHz bandwidth, ≥6 ENOB) or a precision path (~100 kHz, 10+ ENOB). The design is a work in progress toward the shuttle deadline, with the OTA macro verified and the remaining blocks to be integrated. Testing requires a low-jitter 50 MHz clock source and an FPGA or logic analyzer to capture the bitstream.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "4a20ce0c206f",
+   "tags": [
+    "pump-controller",
+    "current-transformer",
+    "rms",
+    "60hz",
+    "adc",
+    "relay",
+    "industrial",
+    "control",
+    "systemverilog"
+   ],
+   "summary": "This chip is a 60 Hz RMS pump-out controller ASIC that automatically turns on a pump and uses a current transformer to measure the RMS current, detecting when a tank is empty or a timeout occurs. It includes LEDs for status indication and a button for manual start, and it interfaces with an external ADC and relay. The design was extensively tested using RTL simulation, gate-level simulation, and FPGA prototyping, and a development board with emulation headers was created for chip testing. The project includes a datasheet, block diagrams, and a detailed test methodology involving multiple FPGAs for emulation and monitoring.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "84a270af5921",
+   "tags": [
+    "pwm",
+    "education",
+    "led",
+    "oscilloscope",
+    "verilog",
+    "template"
+   ],
+   "summary": "This project is an educational example that implements a PWM module in Verilog, intended to demonstrate the power of Verilog and chip design. The design is simple and can be tested by plugging it in and observing the outputs, optionally with an oscilloscope. It requires external hardware such as an LED array, button, and pin for full interaction. The documentation is minimal, providing only a brief description and basic testing instructions.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b4d8054035c2",
+   "tags": [
+    "pll",
+    "cdr",
+    "quickbus",
+    "test",
+    "scope",
+    "communication"
+   ],
+   "summary": "This is a test chip for a PLL/CDR/QuickBus interface, with 8 data inputs and outputs, and control pins for mode selection. The documentation is extremely sparse, providing only a one-line description and a note that a scope is needed to look at output signals. There is no explanation of functionality, usage, or testing procedures, making it difficult to determine the design's purpose beyond its title. The project appears to be a hardware test vehicle for high-speed serial communication experiments.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "594a01608cba",
+   "tags": [
+    "alu",
+    "7-segment",
+    "display",
+    "calculator",
+    "education",
+    "physical-design",
+    "combinational",
+    "bcd"
+   ],
+   "summary": "This design is a 4-bit ALU that displays its result on a hexadecimal 7-segment display, supporting operations such as addition, subtraction, logic, shifts, and equality. It is a combinational circuit with no clock, and it provides both the segment outputs and a binary result with a zero flag on the bidirectional pins. The design is intended for use with the Tiny Tapeout demo board and includes a Python demo script for testing all input combinations. Notable aspects include physical-design experiments and the integration of a 7-segment decoder.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7cb7ed1f97f1",
+   "tags": [
+    "ring-oscillator",
+    "supply-droop",
+    "sensor",
+    "aggressor",
+    "measurement",
+    "self-test",
+    "all-digital",
+    "power-integrity"
+   ],
+   "summary": "This design is an all-digital supply droop detector that uses a ring oscillator as a VDD sensor and includes an on-tile switching aggressor to create controlled di/dt events. It can measure the ring oscillator period or frequency to observe supply sag, with a self-test mode that replaces the ring with a known clock for calibration. The design is intended for characterization of power integrity and requires no external hardware beyond a bench supply and oscilloscope or logic analyzer. An optional FPGA port is provided for streaming samples over UART.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8930,
+  "completion_tokens": 2096,
+  "total_tokens": 11026,
+  "cost": 0.0051942,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0051942,
+   "upstream_inference_prompt_cost": 0.002679,
+   "upstream_inference_completions_cost": 0.0025152
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0051942,
+ "elapsed_s": 14.3
+}

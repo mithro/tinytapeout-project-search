@@ -1,0 +1,220 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8cf382a0f0ef",
+  "28c26e2a5ddf",
+  "923fda948540",
+  "6419290b3ee5",
+  "fbfcce94213e",
+  "be296842a789"
+ ],
+ "results": [
+  {
+   "key": "8cf382a0f0ef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "error-correction",
+     "reason": "The design evolves/repairs logic via mutation and fault injection, but there is no error detection/correction coding logic in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'no reports', so this tag is not supported and must not be added."
+    }
+   ],
+   "notes": "Removed error-correction (no ECC logic); the rest of the tags and summary are supported by the source.",
+   "tags_before": [
+    "reconfigurable",
+    "lookup-table",
+    "prng",
+    "error-correction",
+    "systemverilog"
+   ],
+   "tags": [
+    "reconfigurable",
+    "lookup-table",
+    "prng",
+    "systemverilog",
+    "silicon-tested"
+   ],
+   "summary_before": "ORCA is a self-optimizing and self-healing evolvable logic engine built around a 4x4 feed-forward CGP fabric of 4-bit LUT cells defined by a 132-bit genome. An on-chip (1+1) evolution strategy with a xorshift32 PRNG mutates the genome and scores circuits against a 16-row target truth table, with an optional annealing mode and a settle-time sensor that measures per-die speed. It can run host-free, evolving parity plus AND-OR at reset and lighting LEDs as fitness converges, while a bit-banged serial interface exposes control registers for targets, genome access, fault injection and annealing. A host-free HEAL demo injects stuck-at faults and shows evolution routing around dead cells, and no external hardware is required beyond optional scope probes and LEDs.",
+   "summary": "ORCA is a self-optimizing and self-healing evolvable logic engine built around a 4x4 feed-forward CGP fabric of 4-bit LUT cells defined by a 132-bit genome. An on-chip (1+1) evolution strategy with a xorshift32 PRNG mutates the genome and scores circuits against a 16-row target truth table, with an optional annealing mode and a settle-time sensor that measures per-die speed. It can run host-free, evolving parity plus AND-OR at reset and lighting LEDs as fitness converges, while a bit-banged serial interface exposes control registers for targets, genome access, fault injection and annealing. A host-free HEAL demo injects stuck-at faults and shows evolution routing around dead cells, and no external hardware is required beyond optional scope probes and LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "28c26e2a5ddf",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "memory",
+    "sram",
+    "arbiter",
+    "multiplexer",
+    "systemverilog",
+    "cocotb"
+   ],
+   "tags": [
+    "memory",
+    "sram",
+    "arbiter",
+    "multiplexer",
+    "systemverilog",
+    "cocotb"
+   ],
+   "summary_before": "This design is an 8-bit, 16-word dual-port RAM with arbitration and write-collision detection, fitting in a single Tiny Tapeout tile. It uses a shared multiplexed address/data bus and control signals to select ports and perform reads or writes, with outputs indicating collision and grant status. The RAM can be accessed independently from two ports, and simultaneous writes to the same address are detected. Verified with Cocotb tests, it requires no external hardware for operation on the demo board.",
+   "summary": "This design is an 8-bit, 16-word dual-port RAM with arbitration and write-collision detection, fitting in a single Tiny Tapeout tile. It uses a shared multiplexed address/data bus and control signals to select ports and perform reads or writes, with outputs indicating collision and grant status. The RAM can be accessed independently from two ports, and simultaneous writes to the same address are detected. Verified with Cocotb tests, it requires no external hardware for operation on the demo board.",
+   "summary_changed": false
+  },
+  {
+   "key": "923fda948540",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any educational intent; the template text is empty and only the pin names document the function."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The how-it-works, how-to-test and external-hardware fields are left at template defaults, indicating an unfinished submission."
+    }
+   ],
+   "notes": "Removed education (no stated teaching intent); added incomplete because the documentation fields are template placeholders.",
+   "tags_before": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This single-tile Wokwi design is a one-bit full adder with pins ui[0]=A, ui[1]=B and ui[2]=carry-in as inputs, and uo[0]=sum and uo[1]=carry-out as outputs. It is used by applying logic levels to the three inputs and reading the two results, and it requires no external hardware. The how-it-works, how-to-test and external-hardware text fields were left at the template defaults, so only the pin names document the function. The design is a standard instructional combinational block with no reported silicon results.",
+   "summary": "This single-tile Wokwi design is a one-bit full adder with pins ui[0]=A, ui[1]=B and ui[2]=carry-in as inputs, and uo[0]=sum and uo[1]=carry-out as outputs. It is used by applying logic levels to the three inputs and reading the two results, and it requires no external hardware. The how-it-works, how-to-test and external-hardware text fields were left at the template defaults, so only the pin names document the function. The design is a standard instructional combinational block with no reported silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "6419290b3ee5",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "gray-code",
+    "rotary-encoder",
+    "spi",
+    "uart",
+    "pwm",
+    "debouncer",
+    "amaranth"
+   ],
+   "tags": [
+    "counter",
+    "gray-code",
+    "rotary-encoder",
+    "spi",
+    "uart",
+    "pwm",
+    "debouncer",
+    "amaranth"
+   ],
+   "summary_before": "This module is a configurable 8-bit counter driven by a two-channel Gray code signal, intended to interface with incremental rotary encoders. It provides parallel and UART serial counter outputs, a direction signal, and a PWM output whose duty cycle tracks the counter value, and it supports optional debouncing, wrapping, and an X1/X2/X4 gearbox for acceleration. Configuration is loaded over SPI as a 32-bit word that sets initial and maximum values, gearbox timing, and other options. External hardware needed is a Gray code source, possibly with filtering or Schmitt triggers for mechanical encoders, and the UART output runs at the clock rate.",
+   "summary": "This module is a configurable 8-bit counter driven by a two-channel Gray code signal, intended to interface with incremental rotary encoders. It provides parallel and UART serial counter outputs, a direction signal, and a PWM output whose duty cycle tracks the counter value, and it supports optional debouncing, wrapping, and an X1/X2/X4 gearbox for acceleration. Configuration is loaded over SPI as a 32-bit word that sets initial and maximum values, gearbox timing, and other options. External hardware needed is a Gray code source, possibly with filtering or Schmitt triggers for mechanical encoders, and the UART output runs at the clock rate.",
+   "summary_changed": false
+  },
+  {
+   "key": "fbfcce94213e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "qspi",
+    "uart",
+    "spi",
+    "microcontroller",
+    "memory",
+    "silicon-tested"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "qspi",
+    "uart",
+    "spi",
+    "microcontroller",
+    "memory",
+    "silicon-tested"
+   ],
+   "summary_before": "TinyQV is a small RISC-V SoC implementing the RV32EC instruction set, with 28-bit addresses and 24-bit program addresses. It executes code from QSPI flash and uses QSPI PSRAM for data memory, sharing QSPI lines between them. The SoC includes a UART and SPI controller, and is intended to be used with a QSPI PMOD containing flash and RAM, as well as an ST7789 LCD display. Silicon testing showed the core works and runs MicroPython and benchmarks, but UART RX has a bug that was worked around in software.",
+   "summary": "TinyQV is a small RISC-V SoC implementing the RV32EC instruction set, with 28-bit addresses and 24-bit program addresses. It executes code from QSPI flash and uses QSPI PSRAM for data memory, sharing QSPI lines between them. The SoC includes a UART and SPI controller, and is intended to be used with a QSPI PMOD containing flash and RAM, as well as an ST7789 LCD display. Silicon testing showed the core works and runs MicroPython and benchmarks, but UART RX has a bug that was worked around in software.",
+   "summary_changed": false
+  },
+  {
+   "key": "be296842a789",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "sound-generator",
+    "synthesizer",
+    "audio",
+    "pwm",
+    "dac",
+    "lfsr",
+    "retro"
+   ],
+   "tags": [
+    "sound-generator",
+    "synthesizer",
+    "audio",
+    "pwm",
+    "dac",
+    "lfsr",
+    "retro"
+   ],
+   "summary_before": "This design is a Verilog replica of the SN76489 programmable sound generator, featuring three square wave tone generators and one noise generator with white and periodic noise types. It is programmed via an 8-bit data bus and provides both digital 8-bit audio and PWM audio outputs, with separate channel outputs for external mixing. Testing involves sending register write commands and observing the audio output, which can be connected to a DAC, RC filter, or amplifier. The design is notable for its faithful reproduction of the original chip's behavior, thorough test suite, and educational documentation, requiring external hardware such as a microcontroller and audio output circuitry.",
+   "summary": "This design is a Verilog replica of the SN76489 programmable sound generator, featuring three square wave tone generators and one noise generator with white and periodic noise types. It is programmed via an 8-bit data bus and provides both digital 8-bit audio and PWM audio outputs, with separate channel outputs for external mixing. Testing involves sending register write commands and observing the audio output, which can be connected to a DAC, RC filter, or amplifier. The design is notable for its faithful reproduction of the original chip's behavior, thorough test suite, and educational documentation, requiring external hardware such as a microcontroller and audio output circuitry.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 12690,
+  "completion_tokens": 1304,
+  "total_tokens": 13994,
+  "cost": 0.004431,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004431,
+   "upstream_inference_prompt_cost": 0.0028662,
+   "upstream_inference_completions_cost": 0.0015648
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004431,
+ "elapsed_s": 24.3
+}

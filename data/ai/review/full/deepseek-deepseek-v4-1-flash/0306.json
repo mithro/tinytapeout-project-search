@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7c4c921602f6",
+  "aac38a19c34a",
+  "e66acf40bf8b",
+  "9217412285ce",
+  "1a56762e6977",
+  "dfe369c90b72"
+ ],
+ "results": [
+  {
+   "key": "7c4c921602f6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "ring-oscillator",
+    "vco",
+    "oscillator",
+    "analog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "vco",
+    "oscillator",
+    "analog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project contains two identical 11-stage ring oscillator voltage-controlled oscillators. Each oscillator uses current-starved inverters controlled by an external voltage and a reset input to start or stop oscillation. Silicon tests showed both oscillators working, starting at around 45 mV input. External hardware includes a voltage source and oscilloscope.",
+   "summary": "This project contains two identical 11-stage ring oscillator voltage-controlled oscillators. Each oscillator uses current-starved inverters controlled by an external voltage and a reset input to start or stop oscillation. Silicon tests showed both oscillators working, starting at around 45 mV input. External hardware includes a voltage source and oscilloscope.",
+   "summary_changed": false
+  },
+  {
+   "key": "aac38a19c34a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "The 130-bit serial shift register is only a configuration loading mechanism, not the design's purpose; the design is a cipher, not a shift register."
+    }
+   ],
+   "add": [],
+   "notes": "Removed shift-register tag (only a config mechanism) and dropped the unsupported educational/experimental intent claim from the summary.",
+   "tags_before": [
+    "crypto",
+    "lfsr",
+    "cipher",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "lfsr",
+    "cipher",
+    "verilog"
+   ],
+   "summary_before": "This design implements a two-channel XOR stream cipher using programmable Galois LFSRs that can be configured for 32, 16, 8, or 4-bit operation. It provides separate transmit and receive channels, each with enable pins, to encrypt plaintext and decrypt ciphertext bitstreams. A 130-bit serial shift register allows dynamic loading of the LFSR configuration at runtime, with read-back capability for verification. The design includes debug outputs and heartbeat signals, and is intended for educational or experimental cryptographic applications.",
+   "summary": "This design implements a two-channel XOR stream cipher using programmable Galois LFSRs that can be configured for 32, 16, 8, or 4-bit operation. It provides separate transmit and receive channels, each with enable pins, to encrypt plaintext and decrypt ciphertext bitstreams. A 130-bit serial shift register allows dynamic loading of the LFSR configuration at runtime, with read-back capability for verification. The design includes debug outputs and heartbeat signals.",
+   "summary_changed": true
+  },
+  {
+   "key": "e66acf40bf8b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "The 'demux' is a write-address selection for shadow registers, not a code-to-signal decoder; the decoder tag is unsupported."
+    }
+   ],
+   "add": [],
+   "notes": "Removed decoder tag; the demux is register write selection, not decoding.",
+   "tags_before": [
+    "pwm",
+    "signal-generator",
+    "counter",
+    "decoder",
+    "vhdl"
+   ],
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "counter",
+    "vhdl"
+   ],
+   "summary_before": "This design is a 10-bit PWM generator with a configuration demultiplexer and double-buffering mechanism. It uses three shadow registers for set, clear, and reload values, which are written via a shared bus and committed simultaneously to update the PWM output. The PWM frequency and duty cycle are determined by the reload, set, and clear values, allowing flexible waveform generation. The design includes reset gating and is intended for applications requiring precise PWM control.",
+   "summary": "This design is a 10-bit PWM generator with a configuration demultiplexer and double-buffering mechanism. It uses three shadow registers for set, clear, and reload values, which are written via a shared bus and committed simultaneously to update the PWM output. The PWM frequency and duty cycle are determined by the reload, set, and clear values, allowing flexible waveform generation. The design includes reset gating and is intended for applications requiring precise PWM control.",
+   "summary_changed": false
+  },
+  {
+   "key": "9217412285ce",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "display",
+    "verilog"
+   ],
+   "summary_before": "Bouncing squares renders five moving squares as a screensaver-style animation on a VGA output. It uses the standard Tiny VGA pinout with two bits each for red, green, and blue plus horizontal and vertical sync, and runs from a 25.175 MHz pixel clock. The only external hardware needed is an older VGA monitor, and testing consists of plugging the board into a VGA port. The documentation is minimal, describing the design only as a screensaver with five squares.",
+   "summary": "Bouncing squares renders five moving squares as a screensaver-style animation on a VGA output. It uses the standard Tiny VGA pinout with two bits each for red, green, and blue plus horizontal and vertical sync, and runs from a 25.175 MHz pixel clock. The only external hardware needed is an older VGA monitor, and testing consists of plugging the board into a VGA port. The documentation is minimal, describing the design only as a screensaver with five squares.",
+   "summary_changed": false
+  },
+  {
+   "key": "1a56762e6977",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lcd",
+     "reason": "The 16x2 LCD is listed only as external hardware; there is no LCD interface in the pinout or design."
+    },
+    {
+     "tag": "uart",
+     "reason": "RX_CW is a serial Morse input, not a UART interface."
+    }
+   ],
+   "add": [],
+   "notes": "Removed lcd and uart tags; LCD is only external hardware and RX_CW is not a UART.",
+   "tags_before": [
+    "communication",
+    "decoder",
+    "encoder",
+    "fsm",
+    "ascii",
+    "lcd",
+    "button",
+    "uart",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "decoder",
+    "encoder",
+    "fsm",
+    "ascii",
+    "button",
+    "verilog"
+   ],
+   "summary_before": "This design is a Morse code transmitter and receiver with an additional serial receive input, implemented with two finite state machines. It encodes button inputs into Morse and decodes Morse sequences into ASCII characters. The design is intended for use with an FPGA board and a 16x2 LCD for output display. It is similar to a previous project but includes a serial RX pin for external Morse input.",
+   "summary": "This design is a Morse code transmitter and receiver with an additional serial receive input, implemented with two finite state machines. It encodes button inputs into Morse and decodes Morse sequences into ASCII characters. The design is intended for use with an FPGA board and a 16x2 LCD for output display. It is similar to a previous project but includes a serial RX pin for external Morse input.",
+   "summary_changed": false
+  },
+  {
+   "key": "dfe369c90b72",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The design outputs 8-bit digital data; the R-2R DAC is external hardware, not part of the design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dac tag; the DAC is external hardware, not implemented on-chip.",
+   "tags_before": [
+    "nco",
+    "oscillator",
+    "waveform-generator",
+    "signal-generator",
+    "dac",
+    "rom",
+    "lookup-table",
+    "verilog"
+   ],
+   "tags": [
+    "nco",
+    "oscillator",
+    "waveform-generator",
+    "signal-generator",
+    "rom",
+    "lookup-table",
+    "verilog"
+   ],
+   "summary_before": "This numerically controlled oscillator generates various waveforms including sine, cosine, triangular, square, and specialized shapes like Gaussian chirplet and ECG. It uses a phase accumulator and waveform lookup ROM to produce an 8-bit digital output, which can be converted to analog via an external R-2R ladder DAC. The design is tested in simulation or on hardware with an oscilloscope to observe the generated waveforms. It is a versatile DDS core for signal generation applications.",
+   "summary": "This numerically controlled oscillator generates various waveforms including sine, cosine, triangular, square, and specialized shapes like Gaussian chirplet and ECG. It uses a phase accumulator and waveform lookup ROM to produce an 8-bit digital output, which can be converted to analog via an external R-2R ladder DAC. The design is tested in simulation or on hardware with an oscilloscope to observe the generated waveforms. It is a versatile DDS core for signal generation applications.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7662,
+  "completion_tokens": 1149,
+  "total_tokens": 8811,
+  "cost": 0.0036774,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036774,
+   "upstream_inference_prompt_cost": 0.0022986,
+   "upstream_inference_completions_cost": 0.0013788
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036774,
+ "elapsed_s": 17.3
+}

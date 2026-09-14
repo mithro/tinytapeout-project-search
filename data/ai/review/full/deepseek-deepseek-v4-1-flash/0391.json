@@ -1,0 +1,319 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "56e5f28103b4",
+  "d4bb4040b58c",
+  "5a9e43989c6e",
+  "ed9e86e58585",
+  "bcb1754cbf59",
+  "a1d066236f5e"
+ ],
+ "results": [
+  {
+   "key": "56e5f28103b4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rp2040",
+     "reason": "The external controller is a Raspberry Pi, not an RP2040, and the design is not described as pairing with an RP2040."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "The design stores a pseudo-random sequence of colors in memory elements."
+    },
+    {
+     "tag": "led",
+     "reason": "Four LEDs are driven as the color outputs."
+    },
+    {
+     "tag": "button",
+     "reason": "Six push buttons are used for gameplay input."
+    },
+    {
+     "tag": "prng",
+     "reason": "The sequence of colors is described as pseudo-random."
+    },
+    {
+     "tag": "game",
+     "reason": "It is a Simon Says game implementation."
+    }
+   ],
+   "notes": "Removed rp2040 because the external controller is a Raspberry Pi, not an RP2040.",
+   "tags_before": [
+    "game",
+    "memory",
+    "led",
+    "button",
+    "prng",
+    "rp2040"
+   ],
+   "tags": [
+    "game",
+    "memory",
+    "led",
+    "button",
+    "prng"
+   ],
+   "summary_before": "This project implements a modified version of the Simon Says game using digital logic and memory elements to store a pseudo-random sequence of colors. It interfaces with external buttons and LEDs for gameplay. A Raspberry Pi is used to send an 8-bit seed and read a 2-bit state debug signal. The design requires six push buttons and four LEDs.",
+   "summary": "This project implements a modified version of the Simon Says game using digital logic and memory elements to store a pseudo-random sequence of colors. It interfaces with external buttons and LEDs for gameplay. A Raspberry Pi is used to send an 8-bit seed and read a 2-bit state debug signal. The design requires six push buttons and four LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "d4bb4040b58c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "floating-point",
+    "adder",
+    "combinational",
+    "fixed-point",
+    "systemverilog"
+   ],
+   "tags": [
+    "floating-point",
+    "adder",
+    "combinational",
+    "fixed-point",
+    "systemverilog"
+   ],
+   "summary_before": "This SystemVerilog design is a fully combinational adder for 8-bit posit numbers with zero exponent bits. It decodes the two posit operands into fixed-point values and scale factors, aligns and adds them, then re-encodes the rounded result back into posit format. Operand A is supplied on the input pins, operand B on the bidirectional pins, and the sum appears on the output pins. The design was exhaustively verified in simulation against a software reference before fabrication, and post-silicon testing is planned with a microcontroller or DIP switches.",
+   "summary": "This SystemVerilog design is a fully combinational adder for 8-bit posit numbers with zero exponent bits. It decodes the two posit operands into fixed-point values and scale factors, aligns and adds them, then re-encodes the rounded result back into posit format. Operand A is supplied on the input pins, operand B on the bidirectional pins, and the sum appears on the output pins. The design was exhaustively verified in simulation against a software reference before fabrication, and post-silicon testing is planned with a microcontroller or DIP switches.",
+   "summary_changed": false
+  },
+  {
+   "key": "5a9e43989c6e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The documentation mentions an FSM only in passing during reset; the core is described as a CPU/ALU, not an FSM design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The design is a dual-mode 8-bit CPU/ALU core with a ROM program mode."
+    },
+    {
+     "tag": "alu",
+     "reason": "Manual mode provides arithmetic and logic operations on two 4-bit operands."
+    },
+    {
+     "tag": "uart",
+     "reason": "Results are transmitted via UART at 9600 bps, 8N1."
+    },
+    {
+     "tag": "rom",
+     "reason": "CPU mode executes a built-in program stored in internal ROM."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed fsm as unsupported; the core is a CPU/ALU with ROM program execution.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "uart",
+    "rom",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "uart",
+    "rom",
+    "verilog"
+   ],
+   "summary_before": "Jsilicon is a dual-mode 8-bit CPU/ALU core with manual and automatic (ROM) modes. In manual mode, it acts as an ALU controlled by external opcode and operand inputs, with results shown on output pins and transmitted via UART. In CPU mode, it executes a built-in program from ROM, streaming results to outputs and UART. The design includes a UART transmitter and is intended for educational or embedded use.",
+   "summary": "Jsilicon is a dual-mode 8-bit CPU/ALU core with manual and automatic (ROM) modes. In manual mode, it acts as an ALU controlled by external opcode and operand inputs, with results shown on output pins and transmitted via UART. In CPU mode, it executes a built-in program from ROM, streaming results to outputs and UART. The design includes a UART transmitter and is intended for educational or embedded use.",
+   "summary_changed": false
+  },
+  {
+   "key": "ed9e86e58585",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pipeline",
+     "reason": "No pipelined datapath is described; the design generates bytebeat formulas and PWM outputs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "music",
+     "reason": "The project generates bytebeat music tracks."
+    },
+    {
+     "tag": "audio",
+     "reason": "It produces PWM audio signals on output pins."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "It synthesizes bytebeat tunes from parameterized formulas."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Outputs are PWM audio signals."
+    },
+    {
+     "tag": "speaker",
+     "reason": "External speakers or a TinyTapeout Audio PMOD are used to hear the output."
+    }
+   ],
+   "notes": "Removed pipeline as unsupported; the design is a bytebeat PWM audio generator.",
+   "tags_before": [
+    "music",
+    "audio",
+    "synthesizer",
+    "pwm",
+    "speaker",
+    "pipeline"
+   ],
+   "tags": [
+    "music",
+    "audio",
+    "synthesizer",
+    "pwm",
+    "speaker"
+   ],
+   "summary_before": "This project is a compilation of bytebeat formulas that generate PWM audio signals on multiple output pins. It takes four 4-bit parameters and produces different bytebeat tunes on pins 0, 3, and 7, with other pins unused. The design is written in XLS and can be regenerated with modified formulas. It requires external rotary switches for parameter adjustment and speakers or a TinyTapeout Audio PMOD to hear the output.",
+   "summary": "This project is a compilation of bytebeat formulas that generate PWM audio signals on multiple output pins. It takes four 4-bit parameters and produces different bytebeat tunes on pins 0, 3, and 7, with other pins unused. The design is written in XLS and can be regenerated with modified formulas. It requires external rotary switches for parameter adjustment and speakers or a TinyTapeout Audio PMOD to hear the output.",
+   "summary_changed": false
+  },
+  {
+   "key": "bcb1754cbf59",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter is described; the design adjusts brightness with buttons and displays the level."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pwm",
+     "reason": "Brightness is adjusted using PWM."
+    },
+    {
+     "tag": "led",
+     "reason": "The brightness of an LED dot is controlled."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The current brightness level is shown on a 7-segment display."
+    },
+    {
+     "tag": "button",
+     "reason": "Two buttons increase and decrease brightness."
+    },
+    {
+     "tag": "display",
+     "reason": "A 7-segment display shows the brightness level."
+    }
+   ],
+   "notes": "Removed counter as unsupported; the design is a button-controlled PWM LED dimmer.",
+   "tags_before": [
+    "pwm",
+    "led",
+    "7-segment",
+    "button",
+    "display",
+    "counter"
+   ],
+   "tags": [
+    "pwm",
+    "led",
+    "7-segment",
+    "button",
+    "display"
+   ],
+   "summary_before": "This design uses two buttons to adjust the brightness of an LED dot on a 7-segment display. The current brightness level is shown as a number on the display. It requires no external hardware beyond the Tiny Tapeout board's built-in buttons and display. The project is a simple demonstration of PWM-based LED dimming with user input.",
+   "summary": "This design uses two buttons to adjust the brightness of an LED dot on a 7-segment display. The current brightness level is shown as a number on the display. It requires no external hardware beyond the Tiny Tapeout board's built-in buttons and display. The project is a simple demonstration of PWM-based LED dimming with user input.",
+   "summary_changed": false
+  },
+  {
+   "key": "a1d066236f5e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design uses a step button or external clock; it does not generate a clock."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "It implements AND, NAND and OR logic gates."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Results are shown on a 7-segment display."
+    },
+    {
+     "tag": "education",
+     "reason": "It is a teaching aid for basic logic gates with a truth table and test procedure."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The design is created using the Wokwi simulator."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Inputs are set using DIP switches."
+    }
+   ],
+   "notes": "Removed clock-generator as unsupported; the design consumes a clock rather than generating one.",
+   "tags_before": [
+    "logic-gate",
+    "7-segment",
+    "clock-generator",
+    "education",
+    "wokwi",
+    "dip-switch"
+   ],
+   "tags": [
+    "logic-gate",
+    "7-segment",
+    "education",
+    "wokwi",
+    "dip-switch"
+   ],
+   "summary_before": "This project implements AND, NAND and OR logic on two DIP-switch inputs and shows the results on a seven-segment display. A step button or an external 10 kHz clock advances the registered logic state, and a reset button clears it. The documentation includes a full truth table and a step-by-step test procedure, making it a teaching aid for basic gates. It is a Wokwi design with no additional external hardware beyond the display and switches.",
+   "summary": "This project implements AND, NAND and OR logic on two DIP-switch inputs and shows the results on a seven-segment display. A step button or an external 10 kHz clock advances the registered logic state, and a reset button clears it. The documentation includes a full truth table and a step-by-step test procedure, making it a teaching aid for basic gates. It is a Wokwi design with no additional external hardware beyond the display and switches.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7687,
+  "completion_tokens": 1739,
+  "total_tokens": 9426,
+  "cost": 0.0043929,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0043929,
+   "upstream_inference_prompt_cost": 0.0023061,
+   "upstream_inference_completions_cost": 0.0020868
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0043929,
+ "elapsed_s": 27.3
+}

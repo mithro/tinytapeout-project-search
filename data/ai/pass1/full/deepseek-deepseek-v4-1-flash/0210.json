@@ -1,0 +1,220 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ac3ab60eda04",
+  "529baa7a12d7",
+  "405dd8683946",
+  "bdbe2bb3a126",
+  "c8e396e2260a",
+  "c42386900139",
+  "a80e09201b15",
+  "727d47474139",
+  "d1d0f8272122",
+  "b28e2bb3e79d"
+ ],
+ "results": [
+  {
+   "key": "ac3ab60eda04",
+   "tags": [
+    "shader",
+    "vga",
+    "spi",
+    "graphics",
+    "animation",
+    "fragment-shader",
+    "gpu",
+    "pixel",
+    "video",
+    "tiny-vga"
+   ],
+   "summary": "Tiny Shader v2 implements a fragment shader unit that executes a 16-instruction program per pixel to generate images and animations without a framebuffer. It outputs VGA at 640x480 (internal 80x60) and includes an SPI interface for loading new shader programs. The design is controlled via pins for pause, double instruction, half resolution, and frame/line advance. It requires a Tiny VGA Pmod for display and optionally an SPI controller for shader uploads. The project mimics GPU shading units and is notable for its on-the-fly color generation and SPI programmability.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "529baa7a12d7",
+   "tags": [
+    "adc",
+    "flash-adc",
+    "analog",
+    "comparator",
+    "thermometer-code",
+    "binary",
+    "voltage-reference",
+    "resistor-ladder",
+    "test"
+   ],
+   "summary": "This is a 3-bit flash ADC that uses seven comparators and a resistor ladder to convert an analog input voltage (0-1V) into binary and thermometer-coded digital outputs. It is tested by sweeping the input voltage and observing the digital outputs, with silicon reports confirming functionality but noting noise at code transitions. External hardware includes a DC power supply, function generator, oscilloscope, and optionally a microcontroller for binary-to-decimal conversion. The design is notable for its analog implementation and the partial silicon success with some noise issues.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "405dd8683946",
+   "tags": [
+    "pwm",
+    "tone-generator",
+    "piezo",
+    "buzzer",
+    "sound",
+    "audio"
+   ],
+   "summary": "tt-tinytone is a PWM-based tone generator designed to drive a piezo buzzer. It outputs a single PWM signal on uo[0] that produces sound when connected to a piezo buzzer. The design is simple and requires only a piezo buzzer as external hardware. Testing involves connecting the buzzer and listening for the tone. The documentation is minimal, providing only a one-line description and basic testing instructions.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "bdbe2bb3a126",
+   "tags": [
+    "register-file",
+    "validation",
+    "analog",
+    "test",
+    "macro",
+    "timing",
+    "setup-hold",
+    "feedback",
+    "pico",
+    "fpga"
+   ],
+   "summary": "This design is a validation platform for a register file macro, intended to test its functionality and timing characteristics. It includes control signals for generating and capturing data, and feedback mechanisms for measuring skew. Basic functional testing can be done with the demo board's Pico microcontroller, but advanced timing tests require an oscilloscope and FPGA for precise control. No test procedure has been written yet, and the exact testing platform is still to be determined. The design does not require external hardware for basic operation.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c8e396e2260a",
+   "tags": [
+    "dac",
+    "delta-sigma",
+    "noise-shaping",
+    "audio",
+    "pwm",
+    "16-bit",
+    "digital",
+    "single-pin",
+    "low-pass-filter",
+    "audio-pmod"
+   ],
+   "summary": "This project implements a 16-bit noise-shaping delta-sigma DAC that outputs a single-bit digital signal via pulse-width modulation. It can be driven with sample data from a microcontroller or use an internal triangle wave generator for testing. The output requires low-pass filtering to reconstruct the analog audio signal, and Mike's audio Pmod is recommended for listening. The design aims to demonstrate high-resolution audio output from a purely digital Tiny Tapeout design. Notable for its noise-shaping technique and single-pin output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c42386900139",
+   "tags": [
+    "uart",
+    "axi-stream",
+    "fifo",
+    "loopback",
+    "serial",
+    "communication",
+    "protocol",
+    "verification",
+    "testbench"
+   ],
+   "summary": "AXIS_UART_TTO bridges an AXI-Stream interface to a UART serial protocol, buffering data through an 8-byte FIFO and serializing it at 115200 baud. It includes a loopback UART receiver to validate data integrity, allowing on-chip testing without external hardware. The design can be tested via simulation or by using a UART terminal to send and receive data. It is notable for its integrated loopback verification and AXI-Stream to UART conversion.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a80e09201b15",
+   "tags": [
+    "pwm",
+    "spi",
+    "dual-channel",
+    "complementary",
+    "edge-aligned",
+    "center-aligned",
+    "test-logic",
+    "gate-level",
+    "debug",
+    "silicon-proven"
+   ],
+   "summary": "This design provides two independent PWM channels with complementary outputs, configurable via SPI for duty cycle and alignment mode (edge or center). Unused pins are repurposed as gate-level test outputs to validate basic logic functions on silicon. It requires no external hardware for basic validation and can be tested by driving a clock, applying SPI commands, and observing outputs with a scope or logic analyzer. Silicon test reports confirm it works as expected. Notable for its SPI configurability and built-in test logic.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "727d47474139",
+   "tags": [
+    "dac",
+    "ring-oscillator",
+    "analog",
+    "r-2r",
+    "3-bit",
+    "test",
+    "oscillator",
+    "voltage-output",
+    "clock"
+   ],
+   "summary": "This project combines a 3-bit R-2R DAC and a 500kHz ring oscillator, based on a design by Harald Pretl and Jakob Ratschenberger. It provides a rail-to-rail clock output and a DAC voltage output proportional to a 3-bit digital input. Testing involves applying digital inputs and measuring the analog output with a voltmeter or oscilloscope. The design operates at 1.8V and is notable for being an analog test circuit from the TT05 shuttle.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d1d0f8272122",
+   "tags": [
+    "tv-b-gone",
+    "ir",
+    "remote-control",
+    "rom",
+    "macro",
+    "power-management",
+    "consumer-electronics",
+    "europe",
+    "led"
+   ],
+   "summary": "TV-B-Gone-EU is a design that sends infrared codes to power off many European TVs, either in a loop or triggered by a button. It uses ROM macros to store the codes, reducing logic size, though these macros are not silicon-proven. It requires an external IR LED with a driving transistor and optionally status LEDs and a button. The design needs an 8MHz clock and is notable for its use of ROM macros and its application in consumer electronics control.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b28e2bb3e79d",
+   "tags": [
+    "uart",
+    "temperature-sensor",
+    "pwm",
+    "serial",
+    "sensor",
+    "baud-rate",
+    "hexadecimal",
+    "counter"
+   ],
+   "summary": "This design converts a PWM signal from a temperature sensor into a digital count value and transmits it over UART at 115200 baud. It counts clock cycles during the PWM low period and sends the count as hexadecimal. Testing requires a PWM input and a serial terminal to receive the data. The design operates at 50 MHz and is notable for its simple PWM-to-UART conversion for temperature sensing.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "ac3ab60eda04: 5 sentences",
+  "405dd8683946: 5 sentences",
+  "bdbe2bb3a126: 5 sentences",
+  "c8e396e2260a: 5 sentences",
+  "a80e09201b15: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 5723,
+  "completion_tokens": 1913,
+  "total_tokens": 7636,
+  "cost": 0.00382434,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 640,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00382434,
+   "upstream_inference_prompt_cost": 0.00152874,
+   "upstream_inference_completions_cost": 0.0022956
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00382434,
+ "elapsed_s": 40.1
+}

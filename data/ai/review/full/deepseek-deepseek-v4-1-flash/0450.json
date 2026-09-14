@@ -1,0 +1,294 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2feca292b59f",
+  "aa06c1fe1fcb",
+  "c0120960ce1c",
+  "494d88944bf3",
+  "30ae12447b3d",
+  "c3ebe78288c3"
+ ],
+ "results": [
+  {
+   "key": "2feca292b59f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "The text mentions up to 4 clock domains via GBUFs but does not describe any clock domain crossing logic or synchronizers."
+    },
+    {
+     "tag": "adder",
+     "reason": "The carry chain enables fast additions but the design is an FPGA fabric, not an adder circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "already present"
+    },
+    {
+     "tag": "reconfigurable",
+     "reason": "The fabric is configured by loading a bitstream, i.e. runtime reconfigurable logic."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The documentation explicitly points to top-level cocotb tests."
+    }
+   ],
+   "notes": "Removed clock-domain-crossing and adder (not supported); added reconfigurable and cocotb.",
+   "tags_before": [
+    "fpga",
+    "lookup-table",
+    "adder",
+    "clock-domain-crossing"
+   ],
+   "tags": [
+    "fpga",
+    "lookup-table",
+    "reconfigurable",
+    "cocotb"
+   ],
+   "summary_before": "Tiny FABulous FPGA implements a small FPGA fabric with 168 LUT4+flip-flop logic cells arranged in a 9x5 tile grid, with 26 I/O buffers and 4 global buffers, targeting the IHP26a process. User designs are synthesized with Yosys and placed and routed with nextpnr, then loaded as a big-endian bitstream through a bitbang interface on ui[0] and ui[1] while reset is asserted. The I/O layout mirrors the Tiny Tapeout interface so simple Tiny Tapeout designs can be mapped directly onto the fabric, and a vertical carry chain supports additions up to 23 bits. No external hardware is required, and the documentation is unusually thorough, including resource tables and cocotb test guidance.",
+   "summary": "Tiny FABulous FPGA implements a small FPGA fabric with 168 LUT4+flip-flop logic cells arranged in a 9x5 tile grid, with 26 I/O buffers and 4 global buffers, targeting the IHP26a process. User designs are synthesized with Yosys and placed and routed with nextpnr, then loaded as a big-endian bitstream through a bitbang interface on ui[0] and ui[1] while reset is asserted. The I/O layout mirrors the Tiny Tapeout interface so simple Tiny Tapeout designs can be mapped directly onto the fabric, and a vertical carry chain supports additions up to 23 bits. No external hardware is required, and the documentation is unusually thorough, including resource tables and cocotb test guidance.",
+   "summary_changed": false
+  },
+  {
+   "key": "aa06c1fe1fcb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vhdl",
+     "reason": "The project synthesizes the VHDL-2008 IEEE.float_pkg but the design language is Verilog."
+    },
+    {
+     "tag": "alu",
+     "reason": "It is a floating-point multiplier, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "Inputs a and b can be driven from a PMOD connector."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Input a can be driven from the demo board DIP switches."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Output y can be observed on the seven-segment display."
+    }
+   ],
+   "notes": "Removed vhdl (design is Verilog) and alu; added pmod, dip-switch, 7-segment from documented interfaces.",
+   "tags_before": [
+    "floating-point",
+    "multiplier",
+    "dsp",
+    "pipeline",
+    "vhdl",
+    "alu"
+   ],
+   "tags": [
+    "floating-point",
+    "multiplier",
+    "dsp",
+    "pipeline",
+    "pmod",
+    "dip-switch",
+    "7-segment"
+   ],
+   "summary_before": "float_synth synthesizes the VHDL-2008 IEEE.float_pkg into an 8-bit E4M3 floating-point multiplier computing y = a * b with a six-clock pipeline latency. Input a comes from ui_in, b from uio_in, and the truncated, saturating result appears on uo_out, with subnormals handled and no infinity or NaN support. It can be driven from DIP switches, a PMOD, or the TT Commander, and the result is best observed on PMOD or TT Commander rather than the seven-segment display. The project is notable for retiming lazily written HDL to achieve a very high clock frequency, though the author cautions that 400 MHz is unlikely to work in practice.",
+   "summary": "float_synth synthesizes the VHDL-2008 IEEE.float_pkg into an 8-bit E4M3 floating-point multiplier computing y = a * b with a six-clock pipeline latency. Input a comes from ui_in, b from uio_in, and the truncated, saturating result appears on uo_out, with subnormals handled and no infinity or NaN support. It can be driven from DIP switches, a PMOD, or the TT Commander, and the result is best observed on PMOD or TT Commander rather than the seven-segment display. The project is notable for retiming lazily written HDL to achieve a very high clock frequency, though the author cautions that 400 MHz is unlikely to work in practice.",
+   "summary_changed": false
+  },
+  {
+   "key": "c0120960ce1c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The documentation does not state any teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "reconfigurable",
+     "reason": "The LUT crossbar is configured at runtime via a serial bitstream."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added reconfigurable.",
+   "tags_before": [
+    "fpga",
+    "lookup-table",
+    "multiplexer",
+    "shift-register",
+    "education"
+   ],
+   "tags": [
+    "fpga",
+    "lookup-table",
+    "multiplexer",
+    "shift-register",
+    "reconfigurable"
+   ],
+   "summary_before": "This project implements a tiny FPGA consisting of a crossbar connecting 8 inputs, 8 LUTs, and 4 output ports, with no routing fabric beyond the crossbar. Configuration is loaded serially through Program Data and Program Enable pins into a shift register, and a Virtual Reset pin must be held high at power-up to avoid combinatorial loops. Once configured, the design can implement simple combinatorial logic, output toggling, or a 4-bit counter, as shown in the testbench. No external hardware is required, and the documentation is brief but sufficient to use the device.",
+   "summary": "This project implements a tiny FPGA consisting of a crossbar connecting 8 inputs, 8 LUTs, and 4 output ports, with no routing fabric beyond the crossbar. Configuration is loaded serially through Program Data and Program Enable pins into a shift register, and a Virtual Reset pin must be held high at power-up to avoid combinatorial loops. Once configured, the design can implement simple combinatorial logic, output toggling, or a 4-bit counter, as shown in the testbench. No external hardware is required, and the documentation is brief but sufficient to use the device.",
+   "summary_changed": false
+  },
+  {
+   "key": "494d88944bf3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "The design is a chain of flip-flops with a rotating single bit, not a shift register."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It drives individual 7-segment segments, not rendered graphics."
+    },
+    {
+     "tag": "game",
+     "reason": "It is a decorative light chaser, not an interactive game."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-counter",
+     "reason": "A single 'ball' bit circulates through six flip-flops, a ring counter."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The design is built from a chain of flip-flops clocked at 10 Hz."
+    }
+   ],
+   "notes": "Removed shift-register, graphics and game; added ring-counter and sequential-logic.",
+   "tags_before": [
+    "7-segment",
+    "game",
+    "shift-register",
+    "flip-flop",
+    "led",
+    "wokwi",
+    "graphics"
+   ],
+   "tags": [
+    "7-segment",
+    "flip-flop",
+    "led",
+    "wokwi",
+    "ring-counter",
+    "sequential-logic"
+   ],
+   "summary_before": "This design implements a six-bit roulette that lights one of six 7-segment display segments in sequence. A chain of six flip-flops holds a single 'ball' bit that advances on each clock cycle, with reset loading the ball into the first flip-flop. It is tested by setting the clock to 10 Hz, pressing reset to light segment A, and observing the light spin around the display. The project requires an external 7-segment display and is a simple Wokwi-based educational design.",
+   "summary": "This design implements a six-bit roulette that lights one of six 7-segment display segments in sequence. A chain of six flip-flops holds a single 'ball' bit that advances on each clock cycle, with reset loading the ball into the first flip-flop. It is tested by setting the clock to 10 Hz, pressing reset to light segment A, and observing the light spin around the display. The project requires an external 7-segment display and is a simple Wokwi-based educational design.",
+   "summary_changed": false
+  },
+  {
+   "key": "30ae12447b3d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A single-bit full adder is not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "full-adder",
+     "reason": "not in vocabulary"
+    }
+   ],
+   "notes": "Removed alu; no canonical full-adder tag exists, so only adder, logic-gate, combinational, wokwi and education remain.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "logic-gate",
+    "wokwi",
+    "education",
+    "combinational"
+   ],
+   "tags": [
+    "adder",
+    "logic-gate",
+    "wokwi",
+    "education",
+    "combinational"
+   ],
+   "summary_before": "This is a two-bit adder built from AND, OR and XOR gates that computes A + B + Cin = S with Cout. The eight inputs and eight outputs are exposed on the Tiny Tapeout pins, and the truth table in the documentation describes all eight input combinations. It is tested by applying input values and observing the sum and carry outputs. The design is a straightforward educational arithmetic circuit with no external hardware required.",
+   "summary": "This is a two-bit adder built from AND, OR and XOR gates that computes A + B + Cin = S with Cout. The eight inputs and eight outputs are exposed on the Tiny Tapeout pins, and the truth table in the documentation describes all eight input combinations. It is tested by applying input values and observing the sum and carry outputs. The design is a straightforward educational arithmetic circuit with no external hardware required.",
+   "summary_changed": false
+  },
+  {
+   "key": "c3ebe78288c3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The state machine sequences characters; it is not a binary or decimal counting circuit."
+    },
+    {
+     "tag": "education",
+     "reason": "The documentation does not state any teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sequential-logic",
+     "reason": "The design is a flip-flop based state machine with next-state logic."
+    }
+   ],
+   "notes": "Removed counter and education; added sequential-logic.",
+   "tags_before": [
+    "7-segment",
+    "fsm",
+    "flip-flop",
+    "display",
+    "counter",
+    "wokwi",
+    "education",
+    "text"
+   ],
+   "tags": [
+    "7-segment",
+    "fsm",
+    "flip-flop",
+    "display",
+    "wokwi",
+    "text",
+    "sequential-logic"
+   ],
+   "summary_before": "This design uses a state machine built from flip-flops to display the text TUAN9304 on a 7-segment display. The documentation includes a full state table mapping each state to segment outputs and next-state logic, cycling through characters including blanks and a decimal point. It is tested by pressing reset to initialise state 0 and observing the repeating sequence on the display. The project requires an external 7-segment display and is a Wokwi-based educational exercise.",
+   "summary": "This design uses a state machine built from flip-flops to display the text TUAN9304 on a 7-segment display. The documentation includes a full state table mapping each state to segment outputs and next-state logic, cycling through characters including blanks and a decimal point. It is tested by pressing reset to initialise state 0 and observing the repeating sequence on the display. The project requires an external 7-segment display and is a Wokwi-based educational exercise.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9323,
+  "completion_tokens": 1694,
+  "total_tokens": 11017,
+  "cost": 0.002449586,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002449586,
+   "upstream_inference_prompt_cost": 0.001331546,
+   "upstream_inference_completions_cost": 0.00111804
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002449586,
+ "elapsed_s": 15.4
+}

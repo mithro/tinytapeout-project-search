@@ -1,0 +1,335 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "83063d0ec331",
+  "3a76da79aee1",
+  "400de986984f",
+  "f301945e79f4",
+  "2b35844ca7d0",
+  "caf53fc9cae2"
+ ],
+ "results": [
+  {
+   "key": "83063d0ec331",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter is described; only a simple blinking digit."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a clock input, it does not generate one."
+    },
+    {
+     "tag": "education",
+     "reason": "No stated educational intent in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is a one-line 'Simple blinking' with no detail."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Very thin documentation, only a pin name and one-line description."
+    }
+   ],
+   "notes": "Removed unsupported counter/clock-generator/education tags and added incomplete/insufficient-doc given the one-line documentation.",
+   "tags_before": [
+    "7-segment",
+    "counter",
+    "clock-generator",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a simple blinking digit counter that drives a 7-segment display. It uses a clock input to increment a digit, which is shown on the external display. The project is implemented in Wokwi and serves as a basic test or educational example. The documentation is minimal, providing only a one-line description and pin name.",
+   "summary": "This design is a simple blinking digit that drives a display. It uses a clock input on ui[0] and requires external display hardware. The project is implemented in Wokwi. The documentation is minimal, providing only a one-line description and a pin name.",
+   "summary_changed": true
+  },
+  {
+   "key": "3a76da79aee1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The 7-segment display is external hardware, not an on-chip interface or output."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is implemented on-chip; the display is external."
+    },
+    {
+     "tag": "education",
+     "reason": "No stated educational intent in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Described as a copy of the template with slight modifications and no functional detail."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, only a one-line description and template note."
+    }
+   ],
+   "notes": "Removed display/7-segment/education tags since the display is external and no educational intent is stated; added incomplete/insufficient-doc.",
+   "tags_before": [
+    "template",
+    "wokwi",
+    "education",
+    "7-segment",
+    "display"
+   ],
+   "tags": [
+    "template",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design is a modified version of the Tiny Tapeout template, with eight inputs and eight outputs. It is intended to be tested by toggling buttons and observing outputs on a 7-segment display. The documentation indicates it is a basic test project with slight modifications. It serves as an introductory example for the platform.",
+   "summary": "This design is a modified version of the Tiny Tapeout template, with eight inputs and eight outputs. It is intended to be tested by toggling buttons and observing outputs on a 7-segment display. The documentation indicates it is a basic test project with slight modifications. It serves as an introductory example for the platform.",
+   "summary_changed": false
+  },
+  {
+   "key": "400de986984f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "The source says a series of D flip-flops, not a shift register."
+    },
+    {
+     "tag": "led",
+     "reason": "The output drives an external seven-segment display, not discrete LEDs."
+    },
+    {
+     "tag": "graphics",
+     "reason": "A moving circle on a 7-segment display is not rendered graphics output."
+    },
+    {
+     "tag": "education",
+     "reason": "No stated educational intent in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "Explicitly built from a series of D flip-flops."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "D flip-flop based sequential circuit."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is minimal with placeholder text and no detailed test instructions."
+    }
+   ],
+   "notes": "Replaced shift-register/led/graphics/education with flip-flop/sequential-logic/insufficient-doc to match the DFF-based description.",
+   "tags_before": [
+    "shift-register",
+    "7-segment",
+    "led",
+    "graphics",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "flip-flop",
+    "sequential-logic",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design creates a moving circle effect on an 8-segment LED display using a series of D flip-flops. It requires an external seven-segment display to show the animation. The project is a simple educational example of sequential logic and shift register operation. The documentation is minimal and does not provide detailed testing instructions.",
+   "summary": "This design creates a moving circle effect on an 8-segment LED display using a series of D flip-flops. It requires an external seven-segment display to show the animation. The project is a simple example of sequential logic using flip-flops. The documentation is minimal and does not provide detailed testing instructions.",
+   "summary_changed": true
+  },
+  {
+   "key": "f301945e79f4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "No logic gate implementation is described; it is a switch-to-display mapping."
+    },
+    {
+     "tag": "gpio",
+     "reason": "No general purpose IO interface is described beyond switches."
+    },
+    {
+     "tag": "education",
+     "reason": "No stated educational intent in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "Behavior is controlled by switches 1, 2 and 3."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, only a brief behavior description."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate/gpio/education tags and added dip-switch/insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "logic-gate",
+    "gpio",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "dip-switch",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design displays the number 3 on a seven-segment display when switches 1, 2, and 3 are all turned on. It is tested by turning on those switches. The project requires an external seven-segment display. The documentation is minimal, providing only a brief description of the behavior.",
+   "summary": "This design displays the number 3 on a seven-segment display when switches 1, 2, and 3 are all turned on. It is tested by turning on those switches. The project requires an external seven-segment display. The documentation is minimal, providing only a brief description of the behavior.",
+   "summary_changed": false
+  },
+  {
+   "key": "2b35844ca7d0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "Matrix-vector multiplication is not explicitly described as signal processing in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "accelerator",
+     "reason": "Matrix-vector multiplier is a dedicated compute accelerator."
+    },
+    {
+     "tag": "uart",
+     "reason": "Exposes RX and TX pins and requires a USB-FTDI UART interface."
+    },
+    {
+     "tag": "axi",
+     "reason": "Title and description state AXI-Stream interface."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "On-chip documentation defers all detail to an external GitHub repository."
+    }
+   ],
+   "notes": "Removed dsp (not stated) and added accelerator/uart/axi/verilog/insufficient-doc to match the source.",
+   "tags_before": [
+    "accelerator",
+    "uart",
+    "axi",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "accelerator",
+    "uart",
+    "axi",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project implements an AXI-Stream matrix-vector multiplier with a UART interface for host communication. It exposes only RX and TX pins, so all configuration and data transfer happen over the serial link. It requires an external USB-FTDI adapter for UART communication. The on-chip documentation is essentially absent, with all detail deferred to an external GitHub repository, so the internal architecture and performance cannot be assessed from the provided text.",
+   "summary": "This project implements an AXI-Stream matrix-vector multiplier with a UART interface for host communication. It exposes only RX and TX pins, so all configuration and data transfer happen over the serial link. It requires an external USB-FTDI adapter for UART communication. The on-chip documentation is essentially absent, with all detail deferred to an external GitHub repository, so the internal architecture and performance cannot be assessed from the provided text.",
+   "summary_changed": false
+  },
+  {
+   "key": "caf53fc9cae2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "No code-to-signal decoding circuit is described; it is a fixed logic mapping."
+    },
+    {
+     "tag": "education",
+     "reason": "No stated educational intent in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Described as simple logic gates to test."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive a 7-segment display to show the digit 0."
+    },
+    {
+     "tag": "display",
+     "reason": "Outputs form a display pattern on the seven-segment display."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is minimal with placeholder text and only one behavior described."
+    }
+   ],
+   "notes": "Removed decoder/education and added logic-gate/7-segment/display/insufficient-doc to match the described behavior.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "7-segment",
+    "education",
+    "display",
+    "decoder"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "7-segment",
+    "display",
+    "insufficient-doc"
+   ],
+   "summary_before": "This Wokwi project uses simple logic gates to drive a 7-segment display, with four inputs and seven outputs. When all inputs are zero, outputs A through F are high and G is low, displaying the digit 0. The design is tested by setting all inputs to zero and observing the display. It requires an external 7-segment display and serves as an introductory logic exercise.",
+   "summary": "This Wokwi project uses simple logic gates to drive a 7-segment display, with four inputs and seven outputs. When all inputs are zero, outputs A through F are high and G is low, displaying the digit 0. The design is tested by setting all inputs to zero and observing the display. It requires an external 7-segment display and serves as an introductory logic exercise.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5349,
+  "completion_tokens": 1488,
+  "total_tokens": 6837,
+  "cost": 0.002088603,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002088603,
+   "upstream_inference_prompt_cost": 0.000570843,
+   "upstream_inference_completions_cost": 0.00151776
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002088603,
+ "elapsed_s": 48.8
+}

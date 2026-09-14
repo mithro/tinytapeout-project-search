@@ -1,0 +1,466 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e667b3557a9f",
+  "fe6fba331e7d",
+  "c8e396e2260a",
+  "d1d0f8272122",
+  "ca7e55742f4a",
+  "8eb7cf3c53f0"
+ ],
+ "results": [
+  {
+   "key": "e667b3557a9f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cipher",
+     "reason": "Source describes a 4x4 array multiplier, not a cipher."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptography functionality is described."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface or mention in the source or pins."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Project is explicitly a 4x4 array multiplier."
+    },
+    {
+     "tag": "structural",
+     "reason": "Source says it was created using manual structural design."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Array multiplier is a purely combinational logic design."
+    },
+    {
+     "tag": "adder",
+     "reason": "Full adders are used as building blocks."
+    }
+   ],
+   "notes": "Replaced hallucinated cipher/UART tags and summary with the actual array multiplier content.",
+   "tags_before": [
+    "cipher",
+    "crypto",
+    "uart"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "verilog",
+    "combinational",
+    "adder"
+   ],
+   "summary_before": "This project implements a simple XOR cipher with UART communication. It uses a UART interface for data input and output, and the cipher operation is performed on the received data. The design is purely digital and requires no external hardware. The exact key handling and encryption details are not fully described.",
+   "summary": "This project implements a 4x4 structural array multiplier in Verilog. It multiplies two 4-bit inputs, m and q, to produce an 8-bit product, p. The design is built from AND gates and full adders using manual structural design. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "fe6fba331e7d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "stochastic-computing",
+     "reason": "No stochastic computing is described."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier in the design."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder in the design."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR mentioned."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No DSP functionality."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network functionality."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Project is an analog SONOS flash controller."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Combines analog charge pumps and flash cell with digital outputs."
+    },
+    {
+     "tag": "charge-pump",
+     "reason": "Two-stage charge pumps generate programming and erase voltages."
+    },
+    {
+     "tag": "memory",
+     "reason": "Implements a SONOS flash storage cell."
+    },
+    {
+     "tag": "characterization",
+     "reason": "Experimental controller for testing SONOS flash behavior."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Not silicon-tested yet; no reports."
+    }
+   ],
+   "notes": "Replaced entirely incorrect digital tags and summary with the actual analog SONOS flash design.",
+   "tags_before": [
+    "stochastic-computing",
+    "multiplier",
+    "adder",
+    "lfsr",
+    "uart",
+    "dsp",
+    "neural-network"
+   ],
+   "tags": [
+    "analog",
+    "mixed-signal",
+    "charge-pump",
+    "memory",
+    "characterization",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a multiplier, adder, and self-multiplier using stochastic computing. It uses LFSRs for random number generation and communicates via UART. The design is intended for DSP and neural network applications. The implementation is digital and uses stochastic computing techniques.",
+   "summary": "This project implements an experimental SONOS flash controller for Tiny Tapeout. It uses two-stage charge pumps to generate +7.4V and -4.5V for programming and erasing a SONOS flash cell. The design provides control and readout pins for program, erase, and read operations. It is an analog mixed-signal experiment with no external hardware required.",
+   "summary_changed": true
+  },
+  {
+   "key": "c8e396e2260a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "Design is an audio DAC, not a communication protocol."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface."
+    },
+    {
+     "tag": "axi",
+     "reason": "No AXI interface."
+    },
+    {
+     "tag": "fifo",
+     "reason": "No FIFO described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dac",
+     "reason": "Implements a delta-sigma DAC."
+    },
+    {
+     "tag": "sigma-delta",
+     "reason": "Uses noise-shaping delta-sigma modulation."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Feeds into a pulse width modulator for output."
+    },
+    {
+     "tag": "audio",
+     "reason": "Intended for audio output."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Can be driven with RP2040/RP2350 PIO."
+    },
+    {
+     "tag": "pio",
+     "reason": "Mentions PIO functionality for sample data."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Includes a built-in triangle wave generator for testing."
+    }
+   ],
+   "notes": "Replaced incorrect AXI/UART/FIFO tags and summary with the actual delta-sigma DAC design.",
+   "tags_before": [
+    "communication",
+    "uart",
+    "axi",
+    "fifo"
+   ],
+   "tags": [
+    "dac",
+    "sigma-delta",
+    "pwm",
+    "audio",
+    "verilog",
+    "rp2040",
+    "pio",
+    "signal-generator"
+   ],
+   "summary_before": "This project bridges a parallel AXI-Stream interface with a serial UART communication protocol. It converts data from the AXI-Stream bus to UART frames for transmission and vice versa. The design is useful for interfacing high-speed parallel data with serial communication links. It is notable for its role in data communication applications.",
+   "summary": "This project implements a 16-bit noise-shaping delta-sigma DAC in Verilog. It converts digital audio samples into a single digital output using delta-sigma modulation and pulse width modulation. The design can be driven by an RP2040 or RP2350 microcontroller and includes a built-in triangle wave generator for testing. It requires an external low-pass filter, such as the audio Pmod, to produce an analog audio signal.",
+   "summary_changed": true
+  },
+  {
+   "key": "d1d0f8272122",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "No temperature sensing."
+    },
+    {
+     "tag": "pwm",
+     "reason": "No PWM used; drives IR LEDs."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter described."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Not an instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog."
+    },
+    {
+     "tag": "rom",
+     "reason": "Uses ROM macros to store IR codes."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Clock to be generated by RPi Pico (RP2040)."
+    },
+    {
+     "tag": "rf",
+     "reason": "Infrared transmission is a form of RF/optical remote control."
+    },
+    {
+     "tag": "driver",
+     "reason": "Drives external IR LEDs via transistor."
+    },
+    {
+     "tag": "retro",
+     "reason": "Recreates TV-B-Gone device behavior, a retro-style gadget."
+    }
+   ],
+   "notes": "Replaced nonsensical PWM/temperature sensor tags and summary with the actual IR remote design.",
+   "tags_before": [
+    "temperature-sensor",
+    "pwm",
+    "uart",
+    "counter",
+    "instrumentation"
+   ],
+   "tags": [
+    "systemverilog",
+    "rom",
+    "rp2040",
+    "rf",
+    "driver",
+    "retro"
+   ],
+   "summary_before": "The PWM signal is generated by the temperature sensor, and this module is designed to count the number of clock cycles during which the PWM signal remains LOW. The design operates at 50 MHz and is notable for its simple PWM-to-UART conversion for temperature sensing. It measures the duty cycle of the PWM signal to determine temperature. The result is sent over a UART interface for external monitoring.",
+   "summary": "This project implements a TV-B-Gone device that shuts down TVs by sending IR codes. It uses SystemVerilog and stores codes in ROM macros. It can send codes once or in a loop, controlled by buttons. External IR LEDs and a transistor are required for operation.",
+   "summary_changed": true
+  },
+  {
+   "key": "ca7e55742f4a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No ALU described."
+    },
+    {
+     "tag": "cpu",
+     "reason": "Not a processor."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface."
+    },
+    {
+     "tag": "chisel",
+     "reason": "Implementation is Verilog, not Chisel."
+    }
+   ],
+   "add": [
+    {
+     "tag": "tic-tac-toe",
+     "reason": "Implements Tic-Tac-Toe game."
+    },
+    {
+     "tag": "game",
+     "reason": "Interactive game design."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "button",
+     "reason": "Uses pushbutton inputs."
+    },
+    {
+     "tag": "led",
+     "reason": "Uses LED outputs for the 3x3 grid."
+    },
+    {
+     "tag": "fsm",
+     "reason": "States like IDLE, GAME_OVER imply FSM control."
+    }
+   ],
+   "notes": "Replaced incorrect UART/ALU/Chisel tags and summary with the actual Tic-Tac-Toe game.",
+   "tags_before": [
+    "alu",
+    "cpu",
+    "uart",
+    "chisel"
+   ],
+   "tags": [
+    "tic-tac-toe",
+    "game",
+    "verilog",
+    "button",
+    "led",
+    "fsm"
+   ],
+   "summary_before": "This design is a small UART-driven ALU processor. It receives commands and data via a UART interface and performs arithmetic and logic operations. The processor is controlled through the serial link, making it suitable for simple embedded tasks. The design is implemented in Chisel and includes a UART interface for communication.",
+   "summary": "This project implements a hardware-accelerated two-player Tic-Tac-Toe game in Verilog. It uses nine buttons and nine LEDs arranged in a 3x3 grid for input and display. The game supports two-player mode with turn-taking and win detection. It requires external buttons and LEDs.",
+   "summary_changed": true
+  },
+  {
+   "key": "8eb7cf3c53f0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "demoscene",
+     "reason": "Not a demoscene visual effect."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA interface."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No graphics rendering."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "Implements a Tsetlin Machine classifier, a machine learning algorithm."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "Optimized for ultra-low-power Edge AI."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "Tsetlin Machine is a neural network alternative."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "low-power",
+     "reason": "Designed for low-power operation."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Uses finite state machines for learning and classification."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "Hardware accelerator for Tsetlin Machine inference and training."
+    }
+   ],
+   "notes": "Replaced incorrect VGA/demoscene tags and summary with the actual Tsetlin Machine classifier.",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "graphics",
+    "display",
+    "video"
+   ],
+   "tags": [
+    "machine-learning",
+    "edge-ai",
+    "neural-network",
+    "verilog",
+    "low-power",
+    "fsm",
+    "accelerator"
+   ],
+   "summary_before": "This project is a demoscene-style visual effect for the Tiny Tapeout platform. It generates a graphical output that is displayed on a VGA monitor. The design is intended to showcase visual effects and is likely used for entertainment or demonstration. It requires a VGA display to view the output.",
+   "summary": "This project implements a compact Tsetlin Machine binary classifier for low-power edge AI. It uses a 4-feature, 4-clause architecture with on-chip training and inference. The design is implemented in Verilog and requires no specialized external hardware for basic operation. It can be paired with external sensors or PMODs for real-world applications.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7627,
+  "completion_tokens": 2269,
+  "total_tokens": 9896,
+  "cost": 0.0050109,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0050109,
+   "upstream_inference_prompt_cost": 0.0022881,
+   "upstream_inference_completions_cost": 0.0027228
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0050109,
+ "elapsed_s": 11.2
+}

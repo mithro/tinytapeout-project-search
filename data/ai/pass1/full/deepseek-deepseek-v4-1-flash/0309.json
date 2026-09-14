@@ -1,0 +1,200 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "89e278b45e62",
+  "e4244ce4c9fb",
+  "32b35033b782",
+  "d74d158ac7fc",
+  "7781ca06b80a",
+  "6f2840d99328",
+  "0e0816dac323",
+  "0281089f59ab",
+  "054ab8ef3a41",
+  "cb82cda8aca5"
+ ],
+ "results": [
+  {
+   "key": "89e278b45e62",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "animation",
+    "demo",
+    "rom",
+    "sprite",
+    "risc-v",
+    "promo"
+   ],
+   "summary": "This design generates a 640x480 VGA signal showing three bouncing text messages and a spinning CPU chip sprite. It uses a palette ROM, font ROM, and sprite ROM to render the animation, with collision effects when messages overlap. The design is intended as a promotional screen for the RISC-V Ottawa group and is based on the standard VGA demo from vga-playground.com. It requires a TinyVGA PMOD connected to the dedicated outputs and has no automated tests (the cocotb harness is overridden to pass).",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e4244ce4c9fb",
+   "tags": [
+    "calculator",
+    "keypad",
+    "alu",
+    "scanner",
+    "arithmetic",
+    "input",
+    "output"
+   ],
+   "summary": "This project implements a calculator for a 4x4 matrix keypad, supporting addition, subtraction, multiplication, and division. It scans the keypad, buffers digits, stores operators, and computes an 8-bit result displayed on the dedicated output pins. The design requires an external 4x4 keypad connected to the input and bidirectional pins. Testing involves applying reset, entering operands and operators via the keypad, and observing the result on the outputs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "32b35033b782",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "binary",
+    "vmm",
+    "xnor",
+    "popcount",
+    "time-multiplexing",
+    "coprocessor"
+   ],
+   "summary": "This is a 1-bit vector-matrix multiplier coprocessor designed to accelerate binary neural networks. It contains 8 physical neurons with 8-bit weight shift registers and 10-bit accumulators, using XNOR gates and popcount adder trees for computation. The chip acts as a raw math engine without an internal state machine, requiring a host microcontroller to load weights, stream data, and manage layers. Testing involves driving the chip with a host processor to perform inference on binarized inputs, with results read from the output pins.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "d74d158ac7fc",
+   "tags": [
+    "uart",
+    "serial",
+    "transmitter",
+    "communication",
+    "protocol",
+    "tx"
+   ],
+   "summary": "This is a simple UART transmitter module that sends 8-bit parallel data serially at 115200 baud. It accepts data on the input pins and a send signal on a bidirectional pin, then transmits the data on the TX output pin while indicating busy status. The design is straightforward and requires no external hardware beyond a UART receiver to test. Documentation is minimal, providing only basic usage instructions.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7781ca06b80a",
+   "tags": [
+    "wear-leveling",
+    "eeprom",
+    "memory",
+    "controller",
+    "feistel",
+    "hamming",
+    "ecc",
+    "bad-block",
+    "telemetry",
+    "state-machine"
+   ],
+   "summary": "This design implements a hardware EEPROM wear-leveling controller using the Start-Gap algorithm with a Feistel address scrambler for security. It maintains mapping and wear counter tables, triggers remapping when wear differences exceed a threshold, and includes Hamming(6,3) error correction, bad-block retirement, and telemetry. The controller interfaces with external memory via commands and requires a host to copy data during remapping. Testing involves issuing read/write commands, monitoring move requests, and verifying wear distribution.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6f2840d99328",
+   "tags": [
+    "adc",
+    "sigma-delta",
+    "decimator",
+    "bitstream",
+    "analog",
+    "calibration",
+    "trim",
+    "sensor"
+   ],
+   "summary": "This is a digital ADC chain for 1-bit sigma-delta bitstreams, featuring a 256-cycle decimator, gain and offset trim, and status outputs. It converts an incoming bitstream to an 8-bit code, with calibration applied via input pins. The design includes saturation, activity, busy, and valid status flags. Testing is done via RTL simulation with cocotb, checking conversion and calibration behavior.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0e0816dac323",
+   "tags": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "display",
+    "hex",
+    "lamp-test",
+    "blanking",
+    "active-low"
+   ],
+   "summary": "This design decodes a 4-bit hexadecimal input into a 7-segment display pattern, supporting digits 0-9 and letters A-F. It includes features such as display enable, blanking, lamp test, decimal point, and active-low mode for common-anode displays. The outputs drive the segment pins and provide status signals. Testing is performed via cocotb regression and standalone Verilog simulation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0281089f59ab",
+   "tags": [
+    "subtractor",
+    "arithmetic",
+    "wokwi",
+    "education",
+    "logic",
+    "combinational"
+   ],
+   "summary": "This is a simple full subtractor design implemented in Wokwi. It takes three inputs and produces two outputs: the difference and the borrow. The documentation is minimal, with no detailed explanation of how it works or how to test it beyond a vague statement. External hardware includes LEDs for output indication.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "054ab8ef3a41",
+   "tags": [
+    "adder",
+    "arithmetic",
+    "wokwi",
+    "education",
+    "logic",
+    "combinational"
+   ],
+   "summary": "This project is a 4-bit adder example created in Wokwi, intended for an EDS workshop. It adds two bits and a carry-in to produce a sum and carry-out, with a provided truth table for testing. The design is educational and requires no external hardware beyond input switches and output LEDs. The documentation is brief but sufficient for understanding and testing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "cb82cda8aca5",
+   "tags": [
+    "adder",
+    "arithmetic",
+    "wokwi",
+    "education",
+    "logic",
+    "combinational",
+    "full-adder"
+   ],
+   "summary": "This is a 1-bit full adder circuit implemented with basic logic gates, adding three binary inputs to produce a sum and carry-out. It includes a detailed explanation of the boolean equations and a truth table for testing. The design is a fundamental building block for arithmetic operations and can be cascaded for multi-bit addition. External hardware includes push buttons, LEDs, and a breadboard for prototyping.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6134,
+  "completion_tokens": 1716,
+  "total_tokens": 7850,
+  "cost": 0.0038994,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0038994,
+   "upstream_inference_prompt_cost": 0.0018402,
+   "upstream_inference_completions_cost": 0.0020592
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0038994,
+ "elapsed_s": 8.7
+}

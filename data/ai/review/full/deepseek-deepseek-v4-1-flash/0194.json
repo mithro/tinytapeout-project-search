@@ -1,0 +1,264 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6e8526f057b9",
+  "b7e1bc41be45",
+  "2c48f31cdc2c",
+  "9953667668f6",
+  "f288abb85fdc",
+  "53080cc46801"
+ ],
+ "results": [
+  {
+   "key": "6e8526f057b9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The design divides oscillator frequency and outputs Gray-coded counts; it is not described as a general binary/decimal counting circuit, and clock-divider plus gray-code cover the function."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "The ring oscillators are the source being characterized, not a generic oscillator circuit implemented as the design's function; ring-oscillator already covers this."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Source states the design is written in Verilog."
+    }
+   ],
+   "notes": "Removed unsupported counter/oscillator tags and added verilog, which is stated in the source.",
+   "tags_before": [
+    "ring-oscillator",
+    "gray-code",
+    "counter",
+    "clock-divider",
+    "oscillator",
+    "characterization"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "gray-code",
+    "clock-divider",
+    "characterization",
+    "verilog"
+   ],
+   "summary_before": "This design selects one of six ring oscillators or the system clock and divides the chosen frequency by 10 and 100. It outputs a 5-bit Gray-coded decimal value representing the divided count. The design is intended as a test structure for characterizing ring oscillators on the ASIC. It requires no external hardware beyond the clock and provides a way to observe oscillator behavior through the divided outputs.",
+   "summary": "This design selects one of six ring oscillators or the system clock and divides the chosen frequency by 10 and 100. It outputs a 5-bit Gray-coded decimal value representing the divided count. The design is intended as a test structure for characterizing ring oscillators on the ASIC. It requires no external hardware beyond the clock and provides a way to observe oscillator behavior through the divided outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "b7e1bc41be45",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Despite the title, the documentation describes only a clock divider, counter, and 7-segment display; no arithmetic operations are documented."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The design divides the clock via a compare register to produce a 1 Hz tick, but the primary documented function is a counter with 7-segment display; clock-divider is not clearly the design's purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Source states the design is written in Verilog."
+    },
+    {
+     "tag": "timer",
+     "reason": "The design implements a programmable interval counter/timer using a 24-bit compare register."
+    }
+   ],
+   "notes": "Removed alu because no arithmetic is documented, and corrected the summary to match the source.",
+   "tags_before": [
+    "counter",
+    "clock-divider",
+    "7-segment",
+    "bcd",
+    "alu",
+    "verilog"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "bcd",
+    "verilog",
+    "timer"
+   ],
+   "summary_before": "This project is a 4-bit ALU that also functions as a programmable clock divider and counter. It divides the 10 MHz clock to generate a 1 Hz counter by default, and displays the lower 8 bits of the counter on the 7-segment display while outputting them on the bidirectional pins. The inputs can override the default compare value to change the counting speed. The design is intended for testing the Tiny Tapeout infrastructure and includes basic arithmetic operations, though the documentation focuses on the counter aspect.",
+   "summary": "This project is a programmable counter and clock divider that drives a 7-segment display. It divides the 10 MHz clock to generate a 1 Hz counter by default, and displays the lower 8 bits of the counter on the 7-segment display while outputting them on the bidirectional pins. The inputs can override the default compare value to change the counting speed. The documentation focuses on the counter aspect and does not describe any arithmetic operations.",
+   "summary_changed": true
+  },
+  {
+   "key": "2c48f31cdc2c",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The pin names indicate 7-segment outputs, but the documentation text describes a counter/divider rather than an LFSR, so the actual function is contradictory."
+    },
+    {
+     "tag": "counter",
+     "reason": "The documentation describes a counter, but the title and one-line description claim an LFSR; the source is contradictory."
+    },
+    {
+     "tag": "timer",
+     "reason": "The documentation describes a programmable interval counter, but the title claims an LFSR; the source is contradictory."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Source states the design is written in Verilog."
+    }
+   ],
+   "notes": "Title and documentation contradict each other, so a second opinion is needed on the actual design function.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "7-segment",
+    "counter",
+    "timer",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit linear feedback shift register (LFSR) random number generator with configurable feedback polynomials based on a mod input, resetting to an initial state when reset is asserted. The documentation, however, describes a clock divider and binary-to-decimal converter for a 7-segment display, with a 24-bit compare register that defaults to 10,000,000 for a 1-second interval at 10 MHz, and inputs that can override bits 11-18 of the compare value. The bottom 8 bits of the counter are output on the bidirectional pins, and the 7-segment segments are driven on the outputs. The mismatch between the title and the description suggests the documentation may be incorrect or incomplete; no silicon test results are provided.",
+   "summary": "This project is titled as a 4-bit linear feedback shift register (LFSR) random number generator with configurable feedback polynomials based on a mod input, resetting to an initial state when reset is asserted. The documentation, however, describes a clock divider and binary-to-decimal converter for a 7-segment display, with a 24-bit compare register that defaults to 10,000,000 for a 1-second interval at 10 MHz, and inputs that can override bits 11-18 of the compare value. The bottom 8 bits of the counter are output on the bidirectional pins, and the 7-segment segments are driven on the outputs. The mismatch between the title and the description suggests the documentation may be incorrect or incomplete; no silicon test results are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "9953667668f6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes an external clock rather than generating one; the documentation does not describe clock generation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed clock-generator because the design takes an external clock rather than generating one.",
+   "tags_before": [
+    "pwm",
+    "servo",
+    "motor-control",
+    "clock-generator",
+    "wokwi"
+   ],
+   "tags": [
+    "pwm",
+    "servo",
+    "motor-control",
+    "wokwi"
+   ],
+   "summary_before": "This design is a PWM generator intended to regulate the power or speed of a device, specifically a servomotor. It requires an external clock of 12.5 kHz to produce a 50 Hz output, and the duty cycle is set by an 8-bit input value between 0 and 255. The documentation describes the internal logic as using OR gates to compare the input number and form a binary time value, with LEDs on the outputs to monitor the counting. The project is implemented in Wokwi and the documentation is partly unclear about the exact operation.",
+   "summary": "This design is a PWM generator intended to regulate the power or speed of a device, specifically a servomotor. It requires an external clock of 12.5 kHz to produce a 50 Hz output, and the duty cycle is set by an 8-bit input value between 0 and 255. The documentation describes the internal logic as using OR gates to compare the input number and form a binary time value, with LEDs on the outputs to monitor the counting. The project is implemented in Wokwi and the documentation is partly unclear about the exact operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "f288abb85fdc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent; it is a simple decoder project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "The project is implemented in Wokwi, which uses Verilog/HDL simulation, but the source does not explicitly state Verilog; however, Wokwi projects are typically Verilog-based."
+    }
+   ],
+   "notes": "Removed education because no teaching intent is stated; added verilog based on the Wokwi implementation.",
+   "tags_before": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "bcd",
+    "7-segment",
+    "decoder",
+    "wokwi",
+    "verilog"
+   ],
+   "summary_before": "This project is a BCD to 7-segment decoder that converts a 4-bit binary input into a decimal digit displayed on a 7-segment display. It uses a logic function to map the binary number to the appropriate segments. The circuit is tested by entering a binary number on the inputs. The documentation is very brief and does not provide details on the logic implementation.",
+   "summary": "This project is a BCD to 7-segment decoder that converts a 4-bit binary input into a decimal digit displayed on a 7-segment display. It uses a logic function to map the binary number to the appropriate segments. The circuit is tested by entering a binary number on the inputs. The documentation is very brief and does not provide details on the logic implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "53080cc46801",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplexer",
+     "reason": "The select pin chooses between data passthrough and counter output, but the source does not describe a general data-selection multiplexer circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Source states the design is written in Verilog."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation contains TODO placeholders for both how it works and how to test."
+    }
+   ],
+   "notes": "Removed multiplexer as unsupported and added verilog and incomplete, which are stated in the source.",
+   "tags_before": [
+    "factory-test",
+    "ring-oscillator",
+    "counter",
+    "verilog",
+    "multiplexer",
+    "incomplete"
+   ],
+   "tags": [
+    "factory-test",
+    "ring-oscillator",
+    "counter",
+    "verilog",
+    "incomplete"
+   ],
+   "summary_before": "This is a factory test module that includes a ring oscillator and a counter, with a select pin to choose between mirroring input data to outputs or outputting the counter value. The documentation is incomplete, with 'TODO' placeholders for both how it works and how to test. The pin names indicate that when sel=0, the outputs reflect the inputs, and when sel=1, the outputs show the counter value, which is also available on the bidirectional pins. The design is intended for factory testing but lacks detailed explanation.",
+   "summary": "This is a factory test module that includes a ring oscillator and a counter, with a select pin to choose between mirroring input data to outputs or outputting the counter value. The documentation is incomplete, with 'TODO' placeholders for both how it works and how to test. The pin names indicate that when sel=0, the outputs reflect the inputs, and when sel=1, the outputs show the counter value, which is also available on the bidirectional pins. The design is intended for factory testing but lacks detailed explanation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6868,
+  "completion_tokens": 1476,
+  "total_tokens": 8344,
+  "cost": 0.002463708,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002463708,
+   "upstream_inference_prompt_cost": 0.000958188,
+   "upstream_inference_completions_cost": 0.00150552
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002463708,
+ "elapsed_s": 38.0
+}

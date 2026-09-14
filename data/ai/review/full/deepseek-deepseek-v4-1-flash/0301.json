@@ -1,0 +1,248 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "eb136b54650a",
+  "11c3fdf048a8",
+  "f76e2d57c18d",
+  "216fb91d493c",
+  "0f3a3e41e722",
+  "fe1cc78c4e7d"
+ ],
+ "results": [
+  {
+   "key": "eb136b54650a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bcd",
+     "reason": "The source mentions BCD conversion of the count for display, making BCD an internal operation rather than a primary implemented type in the tag sense."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "The design is controlled by start, stop, and mode buttons with debouncing."
+    }
+   ],
+   "notes": "Removed bcd because it is mentioned only as an internal display conversion, and added button for the physical control inputs.",
+   "tags_before": [
+    "timer",
+    "counter",
+    "7-segment",
+    "display",
+    "bcd",
+    "debouncer",
+    "clock-divider",
+    "verilog"
+   ],
+   "tags": [
+    "timer",
+    "counter",
+    "7-segment",
+    "display",
+    "debouncer",
+    "clock-divider",
+    "verilog",
+    "button"
+   ],
+   "summary_before": "This design implements a timer and counter with a 4-digit 7-segment display interface, controlled by start, stop, and mode buttons. It includes debouncing logic and can operate in manual or automatic modes. Testing can be done via simulation or with external hardware such as a 4-digit 7-segment display, transistors, and buttons. The design is documented in detail.",
+   "summary": "This design implements a timer and counter with a 4-digit 7-segment display interface, controlled by start, stop, and mode buttons. It includes debouncing logic and can operate in manual or automatic modes. The display blinks when idle or in manual mode, and digits are driven through BCD conversion and multiplexing. The design is documented in detail.",
+   "summary_changed": true
+  },
+  {
+   "key": "11c3fdf048a8",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design uses the Schmitt trigger on input pins as an analog stochastic resonator, combining analog input conditioning with digital stochastic logic."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Already proposed; confirmed as supported because the core function is multiplying stochastic bitstreams."
+    }
+   ],
+   "notes": "Added mixed-signal because the documented Schmitt trigger use is analog input conditioning for a stochastic resonator.",
+   "tags_before": [
+    "stochastic-computing",
+    "multiplier",
+    "prng",
+    "wokwi"
+   ],
+   "tags": [
+    "stochastic-computing",
+    "multiplier",
+    "prng",
+    "wokwi",
+    "mixed-signal"
+   ],
+   "summary_before": "This is a compact 4-bit stochastic multiplier that uses a Schmitt trigger on input pins as a stochastic resonator. It converts two 4-bit binary vectors into stochastic bitstreams and multiplies them with an AND gate. External hardware includes an ADLAM2000 for control and analysis. The design explores a more compact architecture for stochastic computing.",
+   "summary": "This is a compact 4-bit stochastic multiplier that uses the Schmitt trigger on input pins as a stochastic resonator. It converts two 4-bit binary vectors into 1-bit serial stochastic streams using a PRBS and comparator, then multiplies them with an AND gate. External hardware includes an ADLAM2000 for control and analysis. The design explores a more compact architecture for stochastic computing.",
+   "summary_changed": true
+  },
+  {
+   "key": "f76e2d57c18d",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "The sender mode can read data from the carrier chip's DIP switches."
+    }
+   ],
+   "notes": "Added dip-switch because the sender side explicitly supports reading from the carrier chip's DIP switches.",
+   "tags_before": [
+    "communication",
+    "lcd",
+    "keypad",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "lcd",
+    "keypad",
+    "pmod",
+    "verilog",
+    "dip-switch"
+   ],
+   "summary_before": "This Verilog project is a dual-mode sender or receiver that transmits bits between two chips, selected by a mode pin. In sender mode it can read from DIP switches or a 4-button PMOD keypad, and in receiver mode it drives an LCD display value from the received bits. Testing requires two chips connected with a specially crafted crossover cable so that all data pins map correctly between sender outputs and receiver inputs. External hardware includes a PMOD 4-button keypad, and the documentation notes the need for careful wiring.",
+   "summary": "This Verilog project is a dual-mode sender or receiver that transmits bits between two chips, selected by a mode pin. In sender mode it can read from DIP switches or a 4-button PMOD keypad, and in receiver mode it drives an LCD display value from the received bits. Testing requires two chips connected with a specially crafted crossover cable so that all data pins map correctly between sender outputs and receiver inputs. External hardware includes a PMOD 4-button keypad, and the documentation notes the need for careful wiring.",
+   "summary_changed": false
+  },
+  {
+   "key": "216fb91d493c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design sequences an external power-clock supply for adiabatic circuitry rather than generating the main clock itself."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "The digital sync signals are timing markers, not clock-domain-crossing synchronizer circuits."
+    }
+   ],
+   "add": [
+    {
+     "tag": "power-management",
+     "reason": "Already proposed; confirmed as the core function is a power-supply sequencer for adiabatic circuits."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "Already proposed; confirmed by the 9-step 4-phase control sequencing."
+    }
+   ],
+   "notes": "Removed clock-generator and synchronizer because the design sequences an external power-clock and emits timing markers, not a general clock generator or CDC synchronizer.",
+   "tags_before": [
+    "power-management",
+    "sequencer",
+    "clock-generator",
+    "synchronizer",
+    "verilog"
+   ],
+   "tags": [
+    "power-management",
+    "sequencer",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design is a sequencer for a 9-step 4-phase combined power-clock supply intended for adiabatic circuits, running at 32 MHz with each phase at 1/32 of that rate. It generates control signals for phases 0 and 1, with a select pin routing one phase to the output pins, and also provides digital sync signals for latching data into or out of adiabatic gates. The project is free-running: after a reset, the user selects a phase and monitors the outputs. No external hardware is necessary, and the design is explicitly a test of the power supply sequencer concept.",
+   "summary": "This Verilog design is a sequencer for a 9-step 4-phase combined power-clock supply intended for adiabatic circuits, running at 32 MHz with each phase at 1/32 of that rate. It generates control signals for phases 0 and 1, with a select pin routing one phase to the output pins, and also provides digital sync signals for latching data into or out of adiabatic gates. The project is free-running: after a reset, the user selects a phase and monitors the outputs. No external hardware is necessary, and the design is explicitly a test of the power supply sequencer concept.",
+   "summary_changed": false
+  },
+  {
+   "key": "0f3a3e41e722",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "floating-point",
+    "fixed-point",
+    "alu",
+    "adder",
+    "verilog"
+   ],
+   "tags": [
+    "floating-point",
+    "fixed-point",
+    "alu",
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This Verilog module converts two 16-bit fixed-point numbers in 0.15 format to 16-bit posit (16,1) format and adds them, producing a posit result. It is tested by providing two fixed-point input values and observing the addition result on the output pins, with handshake signals for data valid and read ready. The design combines a fixed-to-posit converter using a leading zero counter and a posit adder based on a published architecture. No external hardware is mentioned, and the documentation is technical but brief.",
+   "summary": "This Verilog module converts two 16-bit fixed-point numbers in 0.15 format to 16-bit posit (16,1) format and adds them, producing a posit result. It is tested by providing two fixed-point input values and observing the addition result on the output pins, with handshake signals for data valid and read ready. The design combines a fixed-to-posit converter using a leading zero counter and a posit adder based on a published architecture. No external hardware is mentioned, and the documentation is technical but brief.",
+   "summary_changed": false
+  },
+  {
+   "key": "fe1cc78c4e7d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "modulator",
+     "reason": "WSPR uses tone selection for FSK transmission; the documentation does not describe a general modulation circuit."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The divisor and deviation values are configuration calculations, not a documented clock divider circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "radio",
+     "reason": "Already proposed; confirmed by WSPR radio beacon transmission."
+    },
+    {
+     "tag": "rf",
+     "reason": "Already proposed; confirmed by RF output pins and RF transmission."
+    }
+   ],
+   "notes": "Removed modulator and clock-divider as unsupported, and removed the unsourced silicon-test sentence from the summary.",
+   "tags_before": [
+    "radio",
+    "rf",
+    "communication",
+    "modulator",
+    "chisel",
+    "clock-divider"
+   ],
+   "tags": [
+    "radio",
+    "rf",
+    "communication",
+    "chisel"
+   ],
+   "summary_before": "TinyWSPR is a Chisel-based WSPR beacon that transmits Weak Signal Propagation Reporter radio signals, recommended for the 20m and 40m bands. Configuration is loaded one byte at a time over the config pins, covering callsign, grid square, power level, symbol time, divisor and deviation, after which the RF start pin triggers transmission at the correct time. An external lowpass filter is absolutely required to remove harmonics from the square-wave transmitter, along with a properly tuned antenna. The design is notable for putting a complete WSPR encoder and transmitter into a small digital block, but no silicon test results are reported.",
+   "summary": "TinyWSPR is a Chisel-based WSPR beacon that transmits Weak Signal Propagation Reporter radio signals, recommended for the 20m and 40m bands. Configuration is loaded one byte at a time over the config pins, covering callsign, grid square, power level, symbol time, divisor and deviation, after which the RF start pin triggers transmission at the correct time. An external lowpass filter is absolutely required to remove harmonics from the square-wave transmitter, along with a properly tuned antenna. The design places a complete WSPR encoder and transmitter into a small digital block.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7624,
+  "completion_tokens": 1530,
+  "total_tokens": 9154,
+  "cost": 0.0041232,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0041232,
+   "upstream_inference_prompt_cost": 0.0022872,
+   "upstream_inference_completions_cost": 0.001836
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0041232,
+ "elapsed_s": 9.2
+}

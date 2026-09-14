@@ -1,0 +1,233 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "62abb465897c",
+  "8f43f2c265da",
+  "fa175a64ba10",
+  "400f922b2573",
+  "0c5ecc36e546",
+  "26cdeb1f3920"
+ ],
+ "results": [
+  {
+   "key": "62abb465897c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The design is a factory test structure, not a general purpose digital IO interface; pins are test inputs/outputs, not gpio."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "No silicon reports are given, so this must not be added; instead nothing to add."
+    }
+   ],
+   "notes": "Removed gpio: the pins are factory test I/O, not a general purpose GPIO interface.",
+   "tags_before": [
+    "factory-test",
+    "gpio",
+    "counter"
+   ],
+   "tags": [
+    "factory-test",
+    "counter",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a factory test module designed to verify all I/O pins of a Tiny Tapeout ASIC. It has three modes: mirroring input pins to outputs, mirroring bidirectional pins to outputs, or outputting an 8-bit counter on both outputs and bidirectional pins. The mode is selected by the reset and select pins. It is used during manufacturing test to confirm connectivity and functionality of every pin.",
+   "summary": "This is a factory test module designed to verify all I/O pins of a Tiny Tapeout ASIC. It has three modes: mirroring input pins to outputs, mirroring bidirectional pins to outputs, or outputting an 8-bit counter on both outputs and bidirectional pins. The mode is selected by the reset and select pins. It is used during manufacturing test to confirm connectivity and functionality of every pin.",
+   "summary_changed": false
+  },
+  {
+   "key": "8f43f2c265da",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "The source describes a moving average filter, not a finite impulse response filter; the canonical fir-filter tag is not supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "i2s",
+     "reason": "The output is passed through an I2S bus to an audio receiver."
+    },
+    {
+     "tag": "pdm",
+     "reason": "Not in vocabulary; cannot add."
+    }
+   ],
+   "notes": "Removed fir-filter: the documented filter is a moving average filter, not an FIR filter.",
+   "tags_before": [
+    "dsp",
+    "audio",
+    "microphone",
+    "fir-filter",
+    "spi",
+    "i2s",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "audio",
+    "microphone",
+    "spi",
+    "i2s",
+    "verilog"
+   ],
+   "summary_before": "This design filters a specific pitch and its harmonics from PDM microphone input using a variable decimator and moving average filter. The filter length is set to samplerate divided by target frequency, and settings are configurable via SPI. It outputs PCM audio over I2S and requires a digital PDM microphone, SPI controller, and I2S receiver. The project is notable for its customizable pitch filtering in the PDM domain.",
+   "summary": "This design filters a specific pitch and its harmonics from PDM microphone input using a variable decimator and moving average filter. The filter length is set to samplerate divided by target frequency, and settings are configurable via SPI. It outputs PCM audio over I2S and requires a digital PDM microphone, SPI controller, and I2S receiver. The project is notable for its customizable pitch filtering in the PDM domain.",
+   "summary_changed": false
+  },
+  {
+   "key": "fa175a64ba10",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dac",
+    "r2r-dac",
+    "analog"
+   ],
+   "tags": [
+    "dac",
+    "r2r-dac",
+    "analog"
+   ],
+   "summary_before": "This is a simple 4-bit R2R digital-to-analog converter implemented as an analog design. It accepts a 4-bit digital input on pins A0 to A3 and produces an analog output voltage on a single output pin. The design is tested by applying a sequence of digital codes from 0000 to 1111 and observing the corresponding analog output, typically with an ADALM2000 in digital mode. The converter provides a basic method to generate analog signals from digital values.",
+   "summary": "This is a simple 4-bit R2R digital-to-analog converter implemented as an analog design. It accepts a 4-bit digital input on pins A0 to A3 and produces an analog output voltage on a single output pin. The design is tested by applying a sequence of digital codes from 0000 to 1111 and observing the corresponding analog output, typically with an ADALM2000 in digital mode. The converter provides a basic method to generate analog signals from digital values.",
+   "summary_changed": false
+  },
+  {
+   "key": "400f922b2573",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The design is a subtile factory test structure, not a general purpose digital IO interface."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The module is a factory test utility, not a basic logic gate implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed gpio and logic-gate: the design is a factory test structure, not a GPIO interface or logic gate.",
+   "tags_before": [
+    "factory-test",
+    "gpio",
+    "logic-gate"
+   ],
+   "tags": [
+    "factory-test",
+    "gpio",
+    "logic-gate"
+   ],
+   "summary_before": "This is a factory test module for Tiny Tapeout subtiles, designed to verify all available I/O. It has three modes controlled by reset and clock signals: mirroring inputs to outputs, inverting inputs to outputs, or driving outputs low. The design is implemented in a single line of Verilog and is used to test the connectivity of subtile pins on an ASIC. It is a simple utility with no external hardware requirements.",
+   "summary": "This is a factory test module for Tiny Tapeout subtiles, designed to verify all available I/O. It has three modes controlled by reset and clock signals: mirroring inputs to outputs, inverting inputs to outputs, or driving outputs low. The design is implemented in a single line of Verilog and is used to test the connectivity of subtile pins on an ASIC. It is a simple utility with no external hardware requirements.",
+   "summary_changed": false
+  },
+  {
+   "key": "0c5ecc36e546",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "audio",
+    "synthesizer",
+    "sequencer",
+    "floating-point",
+    "graphics",
+    "demoscene",
+    "silicon-tested"
+   ],
+   "tags": [
+    "vga",
+    "audio",
+    "synthesizer",
+    "sequencer",
+    "floating-point",
+    "graphics",
+    "demoscene",
+    "silicon-tested"
+   ],
+   "summary_before": "Orion Iron Ion is a TT10 demo competition entry that produces VGA video and audio, including a logo, star field, floating-point unit for graphics, and a synthesizer. It requires a TinyVGA Pmod and Mike's audio Pmod for full functionality. The demo starts automatically after reset and was verified working on silicon by the author. The design is notable for its use of a floating-point unit in a demo context.",
+   "summary": "Orion Iron Ion is a TT10 demo competition entry that produces VGA video and audio, including a logo, star field, floating-point unit for graphics, and a synthesizer. It requires a TinyVGA Pmod and Mike's audio Pmod for full functionality. The demo starts automatically after reset and was verified working on silicon by the author. The design is notable for its use of a floating-point unit in a demo context.",
+   "summary_changed": false
+  },
+  {
+   "key": "26cdeb1f3920",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is partial, not working; silicon-tested implies validated working silicon."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a VGA DAC test block, not a measurement or instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mixed-signal",
+     "reason": "It combines an analog DAC output with a digital control block."
+    }
+   ],
+   "notes": "Removed silicon-tested (status is partial) and instrumentation; added mixed-signal for the analog DAC plus digital control block.",
+   "tags_before": [
+    "vga",
+    "dac",
+    "analog",
+    "video",
+    "display",
+    "silicon-tested",
+    "instrumentation"
+   ],
+   "tags": [
+    "vga",
+    "dac",
+    "analog",
+    "video",
+    "display",
+    "mixed-signal"
+   ],
+   "summary_before": "This design contains a rough 24-bit VGA DAC with a digital control block for testing different modes. It outputs analog RGB signals on ua pins and digital sync and blanking signals, and includes various test patterns selectable via input mode pins. Silicon test reports indicate that some patterns are fine, some are distorted, and the VGA screen occasionally loses sync, but the analog output looked good in scope shots. It requires a VGA monitor and likely a Tiny VGA PMOD for connection.",
+   "summary": "This design contains a rough 24-bit VGA DAC with a digital control block for testing different modes. It outputs analog RGB signals on ua pins and digital sync and blanking signals, and includes various test patterns selectable via input mode pins. Silicon test reports indicate that some patterns are fine, some are distorted, and the VGA screen occasionally loses sync, but the analog output looked good in scope shots. It requires a VGA monitor and likely a Tiny VGA PMOD for connection.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "400f922b2573: only 1 tags after review; keeping pass-two tags"
+ ],
+ "usage": {
+  "prompt_tokens": 7231,
+  "completion_tokens": 1096,
+  "total_tokens": 8327,
+  "cost": 0.002168673,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002168673,
+   "upstream_inference_prompt_cost": 0.001050753,
+   "upstream_inference_completions_cost": 0.00111792
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002168673,
+ "elapsed_s": 24.9
+}

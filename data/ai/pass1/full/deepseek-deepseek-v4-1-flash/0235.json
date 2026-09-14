@@ -1,0 +1,197 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "14bb7b659a2b",
+  "14e3f2f71bb1",
+  "476884b103a8",
+  "a07a61535848",
+  "c66b97614d22",
+  "b152efc44c1a",
+  "2c798d4136b0",
+  "b8db61f7f5ef",
+  "01a07aa2ac61",
+  "f214a82e70eb"
+ ],
+ "results": [
+  {
+   "key": "14bb7b659a2b",
+   "tags": [
+    "chisel",
+    "asynchronous",
+    "fifo",
+    "arbiter",
+    "ring-oscillator",
+    "latch",
+    "clock-gating",
+    "test"
+   ],
+   "summary": "This Chisel design tests several asynchronous primitives, including a ring oscillator, a FIFO, an arbiter, and various latch and clock-gating structures. The pins expose control and data signals for each primitive, such as launch_arbiter, fifo_in_req, and c_ring_en, with outputs for the ring, gate, and arbiter test results. The project is intended as a test vehicle for asynchronous circuit building blocks rather than a complete application. No external hardware is required beyond the standard Tiny Tapeout demo board, and the documentation is limited to pin names and a one-line description.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "14e3f2f71bb1",
+   "tags": [
+    "crypto",
+    "modular-arithmetic",
+    "accelerator",
+    "zk-stark",
+    "mersenne-31",
+    "arithmetic",
+    "hardware-accelerator",
+    "serial"
+   ],
+   "summary": "This Verilog design is a hardware accelerator for modular arithmetic over the Mersenne-31 prime field, targeting ZK-STARK and Plonky3 applications. It accepts operands and opcodes through the input pins and provides results on the output pins, with a command enable and busy signal on the bidirectional pins. A microcontroller such as an RP2040 or ESP32 can be used to load operands, execute operations, and display or benchmark results, but no external hardware is strictly required. The design is notable for implementing finite-field arithmetic in hardware for cryptographic proof systems.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "476884b103a8",
+   "tags": [
+    "register-file",
+    "spi",
+    "i2c",
+    "serial",
+    "peripheral",
+    "interface",
+    "gpio"
+   ],
+   "summary": "This Verilog project implements a register bank that can be accessed through either SPI or I2C, with the interface selected by a digital input pin. The SPI interface uses standard cpol, cpha, cs_n, clk, mosi, and miso signals, while the I2C interface uses sda and scl with a configurable 3-bit address. Writing to the first register is intended to control LEDs on the demo board, and the remaining outputs are spare. External pull-up resistors may be needed on the I2C lines depending on the host, and the documentation notes that this is to be checked later.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a07a61535848",
+   "tags": [
+    "game",
+    "simon-says",
+    "buttons",
+    "clock-divider",
+    "modes",
+    "led"
+   ],
+   "summary": "This Verilog design provides eight different modes selected by the on-board switches, with the most significant switch taking priority, and includes a century clock divider. Four buttons are used as inputs, and one mode implements a Simon Says game that requires an external four-button module. The documentation is very thin, giving only a one-line description and a brief note on switch priority, so the exact behavior of the other seven modes is not described. The design is a small interactive demo rather than a complete application.",
+   "confidence": "low",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c66b97614d22",
+   "tags": [
+    "ring-oscillator",
+    "standard-cells",
+    "delay-characterization",
+    "counter",
+    "ihp-sg13g2",
+    "process-monitor",
+    "test"
+   ],
+   "summary": "This Verilog design characterizes three flavors of 31-stage ring oscillators built from IHP SG13G2 standard cells, using a 24-bit asynchronous counter and a 10 ms sampling window. A 2-bit select chooses the oscillator flavor, and another 2-bit select reads out the low, mid, and high bytes of the captured count on the output pins. The design is enabled by a master enable pin and requires no external hardware beyond the standard Tiny Tapeout demo board. It is notable for being a silicon process and gate-delay characterization experiment using specific standard-cell flavors.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b152efc44c1a",
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "floating-point",
+    "multiplier",
+    "mac",
+    "mxfp8",
+    "dsp",
+    "accelerator"
+   ],
+   "summary": "This Verilog design is a streaming multiply-accumulate unit supporting the OCP MXFP8 microscaling formats, including E4M3 and E5M2, with hardware-accelerated shared scaling for AI inference. It receives two 8-bit data streams on the input and bidirectional pins and produces an 8-bit output stream. A Tiny Tapeout DevKit with a provided MicroPython driver can be used for quick prototyping, while a Sipeed Tang Nano 4K with an FPGA bitstream and Cortex-M3 testbench is available for high-speed testing. The design is notable for implementing a compact floating-point MAC core for sub-8-bit AI workloads.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "2c798d4136b0",
+   "tags": [
+    "filter",
+    "dsp",
+    "lowpass",
+    "highpass",
+    "serial",
+    "chisel",
+    "audio"
+   ],
+   "summary": "This Chisel design receives a 1-bit serial input stream, collects 16 bits into a sample, and applies either a low-pass or high-pass filter selected by a control pin. The filtered sample is shifted out serially on the output pin after a pipeline delay. The project is described as a first ASIC design, and the documentation gives only a brief explanation of the data flow and test procedure. No external hardware is required, but the filter coefficients and exact behavior are not documented.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b8db61f7f5ef",
+   "tags": [
+    "pll",
+    "adpll",
+    "ring-oscillator",
+    "dco",
+    "clock",
+    "phase-detector",
+    "loop-filter"
+   ],
+   "summary": "This Verilog design implements an all-digital phase-locked loop with a bang-bang phase detector, an up/down counter loop filter, and a ring-oscillator DCO. The PLL locks onto the input reference clock after reset, and the generated clock, lock indicator, and reference clock are available on output pins, while the 7-bit frequency control word is exposed on bidirectional pins for debugging. An oscilloscope is needed to measure the output frequency. The design is notable for being a fully digital PLL implementation on a Tiny Tapeout tile.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "01a07aa2ac61",
+   "tags": [
+    "cpu",
+    "6502",
+    "microcontroller",
+    "uart",
+    "timer",
+    "gpio",
+    "bus-multiplexer",
+    "systemverilog"
+   ],
+   "summary": "This SystemVerilog design is a complete 6502 CPU with a bus multiplexer, GPIO, timer, and UART, occupying a 2x2 tile area. The multiplexed address/data bus is exposed on the bidirectional pins, while control signals such as RDY, NMI, IRQ, and SO are on the inputs, and PHI1, PHI2, R/W, and SYNC are on the outputs. GPIO pins are split between unidirectional inputs and outputs. The design is notable for integrating a classic 8-bit CPU core with peripherals on a Tiny Tapeout chip, though the documentation does not describe the UART or timer registers in detail.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f214a82e70eb",
+   "tags": [
+    "delta-sigma",
+    "pdm",
+    "cic-filter",
+    "audio",
+    "dsp",
+    "decimation",
+    "analog-frontend"
+   ],
+   "summary": "This Verilog design implements a third-order CIC filter with a decimation ratio of 32 to demodulate a 1-bit PDM signal into 8-bit PCM audio data. It is intended to work with an external discrete second-order delta-sigma modulator on a custom PCB, with the PDM input on ui[0] and the PCM output on uo[7:0]. Testing involves generating a 10 kHz sine wave with a Digilent Analog Discovery, feeding it through the PCB, and observing the reconstructed waveform on a logic analyzer while synchronizing clocks at 2.048 MHz. The project focuses on hardware-in-the-loop verification between a custom analog board and the ASIC.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 4919,
+  "completion_tokens": 1865,
+  "total_tokens": 6784,
+  "cost": 0.002136716,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002136716,
+   "upstream_inference_prompt_cost": 0.000905816,
+   "upstream_inference_completions_cost": 0.0012309
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002136716,
+ "elapsed_s": 19.2
+}

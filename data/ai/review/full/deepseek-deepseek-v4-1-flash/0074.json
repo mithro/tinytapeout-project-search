@@ -1,0 +1,269 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "247747525a49",
+  "770c16d75e1b",
+  "220b525bdfd9",
+  "1cea0f9cd536",
+  "423aedc8b0b0",
+  "d40da08c2d7b"
+ ],
+ "results": [
+  {
+   "key": "247747525a49",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source says it was created for a workshop, but does not state any teaching or learning intent."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag because workshop context alone does not support an education-domain claim.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "text",
+    "education",
+    "wokwi",
+    "workshop"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "text",
+    "wokwi",
+    "workshop"
+   ],
+   "summary_before": "This design prints names (boris, dario, ivan, natasa) on a seven-segment display, with a period used as a separator. It is intended for a Tiny Tapeout workshop at Supercon 25, but the testing procedure and external hardware are not yet documented. The design operates at a low clock speed of 2 Hz. The documentation is incomplete, with placeholders for testing and hardware details.",
+   "summary": "This design prints names (boris, dario, ivan, natasa) on a seven-segment display, with a period used as a separator. It was submitted as part of a Tiny Tapeout workshop at Supercon 25, but the testing procedure and external hardware are not yet documented. The design documentation notes a clock of 2 Hz. The documentation is incomplete, with placeholders for testing and hardware details.",
+   "summary_changed": true
+  },
+  {
+   "key": "770c16d75e1b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "physics",
+     "reason": "The source claims a three-body simulation, but with only placeholder documentation there is no verifiable description of the computation."
+    },
+    {
+     "tag": "graphics",
+     "reason": "The source lists VGA pins but provides no description of rendered graphics."
+    },
+    {
+     "tag": "display",
+     "reason": "VGA is a video output; display is a generic display tag not clearly supported by the thin documentation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is placeholder text and implementation is not finished."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is too sparse to describe the design beyond its one-line title."
+    }
+   ],
+   "notes": "Removed function claims unsupported by placeholder documentation and added incomplete/insufficient-doc.",
+   "tags_before": [
+    "vga",
+    "physics",
+    "graphics",
+    "display",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "verilog",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a basic three-body simulation using Manhattan distances and bucketed acceleration values, output to a VGA display. The documentation is essentially placeholder text and does not explain how to use or test the design. No external hardware is described. The design cannot be evaluated from the available information.",
+   "summary": "This project is titled Three Body Solution and its one-line description says it is a basic three body simulation using Manhattan distances and bucketed acceleration values. The documentation is essentially placeholder text and does not explain how to use or test the design. No external hardware is described, and the pinout matches the Tiny VGA option. The design cannot be evaluated from the available information.",
+   "summary_changed": true
+  },
+  {
+   "key": "220b525bdfd9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes a glitch detector, not an arithmetic logic unit."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The documentation is present and detailed; the design is experimental but described."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation contains a full functional description and test guidance."
+    }
+   ],
+   "add": [
+    {
+     "tag": "security",
+     "reason": "The design is a security peripheral for detecting fault-injection glitching attacks."
+    },
+    {
+     "tag": "side-channel",
+     "reason": "The detector targets fault injection / glitching attacks, which are side-channel style physical attacks."
+    },
+    {
+     "tag": "delay-line",
+     "reason": "The detector uses programmable delay chains to detect setup and hold margin violations."
+    },
+    {
+     "tag": "pmod",
+     "reason": "External hardware listed includes an octal LED PMOD connected to the output port."
+    }
+   ],
+   "notes": "Replaced mistaken ALU/incomplete tags with security, side-channel, delay-line and pmod based on the source.",
+   "tags_before": [
+    "alu",
+    "incomplete",
+    "insufficient-doc",
+    "verilog"
+   ],
+   "tags": [
+    "verilog",
+    "security",
+    "side-channel",
+    "delay-line",
+    "pmod"
+   ],
+   "summary_before": "The project is described as a potential processor but currently only implements an arithmetic logic unit. The pin names suggest a 4-bit nibble input, a 4-bit address input, an 8-bit bidirectional port, and an 8-bit output, but the documentation refers only to a file 'tapeout.typ' for details. No functional description, test procedure, or external hardware requirements are provided in the available text. The design is essentially undocumented beyond its title and pin names.",
+   "summary": "This project is a glitch detector circuit inspired by the glitch detector security peripheral in the RP2350 microcontroller. It implements eight parallel detectors with different sensitivities, each with a latching trigger output, plus a global test trigger input. The internal delay chains are tuned for setup and hold margin detection at a 25 MHz system clock. Testing requires an external fault injection tool such as ChipWhisperer or ChipSHOUTER, and the design is experimental and untested.",
+   "summary_changed": true
+  },
+  {
+   "key": "1cea0f9cd536",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not state this is a template; only the title suggests a first tapeout."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is TODO and does not describe the design."
+    }
+   ],
+   "notes": "Removed unsupported passthrough and template claims, added insufficient-doc.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "gpio",
+    "education",
+    "incomplete"
+   ],
+   "tags": [
+    "wokwi",
+    "gpio",
+    "education",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project, titled 'My first tapeout', is a basic passthrough design that maps its eight inputs directly to eight outputs. The documentation is marked as TODO, providing no explanation of how it works or how to test it. No external hardware is listed, and the design appears to be a template or learning exercise. As a result, there is essentially no documentation to describe its purpose or functionality.",
+   "summary": "This project, titled 'My first tapeout', has only a TODO documentation with no explanation of how it works or how to test it. The pins define eight inputs and eight outputs, but there is no source text describing what function the design implements. No external hardware is listed. There is essentially no documentation to describe its purpose or functionality.",
+   "summary_changed": true
+  },
+  {
+   "key": "423aedc8b0b0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The design targets a 7-segment display, not discrete LEDs."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counting circuit is described in the source."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation is described; the design only uses a clocked enable input."
+    }
+   ],
+   "add": [],
+   "notes": "Removed tags for led, counter and clock-generator that are not supported by the source.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "led",
+    "clock-generator",
+    "counter",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This block is titled Test and described as just a test, and it drives a 7-segment display with an upper bar on uo[0] and a dot on uo[7]. One enable input controls clocked pins while a second enable makes the dot permanent, so the upper bar blinks when clocked and the dot can be latched on. The documented test is to activate pins 1 and 2, and the only external hardware required is a 7-segment display. It is a small display-driver demonstration rather than a full application.",
+   "summary": "This block is titled Test and described as just a test, and it drives a 7-segment display with an upper bar and a dot. One enable input controls clocked pins while a second enable makes the dot permanent, so the upper bar can blink and the dot can be activated permanently. The documented test is to activate pins 1 and 2, and the only external hardware required is a 7-segment display. It is a small display-driver demonstration rather than a full application.",
+   "summary_changed": true
+  },
+  {
+   "key": "d40da08c2d7b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not state this is a template; it is placeholder text."
+    },
+    {
+     "tag": "gpio",
+     "reason": "No general-purpose I/O function is described beyond a single named input."
+    }
+   ],
+   "add": [],
+   "notes": "Removed template and gpio tags; placeholder and insufficient-doc already fit the source.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "placeholder",
+    "insufficient-doc",
+    "gpio"
+   ],
+   "tags": [
+    "wokwi",
+    "placeholder",
+    "insufficient-doc"
+   ],
+   "summary_before": "Titled My Tiny Tapeout and described as Test123, this project has a single input pin on ui[0] labelled input 1 and no outputs listed. The documentation repeats Test 1234 and Test 134 without explaining what the design computes, and the external-hardware field also contains only Test 12343. There is no description of a function, interface, or test procedure. It appears to be a completely empty placeholder created during template setup.",
+   "summary": "Titled My Tiny Tapeout and described as Test123, this project has a single input pin on ui[0] labelled input 1 and no outputs listed. The documentation repeats Test 1234 and Test 134 without explaining what the design computes, and the external-hardware field also contains only Test 12343. There is no description of a function, interface, or test procedure. It appears to be a placeholder created during template setup.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5781,
+  "completion_tokens": 1531,
+  "total_tokens": 7312,
+  "cost": 0.0035715,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0035715,
+   "upstream_inference_prompt_cost": 0.0017343,
+   "upstream_inference_completions_cost": 0.0018372
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0035715,
+ "elapsed_s": 8.5
+}

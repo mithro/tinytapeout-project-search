@@ -1,0 +1,223 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "07ac511f6bc9",
+  "e4cfedfd00e9",
+  "94783a147c76",
+  "85ba61659bbc",
+  "83871c984664",
+  "6d4526f59173"
+ ],
+ "results": [
+  {
+   "key": "07ac511f6bc9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vga",
+     "reason": "Pins expose raw RGB, hsync and vsync but the source never states a VGA interface or timing standard."
+    }
+   ],
+   "add": [
+    {
+     "tag": "accelerator",
+     "reason": "Described as a GPU, a dedicated rendering accelerator."
+    }
+   ],
+   "notes": "Removed vga because the source only shows RGB/sync pins without naming a VGA interface.",
+   "tags_before": [
+    "graphics",
+    "vga",
+    "video",
+    "accelerator",
+    "verilog"
+   ],
+   "tags": [
+    "graphics",
+    "video",
+    "accelerator",
+    "verilog"
+   ],
+   "summary_before": "This design is a minimal GPU implemented in Verilog that renders a single triangle. It outputs VGA signals through its pins, including RGB color bits, horizontal sync, and vertical sync. The design is intended to be connected to a VGA display, likely using a Tiny VGA PMOD. The documentation is very sparse, providing only the title and pin names, so details about the rendering pipeline and testing are not available.",
+   "summary": "This design is a minimal GPU implemented in Verilog that renders a single triangle. It outputs RGB color bits along with horizontal and vertical sync signals through its pins. The documentation is very sparse, providing only the title and pin names, so details about the rendering pipeline and testing are not available. No silicon test results are reported for this design.",
+   "summary_changed": true
+  },
+  {
+   "key": "e4cfedfd00e9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Silice, not Verilog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the author confirmed it works on fabricated silicon."
+    }
+   ],
+   "notes": "Removed verilog (Silice source) and added silicon-tested based on the working test report.",
+   "tags_before": [
+    "vga",
+    "video",
+    "audio",
+    "demoscene",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "audio",
+    "demoscene",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a demoscene demo for Tiny Tapeout that generates both VGA video and audio, using the Tiny VGA and audio PMODs. It is written in Silice and can be simulated on an ECPIX5 with a VGA PMOD and an I2S audio PMOD, or the audio can run on an ULX3S using its DAC. The documentation is minimal, consisting mainly of a rhetorical question and a note that it works as expected when tested with the PMODs. The design is notable for being part of a demoscene competition and for combining video and audio in a small area.",
+   "summary": "This is a demoscene demo for Tiny Tapeout that generates both VGA video and audio, using the Tiny VGA and audio PMODs. It is written in Silice and can be simulated on an ECPIX5 with a VGA PMOD and an I2S audio PMOD, or the audio can run on an ULX3S using its DAC. The author reports that the design works as expected when tested with the PMODs. The design is part of a demoscene competition and combines video and audio in a small area.",
+   "summary_changed": true
+  },
+  {
+   "key": "94783a147c76",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is a digital ring-oscillator structure; no analog circuit blocks are documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "Multiple ring oscillators with divided outputs are intended for on-chip oscillator characterization."
+    }
+   ],
+   "notes": "Removed analog (digital ring oscillators) and added characterization for the oscillator measurement purpose.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "pwm",
+    "analog",
+    "verilog"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "pwm",
+    "verilog",
+    "characterization"
+   ],
+   "summary_before": "This project implements multiple ring oscillators using sky130 inv_2 inverter rings, with various output frequencies and PWM signals. The pins include inputs for PWM configuration and outputs for oscillator and PWM signals. The documentation is sparse, providing only a one-line description and pin names, with no detailed explanation or test procedure. It appears to be an experimental design for on-chip oscillator characterization.",
+   "summary": "This project implements multiple ring oscillators by instantiating sky130 inv_2 inverter rings, with various output frequencies and PWM signals. The pins include inputs for PWM configuration and outputs for oscillator and PWM signals. The documentation is sparse, providing only a one-line description and pin names, with no detailed explanation or test procedure. It appears to be an experimental design for on-chip oscillator characterization.",
+   "summary_changed": true
+  },
+  {
+   "key": "85ba61659bbc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "button",
+     "reason": "The input is a switch (ui[1] morse), not a pushbutton."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "User input is via a switch, matching the dip-switch interface tag."
+    }
+   ],
+   "notes": "Swapped button for dip-switch because the source specifies a switch input.",
+   "tags_before": [
+    "communication",
+    "education",
+    "game",
+    "7-segment",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "education",
+    "game",
+    "7-segment",
+    "verilog",
+    "dip-switch"
+   ],
+   "summary_before": "This Morse Code Trainer is an interactive learning game that displays letters on a 7-segment display and challenges users to input the correct Morse code pattern using a switch. It provides immediate feedback and progresses through the English alphabet. The design can be tested in simulation or on hardware. It requires a 7-segment display and a switch for user input.",
+   "summary": "This Morse Code Trainer is an interactive learning game that displays letters on a 7-segment display and challenges users to input the correct Morse code pattern using a switch. It provides immediate feedback and progresses through the English alphabet. The design can be tested in simulation or on hardware. It requires a 7-segment display and a switch for user input.",
+   "summary_changed": false
+  },
+  {
+   "key": "83871c984664",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "fixed-point",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "fixed-point",
+    "verilog"
+   ],
+   "summary_before": "This project implements a modified Izhikevich neuron model in 22-bit fixed-point arithmetic to capture various spiking behaviors. It uses select pins to choose neuron parameters and five input pins for current injection, with outputs for membrane potential and recovery variable. The design is intended for simulating spiking cortical neurons in digital hardware, and external observation requires inverting the outputs and connecting to an oscilloscope. The documentation includes equations and a testbench description, but no silicon test results are provided.",
+   "summary": "This project implements a modified Izhikevich neuron model in 22-bit fixed-point arithmetic to capture various spiking behaviors. It uses select pins to choose neuron parameters and five input pins for current injection, with outputs for membrane potential and recovery variable. The design is intended for simulating spiking cortical neurons in digital hardware, and external observation requires inverting the outputs and connecting to an oscilloscope. The documentation includes equations and a testbench description, but no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "6d4526f59173",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "display",
+    "video",
+    "graphics",
+    "pmod"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "video",
+    "graphics",
+    "pmod"
+   ],
+   "summary_before": "This is a simple VGA demo that displays a bitmap and allows color inversion via an input pin. It outputs standard VGA signals including RGB and sync. The design was tested on VGA playground and requires a VGA PMOD for external connection. The documentation is minimal but sufficient to understand its function.",
+   "summary": "This is a simple VGA demo that displays a bitmap and allows color inversion via an input pin. It outputs standard VGA signals including RGB and sync. The design was tested on VGA playground and requires a VGA PMOD for external connection. The documentation is minimal but sufficient to understand its function.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6044,
+  "completion_tokens": 1163,
+  "total_tokens": 7207,
+  "cost": 0.0032088,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032088,
+   "upstream_inference_prompt_cost": 0.0018132,
+   "upstream_inference_completions_cost": 0.0013956
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032088,
+ "elapsed_s": 8.7
+}

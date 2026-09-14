@@ -1,0 +1,274 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2522ee2c8994",
+  "7465dd457290",
+  "4f491bd3b9ae",
+  "ff2118001c23",
+  "c24d4bbc8a40",
+  "738aa7ca34d8"
+ ],
+ "results": [
+  {
+   "key": "2522ee2c8994",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "Source describes OR gates mapping one-hot inputs to segments, not a code-to-signal decoder block per se; the mapping is a one-hot to segment encoder, and 'decoder' is not clearly supported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Outputs are explicitly the seven segment sections."
+    },
+    {
+     "tag": "led",
+     "reason": "Seven-segment display is an LED output device driven by the design."
+    }
+   ],
+   "notes": "Removed unsupported 'decoder' tag and added 7-segment/led output tags; corrected summary to match OR-gate implementation.",
+   "tags_before": [
+    "decoder",
+    "education",
+    "wokwi",
+    "combinational"
+   ],
+   "tags": [
+    "education",
+    "wokwi",
+    "combinational",
+    "7-segment",
+    "led"
+   ],
+   "summary_before": "This circuit converts a one-hot 8-bit input into seven-segment display outputs to show numbers 1 through 8. The design uses a decoder to map the input to the appropriate segments. External hardware includes a seven-segment display and switches. The project is an educational demonstration of decoding and display driving.",
+   "summary": "This circuit converts a one-hot 8-bit input into seven-segment display outputs to show numbers 1 through 8. The design uses OR gates to map each active input to the appropriate segments. External hardware includes a seven-segment display and switches. The project is an educational demonstration of one-hot to seven-segment display driving.",
+   "summary_changed": true
+  },
+  {
+   "key": "7465dd457290",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pattern-generator",
+     "reason": "The design renders systolic-array results as a heatmap, not a test pattern generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systolic-array",
+     "reason": "Documentation explicitly describes a 4x4 ternary systolic array."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "Processing elements are described as multiply-accumulate units."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "The systolic array is dedicated compute acceleration hardware."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "Documentation mentions cocotb tests."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "Design spans 2x2 tiles."
+    }
+   ],
+   "notes": "Replaced unsupported pattern-generator tag with systolic-array/mac-unit/accelerator and corrected summary to match documented behavior.",
+   "tags_before": [
+    "vga",
+    "display",
+    "graphics",
+    "pattern-generator"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "graphics",
+    "systolic-array",
+    "mac-unit",
+    "accelerator",
+    "verilog",
+    "cocotb",
+    "multi-tile"
+   ],
+   "summary_before": "This is a pattern generator that produces visual patterns on a VGA output. The documentation is very thin, providing no detail on the pattern generation, resolution, or any configurable inputs. It is implemented in Verilog and targets the Tiny Tapeout platform. The design likely outputs simple geometric or test patterns for display.",
+   "summary": "This design is a Tiny Tapeout graphics demo built around a small 4x4 ternary systolic array and a VGA generator. The array computes one of several tiny matrix demos selected by ui_in[1:0], with positive outputs shown in green, negative in red, and zero in blue. The 16 output values are rendered directly as a fullscreen 4x4 heatmap on a 640x480 VGA output. It is implemented in Verilog and targets the Tiny Tapeout platform with the standard VGA PMOD pin mapping.",
+   "summary_changed": true
+  },
+  {
+   "key": "4f491bd3b9ae",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "comparator",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "comparator",
+    "combinational",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "This project is an 8-bit comparator that compares two input values and indicates whether they are equal, greater, or less than each other. It is implemented as a purely combinational circuit in Verilog, requiring no clock or sequential logic. The inputs can be driven by switches or FPGA pins, and the output is presented on the output pins. The design can be verified through simulation or on Tiny Tapeout hardware.",
+   "summary": "This project is an 8-bit comparator that compares two input values and indicates whether they are equal, greater, or less than each other. It is implemented as a purely combinational circuit in Verilog, requiring no clock or sequential logic. The inputs can be driven by switches or FPGA pins, and the output is presented on the output pins. The design can be verified through simulation or on Tiny Tapeout hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "ff2118001c23",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "led",
+    "combinational"
+   ],
+   "tags": [
+    "adder",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "led",
+    "combinational"
+   ],
+   "summary_before": "This Wokwi project implements a full adder using three input switches for A, B, and Carry-in. The outputs drive LEDs to show the sum and carry-out. It is an educational example of combinational arithmetic logic. The design is simple and intended for learning digital logic.",
+   "summary": "This Wokwi project implements a full adder using three input switches for A, B, and Carry-in. The outputs drive LEDs to show the sum and carry-out. It is an educational example of combinational arithmetic logic. The design is simple and intended for learning digital logic.",
+   "summary_changed": false
+  },
+  {
+   "key": "c24d4bbc8a40",
+   "verdict": "escalate",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "External hardware mentions a seven-segment display, but the design's outputs are generic OUT0-OUT7 and no segment mapping is documented."
+    },
+    {
+     "tag": "display",
+     "reason": "No display interface or output behavior is documented."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated in the source."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Generic pins exist but no GPIO interface behavior is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Source states an AND and a NAND gate were added."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and the design's behavior is unclear."
+    }
+   ],
+   "notes": "Source is contradictory and sparse; escalated while removing unsupported display tags and adding insufficient-doc.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "logic-gate",
+    "education",
+    "gpio"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is titled 'Tiny Tapeout Chip' and has eight inputs and eight outputs with generic names. The documentation is minimal: the one-line description is empty, the how-it-works section says 'Don't know', and the how-to-test section says 'For decoration'. The external hardware listed is a seven-segment display, but the exact behavior is unclear. The design likely drives a seven-segment display based on logic gate outputs, but the documentation is too sparse to confirm.",
+   "summary": "This project is titled 'Timo 1' and has eight inputs and eight outputs with generic names. The documentation is minimal: the one-line description is 'IDK', the how-it-works section says an AND and a NAND were added, and the how-to-test section says 'make it run'. The external hardware listed is a seven-segment display, but the exact behavior is unclear. The design likely implements simple logic gates, but the documentation is too sparse to confirm.",
+   "summary_changed": true
+  },
+  {
+   "key": "738aa7ca34d8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "The design is a pseudo-random snake animation on a display, not an interactive game."
+    }
+   ],
+   "add": [
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "led",
+     "reason": "Seven-segment display is an LED output device."
+    }
+   ],
+   "notes": "Removed unsupported 'game' tag and added verilog/led; summary unchanged as it matches the source.",
+   "tags_before": [
+    "snake-game",
+    "7-segment",
+    "prng",
+    "game",
+    "display"
+   ],
+   "tags": [
+    "snake-game",
+    "7-segment",
+    "prng",
+    "display",
+    "verilog",
+    "led"
+   ],
+   "summary_before": "This design implements a pseudo-random snake that moves across a 7-segment display. The user inputs a number via switches, which seeds the random movement, and the snake's position is shown on the display. It requires an external 7-segment display and switch inputs for operation. The documentation is minimal, providing only a basic description and test instructions.",
+   "summary": "This design implements a pseudo-random snake that moves across a 7-segment display. The user inputs a number via switches, which seeds the random movement, and the snake's position is shown on the display. It requires an external 7-segment display and switch inputs for operation. The documentation is minimal, providing only a basic description and test instructions.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6686,
+  "completion_tokens": 1358,
+  "total_tokens": 8044,
+  "cost": 0.002296938,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002296938,
+   "upstream_inference_prompt_cost": 0.000911778,
+   "upstream_inference_completions_cost": 0.00138516
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002296938,
+ "elapsed_s": 42.5
+}

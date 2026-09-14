@@ -1,0 +1,222 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "e32c90edf056",
+  "dbbdffcabeef",
+  "d53d6ead43e3",
+  "10496b712cf4",
+  "d41cbe181f0b",
+  "3412827edba1"
+ ],
+ "results": [
+  {
+   "key": "e32c90edf056",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "modulator",
+    "communication",
+    "radio",
+    "uart",
+    "spinalhdl",
+    "dac"
+   ],
+   "tags": [
+    "modulator",
+    "communication",
+    "radio",
+    "uart",
+    "spinalhdl",
+    "dac"
+   ],
+   "summary_before": "This is a proof-of-concept digital design for an FSK modem with HDLC framing and a UART interface, intended as a stepping stone toward a full terminal node controller for amateur radio packet systems. The design uses a lookup-table-based approach to generate and receive 2FSK signals, with a master clock running at 64 times the data rate to support baud rates from 4800 to 76800. It is meant to be tested with external RP2040 or FPGA boards to validate the electrical interface architecture, and the author notes that limited development time may prevent good results in this initial version. The project is notable for its homage to the classic G3RUH modem design and its plan to eventually pair with an 8-bit CPU for a complete TNC solution.",
+   "summary": "This is a proof-of-concept digital design for an FSK modem with HDLC framing and a UART interface, intended as a stepping stone toward a full terminal node controller for amateur radio packet systems. The design uses a lookup-table-based approach to generate and receive 2FSK signals, with a master clock running at 64 times the data rate to support baud rates from 4800 to 76800. It is meant to be tested with external RP2040 or FPGA boards to validate the electrical interface architecture, and the author notes that limited development time may prevent good results in this initial version. The project is notable for its homage to the classic G3RUH modem design and its plan to eventually pair with an 8-bit CPU for a complete TNC solution.",
+   "summary_changed": false
+  },
+  {
+   "key": "dbbdffcabeef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "The design decodes PWM timing, but 'decoder' is a code-to-signal decoding type tag; the more accurate type tag is 'demodulator'."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'decoder' as it is a code-to-signal type tag not matching the PWM demodulation function.",
+   "tags_before": [
+    "demodulator",
+    "pwm",
+    "7-segment",
+    "counter",
+    "uart",
+    "radio",
+    "decoder"
+   ],
+   "tags": [
+    "demodulator",
+    "pwm",
+    "7-segment",
+    "counter",
+    "uart",
+    "radio"
+   ],
+   "summary_before": "This design demodulates eight PWM channels from an RC receiver by using counters and threshold values to decide whether each output should be HIGH or LOW. It outputs the decoded channel states on the bidirectional pins and also displays the number of active channels on a 7-segment display. A UART transmit wire is provided, though its function is not described. The design is tested by applying PWM signals with pulse widths above 1.9 ms or below 1.1 ms to verify the output transitions.",
+   "summary": "This design demodulates eight PWM channels from an RC receiver by using counters and threshold values to decide whether each output should be HIGH or LOW. It outputs the decoded channel states on the bidirectional pins and also displays the number of active channels on a 7-segment display. A UART transmit wire is provided, though its function is not described. The design is tested by applying PWM signals with pulse widths above 1.9 ms or below 1.1 ms to verify the output transitions.",
+   "summary_changed": false
+  },
+  {
+   "key": "d53d6ead43e3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The documentation does not explicitly state an educational intent, only that it measures a textbook problem."
+    },
+    {
+     "tag": "transistor-level",
+     "reason": "The design is written in Verilog for standard-cell implementation, no evidence of discrete transistor-level construction."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "The design measures delay of various designs with varying load, explicitly a characterization experiment."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and refers to an external readme, indicating the design is a partial or unfinished submission."
+    }
+   ],
+   "notes": "Corrected tags to characterization/incomplete and removed unsupported education/transistor-level; summary adjusted to avoid claiming educational intent.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "education",
+    "counter",
+    "transistor-level"
+   ],
+   "tags": [
+    "time-to-digital-converter",
+    "counter",
+    "characterization",
+    "incomplete"
+   ],
+   "summary_before": "This project measures the delay of various CMOS VLSI designs from a textbook problem under varying load conditions. It uses selection inputs to choose among designs, provides an 8-bit input bus, and outputs a count and overflow signal to indicate timing results. The documentation is minimal and refers to an external readme for details, so the exact operation is not fully described here. It appears to be an educational experiment focused on characterizing delay.",
+   "summary": "This project measures the delay of various CMOS VLSI designs from a textbook problem under varying load conditions. It uses selection inputs to choose among designs, provides an 8-bit input bus, and outputs a count and overflow signal to indicate timing results. The documentation is minimal and refers to an external readme for details, so the exact operation is not fully described here. It is a characterization experiment focused on delay measurement.",
+   "summary_changed": true
+  },
+  {
+   "key": "10496b712cf4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "standard-cell",
+     "reason": "The source does not explicitly state standard-cell implementation; 'synthesized' only implies synthesis, not the cell library."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'standard-cell' as implementation style is not explicitly stated; last sentence adjusted accordingly.",
+   "tags_before": [
+    "time-to-digital-converter",
+    "standard-cell",
+    "instrumentation",
+    "verilog"
+   ],
+   "tags": [
+    "time-to-digital-converter",
+    "instrumentation",
+    "verilog"
+   ],
+   "summary_before": "This design is a synthesized time-to-digital converter (TDC) that measures the time interval between two input signals using two Vernier delay rings with slightly different delays. It captures the time difference on the rising edge of the stop signal and outputs the result in 8-bit chunks, selectable via input pins. The design is intended for high-resolution time measurement, with an analog-simulated resolution of about 6 ps. It requires external signal generators with nanosecond resolution to provide the start and stop signals, and it is notable for being implemented entirely with standard cells.",
+   "summary": "This design is a synthesized time-to-digital converter (TDC) that measures the time interval between two input signals using two Vernier delay rings with slightly different delays. It captures the time difference on the rising edge of the stop signal and outputs the result in 8-bit chunks, selectable via input pins. The design is intended for high-resolution time measurement, with an analog-simulated resolution of about 6 ps. It requires external signal generators with nanosecond resolution to provide the start and stop signals, and it is notable for being implemented entirely in Verilog.",
+   "summary_changed": true
+  },
+  {
+   "key": "d41cbe181f0b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fir-filter",
+     "reason": "The design is a moving average filter, not explicitly a finite impulse response filter; while related, the tag is not supported by the source."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The design uses registers and an FSM, so it is sequential, not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "Moving average filtering is a digital signal processing function."
+    }
+   ],
+   "notes": "Corrected tags: removed unsupported fir-filter and incorrect combinational, added dsp; summary unchanged.",
+   "tags_before": [
+    "fir-filter",
+    "dsp",
+    "fsm",
+    "combinational"
+   ],
+   "tags": [
+    "dsp",
+    "fsm"
+   ],
+   "summary_before": "This design implements a 10-bit moving average filter that smooths input data streams using registers and a finite state machine, with the filter width determined by the FILTER_POWER parameter. It processes digital input values presented on the ui_in port and produces smoothed outputs on uo_out, with control signals on uio_in to select filter width and operation. The design includes strobe input and output for data synchronization. Testing involves providing varying input patterns and filter widths to evaluate the filter's response.",
+   "summary": "This design implements a 10-bit moving average filter that smooths input data streams using registers and a finite state machine, with the filter width determined by the FILTER_POWER parameter. It processes digital input values presented on the ui_in port and produces smoothed outputs on uo_out, with control signals on uio_in to select filter width and operation. The design includes strobe input and output for data synchronization. Testing involves providing varying input patterns and filter widths to evaluate the filter's response.",
+   "summary_changed": false
+  },
+  {
+   "key": "3412827edba1",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "i2c",
+    "uart",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "i2c",
+    "uart",
+    "communication",
+    "verilog"
+   ],
+   "summary_before": "The TWI Monitor passively observes I2C bus traffic and converts captured frames into a three-byte UART output representing address, data, and acknowledgment bits. It operates at 50 MHz with a UART baud rate of 115,200 and does not act as an I2C slave. The design was tested on an FPGA and can capture single frames but not repeated frames. External hardware includes an I2C source such as an Arduino and a UART-to-USB adapter for viewing the output on a PC.",
+   "summary": "The TWI Monitor passively observes I2C bus traffic and converts captured frames into a three-byte UART output representing address, data, and acknowledgment bits. It operates at 50 MHz with a UART baud rate of 115,200 and does not act as an I2C slave. The design was tested on an FPGA and can capture single frames but not repeated frames. External hardware includes an I2C source such as an Arduino and a UART-to-USB adapter for viewing the output on a PC.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "d53d6ead43e3: key echoed as 'd53c6ead43e3', matched by index"
+ ],
+ "usage": {
+  "prompt_tokens": 7575,
+  "completion_tokens": 1432,
+  "total_tokens": 9007,
+  "cost": 0.0039909,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039909,
+   "upstream_inference_prompt_cost": 0.0022725,
+   "upstream_inference_completions_cost": 0.0017184
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039909,
+ "elapsed_s": 7.0
+}

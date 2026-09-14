@@ -1,0 +1,261 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "df54db793dde",
+  "4355053dc2c4",
+  "c58f2d646d37",
+  "38ca600d902c",
+  "93d6c81301b3",
+  "3aedadbd6055"
+ ],
+ "results": [
+  {
+   "key": "df54db793dde",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning; it is just a full adder."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "A full adder is purely combinational logic."
+    }
+   ],
+   "notes": "Removed unsupported education tag and added combinational, which the full adder clearly is.",
+   "tags_before": [
+    "adder",
+    "wokwi",
+    "education",
+    "led"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "led",
+    "combinational"
+   ],
+   "summary_before": "This is a full adder with inputs A, B, and Cin, and outputs S and Cout. It is tested using a provided truth table. An LED is used as external hardware to indicate the output. The documentation is concise and clear.",
+   "summary": "This is a full adder with inputs A, B, and Cin, and outputs S and Cout. It is tested using a provided truth table. An LED is used as external hardware to indicate the output. The documentation is concise and clear.",
+   "summary_changed": false
+  },
+  {
+   "key": "4355053dc2c4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a simple adder, not an arithmetic logic unit."
+    },
+    {
+     "tag": "education",
+     "reason": "No stated educational intent in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The adder and display mapping are combinational logic."
+    }
+   ],
+   "notes": "Removed unsupported alu and education tags; added combinational.",
+   "tags_before": [
+    "adder",
+    "7-segment",
+    "alu",
+    "education",
+    "dip-switch"
+   ],
+   "tags": [
+    "adder",
+    "7-segment",
+    "dip-switch",
+    "combinational"
+   ],
+   "summary_before": "This design adds two 4-bit numbers and displays the sum on a seven-segment display. Inputs are set using DIP switches on the upper and lower nibbles, and an always block maps the sum to display segments. If the sum cannot be shown on the display, a dot is shown instead, and overflow is not handled. The design is a straightforward arithmetic demonstration with no external hardware beyond the switches and display.",
+   "summary": "This design adds two 4-bit numbers and displays the sum on a seven-segment display. Inputs are set using DIP switches on the upper and lower nibbles, and an always block maps the sum to display segments. If the sum cannot be shown on the display, a dot is shown instead, and overflow is not handled. The design is a straightforward arithmetic demonstration with no external hardware beyond the switches and display.",
+   "summary_changed": false
+  },
+  {
+   "key": "c58f2d646d37",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "hash",
+    "accelerator",
+    "security",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "hash",
+    "accelerator",
+    "security",
+    "verilog"
+   ],
+   "summary_before": "This chip is a hardware accelerator for the Spongent-88/80/8 lightweight hash function, intended as the cryptographic primitive for Winternitz One-Time Signatures (W-OTS), a post-quantum secure signature scheme. It communicates through the standard Tiny Tapeout pin interface with data input, data output, busy, out_valid, and address/strobe signals. No external hardware is required, but for W-OTS use, a host microcontroller handles key generation, storage, and protocol logic. The design is notable for providing a compact hardware implementation of a hash function suitable for post-quantum cryptography.",
+   "summary": "This chip is a hardware accelerator for the Spongent-88/80/8 lightweight hash function, intended as the cryptographic primitive for Winternitz One-Time Signatures (W-OTS), a post-quantum secure signature scheme. It communicates through the standard Tiny Tapeout pin interface with data input, data output, busy, out_valid, and address/strobe signals. No external hardware is required, but for W-OTS use, a host microcontroller handles key generation, storage, and protocol logic. The design is notable for providing a compact hardware implementation of a hash function suitable for post-quantum cryptography.",
+   "summary_changed": false
+  },
+  {
+   "key": "38ca600d902c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "lfsr",
+    "demoscene",
+    "cellular-automaton",
+    "rom",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "lfsr",
+    "demoscene",
+    "cellular-automaton",
+    "rom",
+    "graphics",
+    "verilog"
+   ],
+   "summary_before": "This design is a demo for the ttsky26a competition, featuring an LFSR starfield background and a cellular automata monolith in the foreground, with a TT logo sticker from ROM. It plays a 2001: A Space Odyssey inspired theme via PWM audio. The design outputs VGA video at 800x600 @ ~56.35 Hz and requires a 36 MHz clock. External hardware includes a VGA Pmod and an Audio Pmod.",
+   "summary": "This design is a demo for the ttsky26a competition, featuring an LFSR starfield background and a cellular automata monolith in the foreground, with a TT logo sticker from ROM. It plays a 2001: A Space Odyssey inspired theme via PWM audio. The design outputs VGA video at 800x600 @ ~56.35 Hz and requires a 36 MHz clock. External hardware includes a VGA Pmod and an Audio Pmod.",
+   "summary_changed": false
+  },
+  {
+   "key": "93d6c81301b3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "r2r-dac",
+     "reason": "The R2R DAC is external hardware, not part of the chip design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states working."
+    },
+    {
+     "tag": "speaker",
+     "reason": "Sound output pin is intended for a speaker with amplifier."
+    }
+   ],
+   "notes": "Removed r2r-dac (external hardware only) and added silicon-tested and speaker.",
+   "tags_before": [
+    "game",
+    "vga",
+    "video",
+    "spi",
+    "audio",
+    "button",
+    "r2r-dac",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "video",
+    "spi",
+    "audio",
+    "button",
+    "shift-register",
+    "verilog",
+    "silicon-tested",
+    "speaker"
+   ],
+   "summary_before": "Tiny Breakout is a single-player Breakout game in Verilog that outputs a 2-bit-per-channel VGA video signal and a sound output. The game is controlled by three buttons (left, right, action) and includes an SPI interface for reading the game state and writing commands to modify it. The design uses a VGA timing module, painter modules for graphics, and a shift register to store the 13x16 block grid efficiently. It requires a VGA monitor, a VGA DAC made from 2-bit R2R resistor networks, and external buttons; the author reports that the silicon works.",
+   "summary": "Tiny Breakout is a single-player Breakout game in Verilog that outputs a 2-bit-per-channel VGA video signal and a sound output. The game is controlled by three buttons (left, right, action) and includes an SPI interface for reading the game state and writing commands to modify it. The design uses a VGA timing module, painter modules for graphics, and a shift register to store the 13x16 block grid efficiently. It requires a VGA monitor, a VGA DAC made from 2-bit R2R resistor networks, and external buttons; the author reports that the silicon works.",
+   "summary_changed": false
+  },
+  {
+   "key": "3aedadbd6055",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The design is fully digital; the DAC is external hardware, not implemented on-chip."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state working."
+    },
+    {
+     "tag": "retro",
+     "reason": "Recreates a classic 8-bit era sound generator chip."
+    }
+   ],
+   "notes": "Removed dac (external only) and added silicon-tested and retro.",
+   "tags_before": [
+    "sound-generator",
+    "synthesizer",
+    "audio",
+    "music",
+    "chiptune",
+    "pwm",
+    "dac",
+    "lfsr",
+    "verilog"
+   ],
+   "tags": [
+    "sound-generator",
+    "synthesizer",
+    "audio",
+    "music",
+    "chiptune",
+    "pwm",
+    "lfsr",
+    "verilog",
+    "silicon-tested",
+    "retro"
+   ],
+   "summary_before": "This is a Verilog replica of the AY-3-8913 programmable sound generator, providing three square wave tone generators, a white noise generator, and an envelope generator with 10 shapes. It is controlled via an 8-bit multiplexed data/address bus and produces audio through either an 8-bit digital output for an external DAC or a PWM output for analog filtering. External hardware such as a DAC, RC filter, amplifier, and speaker are required to hear the audio. Silicon test reports indicate it works well, with users successfully playing chiptunes and using the 128 divider mode.",
+   "summary": "This is a Verilog replica of the AY-3-8913 programmable sound generator, providing three square wave tone generators, a white noise generator, and an envelope generator with 10 shapes. It is controlled via an 8-bit multiplexed data/address bus and produces audio through either an 8-bit digital output for an external DAC or a PWM output for analog filtering. External hardware such as a DAC, RC filter, amplifier, and speaker are required to hear the audio. Silicon test reports indicate it works well, with users successfully playing chiptunes and using the 128 divider mode.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 11229,
+  "completion_tokens": 1200,
+  "total_tokens": 12429,
+  "cost": 0.003294243,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003294243,
+   "upstream_inference_prompt_cost": 0.002070243,
+   "upstream_inference_completions_cost": 0.001224
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003294243,
+ "elapsed_s": 48.8
+}

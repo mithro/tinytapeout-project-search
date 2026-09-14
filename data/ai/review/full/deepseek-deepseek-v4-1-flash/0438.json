@@ -1,0 +1,220 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6068e4ff31d0",
+  "5ffeaaa2a33d",
+  "d3e22b2b432b",
+  "7a0513b0c1b2",
+  "a84560abb889",
+  "820ea84fcab2"
+ ],
+ "results": [
+  {
+   "key": "6068e4ff31d0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "motor-control",
+     "reason": "No motor driving hardware or application is described; PWM is generic."
+    }
+   ],
+   "add": [],
+   "notes": "Removed motor-control as unjustified; summary left intact since it only restates the documented design and test flow.",
+   "tags_before": [
+    "pwm",
+    "spi",
+    "motor-control",
+    "verilog"
+   ],
+   "tags": [
+    "pwm",
+    "spi",
+    "verilog"
+   ],
+   "summary_before": "This project is a PWM module controlled via an SPI interface. It provides three PWM outputs and several status pins indicating non-zero register values. The SPI interface allows programming of counter and duty cycle registers, and override pins enable direct PWM testing. External hardware includes an SPI master and a way to observe the PWM signals.",
+   "summary": "This project is a PWM module controlled via an SPI interface. It provides three PWM outputs and several status pins indicating non-zero register values. The SPI interface allows programming of counter and duty cycle registers, and override pins enable direct PWM testing. External hardware includes an SPI master and a way to observe the PWM signals.",
+   "summary_changed": false
+  },
+  {
+   "key": "5ffeaaa2a33d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source mentions an educational fabrication platform, not that this design itself is a teaching/learning artefact."
+    }
+   ],
+   "add": [],
+   "notes": "Education removed; summary corrected to replace the unsupported educational-purpose claim with the documented instruction-type outputs.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "verilog"
+   ],
+   "summary_before": "This project implements RISC-V Mini, a compact 8-bit RISC-V processor core with a 16-bit compressed instruction set. It accepts a 16-bit instruction and outputs an 8-bit result, with different instruction types producing specific outputs. The design is intended for educational purposes and fits within Tiny Tapeout constraints. Testing involves setting the instruction and clocking once to receive the result.",
+   "summary": "This project implements RISC-V Mini, a compact 8-bit RISC-V processor core with a 16-bit compressed instruction set. It accepts a 16-bit instruction and outputs an 8-bit result, with different instruction types producing specific outputs. Testing involves setting the instruction and clocking once to receive the result, as R-Type/I-Type/L-Type output 0, S-Type outputs the register value, and B-Type outputs the branch-taken flag.",
+   "summary_changed": true
+  },
+  {
+   "key": "d3e22b2b432b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "e-ink",
+    "display",
+    "spi",
+    "driver",
+    "sram",
+    "gpio",
+    "verilog"
+   ],
+   "tags": [
+    "e-ink",
+    "display",
+    "spi",
+    "driver",
+    "sram",
+    "gpio",
+    "verilog"
+   ],
+   "summary_before": "This project is a hardware driver for the Adafruit 2.13-inch e-ink display, using an SPI master to communicate with the SSD1680 chipset. It can display eight built-in patterns selected by input pins, and also supports copying SRAM contents to the display. The driver initializes the display, sends image data, and puts it into deep sleep to retain the image. External hardware includes the e-ink display and jumper wires to connect it to the PMOD.",
+   "summary": "This project is a hardware driver for the Adafruit 2.13-inch e-ink display, using an SPI master to communicate with the SSD1680 chipset. It can display eight built-in patterns selected by input pins, and also supports copying SRAM contents to the display. The driver initializes the display, sends image data, and puts it into deep sleep to retain the image. External hardware includes the e-ink display and jumper wires to connect it to the PMOD.",
+   "summary_changed": false
+  },
+  {
+   "key": "7a0513b0c1b2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "PWM appears only as an optional multiplexed signal; it is not a primary documented interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rp2040",
+     "reason": "Explicitly documents RP2040-driven reset/flash programming and correct UART pins for the demo board RP2040."
+    }
+   ],
+   "notes": "Removed unsupported pwm tag and added rp2040; reworded summary to match documented SoC/runtime facts.",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "qspi",
+    "uart",
+    "memory",
+    "microcontroller",
+    "pwm",
+    "interrupt-controller"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "qspi",
+    "uart",
+    "memory",
+    "microcontroller",
+    "interrupt-controller",
+    "rp2040"
+   ],
+   "summary_before": "TinyQV is a small RV32EC Risc-V SoC with Zcb and Zicond extensions, using 28-bit addresses and 24-bit program addresses, with instructions fetched over QSPI from flash and data stored in QSPI PSRAM. The flash and RAM share QSPI clock and data lines, so only one can be accessed at a time, and code can only execute from flash. It is used with a QSPI PMOD containing 16MB flash and two 8MB RAMs, and its UART pins match the RP2040 hardware UART on the demo board; reset and flash programming are handled by MicroPython scripts. The design is an early version of the Tiny Tapeout crowdsourced Risc-V challenge, with peripherals contributed by the community and a documented maximum QSPI read latency of 3 cycles.",
+   "summary": "TinyQV is an early version of the Tiny Tapeout collaborative competition Risc-V SoC, using a small RV32EC CPU with the Zcb and Zicond extensions. It uses 28-bit addresses, 24-bit program addresses, and reads instructions over QSPI from Flash while using QSPI PSRAM for memory. Because QSPI clock and data lines are shared, flash and RAM cannot be accessed simultaneously, and code can only execute from flash. It is intended for use with a QSPI PMOD carrying 16MB flash and two 8MB RAMs, with RP2040 MicroPython scripts handling reset and flash programming.",
+   "summary_changed": true
+  },
+  {
+   "key": "a84560abb889",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design is a single-neuron perceptron; a full neural-network tag overstates the scope."
+    }
+   ],
+   "add": [],
+   "notes": "Neural-network removed as too broad; summary reworded to avoid the unsupported claim that it is a neural-network building block.",
+   "tags_before": [
+    "wokwi",
+    "perceptron",
+    "neural-network",
+    "machine-learning",
+    "mac-unit",
+    "fsm"
+   ],
+   "tags": [
+    "wokwi",
+    "perceptron",
+    "machine-learning",
+    "mac-unit",
+    "fsm"
+   ],
+   "summary_before": "This design implements a simple classification perceptron that takes two 4-bit inputs (x0 and x1), multiplies them by hard-coded weights (3 and -2), adds a bias of 1, and passes the sum through a sign function to produce a binary output y_reg. The multiply-accumulate operation takes three cycles, controlled by a finite state machine. Testing involves setting the inputs via DIP switches and observing the output pins for the result and sum bits. The design is notable for being a hardware implementation of a neural network building block, though the weights are fixed and not tunable.",
+   "summary": "This design implements a simple classification perceptron that takes two 4-bit inputs (x0 and x1), multiplies them by hard-coded weights (3 and -2), adds a bias of 1, and passes the sum through a sign function to produce a binary output y_reg. The multiply-accumulate operation takes three cycles, controlled by a finite state machine. Testing involves setting the inputs via DIP switches and observing the output pins for the result and sum bits. The design is a hardware implementation of a perceptron building block, though its weights are fixed and not tunable.",
+   "summary_changed": true
+  },
+  {
+   "key": "820ea84fcab2",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "approximate-computing",
+    "pipeline",
+    "neuromorphic",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "approximate-computing",
+    "pipeline",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This project implements an approximate computing based leaky integrate-and-fire (LIF) neuron model in hardware. It features 16-bit membrane potential, 8 pipeline stages, and supports 8 neurons in one structure. The design is configured through a three-phase process: parameter initialization, neuron initialization, and normal operation. Testing involves resetting, initializing parameters and neurons, and then feeding input currents sequentially.",
+   "summary": "This project implements an approximate computing based leaky integrate-and-fire (LIF) neuron model in hardware. It features 16-bit membrane potential, 8 pipeline stages, and supports 8 neurons in one structure. The design is configured through a three-phase process: parameter initialization, neuron initialization, and normal operation. Testing involves resetting, initializing parameters and neurons, and then feeding input currents sequentially.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "5ffeaaa2a33d: 3 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 8328,
+  "completion_tokens": 1187,
+  "total_tokens": 9515,
+  "cost": 0.0039228,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039228,
+   "upstream_inference_prompt_cost": 0.0024984,
+   "upstream_inference_completions_cost": 0.0014244
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039228,
+ "elapsed_s": 7.8
+}

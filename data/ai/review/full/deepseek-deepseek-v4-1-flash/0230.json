@@ -1,0 +1,215 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "8d7ad114051e",
+  "95fc1ca13fbf",
+  "371d61fca982",
+  "b1b10f274409",
+  "28db3f33b74e",
+  "5c272511ab19"
+ ],
+ "results": [
+  {
+   "key": "8d7ad114051e",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Corrected the summary because the original invented post-silicon testing; the source only mentions planned testing, not actual silicon test status.",
+   "tags_before": [
+    "floating-point",
+    "multiplier",
+    "combinational",
+    "fixed-point",
+    "systemverilog"
+   ],
+   "tags": [
+    "floating-point",
+    "multiplier",
+    "combinational",
+    "fixed-point",
+    "systemverilog"
+   ],
+   "summary_before": "This SystemVerilog design is a fully combinational multiplier for 8-bit posit numbers with zero exponent bits. It decodes the two posit operands into fixed-point values and scale factors, aligns and multiplies them, then re-encodes the rounded product back into posit format. Operand A is supplied on the input pins, operand B on the bidirectional pins, and the product appears on the output pins. The design was exhaustively verified in simulation against a software reference before fabrication, and post-silicon testing is planned with a microcontroller or DIP switches; the description text mistakenly refers to a sum rather than a product.",
+   "summary": "This SystemVerilog design is a fully combinational multiplier for 8-bit posit numbers with zero exponent bits. It decodes the two posit operands into fixed-point values and scale factors, aligns and multiplies them, then re-encodes the rounded product back into posit format. Operand A is supplied on the input pins, operand B on the bidirectional pins, and the product appears on the output pins. The design was exhausted in simulation against a software reference before fabrication, with the description mistakenly referring to a sum rather than a product.",
+   "summary_changed": true
+  },
+  {
+   "key": "95fc1ca13fbf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "The source describes integer factorization using the quadratic sieve algorithm, which is not explicitly stated as a cryptography design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "memory",
+     "reason": "The design uses an external SPI RAM for the sieve memory and updates memory contents."
+    }
+   ],
+   "notes": "Removed crypto tag because the source does not explicitly mention cryptography; removed invention about hardware acceleration in summary.",
+   "tags_before": [
+    "crypto",
+    "accelerator",
+    "spi",
+    "memory",
+    "pipeline",
+    "verilog"
+   ],
+   "tags": [
+    "accelerator",
+    "spi",
+    "memory",
+    "pipeline",
+    "verilog"
+   ],
+   "summary_before": "This design implements a quadratic sieve algorithm for factoring large integers, based on a pipeline architecture. It performs sieving operations over a factor base, updating a memory array and reporting when a threshold is exceeded. The chip interfaces via SPI and requires external SPI RAM for the sieve memory. Testing involves initializing the memory, running the sieve, and reading out addresses that likely factor completely. The design is notable for accelerating an integer factorization algorithm in hardware.",
+   "summary": "This Verilog design implements a quadratic sieve algorithm for factoring large integers, based on a pipeline architecture. It performs sieving operations over a factor base, updating a memory array and reporting when a threshold is exceeded. The chip interfaces via SPI and requires external SPI RAM for the sieve memory. Testing involves initializing the memory, running the sieve, and reading out addresses that likely factor completely.",
+   "summary_changed": true
+  },
+  {
+   "key": "371d61fca982",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design uses a 7-segment display specifically, not a generic display."
+    }
+   ],
+   "add": [],
+   "notes": "Removed display tag as 7-segment is the specific display type; kept other tags as supported.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "wokwi",
+    "education",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design uses XOR and NXOR gates to display the letter 'Z' on a 7-segment display when a specific 8-bit code is entered. Inputs include clock, reset, and direction switches. To test, toggle switches in the sequence on, off, on, on, on, off, on, off. External hardware is a 7-segment display. The project is created with Wokwi and is educational.",
+   "summary": "This design uses XOR and NXOR gates to display the letter 'Z' on a 7-segment display when a specific 8-bit code is entered. Inputs include clock, reset, and direction switches. To test, toggle switches in the sequence on, off, on, on, on, off, on, off. External hardware is a 7-segment display. The project is created with Wokwi and is educational.",
+   "summary_changed": false
+  },
+  {
+   "key": "b1b10f274409",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "The source describes a line-follower robot for testing on an FPGA, not an industrial control application."
+    }
+   ],
+   "add": [],
+   "notes": "Removed industrial tag as application is robotics/education, not industrial control.",
+   "tags_before": [
+    "motor-control",
+    "robotics",
+    "sensor-interface",
+    "pwm",
+    "industrial"
+   ],
+   "tags": [
+    "motor-control",
+    "robotics",
+    "sensor-interface",
+    "pwm"
+   ],
+   "summary_before": "This Verilog design reads the five channels of a BFD1000 infrared line-follower sensor plus clip and near obstacle signals, and produces left and right motor enable and direction outputs according to a set of logic equations. It also accepts proportional and integral gain values and a select signal on the bidirectional pins, and can take a PWM input for speed control. The design is tested by connecting the sensor to the input pins and the motor drivers to the outputs, with simulations run on a Nexys4 FPGA using Vivado. External hardware includes the BFD1000 sensor and two motor drivers with LED indicators, and the documentation provides a full truth table and the derived logic equations.",
+   "summary": "This Verilog design reads the five channels of a BFD1000 infrared line-follower sensor plus clip and near obstacle signals, and produces left and right motor enable and direction outputs according to a set of logic equations. It also accepts proportional and integral gain values and a select signal on the bidirectional pins, and can take a PWM input for speed control. The design is tested by connecting the sensor to the input pins and the motor drivers to the outputs, with simulations run on a Nexys4 FPGA using Vivado. External hardware includes the BFD1000 sensor and two motor drivers with LED indicators, and the documentation provides a full truth table and the derived logic equations.",
+   "summary_changed": false
+  },
+  {
+   "key": "28db3f33b74e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "The design is a simple educational passcode lock, not a hardware security focused design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed security tag because it is a simple combinatorial lock, not a security-focused design.",
+   "tags_before": [
+    "security",
+    "combinational",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "combinational",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This is a 4-digit passcode lock that unlocks only for the code 1010 and activates an alarm for 1111, with a wrong indicator for other codes. It is built from basic logic gates in Wokwi and is combinational, so outputs update directly with inputs. To test it, use DIP switches for the four inputs and observe three LEDs (unlock, wrong, alarm) and a buzzer. External hardware includes a DIP switch, three LEDs, and a buzzer. The design is intended for educational purposes and maps to Tiny Tapeout input/output blocks.",
+   "summary": "This is a 4-digit passcode lock that unlocks only for the code 1010 and activates an alarm for 1111, with a wrong indicator for other codes. It is built from basic logic gates in Wokwi and is combinational, so outputs update directly with inputs. To test it, use DIP switches for the four inputs and observe three LEDs (unlock, wrong, alarm) and a buzzer. External hardware includes a DIP switch, three LEDs, and a buzzer. The design is intended for educational purposes and maps to Tiny Tapeout input/output blocks.",
+   "summary_changed": false
+  },
+  {
+   "key": "5c272511ab19",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The source does not specify that the design is implemented using discrete logic gates."
+    }
+   ],
+   "add": [],
+   "notes": "Removed logic-gate tag because implementation details are not specified in the source.",
+   "tags_before": [
+    "puzzle",
+    "combinational",
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "puzzle",
+    "combinational",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This is a puzzle circuit based on the 'Holidays' Tiny Tapeout example, modified to allow exactly two holiday choices (or an extra sunscreen option). It takes eight inputs and one bidirectional input, and outputs a single logic signal that is true for only specific input combinations. The design is implemented in Wokwi. Testing requires setting the inputs to the specified patterns to get a true output. External hardware is just one LED for output. The documentation lists no other components.",
+   "summary": "This is a puzzle circuit based on the 'Holidays' Tiny Tapeout example, modified to allow exactly two holiday choices (or an extra sunscreen option). It takes eight inputs and one bidirectional input, and outputs a single logic signal that is true for only specific input combinations. The design is implemented in Wokwi. Testing requires setting the inputs to the specified patterns to get a true output. External hardware is just one LED for output.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "371d61fca982: 5 sentences after review",
+  "28db3f33b74e: 5 sentences after review",
+  "5c272511ab19: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 7916,
+  "completion_tokens": 1277,
+  "total_tokens": 9193,
+  "cost": 0.0039072,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039072,
+   "upstream_inference_prompt_cost": 0.0023748,
+   "upstream_inference_completions_cost": 0.0015324
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039072,
+ "elapsed_s": 7.6
+}

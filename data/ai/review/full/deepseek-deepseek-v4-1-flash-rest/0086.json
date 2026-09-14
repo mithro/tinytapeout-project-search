@@ -1,0 +1,294 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a1ad66d1b7f5",
+  "af4d69bf484d",
+  "665062445bcd",
+  "88f089ca7ac2",
+  "ac983b05e096",
+  "118662d8ea0c"
+ ],
+ "results": [
+  {
+   "key": "a1ad66d1b7f5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "Audio is only mentioned as an optional demo use case, not a property of the design."
+    },
+    {
+     "tag": "dac",
+     "reason": "The design does not include a DAC; an external R-2R ladder is only suggested for audio demos."
+    }
+   ],
+   "add": [],
+   "notes": "Removed audio and dac tags because they describe optional external demo hardware, not the built design.",
+   "tags_before": [
+    "dsp",
+    "fir-filter",
+    "uart",
+    "audio",
+    "dac",
+    "fixed-point"
+   ],
+   "tags": [
+    "dsp",
+    "fir-filter",
+    "uart",
+    "fixed-point"
+   ],
+   "summary_before": "This design is a 2-tap direct-form FIR filter with runtime-configurable Q7 coefficients loaded over a 9600 8N1 UART, operating on 8-bit signed samples with saturating output. Samples are presented on ui_in with a sample_valid strobe on uio[2], and the filtered result appears on uo_out with out_valid and coeff_we status pins. It can be exercised with DIP switches and LEDs, a Python UART script, an Arduino sine source viewed on a scope, or an R-2R DAC ladder driving a speaker. External hardware is optional but includes a USB-UART adapter, buttons, and a DAC, and the documentation is clear and complete.",
+   "summary": "This design is a 2-tap direct-form FIR filter with runtime-configurable Q7 coefficients loaded over a 9600 8N1 UART, operating on 8-bit signed samples with saturating output. Samples are presented on ui_in with a sample_valid strobe on uio[2], and the filtered result appears on uo_out with out_valid and coeff_we status pins. It can be exercised with DIP switches and LEDs, a Python UART script, an Arduino sine source viewed on a scope, or an R-2R DAC ladder driving a speaker. External hardware is optional but includes a USB-UART adapter, buttons, and a DAC, and the documentation is clear and complete.",
+   "summary_changed": false
+  },
+  {
+   "key": "af4d69bf484d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-divider",
+     "reason": "The documentation names only logic gates for producing the letter Y; no clock divider is described."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The external hardware table says 'seven segment display', not 7-segment output; outputs are generic OUT signals, no segment drive evidence."
+    },
+    {
+     "tag": "display",
+     "reason": "Generic display output tag is unsupported; the project drives a seven-segment display via out pins but no display output interface is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Already present; NOT, NOR, OR, XNOR gates are the core functionality."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already present; the project language is Wokwi."
+    },
+    {
+     "tag": "education",
+     "reason": "Already present; the design is an educational test/demonstration of basic gates."
+    }
+   ],
+   "notes": "Removed clock-divider, 7-segment and display tags because the source only documents logic gates and an external seven-segment display.",
+   "tags_before": [
+    "logic-gate",
+    "clock-divider",
+    "7-segment",
+    "wokwi",
+    "education",
+    "display"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design tests various logic gates (NOT, NOR, OR, XNOR) and a clock divider to produce the letter Y on a seven-segment display when the inputs are set to 00101110. It has eight inputs and eight outputs, with some outputs sharing names like OUT1 and OUT6 appearing twice, which may indicate a wiring mistake or intentional duplication. The primary function is to demonstrate gate combinations and display control, and it requires an external seven-segment display. The design is an educational test of basic digital logic and clock division.",
+   "summary": "This design tests logic gates (NOT, NOR, OR, XNOR) to produce the letter Y on a seven-segment display when the inputs are set to 00101110. It has eight inputs and eight outputs, with some outputs sharing names like OUT1 and OUT6 appearing twice, which may indicate a wiring mistake or intentional duplication. The primary function is to demonstrate gate combinations and display control, and it requires an external seven-segment display. The design is an educational test of basic digital logic.",
+   "summary_changed": true
+  },
+  {
+   "key": "665062445bcd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "No industrial control application is documented; it is a novelty traffic-light sequencer."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "The traffic light with walk button is a sequenced finite-state control."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "The one-line description explicitly calls it a sequencer."
+    },
+    {
+     "tag": "led",
+     "reason": "The external hardware table lists LEDs and outputs drive red/yellow/green/walk/no-walk indicators."
+    },
+    {
+     "tag": "button",
+     "reason": "The walk button is an explicit input in the pin list and description."
+    }
+   ],
+   "notes": "Removed industrial tag; added button and sequencer tags supported by the pinout and description.",
+   "tags_before": [
+    "industrial",
+    "fsm",
+    "sequencer",
+    "led"
+   ],
+   "tags": [
+    "fsm",
+    "sequencer",
+    "led",
+    "button"
+   ],
+   "summary_before": "This SystemVerilog design sequences a traffic light with a pedestrian walk button, driving red, yellow, green, walk and no-walk indicators plus a noisemaker output. Pressing the walk button turns the light red and then starts the walk signal and the 'beep boop' sound, with timings tuned to match a streetlight formerly at Carnegie Mellon University. Testing is done by observing the inputs and outputs, and external hardware consists of LEDs, a noisemaker and a button. The documentation is brief but the behavior and interface are clear.",
+   "summary": "This SystemVerilog design sequences a traffic light with a pedestrian walk button, driving red, yellow, green, walk and no-walk indicators plus a noisemaker output. Pressing the walk button turns the light red and then starts the walk signal and the 'beep boop' sound, with timings tuned to match a streetlight formerly at Carnegie Mellon University. Testing is done by observing the inputs and outputs, and external hardware consists of LEDs, a noisemaker and a button. The documentation is brief but the behavior and interface are clear.",
+   "summary_changed": false
+  },
+  {
+   "key": "88f089ca7ac2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "No multi-register storage block is documented beyond output register values; unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "It is described as a tiny register machine CPU and accepts instructions."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin (\"poorly\"), so this tag is supported."
+    }
+   ],
+   "notes": "Register-file removed; cpu and insufficient-doc confirmed; summary adjusted to avoid claiming 'five' registers and to match thin docs.",
+   "tags_before": [
+    "cpu",
+    "register-file",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "cpu",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is a tiny register machine CPU written in Clash. It accepts a 6-bit instruction input and has a reset and clock input, with outputs for a jump signal and five register values. The documentation describes its operation as 'poorly' and provides minimal testing instructions of encoding instructions and ticking the clock. It is notable for being generated from Clash, but the limited documentation makes it difficult to assess its completeness or functionality.",
+   "summary": "This is a tiny register machine CPU written in Clash. It accepts a 6-bit instruction input and has a reset and clock input, with outputs for a jump signal and register values. The documentation describes its operation as 'poorly' and provides minimal testing instructions of encoding instructions and ticking the clock. Limited documentation makes it difficult to assess its completeness or functionality.",
+   "summary_changed": true
+  },
+  {
+   "key": "ac983b05e096",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "No ALU is described; the design is a MAC unit, not a general arithmetic logic unit."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Posit is a tapered floating-point format, not fixed-point."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "The design is explicitly a MAC unit."
+    },
+    {
+     "tag": "dsp",
+     "reason": "MAC units are core to DSP, and the source targets multiply-accumulate arithmetic."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "MAC operation includes multiplication."
+    },
+    {
+     "tag": "floating-point",
+     "reason": "Posit number system is a floating-point format."
+    }
+   ],
+   "notes": "Removed alu and fixed-point; added floating-point for the posit format and confirmed mac-unit/multiplier/dsp tags.",
+   "tags_before": [
+    "dsp",
+    "alu",
+    "multiplier",
+    "mac-unit",
+    "fixed-point"
+   ],
+   "tags": [
+    "dsp",
+    "multiplier",
+    "mac-unit",
+    "floating-point"
+   ],
+   "summary_before": "This design is a multiply-accumulate unit that operates on 8-bit posit numbers rather than standard floating-point or integer formats. It accepts 8-bit feature data and a 2-bit command input while exposing ready, busy, prediction-valid, model-loaded and error status outputs. The design produces an 8-bit prediction and supports loading a model through its command interface. It is controlled through a simple valid/ready handshake with separate command bits.",
+   "summary": "This design is a multiply-accumulate unit that operates on 8-bit posit numbers, a tapered floating-point format. It accepts 8-bit inputs that successively undergo MAC operation. No external hardware is needed, and the documentation describes the operation at a high level. The design is controlled through its 8-bit input and output ports.",
+   "summary_changed": true
+  },
+  {
+   "key": "118662d8ea0c",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "fifo",
+     "reason": "Already present; the design is a FIFO."
+    },
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "Already present; explicit in title and description."
+    },
+    {
+     "tag": "asynchronous",
+     "reason": "Already present; asynchronous clock domains."
+    },
+    {
+     "tag": "memory",
+     "reason": "Already present; it stores 32 4-bit values."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog, but the tag was missing."
+    }
+   ],
+   "notes": "Added systemverilog tag; corrected summary to reflect capacity and reset procedure from the source, removing unsupported design influence and purpose claims.",
+   "tags_before": [
+    "fifo",
+    "clock-domain-crossing",
+    "asynchronous",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "fifo",
+    "clock-domain-crossing",
+    "asynchronous",
+    "memory",
+    "verilog",
+    "systemverilog"
+   ],
+   "summary_before": "This project is a clock domain crossing FIFO that handles data transfer between two asynchronous clock domains. It includes asynchronous FIFO logic and memory. It is used to safely pass data between different clock domains. The design is notable for its clock domain crossing implementation.",
+   "summary": "This project is a clock domain crossing FIFO that handles data transfer between two asynchronous clock domains. It can hold 32 4-bit values, or 16 bytes. It includes write and read reset signals, and status outputs for empty and full. Testing involves holding the resets LOW while running the clocks, then raising them to initialize the module.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6273,
+  "completion_tokens": 1817,
+  "total_tokens": 8090,
+  "cost": 0.0040623,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0040623,
+   "upstream_inference_prompt_cost": 0.0018819,
+   "upstream_inference_completions_cost": 0.0021804
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0040623,
+ "elapsed_s": 48.8
+}

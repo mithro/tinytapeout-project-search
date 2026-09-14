@@ -1,0 +1,216 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "3de475c53b24",
+  "65bacf30a93e",
+  "04e99ee575fc",
+  "af82ad1e75ae",
+  "6267addc4be9",
+  "32ddc21ebe45"
+ ],
+ "results": [
+  {
+   "key": "3de475c53b24",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "temperature-sensor",
+     "reason": "The design reads a generic 4-bit ADC value; temperature sensing is only implied by the title, not implemented on-chip."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fan",
+     "reason": "not in vocabulary"
+    }
+   ],
+   "notes": "Removed temperature-sensor since the ADC input is generic and temperature is only implied by the title.",
+   "tags_before": [
+    "temperature-sensor",
+    "motor-control",
+    "pwm",
+    "adc",
+    "7-segment"
+   ],
+   "tags": [
+    "motor-control",
+    "pwm",
+    "adc",
+    "7-segment"
+   ],
+   "summary_before": "This is a PI-based fan controller that reads a 4-bit ADC value representing temperature and a 4-bit setpoint, then adjusts fan speed via a 25 kHz PWM output with a 20% to 100% duty cycle. It also outputs a signed 4-bit controller value and displays it on a 7-segment display. The design requires external hardware including a 4-bit ADC, a fan, and a 7-segment display. The controller parameters are fixed for simplicity.",
+   "summary": "This is a PI-based fan controller that reads a 4-bit ADC value and a 4-bit setpoint, then adjusts fan speed via a 25 kHz PWM output with a 20% to 100% duty cycle. It also outputs a signed 4-bit controller value and displays it on a 7-segment display. The design requires external hardware including a 4-bit ADC, a fan, and a 7-segment display. The controller parameters are fixed for simplicity.",
+   "summary_changed": true
+  },
+  {
+   "key": "65bacf30a93e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "audio",
+     "reason": "The output is a PWM sine wave at 100-700 Hz; audio use is not stated in the source."
+    },
+    {
+     "tag": "filter-analog",
+     "reason": "The low-pass filter is external test equipment, not part of the design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed audio and filter-analog tags not supported by the source; audio-frequency claim is a stretch but the summary otherwise matches.",
+   "tags_before": [
+    "pwm",
+    "signal-generator",
+    "uart",
+    "audio",
+    "communication",
+    "filter-analog"
+   ],
+   "tags": [
+    "pwm",
+    "signal-generator",
+    "uart",
+    "communication"
+   ],
+   "summary_before": "This project generates a PWM signal that produces a sine wave with frequency selectable from 100 Hz to 700 Hz in 100 Hz steps via a UART interface. A number from 1 to 7 sent over UART sets the frequency, and the PWM output is filtered externally to recover the sine wave. Testing was done with a Bluetooth module for UART communication and an oscilloscope to verify the output frequencies. The design is useful for generating audio-frequency sine waves controlled remotely.",
+   "summary": "This project generates a PWM signal that produces a sine wave with frequency selectable from 100 Hz to 700 Hz in 100 Hz steps via a UART interface. A number from 1 to 7 sent over UART sets the frequency, and the PWM output is filtered externally to recover the sine wave. Testing was done with a Bluetooth module for UART communication and an oscilloscope to verify the output frequencies. The design is useful for generating audio-frequency sine waves controlled remotely.",
+   "summary_changed": false
+  },
+  {
+   "key": "04e99ee575fc",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "vga",
+    "video",
+    "dac",
+    "analog",
+    "r2r-dac",
+    "pattern-generator",
+    "display",
+    "mixed-signal"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "dac",
+    "analog",
+    "r2r-dac",
+    "pattern-generator",
+    "display",
+    "mixed-signal"
+   ],
+   "summary_before": "TT06 Grab Bag combines several analog and mixed-signal experiments, with a 24-bit VGA pattern generator as the main feature. A digital VGA controller produces 8-bit RGB outputs that feed three internal R2R DACs, driving analog pins with 0-1.8V signals, while mode selection is latched from ui_in during reset. Testing needs a 25MHz clock, reset, and an oscilloscope; real VGA output requires external op-amp buffers and level shifting to 0-0.7V into 75 ohms. Silicon reports say the analog outputs worked as expected and the author saw vivid VGA images, though the unbuffered DAC outputs have limited slew rate and high impedance.",
+   "summary": "TT06 Grab Bag combines several analog and mixed-signal experiments, with a 24-bit VGA pattern generator as the main feature. A digital VGA controller produces 8-bit RGB outputs that feed three internal R2R DACs, driving analog pins with 0-1.8V signals, while mode selection is latched from ui_in during reset. Testing needs a 25MHz clock, reset, and an oscilloscope; real VGA output requires external op-amp buffers and level shifting to 0-0.7V into 75 ohms. Silicon reports say the analog outputs worked as expected and the author saw vivid VGA images, though the unbuffered DAC outputs have limited slew rate and high impedance.",
+   "summary_changed": false
+  },
+  {
+   "key": "af82ad1e75ae",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is purely analog; no digital circuitry is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed mixed-signal as the design is entirely analog.",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "mixed-signal",
+    "transistor-level"
+   ],
+   "tags": [
+    "opamp",
+    "analog",
+    "transistor-level"
+   ],
+   "summary_before": "Tiny Opamp is a simple two-stage op-amp without Miller compensation, operating from a 1.8V single supply with inputs biased around 0.9V. It provides two op-amp channels with differential plus and minus inputs and analog voltage outputs, and is intended to be tested in closed-loop configurations only. External hardware needed is at minimum a resistor at the output for a source-follower test, plus a multimeter or oscilloscope. A silicon report notes that the first op-amp worked in an inverting unity configuration but showed some self-oscillation, and the documentation warns against loads drawing more than a few milliamps.",
+   "summary": "Tiny Opamp is a simple two-stage op-amp without Miller compensation, operating from a 1.8V single supply with inputs biased around 0.9V. It provides two op-amp channels with differential plus and minus inputs and analog voltage outputs, and is intended to be tested in closed-loop configurations only. External hardware needed is at minimum a resistor at the output for a source-follower test, plus a multimeter or oscilloscope. A silicon report notes that the first op-amp worked in an inverting unity configuration but showed some self-oscillation, and the documentation warns against loads drawing more than a few milliamps.",
+   "summary_changed": false
+  },
+  {
+   "key": "6267addc4be9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vhdl",
+     "reason": "The project language is Verilog; the VHDL mention refers to a referenced model, not this implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Corrected language tag from vhdl to verilog based on the stated project language.",
+   "tags_before": [
+    "cpu",
+    "risc-v",
+    "spi",
+    "memory",
+    "vhdl",
+    "register-file"
+   ],
+   "tags": [
+    "cpu",
+    "risc-v",
+    "spi",
+    "memory",
+    "register-file"
+   ],
+   "summary_before": "This project implements a TinyRV1-compliant RISC-V CPU without a multiply instruction, with additional AND and XOR support, written in VHDL. It has no internal program memory and must be attached to an external SPI memory device, using dedicated SPI MOSI, SCLK, and CS pins plus a MISO input. Eight bidirectional pins expose a register for observation, and the design is intended to run at 12 MHz. Testing requires the provided SPI slave with memory synthesized onto an FPGA, so it cannot be exercised standalone.",
+   "summary": "This project implements a TinyRV1-compliant RISC-V CPU without a multiply instruction, with additional AND and XOR support, written in Verilog. It has no internal program memory and must be attached to an external SPI memory device, using dedicated SPI MOSI, SCLK, and CS pins plus a MISO input. Eight bidirectional pins expose a register for observation, and the design is intended to run at 12 MHz. Testing requires the provided SPI slave with memory synthesized onto an FPGA, so it cannot be exercised standalone.",
+   "summary_changed": true
+  },
+  {
+   "key": "32ddc21ebe45",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "prng",
+    "game",
+    "7-segment",
+    "pmod",
+    "counter"
+   ],
+   "tags": [
+    "prng",
+    "game",
+    "7-segment",
+    "pmod",
+    "counter"
+   ],
+   "summary_before": "The Die Roller generates a pseudo-random number between 1 and a user-specified die size (up to 99) when a roll input is triggered. It uses a clock counter for randomness and displays the result on a dual seven-segment display via a PMOD output splitter. Silicon testing revealed that while the die size can be set and displayed, rolling the die does not show the result, indicating a functional issue. The design requires external PMOD hardware for display.",
+   "summary": "The Die Roller generates a pseudo-random number between 1 and a user-specified die size (up to 99) when a roll input is triggered. It uses a clock counter for randomness and displays the result on a dual seven-segment display via a PMOD output splitter. Silicon testing revealed that while the die size can be set and displayed, rolling the die does not show the result, indicating a functional issue. The design requires external PMOD hardware for display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8051,
+  "completion_tokens": 1189,
+  "total_tokens": 9240,
+  "cost": 0.001836446,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001836446,
+   "upstream_inference_prompt_cost": 0.001051706,
+   "upstream_inference_completions_cost": 0.00078474
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001836446,
+ "elapsed_s": 13.7
+}

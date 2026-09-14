@@ -1,0 +1,206 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "eaa386ce70d8",
+  "578fa639e02d",
+  "efb2fbe752b6",
+  "dbb4ac9b19c7",
+  "836cfebd0922",
+  "dad4ab3c85f0",
+  "c2a40dfe5512",
+  "595a31d814c7",
+  "c147c2d0f78b",
+  "25d8aa6be484"
+ ],
+ "results": [
+  {
+   "key": "eaa386ce70d8",
+   "tags": [
+    "adc",
+    "flash-adc",
+    "analog",
+    "comparator",
+    "transistor-level",
+    "analog-frontend",
+    "3-bit"
+   ],
+   "summary": "This is a 3-bit flash analog-to-digital converter that samples a 0 V to 1.8 V signal on analog pin 0 and presents the result on three digital outputs. Its threshold voltages are built into inverter stages, so no external reference voltage is needed. Testing consists of applying a known input voltage and reading the three output bits, optionally with a multimeter. The design is a compact analog block whose main notable feature is the reference-free inverter-based comparator scheme.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "578fa639e02d",
+   "tags": [
+    "motor-control",
+    "pwm",
+    "plc",
+    "automotive",
+    "hmi",
+    "safety",
+    "indicator",
+    "horn",
+    "headlight"
+   ],
+   "summary": "This Verilog design models a PLC-based electric vehicle motor controller with PWM speed control, power and mode selection, headlight, horn and indicator outputs, and overheat warning. Inputs come from separate PLC and HMI control lines, and the design drives motor speed bits, a PWM output and status LEDs. The documentation lists recommended external hardware but the section is truncated, so the exact bill of materials is not fully specified. It is notable for packaging an automotive-style control system into a single Tiny Tapeout tile, though no silicon test results are given.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "efb2fbe752b6",
+   "tags": [
+    "fifo",
+    "asynchronous",
+    "memory",
+    "handshake",
+    "clock-domain-crossing",
+    "wokwi"
+   ],
+   "summary": "This project is an asynchronous FIFO with separate read and write clocks, 8-bit data ports, and full and empty flags. The pin names indicate standard FIFO control signals such as write increment, read increment, and active-low resets for each domain. However, the documentation text is gibberish and provides no usable explanation of the implementation or test procedure. The design can only be inferred from its title and pin names, so the description is essentially unsupported.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "dbb4ac9b19c7",
+   "tags": [
+    "spi",
+    "flash",
+    "controller",
+    "raid",
+    "routing",
+    "memory",
+    "multiplexer"
+   ],
+   "summary": "This SPI flash RAID controller sits between two SPI hosts and two SPI flash chips, routing read operations according to programmable address ranges while remaining protocol-compatible. It exposes separate clock, chip-select and MOSI lines for a main host, a secondary host and a management port, plus MISO returns and flash-side signals. The design is intended to let two hosts share two flashes transparently, with address-based routing deciding which device is accessed. Documentation is brief but the pin list and description clearly define the interface and function.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "836cfebd0922",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "hazard",
+    "state-machine",
+    "pipeline",
+    "control",
+    "stall",
+    "flush"
+   ],
+   "summary": "This is a finite state machine that resolves pipeline hazards for a RISC-V processor, handling control, data and structural hazards. It has six states and drives program-counter freeze, flush and resolved outputs based on branch, dependency and resource-conflict inputs. The design is self-contained and needs only a clock and active-low reset, with optional LEDs or a logic analyzer for visibility during FPGA integration. It is a teaching-oriented control block, and the documentation describes simulation-based verification rather than silicon results.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "dad4ab3c85f0",
+   "tags": [
+    "cpu",
+    "risc",
+    "spi",
+    "harvard",
+    "education",
+    "state-machine",
+    "rom",
+    "ram",
+    "post-machine"
+   ],
+   "summary": "This is a small CPU based on an enhanced version of Emil Post's machine, with an eight-instruction set, a 256x4-bit code ROM and a 256x1-bit data RAM in a Harvard arrangement. Programs and data are loaded and read back over a slave SPI interface, and a MODE pin selects programming versus execution while RUN starts the program. The design exposes internal buses on OUT8B and OUT3B under control of a three-bit selector, and it is intended as a teaching resource for computer architecture. The documentation is detailed, including instruction encoding, SPI word format and timing diagrams.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c2a40dfe5512",
+   "tags": [
+    "image-processing",
+    "sobel",
+    "edge-detection",
+    "grayscale",
+    "spi",
+    "lfsr",
+    "filter",
+    "dsp"
+   ],
+   "summary": "This SystemVerilog design performs grayscale conversion and Sobel edge detection on pixel data streamed in over SPI. A two-bit select input chooses bypass, grayscale, Sobel, or grayscale-plus-Sobel processing, and an enable pin gates the Sobel stage. An internal LFSR can generate test pixels instead of external data, and the processed result appears on a single output pin. The design needs an SPI-capable host such as a Raspberry Pi to feed pixels, and the documentation explains the pin mapping and processing modes.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "595a31d814c7",
+   "tags": [
+    "cpu",
+    "hack",
+    "16-bit",
+    "alu",
+    "spi",
+    "ram",
+    "debug",
+    "state-machine",
+    "accumulator"
+   ],
+   "summary": "This is a 16-bit CPU based on the HACK architecture, containing D and A registers, a program counter, an ALU with 18 operations, and SPI master logic. Because the chip lacks on-chip memory, instructions and data are fetched from an external SPI RAM one 16-bit word at a time, and a second SPI port provides debug access to the D register, A register, program counter and FSM state. The design targets a Microchip 23XX512 SPI RAM and a microcontroller for debugging, and it matches the SPI Pmod pinout. It is notable for fitting a working CPU into a single tile by serializing memory access.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c147c2d0f78b",
+   "tags": [
+    "two-phase-clock",
+    "nonoverlapping",
+    "hold-violation",
+    "scan-chain",
+    "flip-flop",
+    "standard-cells",
+    "game",
+    "simon",
+    "7-segment",
+    "experiment"
+   ],
+   "summary": "This project is an experiment in using two-phase nonoverlapping clocks to make a design immune to hold violations, implemented by patching the flip-flops of Simon's Caterpillar into pairs of latches. It adds a scan chain through every flip-flop for debugging and disables static timing analysis by marking all paths as false paths. The design drives a seven-segment display, LEDs and a speaker, and requires a Simon Says PMOD plus two 50 kHz clocks with 25 percent duty cycle at 0 and 180 degrees. Silicon testing by the author reports it works as intended, with a bring-up script provided for the two-phase clock setup.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "25d8aa6be484",
+   "tags": [
+    "uart",
+    "ws2812",
+    "led",
+    "serial",
+    "protocol",
+    "baud",
+    "fsm"
+   ],
+   "summary": "This design is a UART receiver that watches for the ASCII string MARCO and, upon detecting it, replies with a carriage-return and newline wrapped POLO! and toggles a WS2812B LED from red to green. It runs at 50 MHz with 9600 baud, 8 data bits, no parity and one stop bit, and exposes debug signals for the baud ticks, transmit trigger and busy flag. Testing requires a USB-to-TTL adapter and a WS2812B LED, and the author reports it was verified on an FPGA. It is a small, self-contained demonstration of UART plus addressable-LED driving.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "25d8aa6be484: 5 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 8861,
+  "completion_tokens": 1792,
+  "total_tokens": 10653,
+  "cost": 0.002955776,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 828,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002955776,
+   "upstream_inference_prompt_cost": 0.001773056,
+   "upstream_inference_completions_cost": 0.00118272
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002955776,
+ "elapsed_s": 23.8
+}

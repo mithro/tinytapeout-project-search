@@ -1,0 +1,229 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d372f9b115e3",
+  "f76c06942641",
+  "0ad8ee28c83f",
+  "a9be4dfa40cb",
+  "4bbf62355d6e",
+  "23ed2a208d85"
+ ],
+ "results": [
+  {
+   "key": "d372f9b115e3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "power-management",
+     "reason": "The source describes analog building blocks (LDO, bandgap current reference, oscillator), not a power supply management application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports indicate the design was tested and working on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported power-management tag and added silicon-tested based on test reports.",
+   "tags_before": [
+    "analog",
+    "ldo",
+    "oscillator",
+    "bandgap",
+    "current-mirror",
+    "power-management"
+   ],
+   "tags": [
+    "analog",
+    "ldo",
+    "oscillator",
+    "bandgap",
+    "current-mirror",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog project provides three building blocks: a low-dropout regulator (LDO), a bandgap current reference, and an oscillator. The LDO output and oscillator output are accessible on pins, and the oscillator can be enabled and reset via digital inputs. Silicon test reports indicate the LDO outputs around 1.8V and the oscillator runs at approximately 5.2-5.8 MHz. The design is intended as analog IP for integration into larger systems.",
+   "summary": "This analog project provides three building blocks: a low-dropout regulator (LDO), a bandgap current reference, and an oscillator. The LDO output and oscillator output are accessible on pins, and the oscillator can be enabled and reset via digital inputs. Silicon test reports indicate the LDO outputs around 1.8V and the oscillator runs at approximately 5.2-5.8 MHz. The design is intended as analog IP for integration into larger systems.",
+   "summary_changed": false
+  },
+  {
+   "key": "f76c06942641",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "voltage-reference",
+     "reason": "The design is a beta multiplier current source, not a voltage reference generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports confirm the current source is functional on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported voltage-reference tag and added silicon-tested based on test reports.",
+   "tags_before": [
+    "analog",
+    "current-mirror",
+    "voltage-reference",
+    "characterization",
+    "transistor-level"
+   ],
+   "tags": [
+    "analog",
+    "current-mirror",
+    "characterization",
+    "transistor-level",
+    "silicon-tested"
+   ],
+   "summary_before": "This analog test chip evaluates mismatch in a simple CMOS beta multiplier 1uA current source. It contains eight identical cells in one orientation and eight rotated 90 degrees, with all current outputs wired together to a single analog pin. Individual cells can be disabled via digital input pins to measure the current contributed by each cell. A silicon test report confirms the current source is functional, with measured currents around 0.4-0.9 uA per cell, though no external hardware is required.",
+   "summary": "This analog test chip evaluates mismatch in a simple CMOS beta multiplier 1uA current source. It contains eight identical cells in one orientation and eight rotated 90 degrees, with all current outputs wired together to a single analog pin. Individual cells can be disabled via digital input pins to measure the current contributed by each cell. A silicon test report confirms the current source is functional, with measured currents around 0.4-0.9 uA per cell, though no external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "0ad8ee28c83f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "error-correction",
+     "reason": "The design detects and signals errors but does not perform error correction."
+    },
+    {
+     "tag": "ascii",
+     "reason": "The design handles Unicode encodings (UTF-8/16/32), not ASCII text rendering or handling."
+    }
+   ],
+   "add": [],
+   "notes": "Removed error-correction and ascii tags as they are not supported by the source.",
+   "tags_before": [
+    "text",
+    "encoder",
+    "decoder",
+    "error-correction",
+    "ascii"
+   ],
+   "tags": [
+    "text",
+    "encoder",
+    "decoder"
+   ],
+   "summary_before": "This hardware module converts Unicode code points between UTF-8, UTF-16, and UTF-32 encodings. It detects and signals errors such as overlong encodings, out-of-range code points, and invalid byte sequences, with an option to disable range checking for the original UTF-8 specification. The design is intended to be used by any device that processes Unicode text, and it provides dedicated output pins for status signals like READY, ERROR, and various error types. Testing is supported by a comprehensive test set included in the project's test.py file, covering many edge cases.",
+   "summary": "This hardware module converts Unicode code points between UTF-8, UTF-16, and UTF-32 encodings. It detects and signals errors such as overlong encodings, out-of-range code points, and invalid byte sequences, with an option to disable range checking for the original UTF-8 specification. The design is intended to be used by any device that processes Unicode text, and it provides dedicated output pins for status signals like READY, ERROR, and various error types. Testing is supported by a comprehensive test set included in the project's test.py file, covering many edge cases.",
+   "summary_changed": false
+  },
+  {
+   "key": "a9be4dfa40cb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "power-management",
+     "reason": "The design is a charge pump for voltage boosting, not a power supply management application."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported power-management tag.",
+   "tags_before": [
+    "charge-pump",
+    "analog",
+    "power-management",
+    "transistor-level"
+   ],
+   "tags": [
+    "charge-pump",
+    "analog",
+    "transistor-level"
+   ],
+   "summary_before": "This project implements a 3-stage Dickson charge pump that steps up the input voltage to approximately 3.65V, with the output divided by two available on an analog pin. The design uses diodes and capacitors clocked at 2 MHz, but the output is limited by the analog pin voltage constraints (VDDIO/VDDA). Silicon testing by the author shows that the charge pump works but produces much lower voltage than simulation: at 30 MHz, the output peaks at 1.9V instead of the expected 3.6V. The design is a simple power conversion circuit intended for evaluation.",
+   "summary": "This project implements a 3-stage Dickson charge pump that steps up the input voltage to approximately 3.65V, with the output divided by two available on an analog pin. The design uses diodes and capacitors clocked at 2 MHz, but the output is limited by the analog pin voltage constraints (VDDIO/VDDA). Silicon testing by the author shows that the charge pump works but produces much lower voltage than simulation: at 30 MHz, the output peaks at 1.9V instead of the expected 3.6V. The design is a simple power conversion circuit intended for evaluation.",
+   "summary_changed": false
+  },
+  {
+   "key": "4bbf62355d6e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instrumentation",
+     "reason": "The design is a test structure for transistor characterization, not a measurement/instrumentation application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports confirm the transistors work as designed on a TT08 sample."
+    }
+   ],
+   "notes": "Removed unsupported instrumentation tag and added silicon-tested based on test reports.",
+   "tags_before": [
+    "transistor-level",
+    "analog",
+    "instrumentation",
+    "characterization"
+   ],
+   "tags": [
+    "transistor-level",
+    "analog",
+    "characterization",
+    "silicon-tested"
+   ],
+   "summary_before": "The Raw_Transistors project provides direct access to raw NMOS and PMOS transistors for performance evaluation. The circuit includes three MOSFETs (two NMOS and one PMOS) with separate gate, source, and drain connections brought out to analog pins. Testing requires a source-measure unit to apply bias voltages and measure currents. Silicon measurements on a TT08 sample confirmed that the transistors work as designed, making it useful for transistor characterization.",
+   "summary": "The Raw_Transistors project provides direct access to raw NMOS and PMOS transistors for performance evaluation. The circuit includes three MOSFETs (two NMOS and one PMOS) with separate gate, source, and drain connections brought out to analog pins. Testing requires a source-measure unit to apply bias voltages and measure currents. Silicon measurements on a TT08 sample confirmed that the transistors work as designed, making it useful for transistor characterization.",
+   "summary_changed": false
+  },
+  {
+   "key": "23ed2a208d85",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not indicate the design is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "led",
+    "button",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "led",
+    "button",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a counter that increments from 0 to 99 when a button is pressed, displaying the count on a 7-segment display. Two LEDs indicate whether the current count is even or odd. The design includes modules for button debouncing, counting, and display driving, and is intended for use with the Wokwi simulator. External hardware such as a 7-segment display and LEDs are required.",
+   "summary": "This project implements a counter that increments from 0 to 99 when a button is pressed, displaying the count on a 7-segment display. Two LEDs indicate whether the current count is even or odd. The design includes modules for button debouncing, counting, and display driving, and is intended for use with the Wokwi simulator. External hardware such as a 7-segment display and LEDs are required.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6190,
+  "completion_tokens": 1383,
+  "total_tokens": 7573,
+  "cost": 0.0025758,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0025758,
+   "upstream_inference_prompt_cost": 0.0009162,
+   "upstream_inference_completions_cost": 0.0016596
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0025758,
+ "elapsed_s": 39.2
+}

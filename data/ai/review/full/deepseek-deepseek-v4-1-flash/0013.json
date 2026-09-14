@@ -1,0 +1,213 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "0058b9ce9cfe",
+  "12b90da6a546",
+  "24313221dc62",
+  "de1fa7285815",
+  "637462aa2611",
+  "e82a93ef7874"
+ ],
+ "results": [
+  {
+   "key": "0058b9ce9cfe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "The source only says 'SPI test design' with no evidence of a communication protocol design beyond the SPI pins themselves."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, consisting only of a link to an unrelated ALU project."
+    }
+   ],
+   "notes": "Removed unsupported communication tag and added insufficient-doc to match very thin documentation.",
+   "tags_before": [
+    "spi",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "spi",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This is an SPI test design based on the tt07_alu_74181 project, as stated in the documentation. It includes SPI signals (MISO, MOSI, clock, chip select) and inputs for CPOL and CPHA, but the documentation provides no further details on functionality or testing. The design is likely a template or test for SPI communication, but its exact behavior is unclear from the available information. No external hardware is required according to the description.",
+   "summary": "This is an SPI test design based on the tt07_alu_74181 project, as stated in the documentation. It includes SPI signals (MISO, MOSI, clock, chip select) and inputs for CPOL and CPHA, but the documentation provides no further details on functionality or testing. The design is likely a test for SPI communication, but its exact behavior is unclear from the available information. No external hardware is required according to the description.",
+   "summary_changed": true
+  },
+  {
+   "key": "12b90da6a546",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source describes a test of simple logic, not a boilerplate or starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The description mentions 'simple logics applied', indicating basic logic gate implementation."
+    }
+   ],
+   "notes": "Removed template tag as source describes a logic test, not a template; added logic-gate.",
+   "tags_before": [
+    "insufficient-doc",
+    "wokwi",
+    "template"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "wokwi",
+    "logic-gate"
+   ],
+   "summary_before": "This project is described as a test to try fabricating a chip with some special function other than simple logic. The documentation is extremely thin and does not specify what the logic actually does or how it should behave. It uses eight inputs and eight outputs, but no external hardware is required according to the description. The design appears to be a learning exercise or template rather than a complete, documented circuit.",
+   "summary": "This project is described as a test to try fabricating a chip with some special function other than simple logic. The documentation is extremely thin and does not specify what the logic actually does or how it should behave. It uses eight inputs and eight outputs, but no external hardware is required according to the description. The design appears to be a learning exercise rather than a complete, documented circuit.",
+   "summary_changed": true
+  },
+  {
+   "key": "24313221dc62",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The pins are generic ui/uo/uio, not specifically general purpose digital IO with evidence of GPIO usage."
+    }
+   ],
+   "add": [],
+   "notes": "Removed gpio tag as pins are generic and no GPIO-specific evidence exists.",
+   "tags_before": [
+    "spi",
+    "communication",
+    "gpio",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "spi",
+    "communication",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design provides an SPI interface that converts serial input into 8-bit parallel output on the uo pins. The documentation states that an SPI interface is used, but does not describe the SPI mode, bit order, or register map. Testing requires an external SPI master such as an RP2040 board, and no other external hardware is specified. The documentation is thin and leaves key implementation details undefined.",
+   "summary": "This design provides an SPI interface that converts serial input into 8-bit parallel output on the uo pins. The documentation states that an SPI interface is used, but does not describe the SPI mode, bit order, or register map. Testing requires an external SPI master such as an RP2040 board, and no other external hardware is specified. The documentation is thin and leaves key implementation details undefined.",
+   "summary_changed": false
+  },
+  {
+   "key": "de1fa7285815",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The source describes a blinky with a clock downsampler, not a counter circuit."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "An XOR connection is mentioned but the design is not primarily a logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin with no testing instructions ('idk')."
+    }
+   ],
+   "notes": "Removed counter and logic-gate tags not supported by source; added insufficient-doc.",
+   "tags_before": [
+    "wokwi",
+    "counter",
+    "led",
+    "logic-gate",
+    "7-segment",
+    "clock-divider"
+   ],
+   "tags": [
+    "wokwi",
+    "led",
+    "7-segment",
+    "clock-divider",
+    "insufficient-doc"
+   ],
+   "summary_before": "The design is described as a small gorilla on a rampage and is essentially a blinky with a clock downsampler. Inputs 6 and 7 are connected to an XOR gate, and the configuration uses 8 switches for input. The outputs drive a 7-segment display, though the purpose of the gorilla theme is unclear. The documentation lacks testing instructions and is minimal.",
+   "summary": "The design is described as a small gorilla on a rampage and is essentially a blinky with a clock downsampler. Inputs 6 and 7 are connected to an XOR gate, and the configuration uses 8 switches for input. The outputs drive a 7-segment display, though the purpose of the gorilla theme is unclear. The documentation lacks testing instructions and is minimal.",
+   "summary_changed": false
+  },
+  {
+   "key": "637462aa2611",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "factory-test",
+    "analog",
+    "characterization"
+   ],
+   "tags": [
+    "factory-test",
+    "analog",
+    "characterization"
+   ],
+   "summary_before": "This project provides test structures for Tiny Tapeout analog support, including bias generation, power supply sensing, and loopback connections. The documentation is incomplete, with sections marked as FIXME, so the exact functionality and usage are not fully described. It appears to be intended for factory testing of analog infrastructure. No external hardware or testing procedure is specified in the available documentation.",
+   "summary": "This project provides test structures for Tiny Tapeout analog support, including bias generation, power supply sensing, and loopback connections. The documentation is incomplete, with sections marked as FIXME, so the exact functionality and usage are not fully described. It appears to be intended for factory testing of analog infrastructure. No external hardware or testing procedure is specified in the available documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "e82a93ef7874",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source is a placeholder with no evidence of being a boilerplate or starter template."
+    }
+   ],
+   "add": [],
+   "notes": "Removed template tag as source is a placeholder, not a template.",
+   "tags_before": [
+    "placeholder",
+    "incomplete",
+    "template",
+    "insufficient-doc",
+    "verilog"
+   ],
+   "tags": [
+    "placeholder",
+    "incomplete",
+    "insufficient-doc",
+    "verilog"
+   ],
+   "summary_before": "The project is titled \"Later\" and its one-line description, how-it-works and how-to-test sections all consist only of the word \"Later\". No functional description, pin names or test procedure are provided, so it is impossible to determine what the design does. The only concrete information is that it is a 1x1 Verilog tile with a 10 MHz clock. This appears to be an unfinished placeholder project with essentially no documentation.",
+   "summary": "The project is titled \"Later\" and its one-line description, how-it-works and how-to-test sections all consist only of the word \"Later\". No functional description, pin names or test procedure are provided, so it is impossible to determine what the design does. The only concrete information is that it is a 1x1 Verilog tile with a 10 MHz clock. This appears to be an unfinished placeholder project with essentially no documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5410,
+  "completion_tokens": 1193,
+  "total_tokens": 6603,
+  "cost": 0.0021138,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0021138,
+   "upstream_inference_prompt_cost": 0.0006822,
+   "upstream_inference_completions_cost": 0.0014316
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0021138,
+ "elapsed_s": 10.1
+}

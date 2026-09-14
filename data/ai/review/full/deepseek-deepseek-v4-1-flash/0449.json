@@ -1,0 +1,259 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "17029c7fe5ed",
+  "f9f3685afe61",
+  "ff1b2783099d",
+  "6d41335c90da",
+  "a44ea8d256d5",
+  "aaaa3f791aed"
+ ],
+ "results": [
+  {
+   "key": "17029c7fe5ed",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "divider",
+     "reason": "The 'divider' tag is for digital division arithmetic circuits; this design uses clock divider chains, not an arithmetic divider."
+    },
+    {
+     "tag": "counter",
+     "reason": "The outputs are divided-down clock taps, not a counting circuit with a count value."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "The design explicitly provides divide-by-2 through divide-by-32768 outputs from the ring oscillator."
+    }
+   ],
+   "notes": "Replaced arithmetic 'divider'/'counter' tags with 'clock-divider', which matches the documented divide-by-N outputs.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "divider",
+    "counter"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "clock-generator",
+    "clock-divider"
+   ],
+   "summary_before": "This design is a five-inverter ring oscillator with an enable input and a set of divided-down outputs ranging from divide-by-1 up to divide-by-32768. It is used by releasing reset, setting the ring enable input high, and measuring the frequency at the various outputs. External hardware is a frequency counter, and the design is a small 1x1 tile with no other interfaces. No silicon test report is provided, so the actual oscillation frequency on silicon is not documented.",
+   "summary": "This design is a five-inverter ring oscillator with an enable input and a set of divided-down outputs ranging from divide-by-1 up to divide-by-32768. It is used by releasing reset, setting the ring enable input high, and measuring the frequency at the various outputs. External hardware is a frequency counter, and the design is a small 1x1 tile with no other interfaces. No silicon test report is provided, so the actual oscillation frequency on silicon is not documented.",
+   "summary_changed": false
+  },
+  {
+   "key": "f9f3685afe61",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing algorithm or datapath is described; the chip evaluates bytebeat formulas and emits PWM."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "The source describes bytebeat formula evaluation, not a tone synthesizer design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sound-generator",
+     "reason": "The design is a programmable sound/tone generator driven by parameter buses."
+    },
+    {
+     "tag": "speaker",
+     "reason": "The documented use is connecting a speaker or TT Audio PMOD to the PWM outputs."
+    }
+   ],
+   "notes": "Removed unsupported dsp/synthesizer tags and added sound-generator and speaker tags supported by the bytebeat PWM audio description.",
+   "tags_before": [
+    "audio",
+    "music",
+    "pwm",
+    "synthesizer",
+    "signal-generator",
+    "dsp"
+   ],
+   "tags": [
+    "audio",
+    "music",
+    "pwm",
+    "signal-generator",
+    "sound-generator",
+    "speaker"
+   ],
+   "summary_before": "This chip generates bytebeat music by evaluating five fixed bytebeat formulas and emitting PWM audio on several output pins. Four 4-bit parameter buses (a, b, c, d) select the values used in the formulas, and the outputs can be connected to speakers or the TinyTapeout Audio PMOD. Testing involves connecting a speaker to a chosen output pin and adjusting the parameter pins with binary rotary switches. External hardware needed is 16-position rotary switches and speakers or the TT Audio PMOD, with out7 requiring the audio PMOD.",
+   "summary": "This chip generates bytebeat music by evaluating five fixed bytebeat formulas and emitting PWM audio on several output pins. Four 4-bit parameter buses (a, b, c, d) select the values used in the formulas, and the outputs can be connected to speakers or the TinyTapeout Audio PMOD. Testing involves connecting a speaker to a chosen output pin and adjusting the parameter pins with binary rotary switches. External hardware needed is 16-position rotary switches and speakers or the TT Audio PMOD, with out7 requiring the audio PMOD.",
+   "summary_changed": false
+  },
+  {
+   "key": "ff1b2783099d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a full ALU, not a basic logic gate implementation."
+    },
+    {
+     "tag": "calculator",
+     "reason": "There is no keypad or numeric display; the ALU is controlled by switches and outputs bits/flags."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The ALU operations are selected by input pins and produce outputs without a documented sequential state machine."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "Subtraction is one of the explicitly implemented operations."
+    },
+    {
+     "tag": "barrel-shifter",
+     "reason": "The ALU implements shifts and rotates in both directions."
+    }
+   ],
+   "notes": "Removed unsupported logic-gate/calculator tags and added combinational, subtractor, and barrel-shifter tags supported by the ALU operations.",
+   "tags_before": [
+    "alu",
+    "logic-gate",
+    "calculator"
+   ],
+   "tags": [
+    "alu",
+    "combinational",
+    "subtractor",
+    "barrel-shifter"
+   ],
+   "summary_before": "This is a fully functional 4-bit ALU that performs common operations such as addition, subtraction, bitwise logic, shifts, rotates, and complements on two 4-bit inputs. The operation is selected via four bidirectional pins, and a subtract mode pin determines addition or subtraction. The result appears on four output pins along with carry, zero, negative, and overflow flags. The design requires no external hardware and is tested by setting the input pins and selecting an operation.",
+   "summary": "This is a fully functional 4-bit ALU that performs common operations such as addition, subtraction, bitwise logic, shifts, rotates, and complements on two 4-bit inputs. The operation is selected via four bidirectional pins, and a subtract mode pin determines addition or subtraction. The result appears on four output pins along with carry, zero, negative, and overflow flags. The design requires no external hardware and is tested by setting the input pins and selecting an operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "6d41335c90da",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "aes",
+    "cipher",
+    "crypto",
+    "side-channel",
+    "security",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "aes",
+    "cipher",
+    "crypto",
+    "side-channel",
+    "security",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "The design implements the Canright S-box for the AES block cipher, with both unmasked and masked versions to resist side-channel attacks. It is controlled through a command interface on the bidirectional pins, allowing loading of data, key, mask, and pseudo-random values, and selection of which S-box to evaluate. The outputs provide the S-box result or the mask output, depending on the command. The design is verified using cocotb test vectors, and it is notable for including a masked S-box implementation in a small footprint.",
+   "summary": "The design implements the Canright S-box for the AES block cipher, with both unmasked and masked versions to resist side-channel attacks. It is controlled through a command interface on the bidirectional pins, allowing loading of data, key, mask, and pseudo-random values, and selection of which S-box to evaluate. The outputs provide the S-box result or the mask output, depending on the command. The design is verified using cocotb test vectors, and it is notable for including a masked S-box implementation in a small footprint.",
+   "summary_changed": false
+  },
+  {
+   "key": "a44ea8d256d5",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "music",
+    "buzzer",
+    "pwm",
+    "audio",
+    "verilog"
+   ],
+   "tags": [
+    "music",
+    "buzzer",
+    "pwm",
+    "audio",
+    "verilog"
+   ],
+   "summary_before": "This design plays two songs, 'Never Gonna Give You Up' and 'Imperial March', on a piezo buzzer using PWM output. The song selection and pause are controlled by two input pins, and the output is a single PWM signal that drives the buzzer. The design stores note sequences and uses the clock to generate the correct frequencies and durations. It requires an external piezo buzzer connected to the output pin, and the clock should be set to 50 MHz for correct playback.",
+   "summary": "This design plays two songs, 'Never Gonna Give You Up' and 'Imperial March', on a piezo buzzer using PWM output. The song selection and pause are controlled by two input pins, and the output is a single PWM signal that drives the buzzer. The design stores note sequences and uses the clock to generate the correct frequencies and durations. It requires an external piezo buzzer connected to the output pin, and the clock should be set to 50 MHz for correct playback.",
+   "summary_changed": false
+  },
+  {
+   "key": "aaaa3f791aed",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "demoscene",
+     "reason": "The source describes a VGA bouncing-text display with a starfield, not a demoscene production."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "The documentation states the design is verified with cocotb tests."
+    },
+    {
+     "tag": "ascii",
+     "reason": "The design renders text characters ('EMBEDDEDINN') using a generative font."
+    }
+   ],
+   "notes": "Removed unsupported demoscene tag and added cocotb and ascii tags supported by the documentation.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "text",
+    "graphics",
+    "demoscene",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "text",
+    "graphics",
+    "verilog",
+    "cocotb",
+    "ascii"
+   ],
+   "summary_before": "This design displays bouncing text 'EMBEDDEDINN' with a parallax starfield on a VGA monitor at 640x480 @ 60Hz. It uses a generative font and allows the user to change speed, palette, and toggle scanlines via input pins. The design requires a TinyVGA PMOD and a VGA monitor to operate. The cocotb tests verify VGA timing compliance and proper frame generation.",
+   "summary": "This design displays bouncing text 'EMBEDDEDINN' with a parallax starfield on a VGA monitor at 640x480 @ 60Hz. It uses a generative font and allows the user to change speed, palette, and toggle scanlines via input pins. The design requires a TinyVGA PMOD and a VGA monitor to operate. The cocotb tests verify VGA timing compliance and proper frame generation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7453,
+  "completion_tokens": 1508,
+  "total_tokens": 8961,
+  "cost": 0.005056875,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.005056875,
+   "upstream_inference_prompt_cost": 0.002794875,
+   "upstream_inference_completions_cost": 0.002262
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.005056875,
+ "elapsed_s": 6.4
+}

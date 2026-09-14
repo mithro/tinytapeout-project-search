@@ -1,0 +1,239 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f7e73dc9176f",
+  "95c6feb8872c",
+  "ec37094b703a",
+  "6f20b0adb32a",
+  "498c6f747c35",
+  "8c62dfd476b3"
+ ],
+ "results": [
+  {
+   "key": "f7e73dc9176f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "esoteric",
+    "cpu",
+    "spi",
+    "memory",
+    "interrupt-controller",
+    "verilog"
+   ],
+   "tags": [
+    "esoteric",
+    "cpu",
+    "spi",
+    "memory",
+    "interrupt-controller",
+    "verilog"
+   ],
+   "summary_before": "The Brainf*ck ASIC is a hardware interpreter for the Brainf*ck language that stores its tape in external SPI RAM and communicates with a host over a two-wire serial link. It accepts encoded instruction bits and validity on its inputs, drives SPI chip select, MOSI, MISO, and clock on the bidirectional pins, and exposes transmit, interrupt, and inspection signals on the outputs. Testing requires the Tiny Tapeout I/O board with an RP2040 or RP2350 running SPI RAM emulation firmware, plus a protoboard and wiring, and programs are converted from Brainf*ck source with a provided Python script. The design is notable for offloading bracket handling to an interrupt-driven MCU collaboration and for using external memory rather than on-chip storage.",
+   "summary": "The Brainf*ck ASIC is a hardware interpreter for the Brainf*ck language that stores its tape in external SPI RAM and communicates with a host over a two-wire serial link. It accepts encoded instruction bits and validity on its inputs, drives SPI chip select, MOSI, MISO, and clock on the bidirectional pins, and exposes transmit, interrupt, and inspection signals on the outputs. Testing requires the Tiny Tapeout I/O board with an RP2040 or RP2350 running SPI RAM emulation firmware, plus a protoboard and wiring, and programs are converted from Brainf*ck source with a provided Python script. The design is notable for offloading bracket handling to an interrupt-driven MCU collaboration and for using external memory rather than on-chip storage.",
+   "summary_changed": false
+  },
+  {
+   "key": "95c6feb8872c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dac",
+     "reason": "The design does not implement an on-chip DAC; it only suggests an external R-2R ladder is needed for practical audio."
+    },
+    {
+     "tag": "adc",
+     "reason": "No ADC is implemented; the design accepts digital audio and only mentions external ADCs as required hardware."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "This is an audio processor/modifier, not a waveform or signal generator."
+    },
+    {
+     "tag": "filter-analog",
+     "reason": "No analog filter is implemented; anti-aliasing and reconstruction filters are external components."
+    }
+   ],
+   "add": [],
+   "notes": "Removed DAC/ADC/signal-generator/filter-analog tags because those functions are only external supporting hardware, not implemented on chip.",
+   "tags_before": [
+    "audio",
+    "dsp",
+    "dac",
+    "adc",
+    "lookup-table",
+    "verilog",
+    "signal-generator",
+    "filter-analog"
+   ],
+   "tags": [
+    "audio",
+    "dsp",
+    "lookup-table",
+    "verilog"
+   ],
+   "summary_before": "This design implements a real-time audio transient shaper that independently controls the attack and sustain portions of an audio signal using dual envelope followers. It processes 6-bit digital audio input and produces 8-bit digital audio output, with control pins for attack and sustain amounts. The design operates entirely in the digital domain and requires external ADCs, DACs, and analog filters for practical audio use. It is a compact DSP block for audio effects, notable for its envelope modulation technique.",
+   "summary": "This design implements a real-time audio transient shaper that independently controls the attack and sustain portions of an audio signal using dual envelope followers. It processes 6-bit digital audio input and produces 8-bit digital audio output, with control pins for attack and sustain amounts. The design operates entirely in the digital domain and requires external ADCs, DACs, and analog filters for practical audio use. It is a compact DSP block for audio effects, notable for its envelope modulation technique.",
+   "summary_changed": false
+  },
+  {
+   "key": "ec37094b703a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "7-segment",
+    "wokwi",
+    "education",
+    "display",
+    "combinational"
+   ],
+   "tags": [
+    "adder",
+    "7-segment",
+    "wokwi",
+    "education",
+    "display",
+    "combinational"
+   ],
+   "summary_before": "This design adds the values of the eight input switches and displays the single-digit sum on a 7-segment display. If the sum exceeds 9, the display is blanked, so only sums from 0 to 9 are shown. It is intended as a simple educational demonstration of combinational logic and arithmetic. External hardware required is a single 7-segment display; no on-chip memory or clock is used.",
+   "summary": "This design adds the values of the eight input switches and displays the single-digit sum on a 7-segment display. If the sum exceeds 9, the display is blanked, so only sums from 0 to 9 are shown. It is intended as a simple educational demonstration of combinational logic and arithmetic. External hardware required is a single 7-segment display; no on-chip memory or clock is used.",
+   "summary_changed": false
+  },
+  {
+   "key": "6f20b0adb32a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "mac-unit",
+    "accelerator",
+    "sequential-logic",
+    "fsm",
+    "rp2040",
+    "edge-ai"
+   ],
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "mac-unit",
+    "accelerator",
+    "sequential-logic",
+    "fsm",
+    "rp2040",
+    "edge-ai"
+   ],
+   "summary_before": "This design is a sequential neural network inference accelerator for the MNIST dataset, featuring an 8-bit multiply-accumulate datapath and an 11-state control finite state machine. It is intended to be driven by an external microcontroller such as the RP2040 or RP2350 on the Tiny Tapeout demo board, which feeds pre-trained weights and input data through the 8-bit input pins while controlling data type and toggling. The chip outputs a 4-bit classification result for one of ten digit classes, along with status signals such as busy, done, and error flag. The design occupies a 1x2 tile area and runs at 50 MHz.",
+   "summary": "This design is a sequential neural network inference accelerator for the MNIST dataset, featuring an 8-bit multiply-accumulate datapath and an 11-state control finite state machine. It is intended to be driven by an external microcontroller such as the RP2040 or RP2350 on the Tiny Tapeout demo board, which feeds pre-trained weights and input data through the 8-bit input pins while controlling data type and toggling. The chip outputs a 4-bit classification result for one of ten digit classes, along with status signals such as busy, done, and error flag. The design occupies a 1x2 tile area and runs at 50 MHz.",
+   "summary_changed": false
+  },
+  {
+   "key": "498c6f747c35",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asic",
+     "reason": "The documentation never claims an ASIC or tapeout-specific implementation; factory-test/asic tags are unsupported."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "A cocotb test suite of 30 tests is described and reported passing on RTL."
+    },
+    {
+     "tag": "processor-experiment",
+     "reason": "The design is explicitly intended for PVT characterization and fault/aging detection; canonical tag is process-experiment."
+    }
+   ],
+   "notes": "Removed unsupported asic tag and added cocotb and process-experiment to match the documented test suite and characterization intent.",
+   "tags_before": [
+    "ring-oscillator",
+    "trng",
+    "characterization",
+    "spi",
+    "frequency-counter",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "trng",
+    "characterization",
+    "spi",
+    "frequency-counter",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This project integrates five configurable ring oscillators with a 16-bit frequency counter, a true random number generator, and a health monitor for PVT characterization and fault detection. It supports both parallel and SPI control modes, with features like auto gate timing, prescaler, and differential beat-frequency measurement. Testing involves configuring via SPI or parallel pins, gating the oscillators, and reading the counts or TRNG data. The design is notable for its comprehensive on-chip characterization capabilities and all-digital implementation.",
+   "summary": "This project integrates five configurable ring oscillators with a 16-bit frequency counter, a true random number generator, and a health monitor for PVT characterization and fault detection. It supports both parallel and SPI control modes, with features like auto gate timing, prescaler, and differential beat-frequency measurement. Testing involves configuring via SPI or parallel pins, gating the oscillators, and reading the counts or TRNG data. The design is notable for its comprehensive on-chip characterization capabilities and all-digital implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "8c62dfd476b3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "compression",
+     "reason": "The design performs nonlinear compression (signal magnitude reduction), not data compression/decompression."
+    }
+   ],
+   "add": [],
+   "notes": "Compression tag removed because the documented mode is nonlinear signal compression, not data compression; the summary otherwise matches the source.",
+   "tags_before": [
+    "dsp",
+    "fir-filter",
+    "mac-unit",
+    "edge-detector",
+    "compression",
+    "verilog"
+   ],
+   "tags": [
+    "dsp",
+    "fir-filter",
+    "mac-unit",
+    "edge-detector",
+    "verilog"
+   ],
+   "summary_before": "This is a multi-mode digital signal processing unit that takes two 8-bit inputs and selects one of four operations from their low bits: FIR filtering, multiply-accumulate, edge detection or nonlinear compression. It keeps a previous output value so that some modes depend on past data, and the output updates every clock cycle. Testing is done with a cocotb testbench that cycles through all modes and produces a VCD waveform for inspection in GTKWave. No external hardware is required and no silicon measurements are reported.",
+   "summary": "This is a multi-mode digital signal processing unit that takes two 8-bit inputs and selects one of four operations from their low bits: FIR filtering, multiply-accumulate, edge detection or nonlinear compression. It keeps a previous output value so that some modes depend on past data, and the output updates every clock cycle. Testing is done with a cocotb testbench that cycles through all modes and produces a VCD waveform for inspection in GTKWave. No external hardware is required and no silicon measurements are reported.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "498c6f747c35: reviewer added non-canonical tag 'processor-experiment'"
+ ],
+ "usage": {
+  "prompt_tokens": 8669,
+  "completion_tokens": 1361,
+  "total_tokens": 10030,
+  "cost": 0.0042339,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042339,
+   "upstream_inference_prompt_cost": 0.0026007,
+   "upstream_inference_completions_cost": 0.0016332
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042339,
+ "elapsed_s": 7.1
+}

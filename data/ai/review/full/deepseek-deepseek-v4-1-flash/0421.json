@@ -1,0 +1,255 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9319534f5a90",
+  "3dacffbfde8e",
+  "00f868a71208",
+  "62c351607a7e",
+  "5cf977044221",
+  "40231bd7cacd"
+ ],
+ "results": [
+  {
+   "key": "9319534f5a90",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a simple 4-bit adder, not an arithmetic logic unit with multiple operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The documentation explicitly states it is a combinational system."
+    }
+   ],
+   "notes": "Removed alu because the design is only a 4-bit adder, and added combinational based on the explicit documentation.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "education",
+    "combinational"
+   ],
+   "summary_before": "This is a 4-bit adder that adds two 4-bit inputs and produces a 5-bit output, including the final carry. It is built from full-adder cells and is a purely combinational circuit. Testing is straightforward: apply the operand values to the eight input pins and observe the sum on the five output pins. The design is implemented in Wokwi and is suitable for educational use.",
+   "summary": "This is a 4-bit adder that adds two 4-bit inputs and produces a 5-bit output, including the final carry. It is built from full-adder cells and is a purely combinational circuit. Testing is straightforward: apply the operand values to the eight input pins and observe the sum on the five output pins. The design is implemented in Wokwi and is suitable for educational use.",
+   "summary_changed": false
+  },
+  {
+   "key": "3dacffbfde8e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "counter",
+    "flip-flop",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "flip-flop",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design displays the text 'UCHILE-FCFM-' on a 7-segment display by using a ripple counter built from D flip-flops. The counter can be clocked to cycle through the characters, or disabled to allow manual input of a counter value via four input pins. The logic was optimized using the Quine-McCluskey algorithm. It is implemented in Wokwi and is intended for educational purposes.",
+   "summary": "This design displays the text 'UCHILE-FCFM-' on a 7-segment display by using a ripple counter built from D flip-flops. The counter can be clocked to cycle through the characters, or disabled to allow manual input of a counter value via four input pins. The logic was optimized using the Quine-McCluskey algorithm. It is implemented in Wokwi and is intended for educational purposes.",
+   "summary_changed": false
+  },
+  {
+   "key": "00f868a71208",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The documentation describes a counter, decoder, comparator, and state maintainer, but does not describe a finite state machine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design uses a 4-bit counter for randomization."
+    },
+    {
+     "tag": "decoder",
+     "reason": "A decoder is used to turn on one of the LEDs."
+    }
+   ],
+   "notes": "Removed fsm because no finite state machine is described, and added counter and decoder which are explicitly used.",
+   "tags_before": [
+    "game",
+    "prng",
+    "led",
+    "button",
+    "comparator",
+    "fsm",
+    "wokwi"
+   ],
+   "tags": [
+    "game",
+    "prng",
+    "led",
+    "button",
+    "comparator",
+    "wokwi",
+    "counter",
+    "decoder"
+   ],
+   "summary_before": "This project is a randomizer game that generates a random number between 0 and 3, lights up the corresponding LED, and then checks if the user presses the correct button. It uses a 4-bit counter for randomization, a decoder to drive the LEDs, and a comparator to determine if the pressed button matches the lit LED. The design includes a state maintainer to hold the result until reset. It requires external buttons and LEDs, and is implemented in Wokwi.",
+   "summary": "This project is a randomizer game that generates a random number between 0 and 3, lights up the corresponding LED, and then checks if the user presses the correct button. It uses a 4-bit counter for randomization, a decoder to drive the LEDs, and a comparator to determine if the pressed button matches the lit LED. The design includes a state maintainer to hold the result until reset. It requires external buttons and LEDs, and is implemented in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "62c351607a7e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "The design is a traffic light simulator, not an industrial control application."
+    },
+    {
+     "tag": "timer",
+     "reason": "No programmable timer block is described; the design uses the internal clock and logic gates."
+    },
+    {
+     "tag": "led",
+     "reason": "The outputs are traffic light signals, not discrete LED outputs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fsm",
+     "reason": "The traffic light controller cycles through states based on logical combinations, which is a finite state machine."
+    }
+   ],
+   "notes": "Removed industrial, timer, and led tags not supported by the source; added fsm as the design is a state-based controller.",
+   "tags_before": [
+    "industrial",
+    "fsm",
+    "timer",
+    "led",
+    "wokwi"
+   ],
+   "tags": [
+    "fsm",
+    "wokwi"
+   ],
+   "summary_before": "This project simulates a traffic light system for a two-way intersection with a pedestrian crosswalk. It uses the chip's internal clock and low-level reset to cycle through states, controlling two sets of traffic lights and pedestrian signals. The design is based on logical combinations to determine each state, and testing involves observing the sequence of lights. It is implemented in Wokwi and requires external LEDs for the lights.",
+   "summary": "This project simulates a traffic light system for a two-way intersection with a pedestrian crosswalk. It uses the chip's internal clock and low-level reset to cycle through states, controlling two sets of traffic lights and pedestrian signals. The design is based on logical combinations to determine each state, and testing involves observing the sequence of lights. It is implemented in Wokwi and requires external LEDs for the lights.",
+   "summary_changed": false
+  },
+  {
+   "key": "5cf977044221",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design uses individual D flip-flops for password and attempt registers, not a multi-register file."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The control is done by a latch and logic gates, not a finite state machine."
+    }
+   ],
+   "add": [
+    {
+     "tag": "security",
+     "reason": "The design is a lock that compares a stored password with an attempt, which is a security application."
+    }
+   ],
+   "notes": "Removed register-file and fsm as they are not supported; added security which is already present but ensure it's kept.",
+   "tags_before": [
+    "security",
+    "register-file",
+    "flip-flop",
+    "comparator",
+    "fsm",
+    "wokwi"
+   ],
+   "tags": [
+    "security",
+    "flip-flop",
+    "comparator",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a 6-bit locker that stores a password and compares it with subsequent attempts. It uses D flip-flops for password and attempt registers, and XOR gates for comparison. The lock outputs a signal indicating whether the entered combination matches the stored password. It requires external step and reset buttons, as well as switches for password entry, and is implemented in Wokwi.",
+   "summary": "This project implements a 6-bit locker that stores a password and compares it with subsequent attempts. It uses D flip-flops for password and attempt registers, and XOR gates for comparison. The lock outputs a signal indicating whether the entered combination matches the stored password. It requires external step and reset buttons, as well as switches for password entry, and is implemented in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "40231bd7cacd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The design is a cellular automaton that could be explored for pseudo-random number generation, but it is not a dedicated PRNG."
+    },
+    {
+     "tag": "esoteric",
+     "reason": "The design is a cellular automaton, not an esoteric programming language or novelty computation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cellular-automaton",
+     "reason": "The design implements a cellular automaton based on Rule 110."
+    },
+    {
+     "tag": "memory",
+     "reason": "The design includes a read/write bus to inspect and modify cell states, which is a form of memory storage."
+    }
+   ],
+   "notes": "Removed prng and esoteric as they are not primary functions; added cellular-automaton and memory based on the design's features.",
+   "tags_before": [
+    "cellular-automaton",
+    "prng",
+    "esoteric"
+   ],
+   "tags": [
+    "cellular-automaton",
+    "memory"
+   ],
+   "summary_before": "This design implements a parallel cellular automaton based on Rule 110, capable of running over 200 cells in parallel each clock cycle. It provides a read/write bus to inspect and modify cell states, with addresses for blocks of 8 cells. The automaton can be halted and resumed, and is intended for exploring complex behavior, pseudo-random number generation, and computation. It requires no external hardware beyond the Tiny Tapeout interface.",
+   "summary": "This design implements a parallel cellular automaton based on Rule 110, capable of running over 200 cells in parallel each clock cycle. It provides a read/write bus to inspect and modify cell states, with addresses for blocks of 8 cells. The automaton can be halted and resumed, and is intended for exploring complex behavior, pseudo-random number generation, and computation. It requires no external hardware beyond the Tiny Tapeout interface.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8251,
+  "completion_tokens": 1460,
+  "total_tokens": 9711,
+  "cost": 0.0042273,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042273,
+   "upstream_inference_prompt_cost": 0.0024753,
+   "upstream_inference_completions_cost": 0.001752
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042273,
+ "elapsed_s": 19.5
+}

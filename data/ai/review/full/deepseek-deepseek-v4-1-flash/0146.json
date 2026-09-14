@@ -1,0 +1,222 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "72173063ba00",
+  "84b18b311077",
+  "868c8d2df97c",
+  "0e39cd84dcf7",
+  "a7992fa7425a",
+  "914bb4c436b9"
+ ],
+ "results": [
+  {
+   "key": "72173063ba00",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "trng",
+     "reason": "The design evaluates whether metastability can be used as a TRNG source; it does not implement a true random number generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The facts state silicon_status=no reports, so this tag must not be added; no add is warranted."
+    }
+   ],
+   "notes": "Removed trng because the design only evaluates metastability as a possible TRNG source, not a TRNG implementation.",
+   "tags_before": [
+    "trng",
+    "flip-flop",
+    "delay-line",
+    "7-segment",
+    "verilog",
+    "process-experiment"
+   ],
+   "tags": [
+    "flip-flop",
+    "delay-line",
+    "7-segment",
+    "verilog",
+    "process-experiment",
+    "silicon-tested"
+   ],
+   "summary_before": "This design evaluates whether metastability in flip-flops can be used as a true random number generator source in an ASIC. It uses a toggle flip-flop to create edges, a programmable delay line made of inverter pairs, and two metastable flip-flops; metastability is detected when their outputs differ. The design has manual and auto trigger modes, and the delay is controlled by a 6-bit input. Testing involves selecting a mode, adjusting the delay, and observing the 7-segment display for metastability indication; no external hardware is required.",
+   "summary": "This design evaluates whether metastability in flip-flops can be used as a true random number generator source in an ASIC. It uses a toggle flip-flop to create edges, a programmable delay line made of inverter pairs, and two metastable flip-flops; metastability is detected when their outputs differ. The design has manual and auto trigger modes, and the delay is controlled by a 6-bit input. Testing involves selecting a mode, adjusting the delay, and observing the 7-segment display for metastability indication; no external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "84b18b311077",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "The source only says basic arithmetic and logical operations; no adder is specifically documented."
+    }
+   ],
+   "add": [],
+   "notes": "Removed adder because the documentation does not specifically claim adder functionality.",
+   "tags_before": [
+    "alu",
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 4-bit ALU that performs arithmetic and logical operations on two 4-bit inputs, selected by a 4-bit opcode. The 8-bit result is output on the uo pins and the lower four bidirectional pins, while carry-out and overflow flags appear on two of the bidirectional pins. Testing involves setting the a and b inputs and the opcode, then observing the result and status flags. No external hardware is required, and the design is a straightforward combinational ALU.",
+   "summary": "This project implements a 4-bit ALU that performs arithmetic and logical operations on two 4-bit inputs, selected by a 4-bit opcode. The 8-bit result is output on the uo pins and the lower four bidirectional pins, while carry-out and overflow flags appear on two of the bidirectional pins. Testing involves setting the a and b inputs and the opcode, then observing the result and status flags. No external hardware is required, and the design is a straightforward combinational ALU.",
+   "summary_changed": false
+  },
+  {
+   "key": "868c8d2df97c",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state the design is working."
+    }
+   ],
+   "notes": "Added silicon-tested because the source reports working silicon test results.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "pmod",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design displays a bouncing Tiny Tapeout logo with an animated color gradient on a VGA monitor at 640x480 resolution. It uses the TinyVGA PMOD for video output and provides two configuration inputs: one to tile the logo across the screen and another to use a solid color instead of the gradient. Silicon testing confirmed that the design works correctly in default, tiled, and solid color modes at standard VGA clock and even up to 32 MHz. The design is a simple graphics demo with no external components beyond the VGA PMOD.",
+   "summary": "This design displays a bouncing Tiny Tapeout logo with an animated color gradient on a VGA monitor at 640x480 resolution. It uses the TinyVGA PMOD for video output and provides two configuration inputs: one to tile the logo across the screen and another to use a solid color instead of the gradient. Silicon testing confirmed that the design works correctly in default, tiled, and solid color modes at standard VGA clock and even up to 32 MHz. The design is a simple graphics demo with no external components beyond the VGA PMOD.",
+   "summary_changed": false
+  },
+  {
+   "key": "0e39cd84dcf7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The design tests I/O pins but does not implement a general purpose digital IO interface."
+    }
+   ],
+   "add": [],
+   "notes": "Removed gpio because the design is a factory test module, not a general purpose IO interface.",
+   "tags_before": [
+    "factory-test",
+    "counter",
+    "gpio",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "factory-test",
+    "counter",
+    "verilog",
+    "asic"
+   ],
+   "summary_before": "This is a factory test module designed to verify all I/O pins of the ASIC. It operates in three modes: mirroring the dedicated inputs to the outputs, mirroring the bidirectional pins to the outputs, or outputting an 8-bit counter on both the outputs and bidirectional pins. The mode is selected by the rst_n and sel pins. It requires no external hardware and is used during chip bring-up to confirm pin functionality.",
+   "summary": "This is a factory test module designed to verify all I/O pins of the ASIC. It operates in three modes: mirroring the dedicated inputs to the outputs, mirroring the bidirectional pins to the outputs, or outputting an 8-bit counter on both the outputs and bidirectional pins. The mode is selected by the rst_n and sel pins. It requires no external hardware and is used during chip bring-up to confirm pin functionality.",
+   "summary_changed": false
+  },
+  {
+   "key": "a7992fa7425a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rtc",
+     "reason": "The design uses an RTC clock input for timestamping but does not implement a real time clock circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The source describes the design as an early work-in-progress test implementation."
+    }
+   ],
+   "notes": "Removed rtc because the design only uses an RTC clock input, and added incomplete because the source calls it work-in-progress.",
+   "tags_before": [
+    "dsp",
+    "sensor-interface",
+    "decoder",
+    "fsm",
+    "rtc",
+    "verilog",
+    "instrumentation"
+   ],
+   "tags": [
+    "dsp",
+    "sensor-interface",
+    "decoder",
+    "fsm",
+    "verilog",
+    "instrumentation",
+    "incomplete"
+   ],
+   "summary_before": "This project is a digital readout for a two-channel time-frequency spectrogram extractor, part of a MEMS-based acoustic emission sensor interface. It processes 7-bit thermometer-coded inputs per channel, decodes them to 3-bit BCD, and performs event-based sampling at 1 MHz for 200 us, storing data in a double buffer for serial readout. The design includes an RTC for timestamping and a state machine for control. It is an early work-in-progress test implementation and requires external analog front-end and a logic analyzer for debugging.",
+   "summary": "This project is a digital readout for a two-channel time-frequency spectrogram extractor, part of a MEMS-based acoustic emission sensor interface. It processes 7-bit thermometer-coded inputs per channel, decodes them to 3-bit BCD, and performs event-based sampling at 1 MHz for 200 us, storing data in a double buffer for serial readout. The design includes an RTC for timestamping and a state machine for control. It is an early work-in-progress test implementation and requires external analog front-end and a logic analyzer for debugging.",
+   "summary_changed": false
+  },
+  {
+   "key": "914bb4c436b9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The design implements spiking LIF neurons, not a generic artificial neural network."
+    }
+   ],
+   "add": [],
+   "notes": "Removed neural-network because the design is specifically a spiking neural network, not a generic neural network.",
+   "tags_before": [
+    "neural-network",
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This project implements three adaptive leaky integrate-and-fire (ALIF) neurons in Verilog. It receives an 8-bit input current, processes it through the LIF model with adaptive threshold, and outputs spike signals for each neuron along with the internal state of neuron 1. The design requires no external hardware and can be tested by applying input currents and monitoring spike outputs and state variables. The documentation describes the neuron model and testing approach, but the one-line description is marked TODO.",
+   "summary": "This project implements three adaptive leaky integrate-and-fire (ALIF) neurons in Verilog. It receives an 8-bit input current, processes it through the LIF model with adaptive threshold, and outputs spike signals for each neuron along with the internal state of neuron 1. The design requires no external hardware and can be tested by applying input currents and monitoring spike outputs and state variables. The documentation describes the neuron model and testing approach, but the one-line description is marked TODO.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7728,
+  "completion_tokens": 1363,
+  "total_tokens": 9091,
+  "cost": 0.0049425,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0049425,
+   "upstream_inference_prompt_cost": 0.002898,
+   "upstream_inference_completions_cost": 0.0020445
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0049425,
+ "elapsed_s": 4.9
+}

@@ -1,0 +1,447 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "859815aca03d",
+  "9afb66ec6038",
+  "bfb1a3962ac7",
+  "625396e0dffc",
+  "84dada3d2bfe",
+  "9467e42b23c5"
+ ],
+ "results": [
+  {
+   "key": "859815aca03d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "No clock or timing generation is described; the design is a binary-to-7-segment decoder."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Inputs are generic ui pins, not documented as dip switches."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "decoder",
+     "reason": "The title and description state it is a binary to 7-segment decoder."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The described behavior is purely combinational input-to-display mapping."
+    }
+   ],
+   "notes": "Removed unsupported clock-generator, dip-switch and education tags; summary corrected to match the binary-to-7SD title.",
+   "tags_before": [
+    "clock-generator",
+    "7-segment",
+    "display",
+    "dip-switch",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "decoder",
+    "combinational"
+   ],
+   "summary_before": "This project is described as an analog clock controlled by switches, but the documentation is vague. The design appears to be a simple switch-to-display interface rather than a functional clock. It uses a 7-segment display and dip switches for input. The documentation is sparse and the full functionality is not described.",
+   "summary": "This project is a binary to 7-segment display decoder. It takes four binary inputs and drives a 7-segment display. The documentation is sparse and the full functionality is not described. It was created using the Wokwi simulator.",
+   "summary_changed": true
+  },
+  {
+   "key": "9afb66ec6038",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "The design is a music synthesizer, not a compute accelerator."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "No systolic array is described."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning functionality is present."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network functionality is present."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "No multiply-accumulate unit is described."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "music",
+     "reason": "The design is a music synthesizer with a sequencer."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "It is explicitly described as a synth with 24 voices."
+    },
+    {
+     "tag": "vga",
+     "reason": "It outputs VGA video and recommends a Tiny VGA Pmod."
+    },
+    {
+     "tag": "audio",
+     "reason": "It outputs audio and recommends an audio Pmod."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It visualizes voices on screen."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "It includes a note sequencer."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "It uses a radix-4 Booth multiplier."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "It is a demo competition entry."
+    }
+   ],
+   "notes": "Replaced incorrect accelerator/ML tags with music, synthesizer, VGA, audio, graphics, sequencer, multiplier and demoscene tags.",
+   "tags_before": [
+    "accelerator",
+    "systolic-array",
+    "machine-learning",
+    "neural-network",
+    "mac-unit",
+    "multiplier",
+    "adder"
+   ],
+   "tags": [
+    "multiplier",
+    "music",
+    "synthesizer",
+    "vga",
+    "audio",
+    "graphics",
+    "sequencer",
+    "demoscene"
+   ],
+   "summary_before": "This design is a hardware accelerator for matrix multiplication. It uses a systolic array architecture. The accelerator is intended for machine learning applications. It is tested using a standard testbench.",
+   "summary": "This design is a 24-voice music synthesizer for the TTSKY26a demo competition. It computes a new sample every 800 cycles and outputs audio at 31.5 kHz using PWM with delta-sigma modulation. It also generates a VGA visualization of the voices and uses a sequencer to arrange melody, bass and accompaniment. The design uses a radix-4 Booth multiplier and supports a speedup option to skip unused cycles.",
+   "summary_changed": true
+  },
+  {
+   "key": "bfb1a3962ac7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cellular-automaton",
+     "reason": "No cellular automaton is described; the design renders a rotating RGB triangle."
+    },
+    {
+     "tag": "vga",
+     "reason": "No VGA output is described; the pinout is QSPI/SPI and UART."
+    },
+    {
+     "tag": "display",
+     "reason": "No display interface is described."
+    },
+    {
+     "tag": "video",
+     "reason": "No video output interface is described."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "No signal generator is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "risc-v",
+     "reason": "It is built around a RISC-V SoC (TinyQV)."
+    },
+    {
+     "tag": "soc",
+     "reason": "It integrates a RISC-V SoC with a GPU."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It features vertex shading, rasterization and RGB fragment shading."
+    },
+    {
+     "tag": "cpu",
+     "reason": "It contains a RISC-V processor core."
+    },
+    {
+     "tag": "uart",
+     "reason": "It has UART TX/RX pins."
+    },
+    {
+     "tag": "qspi",
+     "reason": "It uses QSPI flash/PSRAM pins."
+    },
+    {
+     "tag": "spi",
+     "reason": "It uses SPI Pmod pins."
+    },
+    {
+     "tag": "chisel",
+     "reason": "The design is written in Chisel."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "It spans 4x2 tiles."
+    }
+   ],
+   "notes": "Replaced unsupported cellular-automaton/VGA tags with RISC-V, SoC, graphics, CPU, UART, QSPI, SPI, Chisel and multi-tile tags.",
+   "tags_before": [
+    "cellular-automaton",
+    "vga",
+    "graphics",
+    "display",
+    "video",
+    "signal-generator"
+   ],
+   "tags": [
+    "graphics",
+    "risc-v",
+    "soc",
+    "cpu",
+    "uart",
+    "qspi",
+    "spi",
+    "chisel",
+    "multi-tile"
+   ],
+   "summary_before": "This project generates a cellular automaton pattern and displays it on a VGA monitor. The design uses a signal generator to produce the pattern, which is then rendered as graphics. It requires a VGA display to view the output. The documentation is sparse, but the design appears to be a visual demonstration of cellular automata.",
+   "summary": "Borg is a tiny GPU built around a RISC-V SoC (TinyQV). It renders a 10-frame animation of a rotating RGB triangle fully in firmware. The design includes vertex shading, rasterization and RGB fragment shading. It uses QSPI flash/PSRAM, SPI and UART interfaces and is written in Chisel.",
+   "summary_changed": true
+  },
+  {
+   "key": "625396e0dffc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated."
+    },
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "No multiple asynchronous clock domains are described."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "No clock domain crossing synchronizer is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "It is a digital clock displaying hours, minutes and seconds."
+    },
+    {
+     "tag": "counter",
+     "reason": "It uses counters to keep time."
+    },
+    {
+     "tag": "spi",
+     "reason": "It shifts data out over SPI to a MAX7219."
+    },
+    {
+     "tag": "max7219",
+     "reason": "It drives a MAX7219 7-segment display driver."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "It displays time on 7-segment displays."
+    }
+   ],
+   "notes": "Removed unsupported education/CDC/synchronizer tags; added rtc, counter, spi, max7219 and 7-segment tags.",
+   "tags_before": [
+    "education",
+    "clock-domain-crossing",
+    "synchronizer",
+    "counter",
+    "7-segment"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "rtc",
+    "spi",
+    "max7219"
+   ],
+   "summary_before": "This design is a test structure intended for educational purposes, demonstrating clock-domain crossing and synchronization techniques. It uses a counter to generate timing signals and outputs to a 7-segment display. The documentation is sparse, but the pin names and description indicate its purpose as a test structure. External hardware includes a 7-segment display.",
+   "summary": "This design is a simple digital desk clock that displays hours, minutes and seconds in 24-hour format. It shifts data over SPI to a MAX7219 to drive 7-segment displays. The time can be set using the hours_set and minutes_set inputs, with fast or slow increment rates. It requires a 5 MHz clock and a 32.768 kHz reference clock.",
+   "summary_changed": true
+  },
+  {
+   "key": "84dada3d2bfe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "reconfigurable",
+     "reason": "The design multiplexes fixed standard cells; it is not runtime reconfigurable logic."
+    },
+    {
+     "tag": "fpga",
+     "reason": "No FPGA target or port is described."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "It instantiates many standard cell types, not a basic logic gate implementation."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "It instantiates many standard cell types, not a basic flip-flop implementation."
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "No scan chain is described."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "It is a 1x1 tile design."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "No cocotb verification is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "standard-cell",
+     "reason": "It instantiates one copy of each GF180mcu 7-track standard cell."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "It multiplexes 27 pages of 8 outputs onto the project output pins."
+    },
+    {
+     "tag": "characterization",
+     "reason": "It is intended to verify the functional behaviour of each standard cell."
+    }
+   ],
+   "notes": "Replaced incorrect reconfigurable/FPGA/scan-chain/cocotb tags with standard-cell, multiplexer and characterization tags.",
+   "tags_before": [
+    "reconfigurable",
+    "fpga",
+    "logic-gate",
+    "flip-flop",
+    "scan-chain",
+    "multi-tile",
+    "cocotb"
+   ],
+   "tags": [
+    "standard-cell",
+    "multiplexer",
+    "characterization"
+   ],
+   "summary_before": "The project is a reconfigurable logic circuit built from an 8x8 array of identical tiles, each containing a NAND gate, a D flip-flop, and a buffer. It is designed for FPGA or ASIC implementation and supports runtime reconfiguration. The design is notable for its tile-based architecture and use of standard-cell logic. It is verified with a cocotb testbench and includes a scan-chain for testing.",
+   "summary": "This project instantiates one copy of each standard cell from the GF180mcu 7-track library. It multiplexes the project I/O pins so that the functional behaviour of each cell can be verified. The 210 cell outputs are arranged into 27 pages of 8 pins, selected by ui_in[4:0]. The selected page's outputs appear on uo_out.",
+   "summary_changed": true
+  },
+  {
+   "key": "9467e42b23c5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cipher",
+     "reason": "No cipher is implemented; the LFSR emulates sensor data."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptography is implemented."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No basic logic gate implementation is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "i2c",
+     "reason": "It implements an I2C slave."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "It uses an internal LFSR to generate pseudo-random sensor data."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "It emulates a real-world sensor with read-only data registers."
+    },
+    {
+     "tag": "template",
+     "reason": "It is explicitly described as a reusable template."
+    },
+    {
+     "tag": "register-file",
+     "reason": "It exposes two register banks of eight 8-bit registers each."
+    },
+    {
+     "tag": "fpga",
+     "reason": "It was verified on a Sipeed Tang Primer 25K FPGA."
+    }
+   ],
+   "notes": "Replaced incorrect cipher/crypto/logic-gate tags with i2c, lfsr, sensor-interface, template, register-file and fpga tags.",
+   "tags_before": [
+    "cipher",
+    "crypto",
+    "lfsr",
+    "logic-gate"
+   ],
+   "tags": [
+    "lfsr",
+    "i2c",
+    "sensor-interface",
+    "template",
+    "register-file",
+    "fpga"
+   ],
+   "summary_before": "This project is a naive and very simple implementation of a stream cipher demonstration. It uses a linear-feedback shift register (LFSR) to generate a pseudo-random keystream. The bidirectional pins are configured as inputs only and are never driven by the design. The cipher is intended for educational purposes and is not secure for real-world use.",
+   "summary": "This project implements an I2C slave that emulates a real-world sensor. It exposes two register banks of eight 8-bit registers each, with Block A writable and Block B read-only and driven by an internal LFSR. The slave operates at Standard, Fast and Fast Mode Plus bus speeds with a 25 MHz system clock. It is a reusable template that was verified on an FPGA with an ESP32-C6 acting as I2C master.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7140,
+  "completion_tokens": 2447,
+  "total_tokens": 9587,
+  "cost": 0.0050784,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0050784,
+   "upstream_inference_prompt_cost": 0.002142,
+   "upstream_inference_completions_cost": 0.0029364
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0050784,
+ "elapsed_s": 40.5
+}

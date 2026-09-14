@@ -1,0 +1,336 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "126c1a312f66",
+  "241fd9ed5e38",
+  "f37fadb22e1b",
+  "035c7d9be7ca",
+  "ffc70bdba5ba",
+  "72632e477117"
+ ],
+ "results": [
+  {
+   "key": "126c1a312f66",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "voltage-reference",
+     "reason": "The resistor divider creates a 1.65 V virtual ground, not a bandgap/reference voltage generator, and there is no voltage-reference circuit."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The tile is an op-amp test structure, not a measurement/instrumentation application."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "The design is an analog tile; no combined analog and digital signal processing design is implemented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "The design is an analog tile containing op-amps and an R2R DAC."
+    },
+    {
+     "tag": "opamp",
+     "reason": "The source explicitly describes operational amplifier circuits."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "The tile includes an R2R DAC circuit."
+    },
+    {
+     "tag": "dac",
+     "reason": "An R2R digital-to-analog converter is part of the design."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "The project is explicitly a test circuit for characterizing op-amp configurations."
+    },
+    {
+     "tag": "analog",
+     "reason": "Analog circuit design."
+    }
+   ],
+   "notes": "Removed unsupported instrumentation tag as measurement application; kept instrumentation in correct sense; added canonical analog tags matching pin usages.",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "dac",
+    "r2r-dac",
+    "voltage-reference",
+    "instrumentation",
+    "mixed-signal"
+   ],
+   "tags": [
+    "opamp",
+    "analog",
+    "dac",
+    "r2r-dac",
+    "instrumentation"
+   ],
+   "summary_before": "This analog tile contains three operational amplifier test circuits: an inverting amplifier with external feedback, a voltage follower, and an R2R digital-to-analog converter. It also includes auxiliary circuits such as a PTAT current source, resistor divider, level shifters, and a decoder. The design uses three analog pins for a 3.3 V supply, op-amp output, and input signal, and is controlled via digital pins for DAC input and circuit selection. Testing requires external equipment including DIP switches, LED PMOD, a 3.3 V supply, a function generator, and an oscilloscope or multimeter.",
+   "summary": "This analog tile contains three operational amplifier test circuits: an inverting amplifier with external feedback, a voltage follower, and an R2R digital-to-analog converter. It also includes auxiliary circuits such as a PTAT current source, resistor divider, level shifters, and a 2-to-4 decoder. The design uses three analog pins for a 3.3 V supply, op-amp output, and input signal, and is controlled via digital pins for DAC input and circuit selection. Testing requires external equipment including DIP switches, an LED PMOD, a 3.3 V supply, a function generator, and an oscilloscope or multimeter.",
+   "summary_changed": true
+  },
+  {
+   "key": "241fd9ed5e38",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "rp2040",
+     "reason": "The RP2040 is only mentioned as a possible emulator/controller, not as a paired microcontroller interface of the design."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Although the pinout matches an SPI Pmod, the design does not require or specifically target a Digilent Pmod connector."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "The design is an SPI Mode 0 master driver."
+    },
+    {
+     "tag": "memory",
+     "reason": "The driver is intended to control external SPI RAM."
+    },
+    {
+     "tag": "driver",
+     "reason": "The project is explicitly an SPI RAM driver."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed rp2040 and pmod tags because they are testbench/emulation context, not primary design interfaces.",
+   "tags_before": [
+    "spi",
+    "memory",
+    "driver",
+    "rp2040",
+    "pmod",
+    "verilog"
+   ],
+   "tags": [
+    "spi",
+    "memory",
+    "driver",
+    "verilog"
+   ],
+   "summary_before": "This design is an SPI Mode 0 master driver intended to control an emulated SPI RAM on the RP2040 chip. It supports READ and WRITE commands with a 16-bit address space and 8-bit data transfers, using a 32-bit transaction frame. After reset, it immediately performs a hardcoded WRITE transaction, and READ functionality can be tested by driving MISO data synchronized to SCK. External hardware includes an SPI RAM module such as the 23LC512 or an RP2040 emulating an SPI RAM slave, connected via the bidirectional pins.",
+   "summary": "This design is an SPI Mode 0 master driver intended to control an emulated SPI RAM on the RP2040 chip. It supports READ and WRITE commands with a 16-bit address space and 8-bit data transfers, using a 32-bit transaction frame. After reset, it immediately performs a hardcoded WRITE transaction, and READ functionality can be tested by driving MISO data synchronized to SCK. External hardware includes an SPI RAM module such as the 23LC512 or an RP2040 emulating an SPI RAM slave, connected via the bidirectional pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "f37fadb22e1b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "The source does not state cryptographic use; TRNGs can be used in security but no crypto application is claimed."
+    }
+   ],
+   "add": [
+    {
+     "tag": "trng",
+     "reason": "The project is explicitly a True Random Number Generator."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "It is based on an 8-oscillator Ring Oscillator bank."
+    },
+    {
+     "tag": "uart",
+     "reason": "UART TX/RX are exposed on uio[1:2]."
+    },
+    {
+     "tag": "spi",
+     "reason": "SPI is exposed on uio[3:6]."
+    }
+   ],
+   "notes": "Removed unsupported crypto tag; added canonical tags already present in pinout and description.",
+   "tags_before": [
+    "trng",
+    "ring-oscillator",
+    "uart",
+    "spi",
+    "crypto"
+   ],
+   "tags": [
+    "trng",
+    "ring-oscillator",
+    "uart",
+    "spi"
+   ],
+   "summary_before": "Sky26a Advanced TRNG is a true random number generator based on an 8-oscillator ring oscillator bank, with NIST health monitors and six chaotic whiteners. It provides random bytes via parallel output, UART, and SPI interfaces, and includes enable, auto mode, and tunable select pins. The design is a 2x2 tile and requires no external hardware beyond a standard Tiny Tapeout carrier board. It is intended for research-grade randomness generation with comprehensive characterization features.",
+   "summary": "Sky26a Advanced TRNG is a true random number generator based on an 8-oscillator ring oscillator bank, with NIST health monitors and six chaotic whiteners. It provides random bytes via parallel output, UART, and SPI interfaces, and includes enable, auto mode, and tunable select pins. The design is a 2x2 tile and requires no external hardware beyond a standard Tiny Tapeout carrier board. It is intended for research-grade randomness generation with comprehensive characterization features.",
+   "summary_changed": false
+  },
+  {
+   "key": "035c7d9be7ca",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The design is an NFA plus pushdown automaton accelerator, not a finite state machine design."
+    },
+    {
+     "tag": "communication",
+     "reason": "The source does not describe a data communication protocol design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spi",
+     "reason": "A standard SPI mode-3 host interface is exposed on ui[3:0] and uo[0]."
+    },
+    {
+     "tag": "coprocessor",
+     "reason": "The project is explicitly a pushdown-automaton coprocessor."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is described as a small synthesizable accelerator."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "A self-checking cocotb test is run in CI."
+    },
+    {
+     "tag": "qspi",
+     "reason": "QSPI pins are documented as future IO, not implemented."
+    }
+   ],
+   "notes": "Removed fsm and communication tags; added qspi only as clearly documented future interface.",
+   "tags_before": [
+    "spi",
+    "coprocessor",
+    "accelerator",
+    "fsm",
+    "communication",
+    "cocotb"
+   ],
+   "tags": [
+    "spi",
+    "coprocessor",
+    "accelerator",
+    "cocotb",
+    "qspi"
+   ],
+   "summary_before": "GrammarTile is a byte-level NFA plus bounded pushdown automaton accelerator with a baked JSON grammar that classifies streamed bytes against a grammar. A host loads a PDA state, advances bytes one at a time over SPI or an 8-bit parallel fast path, and reads back an accept bit, with checkpoint and restore commands to reuse a starting state. Status pins expose accept, ready, error, and four NFA state bits, and the design is verified with a self-checking cocotb test over a JSON corpus. It targets the Tiny Tapeout demo board with RP2040 SPI, or an optional DIP switch and button harness for parallel mode.",
+   "summary": "GrammarTile is a byte-level NFA plus bounded pushdown automaton accelerator with a baked JSON grammar that classifies streamed bytes against a grammar. A host loads a PDA state, advances bytes one at a time over SPI or an 8-bit parallel fast path, and reads back an accept bit, with checkpoint and restore commands to reuse a starting state. Status pins expose accept, ready, error, and four NFA state bits, and the design is verified with a self-checking cocotb test over a JSON corpus. It targets the Tiny Tapeout demo board with RP2040 SPI, or an optional DIP switch and button harness for parallel mode.",
+   "summary_changed": false
+  },
+  {
+   "key": "ffc70bdba5ba",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "maze",
+    "game",
+    "vga",
+    "gamepad",
+    "puzzle",
+    "verilog"
+   ],
+   "tags": [
+    "maze",
+    "game",
+    "vga",
+    "gamepad",
+    "puzzle",
+    "verilog"
+   ],
+   "summary_before": "This design generates and plays a maze game, using Ellers algorithm to create mazes of arbitrary size up to a constraint. It outputs a VGA signal and reads input from a PMOD gamepad, allowing a user to navigate the maze. The full-featured version includes the maze generator in RTL, while smaller tile configurations omit the generator due to area restrictions. Testing is done via a VGA playground or basic simulations, and it requires a PMOD Gamepad and PMOD VGA for interactive use.",
+   "summary": "This design generates and plays a maze game, using Ellers algorithm to create mazes of arbitrary size up to a constraint. It outputs a VGA signal and reads input from a PMOD gamepad, allowing a user to navigate the maze. The full-featured version includes the maze generator in RTL, while smaller tile configurations omit the generator due to area restrictions. Testing is done via a VGA playground or basic simulations, and it requires a PMOD Gamepad and PMOD VGA for interactive use.",
+   "summary_changed": false
+  },
+  {
+   "key": "72632e477117",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asic",
+     "reason": "The source does not claim ASIC-specific implementation beyond the Tiny Tapeout shuttle context."
+    },
+    {
+     "tag": "qspi",
+     "reason": "QSPI is not listed in the fixed vocabulary; the design uses SPI/QSPI flash but the canonical tag available is spi."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cpu",
+     "reason": "The project is a 16-bit CPU."
+    },
+    {
+     "tag": "spi",
+     "reason": "SPI flash and SPI RAM interfaces are exposed on uio[0:3] and uio[6]."
+    },
+    {
+     "tag": "i2c",
+     "reason": "I2C SDA/SCL are exposed on uio[7] and uo[6]."
+    },
+    {
+     "tag": "memory",
+     "reason": "The CPU uses external serial memory for program and data."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Verilog."
+    }
+   ],
+   "notes": "Removed asic tag not evidenced; qspi not in canonical vocabulary, kept spi.",
+   "tags_before": [
+    "cpu",
+    "spi",
+    "qspi",
+    "i2c",
+    "memory",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "cpu",
+    "spi",
+    "i2c",
+    "memory",
+    "verilog"
+   ],
+   "summary_before": "This project implements a 16-bit CPU with a custom instruction set, designed to use external SPI/QSPI flash for program storage and SPI RAM for data. It exposes 8 general-purpose input pins, 8 output pins, and 8 bidirectional pins that carry SPI, QSPI, I2C, and debug signals. Testing requires assembling code with a custom toolchain and uploading the program image to external flash, then running and debugging via the exposed interfaces. The design is notable for its external memory architecture and the accompanying work-in-progress compiler and IDE integration.",
+   "summary": "This project implements a 16-bit CPU with a custom instruction set, designed to use external SPI/QSPI flash for program storage and SPI RAM for data. It exposes 8 general-purpose input pins, 8 output pins, and 8 bidirectional pins that carry SPI, QSPI, I2C, and debug signals. Testing requires assembling code with a custom toolchain and uploading the program image to external flash, then running and debugging via the exposed interfaces. The design is notable for its external memory architecture and the accompanying work-in-progress compiler and IDE integration.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8793,
+  "completion_tokens": 2263,
+  "total_tokens": 11056,
+  "cost": 0.0053535,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0053535,
+   "upstream_inference_prompt_cost": 0.0026379,
+   "upstream_inference_completions_cost": 0.0027156
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0053535,
+ "elapsed_s": 11.8
+}

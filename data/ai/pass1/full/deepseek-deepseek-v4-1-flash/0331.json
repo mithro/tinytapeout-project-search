@@ -1,0 +1,197 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cc80bcc65375",
+  "1c9686dbe97c",
+  "5fa31ac01ad7",
+  "72479a73149b",
+  "b60b31b95b61",
+  "8af1dac10fc2",
+  "e97c07460bb9",
+  "b9d3d0006888",
+  "09d130134a8f",
+  "3a1a58fd9bd8"
+ ],
+ "results": [
+  {
+   "key": "cc80bcc65375",
+   "tags": [
+    "fpga",
+    "lut",
+    "yosys",
+    "nextpnr",
+    "bitstream",
+    "carry-chain",
+    "fabric",
+    "education"
+   ],
+   "summary": "This project implements a tiny FABulous FPGA fabric with 64 LUT4+FF logic cells arranged in a 6x4 tile grid, of which 4x2 are LUT4x8_ha tiles. The fabric includes a vertical carry-chain for fast additions up to 15 bits and supports up to four clock domains via global buffers. User designs are synthesized with Yosys and placed and routed with nextpnr, then loaded via a bitbang interface using the ui pins while reset is asserted. The I/Os mimic the Tiny Tapeout interface, allowing direct implementation of simple Tiny Tapeout designs on the FPGA, and no external hardware is required.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1c9686dbe97c",
+   "tags": [
+    "dac",
+    "r2r",
+    "analog",
+    "waveform-generator",
+    "sine",
+    "8-bit"
+   ],
+   "summary": "This is an 8-bit R-2R digital-to-analog converter implemented in analog circuitry. It can be driven externally by digital inputs or by an on-chip digitally generated sine waveform generator. The analog output is available on a single analog pin, and an oscilloscope is required to measure the output voltage. The documentation is minimal, providing only a brief description and no detailed testing procedure.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5fa31ac01ad7",
+   "tags": [
+    "trng",
+    "puf",
+    "ring-oscillator",
+    "uart",
+    "spi",
+    "entropy",
+    "crypto",
+    "random-number-generator",
+    "jtag"
+   ],
+   "summary": "This design implements a ring-oscillator-based true random number generator (TRNG) and physical unclonable function (PUF) entropy source, controlled via UART or SPI. It includes memory-mapped registers for configuration and readback of raw entropy samples, with status outputs and a UART transmit line. The project is intended for exploring hardware entropy sources for cryptographic applications, and can be tested using a Tiny Tapeout demoboard or an external UART adapter. The documentation provides detailed usage instructions and references to NIST standards.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "72479a73149b",
+   "tags": [
+    "trng",
+    "puf",
+    "ring-oscillator",
+    "uart",
+    "spi",
+    "analog",
+    "dac",
+    "comparator",
+    "entropy",
+    "crypto"
+   ],
+   "summary": "This is an experimental analog version of the Hardware Entropy Explorer, adding six analog pins for external stimulus, DAC output, comparator input, monitor outputs, and a passive probe structure. It includes a ring-oscillator-based TRNG and PUF entropy source controlled via UART or SPI, with memory-mapped registers for configuration and readback. The analog features enable experiments with RC circuits, touch sensing, leakage, and PUF-style measurements, but the design is not a precision analog macro and requires external equipment for full validation. Testing can be done via the Tiny Tapeout demoboard or an external UART adapter.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b60b31b95b61",
+   "tags": [
+    "capacitor",
+    "mom-capacitor",
+    "analog",
+    "passive",
+    "layout",
+    "test-structure"
+   ],
+   "summary": "This project implements a simple interdigitated metal-oxide-metal capacitor that fills a 1x2 analog tile. It provides two active terminals and two dummy terminals for parasitic control, with an estimated capacitance of around 85 pF from magic extraction. The capacitor is intended for measurement using test equipment such as a function generator and oscilloscope or a VNA. The design is a passive test structure with no active circuitry.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "8af1dac10fc2",
+   "tags": [
+    "dac",
+    "current-dac",
+    "analog",
+    "4-bit",
+    "current-steering",
+    "test-structure"
+   ],
+   "summary": "This is a simple 4-bit current-output digital-to-analog converter. The digital input is provided on four input pins, and the analog output current is sunk from a single analog pin. A resistive load connected to the analog output is required to observe the current. The documentation is very brief, providing only a one-line description and basic testing instructions.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e97c07460bb9",
+   "tags": [
+    "vco",
+    "mcml",
+    "analog",
+    "oscillator",
+    "differential",
+    "current-mode-logic"
+   ],
+   "summary": "This project is an MCML (MOS Current Mode Logic) voltage-controlled oscillator. It has six analog pins for tail bias and differential clock outputs. The documentation is essentially a placeholder, with no explanation of how the circuit works or how to test it. External hardware requirements are not specified.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "b9d3d0006888",
+   "tags": [
+    "dac",
+    "r2r",
+    "waveform-generator",
+    "analog",
+    "mixed-signal",
+    "lfsr",
+    "sequencer",
+    "phase-accumulator",
+    "audio"
+   ],
+   "summary": "PolyWave is a mixed-signal four-channel waveform source with a digital engine driving four 16-bit R-2R DACs. The digital engine includes four 20-bit phase accumulators, a shared 16-bit LFSR noise source, a 4-bit sequencer, and DAC sample registers, and can run autonomously or accept direct byte writes. The analog outputs are on four pins, and the design uses the Tiny Tapeout custom GDS path with prebuilt layout files. Testing requires a clock/reset source, digital control signals, and an oscilloscope or logic analyzer to observe the outputs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "09d130134a8f",
+   "tags": [
+    "ring-oscillator",
+    "skullfet",
+    "divider",
+    "analog",
+    "transistor-level",
+    "oscillator",
+    "clock"
+   ],
+   "summary": "This design is a ring oscillator built from hand-drawn SkullFET transistors, producing a ~120 MHz square wave, followed by an 8-bit ripple divider that provides divided outputs from /2 to /256. The raw oscillation is buffered to an analog pin, and the divided outputs are on digital pins. Post-layout simulation confirms rail-to-rail oscillation and clean divider taps, with the buffer preventing load pulling. An oscilloscope is the only external hardware needed to observe the outputs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "3a1a58fd9bd8",
+   "tags": [
+    "bandgap",
+    "voltage-reference",
+    "analog",
+    "temperature-sensor",
+    "bgr",
+    "reference"
+   ],
+   "summary": "This project implements a simple bandgap reference that outputs a stable voltage over a temperature range of -40°C to 125°C, with about 1% variation in simulation. It lacks supply noise rejection and trimming, making it a basic design for providing a stable reference. Testing requires applying 3.3V to the analog supply and measuring the output voltage over temperature using a bench power supply, multimeter, thermocouple, and temperature chamber. The documentation includes a simulation graph showing the typical output voltage range.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6958,
+  "completion_tokens": 1849,
+  "total_tokens": 8807,
+  "cost": 0.00538275,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00538275,
+   "upstream_inference_prompt_cost": 0.00260925,
+   "upstream_inference_completions_cost": 0.0027735
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00538275,
+ "elapsed_s": 6.4
+}

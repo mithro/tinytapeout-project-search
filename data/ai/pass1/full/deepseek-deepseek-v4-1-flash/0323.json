@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7ae9a9cb1e68",
+  "1321c2feadec",
+  "5e018e57418b",
+  "af9944e57c44",
+  "a80e7df3b005",
+  "41f5d516409f",
+  "c2b691a460de",
+  "e9471d3b3ddb",
+  "1f9205d8a24e",
+  "9c7611907331"
+ ],
+ "results": [
+  {
+   "key": "7ae9a9cb1e68",
+   "tags": [
+    "alu",
+    "8-bit",
+    "register",
+    "multiplexer",
+    "opcode",
+    "arithmetic",
+    "logic",
+    "education"
+   ],
+   "summary": "This project implements an 8-bit arithmetic logic unit with two internal registers and a multiplexed output that can show either the 8-bit result or the carry flag. It supports eleven operations selected by a 4-bit opcode, including addition, subtraction, bitwise logic, shifts, and negation. The design is intended to be driven by an external microcontroller or Raspberry Pi, which loads operands, selects the operation, and reads the result. It is a straightforward educational ALU with no on-chip test features, and it requires external hardware for control and observation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1321c2feadec",
+   "tags": [
+    "pdm",
+    "voice-activity",
+    "audio",
+    "sensor",
+    "dsp",
+    "filter",
+    "score",
+    "microphone"
+   ],
+   "summary": "This design computes a voice activity score from a 1-bit PDM microphone stream by counting pulse density over windows and combining magnitude, change, and three spectral probes. It accumulates a smoothed score that increases with speech-like energy and decays for quiet input, outputting an 8-bit value once per frame. The circuit is self-contained and requires only a PDM clock and data input, with no external hardware beyond the microphone. It is a compact, tile-friendly estimator that avoids a full FFT and leaves the bidirectional pins unused.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "5e018e57418b",
+   "tags": [
+    "sram",
+    "memory",
+    "single-port",
+    "full-custom",
+    "128x8",
+    "write-through",
+    "3.3v"
+   ],
+   "summary": "This is a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins for use as a standalone memory. It performs synchronous read and write operations on the rising clock edge, with a write-through behavior where the output reflects the written data during a write. The design is implemented in full-custom layout for 3.3V using standard design rules, not SRAM-specific rules. Testing involves applying addresses, data, and write-enable signals to verify read-back of stored values.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "af9944e57c44",
+   "tags": [
+    "sram",
+    "memory",
+    "single-port",
+    "full-custom",
+    "128x8",
+    "write-through",
+    "5v"
+   ],
+   "summary": "This is a 5V-compatible version of a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins. It operates synchronously with read and write operations on the clock edge, including write-through behavior. The design is full-custom and also compatible with 3.3V, using standard design rules. Testing is done by performing writes and reads to verify data retention.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a80e7df3b005",
+   "tags": [
+    "sram",
+    "memory",
+    "single-port",
+    "full-custom",
+    "128x8",
+    "write-through",
+    "3.3v",
+    "sram-rules"
+   ],
+   "summary": "This design is a single-port SRAM block with 128 words of 8 bits, directly connected to the Tiny Tapeout tile pins, implemented in full-custom layout for 3.3V using SRAM-specific design rules for the bit cell. It performs synchronous read and write operations on the rising clock edge, with write-through behavior. The block is intended to be used as a standalone memory, and testing involves verifying read and write functionality. The use of SRAM design rules distinguishes it from other variants.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "41f5d516409f",
+   "tags": [
+    "mac",
+    "int8",
+    "multiply-accumulate",
+    "neural-network",
+    "dsp",
+    "saturating",
+    "pipelined",
+    "weight-stationary"
+   ],
+   "summary": "This is a weight-stationary signed INT8 multiply-accumulate engine that computes a 32-bit saturating accumulator from a stationary weight and a stream of activation bytes. It uses a 4-stage pipeline to meet timing at 50 MHz on a 180 nm process, with a simple strobe-based handshake and byte-serial readout of the accumulator. The design is intended as a compute primitive for quantized neural network inference and includes a cocotb test suite with a golden model. No external hardware is required beyond the Tiny Tapeout demo board.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c2b691a460de",
+   "tags": [
+    "floating-point",
+    "inverse-square-root",
+    "fp32",
+    "newton-raphson",
+    "approximate",
+    "byte-serial",
+    "dsp"
+   ],
+   "summary": "BRISQ computes an approximate IEEE-754 single-precision inverse square root using a Quake-style integer seed followed by one Newton-Raphson refinement. It receives a 32-bit FP32 operand byte-serially over an 8-bit input bus and returns the result byte-serially over an 8-bit output bus. The datapath is optimized for small area with truncated precision, making it an approximate rather than fully rounded FPU. The design is self-contained and tested with cocotb, including sweep and gate-level simulations.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e9471d3b3ddb",
+   "tags": [
+    "nlfsr",
+    "prng",
+    "crypto",
+    "chaotic",
+    "16-bit",
+    "programmable",
+    "feedback"
+   ],
+   "summary": "This project implements a 16-bit non-linear feedback shift register with two selectable non-linear feedback functions for cryptographic pseudo-random number generation. The mode select input switches between a high algebraic degree function and a chaotic variant, with the 16-bit state output on dedicated and bidirectional pins. It is seeded with 0xACE1 and requires only a clock and reset to operate, making it self-contained for testing with a logic analyzer. The design is intended for cryptographic primitives and demonstrates programmable non-linear feedback.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1f9205d8a24e",
+   "tags": [
+    "xor",
+    "bitwise",
+    "configurable",
+    "register",
+    "logic",
+    "8-bit"
+   ],
+   "summary": "This design outputs the bitwise XOR of the 8-bit input with a previously configured 8-bit value. Configuration is done by holding a control pin high for at least two clock cycles while the desired value is on the input. After configuration, the output continuously reflects the XOR of the current input and the stored value. The documentation is minimal and does not describe any additional features or testing details.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9c7611907331",
+   "tags": [
+    "ethernet",
+    "switch",
+    "rmii",
+    "100mbps",
+    "networking",
+    "cut-through",
+    "phy",
+    "3-port"
+   ],
+   "summary": "This is an unmanaged 3-port 100 Mbps Ethernet switch implemented in Verilog, using RMII interfaces to connect to external PHYs. It performs cut-through switching between the three ports, with two ports on dedicated pins and one on bidirectional pins. The design requires external Ethernet PHY hardware, such as LAN8720A modules, and a 50 MHz oscillator. It is a complex networking design that fits in a 2x2 tile area and is intended for hardware testing with real network traffic.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7330,
+  "completion_tokens": 1877,
+  "total_tokens": 9207,
+  "cost": 0.00246804,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 640,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00246804,
+   "upstream_inference_prompt_cost": 0.00134184,
+   "upstream_inference_completions_cost": 0.0011262
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00246804,
+ "elapsed_s": 49.7
+}

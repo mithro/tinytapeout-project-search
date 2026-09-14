@@ -1,0 +1,443 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "cc0f3326d585",
+  "1c5ac9cefb77",
+  "fb5f3be3e812",
+  "f9c42947ae19",
+  "f1e33fe0f61c",
+  "25b7b32d8a5e"
+ ],
+ "results": [
+  {
+   "key": "cc0f3326d585",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "music",
+     "reason": "Design is a heartbeat classifier, not music generation or playback."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing algorithm is described; it is an SNN classifier."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "No bit-serial datapath is described; the design uses parallel spike integration."
+    },
+    {
+     "tag": "audio",
+     "reason": "No audio output or audio processing is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "Documentation explicitly describes a 5-neuron parallel SNN matrix with LIF-style neurons."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "The design is a spiking neural network classifier."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "It performs classification of heartbeat classes."
+    },
+    {
+     "tag": "biomedical",
+     "reason": "It is a heart-beat classifier for ECG/AAMI classes."
+    },
+    {
+     "tag": "adc",
+     "reason": "It consumes a 12-bit ADC sample bus."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The test suite is a cocotb suite."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Tags were entirely wrong (music/audio) and the summary invented a BPM tempo detector; replaced with SNN/biomedical tags and a source-supported summary.",
+   "tags_before": [
+    "music",
+    "dsp",
+    "bit-serial",
+    "audio"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "biomedical",
+    "adc",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This design detects the tempo (BPM) of a live audio stream entirely in hardware, using onset detection and a bit-serial divider - no CPU, no multiplier. The documentation describes the algorithm in detail but does not report a testbench or silicon results, and no external hardware is specified. The design is notable for its purely hardware-based approach to audio analysis. It is intended for music or instrumentation applications.",
+   "summary": "This design is a compact spiking neural network heart-beat classifier for Tiny Tapeout. It accepts 12-bit ADC samples on the input pins and uses a heartbeat segmenter, delta encoder, a five-neuron parallel SNN matrix, and a multi-class voter to classify beats into AAMI-style classes. An alarm output asserts after three consecutive anomaly classifications, and a diagnostic-valid output pulses when a class result is available. The documentation describes a cocotb test suite including an MIT-BIH stream excerpt, but no silicon results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "1c5ac9cefb77",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning is described."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "No neural network is described."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "No systolic array is described."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "No fixed-point arithmetic unit is described."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "No multiply-accumulate unit is described."
+    },
+    {
+     "tag": "spi",
+     "reason": "No SPI interface is present; the input is S/PDIF."
+    },
+    {
+     "tag": "dma",
+     "reason": "No DMA controller is described."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is an audio receiver/converter, not a compute accelerator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "audio",
+     "reason": "It receives and outputs digital audio."
+    },
+    {
+     "tag": "i2s",
+     "reason": "It generates an I2S master output (BCLK, WS, SD)."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "It combines digital S/PDIF/I2S logic with an analog comparator and PWM audio."
+    },
+    {
+     "tag": "analog",
+     "reason": "It includes an on-chip analog comparator."
+    },
+    {
+     "tag": "pwm",
+     "reason": "It outputs a 1-bit PWM mono audio downmix."
+    },
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "It recovers a clock from the incoming stream and regenerates I2S timing from the free-running system clock."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Documentation says it should be compatible with an audio Pmod."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated ML accelerator; replaced with the actual S/PDIF-to-I2S audio receiver tags and summary.",
+   "tags_before": [
+    "machine-learning",
+    "neural-network",
+    "systolic-array",
+    "fixed-point",
+    "mac-unit",
+    "spi",
+    "dma",
+    "accelerator"
+   ],
+   "tags": [
+    "audio",
+    "i2s",
+    "mixed-signal",
+    "analog",
+    "pwm",
+    "clock-domain-crossing",
+    "pmod"
+   ],
+   "summary_before": "This design is a systolic array-based neural network accelerator with fixed-point arithmetic and a MAC unit. It uses an SPI interface for data transfer and includes a DMA controller for efficient memory access. The design is intended for machine learning inference tasks. The documentation does not report silicon results.",
+   "summary": "This project is an S/PDIF (AES3 consumer) receiver that converts an incoming digital-audio stream into an I2S master output. It recovers timing from the incoming biphase-mark-coded stream using only the free-running Tiny Tapeout clock, with no external audio clock or PLL. The design also includes an analog comparator intended for off-chip mute-delay hysteresis, and a 1-bit PWM mono audio output. A self-checking testbench with a behavioural S/PDIF encoder and I2S decoder is provided, but no silicon results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "fb5f3be3e812",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "standard-cell",
+     "reason": "No evidence of a standard-cell implementation; the design is analog and documentation is very thin."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "The source does not state it explores fabrication process behavior."
+    },
+    {
+     "tag": "characterization",
+     "reason": "The source does not state it characterizes process or device parameters."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adc",
+     "reason": "Title and description state it is a time-domain comparator-based ADC."
+    },
+    {
+     "tag": "analog",
+     "reason": "It is an analog design with analog pins VCM, VIN, VIP."
+    },
+    {
+     "tag": "comparator-analog",
+     "reason": "It is a comparator-based ADC."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, with no how-it-works or test details."
+    }
+   ],
+   "notes": "Tags claimed characterization/process-experiment/standard-cell without support; corrected to ADC/comparator/analog and insufficient-doc.",
+   "tags_before": [
+    "characterization",
+    "standard-cell",
+    "process-experiment"
+   ],
+   "tags": [
+    "adc",
+    "analog",
+    "comparator-analog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a characterization structure designed to explore fabrication process behavior. It uses standard-cell logic to implement test structures for measuring process parameters. The design is intended for silicon characterization and validation. External hardware includes measurement equipment to analyze the test structures.",
+   "summary": "This project is a time-domain comparator-based analog-to-digital converter. It uses analog inputs VCM, VIN, and VIP, with an enable input and a 9-bit data output plus a clock output. The documentation is very thin and provides no test procedure or external hardware details. No silicon results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "f9c42947ae19",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "wokwi",
+     "reason": "No evidence the design was created using the Wokwi simulator."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "It is a protocol translator, not a basic logic gate."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated."
+    },
+    {
+     "tag": "template",
+     "reason": "It is a complete design, not boilerplate."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is described as functional and tested, not unfinished."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ws2812",
+     "reason": "It outputs a WS2812-compatible single-line LED protocol stream."
+    },
+    {
+     "tag": "spi",
+     "reason": "It reads an SPI-style APA102 clock/data stream."
+    },
+    {
+     "tag": "rgb-led",
+     "reason": "It translates LED color data for addressable RGB LEDs."
+    },
+    {
+     "tag": "uart",
+     "reason": "It continuously outputs a UART string on uo[1]."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Tags were unrelated (wokwi/logic-gate/template/incomplete); replaced with the actual APA102-to-WS2812 translator tags and summary.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "education",
+    "template",
+    "incomplete"
+   ],
+   "tags": [
+    "ws2812",
+    "spi",
+    "rgb-led",
+    "uart",
+    "verilog"
+   ],
+   "summary_before": "This Wokwi project implements a simple logic gate circuit for educational purposes. The design is a template with minimal functionality, likely demonstrating basic gate behavior. External hardware includes buttons for inputs and an LED for output. The documentation is minimal, describing only the basic function and test procedure.",
+   "summary": "This design converts an SPI-style APA102 LED protocol stream into a single-line WS2812 output. It is hard-coded for seven LEDs, waits for a 32-bit low start condition, shifts in the pixel data, and forwards it to the WS2812 output until a stop condition is recognized. It ignores the APA102 intensity byte and also emits a continuous UART output of \"Arglius Barglius\" at approximately 115200 baud. Testing requires an SPI driver and a string of at least seven WS2812 LEDs, and no silicon results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "f1e33fe0f61c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "No linear-feedback shift register is described."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random number generator is described."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "No evidence of Wokwi use."
+    },
+    {
+     "tag": "led",
+     "reason": "No LED output is described; outputs are intended for a DAC."
+    },
+    {
+     "tag": "counter",
+     "reason": "The phase accumulators are not described as a counting circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "nco",
+     "reason": "The design contains two numerically controlled oscillators."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "It generates a tunable output signal."
+    },
+    {
+     "tag": "dac",
+     "reason": "The output is intended for an R-2R DAC."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "Documentation mentions an R-2R DAC as the intended output stage."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Proposed tags and summary described an LFSR/PRNG that does not exist; replaced with NCO/signal-generator tags and a source-supported summary.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "wokwi",
+    "led",
+    "counter"
+   ],
+   "tags": [
+    "nco",
+    "signal-generator",
+    "dac",
+    "r2r-dac",
+    "verilog"
+   ],
+   "summary_before": "This Wokwi project implements an 8-bit linear-feedback shift register that acts as a pseudo-random number generator. It uses a shift-register structure with feedback to produce a sequence of random-looking bits. The output is displayed on LEDs, and the design is controlled by switches. It is a simple educational example of LFSR-based PRNG.",
+   "summary": "This design contains two numerically controlled oscillators implemented with phase accumulators and sine lookup tables. Their outputs are multiplied together by default, and NCO B can be bypassed to a constant one or half. A boxcar filter is also included, and at 50 MHz NCO A can be tuned from about 24.8 MHz down to 0.195 MHz while NCO B reaches up to 12.3 MHz. The output is intended for an R-2R DAC and an oscilloscope, and no silicon results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "25b7b32d8a5e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "perceptron",
+     "reason": "The source describes a Deep Differential Logic Network classifier, not a perceptron."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is present; input is an 8-bit shift-in packet and output is a digit plus confidence score."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neural-network",
+     "reason": "It is a classifier network."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "It classifies hand-written MNIST digits."
+    },
+    {
+     "tag": "image-processing",
+     "reason": "It processes 16x16 pixel digit images."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is sparse, with a TO DO test procedure."
+    }
+   ],
+   "notes": "Removed unsupported perceptron and UART tags; added image-processing and insufficient-doc, and corrected the summary to match the actual pins and sparse documentation.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "perceptron",
+    "uart"
+   ],
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "image-processing",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a neural network design that uses a perceptron architecture. It is implemented in Verilog and communicates via a UART interface. The design is intended for machine learning inference tasks. The documentation is sparse, but the available information indicates a digital implementation with serial communication.",
+   "summary": "This project is an experiment with Deep Differential Logic Networks for classifying hand-written MNIST digits at 16x16 pixels. It accepts an 8-bit input packet shifted in on the input pins and outputs a 4-bit digit plus a 7-bit confidence score. A /WE input pauses the design, and an external MCU is needed to provide input data and read out results. The documentation is sparse and the test procedure is still marked TO DO, with no silicon results reported.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9020,
+  "completion_tokens": 2519,
+  "total_tokens": 11539,
+  "cost": 0.002927426,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002927426,
+   "upstream_inference_prompt_cost": 0.001264886,
+   "upstream_inference_completions_cost": 0.00166254
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002927426,
+ "elapsed_s": 31.7
+}

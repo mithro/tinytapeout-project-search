@@ -1,0 +1,409 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "acb11a035728",
+  "3751ae26ab18",
+  "1adf9503761a",
+  "bacb10f678f1",
+  "1c7b0fe4bf22",
+  "3ceec0777049"
+ ],
+ "results": [
+  {
+   "key": "acb11a035728",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The pins are dedicated button inputs and voice outputs, not general purpose IO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "synthesizer",
+     "reason": "The design is an 8-voice synth/tone generator."
+    },
+    {
+     "tag": "sound-generator",
+     "reason": "It generates eight independent audio voices."
+    }
+   ],
+   "notes": "Removed unsupported gpio tag and added synthesizer/sound-generator tags supported by the 8-voice synth description.",
+   "tags_before": [
+    "wokwi",
+    "music",
+    "audio",
+    "button",
+    "gpio"
+   ],
+   "tags": [
+    "wokwi",
+    "music",
+    "audio",
+    "button",
+    "synthesizer",
+    "sound-generator"
+   ],
+   "summary_before": "This design is an 8-voice synthesizer that generates eight independent audio voices from eight button inputs. Each button selects a voice output, with the frequency divisions described as vibe coded. The project is implemented in Wokwi and provides eight UI pins for buttons and eight output pins for voices. No external hardware is specified, and the documentation is limited to placeholder text, so the exact synthesis method and testing procedure are not detailed.",
+   "summary": "This design is an 8-voice synthesizer that generates eight independent audio voices from eight button inputs. Each button selects a voice output, with the frequency divisions described as vibe coded. The project is implemented in Wokwi and provides eight UI pins for buttons and eight output pins for voices. No external hardware is specified, and the documentation is limited to placeholder text, so the exact synthesis method and testing procedure are not detailed.",
+   "summary_changed": false
+  },
+  {
+   "key": "3751ae26ab18",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "The source describes a P10 LED panel driver, not a shift register."
+    },
+    {
+     "tag": "encoder",
+     "reason": "No encoding circuit is described; the design drives an LED panel."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The output is a 16x16 P10 LED panel, not a 7-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is written in Verilog, not Wokwi."
+    }
+   ],
+   "add": [
+    {
+     "tag": "led-matrix",
+     "reason": "Drives a 16x16 P10 LED panel."
+    },
+    {
+     "tag": "display",
+     "reason": "Provides a display output via the LED panel."
+    },
+    {
+     "tag": "uart",
+     "reason": "Includes a 600 baud UART input for control."
+    },
+    {
+     "tag": "driver",
+     "reason": "Acts as a driver for the LED panel hardware."
+    }
+   ],
+   "notes": "Replaced tags and summary that described an unrelated shift-register/7-segment design with the actual LED panel driver functionality.",
+   "tags_before": [
+    "shift-register",
+    "encoder",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "led-matrix",
+    "display",
+    "uart",
+    "driver"
+   ],
+   "summary_before": "This project implements a shift register that loads a 6-bit input and shifts it out while encoding the bits for display. The write_not_shift control selects between loading and shifting, and the encoded bits are shown one at a time on an 8-segment display with the decimal point indicating the clock. It is tested using the standard Tiny Tapeout board with DIP switches for input and a display for output. The design is a simple demonstration of shift register and encoding logic.",
+   "summary": "This project implements a driver for a 16x16 P10 LED panel, initially displaying the string TT03. It provides a 600 baud UART input to paint pixels, erase pixels, clear the display, and change the displayed colour. The design supports a single colour at a time, has no double buffer, and exhibits some flicker due to the low refresh rate. A mode pin allows selection between two different clocking patterns.",
+   "summary_changed": true
+  },
+  {
+   "key": "1adf9503761a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "No ring oscillator is described."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator circuit is described."
+    },
+    {
+     "tag": "temperature-sensor",
+     "reason": "No temperature sensor is described."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is described."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is described."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design is digital, not analog."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "No process characterization experiment is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "Uses a 4-bit counter to sequence from 0 to 9."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Drives a 7-segment display."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Implemented in Wokwi."
+    },
+    {
+     "tag": "display",
+     "reason": "Outputs to a 7-segment display."
+    }
+   ],
+   "notes": "Replaced tags and summary that described an unrelated ring-oscillator characterization design with the actual 7-segment counter.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "temperature-sensor",
+    "sensor-interface",
+    "uart",
+    "analog",
+    "process-experiment"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This project is an experiment to characterise the temperature-versus-frequency relationship of a ring oscillator. It requires UART connectivity to read the frequency measurements. The design includes a temperature sensor interface and an oscillator circuit. It is intended for process characterization and sensor interfacing.",
+   "summary": "This project is a 7-segment display counter that counts up from 0 to 9, incrementing once per second. It uses a 4-bit counter to sequence and combinational logic to drive the 7-segment display. The design is implemented in Wokwi and is tested by setting the clock to 1 Hz. It provides a simple demonstration of counting and display driving.",
+   "summary_changed": true
+  },
+  {
+   "key": "bacb10f678f1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "The design is an adder, not a counter."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is described."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is described."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "Implements a 4-bit adder using one half adder and three full adders."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The adder is purely combinational logic."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Replaced tags and summary that described an unrelated pulse-counting design with the actual 4-bit adder.",
+   "tags_before": [
+    "counter",
+    "sensor-interface",
+    "uart",
+    "fsm",
+    "shift-register"
+   ],
+   "tags": [
+    "adder",
+    "combinational",
+    "verilog"
+   ],
+   "summary_before": "This design counts the number of digital pulses occurring within a time interval across four input channels. The counts are periodically output using a serial output. It is intended for low-power wake-up sensor interfaces, acoustic event detection, non-destructive testing, and particle counting. The design is a generic pulse-counting digital building block.",
+   "summary": "This design is a 4-bit adder that adds two 4-bit numbers. It consists of four adders: one half adder and three full adders. The first number is set on input pins 0 to 3, and the second number is set on pins 4 to 7. The sum is output on five pins, providing a 5-bit result.",
+   "summary_changed": true
+  },
+  {
+   "key": "1c7b0fe4bf22",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "delay-line",
+     "reason": "The design is an ALU, not a delay line."
+    },
+    {
+     "tag": "uart",
+     "reason": "No UART interface is described."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No sensor interface is described."
+    },
+    {
+     "tag": "characterization",
+     "reason": "No characterization experiment is described."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "No instrumentation application is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "Implements a 4-bit arithmetic logic unit."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "adder",
+     "reason": "Supports addition as one of its operations."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "Supports subtraction as one of its operations."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Supports multiplication as one of its operations."
+    },
+    {
+     "tag": "divider",
+     "reason": "Supports division as one of its operations."
+    }
+   ],
+   "notes": "Replaced tags and summary that described an unrelated delay-line characterization design with the actual 4-bit ALU.",
+   "tags_before": [
+    "delay-line",
+    "uart",
+    "sensor-interface",
+    "characterization",
+    "instrumentation"
+   ],
+   "tags": [
+    "alu",
+    "verilog",
+    "adder",
+    "subtractor",
+    "multiplier",
+    "divider"
+   ],
+   "summary_before": "This design uses a chain of inverters, edge detection, and a bank of flip-flops to sample a delay line. A UART interface is used for control and data readout. The design measures signal propagation delay through the inverter chain. It is intended for characterization or instrumentation applications.",
+   "summary": "This design is a 4-bit ALU that can perform addition, subtraction, multiplication, division, and bitwise AND. The A and B inputs are the data operands, and the S input selects the operation. The operation table maps S values 0 through 4 to addition, subtraction, multiplication, division, and bitwise AND respectively. External hardware such as buttons or DIP switches can be used to provide the inputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "3ceec0777049",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "puzzle",
+     "reason": "The design is a delay line, not a puzzle game."
+    },
+    {
+     "tag": "game",
+     "reason": "No game logic is described."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display is used."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The design is not a basic logic gate implementation."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "delay-line",
+     "reason": "Implements a tapped delay line using a chain of inverters."
+    },
+    {
+     "tag": "uart",
+     "reason": "UART is the only interface to the design."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "Used for measurement and instrumentation of delay."
+    },
+    {
+     "tag": "characterization",
+     "reason": "Measures delay variation due to process, voltage, and temperature."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Design is written in SystemVerilog."
+    },
+    {
+     "tag": "edge-detector",
+     "reason": "Uses edge detection to find the rising edge."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Includes a memory that shifts data in and out."
+    }
+   ],
+   "notes": "Replaced tags and summary that described an unrelated puzzle game with the actual delay line instrumentation design.",
+   "tags_before": [
+    "puzzle",
+    "game",
+    "7-segment",
+    "logic-gate",
+    "display"
+   ],
+   "tags": [
+    "delay-line",
+    "uart",
+    "instrumentation",
+    "characterization",
+    "systemverilog",
+    "edge-detector",
+    "shift-register"
+   ],
+   "summary_before": "This design is a puzzle game that uses a 7-segment display and logic gates. The game logic is implemented with combinational and sequential logic. The design is intended for entertainment and educational purposes. It is a simple puzzle game implemented on a chip.",
+   "summary": "This design is a simple tapped delay line with instrumentation. It uses a chain of inverters that is sampled at different stages, with edge detection to find the rising edge and a bank of flip-flops to sample eight sequential rising edge values. A UART interface at 9600 baud provides commands to shift data in and out, take a full 32-bit sample, or capture eight samples at a 25 MHz sample rate. The design is intended for measuring delay variations due to process, voltage, and temperature.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6254,
+  "completion_tokens": 2203,
+  "total_tokens": 8457,
+  "cost": 0.0045198,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0045198,
+   "upstream_inference_prompt_cost": 0.0018762,
+   "upstream_inference_completions_cost": 0.0026436
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0045198,
+ "elapsed_s": 23.2
+}

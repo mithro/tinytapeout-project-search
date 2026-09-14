@@ -1,0 +1,272 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "dc3b5651d69e",
+  "b6467ddd8b41",
+  "e6b104b82e75",
+  "8a107c959957",
+  "aa271b1824d7",
+  "cd1b1d2b0178"
+ ],
+ "results": [
+  {
+   "key": "dc3b5651d69e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adder",
+     "reason": "The source describes an adder tree for summing weighted inputs, but the adder is a sub-block, not the primary function; the canonical 'perceptron' and 'neural-network' tags already capture the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "Already proposed; no change needed."
+    }
+   ],
+   "notes": "Removed 'adder' as it is a sub-component rather than the primary design function; all other tags and summary are supported by the source.",
+   "tags_before": [
+    "neural-network",
+    "perceptron",
+    "machine-learning",
+    "combinational",
+    "adder",
+    "comparator",
+    "reconfigurable",
+    "verilog",
+    "cocotb"
+   ],
+   "tags": [
+    "neural-network",
+    "perceptron",
+    "machine-learning",
+    "combinational",
+    "comparator",
+    "reconfigurable",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This design implements a single artificial neuron (perceptron) in pure combinational logic. It takes four binary inputs, each multiplied by a 2-bit weight, sums them, and compares the result to a configurable threshold to produce a binary output. Weights and threshold are set via input pins, making it fully reconfigurable without re-synthesis. The design includes a cocotb testbench and requires no external hardware.",
+   "summary": "This design implements a single artificial neuron (perceptron) in pure combinational logic. It takes four binary inputs, each multiplied by a 2-bit weight, sums them, and compares the result to a configurable threshold to produce a binary output. Weights and threshold are set via input pins, making it fully reconfigurable without re-synthesis. The design includes a cocotb testbench and requires no external hardware.",
+   "summary_changed": false
+  },
+  {
+   "key": "b6467ddd8b41",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "biomedical",
+    "demodulator",
+    "uart",
+    "adc",
+    "dsp",
+    "sigma-delta",
+    "multiplexer",
+    "verilog"
+   ],
+   "tags": [
+    "biomedical",
+    "demodulator",
+    "uart",
+    "adc",
+    "dsp",
+    "sigma-delta",
+    "multiplexer",
+    "verilog"
+   ],
+   "summary_before": "This design is a digital bioimpedance demodulator that processes a 1-bit sigma-delta ADC input through eight cascaded I/Q stages, each halving the clock frequency, to produce 128 bits of I and Q data. The results are stored in a register and can be read either via a UART transmitter at 9600 baud on uio[0] or through a 16-to-1 multiplexer selected by ui[1:4] and output on uo[0:7]. It requires an external 1-bit signal source, such as a sigma-delta ADC, and a USB-UART adapter for serial readout. The design is notable for its very low resource implementation of bioimpedance analysis in GF180 technology, though no silicon test results are provided.",
+   "summary": "This design is a digital bioimpedance demodulator that processes a 1-bit sigma-delta ADC input through eight cascaded I/Q stages, each halving the clock frequency, to produce 128 bits of I and Q data. The results are stored in a register and can be read either via a UART transmitter at 9600 baud on uio[0] or through a 16-to-1 multiplexer selected by ui[1:4] and output on uo[0:7]. It requires an external 1-bit signal source, such as a sigma-delta ADC, and a USB-UART adapter for serial readout. The design is notable for its very low resource implementation of bioimpedance analysis in GF180 technology, though no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "e6b104b82e75",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "motor-control",
+     "reason": "The design outputs a PWM signal for drone control paths, but there is no motor driving or motor-control interface described in the source."
+    },
+    {
+     "tag": "watchdog",
+     "reason": "No watchdog timer functionality is described; the failsafe arbitration is not a watchdog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "arbiter",
+     "reason": "Already proposed; the design is an arbitration block selecting between control paths."
+    },
+    {
+     "tag": "robotics",
+     "reason": "Already proposed; the design targets autonomous drone control paths."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Already proposed; the design drives a 50 Hz PWM output."
+    },
+    {
+     "tag": "scan-chain",
+     "reason": "Already proposed; the design includes a scan chain for counter observability."
+    },
+    {
+     "tag": "bist",
+     "reason": "Already proposed; the design includes lightweight LBIST for post-silicon diagnosis."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Already proposed; the design is written in Verilog."
+    }
+   ],
+   "notes": "Removed 'motor-control' and 'watchdog' as unsupported by the source; the design is an arbitration block with PWM output and built-in test features.",
+   "tags_before": [
+    "arbiter",
+    "robotics",
+    "pwm",
+    "scan-chain",
+    "bist",
+    "motor-control",
+    "verilog",
+    "watchdog"
+   ],
+   "tags": [
+    "arbiter",
+    "robotics",
+    "pwm",
+    "scan-chain",
+    "bist",
+    "verilog"
+   ],
+   "summary_before": "Triad01 is a clocked failsafe arbitration block for autonomous drone control paths, evaluating RC and FC health signals to select PRIMARY, FALLBACK, or SAFE_HOLD. It drives a 50 Hz PWM output and includes a scan chain for counter observability and lightweight LBIST for post-silicon diagnosis. The design supports four operating modes: normal, PWM-test, scan, and LBIST. It is notable for its built-in test features and safety-critical application.",
+   "summary": "Triad01 is a clocked failsafe arbitration block for autonomous drone control paths, evaluating RC and FC health signals to select PRIMARY, FALLBACK, or SAFE_HOLD. It drives a 50 Hz PWM output and includes a scan chain for counter observability and lightweight LBIST for post-silicon diagnosis. The design supports four operating modes: normal, PWM-test, scan, and LBIST. It is notable for its built-in test features and safety-critical application.",
+   "summary_changed": false
+  },
+  {
+   "key": "8a107c959957",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dsp",
+    "cordic",
+    "phase-detector",
+    "audio",
+    "sensor-interface",
+    "led",
+    "uart",
+    "chisel"
+   ],
+   "tags": [
+    "dsp",
+    "cordic",
+    "phase-detector",
+    "audio",
+    "sensor-interface",
+    "led",
+    "uart",
+    "chisel"
+   ],
+   "summary_before": "The Acoustic Interferometer samples two PDM microphones, mixes the 1-bit streams with a 20 kHz complex tone, averages over 2^16 samples, and uses a CORDIC in vectoring mode to compute the phase difference between channels. The resulting 7-bit signed angle is shown as a one-hot value on an LED bar and also transmitted over UART for debugging. It is intended to run with a dedicated PMOD PCB carrying the microphones and LEDs, and a phone speaker playing a 20 kHz tone is used to verify that the LED bar tracks the direction of arrival. The design is written in Chisel and is notable for combining PDM capture, complex mixing, and CORDIC phase detection on a 1x2 tile.",
+   "summary": "The Acoustic Interferometer samples two PDM microphones, mixes the 1-bit streams with a 20 kHz complex tone, averages over 2^16 samples, and uses a CORDIC in vectoring mode to compute the phase difference between channels. The resulting 7-bit signed angle is shown as a one-hot value on an LED bar and also transmitted over UART for debugging. It is intended to run with a dedicated PMOD PCB carrying the microphones and LEDs, and a phone speaker playing a 20 kHz tone is used to verify that the LED bar tracks the direction of arrival. The design is written in Chisel and is notable for combining PDM capture, complex mixing, and CORDIC phase detection on a 1x2 tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "aa271b1824d7",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "sigma-delta",
+    "adc",
+    "dac",
+    "uart",
+    "analog",
+    "comparator",
+    "filter-analog",
+    "mixed-signal"
+   ],
+   "tags": [
+    "sigma-delta",
+    "adc",
+    "dac",
+    "uart",
+    "analog",
+    "comparator",
+    "filter-analog",
+    "mixed-signal"
+   ],
+   "summary_before": "This design combines a sigma-delta DAC and a tracking-loop ADC, where the DAC's pulse-density output is filtered externally to produce an analog voltage and an off-chip comparator closes the ADC feedback loop. ADC readings are transmitted as hex-encoded ASCII over a UART at the clock rate, and a second 8-bit DAC is controlled by UART words received at one tenth of the clock rate. Testing requires an external comparator, resistors and capacitors to build the RC filters and feedback path. The project is notable for demonstrating mixed-signal conversion using only digital primitives plus a few passive components.",
+   "summary": "This design combines a sigma-delta DAC and a tracking-loop ADC, where the DAC's pulse-density output is filtered externally to produce an analog voltage and an off-chip comparator closes the ADC feedback loop. ADC readings are transmitted as hex-encoded ASCII over a UART at the clock rate, and a second 8-bit DAC is controlled by UART words received at one tenth of the clock rate. Testing requires an external comparator, resistors and capacitors to build the RC filters and feedback path. The project is notable for demonstrating mixed-signal conversion using only digital primitives plus a few passive components.",
+   "summary_changed": false
+  },
+  {
+   "key": "cd1b1d2b0178",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The LFSRs generate deterministic GPS PRN sequences, not pseudo-random numbers; the source does not describe a PRNG."
+    }
+   ],
+   "add": [
+    {
+     "tag": "communication",
+     "reason": "Already proposed; GPS C/A PRN sequences are used for communication and navigation."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Already proposed; the design uses two LFSRs per the GPS ICD."
+    },
+    {
+     "tag": "sequencer",
+     "reason": "Already proposed; the design generates a deterministic sequence."
+    }
+   ],
+   "notes": "Removed 'prng' as the LFSRs produce deterministic GPS PRN sequences, not pseudo-random numbers.",
+   "tags_before": [
+    "communication",
+    "lfsr",
+    "prng",
+    "sequencer"
+   ],
+   "tags": [
+    "communication",
+    "lfsr",
+    "sequencer"
+   ],
+   "summary_before": "This design generates the GPS C/A PRN sequences for PRN1 through PRN32 using two LFSRs built to the GPS ICD, with selected taps of the second LFSR combined with the first to produce the chosen code. The PRN index is selected on the input pins, and the G1, G2 and selected PRN outputs are exposed. Testing is done by selecting a PRN, resetting, and clocking while checking the output sequence against the expected pattern. No external hardware is needed, and the documentation is concise but adequate.",
+   "summary": "This design generates the GPS C/A PRN sequences for PRN1 through PRN32 using two LFSRs built to the GPS ICD, with selected taps of the second LFSR combined with the first to produce the chosen code. The PRN index is selected on the input pins, and the G1, G2 and selected PRN outputs are exposed. Testing is done by selecting a PRN, resetting, and clocking while checking the output sequence against the expected pattern. No external hardware is needed, and the documentation is concise but adequate.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7349,
+  "completion_tokens": 1579,
+  "total_tokens": 8928,
+  "cost": 0.0040995,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0040995,
+   "upstream_inference_prompt_cost": 0.0022047,
+   "upstream_inference_completions_cost": 0.0018948
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0040995,
+ "elapsed_s": 15.2
+}

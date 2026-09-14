@@ -1,0 +1,196 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "b13ec4ed57ac",
+  "e8fc11bf596e",
+  "fbfcce94213e",
+  "a3ae65c40282",
+  "7a1cfe451e0a",
+  "65bacf30a93e",
+  "05dd1e46d665",
+  "dc330b393a7b",
+  "78c3742a2b51",
+  "c9b041083081"
+ ],
+ "results": [
+  {
+   "key": "b13ec4ed57ac",
+   "tags": [
+    "motor-control",
+    "bldc",
+    "pid",
+    "i2c",
+    "encoder",
+    "autotuner",
+    "pwm",
+    "controller"
+   ],
+   "summary": "This design is a universal motor and actuator controller for BLDC motors with encoders, implementing PID control and Nichols-Ziegler auto-tuning. It is configured and monitored through an I2C interface at address 0x72, with subaddresses for setting PID constants, manual override, and reading motor period. External hardware includes a motor driver to convert PWM signals to power, a BLDC motor with at least two encoders, and I2C pull-up resistors. The design is notable for its auto-tuning capability and universal applicability to different motor setups.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "e8fc11bf596e",
+   "tags": [
+    "memory",
+    "ram",
+    "latch",
+    "storage",
+    "read-write",
+    "address",
+    "data"
+   ],
+   "summary": "This project implements a 64-byte RAM using latch-based storage, with an 8-bit data bus and 6-bit address bus. Writes take two cycles and only one write can be in flight at a time to avoid glitches and ensure data stability. The design was tested on silicon and confirmed working by the author, who noted the need to work around potential contention on an internal tristate bus. It provides a simple memory block for small data storage in digital systems.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "fbfcce94213e",
+   "tags": [
+    "risc-v",
+    "soc",
+    "qspi",
+    "uart",
+    "spi",
+    "microcontroller",
+    "flash",
+    "psram",
+    "rv32ec"
+   ],
+   "summary": "TinyQV is a small RISC-V SoC implementing the RV32EC instruction set, with 28-bit addresses and 24-bit program addresses. It executes code from QSPI flash and uses QSPI PSRAM for data memory, sharing QSPI lines between them. The SoC includes a UART and SPI controller, and is intended to be used with a QSPI PMOD containing flash and RAM, as well as an ST7789 LCD display. Silicon testing showed the core works and runs MicroPython and benchmarks, but UART RX has a bug that was worked around in software.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a3ae65c40282",
+   "tags": [
+    "pwm",
+    "duty-cycle",
+    "led",
+    "switch",
+    "audio",
+    "signal-generation"
+   ],
+   "summary": "This project is a PWM generator that produces a 1 kHz signal with duty cycle adjustable from 10% to 80% using three switches, providing eight discrete steps. It is designed to control LED brightness or similar loads, and requires an external LED with a resistor and switches for input. The design is a straightforward implementation of PWM for educational or simple control applications.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7a1cfe451e0a",
+   "tags": [
+    "pwm",
+    "duty-cycle",
+    "button",
+    "controller",
+    "signal-generation",
+    "10mhz"
+   ],
+   "summary": "This is a low-cost PWM controller that generates a 10 MHz PWM signal with duty cycle adjustable between 10% and 90% using two buttons for increase and decrease. It is intended for applications requiring variable duty cycle control, such as motor speed or LED dimming. Silicon testing revealed that the PWM output appears on output 0 rather than the bidirectional pin as listed, and duty cycle adjustment is limited to only a few steps (1, 5, and 9). The design is simple and provides basic PWM functionality with noted limitations.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "65bacf30a93e",
+   "tags": [
+    "pwm",
+    "sinewave",
+    "uart",
+    "signal-generation",
+    "audio",
+    "bluetooth",
+    "low-pass-filter"
+   ],
+   "summary": "This project generates a PWM signal that produces a sine wave with frequency selectable from 100 Hz to 700 Hz in 100 Hz steps via a UART interface. A number from 1 to 7 sent over UART sets the frequency, and the PWM output is filtered externally to recover the sine wave. Testing was done with a Bluetooth module for UART communication and an oscilloscope to verify the output frequencies. The design is useful for generating audio-frequency sine waves controlled remotely.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "05dd1e46d665",
+   "tags": [
+    "qif",
+    "spike",
+    "threshold",
+    "reset",
+    "analog",
+    "signal-processing"
+   ],
+   "summary": "The 8-bit digital QIF circuit is described as spiking when the input is positive and resetting when the signal exceeds a predetermined value. However, the documentation is extremely minimal, consisting only of the title, one-line description, and pin names, with no detailed explanation of the QIF algorithm or its implementation. The external hardware mentioned is an ADALM2000, suggesting analog testing, but the design's purpose and operation are unclear. Due to the lack of documentation, the tags and summary are largely inferred from the title and brief description.",
+   "confidence": "low",
+   "insufficient_docs": true
+  },
+  {
+   "key": "dc330b393a7b",
+   "tags": [
+    "serial",
+    "parallel",
+    "register",
+    "shift-register",
+    "adc",
+    "sar",
+    "converter"
+   ],
+   "summary": "This is a 4-bit serial-to-parallel shift register that accepts serial data and outputs it in parallel after four clock cycles. It includes a clock, reset, serial input, and four parallel outputs, and is intended for use in applications like successive approximation registers in ADCs. Testing was performed in simulation with a testbench, and external hardware such as a wave generator, switch, and logic analyzer are suggested for physical testing. The design is a basic building block for data conversion and serial communication.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "78c3742a2b51",
+   "tags": [
+    "systolic-array",
+    "matrix-multiply",
+    "convolution",
+    "processing-element",
+    "fpga",
+    "dsp",
+    "neural-network"
+   ],
+   "summary": "This is a tiny systolic array with 9 processing elements capable of matrix multiplication and 2D convolution using row stationary operation. It requires an external FPGA connected to all 24 I/O pins to feed data and retrieve results, as it has no internal control or memory. The design is a hardware accelerator for compute-intensive tasks like neural network inference, but its small size limits throughput. Documentation is minimal, focusing on the architecture and external interface.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "c9b041083081",
+   "tags": [
+    "prng",
+    "lfsr",
+    "random-number-generator",
+    "alternating-step-generator",
+    "crypto",
+    "period",
+    "spinalhdl"
+   ],
+   "summary": "This project implements an Alternating Step Generator (ASG) using three linear feedback shift registers (LFSRs) to produce a pseudo-random bit sequence with an extremely long period. The design is a naive implementation generated with SpinalHDL, and it requires loading non-null seeds into the three LFSRs via the loadIt input before enabling operation. A new random bit is generated every clock cycle. The ASG is notable for its simple hardware implementation and huge period, making it suitable for cryptographic or simulation applications.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [
+  "a3ae65c40282: 3 sentences"
+ ],
+ "usage": {
+  "prompt_tokens": 5585,
+  "completion_tokens": 1657,
+  "total_tokens": 7242,
+  "cost": 0.00214553,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 830,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00214553,
+   "upstream_inference_prompt_cost": 0.00105191,
+   "upstream_inference_completions_cost": 0.00109362
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00214553,
+ "elapsed_s": 23.9
+}

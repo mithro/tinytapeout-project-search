@@ -1,0 +1,281 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "983233092fa7",
+  "96b553db93e4",
+  "e66a8e2a640e",
+  "7e810bf9bbbd",
+  "b85924804d24",
+  "f7fad8617d90"
+ ],
+ "results": [
+  {
+   "key": "983233092fa7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "button",
+     "reason": "No button input is documented; pins are clock, reset and 7-segment outputs only."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The text mentions gates and flip-flops, but the design is a character sequencer, not a basic logic gate implementation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "It cycles through characters each clock cycle, i.e. a counting/sequencing circuit."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Gates and flip-flops form a state machine advancing each cycle."
+    }
+   ],
+   "notes": "Removed unsupported button and logic-gate tags; added counter and sequential-logic.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "button",
+    "wokwi",
+    "education",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "education",
+    "display",
+    "counter",
+    "sequential-logic"
+   ],
+   "summary_before": "This design implements a logic gate circuit with a 7-segment display output, built with Wokwi. It is intended for educational purposes and demonstrates basic logic operations. The design uses button inputs and drives the seven segments of a display. The documentation is minimal but sufficient to understand the configuration options.",
+   "summary": "This design cycles through the characters of the string LAB11 on a 7-segment display, one character per clock cycle. It is built with Wokwi and uses gates and flip-flops to change the state of the LED segments to form the next character. The design takes a clock and reset input and drives the seven segment outputs. It is intended as a simple educational demonstration, and the documentation notes that characters are most readable at the lowest clock speed.",
+   "summary_changed": true
+  },
+  {
+   "key": "96b553db93e4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "logic-gate",
+     "reason": "The design is a 7-segment decoder, not a basic logic gate implementation."
+    },
+    {
+     "tag": "led",
+     "reason": "Output is a 7-segment display, better described by 7-segment/display."
+    }
+   ],
+   "add": [
+    {
+     "tag": "decoder",
+     "reason": "The project is explicitly a 7-segment decoder."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "It drives a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Output is a display."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, only one sentence of explanation."
+    }
+   ],
+   "notes": "Corrected tags to decoder/7-segment and added insufficient-doc; summary rewritten to match the sparse source.",
+   "tags_before": [
+    "logic-gate",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "education",
+    "decoder",
+    "7-segment",
+    "display",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a first Wokwi design described as a logic circuit test for the Wokwi platform.",
+   "summary": "This project is a 7-segment decoder built in Wokwi. It takes switch inputs S0 to S6 and each switch turns on a corresponding segment of the display. The design drives a 7-segment display as external hardware. The documentation is very thin, consisting of only a brief description and test instructions.",
+   "summary_changed": true
+  },
+  {
+   "key": "e66a8e2a640e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "hash",
+     "reason": "The Chi function of Xoodoo is a permutation component, not a hash function implementation."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The 7-segment pins are the standard Wokwi template outputs, not evidence of a display feature."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cipher",
+     "reason": "Xoodoo is a cryptographic permutation used in ciphers."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, only repeating the one-line description."
+    }
+   ],
+   "notes": "Removed unsupported hash and 7-segment tags; added cipher and insufficient-doc.",
+   "tags_before": [
+    "crypto",
+    "hash",
+    "security",
+    "side-channel",
+    "7-segment",
+    "wokwi"
+   ],
+   "tags": [
+    "crypto",
+    "security",
+    "side-channel",
+    "wokwi",
+    "cipher",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design implements a cryptographic hash function with a focus on side-channel resistance. It takes a clock and reset on its inputs and drives the seven segments of a display on its outputs, presumably to show internal state or a result. The design is built with Wokwi and is intended for educational purposes. The documentation is minimal and does not describe the internal state encoding or the exact character sequence timing.",
+   "summary": "This design implements the Chi function of the Xoodoo permutation protected at first order by DOM masking. It is a cryptographic building block aimed at side-channel resistance. The design is built with Wokwi and takes a clock and reset input while driving the seven segment outputs. The documentation is very thin and does not describe the internal state encoding or test procedure beyond setting the inputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "7e810bf9bbbd",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "education",
+    "template",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "education",
+    "template",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "summary_before": "This project is described only as a logic gate circuit built in Wokwi, with no further explanation of its function. The documentation consists of the default template prompts, so the actual behaviour, inputs and outputs are not specified. No external hardware is listed, and no test procedure is given. Because the documentation is essentially empty, the design cannot be characterised beyond its title and one-line description.",
+   "summary": "This project is described only as a logic gate circuit built in Wokwi, with no further explanation of its function. The documentation consists of the default template prompts, so the actual behaviour, inputs and outputs are not specified. No external hardware is listed, and no test procedure is given. Because the documentation is essentially empty, the design cannot be characterised beyond its title and one-line description.",
+   "summary_changed": false
+  },
+  {
+   "key": "b85924804d24",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The chip itself contains no memory; ROM and RAM are external MCS-4 system components."
+    }
+   ],
+   "add": [
+    {
+     "tag": "retro",
+     "reason": "Recreates the vintage Intel 4004 MCS-4 CPU."
+    },
+    {
+     "tag": "calculator",
+     "reason": "Intended for a replica of the 141-PF calculator."
+    }
+   ],
+   "notes": "Removed memory tag (external only); added retro and calculator.",
+   "tags_before": [
+    "cpu",
+    "retro",
+    "fpga",
+    "verilog",
+    "memory"
+   ],
+   "tags": [
+    "cpu",
+    "retro",
+    "fpga",
+    "verilog",
+    "calculator"
+   ],
+   "summary_before": "This project implements the Intel MCS-4 4004 CPU in Verilog, intended for use in a replica of the 141-PF calculator. The design can be configured in three ways: as an internal CPU within an FPGA, as an FPGA-based CPU connected to external MCS-4 system components, or as a standalone chip connected to an FPGA-based MCS-4 system. The chip requires external ROM and RAM to function as a complete system, and the documentation describes a debug system using an FPGA and a RISC-V subsystem for chip selection.",
+   "summary": "This project implements the Intel MCS-4 4004 CPU in Verilog, intended for use in a replica of the 141-PF calculator. The design can be configured in three ways: as an internal CPU within an FPGA, as an FPGA-based CPU connected to external MCS-4 system components, or as a standalone chip connected to an FPGA-based MCS-4 system. The chip requires external ROM and RAM to function as a complete system, and the documentation describes a debug system using an FPGA and a RISC-V subsystem for chip selection. The design runs at 750 kHz and exposes data, sync and chip-select pins for the MCS-4 bus.",
+   "summary_changed": true
+  },
+  {
+   "key": "f7fad8617d90",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "The design uses AND gates to map binary inputs to decimal outputs, not a code-to-signal decoder block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Explicitly built from AND gates."
+    },
+    {
+     "tag": "bcd",
+     "reason": "Converts binary input to decimal (BCD-style) output values."
+    }
+   ],
+   "notes": "Replaced decoder with logic-gate and bcd to match the AND-gate binary-to-decimal description.",
+   "tags_before": [
+    "decoder",
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education",
+    "logic-gate",
+    "bcd"
+   ],
+   "summary_before": "This project converts a 4-bit binary input to a decimal value for display on a 7-segment display. The design uses a decoder to map the binary input to the appropriate segments. It is likely implemented in Wokwi and serves as an educational example of binary-to-decimal conversion. The documentation is minimal but the functionality is straightforward.",
+   "summary": "This project converts a 4-bit binary input to a decimal value for display on a 7-segment display. The design uses AND gates with complementary inputs to map the binary values to the appropriate outputs. It is implemented in Wokwi and serves as an educational example of binary-to-decimal conversion. The documentation is minimal but the functionality is straightforward.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5645,
+  "completion_tokens": 1430,
+  "total_tokens": 7075,
+  "cost": 0.001466186,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001466186,
+   "upstream_inference_prompt_cost": 0.000522386,
+   "upstream_inference_completions_cost": 0.0009438
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001466186,
+ "elapsed_s": 19.4
+}

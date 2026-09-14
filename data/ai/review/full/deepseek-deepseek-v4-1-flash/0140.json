@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "43ce04403210",
+  "adb189689ce1",
+  "bdcf976c3834",
+  "89e90f304491",
+  "5ed75bf5fef3",
+  "8c16c587f53e"
+ ],
+ "results": [
+  {
+   "key": "43ce04403210",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a floating-point accumulation core, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "mac-unit",
+     "reason": "The core performs multiply-accumulate operations (mulf/addf) as its main function."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The language is SystemVerilog/MLIR and the generated core is SystemVerilog."
+    }
+   ],
+   "notes": "Removed unsupported ALU tag and added mac-unit and systemverilog tags supported by the multiply-accumulate core and language.",
+   "tags_before": [
+    "floating-point",
+    "alu",
+    "accelerator"
+   ],
+   "tags": [
+    "floating-point",
+    "accelerator",
+    "mac-unit",
+    "systemverilog"
+   ],
+   "summary_before": "This design implements a streaming byte-fed IEEE754 per-operation sequential and combinational accumulation core, generated from an MLIR for-loop pattern. The MLIR flow detects a loop with multiplication and addition and emits a specialized S3FDP accumulator, avoiding generic floating-point logic. The design has a byte-wide input and output interface and requires no external hardware. It is notable for being automatically generated from MLIR and for its use of the S3FDP architecture.",
+   "summary": "This design implements a streaming byte-fed IEEE754 per-operation sequential and combinational accumulation core, generated from an MLIR for-loop pattern. The MLIR flow detects a loop with multiplication and addition and emits a specialized S3FDP accumulator, avoiding generic floating-point logic. The design has a byte-wide input and output interface and requires no external hardware. It is notable for being automatically generated from MLIR and for its use of the S3FDP architecture.",
+   "summary_changed": false
+  },
+  {
+   "key": "adb189689ce1",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Removed unsupported 640x480 resolution claim from summary.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "video",
+    "demoscene"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "video",
+    "demoscene"
+   ],
+   "summary_before": "DKTT01 - VGA Glider is a modified version of the VGA playground 'Rings' demo, where multi-colored rings move diagonally from the bottom left to the top right corner. It generates a 640x480 VGA signal and is intended to be tested using the TinyTapeout VGA playground guide. No external hardware is required beyond a VGA monitor. The documentation is very brief, providing only a one-line description and basic testing instructions.",
+   "summary": "DKTT01 - VGA Glider is a modified version of the VGA playground 'Rings' demo, where multi-colored rings move diagonally from the bottom left to the top right corner. It generates a VGA signal and is intended to be tested using the TinyTapeout VGA playground guide. No external hardware is required beyond a VGA monitor. The documentation is very brief, providing only a one-line description and basic testing instructions.",
+   "summary_changed": true
+  },
+  {
+   "key": "bdcf976c3834",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The design outputs a VGA signal, not a generic display interface."
+    },
+    {
+     "tag": "graphics",
+     "reason": "No evidence of rendered graphics beyond a VGA signal."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin, providing only a brief description and testing steps."
+    }
+   ],
+   "notes": "Removed unsupported display and graphics tags and added insufficient-doc for very thin documentation.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "Luz generates a VGA signal, likely displaying some visual pattern. It requires a Tiny VGA PMOD and a monitor, and is clocked at 80 MHz. The documentation is minimal, providing only a brief description and testing steps. No further details about the visual output are given.",
+   "summary": "Luz generates a VGA signal, likely displaying some visual pattern. It requires a Tiny VGA PMOD and a monitor, and is clocked at 80 MHz. The documentation is minimal, providing only a brief description and testing steps. No further details about the visual output are given.",
+   "summary_changed": false
+  },
+  {
+   "key": "89e90f304491",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "The design uses microcode and ISA headers but does not implement a dedicated instruction decoder block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported instruction-decoder tag; the design uses microcode and ISA headers but no dedicated decoder.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "instruction-decoder",
+    "systemverilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neural-network",
+    "machine-learning",
+    "systemverilog"
+   ],
+   "summary_before": "This design implements a spiking neural network tile with four Leaky Integrate-and-Fire neurons arranged in a 2x2 grid. A single microcode-driven compute worker processes spike events in round-robin order, and the tile supports configuration via weight and ISA headers. Inputs and outputs include spike signals, weight data, and handshake lines for tile-to-tile communication. The documentation is brief but indicates a configurable neural network accelerator with a custom instruction set.",
+   "summary": "This design implements a spiking neural network tile with four Leaky Integrate-and-Fire neurons arranged in a 2x2 grid. A single microcode-driven compute worker processes spike events in round-robin order, and the tile supports configuration via weight and ISA headers. Inputs and outputs include spike signals, weight data, and handshake lines for tile-to-tile communication. The documentation is brief but indicates a configurable neural network accelerator with a custom instruction set.",
+   "summary_changed": false
+  },
+  {
+   "key": "5ed75bf5fef3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present and describes the pipeline, so it is not insufficient."
+    }
+   ],
+   "add": [],
+   "notes": "Removed insufficient-doc tag because documentation is present and describes the pipeline.",
+   "tags_before": [
+    "cpu",
+    "systemverilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "cpu",
+    "systemverilog"
+   ],
+   "summary_before": "This is a small out-of-order CPU that includes an instruction queue, register alias table, reorder buffer and reservation stations. Instructions are fed in through the input pins and results are read from the output pins, with a testbench driving the design via io_in. No external hardware is needed because it runs entirely inside the Tiny Tapeout framework. The documentation is very thin, giving only a pipeline outline and no measured results, so most architectural detail is inferred from the title and pin names.",
+   "summary": "This is a small out-of-order CPU that includes an instruction queue, register alias table, reorder buffer and reservation stations. Instructions are fed in through the input pins and results are read from the output pins, with a testbench driving the design via io_in. No external hardware is needed because it runs entirely inside the Tiny Tapeout framework. The documentation is brief, giving only a pipeline outline and no measured results, so most architectural detail is inferred from the title and pin names.",
+   "summary_changed": true
+  },
+  {
+   "key": "8c16c587f53e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is explicitly described in the documentation."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence the design is intended for teaching or learning digital design."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported fsm and education tags; the design is a game but no FSM or educational intent is documented.",
+   "tags_before": [
+    "game",
+    "puzzle",
+    "fsm",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "puzzle",
+    "verilog"
+   ],
+   "summary_before": "This design implements a two-player secret guessing game in which one player sets a 4-bit secret and the other has five rounds to guess it. Inputs set the secret, start the game, and submit guesses, while outputs report how many digits are correct in position and how many are correct but misplaced. It is a small state-machine design with no external hardware required beyond switches and LEDs for the inputs and outputs. The documentation is brief and contains typos, but the pin names and test steps are sufficient to understand the intended use.",
+   "summary": "This design implements a two-player secret guessing game in which one player sets a 4-bit secret and the other has five rounds to guess it. Inputs set the secret, start the game, and submit guesses, while outputs report how many digits are correct in position and how many are correct but misplaced. It is a small design with no external hardware required beyond switches and LEDs for the inputs and outputs. The documentation is brief and contains typos, but the pin names and test steps are sufficient to understand the intended use.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6182,
+  "completion_tokens": 1274,
+  "total_tokens": 7456,
+  "cost": 0.0033834,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033834,
+   "upstream_inference_prompt_cost": 0.0018546,
+   "upstream_inference_completions_cost": 0.0015288
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033834,
+ "elapsed_s": 6.9
+}

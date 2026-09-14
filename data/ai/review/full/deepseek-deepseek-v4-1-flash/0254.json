@@ -1,0 +1,229 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9c7044852ee4",
+  "9bba07bd2779",
+  "3b8a858cb398",
+  "cb4e6f7df7a7",
+  "23b172ce4786",
+  "eb25bdbe7c2a"
+ ],
+ "results": [
+  {
+   "key": "9c7044852ee4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "chiptune",
+     "reason": "The design is a DAC for a sound generator chip, not chiptune music generation itself; the source does not describe music generation."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sound-generator",
+     "reason": "Explicitly a DAC for the AY-8193 sound generator chip."
+    }
+   ],
+   "notes": "Removed chiptune (no music generation described) and added sound-generator; summary sentence about input pins corrected to match pin list.",
+   "tags_before": [
+    "dac",
+    "analog",
+    "chiptune",
+    "audio"
+   ],
+   "tags": [
+    "dac",
+    "analog",
+    "audio",
+    "sound-generator"
+   ],
+   "summary_before": "This is an analog logarithmic 4-bit DAC designed for the AY-8193 sound generator. It uses current steering to convert digital inputs into an analog output current on ua[0]. The design can be tested by setting input pins to regulate current and measuring the output with an oscilloscope or by connecting an amplifier and speakers. The documentation is brief, providing only a one-line description and basic testing notes.",
+   "summary": "This is an analog logarithmic 4-bit DAC designed for the AY-8193 sound generator. It uses current steering to convert digital inputs into an analog output current on ua[0]. The design can be tested by setting input or bidirectional pins to regulate current and measuring the output with an oscilloscope or by connecting an amplifier and speakers. The documentation is brief, providing only a one-line description and basic testing notes.",
+   "summary_changed": true
+  },
+  {
+   "key": "9bba07bd2779",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design interfaces to external SPI flash and PSRAM but does not itself implement a memory block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed memory tag since the design only exposes SPI pins to external memories rather than implementing one.",
+   "tags_before": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "uart",
+    "spi",
+    "memory",
+    "verilog",
+    "microcontroller"
+   ],
+   "tags": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "uart",
+    "spi",
+    "verilog",
+    "microcontroller"
+   ],
+   "summary_before": "This is a RISC-V SoC called KianV uLinux that can boot a small Linux system, implemented in Verilog across an 8x2 tile area. It provides a UART interface, SPI connections for flash and PSRAM, and several LED outputs, with one bidirectional pin held always high. The design is notable for being a full Linux-capable RISC-V ASIC on a Tiny Tapeout shuttle. External hardware includes SPI flash and PSRAM memories, and the documentation is limited to pin names without detailed usage instructions.",
+   "summary": "This is a RISC-V SoC called KianV uLinux that can boot a small Linux system, implemented in Verilog across an 8x2 tile area. It provides a UART interface, SPI connections for flash and PSRAM, and several LED outputs, with one bidirectional pin held always high. The design is notable for being a full Linux-capable RISC-V ASIC on a Tiny Tapeout shuttle. External hardware includes SPI flash and PSRAM memories, and the documentation is limited to pin names without detailed usage instructions.",
+   "summary_changed": false
+  },
+  {
+   "key": "3b8a858cb398",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "A simple traffic light sequence demo is not an industrial control application."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The source describes a combinational state selection from two inputs, not a finite state machine with internal state."
+    }
+   ],
+   "add": [],
+   "notes": "Removed industrial and fsm tags not supported by the source; kept sequencer, led, wokwi, education.",
+   "tags_before": [
+    "fsm",
+    "sequencer",
+    "led",
+    "wokwi",
+    "education",
+    "industrial"
+   ],
+   "tags": [
+    "sequencer",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This design implements a simple traffic light sequence that cycles through red, red-yellow, green, and yellow states. The sequence is controlled by two input pins, where the binary combination selects the current light state. It is intended as a basic educational example, likely created in the Wokwi simulator. No external hardware is required beyond the chip itself, and the documentation is minimal.",
+   "summary": "This design implements a simple traffic light sequence that cycles through red, red-yellow, green, and yellow states. The sequence is controlled by two input pins, where the binary combination selects the current light state. It is intended as a basic educational example, likely created in the Wokwi simulator. No external hardware is required beyond the chip itself, and the documentation is minimal.",
+   "summary_changed": false
+  },
+  {
+   "key": "cb4e6f7df7a7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "characterization",
+     "reason": "The design verifies latch techmapping, not process or device parameter characterization."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working results from both a tester and the author."
+    }
+   ],
+   "notes": "Removed characterization and added silicon-tested to match the working silicon reports.",
+   "tags_before": [
+    "latch",
+    "standard-cell",
+    "factory-test",
+    "verilog",
+    "characterization"
+   ],
+   "tags": [
+    "latch",
+    "standard-cell",
+    "factory-test",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a latch test design that verifies the proper technology mapping of $_DLATCH_N_ and $_DLATCH_P_ cells. It provides a P latch and an N latch with enable and data inputs, and outputs to observe their behavior. The P latch is transparent when its enable is high, and the N latch when its enable is low. Silicon testing by both the author and an external tester confirmed correct operation.",
+   "summary": "This is a latch test design that verifies the proper technology mapping of $_DLATCH_N_ and $_DLATCH_P_ cells. It provides a P latch and an N latch with enable and data inputs, and outputs to observe their behavior. The P latch is transparent when its enable is high, and the N latch when its enable is low. Silicon testing by both the author and an external tester confirmed correct operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "23b172ce4786",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "crypto",
+    "cipher",
+    "bit-serial",
+    "verilog"
+   ],
+   "tags": [
+    "crypto",
+    "cipher",
+    "bit-serial",
+    "verilog"
+   ],
+   "summary_before": "This design is a nibble-serial implementation of the LED block cipher, which encrypts a 64-bit plaintext block using a 128-bit key. It serializes both data input and output to fit within the limited I/O pins, controlled by a simple handshake protocol. The cipher requires external hardware, such as a Raspberry Pi, to provide the serial data and control signals. The design is notable for its compact implementation, reusing datapath logic across nibbles, at the cost of increased latency.",
+   "summary": "This design is a nibble-serial implementation of the LED block cipher, which encrypts a 64-bit plaintext block using a 128-bit key. It serializes both data input and output to fit within the limited I/O pins, controlled by a simple handshake protocol. The cipher requires external hardware, such as a Raspberry Pi, to provide the serial data and control signals. The design is notable for its compact implementation, reusing datapath logic across nibbles, at the cost of increased latency.",
+   "summary_changed": false
+  },
+  {
+   "key": "eb25bdbe7c2a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a standalone 8-bit adder, not an arithmetic logic unit with multiple operations."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "An LLM was used as a design aid; the hardware itself is not machine learning inference or training."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "The source describes a prefix-network carry structure, not a pipelined datapath."
+    }
+   ],
+   "add": [],
+   "notes": "Removed alu, machine-learning and pipeline tags not supported by the source.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "machine-learning",
+    "verilog",
+    "pipeline"
+   ],
+   "tags": [
+    "adder",
+    "verilog"
+   ],
+   "summary_before": "This project is an 8-bit prefix network-based adder designed with the aid of a large language model to achieve a balance between power, performance, and area. It takes two 8-bit operands (a and b) and produces an 8-bit sum output. The design uses specific modules (Square, BigCircle, SmallCircle, Triangle) to generate carries and sums. The test procedure applies all possible input combinations and verifies the sum against the expected result, ensuring correct functionality.",
+   "summary": "This project is an 8-bit prefix network-based adder designed with the aid of a large language model to achieve a balance between power, performance, and area. It takes two 8-bit operands (a and b) and produces an 8-bit sum output. The design uses specific modules (Square, BigCircle, SmallCircle, Triangle) to generate carries and sums. The test procedure applies all possible input combinations and verifies the sum against the expected result, ensuring correct functionality.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6957,
+  "completion_tokens": 1235,
+  "total_tokens": 8192,
+  "cost": 0.002240583,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002240583,
+   "upstream_inference_prompt_cost": 0.000980883,
+   "upstream_inference_completions_cost": 0.0012597
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002240583,
+ "elapsed_s": 30.1
+}

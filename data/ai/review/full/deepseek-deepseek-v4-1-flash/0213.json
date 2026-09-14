@@ -1,0 +1,414 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "31fa05f9ae21",
+  "8e00d56bcf85",
+  "012f548e1e18",
+  "a1cd0b41ec42",
+  "40fb1ef87779",
+  "ef7e3a0e3b57"
+ ],
+ "results": [
+  {
+   "key": "31fa05f9ae21",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "The documented design is a GF16 dot-product engine; the neural-network/AI-safety claims are promotional and unsubstantiated."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine-learning functionality is described in the actual design documentation."
+    },
+    {
+     "tag": "power-gating",
+     "reason": "Power modules (AVS-96, FBB, Purkinje) are only mentioned in promotional text, not implemented in the documented datapath."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "Dot-product computation is a core DSP primitive."
+    },
+    {
+     "tag": "floating-point",
+     "reason": "GF16 is a floating-point format with sign, exponent and mantissa."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Four parallel GF16 multipliers are explicitly described."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "The dot-product engine performs multiply-accumulate style reduction."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed unsubstantiated neural-network, machine-learning and power-gating tags; kept only tags supported by the documented GF16 dot-product datapath.",
+   "tags_before": [
+    "dsp",
+    "floating-point",
+    "multiplier",
+    "mac-unit",
+    "neural-network",
+    "machine-learning",
+    "verilog",
+    "power-gating"
+   ],
+   "tags": [
+    "dsp",
+    "floating-point",
+    "multiplier",
+    "mac-unit",
+    "verilog"
+   ],
+   "summary_before": "TRI-1 Euler is a GF16 dot-product engine that computes a 4-element dot product using four parallel GF16 multipliers and a three-adder reduction tree. It is part of a larger Trinity TRI-NET family and is described as an e-engine SKU with support for multiple numeric formats, quantizers, and power modules. The default configuration computes dot4([1,2,3,4],[1,2,3,4]) = 30.0, observable as 0x47C0 on the output pins after reset. No external hardware is required, but the documentation is largely promotional and does not substantiate many of the claimed features.",
+   "summary": "TRI-1 Euler is a GF16 dot-product engine that computes a 4-element dot product using four parallel GF16 multipliers and a three-adder reduction tree. It is part of a larger Trinity TRI-NET family and is described as an e-engine SKU with support for multiple numeric formats, quantizers, and power modules. The default configuration computes dot4([1,2,3,4],[1,2,3,4]) = 30.0, observable as 0x47C0 on the output pins after reset. No external hardware is required, but the documentation is largely promotional and does not substantiate many of the claimed features.",
+   "summary_changed": false
+  },
+  {
+   "key": "8e00d56bcf85",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asic",
+     "reason": "Generic implementation tag not specifically supported; the design is a standard Tiny Tapeout Verilog submission."
+    }
+   ],
+   "add": [
+    {
+     "tag": "audio",
+     "reason": "Produces audio waveforms."
+    },
+    {
+     "tag": "synthesizer",
+     "reason": "Two-channel tone/waveform synthesis."
+    },
+    {
+     "tag": "pwm",
+     "reason": "8-bit PWM output on uo[7]."
+    },
+    {
+     "tag": "nco",
+     "reason": "DDS phase accumulator acts as a numerically controlled oscillator."
+    },
+    {
+     "tag": "cordic",
+     "reason": "Sine module uses CORDIC."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "Generates sine and triangle waveforms."
+    },
+    {
+     "tag": "waveform-generator",
+     "reason": "Arbitrary waveform generation via DDS."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed generic asic tag; added canonical audio, synthesizer, pwm, nco, cordic, signal-generator, waveform-generator and verilog tags supported by the documentation.",
+   "tags_before": [
+    "audio",
+    "synthesizer",
+    "pwm",
+    "nco",
+    "cordic",
+    "signal-generator",
+    "waveform-generator",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "audio",
+    "synthesizer",
+    "pwm",
+    "nco",
+    "cordic",
+    "signal-generator",
+    "waveform-generator",
+    "verilog"
+   ],
+   "summary_before": "This project is a two-channel audio wave generator that produces sine and triangle waves using direct digital synthesis and CORDIC algorithms, output as an 8-bit PWM signal. It is controlled via a parallel bus interface with two 16-bit frequency registers, and it requires an external Audio Pmod for output. Testing can be done with simulation tools like GTKWave, and the design is notable for its multi-channel synthesis and PWM output on a single pin.",
+   "summary": "This project is a two-channel audio wave generator that produces sine and triangle waves using direct digital synthesis and CORDIC algorithms, output as an 8-bit PWM signal. It is controlled via a parallel bus interface with two 16-bit frequency registers, and it requires an external Audio Pmod for output. Testing can be done with simulation tools like GTKWave, and the design is notable for its multi-channel synthesis and PWM output on a single pin.",
+   "summary_changed": false
+  },
+  {
+   "key": "012f548e1e18",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "motor-control",
+     "reason": "The chip relays CAN commands and injects reflex poses; it does not directly drive motors."
+    },
+    {
+     "tag": "automotive",
+     "reason": "Application is robot-arm reflex control, not automotive."
+    },
+    {
+     "tag": "industrial",
+     "reason": "No industrial control application is described."
+    },
+    {
+     "tag": "fsm",
+     "reason": "The design is a rule-based reflex core with SPI/CAN datapath; FSM is not the documented primary structure."
+    }
+   ],
+   "add": [
+    {
+     "tag": "can-bus",
+     "reason": "Interfaces to a CAN bus via MCP2515."
+    },
+    {
+     "tag": "spi",
+     "reason": "Two SPI ports: slave and master."
+    },
+    {
+     "tag": "robotics",
+     "reason": "Robot-arm reflex system."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed motor-control, automotive, industrial and fsm tags not supported by the source; kept can-bus, spi, robotics and verilog.",
+   "tags_before": [
+    "can-bus",
+    "spi",
+    "robotics",
+    "motor-control",
+    "automotive",
+    "industrial",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "can-bus",
+    "spi",
+    "robotics",
+    "verilog"
+   ],
+   "summary_before": "This design is the decision and relay core of a robot-arm reflex system that forwards normal joint commands to a CAN bus via an external MCP2515 controller and, upon a danger trigger, blocks the normal stream and injects a reflex pose. It includes two SPI ports: a slave for host configuration and frame relay, and a master for driving the MCP2515. The reflex behavior is programmable through a rule table with priority and debounce, supporting actions such as freeze, home, and flinch. It requires external hardware including an MCP2515, a CAN transceiver, a DIP switch, and an FSR sensor connected to an FPGA XADC.",
+   "summary": "This design is the decision and relay core of a robot-arm reflex system that forwards normal joint commands to a CAN bus via an external MCP2515 controller and, upon a danger trigger, blocks the normal stream and injects a reflex pose. It includes two SPI ports: a slave for host configuration and frame relay, and a master for driving the MCP2515. The reflex behavior is programmable through a rule table with priority and debounce, supporting actions such as freeze, home, and flinch. It requires external hardware including an MCP2515, a CAN transceiver, a DIP switch, and an FSR sensor connected to an FPGA XADC.",
+   "summary_changed": false
+  },
+  {
+   "key": "a1cd0b41ec42",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "graphics",
+     "reason": "The design outputs VGA video; graphics is a generic output tag not specifically needed."
+    }
+   ],
+   "add": [
+    {
+     "tag": "music",
+     "reason": "Plays Pachelbel's Canon."
+    },
+    {
+     "tag": "audio",
+     "reason": "PWM audio output."
+    },
+    {
+     "tag": "vga",
+     "reason": "Tiny VGA pinout and video output."
+    },
+    {
+     "tag": "pwm",
+     "reason": "PWM output on uio[7]."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Requires Tiny VGA Pmod and Audio Pmod."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working status."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    }
+   ],
+   "notes": "Removed generic graphics tag; added silicon-tested and verilog tags supported by the silicon reports and language.",
+   "tags_before": [
+    "music",
+    "audio",
+    "vga",
+    "pwm",
+    "pmod",
+    "graphics"
+   ],
+   "tags": [
+    "music",
+    "audio",
+    "vga",
+    "pwm",
+    "pmod",
+    "silicon-tested",
+    "verilog"
+   ],
+   "summary_before": "This design plays Pachelbel's Canon while displaying synchronized visuals on a VGA screen. It uses a PWM output for audio and requires a Tiny VGA Pmod and a Tiny Audio Pmod. Silicon testing showed it works, though one tester noted the audio was out of sync until manually reset. The design is a demonstration of audio and video capabilities on Tiny Tapeout.",
+   "summary": "This design plays Pachelbel's Canon while displaying synchronized visuals on a VGA screen. It uses a PWM output for audio and requires a Tiny VGA Pmod and a Tiny Audio Pmod. Silicon testing showed it works, though one tester noted the audio was out of sync until manually reset. The design is a demonstration of audio and video capabilities on Tiny Tapeout.",
+   "summary_changed": false
+  },
+  {
+   "key": "40fb1ef87779",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "Memory is a type tag for storage blocks; this is a game, not a memory design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Simon Says memory game."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Two-digit seven-segment display output."
+    },
+    {
+     "tag": "led",
+     "reason": "Four LEDs for sequence display."
+    },
+    {
+     "tag": "speaker",
+     "reason": "Speaker output for tones."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Wokwi simulation provided."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Simon Says Pmod supported."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Verilog."
+    },
+    {
+     "tag": "button",
+     "reason": "Four push buttons for input."
+    }
+   ],
+   "notes": "Removed memory type tag; added canonical game, 7-segment, led, speaker, wokwi, pmod, verilog and button tags.",
+   "tags_before": [
+    "game",
+    "memory",
+    "7-segment",
+    "led",
+    "speaker",
+    "wokwi",
+    "pmod",
+    "verilog",
+    "button"
+   ],
+   "tags": [
+    "game",
+    "7-segment",
+    "led",
+    "speaker",
+    "wokwi",
+    "pmod",
+    "verilog",
+    "button"
+   ],
+   "summary_before": "This design implements a Simon Says memory game where the player must repeat an ever-growing sequence of colors and tones. The sequence is shown on four LEDs with corresponding tones on a speaker, and the player responds using four buttons. A two-digit seven-segment display shows the current level, and the game restarts after a mistake. It requires external hardware such as the Simon Says Pmod or discrete buttons, LEDs, a speaker, and a seven-segment display, and a Wokwi simulation is available.",
+   "summary": "This design implements a Simon Says memory game where the player must repeat an ever-growing sequence of colors and tones. The sequence is shown on four LEDs with corresponding tones on a speaker, and the player responds using four buttons. A two-digit seven-segment display shows the current level, and the game restarts after a mistake. It requires external hardware such as the Simon Says Pmod or discrete buttons, LEDs, a speaker, and a seven-segment display, and a Wokwi simulation is available.",
+   "summary_changed": false
+  },
+  {
+   "key": "ef7e3a0e3b57",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "Generic communication domain tag; UART is the specific interface."
+    }
+   ],
+   "add": [
+    {
+     "tag": "uart",
+     "reason": "UART serial transmitter."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "17-bit shift register implementation."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Seven-segment display outputs."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Wokwi-based project."
+    },
+    {
+     "tag": "ascii",
+     "reason": "Transmits ASCII characters."
+    }
+   ],
+   "notes": "Removed generic communication tag; kept uart, shift-register, 7-segment, wokwi and ascii tags supported by the source.",
+   "tags_before": [
+    "uart",
+    "shift-register",
+    "7-segment",
+    "wokwi",
+    "communication",
+    "ascii"
+   ],
+   "tags": [
+    "uart",
+    "shift-register",
+    "7-segment",
+    "wokwi",
+    "ascii"
+   ],
+   "summary_before": "This design implements a single-character UART transmitter using a 17-bit shift register built from D flip-flops and multiplexers. It transmits a user-selected ASCII character from 0x40 to 0x5F, including capital letters, at a 300 Hz clock rate. The design is tested by connecting an Arduino's serial RX pin to the output and configuring the Arduino serial monitor to 300 baud, then toggling switches to load and transmit the character. External hardware includes an Arduino and a computer with a serial monitor. The design is notable for its use of discrete flip-flops and multiplexers to implement the shift register, and it is a Wokwi-based project.",
+   "summary": "This design implements a single-character UART transmitter using a 17-bit shift register built from D flip-flops and multiplexers. It transmits a user-selected ASCII character from 0x40 to 0x5F, including capital letters, at a 300 Hz clock rate. The design is tested by connecting an Arduino's serial RX pin to the output and configuring the Arduino serial monitor to 300 baud, then toggling switches to load and transmit the character. External hardware includes an Arduino and a computer with a serial monitor. The design is notable for its use of discrete flip-flops and multiplexers to implement the shift register, and it is a Wokwi-based project.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "8e00d56bcf85: 3 sentences after review",
+  "ef7e3a0e3b57: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 8735,
+  "completion_tokens": 2315,
+  "total_tokens": 11050,
+  "cost": 0.0053985,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0053985,
+   "upstream_inference_prompt_cost": 0.0026205,
+   "upstream_inference_completions_cost": 0.002778
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0053985,
+ "elapsed_s": 17.4
+}

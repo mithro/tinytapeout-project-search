@@ -1,0 +1,182 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "d920b31e436b",
+  "3816b483cd43",
+  "6433fc3a237f",
+  "e17f4a89afc2",
+  "2023b1b74c56",
+  "e9b20c8f92b1",
+  "f16998a2da82",
+  "1eefecc3c884",
+  "27376dd184e0",
+  "09c9f7e60301"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "d920b31e436b",
+   "summary": "This design implements an integrate-and-fire neuron in silicon, where an 8-bit input current is injected and accumulated into a membrane potential. When the membrane potential exceeds a threshold, the neuron emits a spike. The membrane potential is exposed on the 8-bit output and the spike on a bidirectional pin, allowing observation with switches and probes. The documentation is brief but sufficient to describe the basic operation and testing.",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "3816b483cd43",
+   "summary": "This is a four-channel wavetable and PSG-style sound generator with an I2S output and an SPI control interface. It supports eight selectable waveforms, 16-bit frequency control, 8-bit volume in PSG mode, and a 32-entry 4-bit wavetable, with a sampling rate of about 48.8 kHz from a 50 MHz clock. The design is controlled over SPI mode 0 with 24-bit transactions, and the I2S output is 16-bit mono. It requires an external I2S DAC such as a PCM5102A to produce audible sound.",
+   "tags": [
+    "synthesizer",
+    "sound-generator",
+    "music",
+    "audio",
+    "i2s",
+    "spi"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "6433fc3a237f",
+   "summary": "This design generates eight 12-bit PWM signals with a common trigger and can also accept eight external PWM inputs, selecting between internal and external sources via SPI configuration. A time-domain winner-take-all circuit detects the falling edges of the PWM signals to find the smallest duration and the k-smallest durations, latching the corresponding addresses. The design includes a time-to-digital converter that digitizes PWM durations, and results are read out over SPI. It is intended for event-based or neuromorphic-style processing and requires external SPI control and optional external PWM sources.",
+   "tags": [
+    "pwm",
+    "time-to-digital-converter",
+    "spi",
+    "neuromorphic"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "e17f4a89afc2",
+   "summary": "This design counts down from 9 to 0 at one-second intervals and displays the current digit on a 7-segment display. The counting speed can be changed by driving the input pins with a compare value, which sets the clock divider; with all inputs low the compare is 10,000,000 for a 10 MHz clock. The lower 8 bits of the counter are also available on the bidirectional pins. It is a simple timer/display demonstration with no external hardware beyond the 7-segment display.",
+   "tags": [
+    "7-segment",
+    "counter",
+    "timer",
+    "clock-divider",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "2023b1b74c56",
+   "summary": "This project implements a basic leaky integrate-and-fire neuron with spike-timing-dependent plasticity (STDP) in silicon. An input current is injected via switches, added to a decaying membrane potential, and a spike is triggered when the potential exceeds a threshold. The membrane potential is exposed on the output pins and the spike on a bidirectional pin. The documentation is minimal and does not detail the STDP mechanism or testing beyond observing firing rate changes with input current.",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "e9b20c8f92b1",
+   "summary": "This design implements a processor that uses Tick Tock Tokens, where each token is represented by a start and end event, to perform event-based computation inspired by Time Petri Nets. It accepts a 4-bit instruction and 8-bit data on the inputs, and outputs data with token start/stop flags and a good/bad token flag. The documentation is thin and admits that the test script and explanation may be incomplete. An Arduino is suggested to generate the I/O signals for testing.",
+   "tags": [
+    "cpu",
+    "fsm",
+    "systemverilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "f16998a2da82",
+   "summary": "This design implements delta modulation spike encoding for spiking neural networks, mimicking the snnTorch implementation. It generates a spike when the difference between the current and previous 4-bit data inputs exceeds a configurable threshold, with an option to emit negative spikes. The previous data register can be read and forced for debugging, and the design can be tested with an ADC or by manually changing the data input and observing spikes on an oscilloscope. All numerical inputs and outputs are unsigned 4-bit integers.",
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "comparator",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "1eefecc3c884",
+   "summary": "This multimode modem performs digital modulation and demodulation using amplitude-shift keying, frequency-shift keying, and phase-shift keying schemes. A 2-bit select input chooses the modulation type, and the modulated signal appears on a 7-bit output while the demodulated bit appears on a separate output. Silicon testing by a tester showed that ASK and FSK worked as documented, but PSK demodulation was stuck high and the output was a plain sine wave. An oscilloscope or signal analyzer is required to observe the analog-like outputs.",
+   "tags": [
+    "communication",
+    "modulator",
+    "demodulator",
+    "signal-generator",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "27376dd184e0",
+   "summary": "This is an RV32IMA RISC-V SoC capable of booting and running uLinux, with UART, SPI, and LED interfaces. It requires flashing a bootloader, device tree, and Linux image onto an external NOR flash, and a 22 pF capacitor on the NOR flash clock line was needed for reliable operation. Silicon tests by the author and testers confirmed successful Linux boot at around 30.5 MHz. The design includes a divider register for configuring the CLINT and UART.",
+   "tags": [
+    "risc-v",
+    "soc",
+    "cpu",
+    "uart",
+    "spi",
+    "led",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "09c9f7e60301",
+   "summary": "This design implements Karplus-Strong plucked-string synthesis based on published papers, with a register map accessed via SPI and audio samples output through an I2S transmitter. It includes pseudo-random binary sequence generators for noise and a 7-segment display output, and operates with a 256 kHz clock to produce a 16 kHz sample rate. The design is configured through SPI mode 0, CPHA=1, and the synthesized samples are sent continuously over I2S. It requires an external I2S DAC to hear the sound.",
+   "tags": [
+    "synthesizer",
+    "music",
+    "audio",
+    "i2s",
+    "spi",
+    "7-segment",
+    "lfsr",
+    "verilog"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10085,
+  "completion_tokens": 1728,
+  "total_tokens": 11813,
+  "cost": 0.001551676,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001551676,
+   "upstream_inference_prompt_cost": 0.001067836,
+   "upstream_inference_completions_cost": 0.00048384
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001551676,
+ "elapsed_s": 11.9
+}

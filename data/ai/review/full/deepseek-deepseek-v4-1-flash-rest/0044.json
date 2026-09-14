@@ -1,0 +1,399 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "12a178b7404c",
+  "76f9baea6afa",
+  "0b22eaae1c33",
+  "75c8ed5c145f",
+  "369aad47b0c0",
+  "9785780bbf8d"
+ ],
+ "results": [
+  {
+   "key": "12a178b7404c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "esoteric",
+     "reason": "No esoteric programming language or novelty computation is described; it is a VGA pattern generator."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is described as working ('makes some stripes or other pattern on the vga channels'), not unfinished."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The design outputs patterns on VGA channels and requires a VGA PMOD."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It renders stripe/pattern graphics on a display."
+    },
+    {
+     "tag": "display",
+     "reason": "It drives a VGA display output."
+    },
+    {
+     "tag": "pmod",
+     "reason": "External hardware is a VGA PMOD."
+    }
+   ],
+   "notes": "Removed unsupported esoteric/incomplete tags and added VGA/display tags supported by the pins and external hardware.",
+   "tags_before": [
+    "esoteric",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "insufficient-doc",
+    "vga",
+    "graphics",
+    "display",
+    "pmod"
+   ],
+   "summary_before": "This design is notable for its informal and experimental nature. It explores unconventional or playful ideas. The implementation may not follow standard design practices. It serves as a creative exploration in digital design.",
+   "summary": "This design generates stripes or other patterns on VGA channels. It is controlled by eight input pins that select x and y oscillation, truncation mode, and oscillation speed. The external hardware is a VGA PMOD. The documentation is informal and does not provide detailed test instructions.",
+   "summary_changed": true
+  },
+  {
+   "key": "76f9baea6afa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing algorithm is described."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier is described; the design computes a decision tree prediction."
+    },
+    {
+     "tag": "mac-unit",
+     "reason": "No multiply-accumulate unit is described."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "No fixed-point arithmetic is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "The design computes a prediction for a simple decision tree, a machine learning inference task."
+    },
+    {
+     "tag": "edge-ai",
+     "reason": "It is a small embedded inference block for decision tree prediction."
+    }
+   ],
+   "notes": "Replaced unsupported DSP/ALU/multiplier/MAC/fixed-point tags with machine-learning and edge-ai tags supported by the decision tree description.",
+   "tags_before": [
+    "dsp",
+    "alu",
+    "multiplier",
+    "mac-unit",
+    "fixed-point"
+   ],
+   "tags": [
+    "machine-learning",
+    "edge-ai"
+   ],
+   "summary_before": "This design is a multiply-accumulate unit that operates on 8-bit posit numbers rather than standard floating-point or integer formats. It accepts 8-bit feature data and a 2-bit command input while exposing ready, busy, prediction-valid, model-loaded and error status outputs. The design produces an 8-bit prediction and supports loading a model through its command interface. It is controlled through a simple valid/ready handshake with separate command bits.",
+   "summary": "This design computes a prediction for a simple decision tree. It accepts 8-bit feature data and a 2-bit command input while exposing ready, busy, prediction-valid, model-loaded and error status outputs. The design produces an 8-bit prediction and supports loading a model through its command interface. It is controlled through a simple valid/ready handshake with separate command bits.",
+   "summary_changed": true
+  },
+  {
+   "key": "0b22eaae1c33",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "risc-v",
+     "reason": "The source does not mention RISC-V; it is a TPU-inspired matrix multiplier."
+    },
+    {
+     "tag": "cpu",
+     "reason": "The design is not a general-purpose processor core."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "The language is Verilog, not SystemVerilog."
+    },
+    {
+     "tag": "asic",
+     "reason": "ASIC is redundant for a Tiny Tapeout design and not specifically stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "tpu",
+     "reason": "The project is explicitly an AI chip inspired by Google's TPU."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "It multiplies fp8 matrices for AI inference."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "It is a dedicated matrix multiplication accelerator."
+    },
+    {
+     "tag": "floating-point",
+     "reason": "It operates on 8-bit floating-point valued matrices."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The test instructions specify using cocotb."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "The description says it tiles in 2x2, a systolic-array style structure."
+    }
+   ],
+   "notes": "Corrected tags and summary to match the TPU-inspired fp8 matrix multiplier description instead of an unrelated RISC-V core.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "systemverilog",
+    "asic"
+   ],
+   "tags": [
+    "tpu",
+    "machine-learning",
+    "accelerator",
+    "floating-point",
+    "cocotb",
+    "systolic-array"
+   ],
+   "summary_before": "This project is an RV32I RISC-V core implementation written in SystemVerilog, occupying a 4x4 tile area. No details about the microarchitecture, interfaces, or testing are provided, and no silicon results are reported. The design is intended for the Tiny Tapeout ASIC shuttle. It requires external control to load and run programs.",
+   "summary": "This project is an AI chip inspired by Google's TPU that multiplies 8-bit floating-point valued matrices. It tiles in 2x2 to fit on the chip's tiny area, so performance is degraded compared to regular chips. The chip's I/O bandwidth is intended to be fully utilized and saturated. Testing uses cocotb and pyuvm, and external hardware connects the Tiny Tapeout PCB to a personal computer via USB.",
+   "summary_changed": true
+  },
+  {
+   "key": "75c8ed5c145f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "No neural network is described; the design is a bouncing DVD logo screensaver."
+    },
+    {
+     "tag": "accelerator",
+     "reason": "No compute acceleration hardware is described."
+    },
+    {
+     "tag": "systolic-array",
+     "reason": "No systolic array is described."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "No multiplier is described."
+    },
+    {
+     "tag": "machine-learning",
+     "reason": "No machine learning is described."
+    },
+    {
+     "tag": "dsp",
+     "reason": "No digital signal processing is described."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "No fixed-point arithmetic is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "vga",
+     "reason": "The design outputs VGA signals and matches the Tiny VGA pinout."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It renders a bouncing DVD logo graphic."
+    },
+    {
+     "tag": "display",
+     "reason": "It drives a VGA display output."
+    },
+    {
+     "tag": "sprite",
+     "reason": "It renders a moving logo sprite."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "It is a visual screensaver-style showcase."
+    }
+   ],
+   "notes": "Replaced hallucinated neural-network tags with VGA/graphics tags supported by the pins and description.",
+   "tags_before": [
+    "neural-network",
+    "accelerator",
+    "systolic-array",
+    "multiplier",
+    "machine-learning",
+    "dsp",
+    "fixed-point"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "display",
+    "sprite",
+    "demoscene"
+   ],
+   "summary_before": "This design is a neural network accelerator that performs inference using fixed-point arithmetic. It is implemented as a systolic array with a multiplier and accumulator, and is intended for machine learning applications. The design is written in Verilog and targets the Tiny Tapeout ASIC shuttle. It requires external control to load weights and input data.",
+   "summary": "This design displays a bouncing DVD logo on VGA with color change on wall hits, speed control, invert, and flip options. It is implemented in Verilog and matches the Tiny VGA pinout. Configuration inputs select tile, color, invert, slow, flip, checker, scanline, and glitch modes. The design targets the Tiny Tapeout ASIC shuttle and requires no external control beyond the configuration pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "369aad47b0c0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neuromorphic",
+     "reason": "No brain-inspired neuromorphic computing is described."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "No spiking neural network is described."
+    },
+    {
+     "tag": "analog",
+     "reason": "The design is digital; it processes 8-bit samples in hardware but is not an analog circuit."
+    },
+    {
+     "tag": "biomedical",
+     "reason": "No biomedical or health monitoring application is described."
+    },
+    {
+     "tag": "perceptron",
+     "reason": "No perceptron classifier is described."
+    },
+    {
+     "tag": "adc",
+     "reason": "No analog-to-digital converter is described; audio samples arrive as digital input."
+    }
+   ],
+   "add": [
+    {
+     "tag": "audio",
+     "reason": "It processes a live audio stream and detects tempo."
+    },
+    {
+     "tag": "instrumentation",
+     "reason": "It is a measurement device for tempo/BPM."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "It uses a bit-serial divider for BPM calculation."
+    },
+    {
+     "tag": "divider",
+     "reason": "It includes a bit-serial restoring divider."
+    },
+    {
+     "tag": "frequency-counter",
+     "reason": "It measures intervals between onsets to estimate tempo."
+    },
+    {
+     "tag": "music",
+     "reason": "It detects the tempo of music."
+    }
+   ],
+   "notes": "Replaced unsupported neuromorphic/analog/biomedical tags with audio, instrumentation, and bit-serial tags supported by the detailed documentation.",
+   "tags_before": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "analog",
+    "biomedical",
+    "perceptron",
+    "adc"
+   ],
+   "tags": [
+    "audio",
+    "instrumentation",
+    "bit-serial",
+    "divider",
+    "frequency-counter",
+    "music"
+   ],
+   "summary_before": "This design is a spiking neural network with neuromorphic characteristics, implemented in analog circuitry. It includes a perceptron-based classifier and an ADC for input conversion. The design is intended for biomedical applications, such as detecting specific patterns in physiological signals. The documentation does not specify external hardware or silicon test results.",
+   "summary": "This design detects the tempo (BPM) of a live audio stream entirely in hardware using onset detection and a bit-serial divider. It receives 8-bit unsigned audio amplitude samples with a sample_valid strobe and outputs a latched BPM estimate, beat pulse, tempo-locked, confidence, and overflow flags. The onset detector uses a shift-based IIR envelope and refractory window, and the tempo estimator averages the last four intervals. The BPM divider computes bpm = 6000 / interval_samples using a 13-cycle bit-serial restoring divider, with no CPU or multiplier.",
+   "summary_changed": true
+  },
+  {
+   "key": "9785780bbf8d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated; the source only contains default template text."
+    },
+    {
+     "tag": "template",
+     "reason": "The documentation is default template text, but the design itself is not described as a template project."
+    },
+    {
+     "tag": "workshop",
+     "reason": "No workshop or class activity is mentioned in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The one-line description says 'un finished slop' and the documentation is default template text."
+    }
+   ],
+   "notes": "Removed unsupported education/template/workshop tags and added incomplete based on the 'un finished slop' description.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "template",
+    "insufficient-doc",
+    "placeholder",
+    "workshop"
+   ],
+   "tags": [
+    "wokwi",
+    "insufficient-doc",
+    "placeholder",
+    "incomplete"
+   ],
+   "summary_before": "The documentation is the default template, so the actual circuit behaviour is not explained. The design is undocumented apart from its origin as a summer school exercise. No pins, external hardware or test instructions are provided. The project is therefore an unspecified educational exercise with no functional details.",
+   "summary": "The documentation is the default template, so the actual circuit behaviour is not explained. The design is undocumented apart from its origin as a Wokwi project. No pins, external hardware or test instructions are provided. The project is therefore an unspecified Wokwi submission with no functional details.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6147,
+  "completion_tokens": 2236,
+  "total_tokens": 8383,
+  "cost": 0.0045273,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0045273,
+   "upstream_inference_prompt_cost": 0.0018441,
+   "upstream_inference_completions_cost": 0.0026832
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0045273,
+ "elapsed_s": 152.5
+}

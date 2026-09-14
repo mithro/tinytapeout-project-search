@@ -1,0 +1,178 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "a309d53f5fbf",
+  "3c801a254b68",
+  "cbcdc16c833d",
+  "22a2aaee9153",
+  "7369485fdc10",
+  "1915b94538d9"
+ ],
+ "results": [
+  {
+   "key": "a309d53f5fbf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "Rule 30 is a cellular automaton; the source never describes it as a random number generator."
+    }
+   ],
+   "add": [],
+   "notes": "Removed prng: Rule 30 is presented as a cellular automaton, not a random number generator.",
+   "tags_before": [
+    "cellular-automaton",
+    "uart",
+    "prng",
+    "verilog"
+   ],
+   "tags": [
+    "cellular-automaton",
+    "uart",
+    "verilog"
+   ],
+   "summary_before": "Rule 30 Engine iterates a 56-bit Rule 30 cellular automaton starting from an 8-bit initial value supplied on the input bus. Each iteration is transmitted over an 8N1 UART at 115,200 baud on output pin uo[4], with zero boundary conditions around the 56-bit field. The only external hardware needed is a UART receiver to capture the serial output. The documentation is brief and does not include silicon test results or details about the internal implementation.",
+   "summary": "Rule 30 Engine iterates a 56-bit Rule 30 cellular automaton starting from an 8-bit initial value supplied on the input bus. Each iteration is transmitted over an 8N1 UART at 115,200 baud on output pin uo[4], with zero boundary conditions around the 56-bit field. The only external hardware needed is a UART receiver to capture the serial output. The documentation does not include silicon test results or details about the internal implementation.",
+   "summary_changed": true
+  },
+  {
+   "key": "3c801a254b68",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "machine-learning",
+    "sensor-interface",
+    "fsm",
+    "verilog"
+   ],
+   "tags": [
+    "machine-learning",
+    "sensor-interface",
+    "fsm",
+    "verilog"
+   ],
+   "summary_before": "This design implements an anomaly detection system using an isolation tree algorithm, intended for integration into SoCs with AI accelerators. It consists of an input buffer that collects sensor data bit-by-bit, and a state machine that processes the data to detect anomalies based on a predefined byte pattern. The design is currently simplistic, checking against a set pattern, but is intended to be expanded to more complex algorithms. It requires a binary output sensor as external hardware and is designed for real-time anomaly detection in embedded applications.",
+   "summary": "This design implements an anomaly detection system using an isolation tree algorithm, intended for integration into SoCs with AI accelerators. It consists of an input buffer that collects sensor data bit-by-bit, and a state machine that processes the data to detect anomalies based on a predefined byte pattern. The design is currently simplistic, checking against a set pattern, but is intended to be expanded to more complex algorithms. It requires a binary output sensor as external hardware and is designed for real-time anomaly detection in embedded applications.",
+   "summary_changed": false
+  },
+  {
+   "key": "cbcdc16c833d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "wokwi",
+     "reason": "The source says it is supposed to eventually become a Wokwi port; the design language is Verilog and no Wokwi simulator evidence is given."
+    }
+   ],
+   "add": [],
+   "notes": "Removed wokwi: the project is currently a Verilog design and only planned as a Wokwi port.",
+   "tags_before": [
+    "logic-gate",
+    "verilog",
+    "wokwi"
+   ],
+   "tags": [
+    "logic-gate",
+    "verilog"
+   ],
+   "summary_before": "This project aims to create a modern take on 74-series universal gate chips, eventually becoming a Wokwi port of unigate-gf. It provides various logic functions through configurable inputs and bidirectional pins. The design is tested by running a testbench in the test directory. The documentation is sparse and does not detail the exact functionality or pin mappings.",
+   "summary": "This project aims to create a modern take on 74-series universal gate chips, eventually becoming a Wokwi port of unigate-gf. It provides various logic functions through configurable inputs and bidirectional pins. The design is tested by running a testbench in the test directory. The documentation is sparse and does not detail the exact functionality or pin mappings.",
+   "summary_changed": false
+  },
+  {
+   "key": "22a2aaee9153",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "register-file",
+    "verilog"
+   ],
+   "summary_before": "This is a 4-bit CPU implemented in Verilog with 4 input ports and 4 output ports, running from a 10 Hz clock. It is tested by setting the inputs and observing the outputs, with pins exposing data, address, carry flag, and ALU-to-register signals. The documentation does not specify any external hardware, and the description is very brief. The design appears to be a small educational processor, but the limited documentation makes its full instruction set and behavior unclear.",
+   "summary": "This is a 4-bit CPU implemented in Verilog with 4 input ports and 4 output ports, running from a 10 Hz clock. It is tested by setting the inputs and observing the outputs, with pins exposing data, address, carry flag, and ALU-to-register signals. The documentation does not specify any external hardware, and the description is very brief. The design appears to be a small educational processor, but the limited documentation makes its full instruction set and behavior unclear.",
+   "summary_changed": false
+  },
+  {
+   "key": "7369485fdc10",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This project sequentially spells out a hidden message on a 7-segment display by inverting the segment outputs, so the viewer must invert the segments to decipher the text. It uses the eight outputs a through g plus dot and runs at 1 Hz on a single tile. The documentation is very brief and does not state what the message is or how the sequence is generated. No external hardware is mentioned, and the design appears to be a small novelty or puzzle.",
+   "summary": "This project sequentially spells out a hidden message on a 7-segment display by inverting the segment outputs, so the viewer must invert the segments to decipher the text. It uses the eight outputs a through g plus dot and runs at 1 Hz on a single tile. The documentation is very brief and does not state what the message is or how the sequence is generated. No external hardware is mentioned, and the design appears to be a small novelty or puzzle.",
+   "summary_changed": false
+  },
+  {
+   "key": "1915b94538d9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter functionality is described; the design selects among pre-programmed pulse sequences."
+    }
+   ],
+   "add": [],
+   "notes": "Removed counter: the source describes sequence selection through pre-programmed patterns, not a counter.",
+   "tags_before": [
+    "signal-generator",
+    "sequencer",
+    "counter"
+   ],
+   "tags": [
+    "signal-generator",
+    "sequencer"
+   ],
+   "summary_before": "This is a simple TTL pulse generator that produces one of sixteen pre-programmed pulse sequences selected by a 4-bit input. The selected sequence appears on a single TTL output pin, and the design is intended to be tested by setting the sequence select pins and observing the output. No external hardware is required beyond the chip itself, though the documentation does not describe the sequences or their timing. The documentation is very thin, providing only the basic function and pin usage.",
+   "summary": "This is a simple TTL pulse generator that produces one of sixteen pre-programmed pulse sequences selected by a 4-bit input. The selected sequence appears on a single TTL output pin, and the design is intended to be tested by setting the sequence select pins and observing the output. No external hardware is required beyond the chip itself, though the documentation does not describe the sequences or their timing. The documentation is very thin, providing only the basic function and pin usage.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5862,
+  "completion_tokens": 1070,
+  "total_tokens": 6932,
+  "cost": 0.0030426,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0030426,
+   "upstream_inference_prompt_cost": 0.0017586,
+   "upstream_inference_completions_cost": 0.001284
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0030426,
+ "elapsed_s": 5.6
+}

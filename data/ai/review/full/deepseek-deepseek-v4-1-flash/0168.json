@@ -1,0 +1,193 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "adcf62629cc3",
+  "663a63d3642b",
+  "8f92630a7e11",
+  "d2078ecf7413",
+  "3af1899b914d",
+  "bcd4e2896923"
+ ],
+ "results": [
+  {
+   "key": "adcf62629cc3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "microcontroller",
+     "reason": "The source describes a processor core, not a microcontroller or SoC with integrated peripherals."
+    }
+   ],
+   "add": [],
+   "notes": "Removed microcontroller tag because the source describes only a processor core, not an integrated microcontroller or SoC.",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "microcontroller"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu"
+   ],
+   "summary_before": "The RV8U is an 8-bit processor core based on a reduced RISC-V instruction set architecture. It executes instructions from external memory, which must be interfaced through the 8 input and 8 output pins configured as a serial-deserializer (SERDES) link. The design is intended to be tested with external memory, but the documentation provides minimal details on the instruction set and testing procedure. Notable for being a compact RISC-V microcore, but the lack of comprehensive documentation limits understanding of its capabilities.",
+   "summary": "The RV8U is an 8-bit processor core based on a reduced RISC-V instruction set architecture. It executes instructions from external memory, which must be interfaced through the 8 input and 8 output pins configured as a serial-deserializer (SERDES) link. The documentation provides minimal details on the instruction set and testing procedure. It is notable for being a compact RISC-V microcore, but the lack of comprehensive documentation limits understanding of its capabilities.",
+   "summary_changed": true
+  },
+  {
+   "key": "663a63d3642b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "oscillator",
+     "reason": "Generic oscillator tag is redundant with the more specific ring-oscillator tag and is not separately supported."
+    }
+   ],
+   "add": [],
+   "notes": "Removed redundant generic oscillator tag; ring-oscillator already captures the design.",
+   "tags_before": [
+    "ring-oscillator",
+    "oscillator",
+    "instrumentation",
+    "characterization"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "instrumentation",
+    "characterization"
+   ],
+   "summary_before": "This design implements two ring oscillators with the same number of stages to measure and compare their frequencies, and to test whether they can influence each other. It uses control signals to enable the rings and select which result to output. The design requires external hardware to sequence the reset, enable, trigger, and select signals. It is notable for being a process variation and coupling experiment, but the documentation is minimal and does not provide detailed measurement procedures.",
+   "summary": "This design implements two ring oscillators with the same number of stages to measure and compare their frequencies, and to test whether they can influence each other. It uses control signals to enable the rings and select which result to output. The design requires external hardware to sequence the reset, enable, trigger, and select signals. It is notable for being a process variation and coupling experiment, but the documentation is minimal and does not provide detailed measurement procedures.",
+   "summary_changed": false
+  },
+  {
+   "key": "8f92630a7e11",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "The source language is XLS, not Verilog."
+    }
+   ],
+   "add": [],
+   "notes": "Removed incorrect verilog tag; the design is written in XLS.",
+   "tags_before": [
+    "counter",
+    "education",
+    "led",
+    "verilog"
+   ],
+   "tags": [
+    "counter",
+    "education",
+    "led"
+   ],
+   "summary_before": "This project implements an 8-bit counter using Google's XLS toolchain, as described in the XLS introductory tutorial. The counter increments its output bits on each clock cycle and includes a reset input. Testing involves toggling the clock and observing the output bits, which can be connected to LEDs with pull-up/down resistors. It serves as a simple demonstration of using XLS for hardware design.",
+   "summary": "This project implements an 8-bit counter using Google's XLS toolchain, as described in the XLS introductory tutorial. The counter increments its output bits on each clock cycle and includes a reset input. Testing involves toggling the clock and observing the output bits, which can be connected to LEDs with pull-up/down resistors. It serves as a simple demonstration of using XLS for hardware design.",
+   "summary_changed": false
+  },
+  {
+   "key": "d2078ecf7413",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "The source language is XLS, not Verilog."
+    }
+   ],
+   "add": [],
+   "notes": "Removed incorrect verilog tag; the design is written in XLS.",
+   "tags_before": [
+    "popcount",
+    "combinational",
+    "led",
+    "verilog"
+   ],
+   "tags": [
+    "popcount",
+    "combinational",
+    "led"
+   ],
+   "summary_before": "This design counts the number of set bits in an 8-bit input, implementing a bit population count function using a parallel bit-counting algorithm. The output is an 8-bit count of the high bits on the input. Testing involves pulling up input bits and checking that the output represents the correct count. External LEDs and resistors are needed to display the result.",
+   "summary": "This design counts the number of set bits in an 8-bit input, implementing a bit population count function using a parallel bit-counting algorithm. The output is an 8-bit count of the high bits on the input. Testing involves pulling up input bits and checking that the output represents the correct count. External LEDs and resistors are needed to display the result.",
+   "summary_changed": false
+  },
+  {
+   "key": "3af1899b914d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "pattern-generator"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "pattern-generator"
+   ],
+   "summary_before": "SevSegFX generates hexadecimal digits and 16 dynamic patterns on a seven-segment display. Input pins select between digit display and effects, enable blinking for digits, and choose the specific digit or effect pattern. The design is purely for visual effects and requires no external hardware beyond the seven-segment display. It operates from a 12.5 kHz clock and includes a reset input.",
+   "summary": "SevSegFX generates hexadecimal digits and 16 dynamic patterns on a seven-segment display. Input pins select between digit display and effects, enable blinking for digits, and choose the specific digit or effect pattern. The design is purely for visual effects and requires no external hardware beyond the seven-segment display. It operates from a 12.5 kHz clock and includes a reset input.",
+   "summary_changed": false
+  },
+  {
+   "key": "bcd4e2896923",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "signal-generator",
+     "reason": "The design generates a PWM breathing pattern, not a general-purpose signal generator."
+    },
+    {
+     "tag": "waveform-generator",
+     "reason": "The triangle wave is internal to the PWM modulation and not an arbitrary waveform output."
+    }
+   ],
+   "add": [],
+   "notes": "Removed signal-generator and waveform-generator tags; the design is a PWM breathing LED effect, not a general waveform generator.",
+   "tags_before": [
+    "pwm",
+    "led",
+    "signal-generator",
+    "verilog",
+    "waveform-generator"
+   ],
+   "tags": [
+    "pwm",
+    "led",
+    "verilog"
+   ],
+   "summary_before": "The Breathing LED design generates a PWM signal that varies the brightness of an LED in a breathing pattern. It uses a triangle wave to modulate the duty cycle, and outputs the current duty cycle for debugging. After reset, the PWM signal is generated automatically. It requires an external clock source and an LED circuit.",
+   "summary": "The Breathing LED design generates a PWM signal that varies the brightness of an LED in a breathing pattern. It uses a triangle wave to modulate the duty cycle, and outputs the current duty cycle for debugging. After reset, the PWM signal is generated automatically. It requires an external clock source and an LED circuit.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5511,
+  "completion_tokens": 1075,
+  "total_tokens": 6586,
+  "cost": 0.0029433,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0029433,
+   "upstream_inference_prompt_cost": 0.0016533,
+   "upstream_inference_completions_cost": 0.00129
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0029433,
+ "elapsed_s": 11.9
+}

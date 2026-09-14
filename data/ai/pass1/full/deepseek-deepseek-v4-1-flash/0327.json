@@ -1,0 +1,197 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "274694e7068f",
+  "870fe48c3042",
+  "473577cc51ce",
+  "8da9eb556139",
+  "de08ff8da7b8",
+  "07a77313e93b",
+  "0988a9a21398",
+  "85884219272d",
+  "6493ad2db4d3",
+  "001cb7ae102a"
+ ],
+ "results": [
+  {
+   "key": "274694e7068f",
+   "tags": [
+    "crypto",
+    "ascon",
+    "aead",
+    "uart",
+    "hash",
+    "trng",
+    "ring-oscillator",
+    "entropy",
+    "nist",
+    "cisc"
+   ],
+   "summary": "This design implements an ASCON AEAD cryptographic processor with a shared permutation core and a UART command interface. It supports ASCON-AEAD-128 encryption and decryption, and includes an on-die ring-oscillator entropy source with NIST SP 800-90B health tests and an ASCON Hash_DRBG for key and nonce generation. The chip is controlled by a framed UART protocol with logical channels for control, key, nonce, associated data, plaintext, ciphertext, and digest. Verification is byte-exact against pyascon reference vectors, and an optional external entropy source and debug pin allow post-silicon entropy characterization.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "870fe48c3042",
+   "tags": [
+    "uart",
+    "spi",
+    "i2c",
+    "communication",
+    "protocol",
+    "controller",
+    "serial"
+   ],
+   "summary": "This design is a multi-protocol communication controller that supports UART, SPI, and I2C transmission modes from a single module. It accepts a 4-bit data value, a start signal, and two mode selection bits, and outputs the corresponding serial signals along with busy and done status. The design requires no external hardware and can be fully verified through simulation using the provided cocotb testbench. The documentation is minimal, providing only a brief description of the inputs and outputs.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "473577cc51ce",
+   "tags": [
+    "pwm",
+    "waveform",
+    "uart",
+    "dac",
+    "audio",
+    "ram",
+    "generator"
+   ],
+   "summary": "This project is a UART-programmable waveform and PWM generator that stores samples in a 256-byte RAM and plays them back as either an 8-bit parallel DAC output or eight independent PWM channels. It accepts UART data, a mode select, and a load signal, and outputs the DAC or PWM signals on the uo pins. The design is intended for audio applications, as indicated by the recommended TT Audio pinout. The documentation is mostly a template with placeholder text, so details on operation and testing are not provided.",
+   "confidence": "medium",
+   "insufficient_docs": true
+  },
+  {
+   "key": "8da9eb556139",
+   "tags": [
+    "waveform",
+    "synthesizer",
+    "lut",
+    "nco",
+    "dsp",
+    "sine",
+    "trigonometry",
+    "signal-generation"
+   ],
+   "summary": "PolyTrig is a digital waveform synthesis core that generates multiple waveform types using LUT-based trigonometric reconstruction and phase manipulation. It supports sine, cosine, tangent approximation, cotangent approximation, triangle, sawtooth, square, rectified sine, and NCO-style generation, with quarter-wave LUT optimization to reduce memory usage. Waveform selection and configuration are controlled through the Tiny Tapeout input and bidirectional pins. The project includes a cocotb verification environment and requires no external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "de08ff8da7b8",
+   "tags": [
+    "crypto",
+    "ntt",
+    "kyber",
+    "pqc",
+    "butterfly",
+    "modular-arithmetic",
+    "cooley-tukey"
+   ],
+   "summary": "This project implements a hardware-accelerated Cooley-Tukey Number Theoretic Transform butterfly core optimized for CRYSTALS-Kyber post-quantum cryptography. It performs fast modular addition and subtraction using combinational subtraction matrix logic to avoid division operations. Inputs are provided on the primary and bidirectional buses, and outputs appear on the output and bidirectional buses after clock transitions. The design is a building block for PQC accelerators and requires no external hardware.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "07a77313e93b",
+   "tags": [
+    "pwm",
+    "tremolo",
+    "audio",
+    "guitar",
+    "lfo",
+    "music",
+    "sound",
+    "pedal"
+   ],
+   "summary": "This design is a digital tremolo modulation controller intended for guitar pedal applications, generating a PWM signal that can be filtered into an analog control voltage. It features an 8-bit LFO with selectable rate, depth, and waveform (saw up, saw down, square, triangle), and provides debug outputs for the LFO, PWM carrier, and modulation level. The chip requires external RC filtering, an op-amp buffer, and analog tremolo staging to produce the final effect. The design is verified with cocotb testbenches covering reset, enable, PWM generation, and parameter selection.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "0988a9a21398",
+   "tags": [
+    "lfsr",
+    "crypto",
+    "v2x",
+    "masking",
+    "xor",
+    "prng",
+    "communication"
+   ],
+   "summary": "This project is a secure V2X mini demonstrator that uses an 8-bit LFSR to generate a pseudo-random key stream for masking plaintext data. The plaintext is XORed with the LFSR output to produce masked data, demonstrating a simple hardware-based data masking technique. The design accepts an 8-bit plaintext input and outputs the masked result, updating on each clock edge. No external hardware is required, and the design can be tested by applying inputs and observing the changing masked output.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "85884219272d",
+   "tags": [
+    "pwm",
+    "generator",
+    "duty-cycle",
+    "counter",
+    "comparator",
+    "timer"
+   ],
+   "summary": "This project is a configurable 8-bit PWM generator that produces a variable duty cycle signal based on an 8-bit input. An internal counter increments each clock cycle and is compared with the duty cycle value to generate the PWM output. The design is simple and requires no external hardware, and can be tested by applying different input values and observing the PWM waveform. The documentation provides clear examples of duty cycle settings.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "6493ad2db4d3",
+   "tags": [
+    "crypto",
+    "authentication",
+    "v2x",
+    "xor",
+    "packet",
+    "security",
+    "communication"
+   ],
+   "summary": "Raksha is a lightweight secure packet authentication engine designed for V2X communication systems. It checks whether an incoming 8-bit packet is authenticated by XORing it with a predefined secret key (0xA5) and comparing the result to an expected value. If the result matches, an authentication OK signal is asserted; otherwise, an alert signal is raised. The design can interface with FPGAs, microcontrollers, and embedded V2X systems, and requires no external hardware for basic operation.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "001cb7ae102a",
+   "tags": [
+    "password",
+    "lock",
+    "security",
+    "comparator",
+    "state-machine",
+    "access-control"
+   ],
+   "summary": "This project implements a simple digital door lock system that verifies a 4-bit password against a stored value of 1010. If the entered password matches, an unlock signal is asserted; otherwise, an error signal is generated. The design consists of a password checker, a lock controller, and a top module, and can be tested with a provided testbench using iverilog. No external hardware is required.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5242,
+  "completion_tokens": 1837,
+  "total_tokens": 7079,
+  "cost": 0.00358884,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 640,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00358884,
+   "upstream_inference_prompt_cost": 0.00138444,
+   "upstream_inference_completions_cost": 0.0022044
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00358884,
+ "elapsed_s": 93.0
+}

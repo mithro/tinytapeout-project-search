@@ -1,0 +1,262 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "984484113a27",
+  "04fab31f8da9",
+  "2a3e0425af75",
+  "0e2c09ad93ef",
+  "cc2ad1cbd892",
+  "26705ef71c81"
+ ],
+ "results": [
+  {
+   "key": "984484113a27",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "multiplier",
+     "reason": "The design is a VGA binary clock, not a multiplier; the proposed tags and summary describe a different project."
+    },
+    {
+     "tag": "structural",
+     "reason": "No evidence of structural HDL style; the design is written in Chisel."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "verilog",
+     "reason": "The design is written in Chisel, not Verilog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "chisel",
+     "reason": "Facts state the language is Chisel."
+    },
+    {
+     "tag": "vga",
+     "reason": "Pins match the Tiny VGA pinout and the design outputs VGA signals."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design selects and uses time clock sources (1 Hz, 32.768 kHz) for timekeeping."
+    },
+    {
+     "tag": "button",
+     "reason": "ui[4] and ui[5] are plus and minus buttons."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "ui[0], ui[1], ui[6], ui[7] are switches for time source and mode selection."
+    },
+    {
+     "tag": "display",
+     "reason": "The clock displays time on a VGA monitor."
+    },
+    {
+     "tag": "graphics",
+     "reason": "It renders a binary time matrix on the VGA display."
+    },
+    {
+     "tag": "rtc",
+     "reason": "The design supports external 1 Hz or 32.768 kHz time clock inputs for real-time clock functionality."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated multiplier project; corrected to match the VGA binary clock source.",
+   "tags_before": [
+    "multiplier",
+    "structural",
+    "alu",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "education",
+    "chisel",
+    "vga",
+    "clock-generator",
+    "button",
+    "dip-switch",
+    "display",
+    "graphics",
+    "rtc"
+   ],
+   "summary_before": "This design is a 4x4 structural array multiplier that takes two 4-bit unsigned inputs and produces an 8-bit product. It uses full adders to sum partial products, as described in the documentation. The design is intended to be tested with a testbench of varying input values, and no external hardware is required. It is a straightforward educational example of a digital multiplier.",
+   "summary": "This design is a VGA-based binary clock implemented in Chisel that displays hours, minutes, and seconds as a matrix of binary squares. It accepts switches to select the time clock source and display mode, and plus/minus buttons to set the time. The VGA output shows the binary time representation, updating every second. External hardware includes a TT VGA PMOD, buttons, switches, and optionally a real-time clock for precision timekeeping.",
+   "summary_changed": true
+  },
+  {
+   "key": "04fab31f8da9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "risc-v",
+    "cpu",
+    "pipeline",
+    "chisel",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "risc-v",
+    "cpu",
+    "pipeline",
+    "chisel",
+    "insufficient-doc"
+   ],
+   "summary_before": "Wildcat is a 3-stage RISC-V CPU implementation written in Chisel. The documentation is extremely sparse, with only a one-line description and a 'TBD' for testing, and the pin names are generic. It may require external flash and RAM PMODs for operation according to the pin description. No further details on functionality, testing, or silicon results are provided.",
+   "summary": "Wildcat is a 3-stage RISC-V CPU implementation written in Chisel. The documentation is extremely sparse, with only a one-line description and a 'TBD' for testing, and the pin names are generic. It may require external flash and RAM PMODs for operation according to the pin description. No further details on functionality, testing, or silicon results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "2a3e0425af75",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "The design is a simple code-matching display demo, not a security-focused design."
+    },
+    {
+     "tag": "decoder",
+     "reason": "No code-to-signal decoding circuit is described; it compares an input code and displays a number."
+    }
+   ],
+   "add": [
+    {
+     "tag": "display",
+     "reason": "The output shows a number on a display."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Inputs are provided via switches IN0-IN6."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is created using the Wokwi simulator."
+    }
+   ],
+   "notes": "Removed unsupported security and decoder tags; corrected summary to avoid invented binary encoding details.",
+   "tags_before": [
+    "7-segment",
+    "dip-switch",
+    "decoder",
+    "security",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "7-segment",
+    "dip-switch",
+    "wokwi",
+    "display"
+   ],
+   "summary_before": "This Wokwi project checks a 3-bit input against the code 267 (binary 011 for 2, 110 for 6, 111 for 7 on DIP switches) and displays the number 4 on a 7-segment display when matched. The inputs are provided via IN0, IN1, and IN2 (and possibly more), and the output drives a 7-segment display. The design is a simple combinational lock demonstration with no external hardware beyond the display. It has minimal documentation, but the intended function is clear.",
+   "summary": "This Wokwi project checks an input code entered on switches and displays the number 4 when the code 267 is matched. The inputs are provided via IN0 through IN6, and the output drives a display to show the number. The design is a simple combinational code-matching demonstration with no external hardware beyond the display. It has minimal documentation, but the intended function is clear.",
+   "summary_changed": true
+  },
+  {
+   "key": "0e2c09ad93ef",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fpga",
+     "reason": "No evidence of FPGA targeting or porting; the design is an ASIC implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported fpga tag; other tags and summary are supported by the source.",
+   "tags_before": [
+    "neural-network",
+    "accelerator",
+    "asic",
+    "verilog",
+    "machine-learning",
+    "fpga"
+   ],
+   "tags": [
+    "neural-network",
+    "accelerator",
+    "asic",
+    "verilog",
+    "machine-learning"
+   ],
+   "summary_before": "This project is an 8-bit pseudo-softmax accelerator for neural networks, implementing a reduced softmax activation function. It takes 8-bit data inputs and produces 8-bit outputs, with selection signals for configuration. The design was tested by comparing the post-synthesis netlist with the RTL using random inputs, but no external hardware is required. The documentation notes that behavioral testing is complex due to the nature of softmax inputs.",
+   "summary": "This project is an 8-bit pseudo-softmax accelerator for neural networks, implementing a reduced softmax activation function. It takes 8-bit data inputs and produces 8-bit outputs, with selection signals for configuration. The design was tested by comparing the post-synthesis netlist with the RTL using random inputs, but no external hardware is required. The documentation notes that behavioral testing is complex due to the nature of softmax inputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "cc2ad1cbd892",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fir-filter",
+    "dsp",
+    "verilog"
+   ],
+   "tags": [
+    "fir-filter",
+    "dsp",
+    "verilog"
+   ],
+   "summary_before": "This design is a third-order digital FIR filter with an 8-bit architecture, configurable cutoff frequency, and selectable low-pass or high-pass behavior. It accepts 8-bit data input and provides 8-bit filtered output, with configuration pins for weight selection, filter type, and enable. The documentation is minimal, providing only the pinout and a one-line description, so details of the filter coefficients and testing procedure are not available.",
+   "summary": "This design is a third-order digital FIR filter with an 8-bit architecture, configurable cutoff frequency, and selectable low-pass or high-pass behavior. It accepts 8-bit data input and provides 8-bit filtered output, with configuration pins for weight selection, filter type, and enable. The documentation is minimal, providing only the pinout and a one-line description, so details of the filter coefficients and testing procedure are not available.",
+   "summary_changed": false
+  },
+  {
+   "key": "26705ef71c81",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "alu",
+    "verilog",
+    "combinational"
+   ],
+   "tags": [
+    "adder",
+    "alu",
+    "verilog",
+    "combinational"
+   ],
+   "summary_before": "This is an 8-bit saturated adder that performs addition and subtraction for both signed and unsigned integers, preventing wrap-around by clamping results to the maximum or minimum representable value. The operation is selected via two bits on the bidirectional pins, with the first operand on the dedicated inputs and the second operand on the lower six bidirectional pins. The 8-bit result is output on the dedicated output pins. The documentation is somewhat thin, particularly regarding the exact encoding of the select bits and the handling of the second operand width, but the core functionality is clear.",
+   "summary": "This is an 8-bit saturated adder that performs addition and subtraction for both signed and unsigned integers, preventing wrap-around by clamping results to the maximum or minimum representable value. The operation is selected via two bits on the bidirectional pins, with the first operand on the dedicated inputs and the second operand on the lower six bidirectional pins. The 8-bit result is output on the dedicated output pins. The documentation is somewhat thin, particularly regarding the exact encoding of the select bits and the handling of the second operand width, but the core functionality is clear.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "cc2ad1cbd892: 3 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6537,
+  "completion_tokens": 1434,
+  "total_tokens": 7971,
+  "cost": 0.004602375,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004602375,
+   "upstream_inference_prompt_cost": 0.002451375,
+   "upstream_inference_completions_cost": 0.002151
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004602375,
+ "elapsed_s": 5.8
+}

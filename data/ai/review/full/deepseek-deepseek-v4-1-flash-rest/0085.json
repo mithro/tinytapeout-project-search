@@ -1,0 +1,288 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "5b444f702399",
+  "23bccdb3b907",
+  "ae43d32a2345",
+  "21a86add338b",
+  "aeb3fbaa3e1b",
+  "8d6786191d65"
+ ],
+ "results": [
+  {
+   "key": "5b444f702399",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement in the source that the design is intended for teaching or learning; the summary's 'educational potential' is invented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rom",
+     "reason": "The description explicitly lists a program ROM in the design."
+    },
+    {
+     "tag": "microcontroller",
+     "reason": "A custom CPU with program ROM and peripherals forms a small processor-controlled SoC."
+    }
+   ],
+   "notes": "Removed unsupported education tag and the invented 'header filter' sentence; added rom and microcontroller tags supported by the description.",
+   "tags_before": [
+    "machine-learning",
+    "neural-network",
+    "cpu",
+    "accelerator",
+    "7-segment",
+    "education"
+   ],
+   "tags": [
+    "machine-learning",
+    "neural-network",
+    "cpu",
+    "accelerator",
+    "7-segment",
+    "rom",
+    "microcontroller"
+   ],
+   "summary_before": "TinyMind SoC is a processor-controlled inference accelerator that classifies eight binary feature inputs into three classes using a custom CPU, program ROM, and a clocked TinyMind core with confidence logic. Results are shown on a seven-segment display, with a decimal point indicating a close prediction, and a CPU run-enable input on uio[0]. The design is a compact header filter rather than a full packet processor, and the documentation does not report silicon results. The accelerator is notable for its small size and educational potential.",
+   "summary": "TinyMind SoC is a processor-controlled inference accelerator that classifies eight binary feature inputs into three classes using a custom CPU, program ROM, and a clocked TinyMind core with confidence logic. Results are shown on a seven-segment display, with a decimal point indicating a close prediction, and a CPU run-enable input on uio[0]. The documentation does not report silicon results. No external hardware is required for RTL or gate-level simulation, though a physical demonstration needs feature switches, a run-enable input, clock, reset, and a seven-segment display.",
+   "summary_changed": true
+  },
+  {
+   "key": "23bccdb3b907",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "The design is a binary counter driving a 7-segment display, not a PWM generator."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is 'no reports'; no fabricated-silicon validation is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The project counts in binary from 0 to 7."
+    },
+    {
+     "tag": "button",
+     "reason": "Counting is advanced by a pushbutton/clock press as described in the test procedure."
+    }
+   ],
+   "notes": "Replaced the fabricated PWM description with the actual counter-to-7-segment function and removed the false silicon-tested claim.",
+   "tags_before": [
+    "pwm",
+    "7-segment",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "7-segment",
+    "wokwi",
+    "counter",
+    "button"
+   ],
+   "summary_before": "This project implements a 4-channel PWM generator with programmable frequency, duty cycle, and phase offset for channels 2-4. It uses an 8-bit input bus to load control registers, with a 7-segment display showing the current register address, and outputs PWM signals on four bidirectional pins. The design is built using the Wokwi simulator and is intended for educational purposes. It has been tested on fabricated silicon.",
+   "summary": "This project counts in binary from 0 to 7 and converts the count into the segment outputs for a 7-segment display. The counter is reset by pulling pin 0 high and incremented by pulling the clock pin high, so the display advances by one on each button press. It is built using the Wokwi simulator and requires two buttons and a single 7-segment display as external hardware. No silicon test results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "ae43d32a2345",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is a clocked digital LIF neuron in Verilog; no analog circuitry is described."
+    },
+    {
+     "tag": "biomedical",
+     "reason": "No biomedical or health-monitoring application is stated in the source."
+    },
+    {
+     "tag": "perceptron",
+     "reason": "A LIF spiking neuron is not a perceptron classifier; the source never mentions perceptrons."
+    },
+    {
+     "tag": "adc",
+     "reason": "No analog-to-digital converter is present; inputs are digital switches."
+    }
+   ],
+   "add": [
+    {
+     "tag": "synchronizer",
+     "reason": "SPIKE_IN passes through a two-flop synchronizer before the edge detector."
+    },
+    {
+     "tag": "edge-detector",
+     "reason": "The design detects a rising edge on SPIKE_IN to inject a spike."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Weight, leak, and threshold are set on the demo board's DIP switches."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The membrane potential's top nibble is shown on the 7-segment display."
+    }
+   ],
+   "notes": "Removed unsupported analog, biomedical, perceptron, and adc tags; added synchronizer, edge-detector, dip-switch, and 7-segment tags backed by the source.",
+   "tags_before": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "analog",
+    "biomedical",
+    "perceptron",
+    "adc"
+   ],
+   "tags": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "synchronizer",
+    "edge-detector",
+    "dip-switch",
+    "7-segment"
+   ],
+   "summary_before": "This design is a spiking neural network with neuromorphic characteristics, implemented in analog circuitry. It includes a perceptron-based classifier and an ADC for input conversion. The design is intended for biomedical applications, such as detecting specific patterns in physiological signals. The documentation does not specify external hardware or silicon test results.",
+   "summary": "This design implements a single leaky integrate and fire neuron in Verilog, with an 8-bit membrane potential that accumulates a settable weight on each SPIKE_IN rising edge, leaks at a selectable rate, and fires when it reaches a settable threshold. SPIKE_IN is synchronized with a two-flop synchronizer and edge detector, and after firing the neuron enters a four-cycle refractory period while SPIKE_OUT stays high. The top nibble of the membrane potential is shown in hex on the 7-segment display, and the full 8 bits are available on uio[7:0]. Weight, leak, and threshold are set with the demo board's DIP switches, and no external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "21a86add338b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated in the source."
+    },
+    {
+     "tag": "template",
+     "reason": "This is a working pattern-matching design, not a boilerplate or starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The design is described as simple logic gates with no clocked elements."
+    }
+   ],
+   "notes": "Removed unsupported education and template tags and added combinational; summary otherwise matches the source.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "7-segment",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "7-segment",
+    "combinational"
+   ],
+   "summary_before": "This Wokwi project uses simple logic gates to display the letter 'P' on a 7-segment display when the 8-bit input equals 0x46. The design requires external hardware including a breadboard, 1.8V power supply, connector wires, an 8-position DIP switch, and a 7-segment display. The documentation is minimal, describing only the basic function and test procedure. The design is a simple combinational logic demonstration.",
+   "summary": "This Wokwi project uses simple logic gates to display the letter 'P' on a 7-segment display when the 8-bit input equals 0x46. The design requires external hardware including a breadboard, 1.8V power supply, connector wires, an 8-position DIP switch, and a 7-segment display. The documentation describes the basic function and test procedure, noting that with all inputs at 0x00 the display shows the inverse of the P pattern. The design is a simple combinational logic demonstration.",
+   "summary_changed": true
+  },
+  {
+   "key": "aeb3fbaa3e1b",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "video",
+    "audio",
+    "pmod",
+    "graphics"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "video",
+    "audio",
+    "pmod",
+    "graphics"
+   ],
+   "summary_before": "Warp is a demoscene demo that generates audio and video output, intended for use with VGA and audio PMODs. It can be simulated on an ECPIX5 FPGA with appropriate PMODs, and the audio also runs on an ULX3S. The documentation is minimal and uncertain, with statements like 'Maybe it works?'. External hardware includes VGA and audio PMODs, and the design is written in Silice.",
+   "summary": "Warp is a demoscene demo that generates audio and video output, intended for use with VGA and audio PMODs. It can be simulated on an ECPIX5 FPGA with appropriate PMODs, and the audio also runs on an ULX3S. The documentation is minimal and uncertain, with statements like 'Maybe it works?'. External hardware includes VGA and audio PMODs, and the design is written in Silice.",
+   "summary_changed": false
+  },
+  {
+   "key": "8d6786191d65",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated in the source."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The design consumes a clock; it does not generate one."
+    }
+   ],
+   "add": [
+    {
+     "tag": "text",
+     "reason": "The design spells out the text 'tinytapeoutrocks' on the display."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "It is explicitly described as a sequential circuit advancing on clock edges."
+    }
+   ],
+   "notes": "Removed unsupported education and clock-generator tags; added text and sequential-logic tags supported by the description.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "sequencer",
+    "wokwi",
+    "education",
+    "clock-generator"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "sequencer",
+    "wokwi",
+    "text",
+    "sequential-logic"
+   ],
+   "summary_before": "This sequential circuit spells out the phrase 'tinytapeoutrocks' symbol by symbol on a 7-segment display, advancing on each clock edge. It is designed to run at 2 Hz or in manual clock mode, where pressing a button cycles through the 16 symbols. The eight outputs must be connected to the display segments in the classic order, and no external hardware is needed beyond the display. The project is notable for its simple, self-contained operation and clear documentation.",
+   "summary": "This sequential circuit spells out the phrase 'tinytapeoutrocks' symbol by symbol on a 7-segment display, advancing on each clock edge. It is designed to run at 2 Hz or in manual clock mode, where pressing a button cycles through the 16 symbols. The eight outputs must be connected to the display segments in the classic order, and no external hardware is needed beyond the display. The project is notable for its simple, self-contained operation and clear documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7110,
+  "completion_tokens": 1522,
+  "total_tokens": 8632,
+  "cost": 0.002572338,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002572338,
+   "upstream_inference_prompt_cost": 0.001019898,
+   "upstream_inference_completions_cost": 0.00155244
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002572338,
+ "elapsed_s": 133.9
+}

@@ -1,0 +1,454 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2b8433c59e1b",
+  "497c0a8991ae",
+  "272a73b1ffc8",
+  "29e44f5d8bac",
+  "6de1f17fc259",
+  "3c374ff33a69"
+ ],
+ "results": [
+  {
+   "key": "2b8433c59e1b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fpga",
+     "reason": "The source describes a VGA Blackjack game; the FPGA mention is only a stray note about PLL tuning, not an FPGA target or port."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described; the design is a Blackjack game with an LFSR card generator."
+    },
+    {
+     "tag": "led",
+     "reason": "No discrete LED output; outputs are VGA signals."
+    },
+    {
+     "tag": "template",
+     "reason": "This is a complete game design, not a boilerplate or starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Implements a playable Blackjack card game."
+    },
+    {
+     "tag": "vga",
+     "reason": "Pins and text describe VGA video output (Tiny VGA pinout)."
+    },
+    {
+     "tag": "button",
+     "reason": "Four push-buttons (Hit/Stand/Double/Start) are the game inputs."
+    },
+    {
+     "tag": "fsm",
+     "reason": "Core game logic runs as a finite-state machine."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "A 16-bit LFSR is used as the pseudo-random card generator."
+    },
+    {
+     "tag": "prng",
+     "reason": "The LFSR serves as a pseudo-random number generator for cards."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Renders an on-screen blackjack table with cards and balance."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated counter/LED FPGA demo; replaced with tags and summary matching the documented Blackjack game.",
+   "tags_before": [
+    "fpga",
+    "counter",
+    "led",
+    "template"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "button",
+    "fsm",
+    "lfsr",
+    "prng",
+    "verilog",
+    "graphics"
+   ],
+   "summary_before": "This project is a demo that was originally designed for an FPGA and ported to Tiny Tapeout. It implements a simple counter and LED blinker. The design is tested by observing the LED output. It is notable for demonstrating the portability of FPGA designs to ASIC.",
+   "summary": "This project is a simplified Blackjack game implemented entirely in digital hardware. The core game logic, cards, rules and balance run as a finite-state machine, with a 16-bit LFSR used as a pseudo-random card generator. The player interacts using Hit, Stand, Double and Start push-buttons, and the internal state is visualized on a VGA blackjack table screen. All logic is fully synthesizable and fits into a single Tiny Tapeout tile.",
+   "summary_changed": true
+  },
+  {
+   "key": "497c0a8991ae",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "lfsr",
+     "reason": "No LFSR is described; the design is analog."
+    },
+    {
+     "tag": "prng",
+     "reason": "No pseudo-random generator is described."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "No shift register is described."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Language is Analog, not Verilog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "analog",
+     "reason": "Design is an analog circuit in the Sky130 PDK."
+    },
+    {
+     "tag": "vco",
+     "reason": "Implements a current-controlled analog VCO."
+    },
+    {
+     "tag": "ring-oscillator",
+     "reason": "The VCO is based on a ring oscillator."
+    },
+    {
+     "tag": "opamp",
+     "reason": "Includes a differential amplifier, an operational-amplifier-style analog block."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Combines analog circuits with a digital frequency output pin."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated digital LFSR; replaced with tags and summary matching the documented analog VCO and differential amplifier.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "analog",
+    "vco",
+    "ring-oscillator",
+    "opamp",
+    "mixed-signal"
+   ],
+   "summary_before": "This project implements a 16-bit configurable Galois LFSR (Linear Feedback Shift Register) designed for Tiny Tapeout SKY130. It is implemented in Verilog and can be configured to use different feedback taps. The design is intended for digital logic experimentation and can be tested with standard digital inputs and outputs. It is a classic pseudo-random number generator circuit.",
+   "summary": "This tile integrates two independent analog designs in the SkyWater Sky130 130 nm PDK, sharing a single DC bias/control pin due to the 4-analog-pin Tiny Tapeout limit. One circuit is a current-controlled ring-oscillator VCO whose frequency appears on the digital output pin, and the other is a differential amplifier with input and output analog pins. Both circuits are permanently powered from VDD = 1.8 V and are tested through separate analog and digital pins. No external hardware is required beyond an Analog Discovery 3 or equivalent supply, function generator and oscilloscope or frequency counter.",
+   "summary_changed": true
+  },
+  {
+   "key": "272a73b1ffc8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pio",
+     "reason": "No RP2040-style programmable I/O block is described."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Language is Verilog, not SystemVerilog."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the design is an LFSR."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Pins are dedicated LFSR control and output signals, not general-purpose I/O."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "Implements a 16-bit Galois LFSR."
+    },
+    {
+     "tag": "prng",
+     "reason": "The LFSR serves as a pseudo-random number generator."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "An LFSR is a shift-register-based structure."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "configurable",
+     "reason": "Width and primitive polynomial are configurable."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated PIO block; replaced with tags and summary matching the documented Galois LFSR. Note: 'configurable' is not in the canonical vocabulary, so it was omitted.",
+   "tags_before": [
+    "pio",
+    "systemverilog",
+    "fsm",
+    "gpio"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This project implements a programmable I/O (PIO) block inspired by the RP2350's PIO but not compatible with it. It is written in SystemVerilog and includes a finite state machine for controlling the I/O. The design is intended for flexible digital I/O operations and can be tested with standard digital inputs and outputs. It is a reconfigurable logic block for custom I/O protocols.",
+   "summary": "This project implements a 16-bit Configurable Galois LFSR designed for Tiny Tapeout SKY130. It supports configurable width (4/8/12/16-bit), primitive polynomial selection, nibble-serial seed loading, and provides the full 16-bit output. The design is written in Verilog and can be tested with standard digital inputs and outputs, for example driving an LED with the serial bit output or using a logic analyser for PRBS verification. It is a classic pseudo-random number generator circuit.",
+   "summary_changed": true
+  },
+  {
+   "key": "29e44f5d8bac",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": "No comparator is described; the design computes Fibonacci numbers."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described; the design uses a synchronous counter and conversion stages."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "No basic logic gate implementation is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "A synchronous counter calculates the next Fibonacci number."
+    },
+    {
+     "tag": "bcd",
+     "reason": "Binary-to-BCD conversion via the Double Dabble algorithm."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Drives a multiplexed 5-digit 7-segment display."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "The design is built from synchronous sequential stages."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "A ring counter multiplexes the digit enables for the display."
+    },
+    {
+     "tag": "ring-counter",
+     "reason": "A ring counter rotates a one-hot bit to enable each digit."
+    },
+    {
+     "tag": "debouncer",
+     "reason": "Includes a synchronizer and edge detector for the mechanical step input."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated comparator/FSM; replaced with tags and summary matching the documented Fibonacci counter.",
+   "tags_before": [
+    "comparator",
+    "fsm",
+    "sequential-logic",
+    "logic-gate"
+   ],
+   "tags": [
+    "sequential-logic",
+    "counter",
+    "bcd",
+    "7-segment",
+    "verilog",
+    "multiplexer",
+    "ring-counter",
+    "debouncer"
+   ],
+   "summary_before": "This project implements a comparator and a finite state machine. The comparator compares two input values and produces an output indicating their relationship. The FSM controls the operation of the comparator. The design is implemented using sequential logic and logic gates. The exact functionality and use cases are not fully detailed in the documentation.",
+   "summary": "This design calculates the Fibonacci sequence up to 16 bits (max value 46,368 before overflow). A synchronous Fibonacci core advances whenever an external pulse is detected, and a Double Dabble binary-to-BCD converter produces five BCD nibbles in exactly 17 clock cycles. A ring-counter multiplexer enables one of the 5 digits at a time, synchronized with the main clock, and a combinational 7-segment decoder converts the current BCD nibble into the gfedcba pattern. The design includes a synchronizer and edge detector on the manual step input to ensure stable operation even with mechanical buttons.",
+   "summary_changed": true
+  },
+  {
+   "key": "6de1f17fc259",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sequence-detector",
+     "reason": "No bit-sequence detector is described; the design visualizes cellular automata."
+    },
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "No cocotb testbench is mentioned in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cellular-automaton",
+     "reason": "Implements 1D elementary cellular automata."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "Described explicitly as a demoscene entry."
+    },
+    {
+     "tag": "vga",
+     "reason": "Pins and text describe VGA video output (Tiny VGA pinout)."
+    },
+    {
+     "tag": "graphics",
+     "reason": "Renders the automata evolution as VGA graphics."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Uses the TinyVGA Pmod on the output Pmod connector."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated sequence detector; replaced with tags and summary matching the documented cellular automata demoscene entry.",
+   "tags_before": [
+    "sequence-detector",
+    "fsm",
+    "cocotb"
+   ],
+   "tags": [
+    "cellular-automaton",
+    "demoscene",
+    "vga",
+    "graphics",
+    "verilog",
+    "pmod"
+   ],
+   "summary_before": "This project is a digital circuit that implements a sequence detector for a specific bit pattern. It uses a finite state machine to recognize the pattern on a serial input. The design is verified with a cocotb testbench. It is notable for its simple and clear implementation of a sequence detection algorithm.",
+   "summary": "Katomata is a Tiny Tapeout demoscene entry: a 1D elementary cellular automata visualizer for VGA. It implements Stephen Wolfram's classification of Elementary Cellular Automata and continuously cycles through all 256 rules, drawing the time evolution of each rule directly on a 640x480 @ 60 Hz VGA frame. The design is driven by a 25.175 MHz pixel clock and requires a TinyVGA Pmod and a VGA monitor. There are no input pins to drive, as all ui_in and uio_in bits are unused.",
+   "summary_changed": true
+  },
+  {
+   "key": "3c374ff33a69",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "No processor core is described; the design is a clock/calendar."
+    },
+    {
+     "tag": "alu",
+     "reason": "No arithmetic logic unit is described."
+    },
+    {
+     "tag": "register-file",
+     "reason": "No multi-register storage block is described."
+    },
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "Implements a digital clock and calendar with leap-year handling."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "Drives a 10-digit multiplexed 7-segment display."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Uses three cascaded 74HC595 shift registers for display output."
+    },
+    {
+     "tag": "bcd",
+     "reason": "Manipulates independent BCD time and date limits."
+    },
+    {
+     "tag": "buzzer",
+     "reason": "Includes an active buzzer output for the alarm."
+    },
+    {
+     "tag": "led",
+     "reason": "Provides LED_SETUP, LED_ALARM and LED_ALARM_MATCH status outputs."
+    },
+    {
+     "tag": "button",
+     "reason": "Four push-buttons (mode, inc, dec, reset) are the inputs."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "timer",
+     "reason": "Uses 1 Hz and 1 kHz tick-based timing for the clock."
+    }
+   ],
+   "notes": "Proposed tags and summary described an unrelated CPU; replaced with tags and summary matching the documented clock/calendar design.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "verilog",
+    "rtc",
+    "7-segment",
+    "shift-register",
+    "bcd",
+    "buzzer",
+    "led",
+    "button",
+    "timer"
+   ],
+   "summary_before": "This project is a hardware implementation of a simple processor with a custom instruction set. It includes an ALU, register file, and control logic. The design is written in Verilog and is intended for educational purposes. It is notable for its minimalistic yet complete CPU architecture.",
+   "summary": "The Lambda Clock is a full digital calendar and clock built for a 10-digit 7-segment multiplexed display architecture using three cascaded 74HC595 shift registers. It features a fully synchronous clock-enable domain that parses base 1 Hz and 1 kHz ticks to manipulate independent BCD limits, avoiding binary-to-BCD resource explosion, and it enforces leap-year restrictions automatically. An 8-state settings menu tracks and individually updates days, months, years and time, and a built-in alarm module is continuously checked against the current active BCD time registers. The design is written in Verilog and uses four push-buttons plus a buzzer and optional status LEDs.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [
+  "272a73b1ffc8: reviewer added non-canonical tag 'configurable'"
+ ],
+ "usage": {
+  "prompt_tokens": 7453,
+  "completion_tokens": 2686,
+  "total_tokens": 10139,
+  "cost": 0.00269248,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3380,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00269248,
+   "upstream_inference_prompt_cost": 0.00091972,
+   "upstream_inference_completions_cost": 0.00177276
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00269248,
+ "elapsed_s": 30.2
+}

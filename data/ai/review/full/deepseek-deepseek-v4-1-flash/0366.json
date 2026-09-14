@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "0c6e07b2b539",
+  "56254d546b2d",
+  "7fa73aef6d6c",
+  "07de81e73d50",
+  "518f1a5edca8",
+  "2a791d976585"
+ ],
+ "results": [
+  {
+   "key": "0c6e07b2b539",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "The design is a small register file, not a generic memory block; 'register-file' already covers it."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplexer",
+     "reason": "Already proposed and supported by the source, which states multiplexers are used for address decoding and storage."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Already proposed and supported by the title and description."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Already proposed and supported by the language field."
+    }
+   ],
+   "notes": "Removed generic 'memory' tag; register-file is the accurate canonical tag.",
+   "tags_before": [
+    "register-file",
+    "multiplexer",
+    "memory",
+    "wokwi"
+   ],
+   "tags": [
+    "register-file",
+    "multiplexer",
+    "wokwi"
+   ],
+   "summary_before": "This design implements a 3-bit wide, 4-position register file using multiplexers for address decoding and data storage. It provides separate write and read addresses, a write enable, and outputs for the read data plus internal state and an inverted write enable. Testing involves setting the data bits and write address with write enable toggled to store a value, then setting the read address to retrieve it. The documentation is concise but sufficient to understand the basic operation.",
+   "summary": "This design implements a 3-bit wide, 4-position register file using multiplexers for address decoding and data storage. It provides separate write and read addresses, a write enable, and outputs for the read data plus internal state and an inverted write enable. Testing involves setting the data bits and write address with write enable toggled to store a value, then setting the read address to retrieve it. The documentation is concise but sufficient to understand the basic operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "56254d546b2d",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "instrumentation",
+    "7-segment",
+    "edge-detector",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "instrumentation",
+    "7-segment",
+    "edge-detector",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This is a tiny logic analyzer that samples a single digital input and displays its current state and edge events on a 7-segment display. It uses a shift register to detect rising and falling edges, and counters to extend the display duration for visibility. The design requires no external hardware beyond the Tiny Tapeout board, and can be tested using a dip switch as the data input. It is intended as a simple debugging tool for observing signal transitions.",
+   "summary": "This is a tiny logic analyzer that samples a single digital input and displays its current state and edge events on a 7-segment display. It uses a shift register to detect rising and falling edges, and counters to extend the display duration for visibility. The design requires no external hardware beyond the Tiny Tapeout board, and can be tested using a dip switch as the data input. It is intended as a simple debugging tool for observing signal transitions.",
+   "summary_changed": false
+  },
+  {
+   "key": "7fa73aef6d6c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "uart",
+    "communication",
+    "register-file",
+    "7-segment",
+    "verilog"
+   ],
+   "tags": [
+    "uart",
+    "communication",
+    "register-file",
+    "7-segment",
+    "verilog"
+   ],
+   "summary_before": "This project implements a UART interface that allows reading and writing internal registers via a simple two-byte protocol. It includes a signature, an internal register, an LED register, and input status readback. The design is tested by sending specific command bytes and observing responses, with initial LED display showing three horizontal segments. It requires a UART host for communication and provides a basic register access mechanism.",
+   "summary": "This project implements a UART interface that allows reading and writing internal registers via a simple two-byte protocol. It includes a signature, an internal register, an LED register, and input status readback. The design is tested by sending specific command bytes and observing responses, with initial LED display showing three horizontal segments. It requires a UART host for communication and provides a basic register access mechanism.",
+   "summary_changed": false
+  },
+  {
+   "key": "07de81e73d50",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "power-management",
+     "reason": "The design is a test module for a power-switching PMOS, not a power supply management application."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The pins are named like 7-segment signals but the documentation does not describe a 7-segment display function; the design is a test module."
+    }
+   ],
+   "add": [
+    {
+     "tag": "power-gating",
+     "reason": "Already proposed and supported by the PMOS power control description."
+    },
+    {
+     "tag": "factory-test",
+     "reason": "Already proposed and supported by the title and description as a test module."
+    }
+   ],
+   "notes": "Removed unsupported application and interface tags; kept test and power-gating tags.",
+   "tags_before": [
+    "power-gating",
+    "factory-test",
+    "power-management",
+    "7-segment"
+   ],
+   "tags": [
+    "power-gating",
+    "factory-test"
+   ],
+   "summary_before": "This is a power test module that replicates the standard Tiny Tapeout test design but includes a PMOS transistor to control power to the module. The PMOS requires an external active-low enable signal. The design passes input signals directly to outputs, allowing verification that outputs toggle when power is enabled. It is used to evaluate the power switching FET on the TT03p5 shuttle.",
+   "summary": "This is a power test module that replicates the standard Tiny Tapeout test design but includes a PMOS transistor to control power to the module. The PMOS requires an external active-low enable signal. The design passes input signals directly to outputs, allowing verification that outputs toggle when power is enabled. It is used to evaluate the power switching FET on the TT03p5 shuttle.",
+   "summary_changed": false
+  },
+  {
+   "key": "518f1a5edca8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "The design uses a shift register internally but the canonical tag is not clearly supported as a primary feature; the source mentions it only in passing."
+    }
+   ],
+   "add": [
+    {
+     "tag": "fir-filter",
+     "reason": "Already proposed and supported by the title and description."
+    },
+    {
+     "tag": "dsp",
+     "reason": "Already proposed and supported by the FIR filter function."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Already proposed and supported by the multiplication of input samples by coefficients."
+    }
+   ],
+   "notes": "Removed shift-register tag as it is not a primary documented feature.",
+   "tags_before": [
+    "fir-filter",
+    "dsp",
+    "shift-register",
+    "multiplier"
+   ],
+   "tags": [
+    "fir-filter",
+    "dsp",
+    "multiplier"
+   ],
+   "summary_before": "This design implements a 4-tap FIR filter with user-configurable coefficients, or default coefficients set to 1. It takes an input signal x[n] and produces output y[n] by multiplying the last four input samples with the coefficients and summing the results. The coefficients can be assigned via switches when the enable signal is high, and a reset sets past values to zero and coefficients to ones. External hardware includes a microcontroller to send the x[n] values, and the design is notable for being a simple digital filter implementation.",
+   "summary": "This design implements a 4-tap FIR filter with user-configurable coefficients, or default coefficients set to 1. It takes an input signal x[n] and produces output y[n] by multiplying the last four input samples with the coefficients and summing the results. The coefficients can be assigned via switches when the enable signal is high, and a reset sets past values to zero and coefficients to ones. External hardware includes a microcontroller to send the x[n] values, and the design is notable for being a simple digital filter implementation.",
+   "summary_changed": false
+  },
+  {
+   "key": "2a791d976585",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "alu",
+    "instruction-decoder",
+    "logic-gate",
+    "education"
+   ],
+   "tags": [
+    "alu",
+    "instruction-decoder",
+    "logic-gate",
+    "education"
+   ],
+   "summary_before": "This project is a simple 8-bit ALU with six instructions selected by the three least significant bits of an instruction input. The operations include logical OR, NAND, NOR, AND, addition, and subtraction. The design is based on the Overture architecture from the game Turing Complete. Testing involves applying instructions and data inputs and verifying the 8-bit result output.",
+   "summary": "This project is a simple 8-bit ALU with six instructions selected by the three least significant bits of an instruction input. The operations include logical OR, NAND, NOR, AND, addition, and subtraction. The design is based on the Overture architecture from the game Turing Complete. Testing involves applying instructions and data inputs and verifying the 8-bit result output.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6103,
+  "completion_tokens": 1269,
+  "total_tokens": 7372,
+  "cost": 0.0033537,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0033537,
+   "upstream_inference_prompt_cost": 0.0018309,
+   "upstream_inference_completions_cost": 0.0015228
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0033537,
+ "elapsed_s": 16.1
+}

@@ -1,0 +1,293 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "db4bafe330bd",
+  "ce408113ca57",
+  "5775968c0092",
+  "43110a1dacbf",
+  "b65b1645f4a5",
+  "29db26c9c783"
+ ],
+ "results": [
+  {
+   "key": "db4bafe330bd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "crypto",
+     "reason": "GF(2^128) multiplication is arithmetic; the source never states a cryptographic purpose or cipher."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "No pipelined datapath is described; the core is a handshaked sequential kernel."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Already present, no change needed."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Handshake, BUSY, DONE_PULSE and reset behavior are clocked sequential logic."
+    },
+    {
+     "tag": "systemverilog",
+     "reason": "Already present; language is SystemVerilog."
+    }
+   ],
+   "notes": "Removed crypto and pipeline tags not supported by the source; added sequential-logic.",
+   "tags_before": [
+    "crypto",
+    "alu",
+    "multiplier",
+    "accelerator",
+    "systemverilog",
+    "pipeline"
+   ],
+   "tags": [
+    "alu",
+    "multiplier",
+    "accelerator",
+    "systemverilog",
+    "sequential-logic"
+   ],
+   "summary_before": "The LSC-1 Micro is a SystemVerilog arithmetic kernel implementing XOR, GF(2^128) multiplication, and SET operations over a byte-wide ready/valid interface. It accepts an opcode followed by a fixed-size payload and returns a 16-byte response, with support for request and response stalls and a fault indication for unsupported opcodes. The core requires a 25 MHz clock, active-low reset, and chip enable, and is intended to be driven by a host controller or microcontroller; no external memory or packet framing is included. The design is a reduced sub-core of the larger LSC-1 and does not include BLAKE3 or other full-system features, and testing is performed by host-side arithmetic comparison.",
+   "summary": "The LSC-1 Micro is a SystemVerilog arithmetic kernel implementing XOR, GF(2^128) multiplication, and SET operations over a byte-wide ready/valid interface. It accepts an opcode followed by a fixed-size payload and returns a 16-byte response, with support for request and response stalls and a fault indication for unsupported opcodes. The core requires a 25 MHz clock, active-low reset, and chip enable, and is intended to be driven by a host controller or microcontroller; no external memory or packet framing is included. The design is a reduced sub-core of the larger LSC-1 and does not include BLAKE3 or other full-system features, and testing is performed by host-side arithmetic comparison.",
+   "summary_changed": false
+  },
+  {
+   "key": "ce408113ca57",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counting behavior is described; the source only mentions three serial flip-flops driving LED segments."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "The design is explicitly three serial flip-flops."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the design is described as a trivial first chip."
+    }
+   ],
+   "notes": "Removed counter tag; added flip-flop and incomplete.",
+   "tags_before": [
+    "led",
+    "shift-register",
+    "counter",
+    "wokwi",
+    "sequential-logic"
+   ],
+   "tags": [
+    "led",
+    "shift-register",
+    "wokwi",
+    "sequential-logic",
+    "flip-flop",
+    "incomplete"
+   ],
+   "summary_before": "This project is a trivial first chip that drives three LED segments using three serial flip-flops. It includes a multiplexer selection input and output. Testing is done by probing the LED pins to observe the shifting pattern. No external hardware is required beyond the LEDs. The design is a simple demonstration of sequential logic.",
+   "summary": "This project is a trivial first chip that drives three LED segments using three serial flip-flops. It includes a multiplexer selection input and output. Testing is done by probing the LED pins to observe the shifting pattern. No external hardware is required beyond the LEDs. The design is a simple demonstration of sequential logic.",
+   "summary_changed": false
+  },
+  {
+   "key": "5775968c0092",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated in the source."
+    },
+    {
+     "tag": "led",
+     "reason": "Outputs are named es0-es7, not LEDs; no LED output is documented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no functional description."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The submission is a Hello World with template placeholder documentation."
+    }
+   ],
+   "notes": "Removed unsupported education and led tags; added insufficient-doc and placeholder.",
+   "tags_before": [
+    "education",
+    "wokwi",
+    "template",
+    "dip-switch",
+    "led"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "dip-switch",
+    "insufficient-doc",
+    "placeholder"
+   ],
+   "summary_before": "This project is a 'Hello World' for Tiny Tapeout, likely a simple introductory design. The documentation is placeholder text, so the exact functionality is not described. It uses DIP switches as inputs and LEDs as outputs, suggesting a straightforward input-to-output mapping. Due to the lack of documentation, the specific behavior cannot be determined.",
+   "summary": "This project is a 'Hello World' for Tiny Tapeout, likely a simple introductory design. The documentation is placeholder text, so the exact functionality is not described. It uses DIP switches as inputs and outputs labeled es0-es7, suggesting a straightforward input-to-output mapping. Due to the lack of documentation, the specific behavior cannot be determined.",
+   "summary_changed": true
+  },
+  {
+   "key": "43110a1dacbf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "calculator",
+     "reason": "No keypad or numeric calculator interface is described; only DIP switches and a 7-segment display."
+    },
+    {
+     "tag": "alu",
+     "reason": "A simple binary adder is not an ALU as described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no implementation details."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is a minimal Wokwi submission with unfinished documentation."
+    }
+   ],
+   "notes": "Removed calculator and alu tags; added insufficient-doc and incomplete.",
+   "tags_before": [
+    "adder",
+    "7-segment",
+    "dip-switch",
+    "calculator",
+    "wokwi",
+    "alu"
+   ],
+   "tags": [
+    "adder",
+    "7-segment",
+    "dip-switch",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This project is a binary adder that takes input from DIP switches and displays the sum on a 7-segment display. The documentation is placeholder text, so details on the number of bits or exact operation are not provided. It requires a 7-segment display and DIP switches for input. The design is a basic arithmetic demonstration.",
+   "summary": "This project is a binary adder that takes input from DIP switches and displays the sum on a 7-segment display. The documentation is placeholder text, so details on the number of bits or exact operation are not provided. It requires a 7-segment display and DIP switches for input. The design is a basic arithmetic demonstration.",
+   "summary_changed": false
+  },
+  {
+   "key": "b65b1645f4a5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No educational intent is stated in the source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no implementation details."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is a minimal Wokwi submission with unfinished documentation."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added insufficient-doc and incomplete.",
+   "tags_before": [
+    "bcd",
+    "decoder",
+    "7-segment",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "bcd",
+    "decoder",
+    "7-segment",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This project implements a binary to 7-segment decoder, converting BCD code to 7-segment display outputs. The documentation is placeholder text, so the exact implementation and testing details are not described. It requires a 7-segment display to show the decoded digits. The design is a common educational example for logic circuits.",
+   "summary": "This project implements a binary to 7-segment decoder, converting BCD code to 7-segment display outputs. The documentation is placeholder text, so the exact implementation and testing details are not described. It requires a 7-segment display to show the decoded digits. The design is a common educational example for logic circuits.",
+   "summary_changed": false
+  },
+  {
+   "key": "29db26c9c783",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "A 2-bit full adder is not an ALU as described."
+    },
+    {
+     "tag": "calculator",
+     "reason": "No keypad or numeric calculator interface is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is placeholder text with no implementation details."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is a minimal Wokwi submission with unfinished documentation."
+    }
+   ],
+   "notes": "Removed alu and calculator tags; added insufficient-doc and incomplete.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "wokwi",
+    "calculator"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "insufficient-doc",
+    "incomplete"
+   ],
+   "summary_before": "This project is a 2-bit full adder with inputs for carry-in, a, and b, and outputs for sum bits and carry-out. The documentation is placeholder text, so testing and usage are not described. It requires input switches and output LEDs to observe the addition results. The design is a fundamental building block for arithmetic circuits.",
+   "summary": "This project is a 2-bit full adder with inputs for carry-in, a, and b, and outputs for sum bits and carry-out. The documentation is placeholder text, so testing and usage are not described. It requires input switches and output LEDs to observe the addition results. The design is a fundamental building block for arithmetic circuits.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "ce408113ca57: 5 sentences after review"
+ ],
+ "usage": {
+  "prompt_tokens": 6595,
+  "completion_tokens": 1267,
+  "total_tokens": 7862,
+  "cost": 0.001567606,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001567606,
+   "upstream_inference_prompt_cost": 0.000731386,
+   "upstream_inference_completions_cost": 0.00083622
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001567606,
+ "elapsed_s": 11.0
+}

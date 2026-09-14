@@ -1,0 +1,325 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f02d23615ad1",
+  "fdffaab4392f",
+  "9f3b53de2eff",
+  "7dc233c754f2",
+  "c2e1cc2bda77",
+  "bd0f88d0e8f1"
+ ],
+ "results": [
+  {
+   "key": "f02d23615ad1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "gpio",
+     "reason": "The pins are dedicated game controls and a NeoPixel data output, not general purpose IO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "Six push buttons are used as paddle and start controls."
+    },
+    {
+     "tag": "led-matrix",
+     "reason": "An 8x8 NeoPixel LED matrix is used as the display."
+    },
+    {
+     "tag": "retro",
+     "reason": "Recreates the classic Pong arcade game."
+    }
+   ],
+   "notes": "Removed gpio because the pins are dedicated game controls and NeoPixel output, and added button, led-matrix, and retro tags supported by the source.",
+   "tags_before": [
+    "game",
+    "pong",
+    "ws2812",
+    "led",
+    "display",
+    "graphics",
+    "gpio"
+   ],
+   "tags": [
+    "game",
+    "pong",
+    "ws2812",
+    "led",
+    "display",
+    "graphics",
+    "button",
+    "led-matrix",
+    "retro"
+   ],
+   "summary_before": "This project implements a two-player Pong game in Verilog. It uses an 8x8 NeoPixel LED matrix as the display and six push buttons for control: two for each player's paddle movement, one to start the game, and one for reset. The game ends when the ball hits the left or right side of the matrix. External hardware includes the NeoPixel matrix and six push buttons with pull-up resistors.",
+   "summary": "This project implements a two-player Pong game in Verilog. It uses an 8x8 NeoPixel LED matrix as the display and six push buttons for control: two for each player's paddle movement, one to start the game, and one for reset. The game ends when the ball hits the left or right side of the matrix. External hardware includes the NeoPixel matrix and six push buttons with pull-up resistors.",
+   "summary_changed": false
+  },
+  {
+   "key": "fdffaab4392f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "The opcode selects ALU operations, not processor instruction decoding."
+    },
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational or teaching purpose."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "The ALU implements AND, OR, NOT, XOR, NAND, NOR, and XNOR operations."
+    },
+    {
+     "tag": "subtractor",
+     "reason": "Subtraction (A-B) is one of the supported operations."
+    },
+    {
+     "tag": "multiplier",
+     "reason": "Multiplication is one of the supported operations."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Compare is one of the supported operations."
+    },
+    {
+     "tag": "shift-register",
+     "reason": "Logical and arithmetic shift left/right operations are supported."
+    },
+    {
+     "tag": "counter",
+     "reason": "The running sum mode continuously adds the input to the output every second."
+    }
+   ],
+   "notes": "Removed instruction-decoder and education, and added logic-gate, subtractor, multiplier, comparator, shift-register, and counter tags supported by the documented operations.",
+   "tags_before": [
+    "alu",
+    "instruction-decoder",
+    "logic-gate",
+    "7-segment",
+    "display",
+    "education"
+   ],
+   "tags": [
+    "alu",
+    "logic-gate",
+    "7-segment",
+    "display",
+    "subtractor",
+    "multiplier",
+    "comparator",
+    "shift-register",
+    "counter"
+   ],
+   "summary_before": "This project is a 2-bit ALU with a 4-bit opcode that supports 16 operations including logical, arithmetic, shift, and comparison functions. It also includes a running sum mode that continuously adds the input to the output every second. The outputs are provided on an 8-bit bus and a 7-segment display interface. Testing can be done by connecting the outputs to LEDs or a BCD converter to observe the results.",
+   "summary": "This project is a 2-bit ALU with a 4-bit opcode that supports 16 operations including logical, arithmetic, shift, and comparison functions. It also includes a running sum mode that continuously adds the input to the output every second. The outputs are provided on an 8-bit bus and a 7-segment display interface. Testing can be done by connecting the outputs to LEDs or a BCD converter to observe the results.",
+   "summary_changed": false
+  },
+  {
+   "key": "9f3b53de2eff",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design uses an external clock input and does not generate a clock."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design includes a counter mode that cycles through characters."
+    }
+   ],
+   "notes": "Removed clock-generator because the design only consumes an external clock, and added counter for the documented character-cycling counter mode.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "bcd",
+    "counter",
+    "clock-generator",
+    "wokwi",
+    "text"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "bcd",
+    "counter",
+    "wokwi",
+    "text"
+   ],
+   "summary_before": "This design drives a 7-segment display to show the string 'ykM_1St_CHIP' character by character. It can operate in two modes: a default mode where it cycles through characters based on the clock, and a manual mode where individual characters are selected via BCD inputs. The design requires an external 7-segment LCD for output. Testing involves observing the character sequence or manually selecting characters as described in the documentation.",
+   "summary": "This design drives a 7-segment display to show the string 'ykM_1St_CHIP' character by character. It can operate in two modes: a default mode where it cycles through characters based on the clock, and a manual mode where individual characters are selected via BCD inputs. The design requires an external 7-segment LCD for output. Testing involves observing the character sequence or manually selecting characters as described in the documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "7dc233c754f2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "calculator",
+     "reason": "The design is a fixed adder, not a calculator with keypad or numeric display input."
+    },
+    {
+     "tag": "alu",
+     "reason": "It only performs addition and does not implement multiple arithmetic/logic operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "adder",
+     "reason": "The design is an 8-bit ripple-carry adder built from one half adder and seven full adders."
+    }
+   ],
+   "notes": "Removed calculator and alu because the design only adds two bytes, and added adder as the accurate type tag.",
+   "tags_before": [
+    "adder",
+    "calculator",
+    "alu",
+    "wokwi"
+   ],
+   "tags": [
+    "adder",
+    "wokwi"
+   ],
+   "summary_before": "This design is an 8-bit ripple-carry adder that adds two bytes and outputs the sum. It is built from one half adder and seven full adders connected in a ripple-carry configuration. The design requires external input devices (such as switches) to set the two input bytes and output devices (such as LEDs) to display the result. Testing involves applying input values and observing the sum on the outputs.",
+   "summary": "This design is an 8-bit ripple-carry adder that adds two bytes and outputs the sum. It is built from one half adder and seven full adders connected in a ripple-carry configuration. The design requires external input devices (such as switches) to set the two input bytes and output devices (such as LEDs) to display the result. Testing involves applying input values and observing the sum on the outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "c2e1cc2bda77",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "error-correction",
+     "reason": "The design detects an error condition and disables outputs, but does not correct errors."
+    }
+   ],
+   "add": [
+    {
+     "tag": "motor-control",
+     "reason": "It controls a full-bridge driver for turntable polarity switching."
+    },
+    {
+     "tag": "counter",
+     "reason": "A binary counter counts down from 3 to 0 to sequence the polarity switching."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "The design can generate a clock via an external RC network on D6/D7."
+    },
+    {
+     "tag": "industrial",
+     "reason": "It is a control application for model railway track polarity."
+    }
+   ],
+   "notes": "Removed error-correction because the design only detects and disables on error, and added motor-control, counter, oscillator, and industrial tags supported by the source.",
+   "tags_before": [
+    "motor-control",
+    "counter",
+    "oscillator",
+    "error-correction",
+    "wokwi"
+   ],
+   "tags": [
+    "motor-control",
+    "counter",
+    "oscillator",
+    "wokwi",
+    "industrial"
+   ],
+   "summary_before": "This controller automatically switches the polarity of DC-type model railway turntables to prevent short circuits when rotating along powered tracks. It uses a binary counter and full-bridge control signals to reverse polarity, with error detection if a trigger remains active too long. The design requires external hardware including XOR gates, a full-bridge driver, MOSFETs, and an RC network for the oscillator. Testing involves verifying the counter sequence, polarity switching, and error handling as described in the documentation.",
+   "summary": "This controller automatically switches the polarity of DC-type model railway turntables to prevent short circuits when rotating along powered tracks. It uses a binary counter and full-bridge control signals to reverse polarity, with error detection if a trigger remains active too long. The design requires external hardware including XOR gates, a full-bridge driver, MOSFETs, and an RC network for the oscillator. Testing involves verifying the counter sequence, polarity switching, and error handling as described in the documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "bd0f88d0e8f1",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "The source describes a simple hardware lock, not a hardware security focused design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "shift-register",
+     "reason": "The lock is built from a shift register formed by joining flip-flops."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "The shift register is explicitly formed from flip-flops."
+    },
+    {
+     "tag": "sequence-detector",
+     "reason": "It detects the correct 11-bit serial sequence to activate the output."
+    },
+    {
+     "tag": "7-segment",
+     "reason": "The output pins drive a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "The 7-segment display provides the output indication."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "The project is implemented in Wokwi."
+    }
+   ],
+   "notes": "Removed security because the source describes a simple lock rather than a security-focused design, and added shift-register, flip-flop, sequence-detector, 7-segment, display, and wokwi tags supported by the source.",
+   "tags_before": [
+    "security",
+    "shift-register",
+    "flip-flop",
+    "sequence-detector",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "tags": [
+    "shift-register",
+    "flip-flop",
+    "sequence-detector",
+    "7-segment",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This project implements a hardware lock using a shift register made from flip-flops. The correct 11-bit sequence must be entered serially to activate an output, and a 7-segment display is provided for output. The design requires the user to input bits one at a time with clock pulses. Testing involves entering the correct sequence (10100100010) and verifying that the output turns on.",
+   "summary": "This project implements a hardware lock using a shift register made from flip-flops. The correct 11-bit sequence must be entered serially to activate an output, and a 7-segment display is provided for output. The design requires the user to input bits one at a time with clock pulses. Testing involves entering the correct sequence (10100100010) and verifying that the output turns on.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7607,
+  "completion_tokens": 1844,
+  "total_tokens": 9451,
+  "cost": 0.005618625,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.005618625,
+   "upstream_inference_prompt_cost": 0.002852625,
+   "upstream_inference_completions_cost": 0.002766
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.005618625,
+ "elapsed_s": 6.7
+}

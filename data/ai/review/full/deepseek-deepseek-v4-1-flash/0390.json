@@ -1,0 +1,226 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f6e4f7a8ed62",
+  "134539b5512e",
+  "c9228ed66c48",
+  "5beeb32eab72",
+  "a7acb2eb9194",
+  "e380aa55f2a2"
+ ],
+ "results": [
+  {
+   "key": "f6e4f7a8ed62",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fft",
+    "dsp",
+    "fixed-point",
+    "7-segment",
+    "systemverilog"
+   ],
+   "tags": [
+    "fft",
+    "dsp",
+    "fixed-point",
+    "7-segment",
+    "systemverilog"
+   ],
+   "summary_before": "This is a 4-point, 8-bit fixed-point Fast Fourier Transform (FFT) engine implemented in SystemVerilog. It uses a radix-2 decimation-in-time architecture with butterfly modules and twiddle factor multiplication to compute the frequency-domain representation of four complex samples. The design interfaces with switches for control, a bidirectional data bus for samples and results, and a single-digit 7-segment display for status. External hardware includes a 7-segment display, switches, and a reset button.",
+   "summary": "This is a 4-point, 8-bit fixed-point Fast Fourier Transform (FFT) engine implemented in SystemVerilog. It uses a radix-2 decimation-in-time architecture with butterfly modules and twiddle factor multiplication to compute the frequency-domain representation of four complex samples. The design interfaces with switches for control, a bidirectional data bus for samples and results, and a single-digit 7-segment display for status. External hardware includes a 7-segment display, switches, and a reset button.",
+   "summary_changed": false
+  },
+  {
+   "key": "134539b5512e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The design is an ALU, not a processor core; the text only says it is suitable as a CPU building block."
+    },
+    {
+     "tag": "comparator",
+     "reason": "Comparison is one of several ALU operations, but the design is not primarily a comparator circuit."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The ALU performs logical operations but is not a basic logic gate implementation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported cpu, comparator, and logic-gate tags; ALU and education are supported.",
+   "tags_before": [
+    "alu",
+    "cpu",
+    "education",
+    "comparator",
+    "logic-gate"
+   ],
+   "tags": [
+    "alu",
+    "education"
+   ],
+   "summary_before": "This 4-bit ALU performs arithmetic, logical, shift, and comparison operations on two 4-bit inputs selected by a 4-bit control signal. It provides four status flags: carry, zero, negative, and overflow. The design is intended as a basic CPU building block or teaching demo. Testing requires toggle switches for inputs and control, and LEDs for outputs and flags.",
+   "summary": "This 4-bit ALU performs arithmetic, logical, shift, and comparison operations on two 4-bit inputs selected by a 4-bit control signal. It provides four status flags: carry, zero, negative, and overflow. The design is intended as a basic CPU building block or teaching demo. Testing requires toggle switches for inputs and control, and LEDs for outputs and flags.",
+   "summary_changed": false
+  },
+  {
+   "key": "c9228ed66c48",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "The design is an ALU section, not a CPU core."
+    },
+    {
+     "tag": "logic-gate",
+     "reason": "The ALU performs logic operations but is not a basic logic gate implementation."
+    },
+    {
+     "tag": "retro",
+     "reason": "No retro computing or gaming style hardware is described."
+    },
+    {
+     "tag": "fpga",
+     "reason": "The FPGA was only used for testing, not as the target platform."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported cpu, logic-gate, retro, and fpga tags; ALU and verilog are supported.",
+   "tags_before": [
+    "alu",
+    "cpu",
+    "logic-gate",
+    "retro",
+    "fpga",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "verilog"
+   ],
+   "summary_before": "This Verilog design implements a 4-bit ALU slice intended for mini and microcomputer CPUs, supporting ADD, AND, OR, XOR, pass-through, and shift operations selected by a 3-bit function code. It provides carry in/out, complement, zero, and negative-zero flags, and was tested on an Intel/Altera FPGA. The design is controlled entirely through its input pins and requires no external hardware beyond the FPGA used for verification. It is a straightforward educational ALU block with clear function and pin documentation.",
+   "summary": "This Verilog design implements a 4-bit ALU slice intended for mini and microcomputer CPUs, supporting ADD, AND, OR, XOR, pass-through, and shift operations selected by a 3-bit function code. It provides carry in/out, complement, zero, and negative-zero flags, and was tested on an Intel/Altera FPGA. The design is controlled entirely through its input pins and requires no external hardware beyond the FPGA used for verification. It is a straightforward educational ALU block with clear function and pin documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "5beeb32eab72",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "The design is a CPU, not primarily an FSM; the one-hot state machine is an implementation detail."
+    }
+   ],
+   "add": [],
+   "notes": "Removed fsm tag; the design is a CPU with an internal state machine, not an FSM-centric design.",
+   "tags_before": [
+    "retro",
+    "cpu",
+    "bit-serial",
+    "fsm",
+    "education"
+   ],
+   "tags": [
+    "retro",
+    "cpu",
+    "bit-serial",
+    "education"
+   ],
+   "summary_before": "This is a bit-serial implementation of a subset of the PDP-8 computer, adapted from a textbook example and using one-hot state encoding generated by VITO. It emulates instructions such as AND, TAD, ISZ, DCA, JMP, and microinstructions, with a reduced memory of 128 words accessed serially. The design requires an external serial memory emulation, typically via a Python testbench, and includes wait states to accommodate cocotb testing. It is an educational project demonstrating computer architecture and hardware design.",
+   "summary": "This is a bit-serial implementation of a subset of the PDP-8 computer, adapted from a textbook example and using one-hot state encoding generated by VITO. It emulates instructions such as AND, TAD, ISZ, DCA, JMP, and microinstructions, with a reduced memory of 128 words accessed serially. The design requires an external serial memory emulation, typically via a Python testbench, and includes wait states to accommodate cocotb testing. It is an educational project demonstrating computer architecture and hardware design.",
+   "summary_changed": false
+  },
+  {
+   "key": "a7acb2eb9194",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "spiking-neural-network",
+     "reason": "The design models a QIF neuron using stochastic computing, not a spiking neural network."
+    },
+    {
+     "tag": "neural-network",
+     "reason": "It is a single neuron model, not a generic artificial neural network."
+    }
+   ],
+   "add": [],
+   "notes": "Removed spiking-neural-network and neural-network tags; the design is a single stochastic-computing neuron model.",
+   "tags_before": [
+    "stochastic-computing",
+    "spiking-neural-network",
+    "lfsr",
+    "neural-network",
+    "verilog"
+   ],
+   "tags": [
+    "stochastic-computing",
+    "lfsr",
+    "verilog"
+   ],
+   "summary_before": "This design models a Quadratic Integrate and Fire (QIF) neuron using stochastic computing in bipolar format. It uses an LFSR to generate random bitstreams and implements the neuron equation with XNOR, MUX, and up/down counter. The design is tested by setting a 9-bit input value and observing the neuron's current value on the outputs. It requires an oscilloscope to view the output.",
+   "summary": "This design models a Quadratic Integrate and Fire (QIF) neuron using stochastic computing in bipolar format. It uses an LFSR to generate random bitstreams and implements the neuron equation with XNOR, MUX, and up/down counter. The design is tested by setting a 9-bit input value and observing the neuron's current value on the outputs. It requires an oscilloscope to view the output.",
+   "summary_changed": false
+  },
+  {
+   "key": "e380aa55f2a2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "The traffic light controller is a course project, not an industrial control application."
+    }
+   ],
+   "add": [],
+   "notes": "Removed industrial tag; the design is an educational traffic light controller.",
+   "tags_before": [
+    "industrial",
+    "fsm",
+    "counter",
+    "education",
+    "led",
+    "button"
+   ],
+   "tags": [
+    "fsm",
+    "counter",
+    "education",
+    "led",
+    "button"
+   ],
+   "summary_before": "This project implements a finite state machine (FSM) combined with a counter to simulate a traffic light controller for two perpendicular streets. It was developed as part of the Digital Systems course at Pontificia Universidad Católica de Chile. The design supports normal mode with priority for Street A and a parade mode where Street B stays green indefinitely. It requires external LEDs and push-buttons for testing and can be simulated using cocotb.",
+   "summary": "This project implements a finite state machine (FSM) combined with a counter to simulate a traffic light controller for two perpendicular streets. It was developed as part of the Digital Systems course at Pontificia Universidad Católica de Chile. The design supports normal mode with priority for Street A and a parade mode where Street B stays green indefinitely. It requires external LEDs and push-buttons for testing and can be simulated using cocotb.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8509,
+  "completion_tokens": 1380,
+  "total_tokens": 9889,
+  "cost": 0.0042087,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0042087,
+   "upstream_inference_prompt_cost": 0.0025527,
+   "upstream_inference_completions_cost": 0.001656
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0042087,
+ "elapsed_s": 11.6
+}

@@ -1,0 +1,302 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "9530f3bccff9",
+  "15faaadba81d",
+  "6527fa28adce",
+  "2a5e5f89a721",
+  "ddafa36fcc0c",
+  "e8d77da254bf"
+ ],
+ "results": [
+  {
+   "key": "9530f3bccff9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "Source describes a 4-bit adder-subtractor, not a general ALU with logic operations."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog per facts."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Built from muxes and adders with no storage elements described."
+    }
+   ],
+   "notes": "Removed alu (only add/subtract, no logic ops) and added systemverilog and combinational tags.",
+   "tags_before": [
+    "adder",
+    "subtractor",
+    "alu",
+    "multiplexer"
+   ],
+   "tags": [
+    "adder",
+    "subtractor",
+    "multiplexer",
+    "systemverilog",
+    "combinational"
+   ],
+   "summary_before": "This is a 4-bit signed adder-subtractor built from multiplexers, half adders, and full adders. Two 4-bit operands a and b are supplied on ui_in, and the two sign bits on uio select one of four operations: A+B, -A+B, A-B, or -A-B, with the 4-bit result on uo and sign outputs on uio. The design was verified in QuestaSim using an extensive testbench covering the operation modes. No external hardware is needed.",
+   "summary": "This is a 4-bit signed adder-subtractor built from multiplexers, half adders, and full adders. Two 4-bit operands a and b are supplied on ui_in, and the two sign bits on uio select one of four operations: A+B, -A+B, A-B, or -A-B, with the 4-bit result on uo and sign outputs on uio. The design was verified in QuestaSim using an extensive testbench covering the operation modes. No external hardware is needed.",
+   "summary_changed": false
+  },
+  {
+   "key": "15faaadba81d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "biomedical",
+     "reason": "Source explicitly disclaims being an approved medical test; it is an experimental pattern generator, not a health monitoring application."
+    }
+   ],
+   "add": [
+    {
+     "tag": "image-processing",
+     "reason": "Generates a visual pattern (Ishihara-like plates) for display."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Requires a TinyVGA Pmod for the VGA connection."
+    }
+   ],
+   "notes": "Removed biomedical (explicitly not a medical test) and added image-processing and pmod.",
+   "tags_before": [
+    "vga",
+    "video",
+    "biomedical",
+    "display"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "image-processing",
+    "pmod"
+   ],
+   "summary_before": "This design generates VGA output to display patterns similar to Ishihara plates used for color blindness testing. It requires a Tiny VGA Pmod and a VGA display, and works out of the box without any configuration. The project is for experimental purposes only and is not an approved medical test. No silicon test results are provided.",
+   "summary": "This design generates VGA output to display patterns similar to Ishihara plates used for color blindness testing. It requires a Tiny VGA Pmod and a VGA display, and works out of the box without any configuration. The project is for experimental purposes only and is not an approved medical test. No silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "6527fa28adce",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "A combination lock is not a hardware security design; no cryptographic or security mechanism is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dip-switch",
+     "reason": "Inputs are a sequence of switches (IN1-IN8) used as the combination."
+    },
+    {
+     "tag": "led-matrix",
+     "reason": "An LED bar displays the combination status in binary."
+    }
+   ],
+   "notes": "Removed security (combination lock, not a security design) and added dip-switch and led-matrix.",
+   "tags_before": [
+    "security",
+    "servo",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "servo",
+    "led",
+    "wokwi",
+    "education",
+    "dip-switch",
+    "led-matrix"
+   ],
+   "summary_before": "The Abacus Lock is a digital combination lock that activates a servo when a specific sequence of switches is entered. It displays the current combination status in binary on an LED bar. The design is implemented in Wokwi and requires external hardware including LEDs, an LED bar, a servo, and an Arduino Nano. It was sponsored by The MITRE Corporation and MIT/LL Beaverworks Summer Institute.",
+   "summary": "The Abacus Lock is a digital combination lock that activates a servo when a specific sequence of switches is entered. It displays the current combination status in binary on an LED bar. The design is implemented in Wokwi and requires external hardware including LEDs, an LED bar, a servo, and an Arduino Nano. It was sponsored by The MITRE Corporation and MIT/LL Beaverworks Summer Institute.",
+   "summary_changed": false
+  },
+  {
+   "key": "2a5e5f89a721",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "verilog",
+     "reason": "Language is SystemVerilog, not Verilog."
+    }
+   ],
+   "add": [
+    {
+     "tag": "systemverilog",
+     "reason": "Language is SystemVerilog per facts."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon status is working per test reports."
+    },
+    {
+     "tag": "button",
+     "reason": "Two keys (left/right) are used as button inputs."
+    }
+   ],
+   "notes": "Replaced verilog with systemverilog and added silicon-tested and button.",
+   "tags_before": [
+    "game",
+    "vga",
+    "sprite",
+    "demoscene",
+    "verilog",
+    "graphics"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "sprite",
+    "demoscene",
+    "graphics",
+    "systemverilog",
+    "silicon-tested",
+    "button"
+   ],
+   "summary_before": "Sea Battle is a VGA game with sprites where the player controls a torpedo using left and right keys to hit a moving target. It was created for the Tiny Tapeout Demoscene competition and is part of a graphics and music examples repository. The design requires a VGA display and buttons, and has been tested on silicon where it works as an interactive graphics game. There is no self-checking testbench, and the game resets after each round.",
+   "summary": "Sea Battle is a VGA game with sprites where the player controls a torpedo using left and right keys to hit a moving target. It was created for the Tiny Tapeout Demoscene competition and is part of a graphics and music examples repository. The design requires a VGA display and buttons, and has been tested on silicon where it works as an interactive graphics game. There is no self-checking testbench, and the game resets after each round.",
+   "summary_changed": false
+  },
+  {
+   "key": "ddafa36fcc0c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "uart",
+     "reason": "rx/tx pins exist but the source does not describe a UART protocol; the interface is a custom parallel memory bus."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sha-3",
+     "reason": "Design includes a SHA-3 accelerator (hash tag already present; sha-3 is the specific algorithm)."
+    },
+    {
+     "tag": "coprocessor",
+     "reason": "SHA-3 and CORDIC accelerators offload compute from the CPU."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "Design spans 4x2 tiles."
+    }
+   ],
+   "notes": "Removed uart (custom parallel bus, not UART) and added sha-3, coprocessor, and multi-tile.",
+   "tags_before": [
+    "cpu",
+    "hash",
+    "cordic",
+    "accelerator",
+    "memory",
+    "uart",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "hash",
+    "cordic",
+    "accelerator",
+    "memory",
+    "verilog",
+    "coprocessor",
+    "multi-tile"
+   ],
+   "summary_before": "Zoom Zoom is a custom CPU with an external memory bus and hardware accelerators for SHA-3 and CORDIC. It includes UART communication and a parallel memory interface. The design is tested by loading a binary program into memory, resetting the chip, and checking memory writes. External hardware such as an SPI RAM chip or an MCU emulator is required for the custom protocol.",
+   "summary": "Zoom Zoom is a custom CPU with an external memory bus and hardware accelerators for SHA-3 and CORDIC. It includes UART communication and a parallel memory interface. The design is tested by loading a binary program into memory, resetting the chip, and checking memory writes. External hardware such as an SPI RAM chip or an MCU emulator is required for the custom protocol.",
+   "summary_changed": false
+  },
+  {
+   "key": "e8d77da254bf",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "nco",
+     "reason": "Source describes Direct Digital Synthesis for waveform generation, not an NCO specifically."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "Uses multiple Digilent Pmods (ADC, DAC, HDMI, buttons, switches)."
+    },
+    {
+     "tag": "button",
+     "reason": "Four buttons are used for control."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Two switches are used for control."
+    },
+    {
+     "tag": "oscilloscope",
+     "reason": "Design implements a basic oscilloscope."
+    }
+   ],
+   "notes": "Removed nco (DDS, not NCO) and added pmod, button, dip-switch, and oscilloscope.",
+   "tags_before": [
+    "instrumentation",
+    "signal-generator",
+    "adc",
+    "dac",
+    "hdmi",
+    "uart",
+    "memory",
+    "nco",
+    "vhdl"
+   ],
+   "tags": [
+    "instrumentation",
+    "signal-generator",
+    "adc",
+    "dac",
+    "hdmi",
+    "uart",
+    "memory",
+    "vhdl",
+    "pmod",
+    "button",
+    "dip-switch"
+   ],
+   "summary_before": "This design implements a basic oscilloscope and signal generator on an ASIC, using an external ADC, DAC, FRAM, and HDMI Pmod. It samples input signals, buffers them in FRAM, and displays waveforms on an HDMI screen, with the display rotated 90 degrees due to memory constraints. The signal generator uses direct digital synthesis to produce sine, square, triangle, and sawtooth waves, and the oscilloscope supports trigger functionality. The design requires multiple external Pmods and outputs settings via UART.",
+   "summary": "This design implements a basic oscilloscope and signal generator on an ASIC, using an external ADC, DAC, FRAM, and HDMI Pmod. It samples input signals, buffers them in FRAM, and displays waveforms on an HDMI screen, with the display rotated 90 degrees due to memory constraints. The signal generator uses direct digital synthesis to produce sine, square, triangle, and sawtooth waves, and the oscilloscope supports trigger functionality. The design requires multiple external Pmods and outputs settings via UART.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7364,
+  "completion_tokens": 1523,
+  "total_tokens": 8887,
+  "cost": 0.001905746,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001905746,
+   "upstream_inference_prompt_cost": 0.000900566,
+   "upstream_inference_completions_cost": 0.00100518
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001905746,
+ "elapsed_s": 14.3
+}

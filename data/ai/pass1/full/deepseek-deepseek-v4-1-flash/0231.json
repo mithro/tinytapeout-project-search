@@ -1,0 +1,198 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7c7c80bb833b",
+  "f9f3685afe61",
+  "1f79e24ac334",
+  "959a0f4b5289",
+  "695507970fa7",
+  "43310b5b8cc6",
+  "495cf2f44daa",
+  "f51aaf0d5397",
+  "415d5ae4268d",
+  "a63807499cf0"
+ ],
+ "results": [
+  {
+   "key": "7c7c80bb833b",
+   "tags": [
+    "can",
+    "transmitter",
+    "gps",
+    "communication",
+    "protocol",
+    "serial",
+    "automotive",
+    "rocket"
+   ],
+   "summary": "This design implements a transmit-only CAN controller intended to send GPS data. It accepts an 8-bit data bus, a 4-bit address, clock and reset inputs, and drives CAN_TX plus a TXING status output. Testing used an Arty Z7 running the design, a ZYBO Z7 transmitting dummy GPS data, a Raspberry Pi as the CAN destination, and an Analog Discovery 3 for the clock. External hardware requires a GPS data receiver and a mechanism to feed that data into the chip.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f9f3685afe61",
+   "tags": [
+    "audio",
+    "pwm",
+    "synthesizer",
+    "music",
+    "sound",
+    "bytebeat",
+    "generator",
+    "dsp"
+   ],
+   "summary": "This chip generates bytebeat music by evaluating five fixed bytebeat formulas and emitting PWM audio on several output pins. Four 4-bit parameter buses (a, b, c, d) select the values used in the formulas, and the outputs can be connected to speakers or the TinyTapeout Audio PMOD. Testing involves connecting a speaker to a chosen output pin and adjusting the parameter pins with binary rotary switches. External hardware needed is 16-position rotary switches and speakers or the TT Audio PMOD, with out7 requiring the audio PMOD.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "1f79e24ac334",
+   "tags": [
+    "audio",
+    "synthesizer",
+    "sound",
+    "music",
+    "pwm",
+    "lfsr",
+    "sn76489",
+    "dac",
+    "retro",
+    "education"
+   ],
+   "summary": "This is a Verilog replica of the Texas Instruments SN76489 programmable sound generator, providing three square-wave tone channels, a noise channel with white and periodic modes, and 16 attenuation levels. It is programmed through an 8-bit data bus with a write-enable strobe, and outputs either an 8-bit digital audio bus or a PWM audio output, with individual channel outputs also exposed. Testing is done by writing register commands from a microcontroller and listening to the resulting audio, and the design includes a regression test suite against original chip behavior. External hardware includes a DAC or RC filter, amplifier and speaker, plus a microcontroller to send commands; the design is fully digital and omits the original analog op-amp and some control pins.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "959a0f4b5289",
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "logo",
+    "dithering",
+    "animation",
+    "graphics"
+   ],
+   "summary": "This design displays a large 480x480 pixel Tiny Tapeout logo over VGA using time-based dithering to extend the apparent color range. It drives the standard TinyVGA PMOD pinout with two bits per color channel plus HSync and VSync, and runs from a 25.175 MHz clock. It is used simply by connecting a VGA monitor through the TinyVGA PMOD and powering the chip. Silicon test reports confirm it works on multiple boards, including at 32 MHz, with testers noting the dithering makes the image slightly fuzzy but yields an impressive color range.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "695507970fa7",
+   "tags": [
+    "vga",
+    "video",
+    "audio",
+    "pwm",
+    "demo",
+    "animation",
+    "music",
+    "graphics"
+   ],
+   "summary": "This is an eight-part audio-visual megademo that outputs VGA graphics through the TinyVGA PMOD and PWM audio on the bidirectional pins. It runs at 25.175 MHz and is used by connecting a VGA monitor and speakers or the TT Audio PMOD. Silicon test reports confirm both VGA and audio work on multiple boards, with testers reporting it also runs at 32 MHz and even 66 MHz though monitors may not sync that fast. The documentation is thin, describing the design only as a compressed VGA logo, so the internal demo structure is not documented.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "43310b5b8cc6",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "education",
+    "7-segment",
+    "counter",
+    "chisel",
+    "processor"
+   ],
+   "summary": "Wildcat is an educational three-stage RISC-V core written in Chisel, taped out with a minimal assembler program that counts up and displays the value on a 7-segment display. It exposes eight input pins, eight bidirectional pins and eight output pins, and requires no external hardware beyond the demo board display. Testing consists of letting it run and observing the 7-segment display counting from 0 to F. A silicon test report confirms the counting works, though the tester's PMOD was active low so the segments appeared inverted.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "495cf2f44daa",
+   "tags": [
+    "risc-v",
+    "cpu",
+    "education",
+    "alu",
+    "processor",
+    "single-cycle"
+   ],
+   "summary": "This is a simple single-stage RISC-V CPU based on a university lecture, loading 32-bit instructions four bytes at a time over an 8-bit input bus. It exposes the instruction byte inputs, a reset and instruction-memory write-enable on the bidirectional pins, and the ALU output byte on the outputs. Testing is done with a testbench containing simple instructions to verify calculations are correct. The documentation notes the chip is not being shipped at this time, and no silicon results are available.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f51aaf0d5397",
+   "tags": [
+    "cpu",
+    "spi",
+    "qspi",
+    "4-bit",
+    "processor",
+    "memory",
+    "flash"
+   ],
+   "summary": "This is a 4-bit CPU that loads and runs programs from the SPI flash RAM on the QSPI PMOD. It takes two 4-bit data inputs, drives SPI chip select, MOSI, MISO and clock on the bidirectional pins, and exposes an 8-bit output register plus a CPU_VALID signal. Programs are loaded using a RAM flasher application, after which the CPU is reset to run. External hardware required is the RAM flasher and the QSPI PMOD, and the documentation is otherwise brief.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "415d5ae4268d",
+   "tags": [
+    "logic-analyzer",
+    "debug",
+    "uart",
+    "test",
+    "instrumentation",
+    "vcd"
+   ],
+   "summary": "Quickscope is a small logic analyzer that samples eight input pins and the bidirectional pins and streams the captured values over UART. It triggers when ui[0] goes high and sends data at 115200 baud on uo[0], where a host client converts it into a VCD file viewable in Surfer. Testing requires connecting a UART adapter and the signals to be analyzed. The documentation refers to an external blog post for details, so the on-chip implementation is not described in the project text.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  },
+  {
+   "key": "a63807499cf0",
+   "tags": [
+    "usb",
+    "uart",
+    "serial",
+    "cdc",
+    "bridge",
+    "communication",
+    "protocol"
+   ],
+   "summary": "This design implements a USB CDC device that bridges USB to a UART interface at a fixed 115200 baud. It uses usb_p and usb_n for the USB differential pair, dp_pu_o for the 1.5k pull-up, and RX and TX for the UART side, with a configured status output. It is based on tinyfpga_bx_usbserial and enumerates with vendor_id 1209 and product_id 5454. External hardware needed is a USB breakout board and a 1.5k ohm resistor, and silicon test reports confirm successful enumeration, loopback and external UART communication.",
+   "confidence": "high",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8952,
+  "completion_tokens": 1771,
+  "total_tokens": 10723,
+  "cost": 0.00408918,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.00408918,
+   "upstream_inference_prompt_cost": 0.00228276,
+   "upstream_inference_completions_cost": 0.00180642
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.00408918,
+ "elapsed_s": 52.1
+}

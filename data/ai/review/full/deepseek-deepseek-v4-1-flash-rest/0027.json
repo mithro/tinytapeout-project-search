@@ -1,0 +1,384 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "81d043463bc7",
+  "3f4c44596c3f",
+  "dfebb89c7931",
+  "e97a571e7ecc",
+  "92bb1af10b36",
+  "d9860aa93f87"
+ ],
+ "results": [
+  {
+   "key": "81d043463bc7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "nco",
+     "reason": "Design is a NIST randomness test, not a numerically controlled oscillator."
+    },
+    {
+     "tag": "oscillator",
+     "reason": "No oscillator circuit is described; it consumes an input bit stream."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "It evaluates randomness, it does not generate waveforms."
+    },
+    {
+     "tag": "dac",
+     "reason": "No digital-to-analog conversion present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "trng",
+     "reason": "Evaluates whether a bit source is random (NIST Monobit test)."
+    },
+    {
+     "tag": "prng",
+     "reason": "Randomness testing of bit sources relates to random number generation."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    }
+   ],
+   "notes": "Tags described an oscillator/DAC that does not exist; corrected to randomness-testing tags.",
+   "tags_before": [
+    "nco",
+    "oscillator",
+    "signal-generator",
+    "dac"
+   ],
+   "tags": [
+    "trng",
+    "prng",
+    "verilog"
+   ],
+   "summary_before": "This is a numerically controlled oscillator that produces an unsigned 8-bit waveform selected by two mode pins: sine from a lookup table, or square and sawtooth from the phase accumulator. The design is small and the documentation covers the pin protocol but not the output sample rate or table depth.",
+   "summary": "This design samples an input bit and evaluates whether the bit source is random using the Monobit test from NIST 800.22. It produces an is_random output that is valid only when the valid signal is high. The result is updated every 65536 cycles. The design is written in Verilog and currently requires no external hardware.",
+   "summary_changed": true
+  },
+  {
+   "key": "3f4c44596c3f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "No PWM output or duty-cycle control is described."
+    },
+    {
+     "tag": "motor-control",
+     "reason": "No motor control functionality present."
+    },
+    {
+     "tag": "led",
+     "reason": "No LED output described."
+    },
+    {
+     "tag": "debouncer",
+     "reason": "No debouncing logic mentioned."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter circuit described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "neural-network",
+     "reason": "Single neuron with fixed-point arithmetic."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Explicitly uses fixed-point arithmetic."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "Uses mesochronous external FPGA clock and on-board RP2040 clock."
+    },
+    {
+     "tag": "synchronizer",
+     "reason": "SCI interface requires proper synchronization."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "On-board RP2040 generates the debug clock."
+    }
+   ],
+   "notes": "Tags were for a PWM/button design; corrected to neural-network and clocking/synchronization tags.",
+   "tags_before": [
+    "pwm",
+    "motor-control",
+    "led",
+    "debouncer",
+    "counter"
+   ],
+   "tags": [
+    "neural-network",
+    "fixed-point",
+    "verilog",
+    "clock-domain-crossing",
+    "synchronizer",
+    "rp2040"
+   ],
+   "summary_before": "This Verilog module generates a Pulse Width Modulation (PWM) signal with adjustable duty cycle. The design includes D flip-flop debouncing logic and slow clock enables for the button inputs. The PWM output can be used to control LEDs or other devices. The design is simple and suitable for learning PWM concepts.",
+   "summary": "This design implements a single neuron using fixed-point arithmetic. It uses an external FPGA clock for the core and an on-board RP2040 clock for debug purposes. Control and status are exchanged over an SCI interface that requires synchronization. The design is written in Verilog and includes debug outputs.",
+   "summary_changed": true
+  },
+  {
+   "key": "dfebb89c7931",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "divider",
+     "reason": "No arithmetic divider; the design is a synchronizer example."
+    },
+    {
+     "tag": "adder",
+     "reason": "No adder present."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Design is clocked and sequential."
+    },
+    {
+     "tag": "multiplexer",
+     "reason": "No multiplexer described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "synchronizer",
+     "reason": "Demonstrates a bad synchronizer from Dally & Harting Figure 29.3."
+    },
+    {
+     "tag": "clock-domain-crossing",
+     "reason": "Involves two clocks and skew testing."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "education",
+     "reason": "Example used to illustrate synchronizer behavior."
+    }
+   ],
+   "notes": "Tags described an arithmetic divider; corrected to synchronizer/CDC example tags.",
+   "tags_before": [
+    "divider",
+    "adder",
+    "combinational",
+    "multiplexer"
+   ],
+   "tags": [
+    "synchronizer",
+    "clock-domain-crossing",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "This design implements a combinational restoring array divider algorithm using full adders and multiplexers. It is a digital division circuit that computes the quotient and remainder of binary numbers. The design is purely combinational and does not require a clock. It is intended for arithmetic operations in digital systems.",
+   "summary": "This design is an example of a bad synchronizer based on Figure 29.3 from Dally & Harting. It exposes stage1, stage2, and stage3 signals along with a skew output for observing bit errors. Testing involves aligning and then separating the clocks to look for errors. The design is written in Verilog and requires an external clock source.",
+   "summary_changed": true
+  },
+  {
+   "key": "e97a571e7ecc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "cpu",
+     "reason": "Design is a multiply/divide unit, not a processor core."
+    },
+    {
+     "tag": "register-file",
+     "reason": "Only two input latches, not a register file."
+    },
+    {
+     "tag": "rom",
+     "reason": "No ROM present."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Pins are dedicated data/result/control, not general-purpose IO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "Implements signed/unsigned 8-bit multiplication."
+    },
+    {
+     "tag": "divider",
+     "reason": "Implements signed/unsigned 8-bit division."
+    },
+    {
+     "tag": "spinalhdl",
+     "reason": "Design is written in SpinalHDL."
+    },
+    {
+     "tag": "alu",
+     "reason": "Arithmetic unit performing multiply and divide operations."
+    },
+    {
+     "tag": "latch",
+     "reason": "Input side uses latches to capture data."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "Registered result mode supports pipelined interleaving."
+    }
+   ],
+   "notes": "Tags described a CPU with register file/ROM; corrected to multiplier/divider unit tags.",
+   "tags_before": [
+    "cpu",
+    "register-file",
+    "rom",
+    "gpio"
+   ],
+   "tags": [
+    "multiplier",
+    "divider",
+    "spinalhdl",
+    "alu",
+    "latch",
+    "pipeline"
+   ],
+   "summary_before": "This design is a processor core with a register file and ROM, and it uses GPIO for input/output. It is likely a simple CPU for educational or hobbyist purposes. The design includes a register file and ROM for program storage. GPIO pins are used for external communication.",
+   "summary": "This design is an 8-bit signed/unsigned multiply and divide unit. It uses latches to capture two 8-bit inputs through a multiplexed interface and provides immediate or registered results. The divider reports overflow and divide-by-zero errors, while multiplier mode mutes error bits. The design is written in SpinalHDL and can be tested with an RP2040 and Python REPL.",
+   "summary_changed": true
+  },
+  {
+   "key": "92bb1af10b36",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "No 7-segment display or segment control described."
+    },
+    {
+     "tag": "display",
+     "reason": "No display output present."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Implements simple AND, OR, XOR, and INV gates."
+    },
+    {
+     "tag": "education",
+     "reason": "Simple gates suitable for teaching or learning."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Created using the Wokwi simulator."
+    },
+    {
+     "tag": "combinational",
+     "reason": "Purely combinational logic gates."
+    }
+   ],
+   "notes": "Tags claimed a 7-segment display; corrected to logic-gate/combinational tags.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "education",
+    "wokwi",
+    "display"
+   ],
+   "tags": [
+    "logic-gate",
+    "education",
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This design uses logic gates to control segments of a 7-segment display based on input values. The documentation is incomplete, so the exact functionality cannot be determined. The design is intended for educational purposes and is simulated in Wokwi. The design is notable for its use of logic gates to drive a display.",
+   "summary": "This design implements simple logic gates made with Wokwi. It provides inverted, AND, OR, and XOR outputs driven by the input pins. The documentation is very thin, but the pin names and description indicate basic combinational gates. It is intended as an educational example and is simulated in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "d9860aa93f87",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "neural-network",
+     "reason": "No neural network functionality described."
+    },
+    {
+     "tag": "spiking-neural-network",
+     "reason": "No spiking neural network present."
+    },
+    {
+     "tag": "neuromorphic",
+     "reason": "No neuromorphic computing described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "alu",
+     "reason": "Implements a 4-bit arithmetic logic unit."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "adder",
+     "reason": "Performs arithmetic operations including addition."
+    },
+    {
+     "tag": "combinational",
+     "reason": "ALU operations are combinational logic."
+    }
+   ],
+   "notes": "Tags described a spiking neural network; corrected to ALU/arithmetic tags.",
+   "tags_before": [
+    "neural-network",
+    "spiking-neural-network",
+    "neuromorphic"
+   ],
+   "tags": [
+    "alu",
+    "verilog",
+    "adder",
+    "combinational"
+   ],
+   "summary_before": "This project implements a neural network with spiking neurons. It is designed for neuromorphic computing and uses spiking neural network principles. The design is purely digital and requires no external hardware. The exact network architecture and learning capabilities are not described.",
+   "summary": "This project implements a 4-bit ALU that performs arithmetic and logical operations on two 4-bit inputs selected by a 4-bit opcode. It outputs an 8-bit result along with carry-out and overflow status. The design is written in Verilog and can be tested by cycling through opcode values and observing the outputs. The documentation includes a test procedure using the input and output pins.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6817,
+  "completion_tokens": 1965,
+  "total_tokens": 8782,
+  "cost": 0.0044031,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044031,
+   "upstream_inference_prompt_cost": 0.0020451,
+   "upstream_inference_completions_cost": 0.002358
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044031,
+ "elapsed_s": 25.2
+}

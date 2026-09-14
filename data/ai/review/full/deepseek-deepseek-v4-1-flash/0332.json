@@ -1,0 +1,238 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "df7564bb746f",
+  "cd3082add31b",
+  "a151fed0fab4",
+  "7a47a2d0c2d0",
+  "0445f7576772",
+  "20ffe9d75d3e"
+ ],
+ "results": [
+  {
+   "key": "df7564bb746f",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "alu",
+    "sequential-logic",
+    "cocotb",
+    "verilog"
+   ],
+   "tags": [
+    "alu",
+    "sequential-logic",
+    "cocotb",
+    "verilog"
+   ],
+   "summary_before": "This is a 4-bit sequential ALU that takes operands and opcode serially and outputs results with flags. It operates on each clock cycle when enabled and takes an additional cycle to output the result. The design is tested using cocotb and Icarus Verilog, with a Makefile provided for running test suites. It is a straightforward arithmetic unit with no external hardware requirements.",
+   "summary": "This is a 4-bit sequential ALU that takes operands and opcode serially and outputs results with flags. It operates on each clock cycle when enabled and takes an additional cycle to output the result. The design is tested using cocotb and Icarus Verilog, with a Makefile provided for running test suites. It is a straightforward arithmetic unit with no external hardware requirements.",
+   "summary_changed": false
+  },
+  {
+   "key": "cd3082add31b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "encoder",
+     "reason": "The input pins and operation only describe an encode mode, with no signal-to-code encoder circuit; 'encoder' is not a supported type tag here."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Only a decode mode is mentioned in the mode pin; no standalone decoder circuit is parsed or described, so the type tag is not supported."
+    }
+   ],
+   "add": [],
+   "notes": "The input pins and operation only describe encode/decode modes, not discrete encoder/decoder circuits, so those type tags were removed.",
+   "tags_before": [
+    "error-correction",
+    "encoder",
+    "decoder",
+    "combinational"
+   ],
+   "tags": [
+    "error-correction",
+    "combinational"
+   ],
+   "summary_before": "This project implements a Hamming(7,4) encoder and decoder for error correction. It has a mode pin to select between encoding (0) and decoding (1), with 4-bit input and 7-bit output in encode mode, and 7-bit input with 4-bit data plus error flag in decode mode. The design is purely combinational and can be tested using the provided Python test script. It is notable for providing a compact hardware implementation of a classic error-correcting code.",
+   "summary": "This project implements a Hamming(7,4) encoder and decoder for error correction. It has a mode pin to select between encoding (0) and decoding (1), with 4-bit input and 7-bit output in encode mode, and 7-bit input with 4-bit data plus error flag in decode mode. The design is purely combinational and can be tested using the provided Python test script. It is a compact hardware implementation of a classic error-correcting code.",
+   "summary_changed": true
+  },
+  {
+   "key": "a151fed0fab4",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "instruction-decoder",
+     "reason": "An opcode-to-control matrix is not an instruction decoder; the ALU is not a processor with instruction decoding."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sequential-logic",
+     "reason": "The accumulator is a stored register updated by a clocked ALU operation."
+    }
+   ],
+   "notes": "Removed the incorrect instruction-decoder tag and added sequential-logic because the accumulator is clocked.",
+   "tags_before": [
+    "alu",
+    "instruction-decoder",
+    "wokwi"
+   ],
+   "tags": [
+    "alu",
+    "wokwi",
+    "sequential-logic"
+   ],
+   "summary_before": "This is a 4-bit ALU that supports eight operations and includes a built-in 4-bit accumulator register. It performs operations such as load, negate, shift right, subtract, AND, XOR, OR, and add, with the result stored in the accumulator. The design is implemented in Wokwi and can be tested using a push-button, debouncer, DIP-switch, and LEDs, as described in the documentation. The ALU outputs the accumulator value and a carry flag, and it can be reset by setting all inputs to zero.",
+   "summary": "This is a 4-bit ALU that supports eight operations and includes a built-in 4-bit accumulator register. It performs operations such as load, negate, shift right, subtract, AND, XOR, OR, and add, with the result stored in the accumulator. The design is implemented in Wokwi and can be tested using a push-button, debouncer, DIP-switch, and LEDs, as described in the documentation. The ALU outputs the accumulator value and a carry flag, and it can be reset by setting all inputs to zero.",
+   "summary_changed": false
+  },
+  {
+   "key": "7a47a2d0c2d0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The pins are generic ui/uo signals, not a seven-segment display interface; this is a test pattern, not a display driver."
+    },
+    {
+     "tag": "counter",
+     "reason": "A counter is only one of two optional behaviors and is not the primary design function; the type is a test structure, not a counter."
+    }
+   ],
+   "add": [
+    {
+     "tag": "factory-test",
+     "reason": "The design is described as a test module used to verify toggling outputs, consistent with a factory self-test pattern."
+    }
+   ],
+   "notes": "Pins are generic test signals, not a seven-segment display; counter behavior is only one test mode, so factory-test is the appropriate type.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "factory-test"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "factory-test"
+   ],
+   "summary_before": "This design is a test module that either outputs a counter to its 8 outputs and bidirectional pins or mirrors its 8 inputs to the outputs, depending on the state of input 0. It is used by setting input 0 high and observing that the outputs toggle. No external hardware is required beyond the chip itself. This is a simple factory test pattern with minimal documentation.",
+   "summary": "This design is a test module that either outputs a counter to its 8 outputs and bidirectional pins or mirrors its 8 inputs to the outputs, depending on the state of input 0. It is used by setting input 0 high and observing that the outputs toggle. No external hardware is required beyond the chip itself. This is a simple factory test pattern with minimal documentation.",
+   "summary_changed": false
+  },
+  {
+   "key": "0445f7576772",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The output is explicitly a seven-segment display, so the specific 7-segment tag is sufficient; display is redundant and not supported by separate display hardware."
+    }
+   ],
+   "add": [
+    {
+     "tag": "bcd",
+     "reason": "The documentation states the count value is decoded into BCD code for display."
+    },
+    {
+     "tag": "clock-divider",
+     "reason": "The design uses a frequency divider to generate 1 Hz from the 10 MHz clock."
+    },
+    {
+     "tag": "up-down-counter",
+     "reason": "The design is an up-down counter with parallel load and enable/clear controls."
+    },
+    {
+     "tag": "counter",
+     "reason": "The core behavior is a bidirectional counter."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "The frequency divider/comparator circuit generates a 1 Hz timing signal."
+    },
+    {
+     "tag": "comparator",
+     "reason": "The documentation explicitly mentions a comparator as part of the frequency divider."
+    }
+   ],
+   "notes": "Removed redundant generic display and added the specific canonical tags for BCD, clock division, up-down counting, comparator, and clock generation that are explicitly supported.",
+   "tags_before": [
+    "up-down-counter",
+    "bcd",
+    "7-segment",
+    "display",
+    "clock-divider",
+    "counter",
+    "verilog"
+   ],
+   "tags": [
+    "up-down-counter",
+    "bcd",
+    "7-segment",
+    "clock-divider",
+    "counter",
+    "verilog",
+    "clock-generator",
+    "comparator"
+   ],
+   "summary_before": "This design is an up-down counter that counts from 0 to 15 with options for enable, synchronous clear, and parallel load. It uses a clock divider to generate a 1 Hz counting rate from a 10 MHz input and decodes the count to BCD for display on a seven-segment display. The counter direction is controlled by an up input, and the load value is taken from four input pins. The documentation clearly explains the operation and test procedure.",
+   "summary": "This design is an up-down counter that counts from 0 to 15 with options for enable, synchronous clear, and parallel load. It uses a clock divider to generate a 1 Hz counting rate from a 10 MHz input and decodes the count to BCD for display on a seven-segment display. The counter direction is controlled by an up input, and the load value is taken from four input pins. The documentation clearly explains the operation and test procedure.",
+   "summary_changed": false
+  },
+  {
+   "key": "20ffe9d75d3e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "game",
+    "uart",
+    "text",
+    "verilog"
+   ],
+   "tags": [
+    "game",
+    "uart",
+    "text",
+    "verilog"
+   ],
+   "summary_before": "This project implements a simple Tamagotchi virtual pet game in Verilog that communicates over a serial UART interface. The user connects rx and tx to a serial terminal, and the game starts automatically; the pet has stats for food, sleep, happiness, hygiene, and social, which must be maintained by pressing keys (E, S, P, B, T, W) to feed, sleep, play, clean, talk, or wake up. If the pet dies, the reset button restarts the game. The design requires a 27 MHz clock and a serial terminal; no silicon test results are provided.",
+   "summary": "This project implements a simple Tamagotchi virtual pet game in Verilog that communicates over a serial UART interface. The user connects rx and tx to a serial terminal, and the game starts automatically; the pet has stats for food, sleep, happiness, hygiene, and social, which must be maintained by pressing keys (E, S, P, B, T, W) to feed, sleep, play, clean, talk, or wake up. If the pet dies, the reset button restarts the game. The design requires a 27 MHz clock and a serial terminal; no silicon test results are provided.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [
+  "7a47a2d0c2d0: only 1 tags after review; keeping pass-two tags"
+ ],
+ "usage": {
+  "prompt_tokens": 6537,
+  "completion_tokens": 1568,
+  "total_tokens": 8105,
+  "cost": 0.0038427,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0038427,
+   "upstream_inference_prompt_cost": 0.0019611,
+   "upstream_inference_completions_cost": 0.0018816
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0038427,
+ "elapsed_s": 7.7
+}

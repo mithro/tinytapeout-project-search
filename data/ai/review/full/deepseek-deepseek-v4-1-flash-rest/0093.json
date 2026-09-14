@@ -1,0 +1,266 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "28df40b56205",
+  "9d69acd2b19f",
+  "f226837d945d",
+  "43c7e7bb7139",
+  "8cc105266930",
+  "9e5cc5607c27"
+ ],
+ "results": [
+  {
+   "key": "28df40b56205",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "timer",
+     "reason": "The design generates step pulses with programmable timing, but it is not a general programmable timer block."
+    },
+    {
+     "tag": "signal-generator",
+     "reason": "It is a stepper motor pulse generator, not a general waveform/signal generator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report says working on fabricated silicon."
+    }
+   ],
+   "notes": "Removed unsupported timer and signal-generator tags and added silicon-tested based on the working silicon report.",
+   "tags_before": [
+    "stepper-motor",
+    "motor-control",
+    "spi",
+    "timer",
+    "signal-generator",
+    "verilog"
+   ],
+   "tags": [
+    "stepper-motor",
+    "motor-control",
+    "spi",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This project is a stepper motor controller that uses a SPI interface to receive commands. It generates stepper motor control signals and includes a timer and signal generator. It is tested by connecting stepper motors and observing the motor movement. The design is notable for its motor control capability.",
+   "summary": "This project is a stepper motor controller that uses an SPI interface to receive commands. It generates step and direction pulses for stepper motor drivers, with programmable pulse duration, interval, count, and direction. The design also provides interrupt and shutdown control signals. It has been tested on silicon and reported working by the author.",
+   "summary_changed": true
+  },
+  {
+   "key": "9d69acd2b19f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "The design is a digital Verilog implementation with no analog pins or analog circuitry described."
+    },
+    {
+     "tag": "biomedical",
+     "reason": "No biomedical or health monitoring application is stated."
+    },
+    {
+     "tag": "perceptron",
+     "reason": "The design is a LIF neuron and synapse model, not a perceptron classifier."
+    },
+    {
+     "tag": "adc",
+     "reason": "No analog-to-digital converter is described or present in the pins."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported analog, biomedical, perceptron, and ADC tags; summary corrected to match the documented LIF neuron/synapse model.",
+   "tags_before": [
+    "neuromorphic",
+    "spiking-neural-network",
+    "analog",
+    "biomedical",
+    "perceptron",
+    "adc"
+   ],
+   "tags": [
+    "neuromorphic",
+    "spiking-neural-network"
+   ],
+   "summary_before": "This design is a spiking neural network with neuromorphic characteristics, implemented in analog circuitry. It includes a perceptron-based classifier and an ADC for input conversion. The design is intended for biomedical applications, such as detecting specific patterns in physiological signals. The documentation does not specify external hardware or silicon test results.",
+   "summary": "This design implements a discrete-time first-order kinetic synapse driving a leaky integrate-and-fire neuron. It is a spiking neural network model with neuromorphic characteristics, using fixed-point arithmetic and saturating stages. The design has no external hardware and includes a test suite covering impulse response, steady state, rest condition, and firing behavior. No silicon test reports are provided.",
+   "summary_changed": true
+  },
+  {
+   "key": "f226837d945d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "No pseudo random number generator is described; the PUF is based on register differences."
+    },
+    {
+     "tag": "register-file",
+     "reason": "The design contains PUF bit cells, not a general multi-register storage block."
+    },
+    {
+     "tag": "crypto",
+     "reason": "No cryptographic algorithm or operation is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported PRNG, register-file, and crypto tags; summary now reflects the documented PUF array.",
+   "tags_before": [
+    "puf",
+    "security",
+    "prng",
+    "register-file",
+    "crypto"
+   ],
+   "tags": [
+    "puf",
+    "security"
+   ],
+   "summary_before": "This project is a PUF-based security design that includes a PRNG, register file, and crypto functionality. It is intended for hardware security applications. The documentation is sparse and does not describe the implementation in detail. The design is notable for its use of PUF technology.",
+   "summary": "This project implements a one-bit PUF based on a difference of two registers. It contains an array of one-bit PUF cells addressed by addr to read out OUT_BITS PUF bits. The output is zero in the reset condition. The documentation is sparse and does not describe the implementation in detail.",
+   "summary_changed": true
+  },
+  {
+   "key": "43c7e7bb7139",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "sensor-interface",
+     "reason": "The design is itself a temperature sensor, not a generic sensor input interface."
+    },
+    {
+     "tag": "timer",
+     "reason": "No programmable timer block is described; the counter measures oscillator cycles."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported sensor-interface and timer tags; removed unsupported low-power claim from summary.",
+   "tags_before": [
+    "temperature-sensor",
+    "oscillator",
+    "counter",
+    "uart",
+    "sensor-interface",
+    "timer"
+   ],
+   "tags": [
+    "temperature-sensor",
+    "oscillator",
+    "counter",
+    "uart"
+   ],
+   "summary_before": "This design implements a temperature sensor using a ring oscillator whose frequency varies with temperature, counted over a clock period and averaged over four samples. The averaged value is output via UART and the standard I/O pins, and a hysteresis module provides a temperature warning output. The ring oscillator starts after reset and enable are set, and a UART command initiates the measurement. The design is notable for its low-power sensor interface and use of a ring oscillator for temperature sensing.",
+   "summary": "This design implements a temperature sensor using a ring oscillator whose frequency varies with temperature, counted over a clock period and averaged over four samples. The averaged value is output via UART and the standard I/O pins, and a hysteresis module provides a temperature warning output. The ring oscillator starts after reset and enable are set, and a UART command initiates the measurement. The design is notable for its use of a ring oscillator for temperature sensing.",
+   "summary_changed": true
+  },
+  {
+   "key": "8cc105266930",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source."
+    },
+    {
+     "tag": "counter",
+     "reason": "No counter is described in the source."
+    },
+    {
+     "tag": "gpio",
+     "reason": "The pins are dedicated VGA outputs and directional button inputs, not general purpose IO."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "A silicon test report exists, though it reports partial functionality."
+    }
+   ],
+   "notes": "Removed unsupported FSM, counter, and GPIO tags; added silicon-tested and corrected summary to include the partial silicon report.",
+   "tags_before": [
+    "vga",
+    "game",
+    "snake-game",
+    "display",
+    "fsm",
+    "counter",
+    "pmod",
+    "gpio"
+   ],
+   "tags": [
+    "vga",
+    "game",
+    "snake-game",
+    "display",
+    "pmod",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a simple Snake game with VGA output, controlled by four directional buttons. The game uses a finite state machine and counters to manage game logic and display. It requires external VGA monitor and buttons for interaction. No silicon test report is provided, so its hardware behavior is not confirmed.",
+   "summary": "This is a simple Snake game with VGA output, controlled by four directional buttons. It requires an external VGA monitor and buttons for interaction. A silicon test report notes that the game loads but runs too fast, causing the snake to crash quickly. The design is implemented in Verilog.",
+   "summary_changed": true
+  },
+  {
+   "key": "9e5cc5607c27",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a multiplier, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "The multiplier is purely combinational with no clock or sequential logic."
+    },
+    {
+     "tag": "cocotb",
+     "reason": "The documentation describes a Cocotb testbench."
+    }
+   ],
+   "notes": "Removed unsupported ALU tag; added combinational and cocotb tags and corrected summary to describe the multiplier.",
+   "tags_before": [
+    "alu",
+    "multiplier",
+    "structural"
+   ],
+   "tags": [
+    "multiplier",
+    "structural",
+    "combinational",
+    "cocotb"
+   ],
+   "summary_before": "This project implements a 4-bit ALU with a multiplier and structural design. It performs arithmetic and logical operations on 4-bit inputs. The design is purely combinational and requires no external hardware. The exact operation set is not described.",
+   "summary": "This project implements a 4x4 structural array multiplier in Verilog. It generates partial products and sums them column-wise using full adders to produce an 8-bit product. The design is purely combinational and requires no external hardware. It is verified with a Cocotb testbench.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7520,
+  "completion_tokens": 1400,
+  "total_tokens": 8920,
+  "cost": 0.003936,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.003936,
+   "upstream_inference_prompt_cost": 0.002256,
+   "upstream_inference_completions_cost": 0.00168
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.003936,
+ "elapsed_s": 9.0
+}

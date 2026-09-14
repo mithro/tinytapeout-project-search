@@ -1,0 +1,178 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "d75f459303e5",
+  "205043da8dc1",
+  "03bccc0157d9",
+  "5b329f8b3835",
+  "ee349b1b8e0b",
+  "2d40fcdfa427",
+  "b7f46d6b169d",
+  "428a38386bcf",
+  "b1b10f274409",
+  "8b553d3672bb"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "d75f459303e5",
+   "summary": "This project contains two analog CMOS designs: three independent 2-input AND gates equivalent to the 7408, and an SR latch built from two cross-coupled NOR gates. The AND gates are constructed at the transistor level rather than from a digital library, while the latch sets, resets, or holds its state based on the s and r inputs. Testing the AND gates requires push buttons or DIP switches for inputs and LEDs on the outputs, whereas the latch needs no external hardware and can be verified by simulation or by observing q and qb. The design relies on the Tiny Tapeout padring for ESD protection and operates from the 1.8V VDPWR rail.",
+   "tags": [
+    "analog",
+    "transistor-level",
+    "logic-gate",
+    "latch",
+    "standard-cell"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 2,
+   "key": "205043da8dc1",
+   "summary": "Zenith TX26 is a custom 16-bit CPU written in Verilog with eight registers, sixteen instructions, and a Harvard architecture separating instruction and data memory. It continuously computes the Fibonacci sequence and presents the current value in binary on its eight output pins. The design is tested by connecting eight LEDs to those outputs and watching the sequence 1, 1, 2, 3, 5, 8, and so on. No external hardware beyond the optional LEDs is required, and the documentation is brief but sufficient to describe the architecture and use.",
+   "tags": [
+    "cpu",
+    "register-file",
+    "alu",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 3,
+   "key": "03bccc0157d9",
+   "summary": "This design implements an IEEE 802.3 CRC-32 engine with polynomial 0xEDB88320, an 8-byte FIFO, and a one-bit-per-cycle serial processing path. It exposes a bidirectional register read interface with write, read, address, enable, and reset controls, plus an interrupt output, and it renders FIFO occupancy, FSM state, and all 32 CRC bits on a VGA display across two grid rows. A TinyVGA PMOD is required for the visual output, and a microcontroller such as an Arduino or RP2040 drives the input and bidirectional data buses. The project targets edge AI data-integrity use cases and runs in a single clock domain at 25 MHz.",
+   "tags": [
+    "crc",
+    "fifo",
+    "vga",
+    "display",
+    "register-file",
+    "interrupt-controller"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "5b329f8b3835",
+   "summary": "This Verilog project generates a VGA scene of a grass field whose colors are chosen by a Fibonacci-based PRNG, with cloud height also driven by the random algorithm adapted from a rings demo. It outputs a Tiny VGA pinout and is used by connecting a TinyVGA PMOD and a monitor. The documentation is very short and does not describe the internal implementation beyond the PRNG and cloud adaptation. No silicon test results or additional hardware requirements are mentioned.",
+   "tags": [
+    "vga",
+    "prng",
+    "graphics"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "ee349b1b8e0b",
+   "summary": "This analog project implements a classic five-transistor operational transconductance amplifier with an NMOS differential pair, a PMOS active current mirror load, and a 5 microamp NMOS tail current source. The on-chip compensation capacitor is deliberately omitted to save area, so the dominant pole must be set externally with a 5 to 10 picofarad capacitor to ground for stability and a target 1.5 MHz bandwidth. Testing requires a 5 microamp bias current, a differential input with 0.9V common mode, and an oscilloscope or function generator for AC characterization. The design operates from the 1.8V VDPWR rail and is intended for off-chip loads with external compensation.",
+   "tags": [
+    "analog",
+    "opamp",
+    "transistor-level",
+    "current-mirror",
+    "mixed-signal"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 6,
+   "key": "2d40fcdfa427",
+   "summary": "This project is an 8-bit CPU implemented in Verilog that performs arithmetic and load instructions and outputs the result of each instruction on eight output pins. It exposes an eight-bit input bus, a status pin, reset, clock, instruction enable, and four program counter bits on the bidirectional pins. Testing is done with a script that simulates the instruction register, waiting for the microcontroller to request a program counter value and returning the allocated instruction, allowing custom assembly programs to be swapped quickly. The documentation is a proposal-level description and does not detail the full instruction set or verified behavior.",
+   "tags": [
+    "cpu",
+    "education",
+    "register-file",
+    "fsm"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 7,
+   "key": "b7f46d6b169d",
+   "summary": "This design is a configurable 8-bit ALU with registered inputs, eight arithmetic and logic operations, and eight configurable status flags. Inputs A and B arrive on the dedicated input pins, ALU control, register enable, and flag control come from the bidirectional pins, and the eight-bit result appears on the outputs with a status flag on a bidirectional pin. It requires synchronous operation with a toggling clock and an active-low reset pulse before use, and it is self-contained with no specialized external peripherals. The documentation describes the architecture as optimized for educational digital design and compact ASIC implementation, though the one-line description says 4-bit while the pins and title indicate 8-bit.",
+   "tags": [
+    "alu",
+    "register-file",
+    "education"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "428a38386bcf",
+   "summary": "This Verilog project is a multi-application VGA graphics system that generates a 640x480 at 60Hz signal with all graphics computed combinatorially per pixel and no framebuffer or external memory. A mode multiplexer reads the input pins to select between a DLSU Animo shield with Galvantronix background, a cycling Hilbert curve of orders 1 to 5, and a maze game, with the maze taking priority when both select bits are high. It requires a TinyVGA PMOD, a VGA cable and monitor, and a DIP switch or button array on the input pins. The design fits in a single 1x1 tile and uses a 25.175 MHz pixel clock with frame counters driving the animations.",
+   "tags": [
+    "vga",
+    "graphics",
+    "maze",
+    "game",
+    "display"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": true,
+   "index": 9,
+   "key": "b1b10f274409",
+   "summary": "This Verilog design reads the five channels of a BFD1000 infrared line-follower sensor plus clip and near obstacle signals, and produces left and right motor enable and direction outputs according to a set of logic equations. It also accepts proportional and integral gain values and a select signal on the bidirectional pins, and can take a PWM input for speed control. The design is tested by connecting the sensor to the input pins and the motor drivers to the outputs, with simulations run on a Nexys4 FPGA using Vivado. External hardware includes the BFD1000 sensor and two motor drivers with LED indicators, and the documentation provides a full truth table and the derived logic equations.",
+   "tags": [
+    "motor-control",
+    "robotics",
+    "sensor-interface",
+    "pwm",
+    "industrial"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "8b553d3672bb",
+   "summary": "This project is an instantiation of the SumItUp hardware thread from Don Thomas's textbook and CMU's 18-341 course, which accumulates a series of 8-bit values presented on the input pins. When go_l is asserted the thread begins adding subsequent values until the input equals zero, at which point done is asserted and the 8-bit sum appears on the outputs, with carry beyond eight bits discarded. No external hardware is required, and the author plans to write cocotb testbenches for verification. The design is a simple educational example of a hardware thread with a handshake interface.",
+   "tags": [
+    "education",
+    "adder",
+    "fsm",
+    "systemverilog"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 10646,
+  "completion_tokens": 1955,
+  "total_tokens": 12601,
+  "cost": 0.0010513034,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0010513034,
+   "upstream_inference_prompt_cost": 0.0007228634,
+   "upstream_inference_completions_cost": 0.00032844
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0010513034,
+ "elapsed_s": 373.1
+}

@@ -1,0 +1,233 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2f035bb50a50",
+  "c6ebbfadeb29",
+  "d405d8313a6c",
+  "fd12bea6659f",
+  "3f9fe728f9ba",
+  "53ca336b4103"
+ ],
+ "results": [
+  {
+   "key": "2f035bb50a50",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "fpga",
+     "reason": "Documentation states the circuit was verified for functionality using an FPGA chip."
+    },
+    {
+     "tag": "retro",
+     "reason": "Recreates the classic arcade-style Flappy Bird game in hardware."
+    }
+   ],
+   "notes": "Added fpga and retro; clarified test flow as simulation followed by FPGA verification.",
+   "tags_before": [
+    "game",
+    "led-matrix",
+    "display",
+    "button",
+    "graphics"
+   ],
+   "tags": [
+    "game",
+    "led-matrix",
+    "display",
+    "button",
+    "graphics",
+    "fpga",
+    "retro"
+   ],
+   "summary_before": "This design implements a simplified version of Flappy Bird on an 8x8 LED matrix. It uses two buttons for up and down control, with the matrix rows and columns driven by the output and bidirectional pins. The design was tested in simulation and on an FPGA before fabrication. External hardware required includes two buttons and an 8x8 LED matrix.",
+   "summary": "This design implements a simplified version of Flappy Bird on an 8x8 LED matrix. It uses two buttons for up and down control, with the matrix rows and columns driven by the output and bidirectional pins. The design was verified using waveform/simulation testing and then on an FPGA before fabrication. External hardware required includes two buttons and an 8x8 LED matrix.",
+   "summary_changed": true
+  },
+  {
+   "key": "c6ebbfadeb29",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "comparator",
+     "reason": "The design computes min/max and dot products, but no comparator function is described in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed comparator because min/max/dot-product functionality is covered by accelerator and not a dedicated comparator description.",
+   "tags_before": [
+    "mac-unit",
+    "accelerator",
+    "coprocessor",
+    "comparator",
+    "rp2040"
+   ],
+   "tags": [
+    "mac-unit",
+    "accelerator",
+    "coprocessor",
+    "rp2040"
+   ],
+   "summary_before": "multimac is a multi-use accelerator that computes vector dot products, minimums, and maximums on 4-bit data. It operates as a coprocessor, loading data via index and data pins and executing when run is asserted, producing a 12-bit result after at least 16 clock cycles. The design was tested using Verilator simulation with a C++ workbench, focusing on numerical stability. It is intended to be driven by an RP2040 for vector calculations.",
+   "summary": "multimac is a multi-use accelerator that computes vector dot products, minimums, and maximums on 4-bit data. It operates as a coprocessor, loading data via index and data pins and executing when run is asserted, producing a 12-bit result after at least 16 clock cycles. The design was tested using Verilator simulation with a C++ workbench, focusing on numerical stability. It is intended to be driven by an RP2040 for vector calculations.",
+   "summary_changed": false
+  },
+  {
+   "key": "d405d8313a6c",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the core, debugger, DFFRAM, SPI/QSPI, FPU, timers, GPIO, and UART were tested working."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "Documentation states SPI/QSPI was tested with RP2040 emulated RAM."
+    },
+    {
+     "tag": "pmod",
+     "reason": "Recommended pinouts match SPI Pmod, UART Pmod, and I2C Pmod."
+    }
+   ],
+   "notes": "Added silicon-tested, rp2040, and pmod tags supported by the test report and recommended pinouts.",
+   "tags_before": [
+    "microcontroller",
+    "soc",
+    "sram",
+    "spi",
+    "qspi",
+    "uart",
+    "i2c",
+    "gpio",
+    "floating-point"
+   ],
+   "tags": [
+    "microcontroller",
+    "soc",
+    "sram",
+    "spi",
+    "qspi",
+    "uart",
+    "i2c",
+    "gpio",
+    "floating-point",
+    "silicon-tested",
+    "rp2040",
+    "pmod"
+   ],
+   "summary_before": "LISA is an 8-bit microcontroller SoC with 128 bytes of DFFRAM, designed for embedded control. It includes a BrainFloat16 FPU, timers, GPIO, UART, SPI/QSPI, and I2C master, and can interface with external flash and RAM. A C-based toolchain (assembler, linker, C compiler) and a Python debugger are provided, though the C compiler is incomplete and buggy. Silicon testing confirmed the core, debugger, DFFRAM, SPI/QSPI, FPU, timers, GPIO, and UART, but I2C and the DFFRAM cache controller remain untested.",
+   "summary": "LISA is an 8-bit microcontroller SoC with 128 bytes of DFFRAM, designed for embedded control. It includes a BrainFloat16 FPU, timers, GPIO, UART, SPI/QSPI, and I2C master, and can interface with external flash and RAM. A C-based toolchain (assembler, linker, C compiler) and a Python debugger are provided, though the C compiler is incomplete and buggy. Silicon testing confirmed the core, debugger, DFFRAM, SPI/QSPI, FPU, timers, GPIO, and UART, but I2C and the DFFRAM cache controller remain untested.",
+   "summary_changed": false
+  },
+  {
+   "key": "fd12bea6659f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "Memory is external (SPI NOR flash and PSRAM), not an on-chip memory block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "pmod",
+     "reason": "External hardware requires SPI flash and PSRAM Pmods."
+    }
+   ],
+   "notes": "Removed memory because no on-chip memory is implemented; added pmod based on required external Pmods.",
+   "tags_before": [
+    "risc-v",
+    "microcontroller",
+    "spi",
+    "uart",
+    "gpio",
+    "memory"
+   ],
+   "tags": [
+    "risc-v",
+    "microcontroller",
+    "spi",
+    "uart",
+    "gpio",
+    "pmod"
+   ],
+   "summary_before": "This is a minimal RV32E microcontroller that uses external SPI NOR flash for program memory and SPI PSRAM for data memory. It provides GPIO, UART with optional flow control, an SPI bus, and a debug interface over SPI. The design was tested on a Lattice iCE40-HX8K breakout board at 24 MHz. External hardware required includes SPI flash and PSRAM Pmods.",
+   "summary": "This is a minimal RV32E microcontroller that uses external SPI NOR flash for program memory and SPI PSRAM for data memory. It provides GPIO, UART with optional flow control, an SPI bus, and a debug interface over SPI. The design was tested on a Lattice iCE40-HX8K breakout board at 24 MHz. External hardware required includes SPI flash and PSRAM Pmods.",
+   "summary_changed": false
+  },
+  {
+   "key": "3f9fe728f9ba",
+   "verdict": "fix",
+   "remove": [],
+   "add": [],
+   "notes": "Adjusted summary to state the recommended clock as about 20 MHz rather than implying an observed operating speed.",
+   "tags_before": [
+    "cpu",
+    "esoteric",
+    "fsm",
+    "memory"
+   ],
+   "tags": [
+    "cpu",
+    "esoteric",
+    "fsm",
+    "memory"
+   ],
+   "summary_before": "This is a hardware processor for the esoteric Brainfuck language, implementing 75% of the instruction set (excluding I/O operations). It uses an external address register and requires separate program and data memories of at least 256x8 each, expandable to 1KB. The design is intended to be driven with a clock up to 20 MHz and can interface with SRAM, ROM, and LED bars for output. The documentation includes a state machine diagram and pinout but no silicon test results.",
+   "summary": "This is a hardware processor for the esoteric Brainfuck language, implementing 75% of the instruction set (excluding I/O operations). It uses an external address register and requires separate program and data memories of at least 256x8 each, expandable to 1KB. The design can be driven with a clock of about 20 MHz and can interface with SRAM, ROM, and LED bars for output. The documentation includes a state machine diagram and pinout but no silicon test results.",
+   "summary_changed": true
+  },
+  {
+   "key": "53ca336b4103",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "dac",
+    "analog",
+    "r2r-dac",
+    "signal-generator",
+    "waveform-generator"
+   ],
+   "tags": [
+    "dac",
+    "analog",
+    "r2r-dac",
+    "signal-generator",
+    "waveform-generator"
+   ],
+   "summary_before": "This is an 8-bit R2R digital-to-analog converter with an optional sawtooth waveform generator. It can be driven externally via digital inputs or by the internal generator, and the analog output is on a single pin. Testing requires a multimeter to measure the output voltage. Silicon tests confirm it works, with one tester observing a sawtooth at ~600 mV and frequencies up to 1 MHz.",
+   "summary": "This is an 8-bit R2R digital-to-analog converter with an optional sawtooth waveform generator. It can be driven externally via digital inputs or by the internal generator, and the analog output is on a single pin. Testing requires a multimeter to measure the output voltage. Silicon tests confirm it works, with one tester observing a sawtooth at ~600 mV and frequencies up to 1 MHz.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7178,
+  "completion_tokens": 1280,
+  "total_tokens": 8458,
+  "cost": 0.0036894,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0036894,
+   "upstream_inference_prompt_cost": 0.0021534,
+   "upstream_inference_completions_cost": 0.001536
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0036894,
+ "elapsed_s": 9.3
+}

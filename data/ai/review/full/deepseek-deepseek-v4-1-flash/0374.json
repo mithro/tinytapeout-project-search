@@ -1,0 +1,233 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "4f6fb7c4a4e6",
+  "6c901521a846",
+  "3a496f4f160a",
+  "7f3408cd3400",
+  "4a7db0540ce9",
+  "51a6c6c3474f"
+ ],
+ "results": [
+  {
+   "key": "4f6fb7c4a4e6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "Design uses standard cell flip-flops and custom half adder cells, not discrete transistors."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show working status from both tester and author."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "16-bit counter built from flip-flops is sequential logic."
+    }
+   ],
+   "notes": "Removed transistor-level (standard cells used) and added silicon-tested and sequential-logic.",
+   "tags_before": [
+    "counter",
+    "adder",
+    "standard-cell",
+    "transistor-level"
+   ],
+   "tags": [
+    "counter",
+    "adder",
+    "standard-cell",
+    "silicon-tested",
+    "sequential-logic"
+   ],
+   "summary_before": "This is a 16-bit counter built from standard cell flip-flops and custom half adder cells, designed in Magic. It increments when the enable input is high and resets when rst_n is low. The design is tested by providing a clock and observing the count on the output pins. Silicon tests show it works correctly up to 198 MHz, with errors in the top bit at 200 MHz.",
+   "summary": "This is a 16-bit counter built from standard cell flip-flops and custom half adder cells, designed in Magic. It increments when the enable input is high and resets when rst_n is low. The design is tested by providing a clock and observing the count on the output pins. Silicon tests show it works correctly up to 198 MHz, with errors in the top bit at 200 MHz.",
+   "summary_changed": false
+  },
+  {
+   "key": "6c901521a846",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "It is a chain of flip-flops for glitching experiments, not a multi-register storage block."
+    }
+   ],
+   "add": [
+    {
+     "tag": "side-channel",
+     "reason": "Design studies impact of EM pulses on flip-flops, a side-channel/fault injection experiment."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "No silicon reports given, so this should not be added; actually remove if present. Wait, not present. Do not add."
+    }
+   ],
+   "notes": "Removed register-file; added side-channel for EM glitching study.",
+   "tags_before": [
+    "flip-flop",
+    "scan-chain",
+    "register-file",
+    "security"
+   ],
+   "tags": [
+    "flip-flop",
+    "scan-chain",
+    "security",
+    "side-channel",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a register field made of 8 chains of 64 flip-flops, intended for studying the effects of electromagnetic pulses on initialized flip-flops. It is used by loading a pattern, injecting an EM pulse with external equipment like a Chipshouter, and scanning out the pattern to observe changes. The design requires external hardware for EM pulse injection. It is notable as a test structure for glitching experiments rather than a functional module.",
+   "summary": "This design is a register field made of 8 chains of 64 flip-flops, intended for studying the effects of electromagnetic pulses on initialized flip-flops. It is used by loading a pattern, injecting an EM pulse with external equipment like a Chipshouter, and scanning out the pattern to observe changes. The design requires external hardware for EM pulse injection. It is notable as a test structure for glitching experiments rather than a functional module.",
+   "summary_changed": false
+  },
+  {
+   "key": "3a496f4f160a",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "counter",
+    "up-down-counter",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "counter",
+    "up-down-counter",
+    "verilog",
+    "education"
+   ],
+   "summary_before": "This project implements an 8-bit up/down counter in Verilog that increments or decrements between 0 and 255 depending on the up_down control input. Counting only occurs on the rising edge of the clock when the enable input is high, and an active-low reset clears the counter to zero. The current value is presented on the eight output pins, which can optionally drive LEDs, a logic analyzer, or a display module. The documentation is straightforward and includes simulation instructions, but no silicon test results are reported.",
+   "summary": "This project implements an 8-bit up/down counter in Verilog that increments or decrements between 0 and 255 depending on the up_down control input. Counting only occurs on the rising edge of the clock when the enable input is high, and an active-low reset clears the counter to zero. The current value is presented on the eight output pins, which can optionally drive LEDs, a logic analyzer, or a display module. The documentation is straightforward and includes simulation instructions, but no silicon test results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "7f3408cd3400",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "debouncer",
+     "reason": "Text mentions debounced inputs but does not describe a debouncer circuit in the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "education",
+     "reason": "Simple FSM example suitable for teaching digital design."
+    }
+   ],
+   "notes": "Removed debouncer (not implemented in design) and added education.",
+   "tags_before": [
+    "fsm",
+    "debouncer",
+    "button",
+    "led",
+    "vhdl"
+   ],
+   "tags": [
+    "fsm",
+    "button",
+    "led",
+    "vhdl",
+    "education"
+   ],
+   "summary_before": "This project implements a Moore finite state machine for a vending machine controller, handling coin insertion, product selection, and change dispensing. It uses a small datapath for credit tracking and selection, with debounced inputs for coin and buttons. Outputs include dispense and change signals, along with a 4-bit product number, intended to drive LEDs. The design is a simple educational example of an FSM with spaced pulse outputs.",
+   "summary": "This project implements a Moore finite state machine for a vending machine controller, handling coin insertion, product selection, and change dispensing. It uses a small datapath for credit tracking and selection, with debounced inputs for coin and buttons. Outputs include dispense and change signals, along with a 4-bit product number, intended to drive LEDs. The design is a simple educational example of an FSM with spaced pulse outputs.",
+   "summary_changed": false
+  },
+  {
+   "key": "4a7db0540ce9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "led",
+    "pwm",
+    "debouncer",
+    "button",
+    "verilog"
+   ],
+   "tags": [
+    "led",
+    "pwm",
+    "debouncer",
+    "button",
+    "verilog"
+   ],
+   "summary_before": "This project implements a Knight Rider-style LED chaser with PWM brightness control, where the speed and pause functionality are adjustable via three debounced buttons. It drives an 8-LED bargraph or individual LEDs, with outputs cycling in a chasing pattern. The design includes debouncing for the pause, faster, and slower buttons, and operates from a 50 kHz clock. External hardware includes push buttons, a reset button, and a bargraph or 8 LEDs.",
+   "summary": "This project implements a Knight Rider-style LED chaser with PWM brightness control, where the speed and pause functionality are adjustable via three debounced buttons. It drives an 8-LED bargraph or individual LEDs, with outputs cycling in a chasing pattern. The design includes debouncing for the pause, faster, and slower buttons, and operates from a 50 kHz clock. External hardware includes push buttons, a reset button, and a bargraph or 8 LEDs.",
+   "summary_changed": false
+  },
+  {
+   "key": "51a6c6c3474f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pipeline",
+     "reason": "The design uses a handshake/credit-based interface but does not describe a pipelined datapath."
+    }
+   ],
+   "add": [
+    {
+     "tag": "dsp",
+     "reason": "Computes dot-product and exponential, a signal processing operation."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "Uses Q0.7 and UQ3.6 fixed-point formats."
+    }
+   ],
+   "notes": "Removed pipeline (no pipelined datapath described); added dsp and fixed-point.",
+   "tags_before": [
+    "machine-learning",
+    "neural-network",
+    "mac-unit",
+    "pipeline",
+    "verilog"
+   ],
+   "tags": [
+    "machine-learning",
+    "neural-network",
+    "mac-unit",
+    "verilog",
+    "dsp",
+    "fixed-point"
+   ],
+   "summary_before": "This design implements a transformer attention engine that computes a dot product over four terms from sequential 8-bit Q0.7 samples and outputs exp(mac/2) in UQ3.6 format. It uses a credit-based pipeline with handshake signals for input and output, processing four pairs of samples to produce a 9-bit result. The module is always ready for input and signals output validity, requiring acknowledgment from the master. It is intended for neural network or machine learning acceleration, though external hardware details are not specified.",
+   "summary": "This design implements a transformer attention engine that computes a dot product over four terms from sequential 8-bit Q0.7 samples and outputs exp(mac/2) in UQ3.6 format. It uses a credit-based handshake interface for input and output, processing four pairs of samples to produce a 9-bit result. The module is always ready for input and signals output validity, requiring acknowledgment from the master. It is intended for neural network or machine learning acceleration, though external hardware details are not specified.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7274,
+  "completion_tokens": 1121,
+  "total_tokens": 8395,
+  "cost": 0.002205138,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002205138,
+   "upstream_inference_prompt_cost": 0.001061718,
+   "upstream_inference_completions_cost": 0.00114342
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002205138,
+ "elapsed_s": 29.6
+}

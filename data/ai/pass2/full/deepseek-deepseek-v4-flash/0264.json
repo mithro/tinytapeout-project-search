@@ -1,0 +1,185 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "42e50eb9053c",
+  "ebc1beae8a1d",
+  "780aa1d3a5eb",
+  "89da2b1936df",
+  "1163641564f6",
+  "81f8c2b51858",
+  "1ff3db7d4234",
+  "11c5cebab1d6",
+  "d46af0ca409c",
+  "71f8b5ed7458"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "42e50eb9053c",
+   "summary": "This is a 12-bit successive-approximation-register analog-to-digital converter implemented as an analog block. It samples an input on an analog pin and outputs the previous sample while starting the next conversion, with a comparator output and a VCO-related input also exposed. The documentation is very thin: it notes that the output bits may be active low and asks the user to check, and the external hardware section is left as an unfilled template. No silicon test results or detailed operating instructions are provided.",
+   "tags": [
+    "sar-adc",
+    "adc",
+    "analog",
+    "comparator",
+    "vco",
+    "clock-generator"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "ebc1beae8a1d",
+   "summary": "This design is an 8-bit by 8-bit unsigned multiplier that computes a 16-bit product internally and emits it over two clock cycles. One operand is taken from the eight dedicated input pins and the other from the eight bidirectional pins, with the low eight product bits on the outputs. The author notes that exhaustive testing of all 65536 input pairs is feasible at the current size, and that no external hardware is currently used, though a display might be added later. The documentation is brief and does not describe the two-cycle output sequencing in detail.",
+   "tags": [
+    "multiplier",
+    "alu",
+    "systemverilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "780aa1d3a5eb",
+   "summary": "This is a one-tile demoscene entry that generates animated graphics for a VGA monitor while racing the beam, using mathematical functions to produce the imagery. It also outputs mono audio on a bidirectional pin, and the whole sequence repeats after about 68 seconds. It needs a 25 MHz clock, a reset, a Tiny VGA PMOD for the display and a TT Audio PMOD for sound. The design is notable as a competition submission in the 1-tile category and relies on standard Tiny Tapeout VGA and audio pinouts.",
+   "tags": [
+    "demoscene",
+    "vga",
+    "video",
+    "graphics",
+    "audio",
+    "music",
+    "pmod"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "89da2b1936df",
+   "summary": "This is a 6-bit multi-functional arithmetic logic unit that supports ripple-carry and carry-lookahead addition, multiplication, logic operations, shifts, popcount and comparison. Two 6-bit operands, a carry-in and a 3-bit opcode are supplied on the input and bidirectional pins, and an 8-bit result appears on the outputs. Testing is done by applying random input values and checking that the result matches the selected operation, with LEDs or a logic analyzer recommended to observe the outputs. The documentation lists the operation set only as empty bullet points, so the exact opcode mapping is not described.",
+   "tags": [
+    "alu",
+    "multiplier",
+    "popcount",
+    "barrel-shifter",
+    "comparator",
+    "adder",
+    "logic-gate"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "1163641564f6",
+   "summary": "This analog block contains a dedicated 33-stage ring oscillator with a divide-by-32 stage expected to run near 15 MHz, plus a separate XOR-based true random number generator built from five distinct ring oscillators. Enable signals select the different ring oscillator configurations, and the oscillator outputs and TRNG output are brought out on analog and output pins. Testing consists of setting all enable signals high and observing the expected frequencies on the output pins, and no external hardware is required. The documentation is short but gives enough detail to understand the two main functions.",
+   "tags": [
+    "ring-oscillator",
+    "trng",
+    "prng",
+    "analog",
+    "oscillator",
+    "logic-gate"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "81f8c2b51858",
+   "summary": "This is a single-ended two-stage Miller-compensated operational transconductance amplifier with a self-biasing beta-multiplier current reference and configurable compensation, fabricated in SKY 130nm. The non-inverting and inverting inputs and the output are on analog pins, while two select pins configure the compensation and a beat output is provided. It is intended to be operated in feedback, for example as a unity-gain buffer by tying the inverting input to the output, from which the gain-bandwidth product can be estimated. The documentation is concise but clearly describes the circuit and a basic test configuration.",
+   "tags": [
+    "opamp",
+    "analog",
+    "transistor-level",
+    "current-mirror",
+    "voltage-reference"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "1ff3db7d4234",
+   "summary": "This is a low-dropout linear regulator that accepts 1.2 V to 3 V on an analog input pin and produces a regulated 1 V output at up to 50 mA. A 0.6 V reference is applied on a separate analog pin, and the output appears on another analog pin. The documentation lists expected characteristics including 0.2 V dropout, 82 percent efficiency at 1.2 V input, 6.78 mV/V line regulation and 67 mV/A load regulation, along with schematic and layout images. Testing is simply a matter of connecting the input voltage and the 0.6 V reference and measuring the output.",
+   "tags": [
+    "ldo",
+    "analog",
+    "power-management",
+    "voltage-reference",
+    "transistor-level"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "11c5cebab1d6",
+   "summary": "This design implements a dual-master, dual-slave AXI4-Lite interconnect that hides the full AXI handshake behind a simplified interface. Start-write, start-read, address and data signals are driven from the input and bidirectional pins, and a done signal plus read data appear on the outputs. The top module instantiates an AXI4-Lite master and slave and drives the protocol signals internally when a transaction is started. Two testbenches are mentioned, but the provided documentation is truncated and does not describe the full test procedure or any silicon results.",
+   "tags": [
+    "axi",
+    "communication",
+    "wishbone"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "d46af0ca409c",
+   "summary": "This design plots the trajectory of a fixed system of two ordinary differential equations on a VGA display, using the coefficients a=0, b=-1, c=1, d=0. A reset transition from low to high starts the plotting, and cycling the reset restarts the trace from the beginning. It requires a 25 MHz clock and a Tiny VGA PMOD connected to the output header. The author describes it as a very bad and very unstable plotter, and the documentation does not cover any silicon test results.",
+   "tags": [
+    "vga",
+    "video",
+    "graphics",
+    "physics",
+    "pmod"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "71f8b5ed7458",
+   "summary": "This is a hardware implementation of the BCH (15, 7) error-correcting code, which can correct up to two bit flips in a 7-bit message using an 8-bit checksum. It has two modes selected by the encode_enable pin: encoding produces the checksum from a clean message, and decoding recovers the original message from a corrupted message plus checksum. The datapath is pipelined into syndrome calculation, error location and Chien search stages, giving a three-cycle latency and one message per cycle throughput at 50 MHz. No external hardware is required, though LEDs may be used to visualize inputs and outputs.",
+   "tags": [
+    "error-correction",
+    "encoder",
+    "decoder",
+    "pipeline"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8402,
+  "completion_tokens": 1874,
+  "total_tokens": 10276,
+  "cost": 0.0010206,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0010206,
+   "upstream_inference_prompt_cost": 0.000705768,
+   "upstream_inference_completions_cost": 0.000314832
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0010206,
+ "elapsed_s": 35.8
+}

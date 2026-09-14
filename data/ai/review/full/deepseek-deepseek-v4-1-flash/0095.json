@@ -1,0 +1,247 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "2c710bf501e2",
+  "d9326131d51f",
+  "77797e0d0501",
+  "cd402d6a1935",
+  "621dc29c8c74",
+  "5f5f4540aa9e"
+ ],
+ "results": [
+  {
+   "key": "2c710bf501e2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "time-to-digital-converter",
+     "reason": "The title mentions TDC but the documentation only describes ring oscillators placed in another tile for power stress; no TDC circuitry is described."
+    },
+    {
+     "tag": "multi-tile",
+     "reason": "Tiles field says 1x1; the text says 'another tile' relative to a previous design, not that this submission spans multiple tiles."
+    }
+   ],
+   "add": [
+    {
+     "tag": "ring-oscillator",
+     "reason": "Documentation explicitly says 'Same as the previous design of ROs'."
+    },
+    {
+     "tag": "process-experiment",
+     "reason": "Described as an experimental basis to add power stress, a process/fabrication experiment."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "Documentation states 'Nothing to test here, an experimental basis' and is very thin."
+    }
+   ],
+   "notes": "Removed unsupported TDC and multi-tile tags; added incomplete since the design is explicitly an untested experimental basis.",
+   "tags_before": [
+    "ring-oscillator",
+    "process-experiment",
+    "time-to-digital-converter",
+    "multi-tile"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "process-experiment",
+    "incomplete"
+   ],
+   "summary_before": "This is an experimental microtile container designed to place ring oscillators in a separate tile to induce power stress. It has 8 digital inputs, 8 digital outputs, and 2 select pins, but the documentation states that there is nothing to test and it serves as an experimental basis. The design is a Verilog module clocked at 20 MHz. No external hardware or specific testing procedure is described.",
+   "summary": "This is an experimental microtile container that places ring oscillators in a separate tile to add power stress. It has 8 digital inputs, 8 digital outputs, and 2 select pins, but the documentation states that there is nothing to test and it serves as an experimental basis. The design is a Verilog module clocked at 20 MHz. No external hardware or specific testing procedure is described.",
+   "summary_changed": true
+  },
+  {
+   "key": "d9326131d51f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [],
+   "notes": "Removed education tag as the source does not state an educational intent.",
+   "tags_before": [
+    "7-segment",
+    "logic-gate",
+    "display",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "logic-gate",
+    "display",
+    "wokwi"
+   ],
+   "summary_before": "This design uses an AND gate to control segments A, B, C, and D of a 7-segment display, with other inputs controlling the remaining segments. It is a simple educational project built in Wokwi. Testing involves toggling each input and observing which segments light up. External hardware includes a 7-segment display and switches. The documentation is minimal and lacks a detailed explanation of the logic.",
+   "summary": "This design uses an AND gate to control segments A, B, C, and D of a 7-segment display, with other inputs controlling the remaining segments. It is a simple project built in Wokwi. Testing involves toggling each input and observing which segments light up. External hardware includes a 7-segment display and switches.",
+   "summary_changed": true
+  },
+  {
+   "key": "77797e0d0501",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement in the source that this is intended for teaching or learning."
+    },
+    {
+     "tag": "encoder",
+     "reason": "The title says 'Encoder' but the description only mentions NOT and AND gates connecting inputs to outputs; no encoding function is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Documentation explicitly describes NOT and AND gates."
+    }
+   ],
+   "notes": "Removed unsupported encoder and education tags; the description only supports basic gate logic.",
+   "tags_before": [
+    "encoder",
+    "logic-gate",
+    "education",
+    "wokwi"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This project is an encoder that uses NOT and AND gates to connect inputs to outputs. It is a simple educational design built in Wokwi. Testing involves flipping switches and observing which LEDs light up. No external hardware is required. The documentation is very sparse and does not provide a detailed schematic or truth table.",
+   "summary": "This project connects inputs to outputs using NOT and AND gates. It is a simple design built in Wokwi. Testing involves flipping switches and observing which LEDs light up. No external hardware is required.",
+   "summary_changed": true
+  },
+  {
+   "key": "cd402d6a1935",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement in the source that this is intended for teaching or learning."
+    },
+    {
+     "tag": "gpio",
+     "reason": "No general purpose IO interface is described beyond the flip-flop connections."
+    }
+   ],
+   "add": [
+    {
+     "tag": "flip-flop",
+     "reason": "Documentation explicitly says 'It's 2 flip flops connected to the IO'."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Flip-flops are sequential storage elements."
+    }
+   ],
+   "notes": "Removed education and gpio; kept flip-flop and sequential-logic which the source supports.",
+   "tags_before": [
+    "flip-flop",
+    "wokwi",
+    "education",
+    "sequential-logic",
+    "gpio"
+   ],
+   "tags": [
+    "flip-flop",
+    "wokwi",
+    "sequential-logic"
+   ],
+   "summary_before": "This design consists of two D flip-flops with D inputs from IN0 and IN2, and Q outputs at OUT0 and OUT2. Documentation is minimal, providing only basic description and test method. External hardware is not specified. It appears to be a simple educational project created in Wokwi.",
+   "summary": "This design consists of two flip-flops with D inputs from IN0 and IN2, and Q outputs at OUT0 and OUT2. Documentation is minimal, providing only a basic description and test method. External hardware is not specified. It is a simple design created in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "621dc29c8c74",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement in the source that this is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "game",
+     "reason": "Described as a guessing game ('Guess a number!')."
+    },
+    {
+     "tag": "led",
+     "reason": "External hardware says 'Connect LED to output 0'."
+    }
+   ],
+   "notes": "Removed education tag; the guessing game and LED output are supported by the source.",
+   "tags_before": [
+    "game",
+    "wokwi",
+    "education",
+    "led"
+   ],
+   "tags": [
+    "game",
+    "wokwi",
+    "led"
+   ],
+   "summary_before": "This is a simple guessing game: if the correct number is guessed, an LED lights up. It uses a single input (IN3) and a single output (OUT0) to drive the LED. Documentation is very sparse, providing only a brief description. It appears to be a beginner project created in Wokwi.",
+   "summary": "This is a simple guessing game: if the correct number is guessed, an LED lights up. It uses a single input (IN3) and a single output (OUT0) to drive the LED. Documentation is very sparse, providing only a brief description. It is a beginner project created in Wokwi.",
+   "summary_changed": true
+  },
+  {
+   "key": "5f5f4540aa9e",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "logic-gate",
+     "reason": "Documentation explicitly says the project uses an AND gate."
+    }
+   ],
+   "notes": "Added logic-gate tag which the source explicitly supports.",
+   "tags_before": [
+    "wokwi",
+    "logic-gate",
+    "7-segment",
+    "display"
+   ],
+   "tags": [
+    "wokwi",
+    "logic-gate",
+    "7-segment",
+    "display"
+   ],
+   "summary_before": "This project implements an AND gate that controls red lines on a seven-segment display. The design has eight inputs and eight outputs, and is tested by switching inputs on or off. The documentation is brief but indicates that the AND gate logic drives specific segments. No external hardware is explicitly required, though a seven-segment display would be needed to see the output. The project appears to be a simple logic demonstration.",
+   "summary": "This project implements an AND gate that controls red lines on a seven-segment display. The design has eight inputs and eight outputs, and is tested by switching inputs on or off. The documentation is brief but indicates that the AND gate logic drives specific segments. No external hardware is explicitly required, though a seven-segment display would be needed to see the output.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5525,
+  "completion_tokens": 1113,
+  "total_tokens": 6638,
+  "cost": 0.001750983,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.001750983,
+   "upstream_inference_prompt_cost": 0.000615723,
+   "upstream_inference_completions_cost": 0.00113526
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.001750983,
+ "elapsed_s": 51.3
+}

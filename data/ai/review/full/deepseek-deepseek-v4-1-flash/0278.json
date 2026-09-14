@@ -1,0 +1,208 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "0908e7b19714",
+  "190eee8324f4",
+  "0f95b3f968c6",
+  "d6262616981b",
+  "32d9b989eec8",
+  "f2e1bbbf2d82"
+ ],
+ "results": [
+  {
+   "key": "0908e7b19714",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "register-file",
+     "reason": "The design has an accumulator, MAR and destination register, not a multi-register file."
+    }
+   ],
+   "add": [
+    {
+     "tag": "microcontroller",
+     "reason": "It is a complete 4-bit CPU with ALU, registers, instruction set and memory interface."
+    }
+   ],
+   "notes": "Removed register-file because the source describes an accumulator and address/destination registers, not a register file.",
+   "tags_before": [
+    "cpu",
+    "alu",
+    "register-file",
+    "memory",
+    "verilog"
+   ],
+   "tags": [
+    "cpu",
+    "alu",
+    "memory",
+    "verilog",
+    "microcontroller"
+   ],
+   "summary_before": "This is a 4-bit microprocessor with a 4-bit ALU, accumulator, 8-bit memory address register, and 12-bit destination register, supporting 16 instructions including arithmetic, logic, load/store, and branches. It can address 4096 bytes of program memory and 254 words of data memory, with six words of on-chip RAM and two general-purpose input ports. Testing is done manually with a debounced push button as clock and DIP switches to key in instructions, following a documented sequence that produces known output patterns. External hardware at minimum includes program memory and glue logic, as shown in the example system diagram.",
+   "summary": "This is a 4-bit microprocessor with a 4-bit ALU, accumulator, 8-bit memory address register, and 12-bit destination register, supporting 16 instructions including arithmetic, logic, load/store, and branches. It can address 4096 bytes of program memory and 254 words of data memory, with six words of on-chip RAM and two general-purpose input ports. Testing is done manually with a debounced push button as clock and DIP switches to key in instructions, following a documented sequence that produces known output patterns. External hardware at minimum includes program memory and glue logic, as shown in the example system diagram.",
+   "summary_changed": false
+  },
+  {
+   "key": "190eee8324f4",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lcd",
+    "display",
+    "text",
+    "rom",
+    "verilog"
+   ],
+   "tags": [
+    "lcd",
+    "display",
+    "text",
+    "rom",
+    "verilog"
+   ],
+   "summary_before": "This design echoes a predefined text message to a 20x4 character LCD. It contains a ROM holding the text and logic to perform the initialization sequence and cursor positioning, operating from an external clock since it lacks an internal divider. The design requires a 20x4 character LCD connected according to the pinout, and optionally LEDs on two output pins. It is notable as a simple demonstration of driving a character display from a Tiny Tapeout tile.",
+   "summary": "This design echoes a predefined text message to a 20x4 character LCD. It contains a ROM holding the text and logic to perform the initialization sequence and cursor positioning, operating from an external clock since it lacks an internal divider. The design requires a 20x4 character LCD connected according to the pinout, and optionally LEDs on two output pins. It is notable as a simple demonstration of driving a character display from a Tiny Tapeout tile.",
+   "summary_changed": false
+  },
+  {
+   "key": "0f95b3f968c6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "fir-filter",
+    "dsp",
+    "multiplier",
+    "wokwi"
+   ],
+   "tags": [
+    "fir-filter",
+    "dsp",
+    "multiplier",
+    "wokwi"
+   ],
+   "summary_before": "This design implements a 4-bit 2-stage FIR filter that multiplies input samples by tap coefficients and sums the results. Coefficients are loaded serially by setting values and pulsing the load signal twice per tap, and the filter runs by changing the input each clock cycle. Select pins allow debugging by routing internal signals such as multiplier outputs or stored tap values to the output pins. The FIR output discards the least significant bit due to output pin limitations, and external hardware such as an Arduino or FPGA is needed to drive inputs and read results.",
+   "summary": "This design implements a 4-bit 2-stage FIR filter that multiplies input samples by tap coefficients and sums the results. Coefficients are loaded serially by setting values and pulsing the load signal twice per tap, and the filter runs by changing the input each clock cycle. Select pins allow debugging by routing internal signals such as multiplier outputs or stored tap values to the output pins. The FIR output discards the least significant bit due to output pin limitations, and external hardware such as an Arduino or FPGA is needed to drive inputs and read results.",
+   "summary_changed": false
+  },
+  {
+   "key": "d6262616981b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "display",
+     "reason": "The outputs are seven-segment segment lines, so the more specific 7-segment tag is sufficient."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the design is described only as 'nothing special - just testing'."
+    }
+   ],
+   "notes": "Added incomplete because the documentation is very thin and the design is only described as testing.",
+   "tags_before": [
+    "flip-flop",
+    "wokwi",
+    "7-segment",
+    "display"
+   ],
+   "tags": [
+    "flip-flop",
+    "wokwi",
+    "7-segment",
+    "incomplete"
+   ],
+   "summary_before": "This design is a test circuit for various flip-flop types, including D, C, S, R, NAND-based, and Muller configurations. Inputs are provided to select and control the flip-flops, and outputs drive a seven-segment display to show their states. The documentation states it is 'nothing special - just testing' and suggests changing inputs to observe outputs. A logic analyzer is listed as external hardware for debugging.",
+   "summary": "This design is a test circuit for various flip-flop types, including D, C, S, R, NAND-based, and Muller configurations. Inputs are provided to select and control the flip-flops, and outputs drive a seven-segment display to show their states. The documentation states it is 'nothing special - just testing' and suggests changing inputs to observe outputs. A logic analyzer is listed as external hardware for debugging.",
+   "summary_changed": false
+  },
+  {
+   "key": "32d9b989eec8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "An FFT butterfly is not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin, with only a one-line description and 'change the inputs' test instructions."
+    }
+   ],
+   "notes": "Removed alu because an FFT butterfly is not an ALU; added incomplete due to very thin documentation.",
+   "tags_before": [
+    "fft",
+    "dsp",
+    "wokwi",
+    "alu"
+   ],
+   "tags": [
+    "fft",
+    "dsp",
+    "wokwi",
+    "incomplete"
+   ],
+   "summary_before": "This design implements a single FFT butterfly unit with 2-bit resolution, processing two complex inputs to produce two complex outputs. It is intended for the Wokwi simulator and requires no external hardware. The design can be tested by changing the input values. It is a low-resolution demonstration of a fundamental DSP operation.",
+   "summary": "This design implements a single FFT butterfly unit with 2-bit resolution, processing two complex inputs to produce two complex outputs. It is intended for the Wokwi simulator and requires no external hardware. The design can be tested by changing the input values. It is a low-resolution demonstration of a fundamental DSP operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "f2e1bbbf2d82",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "scan-chain",
+    "7-segment",
+    "timer",
+    "counter",
+    "systemverilog"
+   ],
+   "tags": [
+    "scan-chain",
+    "7-segment",
+    "timer",
+    "counter",
+    "systemverilog"
+   ],
+   "summary_before": "This is a test design for tinyscanchain, a scan-chain implementation written in under 80 lines of Python, built on top of the seven-segment-seconds counter design. After reset the counter increments once per second from a 1 kHz clock, and the scan chain allows inspection of the internal state of the design. The seven-segment outputs drive a display, while the scan-chain input, enable and output pins provide the debug interface. It is intended as a demonstration and test vehicle for the tinyscanchain tool rather than a standalone application.",
+   "summary": "This is a test design for tinyscanchain, a scan-chain implementation written in under 80 lines of Python, built on top of the seven-segment-seconds counter design. After reset the counter increments once per second from a 1 kHz clock, and the scan chain allows inspection of the internal state of the design. The seven-segment outputs drive a display, while the scan-chain input, enable and output pins provide the debug interface. It is intended as a demonstration and test vehicle for the tinyscanchain tool rather than a standalone application.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6222,
+  "completion_tokens": 1179,
+  "total_tokens": 7401,
+  "cost": 0.0032814,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032814,
+   "upstream_inference_prompt_cost": 0.0018666,
+   "upstream_inference_completions_cost": 0.0014148
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032814,
+ "elapsed_s": 70.8
+}

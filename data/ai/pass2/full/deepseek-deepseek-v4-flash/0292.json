@@ -1,0 +1,179 @@
+{
+ "model": "deepseek/deepseek-v4-flash",
+ "requested_model": "deepseek/deepseek-v4-flash",
+ "keys": [
+  "956344830ef6",
+  "1bdb1df99bec",
+  "201932cc8725",
+  "9710837574f8",
+  "5ed75bf5fef3",
+  "cc60b6601683",
+  "735ba866841c",
+  "7573e499bb44",
+  "8c62dfd476b3",
+  "ed20aeb95163"
+ ],
+ "results": [
+  {
+   "changed": false,
+   "index": 1,
+   "key": "956344830ef6",
+   "summary": "This is a 7-bit ALU that accepts two operands serially, LSB first, on a single input pin and produces an 8-bit parallel result. The opcode is a stable 3-bit parallel input selecting ADD, AND, OR, XOR or SUB, and a Done pin pulses high for one clock cycle when the result is valid. It needs no external hardware for simulation; on a devkit, LEDs, buttons or a logic analyser can be used to observe results and protocol timing. The design is a straightforward IEEE-style student exercise with clear pin documentation but no reported silicon measurements.",
+   "tags": [
+    "alu",
+    "uart",
+    "education",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 2,
+   "key": "1bdb1df99bec",
+   "summary": "This 8-bit ALU loads two operands into internal registers A and B from an 8-bit data bus and executes arithmetic, logic and shift operations selected by a 3-bit opcode. Control signals on the bidirectional pins trigger loading and execution, and the result appears on the 8-bit output with zero and carry flags. The documentation gives a worked example of adding 7 and 5, and no external hardware is required beyond switches and LEDs on a demo board. It is a simple teaching-oriented design with no silicon test results reported.",
+   "tags": [
+    "alu",
+    "register-file",
+    "education",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 3,
+   "key": "201932cc8725",
+   "summary": "This project is a 7-bit arithmetic logic unit that works sequentially, taking serial input and producing parallel output. The pin names show a single serial data input, three opcode bits and an 8-bit data output with a Done signal, but there is no documentation of the instruction set or protocol. No external hardware or test procedure is described. The documentation is essentially limited to the title and pin list, so most details are inferred.",
+   "tags": [
+    "alu",
+    "education",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 4,
+   "key": "9710837574f8",
+   "summary": "mini_cpu is a minimal 8-bit accumulator-based processor with a compact custom instruction set stored in an internal ROM. It runs a fixed program that drives an 8-bit LED output in a Knight Rider-style scanner pattern, with optional input switches that are not required for basic operation. Testing consists of applying a slow clock, holding reset for at least ten cycles, then observing the LED outputs. The design is self-contained and emphasises small area and simple synchronous behaviour, but no silicon results are reported.",
+   "tags": [
+    "cpu",
+    "rom",
+    "led",
+    "education",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 5,
+   "key": "5ed75bf5fef3",
+   "summary": "This is a small out-of-order CPU that includes an instruction queue, register alias table, reorder buffer and reservation stations. Instructions are fed in through the input pins and results are read from the output pins, with a testbench driving the design via io_in. No external hardware is needed because it runs entirely inside the Tiny Tapeout framework. The documentation is very thin, giving only a pipeline outline and no measured results, so most architectural detail is inferred from the title and pin names.",
+   "tags": [
+    "cpu",
+    "systemverilog",
+    "insufficient-doc"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 6,
+   "key": "cc60b6601683",
+   "summary": "This analog block is a unity-gain buffer built from a two-stage Miller operational transconductance amplifier, together with a beta-multiplier reference and a startup circuit in the sky130 process. It is intended as the building block for a continuous-time Gm-C filter and is tested with a 3 pF load, square-wave pulses between 0.5 V and 1.0 V, DC sweeps and a 0 to 1.8 V supply ramp. External equipment includes a signal generator, 1.8 V supply, oscilloscope, 3 pF capacitor and multimeter, and the documentation warns that probe capacitance can degrade phase margin. Simulated figures such as 18.65 V/us slew rate and over 60 dB open-loop gain are quoted, but no measured silicon data are given.",
+   "tags": [
+    "opamp",
+    "analog",
+    "bandgap",
+    "filter-analog",
+    "transistor-level"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 7,
+   "key": "735ba866841c",
+   "summary": "This is a capless low-dropout linear regulator with a 1.27 V output and a claimed 51.1 dB power-supply rejection ratio at 100 kHz. It is tested by sweeping the input voltage from 1.62 V to 1.98 V while monitoring the output. An oscilloscope and function generator are listed as the required external hardware. The documentation is very brief, consisting of a single sentence plus the test condition, so no load range, current capability or silicon measurements are described.",
+   "tags": [
+    "ldo",
+    "analog",
+    "power-management",
+    "insufficient-doc"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 8,
+   "key": "7573e499bb44",
+   "summary": "This design classifies water quality from eight digital sensor inputs by extracting peak, average and variation features and mapping them to clean, warning or unsafe states. It is simulated with cocotb and can be exercised in the lab by feeding a function generator through a comparator or ADC into the sensor pins. External hardware for lab testing includes a function generator and optionally a comparator or Arduino ADC interface. The approach uses electrical signal behaviour as a proxy for chemical water quality, and no silicon results are reported.",
+   "tags": [
+    "sensor-interface",
+    "dsp",
+    "fsm",
+    "cocotb",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 9,
+   "key": "8c62dfd476b3",
+   "summary": "This is a multi-mode digital signal processing unit that takes two 8-bit inputs and selects one of four operations from their low bits: FIR filtering, multiply-accumulate, edge detection or nonlinear compression. It keeps a previous output value so that some modes depend on past data, and the output updates every clock cycle. Testing is done with a cocotb testbench that cycles through all modes and produces a VCD waveform for inspection in GTKWave. No external hardware is required and no silicon measurements are reported.",
+   "tags": [
+    "dsp",
+    "fir-filter",
+    "mac-unit",
+    "edge-detector",
+    "compression",
+    "verilog"
+   ],
+   "sentences": 4
+  },
+  {
+   "changed": false,
+   "index": 10,
+   "key": "ed20aeb95163",
+   "summary": "This design implements a heat stress alert system that counts pulses on a single input pin, using pulse frequency as a proxy for temperature, and classifies the condition into safe, warm, high risk or critical. The state is continuously driven to four output pins and can be observed in simulation with a generated pulse stimulus. For real use, a signal generator can drive the input directly, or a temperature sensor can be connected through a microcontroller that converts readings to pulse frequency. The documentation is clear but brief, and no silicon results are reported.",
+   "tags": [
+    "sensor-interface",
+    "counter",
+    "temperature-sensor",
+    "biomedical",
+    "verilog"
+   ],
+   "sentences": 4
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8818,
+  "completion_tokens": 1749,
+  "total_tokens": 10567,
+  "cost": 0.0013210256,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3072,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0013210256,
+   "upstream_inference_prompt_cost": 0.0008522936,
+   "upstream_inference_completions_cost": 0.000468732
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0013210256,
+ "elapsed_s": 12.2
+}

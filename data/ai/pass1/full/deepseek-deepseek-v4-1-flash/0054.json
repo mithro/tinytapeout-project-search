@@ -1,0 +1,196 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f8a7e3a495b3",
+  "7afafb214b4a",
+  "b87dcc49d1d6",
+  "9fc8da96ab1b",
+  "9848a8eaaff5",
+  "34282bb584a4",
+  "221b410e64c6",
+  "085ed9f6ef71",
+  "f9dcdf3fd311",
+  "02ccd6e3facc"
+ ],
+ "results": [
+  {
+   "key": "f8a7e3a495b3",
+   "tags": [
+    "74hc595",
+    "shift-register",
+    "register",
+    "led",
+    "serial",
+    "bit-banging",
+    "pmod"
+   ],
+   "summary": "This project implements a 74HC595 8-bit shift register with output latches in Verilog. It accepts serial data, shift clock, latch clock, output enable and clear signals, and drives eight parallel outputs. The design is intended to be tested by connecting eight LEDs, such as a Pmod, and bit-banging data to create effects like a Knight Rider pattern. Silicon testing confirmed it works, with the author using C and MicroPython to drive the LEDs.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "7afafb214b4a",
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "timer",
+    "bcd",
+    "decoder",
+    "clock",
+    "education"
+   ],
+   "summary": "This design displays the text 'UABC-ELECTRONICA' on a 7-segment display by showing each letter sequentially. It uses a clock divider and combinational logic to convert binary counts to decimal for the display, with the lower 8 bits of the counter available on bidirectional pins. The counting speed can be adjusted via input pins that set a comparison value, defaulting to one second per increment with a 10 MHz clock. It is intended as a demonstration or educational project, and no silicon test results are provided.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "b87dcc49d1d6",
+   "tags": [
+    "memory",
+    "sram",
+    "dffram",
+    "ram",
+    "register-file",
+    "test"
+   ],
+   "summary": "This project implements a 128-byte RAM module using a 32x32 DFFRAM macro. It provides address, write-enable, data input and data output pins, and supports read and write operations via clock pulses. The RAM contents are not reset when the project is reset. Silicon testing showed that writes work but occur on the falling clock edge, and reads are reliable up to 33 MHz; a tester noted that inputs must be stable while the clock is high.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9fc8da96ab1b",
+   "tags": [
+    "ring-oscillator",
+    "oscillator",
+    "counter",
+    "test",
+    "power-gating",
+    "frequency-measurement"
+   ],
+   "summary": "This is a test module for the TT05 power switching FET, featuring a ring oscillator and a 64-bit counter that counts oscillations. The counter value can be shifted and read on outputs, with reset and stop controls. It is tested by setting the shift value and observing the counter outputs. Silicon measurements indicated the ring oscillator runs at approximately 504 MHz, as inferred from a 1.969 MHz signal on the 8th counter bit.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "9848a8eaaff5",
+   "tags": [
+    "game",
+    "game-of-life",
+    "cellular-automata",
+    "grid",
+    "8x8",
+    "state-machine"
+   ],
+   "summary": "This design is a silicon implementation of Conway's Game of Life on an 8x8 grid. The grid can be loaded row by row using row select, cell input and write enable signals, and the game advances one step per clock cycle when enabled. The current state of any row can be read via the cell output pins. It is a compact, interactive implementation of the classic cellular automaton, with no external hardware required beyond the chip's pins.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "34282bb584a4",
+   "tags": [
+    "game",
+    "game-of-life",
+    "cellular-automata",
+    "display",
+    "led-matrix",
+    "max7219",
+    "8x32",
+    "demo"
+   ],
+   "summary": "This project is a silicon implementation of Conway's Game of Life on an 8x32 grid, with optional output to a MAX7219 LED dot matrix. It supports both manual mode, where the grid is loaded row by row, and a demo mode that cycles through pre-defined patterns. The game advances one generation per clock cycle when enabled, or every 0.4 seconds in demo mode with a 10 MHz clock. Silicon testing showed it works well with the LED matrix, though a delay before animation starts was noted, and one tester reported issues with demo patterns progressing.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "221b410e64c6",
+   "tags": [
+    "transistor-level",
+    "standard-cells",
+    "logic-gates",
+    "inverter",
+    "nand",
+    "flip-flop",
+    "skullfet",
+    "analog"
+   ],
+   "summary": "This project contains hand-crafted, skull-shaped MOSFET transistors implemented in a custom description language. It includes three devices: a NOT gate, a NAND gate, and an SR flip-flop, with inputs and outputs exposed on the chip pins. Testing involves applying input values and observing the outputs, and pulsing set/reset for the flip-flop. Silicon tests confirmed that the inverter and NAND work perfectly, and the flip-flop outputs are inverted as noted by the author.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "085ed9f6ef71",
+   "tags": [
+    "uart",
+    "serial",
+    "uwuifier",
+    "text-transformation",
+    "communication",
+    "protocol"
+   ],
+   "summary": "This design operates on a UART signal and transforms the text into 'uwu' speak. It interfaces via UART at 115200 baud with a 6 MHz clock, using dedicated receive and transmit pins. It is intended to be connected inline with a UART transceiver to modify data in real time. Silicon testing confirmed it works, with a tester using a serial terminal to send data and receiving the uwuified version back.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "f9dcdf3fd311",
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "timer",
+    "bcd",
+    "decoder",
+    "clock",
+    "education",
+    "vhdl"
+   ],
+   "summary": "This VHDL demo counts from 0 to 9 on a 7-segment display, incrementing once per second with a 10 MHz clock. It uses a clock divider and combinational logic to convert binary to decimal, and the lower 8 bits of the counter are available on bidirectional pins. The counting speed can be adjusted by setting input pins that program a comparison value. Silicon testing confirmed it counts from 0 to 9 once per second.",
+   "confidence": "high",
+   "insufficient_docs": false
+  },
+  {
+   "key": "02ccd6e3facc",
+   "tags": [
+    "neural-network",
+    "spiking-neural-network",
+    "lfsr",
+    "mux",
+    "flip-flop",
+    "wokwi",
+    "test",
+    "research"
+   ],
+   "summary": "This project implements several test clusters featuring various spike trains for neuro-inspired computing research. It includes neuron clusters of different sizes, an LFSR, flip-flops, and a multiplexer, with inputs and outputs exposed on the chip pins. The design is tested by providing input clock frequencies to the neuron clusters and observing outputs via an oscilloscope to generate raster spiking plots. It is implemented in Wokwi and is intended for investigating spike-based information representation, with no silicon test results provided.",
+   "confidence": "medium",
+   "insufficient_docs": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5445,
+  "completion_tokens": 1804,
+  "total_tokens": 7249,
+  "cost": 0.004747875,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.004747875,
+   "upstream_inference_prompt_cost": 0.002041875,
+   "upstream_inference_completions_cost": 0.002706
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.004747875,
+ "elapsed_s": 6.2
+}

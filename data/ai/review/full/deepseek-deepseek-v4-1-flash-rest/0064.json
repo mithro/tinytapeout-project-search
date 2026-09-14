@@ -1,0 +1,301 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "87b99bab166f",
+  "8614b2d0951a",
+  "728585e06cfd",
+  "6493ad2db4d3",
+  "cad96de68b32",
+  "5f88d8ca9ccc"
+ ],
+ "results": [
+  {
+   "key": "87b99bab166f",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The project is a functional flip-flop clock divider, not a starter template."
+    },
+    {
+     "tag": "placeholder",
+     "reason": "The design has described functionality, so it is not a placeholder submission."
+    }
+   ],
+   "add": [
+    {
+     "tag": "clock-divider",
+     "reason": "The design divides the clock by factors of two using flip-flops."
+    },
+    {
+     "tag": "flip-flop",
+     "reason": "The source explicitly says the divider is implemented with a flip-flop."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Flip-flop clock division is sequential logic."
+    }
+   ],
+   "notes": "Corrected tags and summary; the original mislabeled a working divider as a placeholder/template.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "placeholder"
+   ],
+   "tags": [
+    "wokwi",
+    "clock-divider",
+    "flip-flop",
+    "sequential-logic"
+   ],
+   "summary_before": "This design is a placeholder with no specific functionality described. It is implemented in Wokwi and appears to be a template or educational exercise. The documentation is minimal, so no details about its operation, testing, or external hardware are available. It is notable only as a starting point for other designs.",
+   "summary": "This design is a flip-flop clock divider. Input pins allow the clock to be divided by a factor of two per pin, and these can be stacked in any order. It is implemented in Wokwi and requires no external hardware. The documentation is minimal, describing only the divider function and its test procedure.",
+   "summary_changed": true
+  },
+  {
+   "key": "8614b2d0951a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The source describes an adder, not an arithmetic logic unit."
+    },
+    {
+     "tag": "education",
+     "reason": "There is no stated teaching or learning purpose beyond 'Testing some adders'."
+    },
+    {
+     "tag": "template",
+     "reason": "The project implements an adder, so it is not a starter template."
+    }
+   ],
+   "add": [
+    {
+     "tag": "combinational",
+     "reason": "A 4-bit adder is purely combinational logic."
+    }
+   ],
+   "notes": "Removed unsupported ALU/education/template tags and added combinational; summary now matches the thin documentation.",
+   "tags_before": [
+    "adder",
+    "alu",
+    "wokwi",
+    "education",
+    "template"
+   ],
+   "tags": [
+    "adder",
+    "wokwi",
+    "combinational"
+   ],
+   "summary_before": "This project implements a 4-bit adder in Wokwi, taking four input bits and producing a sum. It is tested by changing the input values on pins 0-3 and observing the output. The documentation is minimal, describing only '4 bit adder' and how to test it, so details of the implementation are not provided.",
+   "summary": "This project implements a 4-bit adder in Wokwi. Four input bits are supplied on pins 0 through 3 and produce a sum. It is tested by changing those input values and observing the output. The documentation is minimal and provides no implementation details beyond the 4-bit adder description.",
+   "summary_changed": true
+  },
+  {
+   "key": "728585e06cfd",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "ring-counter",
+     "reason": "The design uses a Johnson counter and an LFSR; ring-counter is not specifically supported as the main tag."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock-generation circuit is implemented; the clock is selected from internal/external sources."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated."
+    }
+   ],
+   "add": [
+    {
+     "tag": "lfsr",
+     "reason": "The design includes and outputs an LFSR."
+    },
+    {
+     "tag": "johnson-counter",
+     "reason": "The source explicitly says it uses a 4-bit Johnson counter."
+    },
+    {
+     "tag": "delay-line",
+     "reason": "The design is a high-density shift register for deep digital delays."
+    },
+    {
+     "tag": "gate-level",
+     "reason": "The author uses a tuned Verilog workflow and directly instantiates standard cells from the PDK."
+    },
+    {
+     "tag": "standard-cell",
+     "reason": "The design instantiates cells from the IHP sg13g2 standard cell library."
+    }
+   ],
+   "notes": "Replaced unsupported tags with accurate LFSR/Johnson/delay-line/gate-level/standard-cell tags and rewrote the summary to match the full design description.",
+   "tags_before": [
+    "ring-counter",
+    "shift-register",
+    "clock-generator",
+    "standard-cell",
+    "education"
+   ],
+   "tags": [
+    "shift-register",
+    "standard-cell",
+    "lfsr",
+    "johnson-counter",
+    "delay-line",
+    "gate-level"
+   ],
+   "summary_before": "This project is a 4-bit Johnson counter (ring counter) that produces a pattern where only one output pin changes per clock cycle. It is implemented with standard cells and is intended for educational demonstration of sequential logic. The counter is clocked externally and its four output pins display the internal state. It is notable for its simple, observable shifting pattern.",
+   "summary": "This design is a high-density shift register using standard cells for deep digital delays. It is implemented in Verilog and uses transparent latches with an 8-phase clock to store bits, with support for 4-bit Johnson counter outputs and an LFSR. The outputs include shift-register data, Johnson counter state, LFSR period and bit, and internal pulse signals. Test instructions cover clock/reset selection and observing the delayed output after 502 clock cycles.",
+   "summary_changed": true
+  },
+  {
+   "key": "6493ad2db4d3",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "hash",
+     "reason": "The source describes packet authentication via XOR, not hashing."
+    },
+    {
+     "tag": "cipher",
+     "reason": "No cipher algorithm is implemented."
+    }
+   ],
+   "add": [
+    {
+     "tag": "crypto",
+     "reason": "The design performs secret-key-based packet authentication."
+    },
+    {
+     "tag": "security",
+     "reason": "It is a secure packet authentication engine for V2X communication."
+    },
+    {
+     "tag": "communication",
+     "reason": "The intended application is vehicular V2X communication."
+    },
+    {
+     "tag": "automotive",
+     "reason": "The design targets V2X vehicular communication systems."
+    }
+   ],
+   "notes": "Removed hash/cipher and added crypto/security/communication/automotive; summary now describes the XOR packet authentication.",
+   "tags_before": [
+    "crypto",
+    "hash",
+    "cipher"
+   ],
+   "tags": [
+    "crypto",
+    "security",
+    "communication",
+    "automotive"
+   ],
+   "summary_before": "This design implements the ASCON-Hash256 and ASCON-XOF128 hash functions. It uses the ASCON-p permutation core for all modes. The design is intended for cryptographic hashing applications. It is notable for its compliance with NIST standards.",
+   "summary": "This design implements a lightweight secure packet authentication engine for V2X communication. An incoming 8-bit packet is XORed with a predefined secret key of 0xA5, and the outputs indicate authentication success or alert. It is implemented in Verilog and can be tested by applying clock and reset and supplying packet data. The design is intended for low-latency vehicular communication systems.",
+   "summary_changed": true
+  },
+  {
+   "key": "cad96de68b32",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "placeholder"
+   ],
+   "tags": [
+    "wokwi",
+    "template",
+    "placeholder"
+   ],
+   "summary_before": "This design is a placeholder with no specific functionality described. It is implemented in Wokwi and appears to be a template or educational exercise. The documentation is minimal, so no details about its operation, testing, or external hardware are available. It is notable only as a starting point for other designs.",
+   "summary": "This design is a placeholder with no specific functionality described. It is implemented in Wokwi and appears to be a template or educational exercise. The documentation is minimal, so no details about its operation, testing, or external hardware are available. It is notable only as a starting point for other designs.",
+   "summary_changed": false
+  },
+  {
+   "key": "5f88d8ca9ccc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "shift-register",
+     "reason": "The source describes a modulo-12 counter used for character selection, not a shift register."
+    },
+    {
+     "tag": "clock-generator",
+     "reason": "No clock generation is described; the clock is provided externally or overridden by pin."
+    }
+   ],
+   "add": [
+    {
+     "tag": "counter",
+     "reason": "The design uses a modulo-12 counter to sequence characters."
+    },
+    {
+     "tag": "ascii",
+     "reason": "It displays the ASCII characters 'tiny tapeout' on a 7-segment display."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state it is working on fabricated hardware."
+    },
+    {
+     "tag": "text",
+     "reason": "The output is textual characters on the display."
+    }
+   ],
+   "notes": "Corrected tags to match the modulo-12 counter and silicon-tested status, and removed the false no-report claim from the summary.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "shift-register",
+    "clock-generator",
+    "wokwi"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "counter",
+    "ascii",
+    "silicon-tested",
+    "text"
+   ],
+   "summary_before": "This circuit outputs the string 'tiny tapeout' to a 7-segment display. It uses a shift register and a clock generator to sequence the characters. The design is implemented in Wokwi and is intended as a learning exercise. No silicon test report is provided, so its hardware behavior is not confirmed.",
+   "summary": "This circuit outputs the string 'tiny tapeout' to a 7-segment display. It uses a modulo-12 counter to select which character to display and has logic to light the appropriate segments. It is implemented in Wokwi and can be tested by running the clock to scroll text or using pins to manually select characters. Silicon test reports confirm the design is working on fabricated hardware.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6884,
+  "completion_tokens": 1671,
+  "total_tokens": 8555,
+  "cost": 0.0040704,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0040704,
+   "upstream_inference_prompt_cost": 0.0020652,
+   "upstream_inference_completions_cost": 0.0020052
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0040704,
+ "elapsed_s": 30.2
+}

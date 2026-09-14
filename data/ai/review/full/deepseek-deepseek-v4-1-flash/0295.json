@@ -1,0 +1,255 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "7572ae292ffc",
+  "e7e695b36a65",
+  "c1c028dba4e4",
+  "0a35ff1bc9ac",
+  "4c2577683eae",
+  "085ed9f6ef71"
+ ],
+ "results": [
+  {
+   "key": "7572ae292ffc",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pwm",
+     "reason": "PWM is only mentioned as the internal audio output mechanism, not an exposed PWM output interface; the audio pin is a single audio_out."
+    }
+   ],
+   "add": [
+    {
+     "tag": "audio",
+     "reason": "already present"
+    },
+    {
+     "tag": "music",
+     "reason": "already present"
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "not supported; silicon_status=no reports"
+    }
+   ],
+   "notes": "Removed pwm (internal mechanism, not an exposed interface); no silicon-tested claim was proposed, but the add list is empty since audio/music already present.",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "audio",
+    "synthesizer",
+    "music",
+    "graphics",
+    "pwm",
+    "sigma-delta",
+    "verilog",
+    "multi-tile"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "audio",
+    "synthesizer",
+    "music",
+    "graphics",
+    "sigma-delta",
+    "verilog",
+    "multi-tile",
+    "silicon-tested"
+   ],
+   "summary_before": "This design renders 3D scenes to VGA using a per-scanline ray-tracing-derived algorithm and simultaneously plays a 24-voice synthesizer through a PWM audio output with delta-sigma modulation. It is controlled by eight inputs that select speedup, interlace disable, and scene advance, and it outputs standard Tiny VGA signals plus audio on a bidirectional pin. It requires a TinyVGA Pmod and Mike's audio Pmod, and it starts running immediately after reset with all inputs low. It was created for the TTSKY26a demo competition and includes a speedup option that trades PWM resolution and rendering quality for timing margin at the intended 50.4 MHz clock.",
+   "summary": "This design renders 3D scenes to VGA using a per-scanline ray-tracing-derived algorithm and simultaneously plays a 24-voice synthesizer through a PWM audio output with delta-sigma modulation. It is controlled by eight inputs that select speedup, interlace disable, and scene advance, and it outputs standard Tiny VGA signals plus audio on a bidirectional pin. It requires a TinyVGA Pmod and Mike's audio Pmod, and it starts running immediately after reset with all inputs low. It was created for the TTSKY26a demo competition and includes a speedup option that trades PWM resolution and rendering quality for timing margin at the intended 50.4 MHz clock.",
+   "summary_changed": false
+  },
+  {
+   "key": "e7e695b36a65",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "silicon-tested",
+     "reason": "silicon_status=no reports; the design has self-test modes but has not been validated on fabricated silicon."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "documentation explicitly mentions a cocotb-based CI gate level test."
+    },
+    {
+     "tag": "spi",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed unsupported silicon-tested tag; added cocotb based on documented testbench.",
+   "tags_before": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "spi",
+    "fixed-point",
+    "bist",
+    "fsm",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "neural-network",
+    "machine-learning",
+    "accelerator",
+    "spi",
+    "fixed-point",
+    "bist",
+    "fsm",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This design implements a small feedforward artificial neural network accelerator with a 4-5-1 topology, using fixed-point arithmetic for activations and weights. It is controlled via an SPI-like interface that separates weight loading from inference, allowing repeated calculations without resending weights. The chip includes four bring-up modes—normal, heartbeat, loopback, and self-test—selectable by pins, to aid post-fabrication verification without external hardware. Notable for its compact, time-multiplexed datapath and built-in self-test, it requires an SPI-capable host for real inference tasks.",
+   "summary": "This design implements a small feedforward artificial neural network accelerator with a 4-5-1 topology, using fixed-point arithmetic for activations and weights. It is controlled via an SPI-like interface that separates weight loading from inference, allowing repeated calculations without resending weights. The chip includes four bring-up modes—normal, heartbeat, loopback, and self-test—selectable by pins, to aid post-fabrication verification without external hardware. Notable for its compact, time-multiplexed datapath and built-in self-test, it requires an SPI-capable host for real inference tasks.",
+   "summary_changed": false
+  },
+  {
+   "key": "c1c028dba4e4",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "prng",
+    "7-segment",
+    "verilog",
+    "display"
+   ],
+   "tags": [
+    "prng",
+    "7-segment",
+    "verilog",
+    "display"
+   ],
+   "summary_before": "This design implements the XorShift32 algorithm to generate a 32-bit random number, which is truncated to 3 bits and displayed on a 7-segment display. It reads a 6-bit seed value from input pins while reset is asserted, and generates a new number every 1000 clock cycles after reset is deasserted. The design requires no external hardware beyond the 7-segment display. It is a compact hardware implementation of a pseudo-random number generator.",
+   "summary": "This design implements the XorShift32 algorithm to generate a 32-bit random number, which is truncated to 3 bits and displayed on a 7-segment display. It reads a 6-bit seed value from input pins while reset is asserted, and generates a new number every 1000 clock cycles after reset is deasserted. The design requires no external hardware beyond the 7-segment display. It is a compact hardware implementation of a pseudo-random number generator.",
+   "summary_changed": false
+  },
+  {
+   "key": "0a35ff1bc9ac",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The design displays time; it does not generate a clock signal. The 'clock' in the title refers to a timepiece."
+    }
+   ],
+   "add": [
+    {
+     "tag": "rtc",
+     "reason": "The design is a real-time clock showing hours, minutes, and seconds."
+    },
+    {
+     "tag": "r2r-dac",
+     "reason": "already present"
+    }
+   ],
+   "notes": "Removed clock-generator (misleading; it is a time display) and added rtc.",
+   "tags_before": [
+    "vga",
+    "clock-generator",
+    "display",
+    "text",
+    "r2r-dac",
+    "video"
+   ],
+   "tags": [
+    "vga",
+    "display",
+    "text",
+    "r2r-dac",
+    "video",
+    "rtc"
+   ],
+   "summary_before": "This design shows the time on a VGA screen using a 31.5 MHz clock, with pins for hsync, vsync, and 6-bit color output (two bits per RGB channel). It uses a pre-generated font loaded into registers and 'races the beam' to generate the display. External hardware includes an R2R DAC to convert the digital color outputs to analog VGA signals and a VGA monitor. The design supports adjusting hours, minutes, and seconds via input pins.",
+   "summary": "This design shows the time on a VGA screen using a 31.5 MHz clock, with pins for hsync, vsync, and 6-bit color output (two bits per RGB channel). It uses a pre-generated font loaded into registers and 'races the beam' to generate the display. External hardware includes an R2R DAC to convert the digital color outputs to analog VGA signals and a VGA monitor. The design supports adjusting hours, minutes, and seconds via input pins.",
+   "summary_changed": false
+  },
+  {
+   "key": "4c2577683eae",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "counter",
+    "wokwi",
+    "text"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "counter",
+    "wokwi",
+    "text"
+   ],
+   "summary_before": "This Wokwi project outputs the string 'tiny tapeout' to a 7-segment display, using a modulo-11 counter to sequence through the characters. The counter increments with a 1 Hz clock and resets after 11, determining which character is displayed. Test inputs include a reset counter, clock disable, and four test logic pins, but the testing procedure is not explained in the documentation. The truth table for the design is provided in an external spreadsheet.",
+   "summary": "This Wokwi project outputs the string 'tiny tapeout' to a 7-segment display, using a modulo-11 counter to sequence through the characters. The counter increments with a 1 Hz clock and resets after 11, determining which character is displayed. Test inputs include a reset counter, clock disable, and four test logic pins, but the testing procedure is not explained in the documentation. The truth table for the design is provided in an external spreadsheet.",
+   "summary_changed": false
+  },
+  {
+   "key": "085ed9f6ef71",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "game",
+     "reason": "Author tag 'game' is not supported by the source; the design is a UART text transformer, not a game."
+    }
+   ],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports state 'working'."
+    }
+   ],
+   "notes": "Removed unsupported 'game' tag and added silicon-tested based on the working test report.",
+   "tags_before": [
+    "uart",
+    "text",
+    "communication"
+   ],
+   "tags": [
+    "uart",
+    "text",
+    "communication",
+    "silicon-tested"
+   ],
+   "summary_before": "This design operates on a UART signal and transforms the text into 'uwu' speak. It interfaces via UART at 115200 baud with a 6 MHz clock, using dedicated receive and transmit pins. It is intended to be connected inline with a UART transceiver to modify data in real time. Silicon testing confirmed it works, with a tester using a serial terminal to send data and receiving the uwuified version back.",
+   "summary": "This design operates on a UART signal and transforms the text into 'uwu' speak. It interfaces via UART at 115200 baud with a 6 MHz clock, using dedicated receive and transmit pins. It is intended to be connected inline with a UART transceiver to modify data in real time. Silicon testing confirmed it works, with a tester using a serial terminal to send data and receiving the uwuified version back.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9076,
+  "completion_tokens": 1315,
+  "total_tokens": 10391,
+  "cost": 0.002145106,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3378,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002145106,
+   "upstream_inference_prompt_cost": 0.001277206,
+   "upstream_inference_completions_cost": 0.0008679
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002145106,
+ "elapsed_s": 16.4
+}

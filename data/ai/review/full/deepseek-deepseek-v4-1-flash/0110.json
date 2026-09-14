@@ -1,0 +1,221 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "6725b3169619",
+  "1258f3f2f92c",
+  "7c4f4771ab4e",
+  "f6dab9650cb2",
+  "30ebd62dff91",
+  "379769fc6425"
+ ],
+ "results": [
+  {
+   "key": "6725b3169619",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "PRBS is a deterministic bit sequence, not a general-purpose pseudo-random number generator; the source only describes PRBS15 generation/checking."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sequence-detector",
+     "reason": "The design checks the PRBS15 sequence and flags errors, which is sequence detection."
+    }
+   ],
+   "notes": "Removed prng because PRBS is not a general PRNG; added sequence-detector for the checker function.",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "wokwi"
+   ],
+   "tags": [
+    "lfsr",
+    "wokwi",
+    "sequence-detector"
+   ],
+   "summary_before": "This design generates and checks PRBS15 sequences using an LFSR. It can be enabled to generate the sequence and, when in check mode, compares the output to detect errors. Testing requires a logic analyzer and jumper leads to monitor the error and checked signals. The design is a straightforward implementation of a pseudo-random bit sequence generator and checker.",
+   "summary": "This design generates and checks PRBS15 sequences using an LFSR. It can be enabled to generate the sequence and, when in check mode, compares the output to detect errors. Testing requires a logic analyzer and jumper leads to monitor the error and checked signals. The design is a straightforward implementation of a pseudo-random bit sequence generator and checker.",
+   "summary_changed": false
+  },
+  {
+   "key": "1258f3f2f92c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fpga",
+     "reason": "The source only calls it an 'FPGA attempt' with no evidence of targeting or porting from an FPGA platform."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "The how-it-works section is a TODO and the documentation is very thin."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not describe the implementation."
+    }
+   ],
+   "notes": "Removed fpga as unsupported; added incomplete and insufficient-doc for the TODO-only documentation.",
+   "tags_before": [
+    "counter",
+    "7-segment",
+    "fpga"
+   ],
+   "tags": [
+    "counter",
+    "7-segment",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is an attempt to implement a simple FPGA-like counter on TinyTapeout. After reset, a counter increments every second, with the value displayed on a 7-segment display. The documentation is minimal, with only a TODO for how it works. It serves as a basic test of counter functionality and display driving.",
+   "summary": "This project is an attempt to implement a simple counter on TinyTapeout. After reset, a counter increments every second, with the value displayed on a 7-segment display. The documentation is minimal, with only a TODO for how it works. It serves as a basic test of counter functionality and display driving.",
+   "summary_changed": true
+  },
+  {
+   "key": "7c4f4771ab4e",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "tags": [
+    "lfsr",
+    "prng",
+    "shift-register",
+    "verilog"
+   ],
+   "summary_before": "This design implements an 8-bit configurable Galois linear-feedback shift register (LFSR). It has three modes: normal shift, set shift register, and set XOR mask, allowing the user to configure the feedback polynomial. Data is loaded 4 bits at a time over two cycles, and the full 8-bit state is available on the outputs. The documentation is minimal, but the pin names and description indicate the basic operation.",
+   "summary": "This design implements an 8-bit configurable Galois linear-feedback shift register (LFSR). It has three modes: normal shift, set shift register, and set XOR mask, allowing the user to configure the feedback polynomial. Data is loaded 4 bits at a time over two cycles, and the full 8-bit state is available on the outputs. The documentation is minimal, but the pin names and description indicate the basic operation.",
+   "summary_changed": false
+  },
+  {
+   "key": "f6dab9650cb2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "bit-serial",
+     "reason": "The design latches 4-bit nibbles over several cycles, not one bit per clock."
+    },
+    {
+     "tag": "combinational",
+     "reason": "The design uses clocked latching and sequential nibble loading, so it is not purely combinational."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sequential-logic",
+     "reason": "The multiplier latches nibbles over multiple clock cycles using valid and clock signals."
+    }
+   ],
+   "notes": "Removed bit-serial and combinational; added sequential-logic for the clocked nibble latching.",
+   "tags_before": [
+    "multiplier",
+    "bit-serial",
+    "combinational"
+   ],
+   "tags": [
+    "multiplier",
+    "sequential-logic"
+   ],
+   "summary_before": "This design is an 8-bit multiplier that processes two 8-bit numbers in 4-bit chunks (nibbles) over multiple clock cycles. It uses a valid signal to latch each nibble sequentially, and a toggle bit to select which half of the 16-bit result is output on the 8-bit output pins. The multiplication is performed in a bit-serial fashion, requiring several clock cycles per operation. The design is notable for its minimal interface and chunked processing approach.",
+   "summary": "This design is an 8-bit multiplier that processes two 8-bit numbers in 4-bit chunks (nibbles) over multiple clock cycles. It uses a valid signal to latch each nibble sequentially, and a toggle bit to select which half of the 16-bit result is output on the 8-bit output pins. The multiplication is performed over several clock cycles, requiring sequential nibble loading. The design is notable for its minimal interface and chunked processing approach.",
+   "summary_changed": true
+  },
+  {
+   "key": "30ebd62dff91",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "divider",
+     "reason": "The canonical divider tag means a digital divider circuit (arithmetic), not a clock frequency divider."
+    }
+   ],
+   "add": [],
+   "notes": "Removed divider because it denotes arithmetic division, not clock frequency division.",
+   "tags_before": [
+    "clock-divider",
+    "divider",
+    "wokwi"
+   ],
+   "tags": [
+    "clock-divider",
+    "wokwi"
+   ],
+   "summary_before": "This project divides the input clock frequency by 2 raised to the power of a 4-bit binary number entered via input pins. It outputs the divided clock on a single pin. The design is implemented in Wokwi and can be tested by entering a binary number and probing the output. The documentation is very brief and lacks detailed implementation or testing information.",
+   "summary": "This project divides the input clock frequency by 2 raised to the power of a 4-bit binary number entered via input pins. It outputs the divided clock on a single pin. The design is implemented in Wokwi and can be tested by entering a binary number and probing the output. The documentation is very brief and lacks detailed implementation or testing information.",
+   "summary_changed": false
+  },
+  {
+   "key": "379769fc6425",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state any teaching or learning intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "text",
+     "reason": "The design displays the word H-O-L-A as letters on a seven-segment display."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin and does not explain the internal logic or input mapping."
+    }
+   ],
+   "notes": "Removed education as unsupported; added text and insufficient-doc for the letter display and thin documentation.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "wokwi",
+    "text",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design uses two input bits to sequentially display the letters H, O, L and A on a seven-segment display. The four combinations 00, 01, 10 and 11 select which letter is shown. The project is described in Spanish and appears to be a simple demonstration or test chip. The documentation is very thin and does not explain the internal logic or the exact mapping of inputs to letters.",
+   "summary": "This design uses two input bits to sequentially display the letters H, O, L and A on a seven-segment display. The four combinations 00, 01, 10 and 11 select which letter is shown. The project is described in Spanish and appears to be a simple demonstration or test chip. The documentation is very thin and does not explain the internal logic or the exact mapping of inputs to letters.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5682,
+  "completion_tokens": 1294,
+  "total_tokens": 6976,
+  "cost": 0.0032574,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0032574,
+   "upstream_inference_prompt_cost": 0.0017046,
+   "upstream_inference_completions_cost": 0.0015528
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0032574,
+ "elapsed_s": 11.2
+}

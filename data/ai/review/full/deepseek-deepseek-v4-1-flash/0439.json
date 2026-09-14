@@ -1,0 +1,274 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f34f0104e142",
+  "8e2ef7044631",
+  "60c32e1357b2",
+  "274ce555d6e9",
+  "9ab24b45bacb",
+  "5b27215b5f34"
+ ],
+ "results": [
+  {
+   "key": "f34f0104e142",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "8b10b is a line code, but the design is a cell-library test structure, not a communication protocol design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "Explicitly described as a test for a high-speed cell library."
+    },
+    {
+     "tag": "factory-test",
+     "reason": "Test structure for characterizing a cell library."
+    }
+   ],
+   "notes": "Removed communication tag; added characterization and factory-test tags to reflect the cell-library test purpose.",
+   "tags_before": [
+    "decoder",
+    "multiplier",
+    "communication",
+    "standard-cell",
+    "verilog",
+    "silicon-tested"
+   ],
+   "tags": [
+    "decoder",
+    "multiplier",
+    "standard-cell",
+    "verilog",
+    "silicon-tested",
+    "characterization",
+    "factory-test"
+   ],
+   "summary_before": "This design implements an 8b10b decoder and a multiplier, intended as a test for a high-speed cell library. The decoder looks for the K.28.5 symbol to establish synchronization and then decodes subsequent data symbols. The multiplier operates on the decoded data. The design was tested at 200MHz and basic functionality was verified.",
+   "summary": "This design implements an 8b10b decoder and a multiplier, intended as a test for a high-speed cell library. The decoder looks for the K.28.5 symbol to establish synchronization and then decodes subsequent data symbols. The multiplier operates on the decoded data. The author tested basic functionality with a modified cocotb script and verified decode and multiplier operation at a 200 MHz clock.",
+   "summary_changed": true
+  },
+  {
+   "key": "8e2ef7044631",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "Three push-button inputs are used for game control."
+    },
+    {
+     "tag": "audio",
+     "reason": "Optional passive buzzer provides sound effects."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added button and audio tags supported by the pinout and documentation.",
+   "tags_before": [
+    "game",
+    "vga",
+    "display",
+    "buzzer",
+    "fsm",
+    "verilog",
+    "silicon-tested",
+    "education"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "display",
+    "buzzer",
+    "fsm",
+    "verilog",
+    "silicon-tested",
+    "button",
+    "audio"
+   ],
+   "summary_before": "This project implements a Connect Four game with VGA output and optional sound via a buzzer. The game state is stored in flip-flops and updated via a state machine. User input is through three buttons for moving left, right, and dropping a piece. The design includes modules for debouncing, VGA control, victory checking, and sound generation.",
+   "summary": "This project implements a Connect Four game with VGA output and optional sound via a buzzer. The game state is stored in flip-flops and updated via a state machine. User input is through three buttons for moving left, right, and dropping a piece. The design includes modules for debouncing, VGA control, victory checking, and sound generation.",
+   "summary_changed": false
+  },
+  {
+   "key": "60c32e1357b2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No evidence the project is intended for teaching or learning."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "Created as an SJSU summer project, i.e., a class activity."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added workshop tag for the SJSU summer project context.",
+   "tags_before": [
+    "game-of-life",
+    "cellular-automaton",
+    "vga",
+    "display",
+    "verilog",
+    "education"
+   ],
+   "tags": [
+    "game-of-life",
+    "cellular-automaton",
+    "vga",
+    "display",
+    "verilog",
+    "workshop"
+   ],
+   "summary_before": "This project simulates Conway's Game of Life using digital logic and outputs the cellular automaton patterns via VGA. The simulation runs automatically upon power-up, and can be paused or randomized via input pins. It requires a Tiny Tapeout VGA Pmod for display. The design is a hardware implementation of a classic cellular automaton, created as a summer project at SJSU.",
+   "summary": "This project simulates Conway's Game of Life using digital logic and outputs the cellular automaton patterns via VGA. The simulation runs automatically upon power-up, and can be paused or randomized via input pins. It requires a Tiny Tapeout VGA Pmod for display. The design is a hardware implementation of a classic cellular automaton, created as a summer project at SJSU.",
+   "summary_changed": false
+  },
+  {
+   "key": "274ce555d6e9",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "decoder",
+     "reason": "The design drives an external multiplexer; it does not implement a decoder."
+    },
+    {
+     "tag": "factory-test",
+     "reason": "The cable test is not a chip factory self-test structure."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "Used as a cable assembly test tool, a measurement application."
+    },
+    {
+     "tag": "industrial",
+     "reason": "Cable assembly testing is an industrial control/measurement application."
+    }
+   ],
+   "notes": "Removed decoder and factory-test tags; added instrumentation and industrial tags for the cable test application.",
+   "tags_before": [
+    "decoder",
+    "multiplexer",
+    "factory-test",
+    "clock-divider",
+    "fpga"
+   ],
+   "tags": [
+    "multiplexer",
+    "clock-divider",
+    "fpga",
+    "instrumentation",
+    "industrial"
+   ],
+   "summary_before": "This design drives an external ADG732 32-channel multiplexer, cycling through output channels at 1 Hz to test multistrand cables. It divides a 10 MHz clock to 1 Hz and generates chip select and write signals for the multiplexer. Testing can be done with an FPGA (e.g., iCE40) or with the actual ADG732 chip on a custom PCB. The project originated as a cable assembly test tool.",
+   "summary": "This design drives an external ADG732 32-channel multiplexer, cycling through output channels at 1 Hz to test multistrand cables. It divides a 10 MHz clock to 1 Hz and generates chip select and write signals for the multiplexer. Testing can be done with an FPGA (e.g., iCE40) or with the actual ADG732 chip on a custom PCB. The project originated as a cable assembly test tool.",
+   "summary_changed": false
+  },
+  {
+   "key": "9ab24b45bacb",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "No evidence the design is built from discrete transistors rather than standard cells."
+    },
+    {
+     "tag": "current-mirror",
+     "reason": "No current mirror is mentioned in the documentation."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported transistor-level and current-mirror tags; documentation does not mention these details.",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "transistor-level",
+    "current-mirror"
+   ],
+   "tags": [
+    "opamp",
+    "analog"
+   ],
+   "summary_before": "This is a two-stage CMOS operational amplifier with Miller compensation. It requires an 8 µA bias current and a 1.8 V DC supply. The differential inputs are V+ and V-, and the output is Vout. The documentation is very brief, providing only basic operating conditions.",
+   "summary": "This is a two-stage CMOS operational amplifier with Miller compensation. It requires an 8 µA bias current and a 1.8 V DC supply. The differential inputs are V+ and V-, and the output is Vout. The documentation is very brief, providing only basic operating conditions.",
+   "summary_changed": false
+  },
+  {
+   "key": "5b27215b5f34",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "clock-generator",
+     "reason": "The PLL generates a clock, but the primary function is frequency synthesis; clock-generator is redundant and less specific."
+    }
+   ],
+   "add": [
+    {
+     "tag": "frequency-synthesizer",
+     "reason": "The PLL is a programmable frequency synthesis circuit."
+    },
+    {
+     "tag": "mixed-signal",
+     "reason": "Combines analog PLL blocks with digital control and outputs."
+    }
+   ],
+   "notes": "Replaced clock-generator with frequency-synthesizer and added mixed-signal tag to better reflect the PLL's function and analog/digital nature.",
+   "tags_before": [
+    "pll",
+    "rf",
+    "vco",
+    "clock-divider",
+    "analog",
+    "clock-generator"
+   ],
+   "tags": [
+    "pll",
+    "rf",
+    "vco",
+    "clock-divider",
+    "analog",
+    "frequency-synthesizer",
+    "mixed-signal"
+   ],
+   "summary_before": "This is a 2.4 GHz integer-N PLL with an output divide-by-100, producing a frequency range of 19.2–25.2 MHz. It uses a 20 MHz reference clock and allows digital control of the divider factor and VCO discrete tuning to overcome process variation. Outputs include an analog pin (FOUT) and two digital pins, with an analog control voltage pin (VCON) for observation. The design is analog and requires an external 20 MHz clock.",
+   "summary": "This is a 2.4 GHz integer-N PLL with an output divide-by-100, producing a frequency range of 19.2–25.2 MHz. It uses a 20 MHz reference clock and allows digital control of the divider factor and VCO discrete tuning to overcome process variation. Outputs include an analog pin (FOUT) and two digital pins, with an analog control voltage pin (VCON) for observation. The design is analog and requires an external 20 MHz clock.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7442,
+  "completion_tokens": 1395,
+  "total_tokens": 8837,
+  "cost": 0.0039066,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0039066,
+   "upstream_inference_prompt_cost": 0.0022326,
+   "upstream_inference_completions_cost": 0.001674
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0039066,
+ "elapsed_s": 7.4
+}

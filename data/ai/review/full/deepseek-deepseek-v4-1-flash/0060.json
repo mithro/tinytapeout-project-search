@@ -1,0 +1,259 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "1b796b384bfe",
+  "18ce4df69b60",
+  "2b28d95d26c5",
+  "9529aa2f9a19",
+  "3b9f62aa955c",
+  "d93c974951b8"
+ ],
+ "results": [
+  {
+   "key": "1b796b384bfe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "mixed-signal",
+     "reason": "No evidence of combined analog and digital design beyond pin names; documentation is TBD."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is essentially empty (TBD for how it works, test, hardware)."
+    }
+   ],
+   "notes": "Removed mixed-signal (unsupported) and confirmed insufficient-doc; summary unchanged.",
+   "tags_before": [
+    "analog",
+    "sigma-delta",
+    "adc",
+    "bandgap",
+    "mixed-signal",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "analog",
+    "sigma-delta",
+    "adc",
+    "bandgap",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is an analog delta-sigma analog-to-digital converter with a band-gap reference, implemented in a 1x2 tile analog design. The documentation is essentially empty, with 'TBD' for how it works, how to test, and external hardware. The pin names suggest an analog input, bit selection, enable, clock, and multiple digital outputs, but no functional details are provided. Because there is no usable documentation, the design cannot be evaluated or reproduced from the given information.",
+   "summary": "This project is an analog delta-sigma analog-to-digital converter with a band-gap reference, implemented in a 1x2 tile analog design. The documentation is essentially empty, with 'TBD' for how it works, how to test, and external hardware. The pin names suggest an analog input, bit selection, enable, clock, and multiple digital outputs, but no functional details are provided. Because there is no usable documentation, the design cannot be evaluated or reproduced from the given information.",
+   "summary_changed": false
+  },
+  {
+   "key": "18ce4df69b60",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No statement that the design is intended for teaching or learning; only the author calls themselves a beginner."
+    },
+    {
+     "tag": "demoscene",
+     "reason": "A bouncing logo is not described as a demoscene-style showcase."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is very thin ('I'm a beginner, hoping this works', 'Test 123')."
+    }
+   ],
+   "notes": "Removed education and demoscene as unsupported; added insufficient-doc.",
+   "tags_before": [
+    "vga",
+    "graphics",
+    "display",
+    "education",
+    "demoscene",
+    "verilog"
+   ],
+   "tags": [
+    "vga",
+    "graphics",
+    "display",
+    "verilog",
+    "insufficient-doc"
+   ],
+   "summary_before": "This design displays a bouncing logo on a VGA monitor, using the standard Tiny VGA pinout for color and sync signals. It is a beginner project with minimal documentation, described only as 'v1 logo bouncing' with a test note of 'Test 123'. The implementation is in Verilog and requires a VGA monitor and a Tiny VGA PMOD for external connection. No silicon test results or detailed functionality are provided.",
+   "summary": "This design displays a bouncing logo on a VGA monitor, using the standard Tiny VGA pinout for color and sync signals. It is a beginner project with minimal documentation, described only as 'v1 logo bouncing' with a test note of 'Test 123'. The implementation is in Verilog and requires a VGA monitor and a Tiny VGA PMOD for external connection. No silicon test results or detailed functionality are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "2b28d95d26c5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "adc",
+     "reason": "No analog-to-digital converter is described; only a parallel digital temperature word and an oscillator output."
+    },
+    {
+     "tag": "sensor-interface",
+     "reason": "No generic sensor input interface is present; the block is itself the sensor."
+    }
+   ],
+   "add": [
+    {
+     "tag": "insufficient-doc",
+     "reason": "Only title and pin names are provided; no functional documentation."
+    }
+   ],
+   "notes": "Removed adc and sensor-interface as unsupported; added insufficient-doc.",
+   "tags_before": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "adc",
+    "sensor-interface",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "temperature-sensor",
+    "analog",
+    "oscillator",
+    "insufficient-doc"
+   ],
+   "summary_before": "This analog block is a temperature sensor built by a student group. The pins provide start and power-up controls, an eight-bit parallel temperature output, and a temperature-dependent oscillator output. No documentation is provided beyond the title and pin names, so the exact encoding and accuracy of the eight-bit value are unknown. The design would be used by powering it up, starting a conversion, and reading the digital temperature word, but the lack of documentation makes its capabilities difficult to assess.",
+   "summary": "This analog block is a temperature sensor built by a student group. The pins provide start and power-up controls, an eight-bit parallel temperature output, and a temperature-dependent oscillator output. No documentation is provided beyond the title and pin names, so the exact encoding and accuracy of the eight-bit value are unknown. The design would be used by powering it up, starting a conversion, and reading the digital temperature word, but the lack of documentation makes its capabilities difficult to assess.",
+   "summary_changed": false
+  },
+  {
+   "key": "9529aa2f9a19",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states partial working on fabricated silicon."
+    },
+    {
+     "tag": "audio",
+     "reason": "TT Audio pinout and audio output pin present."
+    },
+    {
+     "tag": "music",
+     "reason": "Documentation states it generates simple music."
+    }
+   ],
+   "notes": "Added silicon-tested, audio, and music; expanded summary to four sentences.",
+   "tags_before": [
+    "demoscene",
+    "vga",
+    "graphics",
+    "audio",
+    "music",
+    "verilog"
+   ],
+   "tags": [
+    "demoscene",
+    "vga",
+    "graphics",
+    "audio",
+    "music",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "Munch displays a munching squares animation on a VGA monitor while generating simple music through an audio PMOD.",
+   "summary": "Munch displays a munching squares animation on a VGA monitor while generating simple music through an audio PMOD. It uses the Tiny VGA and TT Audio pinouts and is implemented in Verilog. The author notes it works but requires a manual reset to sync the music properly. The design targets a 25.175 MHz input clock and was tested on fabricated silicon with partial success.",
+   "summary_changed": true
+  },
+  {
+   "key": "3b9f62aa955c",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "analog",
+    "reconfigurable",
+    "education",
+    "transistor-level",
+    "full-custom",
+    "shift-register",
+    "silicon-tested"
+   ],
+   "tags": [
+    "analog",
+    "reconfigurable",
+    "education",
+    "transistor-level",
+    "full-custom",
+    "shift-register",
+    "silicon-tested"
+   ],
+   "summary_before": "This project is an alternative layout for Andrew Kang's mini-MOSbius, a reconfigurable analog array intended for building and experimenting with MOS circuits, adapted for SKY130 on Tiny Tapeout. It includes analog switches controlled by a serial bitstream, with digital logic for configuration, and it requires external hardware to generate the bitstream and to interface with the analog pins depending on the circuit being built. Silicon test reports indicate that the configuration shift registers work and that various circuits functioned properly. The design is notable for bringing the MOSbius educational concept to a Tiny Tapeout-compatible form, though the software suite for generating configuration bitstreams is not yet written.",
+   "summary": "This project is an alternative layout for Andrew Kang's mini-MOSbius, a reconfigurable analog array intended for building and experimenting with MOS circuits, adapted for SKY130 on Tiny Tapeout. It includes analog switches controlled by a serial bitstream, with digital logic for configuration, and it requires external hardware to generate the bitstream and to interface with the analog pins depending on the circuit being built. Silicon test reports indicate that the configuration shift registers work and that various circuits functioned properly. The design is notable for bringing the MOSbius educational concept to a Tiny Tapeout-compatible form, though the software suite for generating configuration bitstreams is not yet written.",
+   "summary_changed": false
+  },
+  {
+   "key": "d93c974951b8",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "timer",
+     "reason": "No programmable timer block is described; the period counter is part of the frequency measurement."
+    }
+   ],
+   "add": [
+    {
+     "tag": "instrumentation",
+     "reason": "Frequency measurement application."
+    },
+    {
+     "tag": "debouncer",
+     "reason": "Documentation states the input signal is debounced."
+    }
+   ],
+   "notes": "Removed timer as unsupported; added instrumentation and debouncer.",
+   "tags_before": [
+    "frequency-counter",
+    "7-segment",
+    "counter",
+    "timer",
+    "verilog"
+   ],
+   "tags": [
+    "frequency-counter",
+    "7-segment",
+    "counter",
+    "verilog",
+    "instrumentation",
+    "debouncer"
+   ],
+   "summary_before": "This design measures the frequency of an input signal by counting transitions over a configurable period and displays the result on a 7-segment display. It includes a debug mode that outputs internal signals on the bidirectional pins and allows the user to load a new count period via an input. The frequency is computed by repeatedly subtracting ten from the count and displaying the tens and units digits. The design requires a 10 MHz clock and external hardware such as a signal source and a 7-segment display.",
+   "summary": "This design measures the frequency of an input signal by counting transitions over a configurable period and displays the result on a 7-segment display. It includes a debug mode that outputs internal signals on the bidirectional pins and allows the user to load a new count period via an input. The frequency is computed by repeatedly subtracting ten from the count and displaying the tens and units digits. The design requires a 10 MHz clock and external hardware such as a signal source and a 7-segment display.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6411,
+  "completion_tokens": 1204,
+  "total_tokens": 7615,
+  "cost": 0.002069733,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002069733,
+   "upstream_inference_prompt_cost": 0.000841653,
+   "upstream_inference_completions_cost": 0.00122808
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002069733,
+ "elapsed_s": 37.8
+}

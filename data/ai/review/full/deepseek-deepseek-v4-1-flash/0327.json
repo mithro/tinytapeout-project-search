@@ -1,0 +1,272 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "ea300a07901e",
+  "f9c0dd19cc19",
+  "713849f4dada",
+  "15892cb96f19",
+  "056dfc60799d",
+  "192a9f04aa10"
+ ],
+ "results": [
+  {
+   "key": "ea300a07901e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "asic",
+     "reason": "No evidence of ASIC-specific implementation beyond standard Tiny Tapeout flow; not supported by source."
+    }
+   ],
+   "add": [
+    {
+     "tag": "cocotb",
+     "reason": "Source states a cocotb suite with 22 tests was used for verification."
+    }
+   ],
+   "notes": "Removed unsupported 'asic' tag and added 'cocotb' based on explicit verification evidence.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "machine-learning",
+    "spi",
+    "lookup-table",
+    "verilog",
+    "asic"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "machine-learning",
+    "spi",
+    "lookup-table",
+    "verilog",
+    "cocotb"
+   ],
+   "summary_before": "This project is a digital spike-timing-dependent plasticity (STDP) learning controller with a programmable LUT, configurable learning rate, reward-gated updates, anti-Hebbian mode, and an eligibility trace. It captures pre- and post-synaptic spike timestamps, computes weight changes, and outputs update signals. Configuration is done via SPI, and it requires external spike sources and an optional reward signal. The design is notable for its biologically inspired features and comprehensive test suite.",
+   "summary": "This project is a digital spike-timing-dependent plasticity (STDP) learning controller with a programmable LUT, configurable learning rate, reward-gated updates, anti-Hebbian mode, and an eligibility trace. It captures pre- and post-synaptic spike timestamps, computes weight changes, and outputs update signals. Configuration is done via SPI, and it requires external spike sources and an optional reward signal. A cocotb test suite covers reset, SPI register access, LUT programming, reward gating, anti-Hebbian inversion, and eligibility-trace decay.",
+   "summary_changed": true
+  },
+  {
+   "key": "f9c0dd19cc19",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "Password protection is a functional feature, not a hardware security-focused design; no security threat model or defense is described."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'security' tag as password protection alone does not constitute a hardware security design.",
+   "tags_before": [
+    "watchdog",
+    "timer",
+    "counter",
+    "security",
+    "verilog",
+    "cocotb",
+    "sequential-logic"
+   ],
+   "tags": [
+    "watchdog",
+    "timer",
+    "counter",
+    "verilog",
+    "cocotb",
+    "sequential-logic"
+   ],
+   "summary_before": "This design implements a configurable 32-bit watchdog timer with optional password protection. It features a down-counter that generates a timeout event if not fed, and supports password modes to prevent accidental writes. The design is verified using Cocotb simulation, covering reset, enable, timeout, password, and feed functionality. It requires no external hardware and is intended for integration into larger systems.",
+   "summary": "This design implements a configurable 32-bit watchdog timer with optional password protection. It features a down-counter that generates a timeout event if not fed, and supports password modes to prevent accidental writes. The design is verified using Cocotb simulation, covering reset, enable, timeout, password, and feed functionality. It requires no external hardware and is intended for integration into larger systems.",
+   "summary_changed": false
+  },
+  {
+   "key": "713849f4dada",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "fsm",
+     "reason": "No finite state machine is described in the source; the design uses physics, pipe generation, collision detection, and rendering modules."
+    }
+   ],
+   "add": [
+    {
+     "tag": "button",
+     "reason": "Source specifies START and JUMP pushbutton inputs on ui[0] and ui[1]."
+    },
+    {
+     "tag": "sprite",
+     "reason": "Source describes drawing a bird and pipe as moving graphical objects, consistent with sprite-based rendering."
+    }
+   ],
+   "notes": "Removed unsupported 'fsm' tag and added 'button' and 'sprite' based on explicit pin and rendering descriptions.",
+   "tags_before": [
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "fsm",
+    "systemverilog"
+   ],
+   "tags": [
+    "game",
+    "vga",
+    "display",
+    "graphics",
+    "systemverilog",
+    "button",
+    "sprite"
+   ],
+   "summary_before": "Flappy VGA is a simplified Flappy Bird-style game implemented entirely in digital logic, generating VGA timing and rendering a bird, moving pipes, ground, and background in real time. A physics module applies gravity and responds to a jump button, while collision detection ends the game when the bird hits a pipe or the ground. The design outputs 2-bit RGB with HSYNC and VSYNC and requires a Tiny VGA PMOD or resistor-DAC circuit plus a VGA monitor and two push buttons. It is notable for implementing a complete interactive game with sprite rendering and collision logic in a small tile area.",
+   "summary": "Flappy VGA is a simplified Flappy Bird-style game implemented entirely in digital logic, generating VGA timing and rendering a bird, moving pipes, ground, and background in real time. A physics module applies gravity and responds to a jump button, while collision detection ends the game when the bird hits a pipe or the ground. The design outputs 2-bit RGB with HSYNC and VSYNC and requires a Tiny VGA PMOD or resistor-DAC circuit plus a VGA monitor and two push buttons. It is notable for implementing a complete interactive game with sprite rendering and collision logic in a small tile area.",
+   "summary_changed": false
+  },
+  {
+   "key": "15892cb96f19",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "industrial",
+     "reason": "Garage door control is a consumer/automotive application, not an industrial control application."
+    },
+    {
+     "tag": "education",
+     "reason": "Source does not state the design is intended for teaching or learning; it is a functional garage door controller."
+    }
+   ],
+   "add": [
+    {
+     "tag": "automotive",
+     "reason": "Garage door opener control is an automotive-adjacent application."
+    },
+    {
+     "tag": "button",
+     "reason": "Source specifies a single pushbutton input (btn) for open/close/stop control."
+    }
+   ],
+   "notes": "Removed unsupported 'industrial' and 'education' tags; added 'automotive' and 'button' based on application and pin evidence.",
+   "tags_before": [
+    "fsm",
+    "motor-control",
+    "sensor-interface",
+    "industrial",
+    "education",
+    "verilog"
+   ],
+   "tags": [
+    "fsm",
+    "motor-control",
+    "sensor-interface",
+    "verilog",
+    "automotive",
+    "button"
+   ],
+   "summary_before": "This project implements a finite state machine that controls an automatic garage door opener, handling open, close, and stop commands from a single button plus position and obstruction sensors. Outputs drive an up motor and a down motor, and an obstruction input causes the door to stop and reverse while closing. Testing can be done with two LEDs on the motor outputs or with an H-bridge and DC motor, and the design is a straightforward educational FSM example. The documentation is clear but brief, and the design is small and self-contained.",
+   "summary": "This project implements a finite state machine that controls an automatic garage door opener, handling open, close, and stop commands from a single button plus position and obstruction sensors. Outputs drive an up motor and a down motor, and an obstruction input causes the door to stop and reverse while closing. Testing can be done with two LEDs on the motor outputs or with an H-bridge and DC motor. The documentation is clear but brief, and the design is small and self-contained.",
+   "summary_changed": true
+  },
+  {
+   "key": "056dfc60799d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "communication",
+     "reason": "The TX/RX signals are simple status flags, not a data communication protocol design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sensor-interface",
+     "reason": "Source describes a clot detection sensor input on ui[0]."
+    }
+   ],
+   "notes": "Removed 'communication' as the TX/RX are simple flags, not a protocol; added 'sensor-interface' for the clot detection input.",
+   "tags_before": [
+    "fsm",
+    "robotics",
+    "biomedical",
+    "motor-control",
+    "communication",
+    "verilog"
+   ],
+   "tags": [
+    "fsm",
+    "robotics",
+    "biomedical",
+    "motor-control",
+    "verilog",
+    "sensor-interface"
+   ],
+   "summary_before": "This project implements a finite state machine for a swarm microrobot drug delivery system, handling clot detection, communication, drug release, and motor control. It uses two inputs for local clot detection and nearby robot signals, and outputs drug release commands, transmission signals, and motor enables. The FSM has four states and includes a drug-available register that is cleared after release. No external hardware is required for the core logic, and the design is documented with a detailed test procedure.",
+   "summary": "This project implements a finite state machine for a swarm microrobot drug delivery system, handling clot detection, communication, drug release, and motor control. It uses two inputs for local clot detection and nearby robot signals, and outputs drug release commands, transmission signals, and motor enables. The FSM has four states and includes a drug-available register that is cleared after release. No external hardware is required for the core logic, and the design is documented with a detailed test procedure.",
+   "summary_changed": false
+  },
+  {
+   "key": "192a9f04aa10",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "vco",
+     "reason": "The design uses a voltage-controlled MUX to select between fixed ring oscillators, not a voltage-controlled oscillator."
+    }
+   ],
+   "add": [
+    {
+     "tag": "characterization",
+     "reason": "Source explicitly describes test structures for oscillator characterization and process evaluation."
+    },
+    {
+     "tag": "voltage-reference",
+     "reason": "Source includes a resistor-ladder voltage reference (bandgap reference divider)."
+    }
+   ],
+   "notes": "Removed 'vco' as selection is via MUX not voltage control; added 'characterization' and 'voltage-reference' based on explicit test structures.",
+   "tags_before": [
+    "ring-oscillator",
+    "analog",
+    "clock-generator",
+    "vco",
+    "bandgap",
+    "oscillator"
+   ],
+   "tags": [
+    "ring-oscillator",
+    "analog",
+    "clock-generator",
+    "bandgap",
+    "oscillator",
+    "characterization",
+    "voltage-reference"
+   ],
+   "summary_before": "This project implements a configurable analog clock generation unit with a voltage-controlled MUX selecting between 3, 5, and 7-stage ring oscillators on the Sky130 process. The selection is based on a DC voltage applied to an analog input, with eight 200mV thresholds across the 0-1.8V range. Additional test structures include frequency dividers, a capacitor-loaded oscillator, and a resistor-ladder voltage reference. Testing requires a lab DC power supply and oscilloscope, and the design is notable for its analog configurability and inclusion of characterization structures.",
+   "summary": "This project implements a configurable analog clock generation unit with a voltage-controlled MUX selecting between 3, 5, and 7-stage ring oscillators on the Sky130 process. The selection is based on a DC voltage applied to an analog input, with eight 200mV thresholds across the 0-1.8V range. Additional test structures include frequency dividers, a capacitor-loaded oscillator, and a resistor-ladder voltage reference. Testing requires a lab DC power supply and oscilloscope, and the design is notable for its analog configurability and inclusion of characterization structures.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 9120,
+  "completion_tokens": 1586,
+  "total_tokens": 10706,
+  "cost": 0.0046392,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0046392,
+   "upstream_inference_prompt_cost": 0.002736,
+   "upstream_inference_completions_cost": 0.0019032
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0046392,
+ "elapsed_s": 8.3
+}

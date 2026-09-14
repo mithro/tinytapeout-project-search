@@ -1,0 +1,342 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "05f3fb720dfe",
+  "c03d12703eb2",
+  "9d9e7767845d",
+  "53ddcf37ba83",
+  "f0c031d6c3b6",
+  "28f20cb79703"
+ ],
+ "results": [
+  {
+   "key": "05f3fb720dfe",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "pipeline",
+     "reason": "The source does not describe a pipelined datapath; it only mentions 4-cycle serial byte input."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The project has a clear title and pin functions plus a basic operational description, so it is not too sparse to describe the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multiplier",
+     "reason": "The design performs bfloat16 multiplication."
+    },
+    {
+     "tag": "floating-point",
+     "reason": "The design operates on bfloat16 floating-point values."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "Data is sent and returned byte-wise over multiple cycles, indicating a bit/byte-serial interface."
+    },
+    {
+     "tag": "sequential-logic",
+     "reason": "Operation spans multiple clock cycles with valid handshaking."
+    }
+   ],
+   "notes": "Removed unsupported pipeline and insufficient-doc tags, added multiplier/floating-point/bit-serial/sequential-logic, and rewrote the summary to match the thin source.",
+   "tags_before": [
+    "floating-point",
+    "multiplier",
+    "pipeline",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "floating-point",
+    "multiplier",
+    "bit-serial",
+    "sequential-logic"
+   ],
+   "summary_before": "This design performs bfloat16 multiplication, accepting data as four bytes over four cycles with a valid signal and producing the result byte-wise along with valid and early-valid indicators. The documentation consists only of informal instructions and does not provide a clear description of the operation or testing procedure. No external hardware is required for use. Due to the lack of detailed documentation, confidence in the tags and summary is limited.",
+   "summary": "This design performs bfloat16 multiplication. It accepts two values as four bytes over four cycles with a valid signal and produces the result byte-wise along with valid and early-valid indicators. No external hardware is required and testing is not documented beyond informal notes. It is a very fast but little-documented bfloat16 multiplier.",
+   "summary_changed": true
+  },
+  {
+   "key": "c03d12703eb2",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The design is a Wokwi first project, but the source does not describe it as a template."
+    },
+    {
+     "tag": "education",
+     "reason": "There is no evidence of a teaching or learning purpose beyond a personal first project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "All documentation sections are placeholder text and no design behavior is provided."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed unsupported template/education tags and added incomplete/insufficient-doc to match the placeholder-only Wokwi submission.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a beginner Wokwi design titled \"El primer diseño de Matt para Wokwi\" with the one-line description \"Mi primer proyecto\". All documentation sections contain placeholder text instead of actual explanations of the circuit. No pins, clock frequency, or external hardware are specified beyond the draft tags. It appears to be a simple educational exercise rather than a fully documented design.",
+   "summary": "This project is a Wokwi design titled \"El primer diseño de Matt para Wokwi\" with the one-line description \"Mi primer proyecto\". All documentation sections contain placeholder text instead of actual explanations of the circuit. No pins, clock frequency, or external hardware are specified. It appears to be an unfinished first exercise rather than a fully documented design.",
+   "summary_changed": true
+  },
+  {
+   "key": "9d9e7767845d",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "template",
+     "reason": "The source does not state it is a template; it is an unspecified Tiny Tapeout workshop test copy."
+    },
+    {
+     "tag": "education",
+     "reason": "Although it mentions a workshop, the documentation is placeholder-only and provides no educational content or intent."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "The one-line description identifies it as a Tiny Tapeout workshop test."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "All documentation sections are default placeholder text and the design is not described."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is too sparse to describe the design."
+    }
+   ],
+   "notes": "Replaced template/education with workshop and added incomplete/insufficient-doc based on the placeholder documentation.",
+   "tags_before": [
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "wokwi",
+    "workshop",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is a copy of the Tiny Tapeout workshop template titled \"Mi copia del Tiny Tapeout\" with the description \"Test del Taller Tiny Tapeout\". All documentation sections contain default placeholder text, so the design's function is unknown. No pins, clock frequency, or external hardware are specified. It appears to be an unfinished workshop exercise rather than a fully documented project.",
+   "summary": "This project is a copy of the Tiny Tapeout workshop template titled \"Mi copia del Tiny Tapeout\" with the description \"Test del Taller Tiny Tapeout\". All documentation sections contain default placeholder text, so the design's function is unknown. No pins, clock frequency, or external hardware are specified. It appears to be an unfinished workshop exercise rather than a fully documented project.",
+   "summary_changed": false
+  },
+  {
+   "key": "53ddcf37ba83",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No educational purpose is stated beyond the title."
+    },
+    {
+     "tag": "counter",
+     "reason": "The one-line description says it shows 1 to 4, but this does not clearly describe a counter circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "All documentation sections are placeholder text and the design behavior is not described."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is too sparse to describe the design."
+    }
+   ],
+   "notes": "Removed unsupported education/counter and added incomplete/insufficient-doc for this placeholder Wokwi submission.",
+   "tags_before": [
+    "wokwi",
+    "education",
+    "counter"
+   ],
+   "tags": [
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "Matt's first Wokwi design is described only as \"It shows 1 to 4\" in the one-line description. All documentation sections contain placeholder text, so the method of displaying the numbers (such as LEDs or a seven-segment display) is unknown. No pins, clock frequency, or external hardware are specified. The design is essentially undocumented beyond its title and one-line description.",
+   "summary": "Matt's first Wokwi design is described only as \"It shows 1 to 4\" in the one-line description. All documentation sections contain placeholder text, so the method of displaying the numbers is unknown. No pins, clock frequency, or external hardware are specified. The design is essentially undocumented beyond its title and one-line description.",
+   "summary_changed": true
+  },
+  {
+   "key": "f0c031d6c3b6",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "accelerator",
+     "reason": "The design is a transformer language model chip, not a generic dedicated compute accelerator."
+    },
+    {
+     "tag": "spi",
+     "reason": "The pins describe a custom byte-level handshake, not an SPI interface."
+    },
+    {
+     "tag": "fixed-point",
+     "reason": "The design uses int16/int8 integer residuals, not fixed-point arithmetic."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is extensive and clearly describes the design."
+    }
+   ],
+   "add": [
+    {
+     "tag": "machine-learning",
+     "reason": "It is a character-level transformer language model for text generation."
+    },
+    {
+     "tag": "transformer",
+     "reason": "The design is a transformer with RMSNorm, minGRU mixer, and MLP blocks."
+    },
+    {
+     "tag": "rom",
+     "reason": "The model weights are baked into on-tile read-only memory."
+    },
+    {
+     "tag": "ternary",
+     "reason": "Weights are ternary (-1, 0, +1) and stored packed."
+    },
+    {
+     "tag": "text",
+     "reason": "The chip outputs text residuals that are turned into characters by the host."
+    },
+    {
+     "tag": "rp2040",
+     "reason": "The reference host is the RP2350B microcontroller on the Tiny Tapeout demo board."
+    },
+    {
+     "tag": "bit-serial",
+     "reason": "Data is transferred over a byte-wide serial protocol one byte at a time."
+    },
+    {
+     "tag": "pipeline",
+     "reason": "The sequencer overlaps ROM reads with lane computation for a two-clock pipeline."
+    }
+   ],
+   "notes": "The proposed summary was copied from a different project and used unsupported tags; replaced with corrected tags and summary matching the transformer ROM design.",
+   "tags_before": [
+    "accelerator",
+    "spi",
+    "fixed-point",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "machine-learning",
+    "rom",
+    "esoteric",
+    "text",
+    "rp2040",
+    "bit-serial",
+    "pipeline"
+   ],
+   "summary_before": "Clementine is a 4-lane int8 SIMT GPU that is programmed and controlled over an SPI interface using the standard SPI Pmod pinout. Status outputs report when the sequencer has halted, whether any lane is active, instruction commit, and replay state, which together expose hardware divergence handling. The documentation is limited to the title, pin names, and a short description, so the instruction set, memory model, and test procedure are not described. It is notable for implementing SIMT execution with hardware divergence on a 2x2 tile area.",
+   "summary": "This is a character-level transformer language model with ternary weights baked into on-tile ROM. It streams int16 residuals in and int8 residuals out over a byte-wide handshake, one token per transaction. The chip performs transformer layers including RMSNorm, a minGRU mixer, and an MLP, while the host handles character tables and final sampling. The design is documented with a reference RP2350B host, test procedure, and debug status pins.",
+   "summary_changed": true
+  },
+  {
+   "key": "28f20cb79703",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "7-segment",
+     "reason": "The documentation only lists a 7-segment display as external hardware but does not implement or describe a 7-segment interface."
+    },
+    {
+     "tag": "button",
+     "reason": "Push buttons are listed as external hardware but there is no described button input interface."
+    },
+    {
+     "tag": "template",
+     "reason": "The source does not indicate it is a template."
+    },
+    {
+     "tag": "education",
+     "reason": "No educational purpose is described."
+    }
+   ],
+   "add": [
+    {
+     "tag": "gpio",
+     "reason": "The design exposes general purpose input and output pins IN0-IN7 and OUT0-OUT7."
+    },
+    {
+     "tag": "led",
+     "reason": "The documentation says passing inputs will turn on LEDs."
+    },
+    {
+     "tag": "incomplete",
+     "reason": "The design is described as dummy/does nothing and documentation is largely placeholder."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "The documentation is too sparse to determine the actual behavior."
+    }
+   ],
+   "notes": "Removed unsupported 7-segment/button/template/education and added gpio/led/incomplete/insufficient-doc to match the placeholder dummy design.",
+   "tags_before": [
+    "led",
+    "gpio",
+    "7-segment",
+    "button",
+    "wokwi",
+    "template",
+    "education"
+   ],
+   "tags": [
+    "led",
+    "gpio",
+    "wokwi",
+    "incomplete",
+    "insufficient-doc"
+   ],
+   "summary_before": "This project is described as a dummy that does nothing, with inputs passed through to turn on LEDs. Testing consists of applying inputs to the pins. The listed external hardware includes a 7-segment display and push buttons, though the documentation does not explain how they are used. The description is largely placeholder text, so the actual behavior cannot be determined.",
+   "summary": "This project is described as a dummy that does nothing, with inputs passed through to turn on LEDs. Testing consists of applying inputs to the pins. The listed external hardware includes a 7-segment display and push buttons, though the documentation does not explain how they are used. The description is largely placeholder text, so the actual behavior cannot be determined.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6553,
+  "completion_tokens": 2062,
+  "total_tokens": 8615,
+  "cost": 0.0044403,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0044403,
+   "upstream_inference_prompt_cost": 0.0019659,
+   "upstream_inference_completions_cost": 0.0024744
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0044403,
+ "elapsed_s": 13.6
+}

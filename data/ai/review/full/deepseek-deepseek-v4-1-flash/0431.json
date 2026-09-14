@@ -1,0 +1,218 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "f5686374d0f9",
+  "dd19c0bba1d0",
+  "adc33d46220f",
+  "0dce9c93aa98",
+  "0ef6b39aba25",
+  "452e5538a01a"
+ ],
+ "results": [
+  {
+   "key": "f5686374d0f9",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "charge-pump",
+    "analog",
+    "power-management",
+    "silicon-tested"
+   ],
+   "tags": [
+    "charge-pump",
+    "analog",
+    "power-management",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a 3-stage Dickson charge pump that steps up the input voltage to approximately 5.44 V, with the output divided by two due to the analog pin voltage limit. It requires a 2 MHz clock signal to operate, and the divided output voltage can be measured at the ua[0] pin. Silicon testing by the author shows that at 7.5 MHz the output is about 4.55 V, slightly higher than simulation predicted. The design is a straightforward analog power circuit with no digital interface beyond the clock.",
+   "summary": "This is a 3-stage Dickson charge pump that steps up the input voltage to approximately 5.44 V, with the output divided by two due to the analog pin voltage limit. It requires a 2 MHz clock signal to operate, and the divided output voltage can be measured at the ua[0] pin. Silicon testing by the author shows that at 7.5 MHz the output is about 4.55 V, slightly higher than simulation predicted. The design is a straightforward analog power circuit with no digital interface beyond the clock.",
+   "summary_changed": false
+  },
+  {
+   "key": "dd19c0bba1d0",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "memory",
+     "reason": "memory is a hardware storage block tag; this design only uses the word 'memory' as part of a game name and contains no memory block."
+    }
+   ],
+   "add": [],
+   "notes": "Removed 'memory' since it is a game title word, not a memory hardware block.",
+   "tags_before": [
+    "game",
+    "memory",
+    "led",
+    "7-segment",
+    "speaker",
+    "button",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "tags": [
+    "game",
+    "led",
+    "7-segment",
+    "speaker",
+    "button",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This is a hardware implementation of the Simon Says memory game, where the player must repeat an ever-growing sequence of colors and tones. The game uses four buttons, four LEDs, a speaker, and optionally a two-digit 7-segment display for the score, all connected to the specified pins. It requires a 50 kHz clock and can be simulated online via Wokwi, with the wiring diagram provided. Silicon testing by the author confirms the game works as expected, including improved UX for slow players.",
+   "summary": "This is a hardware implementation of the Simon Says memory game, where the player must repeat an ever-growing sequence of colors and tones. The game uses four buttons, four LEDs, a speaker, and optionally a two-digit 7-segment display for the score, all connected to the specified pins. It requires a 50 kHz clock and can be simulated online via Wokwi, with the wiring diagram provided. Silicon testing by the author confirms the game works as expected, including improved UX for slow players.",
+   "summary_changed": false
+  },
+  {
+   "key": "adc33d46220f",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "The submission includes an author silicon test report marked working."
+    }
+   ],
+   "notes": "Added silicon-tested based on the working author report.",
+   "tags_before": [
+    "error-correction",
+    "bist",
+    "encoder",
+    "decoder",
+    "communication",
+    "wokwi"
+   ],
+   "tags": [
+    "error-correction",
+    "bist",
+    "encoder",
+    "decoder",
+    "communication",
+    "wokwi",
+    "silicon-tested"
+   ],
+   "summary_before": "This project implements a 1-bit error detection and correction module with a transmitter that generates four redundant bits from an 8-bit input to form a 12-bit codeword, a built-in self-test block that can inject errors, and a receiver that corrects any single-bit error. The BIST block outputs either the redundant bits or the error position on four bidirectional pins depending on whether an error was inserted. Testing requires twelve LEDs, a 7-segment display, counters, and digital input switches. The design is written in Wokwi and targets a single tile.",
+   "summary": "This project implements a 1-bit error detection and correction module with a transmitter that generates four redundant bits from an 8-bit input to form a 12-bit codeword, a built-in self-test block that can inject errors, and a receiver that corrects any single-bit error. The BIST block outputs either the redundant bits or the error position on four bidirectional pins depending on whether an error was inserted. Testing requires twelve LEDs, a 7-segment display, counters, and digital input switches. The design was made in Wokwi and has been silicon tested, with the author reporting it works.",
+   "summary_changed": true
+  },
+  {
+   "key": "0dce9c93aa98",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "sar-adc",
+    "r2r-dac",
+    "comparator",
+    "level-shifter",
+    "spi",
+    "mixed-signal",
+    "analog",
+    "education",
+    "asic"
+   ],
+   "tags": [
+    "sar-adc",
+    "r2r-dac",
+    "comparator",
+    "level-shifter",
+    "spi",
+    "mixed-signal",
+    "analog",
+    "education",
+    "asic"
+   ],
+   "summary_before": "AICD Playground is a mixed-signal test chip developed for the analog IC design course at Graz University of Technology. It integrates an 8-bit digital controller with analog components such as up/down-level shifters, an R2R DAC, and a comparator to form a simple SAR-ADC. The design is programmed via SPI: a mode pin selects between memory initialization and program execution, allowing the CPU to apply voltages through the DAC and read comparator results to implement ADC operation. The design is notable for its educational purpose and includes the TU Graz logo in the layout, but no silicon test results are reported.",
+   "summary": "AICD Playground is a mixed-signal test chip developed for the analog IC design course at Graz University of Technology. It integrates an 8-bit digital controller with analog components such as up/down-level shifters, an R2R DAC, and a comparator to form a simple SAR-ADC. The design is programmed via SPI: a mode pin selects between memory initialization and program execution, allowing the CPU to apply voltages through the DAC and read comparator results to implement ADC operation. The design is notable for its educational purpose and includes the TU Graz logo in the layout, but no silicon test results are reported.",
+   "summary_changed": false
+  },
+  {
+   "key": "0ef6b39aba25",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test reports show the design was tested on fabricated silicon and is working."
+    }
+   ],
+   "notes": "Added silicon-tested based on the reported successful silicon test.",
+   "tags_before": [
+    "sram",
+    "memory",
+    "factory-test"
+   ],
+   "tags": [
+    "sram",
+    "memory",
+    "factory-test",
+    "silicon-tested"
+   ],
+   "summary_before": "This design is a controller and test harness for a foundry-provided 1024x8 SRAM macro, allowing single-byte reads and writes through 10 address lines, 8 data lines and a write-enable. The lower six address bits are direct inputs while the upper four are held in an address bank register selected by bank_sel. It is tested by writing and reading back values across addresses, and silicon testing passed with all values at a few addresses and random values over 2M cycles. No external hardware is needed.",
+   "summary": "This design is a controller and test harness for a foundry-provided 1024x8 SRAM macro, allowing single-byte reads and writes through 10 address lines, 8 data lines and a write-enable. The lower six address bits are direct inputs while the upper four are held in an address bank register selected by bank_sel. It is tested by writing and reading back values across addresses, and silicon testing passed with all values at a few addresses and random values over 2M cycles. No external hardware is needed.",
+   "summary_changed": false
+  },
+  {
+   "key": "452e5538a01a",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "The design is a standalone multiplier, not an arithmetic logic unit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "workshop",
+     "reason": "Explicitly created as part of a lab exercise, matching the workshop tag."
+    }
+   ],
+   "notes": "Removed alu because it is a multiplier, not an ALU, and added workshop for the lab context.",
+   "tags_before": [
+    "multiplier",
+    "adder",
+    "alu",
+    "education"
+   ],
+   "tags": [
+    "multiplier",
+    "adder",
+    "education",
+    "workshop"
+   ],
+   "summary_before": "This design is a 4x4 array multiplier that computes the product of two 4-bit binary numbers using full adders. It was created as a lab exercise to demonstrate binary multiplication and the role of full adders in digital circuits. Testing involves applying various input combinations and comparing the output to the expected product. No external hardware is needed, and the documentation provides a clear explanation of the design and test procedure.",
+   "summary": "This design is a 4x4 array multiplier that computes the product of two 4-bit binary numbers using full adders. It was created as a lab exercise to demonstrate binary multiplication and the role of full adders in digital circuits. Testing involves applying various input combinations and comparing the output to the expected product, which is 8 bits wide. No external hardware is needed, and the documentation provides a clear explanation of the design and test procedure.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 7618,
+  "completion_tokens": 1236,
+  "total_tokens": 8854,
+  "cost": 0.0037686,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0037686,
+   "upstream_inference_prompt_cost": 0.0022854,
+   "upstream_inference_completions_cost": 0.0014832
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0037686,
+ "elapsed_s": 7.2
+}

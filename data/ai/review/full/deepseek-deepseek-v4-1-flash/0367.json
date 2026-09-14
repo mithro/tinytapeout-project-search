@@ -1,0 +1,280 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "d2bafa137407",
+  "3834c285fe2b",
+  "4f265172d3e0",
+  "ada0bb43a606",
+  "22b7aaa31da5",
+  "78964165251e"
+ ],
+ "results": [
+  {
+   "key": "d2bafa137407",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "prng",
+     "reason": "The LFSRs generate deterministic m-sequences/Gold codes, not pseudo-random numbers for general use; the source never describes a PRNG."
+    },
+    {
+     "tag": "opamp",
+     "reason": "The op-amp is external hardware used to simulate a noisy channel, not part of the design; it is not an implemented op-amp circuit."
+    }
+   ],
+   "add": [
+    {
+     "tag": "communication",
+     "reason": "CDMA spread-spectrum transmitter/receiver is a data communication protocol design."
+    },
+    {
+     "tag": "lfsr",
+     "reason": "Two 5-bit LFSRs are the core of the design."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "gold-code",
+     "reason": "Not in vocabulary; closest canonical tag is lfsr, already added."
+    }
+   ],
+   "notes": "Removed prng and opamp tags; op-amp is external channel-simulation hardware, and LFSRs generate Gold codes rather than general PRNG output.",
+   "tags_before": [
+    "communication",
+    "lfsr",
+    "prng",
+    "opamp",
+    "verilog"
+   ],
+   "tags": [
+    "communication",
+    "lfsr",
+    "verilog"
+   ],
+   "summary_before": "This project implements a CDMA transmitter and receiver in Verilog for academic study of spread-spectrum effects and pseudonoise sequences. It uses two 5-bit LFSRs to generate Gold codes, which are used to spread a transmitted signal and to despread a received signal, with a seed input to initialize the LFSRs. The design includes a testbench that simulates transmission and reception, and an LED indicates a valid seed. External hardware includes an operational amplifier for adding noise to simulate a channel, a testboard, and an LED; no silicon test results are provided.",
+   "summary": "This project implements a CDMA transmitter and receiver in Verilog for academic study of spread-spectrum effects and pseudonoise sequences. It uses two 5-bit LFSRs to generate Gold codes, which are used to spread a transmitted signal and to despread a received signal, with a seed input to initialize the LFSRs. The design includes a testbench that simulates transmission and reception, and an LED indicates a valid seed. External hardware includes an operational amplifier for adding noise to simulate a channel, a testboard, and an LED; no silicon test results are provided.",
+   "summary_changed": false
+  },
+  {
+   "key": "3834c285fe2b",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "analog",
+     "reason": "This is the digital backend only; the analog frontend (capacitor bank, comparator) is external and not implemented on-chip."
+    }
+   ],
+   "add": [
+    {
+     "tag": "sar-adc",
+     "reason": "The design is the digital control backend of a successive-approximation ADC."
+    },
+    {
+     "tag": "adc",
+     "reason": "It implements ADC conversion control logic."
+    },
+    {
+     "tag": "i2c",
+     "reason": "I2C interface with SCL/SDA pins and configurable address is documented."
+    },
+    {
+     "tag": "wokwi",
+     "reason": "Language is Wokwi."
+    },
+    {
+     "tag": "gpio",
+     "reason": "Parallel bus interface uses general-purpose digital I/O pins."
+    }
+   ],
+   "notes": "Removed analog tag since only the digital backend is on-chip; added gpio for the parallel bus interface.",
+   "tags_before": [
+    "sar-adc",
+    "adc",
+    "i2c",
+    "analog",
+    "wokwi"
+   ],
+   "tags": [
+    "sar-adc",
+    "adc",
+    "i2c",
+    "wokwi",
+    "gpio"
+   ],
+   "summary_before": "This project implements the digital backend of a successive approximation register (SAR) analog-to-digital converter, supporting both I2C and parallel bus interfaces. It controls an external capacitor bank and comparator to perform analog-to-digital conversion with selectable 6-bit or 11-bit precision. The design requires external analog components such as an op-amp, precise capacitors, resistors, and MOSFETs. Notable limitations include an undetermined maximum clock speed and the need for external analog frontend circuitry.",
+   "summary": "This project implements the digital backend of a successive approximation register (SAR) analog-to-digital converter, supporting both I2C and parallel bus interfaces. It controls an external capacitor bank and comparator to perform analog-to-digital conversion with selectable 6-bit or 11-bit precision. The design requires external analog components such as an op-amp, precise capacitors, resistors, and MOSFETs. Notable limitations include an undetermined maximum clock speed and the need for external analog frontend circuitry.",
+   "summary_changed": false
+  },
+  {
+   "key": "4f265172d3e0",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "adder",
+    "subtractor",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "adder",
+    "subtractor",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This circuit performs both addition and subtraction of two 3-bit numbers, with optional carry and borrow inputs. The sum result is provided on four output pins (including carry), and the subtraction result on another four pins (including borrow). The inputs are arranged with the first number on IN0-IN2, the second on IN4-IN6, and the carry and borrow on IN3 and IN7 respectively. The project is a small educational design for the VLSI initiative, implemented in Wokwi.",
+   "summary": "This circuit performs both addition and subtraction of two 3-bit numbers, with optional carry and borrow inputs. The sum result is provided on four output pins (including carry), and the subtraction result on another four pins (including borrow). The inputs are arranged with the first number on IN0-IN2, the second on IN4-IN6, and the carry and borrow on IN3 and IN7 respectively. The project is a small educational design for the VLSI initiative, implemented in Wokwi.",
+   "summary_changed": false
+  },
+  {
+   "key": "ada0bb43a606",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "factory-test",
+    "counter",
+    "verilog",
+    "multiplexer"
+   ],
+   "tags": [
+    "factory-test",
+    "counter",
+    "verilog",
+    "multiplexer"
+   ],
+   "summary_before": "This is a factory test module that either mirrors the input data to the outputs or outputs a counter value, depending on the state of input 0. When input 0 is high, a counter is output on both the regular and bidirectional outputs; otherwise, the inputs are passed through to the outputs. Testing is straightforward: set input 0 high and verify that the outputs are toggling. The design is simple and intended for manufacturing test purposes.",
+   "summary": "This is a factory test module that either mirrors the input data to the outputs or outputs a counter value, depending on the state of input 0. When input 0 is high, a counter is output on both the regular and bidirectional outputs; otherwise, the inputs are passed through to the outputs. Testing is straightforward: set input 0 high and verify that the outputs are toggling. The design is simple and intended for manufacturing test purposes.",
+   "summary_changed": false
+  },
+  {
+   "key": "22b7aaa31da5",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "led",
+     "reason": "The design drives a 7-segment display, not discrete LEDs."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Outputs drive seven segment lines of a 7-segment display."
+    },
+    {
+     "tag": "display",
+     "reason": "Generic display output."
+    },
+    {
+     "tag": "pwm",
+     "reason": "Experimental PWM dimming feature is documented."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "silicon-tested",
+     "reason": "Silicon test report states working."
+    }
+   ],
+   "notes": "Removed led tag (drives 7-segment display) and added silicon-tested based on the working test report.",
+   "tags_before": [
+    "7-segment",
+    "display",
+    "pwm",
+    "led"
+   ],
+   "tags": [
+    "7-segment",
+    "display",
+    "pwm",
+    "verilog",
+    "silicon-tested"
+   ],
+   "summary_before": "This design animates a 7-segment display by reading input switches to form a custom character and then illuminating the segments sequentially at roughly 0.12 seconds per segment. Inputs 0 through 6 map directly to the seven segments, input 7 enables the display and starts the animation, and the bidirectional pins optionally control an experimental PWM dimming feature. It requires an external 7-segment display and switches for the inputs, and a silicon test report confirms it is working. The design is a simple visual demonstration with a PWM dimming experiment.",
+   "summary": "This design animates a 7-segment display by reading input switches to form a custom character and then illuminating the segments sequentially at roughly 0.12 seconds per segment. Inputs 0 through 6 map directly to the seven segments, input 7 enables the display and starts the animation, and the bidirectional pins optionally control an experimental PWM dimming feature. It requires an external 7-segment display and switches for the inputs, and a silicon test report confirms it is working. The design is a simple visual demonstration with a PWM dimming experiment.",
+   "summary_changed": false
+  },
+  {
+   "key": "78964165251e",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "The source does not state an educational or teaching intent; it is a straightforward decoder project."
+    }
+   ],
+   "add": [
+    {
+     "tag": "7-segment",
+     "reason": "Drives a 7-segment common-anode display."
+    },
+    {
+     "tag": "decoder",
+     "reason": "Binary-to-7-segment decoding logic."
+    },
+    {
+     "tag": "display",
+     "reason": "Generic display output."
+    },
+    {
+     "tag": "verilog",
+     "reason": "Design is written in Verilog."
+    },
+    {
+     "tag": "dip-switch",
+     "reason": "Documentation specifies a 4-position DIP switch for input."
+    }
+   ],
+   "notes": "Removed unsupported education tag; added verilog and dip-switch which are clearly documented.",
+   "tags_before": [
+    "7-segment",
+    "decoder",
+    "display",
+    "education"
+   ],
+   "tags": [
+    "7-segment",
+    "decoder",
+    "display",
+    "verilog",
+    "dip-switch"
+   ],
+   "summary_before": "This project is a binary-to-7-segment hexadecimal decoder that takes a 4-bit binary input and drives a common-anode 7-segment display. It is tested by connecting a 4-position DIP switch to the inputs and a 7-segment display to the outputs, with appropriate power and resistors. The design outputs active-low segment signals for segments a through g. The documentation is clear but minimal, focusing on basic operation.",
+   "summary": "This project is a binary-to-7-segment hexadecimal decoder that takes a 4-bit binary input and drives a common-anode 7-segment display. It is tested by connecting a 4-position DIP switch to the inputs and a 7-segment display to the outputs, with appropriate power and resistors. The design outputs active-low segment signals for segments a through g. The documentation is clear but minimal, focusing on basic operation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 8335,
+  "completion_tokens": 1573,
+  "total_tokens": 9908,
+  "cost": 0.002936733,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3456,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.002936733,
+   "upstream_inference_prompt_cost": 0.001332273,
+   "upstream_inference_completions_cost": 0.00160446
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.002936733,
+ "elapsed_s": 40.3
+}

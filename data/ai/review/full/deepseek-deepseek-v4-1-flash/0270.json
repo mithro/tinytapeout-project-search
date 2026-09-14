@@ -1,0 +1,217 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "aec7e6d0854c",
+  "52dab5bc0510",
+  "187f20af6ec6",
+  "5f05215a6a16",
+  "e945c28b0b55",
+  "5441ddd079c6"
+ ],
+ "results": [
+  {
+   "key": "aec7e6d0854c",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "microcontroller",
+     "reason": "The source describes a TinyQV SoC, not a microcontroller; the SoC tag already covers this."
+    }
+   ],
+   "add": [
+    {
+     "tag": "multi-tile",
+     "reason": "The project uses 2x2 tiles, which is explicitly multi-tile."
+    }
+   ],
+   "notes": "Removed microcontroller tag as the design is an SoC, and added multi-tile for the 2x2 tile configuration.",
+   "tags_before": [
+    "soc",
+    "risc-v",
+    "crypto",
+    "cipher",
+    "cpu",
+    "uart",
+    "spi",
+    "qspi",
+    "microcontroller"
+   ],
+   "tags": [
+    "soc",
+    "risc-v",
+    "crypto",
+    "cipher",
+    "cpu",
+    "uart",
+    "spi",
+    "qspi",
+    "multi-tile"
+   ],
+   "summary_before": "Speck-V SoC is a TinyQV RISC-V system on chip with custom ISA extensions for the SPECK-ARX lightweight block cipher. It exposes UART, SPI, QSPI flash and PSRAM interfaces, GPIO, interrupts, and a debug UART, matching the QSPI Flash/PSRAM and SPI Pmod pinouts. It runs at 64 MHz and is intended as a microcontroller-class platform for lightweight cryptography workloads. The documentation provided here is limited to the title, pin names, and pinout match, so the custom instruction details and test results are not described.",
+   "summary": "Speck-V SoC is a TinyQV RISC-V system on chip with custom ISA extensions for the SPECK-ARX lightweight block cipher. It exposes UART, SPI, QSPI flash and PSRAM interfaces, GPIO, interrupts, and a debug UART, matching the QSPI Flash/PSRAM and SPI Pmod pinouts. It runs at 64 MHz and is intended as a platform for lightweight cryptography workloads. The documentation provided here is limited to the title, pin names, and pinout match, so the custom instruction details and test results are not described.",
+   "summary_changed": true
+  },
+  {
+   "key": "52dab5bc0510",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "asynchronous",
+    "spi",
+    "communication",
+    "systemverilog"
+   ],
+   "tags": [
+    "asynchronous",
+    "spi",
+    "communication",
+    "systemverilog"
+   ],
+   "summary_before": "Project Long Man is a quasi-delay-insensitive die-to-die interconnect that streams data via SPI. It uses toggle-based encoding on TX/RX lines to reduce switching activity. The design can be tested by tying RX and TX together and controlling it through SPI signals. No external hardware is required.",
+   "summary": "Project Long Man is a quasi-delay-insensitive die-to-die interconnect that streams data via SPI. It uses toggle-based encoding on TX/RX lines to reduce switching activity. The design can be tested by tying RX and TX together and controlling it through SPI signals. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "187f20af6ec6",
+   "verdict": "fix",
+   "remove": [],
+   "add": [
+    {
+     "tag": "register-file",
+     "reason": "The CPU has four registers, which is a register file."
+    }
+   ],
+   "notes": "Added register-file tag for the four registers, and removed unsupported embedded processing claim from the summary.",
+   "tags_before": [
+    "cpu",
+    "pipeline",
+    "sram",
+    "systemverilog"
+   ],
+   "tags": [
+    "cpu",
+    "pipeline",
+    "sram",
+    "systemverilog",
+    "register-file"
+   ],
+   "summary_before": "This is an 8-bit, 2-stage pipelined CPU with a custom ISA inspired by ARM, featuring four registers and thirteen instructions. It interfaces with an external byte-addressable 8-bit SRAM that must provide combinational read and a write enable signal. The CPU uses dedicated input, output, and bidirectional pins for data, address, and control signals. The design requires an external SRAM chip to function and is intended for embedded processing tasks.",
+   "summary": "This is an 8-bit, 2-stage pipelined CPU with a custom ISA inspired by ARM, featuring four registers and thirteen instructions. It interfaces with an external byte-addressable 8-bit SRAM that must provide combinational read and a write enable signal. The CPU uses dedicated input, output, and bidirectional pins for data, address, and control signals. The design requires an external SRAM chip to function.",
+   "summary_changed": true
+  },
+  {
+   "key": "5f05215a6a16",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "counter",
+     "reason": "No counter is mentioned or implied in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed counter tag as it is not supported by the source.",
+   "tags_before": [
+    "vga",
+    "video",
+    "display",
+    "graphics",
+    "counter"
+   ],
+   "tags": [
+    "vga",
+    "video",
+    "display",
+    "graphics"
+   ],
+   "summary_before": "This Verilog design generates a VGA video signal to display numbers inspired by the MDR workstations from the TV show Severance. It uses a 25 MHz clock and outputs horizontal and vertical sync along with two bits per color channel. The documentation is minimal, consisting only of a work-in-progress note, so the exact functionality and testing procedure are not described. No external hardware requirements are mentioned beyond a VGA display.",
+   "summary": "This Verilog design generates a VGA video signal to display numbers inspired by the MDR workstations from the TV show Severance. It uses a 25 MHz clock and outputs horizontal and vertical sync along with two bits per color channel. The documentation is minimal, consisting only of a work-in-progress note, so the exact functionality and testing procedure are not described. No external hardware requirements are mentioned beyond a VGA display.",
+   "summary_changed": false
+  },
+  {
+   "key": "e945c28b0b55",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "security",
+     "reason": "The design is a simple combination lock, not a security-focused hardware design."
+    },
+    {
+     "tag": "education",
+     "reason": "No evidence of educational intent in the source."
+    }
+   ],
+   "add": [],
+   "notes": "Removed security and education tags as they are not supported by the source.",
+   "tags_before": [
+    "puzzle",
+    "security",
+    "combinational",
+    "logic-gate",
+    "led",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "puzzle",
+    "combinational",
+    "logic-gate",
+    "led",
+    "wokwi"
+   ],
+   "summary_before": "This design implements a simple combination-lock puzzle that lights an output when a specific 8-bit input pattern is applied. The documentation states that the display should show a 'y' only when inputs 3, 7 and 8 are high and all other inputs are low, and be blank otherwise. It is a Wokwi-based combinational logic project with no clock and no external hardware listed. The documentation is thin and the pin descriptions are informal, so the exact display behavior is inferred from the test description.",
+   "summary": "This design implements a simple combination-lock puzzle that lights an output when a specific 8-bit input pattern is applied. The documentation states that the display should show a 'y' only when inputs 3, 7 and 8 are high and all other inputs are low, and be blank otherwise. It is a Wokwi-based combinational logic project with no clock and no external hardware listed. The documentation is thin and the pin descriptions are informal, so the exact display behavior is inferred from the test description.",
+   "summary_changed": false
+  },
+  {
+   "key": "5441ddd079c6",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "logic-gate",
+    "template",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "template",
+    "wokwi",
+    "education"
+   ],
+   "summary_before": "This project is a copy of the Tiny Tapeout Wokwi template that implements several basic logic gates on the eight inputs and outputs. The pin names indicate NAND, OR, AND and NOT outputs driven by the input pins, but the documentation sections for how it works and how to test are left as placeholder text. No external hardware is specified. Because the description is essentially the unmodified template, the exact gate mapping cannot be fully confirmed from the documentation.",
+   "summary": "This project is a copy of the Tiny Tapeout Wokwi template that implements several basic logic gates on the eight inputs and outputs. The pin names indicate NAND, OR, AND and NOT outputs driven by the input pins, but the documentation sections for how it works and how to test are left as placeholder text. No external hardware is specified. Because the description is essentially the unmodified template, the exact gate mapping cannot be fully confirmed from the documentation.",
+   "summary_changed": false
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 6450,
+  "completion_tokens": 1118,
+  "total_tokens": 7568,
+  "cost": 0.0023358,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 3200,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0023358,
+   "upstream_inference_prompt_cost": 0.0009942,
+   "upstream_inference_completions_cost": 0.0013416
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0023358,
+ "elapsed_s": 9.9
+}

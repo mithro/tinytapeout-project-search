@@ -1,0 +1,193 @@
+{
+ "model": "deepseek/deepseek-v4.1-flash",
+ "requested_model": "deepseek/deepseek-v4.1-flash",
+ "keys": [
+  "720738ed5dc7",
+  "c086f4d29564",
+  "895d2ecb65aa",
+  "322219ad2f06",
+  "05cec3960674",
+  "fd8ad51bf8b7"
+ ],
+ "results": [
+  {
+   "key": "720738ed5dc7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "machine-learning",
+     "reason": "STDP is neuromorphic; 'machine-learning' implies inference/training hardware not supported here."
+    }
+   ],
+   "add": [],
+   "notes": "Removed machine-learning; STDP is neuromorphic only.",
+   "tags_before": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "machine-learning",
+    "verilog"
+   ],
+   "tags": [
+    "spiking-neural-network",
+    "neuromorphic",
+    "verilog"
+   ],
+   "summary_before": "This project implements a spike-timing-dependent plasticity (STDP) circuit in Verilog. It detects pre- and post-synaptic spikes, measures the time difference between them, and adjusts a synaptic weight using an exponential trace model. The design is still under development and testing is incomplete. No external hardware is required.",
+   "summary": "This project implements a spike-timing-dependent plasticity (STDP) circuit in Verilog. It detects pre- and post-synaptic spikes, measures the time difference between them, and adjusts a synaptic weight using an exponential trace model. The design is still under development and testing is incomplete. No external hardware is required.",
+   "summary_changed": false
+  },
+  {
+   "key": "c086f4d29564",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "transistor-level",
+     "reason": "Source only says '3stage PMOS OpAmp'; no evidence of discrete-transistor construction."
+    }
+   ],
+   "add": [
+    {
+     "tag": "incomplete",
+     "reason": "Documentation is very thin and the project is a minimal test chip with no described completion."
+    }
+   ],
+   "notes": "Removed unsupported transistor-level tag; added incomplete for thin test-chip documentation.",
+   "tags_before": [
+    "opamp",
+    "analog",
+    "transistor-level"
+   ],
+   "tags": [
+    "opamp",
+    "analog",
+    "incomplete"
+   ],
+   "summary_before": "This project is a test chip for a 3-stage PMOS operational amplifier. It provides three analog pins: an output, an inverting input, and a non-inverting input. The design is intended to be tested with a typical analog bench setup, likely to characterize its performance such as gain and bandwidth. The documentation is minimal, indicating it is primarily a test vehicle for the amplifier topology.",
+   "summary": "This project is a test chip for a 3-stage PMOS operational amplifier. It provides three analog pins: an output, an inverting input, and a non-inverting input. The documentation is minimal, indicating it is primarily a test vehicle for the amplifier topology. No silicon test results are reported.",
+   "summary_changed": true
+  },
+  {
+   "key": "895d2ecb65aa",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "dsp",
+     "reason": "Title mentions dsp but documentation says it is only a Chisel exploration test with no DSP functionality."
+    }
+   ],
+   "add": [],
+   "notes": "Removed dsp tag; source explicitly says it is just a Chisel test project.",
+   "tags_before": [
+    "education",
+    "chisel",
+    "dsp"
+   ],
+   "tags": [
+    "education",
+    "chisel"
+   ],
+   "summary_before": "This is a test project created to explore the Chisel hardware construction language. It has 8 inputs, 8 bidirectional pins, and 8 outputs, but the documentation does not describe any specific functionality beyond being a test. The project includes a ChiselTest that can be run with sbt test. No external hardware is required, and the design is notable only as a learning exercise.",
+   "summary": "This is a test project created to explore the Chisel hardware construction language. It has 8 inputs, 8 bidirectional pins, and 8 outputs, but the documentation does not describe any specific functionality beyond being a test. The project includes a ChiselTest that can be run with sbt test. No external hardware is required, and the design is notable only as a learning exercise.",
+   "summary_changed": false
+  },
+  {
+   "key": "322219ad2f06",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "education",
+     "reason": "No teaching or learning intent stated; it is a minimal first circuit."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported education tag.",
+   "tags_before": [
+    "logic-gate",
+    "wokwi",
+    "education"
+   ],
+   "tags": [
+    "logic-gate",
+    "wokwi"
+   ],
+   "summary_before": "This design contains four inverters, with four inputs directly connected to outputs and the remaining inputs inverted. It is tested by toggling inputs and observing the outputs. No external hardware is required. The documentation is minimal and does not provide a schematic or silicon results.",
+   "summary": "This design contains four inverters, with four inputs directly connected to outputs and the remaining inputs inverted. It is tested by toggling inputs and observing the outputs. No external hardware is required. The documentation is minimal and does not provide a schematic or silicon results.",
+   "summary_changed": false
+  },
+  {
+   "key": "05cec3960674",
+   "verdict": "approve",
+   "remove": [],
+   "add": [],
+   "notes": "",
+   "tags_before": [
+    "i2c",
+    "register-file",
+    "asynchronous"
+   ],
+   "tags": [
+    "i2c",
+    "register-file",
+    "asynchronous"
+   ],
+   "summary_before": "This block is an asynchronous I2C slave that exposes a register file, intended to configure analog blocks on the same chip. An I2C master writes and reads words to the registers, and an LED is listed as external hardware for testing. The documentation is very brief and does not describe the register map or address. The design is notable for providing a reusable configuration interface for analog circuitry.",
+   "summary": "This block is an asynchronous I2C slave that exposes a register file, intended to configure analog blocks on the same chip. An I2C master writes and reads words to the registers, and an LED is listed as external hardware for testing. The documentation is very brief and does not describe the register map or address. The design is notable for providing a reusable configuration interface for analog circuitry.",
+   "summary_changed": false
+  },
+  {
+   "key": "fd8ad51bf8b7",
+   "verdict": "fix",
+   "remove": [
+    {
+     "tag": "alu",
+     "reason": "An ALU is a broader arithmetic-logic unit; this is specifically a multiplier."
+    },
+    {
+     "tag": "insufficient-doc",
+     "reason": "Documentation is present and describes inputs, outputs and pin usage, so insufficient-doc is too strong."
+    }
+   ],
+   "add": [],
+   "notes": "Removed unsupported alu and overly harsh insufficient-doc tags; fixed summary to mention Vedic.",
+   "tags_before": [
+    "multiplier",
+    "alu",
+    "systemverilog",
+    "insufficient-doc"
+   ],
+   "tags": [
+    "multiplier",
+    "systemverilog"
+   ],
+   "summary_before": "This is an 8-bit unsigned binary multiplier implemented in SystemVerilog, with two 8-bit inputs and a 16-bit product split across outputs. The documentation is very brief, stating only that inputs are given through ui_in and uio_in and the product appears on uo_out and uio_out. No details are provided about the internal algorithm or testing methodology beyond basic pin usage. No external hardware is required, but the lack of documentation makes it difficult to assess the design's correctness or notable features.",
+   "summary": "This is an 8-bit unsigned binary multiplier implemented in SystemVerilog, with two 8-bit inputs and a 16-bit product split across outputs. The documentation is brief, stating that inputs are given through ui_in and uio_in and the product appears on uo_out and uio_out. No details are provided about the internal Vedic algorithm or testing methodology beyond basic pin usage. No external hardware is required.",
+   "summary_changed": true
+  }
+ ],
+ "problems": [],
+ "usage": {
+  "prompt_tokens": 5539,
+  "completion_tokens": 970,
+  "total_tokens": 6509,
+  "cost": 0.0028257,
+  "is_byok": false,
+  "prompt_tokens_details": {
+   "cached_tokens": 0,
+   "cache_write_tokens": 0,
+   "audio_tokens": 0,
+   "video_tokens": 0
+  },
+  "cost_details": {
+   "upstream_inference_cost": 0.0028257,
+   "upstream_inference_prompt_cost": 0.0016617,
+   "upstream_inference_completions_cost": 0.001164
+  },
+  "completion_tokens_details": {
+   "reasoning_tokens": 0,
+   "image_tokens": 0,
+   "audio_tokens": 0
+  }
+ },
+ "cost_usd": 0.0028257,
+ "elapsed_s": 5.8
+}
