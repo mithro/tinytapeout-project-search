@@ -68,6 +68,10 @@ def fetch_url(url: str, retries: int = 3) -> bytes:
         try:
             with urllib.request.urlopen(req, timeout=60) as resp:
                 return resp.read()
+        except urllib.error.HTTPError as e:
+            if 400 <= e.code < 500:
+                raise          # not found / forbidden: retrying will not help
+            last_error = e
         except (urllib.error.URLError, TimeoutError) as e:
             last_error = e
             wait = 5 * (attempt + 1)
