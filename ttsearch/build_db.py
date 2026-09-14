@@ -16,7 +16,25 @@ import sys
 from pathlib import Path
 
 from . import DB_PATH, PROJECTS_JSON, SHUTTLES_JSON
+from .feedback import FEEDBACK_JSON, STATUSES
 from .pmods import PMODS, detect_pmods
+
+# Derived from the silicon reports for a project:
+#   untested  no reports
+#   working   at least one "working" report and no "broken" ones
+#   broken    only "broken" reports
+#   partial   "partial" reports, or a mix of working and broken
+TEST_STATUSES = ("working", "partial", "broken", "untested")
+
+
+def test_status(working: int, partial: int, broken: int) -> str:
+    if working == 0 and partial == 0 and broken == 0:
+        return "untested"
+    if broken > 0 and working == 0 and partial == 0:
+        return "broken"
+    if working > 0 and broken == 0:
+        return "working"
+    return "partial"
 
 SCHEMA = """
 CREATE TABLE shuttles (
@@ -58,6 +76,11 @@ CREATE TABLE projects (
     pin_names      TEXT,      -- space separated, also in the pins table
     pmods          TEXT,      -- space separated ids, also in project_pmods (inferred)
     analog_pin_count INTEGER NOT NULL DEFAULT 0,
+    fb_working     INTEGER NOT NULL DEFAULT 0,   -- silicon reports, see feedback table
+    fb_partial     INTEGER NOT NULL DEFAULT 0,
+    fb_broken      INTEGER NOT NULL DEFAULT 0,
+    test_status    TEXT NOT NULL DEFAULT 'untested',
+    feedback_text  TEXT,      -- all report texts joined, for full-text search
     UNIQUE (shuttle, macro, subtile_addr)
 );
 CREATE INDEX projects_shuttle ON projects(shuttle);
@@ -91,10 +114,22 @@ CREATE TABLE project_pmods (
 );
 CREATE INDEX project_pmods_pmod ON project_pmods(pmod);
 CREATE INDEX project_pmods_project ON project_pmods(project_id);
+CREATE INDEX projects_test_status ON projects(test_status);
+
+-- Silicon test reports people filed on tinytapeout.com (tt-fetch-feedback).
+CREATE TABLE feedback (
+    project_id  INTEGER NOT NULL REFERENCES projects(id),
+    status      TEXT NOT NULL,      -- working | partial | broken
+    user        TEXT NOT NULL,      -- GitHub user name of the reporter
+    owner       INTEGER NOT NULL,   -- 1 if the reporter is the project author
+    feedback    TEXT NOT NULL,
+    link        TEXT
+);
+CREATE INDEX feedback_project ON feedback(project_id);
 
 CREATE VIRTUAL TABLE projects_fts USING fts5(
     title, description, how_it_works, how_to_test, external_hw,
-    tags, pin_names, macro, author, pmods,
+    tags, pin_names, macro, author, pmods, feedback_text,
     content='projects', content_rowid='id',
     tokenize='porter unicode61'
 );
@@ -102,16 +137,31 @@ CREATE VIRTUAL TABLE projects_fts USING fts5(
 -- Keep the FTS index in sync with the content table.
 CREATE TRIGGER projects_ai AFTER INSERT ON projects BEGIN
   INSERT INTO projects_fts(rowid, title, description, how_it_works, how_to_test,
-                           external_hw, tags, pin_names, macro, author, pmods)
+                           external_hw, tags, pin_names, macro, author, pmods, feedback_text)
   VALUES (new.id, new.title, new.description, new.how_it_works, new.how_to_test,
-          new.external_hw, new.tags, new.pin_names, new.macro, new.author, new.pmods);
+          new.external_hw, new.tags, new.pin_names, new.macro, new.author, new.pmods,
+          new.feedback_text);
+END;
+CREATE TRIGGER projects_au AFTER UPDATE ON projects BEGIN
+  INSERT INTO projects_fts(projects_fts, rowid, title, description, how_it_works,
+                           how_to_test, external_hw, tags, pin_names, macro, author, pmods,
+                           feedback_text)
+  VALUES ('delete', old.id, old.title, old.description, old.how_it_works,
+          old.how_to_test, old.external_hw, old.tags, old.pin_names, old.macro,
+          old.author, old.pmods, old.feedback_text);
+  INSERT INTO projects_fts(rowid, title, description, how_it_works, how_to_test,
+                           external_hw, tags, pin_names, macro, author, pmods, feedback_text)
+  VALUES (new.id, new.title, new.description, new.how_it_works, new.how_to_test,
+          new.external_hw, new.tags, new.pin_names, new.macro, new.author, new.pmods,
+          new.feedback_text);
 END;
 CREATE TRIGGER projects_ad AFTER DELETE ON projects BEGIN
   INSERT INTO projects_fts(projects_fts, rowid, title, description, how_it_works,
-                           how_to_test, external_hw, tags, pin_names, macro, author, pmods)
+                           how_to_test, external_hw, tags, pin_names, macro, author, pmods,
+                           feedback_text)
   VALUES ('delete', old.id, old.title, old.description, old.how_it_works,
           old.how_to_test, old.external_hw, old.tags, old.pin_names, old.macro,
-          old.author, old.pmods);
+          old.author, old.pmods, old.feedback_text);
 END;
 
 CREATE TABLE meta (key TEXT PRIMARY KEY, value TEXT);
@@ -130,9 +180,13 @@ def as_int(value) -> int | None:
             return None
 
 
-def build(projects_json: Path, shuttles_json: Path, db_path: Path) -> sqlite3.Connection:
+def build(projects_json: Path, shuttles_json: Path, db_path: Path,
+          feedback_json: Path | None = None) -> sqlite3.Connection:
     projects_doc = json.loads(projects_json.read_text())
     shuttles_doc = json.loads(shuttles_json.read_text())
+    reports: list[dict] = []
+    if feedback_json is not None and feedback_json.exists():
+        reports = json.loads(feedback_json.read_text())["reports"]
 
     if db_path.exists():
         db_path.unlink()
@@ -182,6 +236,8 @@ def build(projects_json: Path, shuttles_json: Path, db_path: Path) -> sqlite3.Co
         con.executemany("INSERT INTO tags VALUES (?,?)", [(pid, t) for t in tags])
         con.executemany("INSERT INTO project_pmods VALUES (?,?)", [(pid, m) for m in pmod_ids])
 
+    load_feedback(con, reports)
+
     con.execute("INSERT INTO meta VALUES ('source', ?)", (projects_doc.get("source"),))
     con.execute("INSERT INTO meta VALUES ('index_updated', ?)",
                 (shuttles_doc.get("index_updated"),))
@@ -190,21 +246,58 @@ def build(projects_json: Path, shuttles_json: Path, db_path: Path) -> sqlite3.Co
     return con
 
 
+def load_feedback(con: sqlite3.Connection, reports: list[dict]) -> int:
+    """Attach silicon reports to projects and fill in the per-project summary."""
+    ids = {(shuttle, macro): pid for pid, shuttle, macro in con.execute(
+        "SELECT id, shuttle, macro FROM projects WHERE subtile_addr IS NULL")}
+    # Sub-tile projects share a macro name only within their group; match on
+    # (shuttle, macro) alone is enough for the top-level ones the site reports on.
+    unmatched = 0
+    per_project: dict[int, list[dict]] = {}
+    for r in reports:
+        pid = ids.get((r["shuttle"], r["macro"]))
+        if pid is None or r["status"] not in STATUSES:
+            unmatched += 1
+            continue
+        per_project.setdefault(pid, []).append(r)
+        con.execute("INSERT INTO feedback VALUES (?,?,?,?,?,?)",
+                    (pid, r["status"], r["user"], 1 if r.get("owner") else 0,
+                     r["feedback"], r.get("link") or None))
+    for pid, items in per_project.items():
+        counts = {s: sum(1 for i in items if i["status"] == s) for s in STATUSES}
+        text = "\n".join(i["feedback"] for i in items if i["feedback"])
+        con.execute(
+            """UPDATE projects SET fb_working = ?, fb_partial = ?, fb_broken = ?,
+               test_status = ?, feedback_text = ? WHERE id = ?""",
+            (counts["working"], counts["partial"], counts["broken"],
+             test_status(counts["working"], counts["partial"], counts["broken"]),
+             text or None, pid),
+        )
+    if unmatched:
+        print(f"warning: {unmatched} feedback reports did not match a project", file=sys.stderr)
+    return len(reports) - unmatched
+
+
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--projects", type=Path, default=PROJECTS_JSON)
     ap.add_argument("--shuttles", type=Path, default=SHUTTLES_JSON)
+    ap.add_argument("--feedback", type=Path, default=FEEDBACK_JSON,
+                    help="silicon reports from tt-fetch-feedback (optional)")
     ap.add_argument("--db", type=Path, default=DB_PATH)
     args = ap.parse_args(argv)
 
-    con = build(args.projects, args.shuttles, args.db)
+    con = build(args.projects, args.shuttles, args.db, args.feedback)
     n_shuttles = con.execute("SELECT count(*) FROM shuttles").fetchone()[0]
     n_projects = con.execute("SELECT count(*) FROM projects").fetchone()[0]
     n_pins = con.execute("SELECT count(*) FROM pins").fetchone()[0]
     n_pmods = con.execute("SELECT count(DISTINCT project_id) FROM project_pmods").fetchone()[0]
+    n_fb = con.execute("SELECT count(*) FROM feedback").fetchone()[0]
+    n_tested = con.execute("SELECT count(*) FROM projects WHERE test_status != 'untested'").fetchone()[0]
     con.close()
     print(f"{args.db}: {n_shuttles} shuttles, {n_projects} projects, {n_pins} named pins, "
-          f"{n_pmods} projects with an inferred PMOD pinout", file=sys.stderr)
+          f"{n_pmods} projects with an inferred PMOD pinout, {n_fb} silicon reports on "
+          f"{n_tested} projects", file=sys.stderr)
     return 0
 
 

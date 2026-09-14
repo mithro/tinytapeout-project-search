@@ -81,6 +81,34 @@ uv run tt-search game --pmod gamepad         # keywords and a Pmod together
 
 The web UI has the same filter as a row of Pmod buttons with match counts.
 
+### Silicon test results
+
+After chips come back, people report on tinytapeout.com whether a project
+works on real silicon (working, partial or broken, with a note). The website
+serves them at `https://app.tinytapeout.com/api/shuttles/<shuttle>/feedback`,
+one response per shuttle, so `tt-fetch-feedback` downloads them all in about
+30 requests into `data/feedback.json`. `tt-build-db` attaches them to projects
+and derives a status per project:
+
+| Status | Meaning |
+| --- | --- |
+| working | at least one working report and no broken one |
+| partial | partial reports, or a mix of working and broken |
+| broken | only broken reports |
+| untested | no reports |
+
+```
+uv run tt-fetch-feedback                       # refresh data/feedback.json
+uv run tt-search --status working --summary    # which chips carry silicon-proven designs
+uv run tt-search vga --sort tested             # most working reports first
+uv run tt-search --status broken               # what did not work
+```
+
+`--status tested` means any report at all. The web UI has the same filter and
+sort, shows a working/partial/broken badge with the report counts on each
+result, and lists the individual reports in the details panel. Report text is
+also part of the keyword search.
+
 ### Static site
 
 ```

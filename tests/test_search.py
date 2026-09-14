@@ -58,11 +58,28 @@ PROJECTS = {"projects": [
 ]}
 
 
+FEEDBACK = {"reports": [
+    {"shuttle": "tt06", "macro": "a", "status": "working", "user": "u1", "owner": False,
+     "feedback": "Bounces nicely on my monitor", "link": ""},
+    {"shuttle": "tt06", "macro": "a", "status": "working", "user": "u2", "owner": True,
+     "feedback": "", "link": ""},
+    {"shuttle": "tt06", "macro": "b", "status": "broken", "user": "u1", "owner": False,
+     "feedback": "No ACK on the bus", "link": ""},
+    {"shuttle": "tt07", "macro": "d", "status": "partial", "user": "u3", "owner": False,
+     "feedback": "Boots but hangs", "link": ""},
+    {"shuttle": "tt07", "macro": "d", "status": "working", "user": "u4", "owner": False,
+     "feedback": "", "link": ""},
+    {"shuttle": "tt07", "macro": "nope", "status": "working", "user": "u5", "owner": False,
+     "feedback": "unmatched project", "link": ""},
+]}
+
+
 @pytest.fixture
 def con(tmp_path):
     (tmp_path / "p.json").write_text(json.dumps(PROJECTS))
     (tmp_path / "s.json").write_text(json.dumps(SHUTTLES))
-    c = build(tmp_path / "p.json", tmp_path / "s.json", tmp_path / "t.db")
+    (tmp_path / "f.json").write_text(json.dumps(FEEDBACK))
+    c = build(tmp_path / "p.json", tmp_path / "s.json", tmp_path / "t.db", tmp_path / "f.json")
     c.row_factory = __import__("sqlite3").Row
     yield c
     c.close()
@@ -98,6 +115,26 @@ def test_pmod_filter(con):
     assert [h.macro for h in search(con, 'pmods:"tiny-vga"', raw=True)] == ["a"]
     with _pytest.raises(ValueError):
         search(con, "", pmod="no-such-pmod")
+
+
+def test_status_filter_and_tested_sort(con):
+    import pytest as _pytest
+    # Reports on sub-tile "d" and unknown "nope" do not match a top-level project.
+    assert [h.macro for h in search(con, "", status="working")] == ["a"]
+    assert [h.macro for h in search(con, "", status="broken")] == ["b"]
+    assert [h.macro for h in search(con, "", status="untested")] == ["d"]
+    assert [h.macro for h in search(con, "", status="tested")] == ["a", "b"]
+    a = search(con, "", status="working")[0]
+    assert (a.fb_working, a.fb_partial, a.fb_broken, a.test_status) == (2, 0, 0, "working")
+    # Report text is searchable.
+    assert [h.macro for h in search(con, "bounces")] == ["a"]
+    # Sorting: most working reports first; the listing order otherwise.
+    assert [h.macro for h in search(con, "", status="tested", sort="tested")] == ["a", "b"]
+    assert [h.macro for h in search(con, "a OR b OR d", raw=True, sort="address")] == ["a", "b", "d"]
+    with _pytest.raises(ValueError):
+        search(con, "", status="flaky")
+    with _pytest.raises(ValueError):
+        search(con, "vga", sort="random")
 
 
 def test_summarise_keeps_official_order(con):

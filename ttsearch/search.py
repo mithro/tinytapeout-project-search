@@ -25,6 +25,11 @@ from pathlib import Path
 from . import DB_PATH
 from .pmods import PMOD_BY_ID
 
+TEST_STATUSES = ("working", "partial", "broken", "untested")
+# "tested" means any report at all.
+STATUS_FILTERS = TEST_STATUSES + ("tested",)
+SORTS = ("relevance", "tested", "address")
+
 # Groups of terms that mean the same thing for our purposes. A query word that
 # appears in a group is replaced by an OR of the whole group. Entries may use
 # FTS5 syntax (prefix "*" and quoted phrases). The list lives in synonyms.json
@@ -102,6 +107,10 @@ class Hit:
     snippet: str
     rank: float
     pmods: list[str] = field(default_factory=list)   # inferred PMOD ids
+    fb_working: int = 0
+    fb_partial: int = 0
+    fb_broken: int = 0
+    test_status: str = "untested"
 
     @property
     def url(self) -> str:
@@ -126,26 +135,33 @@ def connect(db_path: Path = DB_PATH) -> sqlite3.Connection:
 
 def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
            shuttles: list[str] | None = None, limit: int | None = None,
-           include_groups: bool = False, pmod: str | None = None) -> list[Hit]:
-    """Run a search and return hits ordered by relevance.
+           include_groups: bool = False, pmod: str | None = None,
+           status: str | None = None, sort: str = "relevance") -> list[Hit]:
+    """Run a search and return hits.
 
-    With a query the FTS index is used and hits are ranked by bm25. With an
-    empty query and a pmod filter, every project whose pinout matches that
-    PMOD is listed in shuttle/address order instead.
+    With a query the FTS index is used and hits are ranked by bm25 (sort
+    "relevance"). Without a query, projects matching the pmod/status filters
+    are listed in shuttle/address order. sort "tested" puts projects with the
+    most "working" silicon reports first, then partial, then fewest broken.
     """
     match = query if raw else build_match(query)
-    if not match and not pmod:
+    if not match and not pmod and not status:
         return []
     if pmod and pmod not in PMOD_BY_ID:
         raise ValueError(f"unknown pmod id {pmod!r}; one of {', '.join(PMOD_BY_ID)}")
+    if status and status not in STATUS_FILTERS:
+        raise ValueError(f"unknown status {status!r}; one of {', '.join(STATUS_FILTERS)}")
+    if sort not in SORTS:
+        raise ValueError(f"unknown sort {sort!r}; one of {', '.join(SORTS)}")
     params: list = []
     if match:
         sql = """
             SELECT p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address,
                    p.subtile_addr, p.type, p.title, p.author, p.description,
                    p.language, p.tiles, p.repo, p.pmods,
+                   p.fb_working, p.fb_partial, p.fb_broken, p.test_status,
                    snippet(projects_fts, -1, char(1), char(2), ' … ', 24) AS snip,
-                   bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0, 2.0) AS rank
+                   bm25(projects_fts, 10.0, 5.0, 1.0, 1.0, 1.0, 5.0, 3.0, 4.0, 1.0, 2.0, 1.0) AS rank
             FROM projects_fts f
             JOIN projects p ON p.id = f.rowid
             JOIN shuttles s ON s.id = p.shuttle
@@ -157,6 +173,7 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
             SELECT p.id, p.shuttle, s.name AS shuttle_name, p.macro, p.address,
                    p.subtile_addr, p.type, p.title, p.author, p.description,
                    p.language, p.tiles, p.repo, p.pmods,
+                   p.fb_working, p.fb_partial, p.fb_broken, p.test_status,
                    p.description AS snip, 0.0 AS rank
             FROM projects p
             JOIN shuttles s ON s.id = p.shuttle
@@ -165,13 +182,24 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
     if pmod:
         sql += " AND p.id IN (SELECT project_id FROM project_pmods WHERE pmod = ?)"
         params.append(pmod)
+    if status == "tested":
+        sql += " AND p.test_status != 'untested'"
+    elif status:
+        sql += " AND p.test_status = ?"
+        params.append(status)
     if shuttles:
         sql += " AND p.shuttle IN (%s)" % ",".join("?" * len(shuttles))
         params.extend(shuttles)
     if not include_groups:
         sql += " AND (p.type IS NULL OR p.type != 'group')"
-    sql += " ORDER BY rank, s.sort_order, p.address, p.subtile_addr" if match else \
-           " ORDER BY s.sort_order, p.address, p.subtile_addr"
+    by_place = "s.sort_order, p.address, p.subtile_addr"
+    if sort == "tested":
+        order = f"p.fb_working DESC, p.fb_partial DESC, p.fb_broken ASC, {by_place}"
+    elif sort == "relevance" and match:
+        order = f"rank, {by_place}"
+    else:
+        order = by_place
+    sql += " ORDER BY " + order
     if limit:
         sql += " LIMIT ?"
         params.append(limit)
@@ -184,6 +212,8 @@ def search(con: sqlite3.Connection, query: str, *, raw: bool = False,
             description=r["description"], language=r["language"], tiles=r["tiles"],
             repo=r["repo"], snippet=r["snip"] or "", rank=r["rank"],
             pmods=(r["pmods"] or "").split(),
+            fb_working=r["fb_working"], fb_partial=r["fb_partial"], fb_broken=r["fb_broken"],
+            test_status=r["test_status"],
         )
         for r in rows
     ]
@@ -229,7 +259,10 @@ def print_hits(con: sqlite3.Connection, hits: list[Hit], query: str,
         print(f"\n== {s['id']}  {s['name']}  ({len(group)} of {s['project_count']} projects)")
         for h in group:
             author = f" — {h.author}" if h.author else ""
-            print(f"  [{h.address_str:>5}] {h.title}{author}")
+            tested = ""
+            if h.test_status != "untested":
+                tested = f"  [{h.test_status}: {h.fb_working} working, {h.fb_partial} partial, {h.fb_broken} broken]"
+            print(f"  [{h.address_str:>5}] {h.title}{author}{tested}")
             pm = f"  pmods: {', '.join(h.pmods)}" if h.pmods else ""
             print(f"          {h.macro}  {h.url}{pm}")
             if show_snippets and h.snippet:
@@ -246,6 +279,10 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--pmod", metavar="ID",
                     help="only projects whose pinout matches this PMOD (see --list-pmods)")
     ap.add_argument("--list-pmods", action="store_true", help="list the known PMOD ids and exit")
+    ap.add_argument("--status", choices=STATUS_FILTERS, metavar="STATUS",
+                    help="silicon test status: working, partial, broken, untested or tested (any report)")
+    ap.add_argument("--sort", choices=SORTS, default="relevance",
+                    help="relevance (default), tested (most working reports first) or address")
     ap.add_argument("--summary", "-s", action="store_true",
                     help="only show how many matches each shuttle has")
     ap.add_argument("--shuttle", action="append", metavar="ID",
@@ -266,8 +303,8 @@ def main(argv: list[str] | None = None) -> int:
             print(f"{pm.id:12} {pm.name:26} {pm.pins}")
         return 0
     query = " ".join(args.query)
-    if not query and not args.pmod:
-        ap.error("give search words, --pmod ID, or --list-pmods")
+    if not query and not args.pmod and not args.status:
+        ap.error("give search words, --pmod ID, --status STATUS, or --list-pmods")
     con = connect(args.db)
     if args.raw:
         match = query
@@ -277,13 +314,15 @@ def main(argv: list[str] | None = None) -> int:
         print(f"MATCH {match}", file=sys.stderr)
     try:
         hits = search(con, match, raw=True, shuttles=args.shuttle, limit=args.limit,
-                      pmod=args.pmod)
+                      pmod=args.pmod, status=args.status, sort=args.sort)
     except sqlite3.OperationalError as e:
         sys.exit(f"query error: {e}\n(expression was: {match})")
     except ValueError as e:
         sys.exit(str(e))
     if args.pmod:
         query = f"{query} [pmod {args.pmod}]".strip()
+    if args.status:
+        query = f"{query} [{args.status}]".strip()
     if args.summary:
         print_summary(con, hits, query)
     else:

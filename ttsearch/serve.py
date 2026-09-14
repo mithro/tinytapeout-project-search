@@ -11,7 +11,9 @@ endpoints, and search runs in Python:
     GET /                      the single-page UI
     GET /api/shuttles          shuttle list in official order
     GET /api/pmods             PMOD definitions with match counts
-    GET /api/search?q=...      hits plus per-shuttle counts (also &pmod=ID, &shuttle=ID, &raw=1)
+    GET /api/tests             how many projects have each silicon test status
+    GET /api/search?q=...      hits plus per-shuttle counts (also &pmod=ID, &status=S,
+                               &sort=relevance|tested|address, &shuttle=ID, &raw=1)
     GET /api/project/<id>      full record for one project
 
 With --site DIR the server only serves files from DIR (the output of
@@ -33,7 +35,8 @@ from urllib.parse import parse_qs, urlsplit
 
 from . import DB_PATH
 from .pmods import PMODS
-from .search import PROJECT_URL, SHUTTLE_URL, build_match, connect, search, shuttle_order
+from .search import (PROJECT_URL, SHUTTLE_URL, STATUS_FILTERS, SORTS, TEST_STATUSES,
+                     build_match, connect, search, shuttle_order)
 
 PKG = Path(__file__).parent
 INDEX_HTML = PKG / "index.html"
@@ -58,6 +61,9 @@ def project_record(con: sqlite3.Connection, pid: int) -> dict | None:
     rec["tag_list"] = [r["tag"] for r in con.execute(
         "SELECT tag FROM tags WHERE project_id = ? ORDER BY tag", (pid,))]
     rec["pmod_list"] = (rec.get("pmods") or "").split()
+    rec["reports"] = [dict(r) for r in con.execute(
+        "SELECT status, user, owner, feedback, link FROM feedback WHERE project_id = ? ORDER BY rowid",
+        (pid,))]
     rec["url"] = PROJECT_URL.format(shuttle=rec["shuttle"], macro=rec["macro"])
     return rec
 
@@ -77,19 +83,31 @@ def pmod_list(con: sqlite3.Connection) -> list[dict]:
              "count": counts.get(pm.id, 0)} for pm in PMODS]
 
 
+def test_summary(con: sqlite3.Connection) -> list[dict]:
+    """How many projects fall in each test status."""
+    counts = dict(con.execute(
+        "SELECT test_status, count(*) FROM projects WHERE type IS NULL OR type != 'group' "
+        "GROUP BY test_status").fetchall())
+    reports = con.execute("SELECT count(*) FROM feedback").fetchone()[0]
+    return {"statuses": [{"id": s, "count": counts.get(s, 0)} for s in TEST_STATUSES],
+            "reports": reports}
+
+
 def do_search(con: sqlite3.Connection, params: dict[str, list[str]]) -> dict:
     query = (params.get("q") or [""])[0].strip()
     raw = (params.get("raw") or ["0"])[0] in ("1", "true", "yes")
     shuttles = [s for s in params.get("shuttle", []) if s]
     pmod = (params.get("pmod") or [""])[0].strip() or None
+    status = (params.get("status") or [""])[0].strip() or None
+    sort = (params.get("sort") or ["relevance"])[0].strip() or "relevance"
     limit = int((params.get("limit") or ["0"])[0]) or None
     match = query if raw else build_match(query)
-    out: dict = {"query": query, "match": match, "pmod": pmod, "hits": [], "shuttles": [],
-                 "error": None}
+    out: dict = {"query": query, "match": match, "pmod": pmod, "status": status, "sort": sort,
+                 "hits": [], "shuttles": [], "error": None}
     hits = []
-    if match or pmod:
+    if match or pmod or status:
         try:
-            hits = search(con, match, raw=True, limit=limit, pmod=pmod)
+            hits = search(con, match, raw=True, limit=limit, pmod=pmod, status=status, sort=sort)
         except sqlite3.OperationalError as e:
             out["error"] = f"Could not understand that query: {e}"
         except ValueError as e:
@@ -108,6 +126,8 @@ def do_search(con: sqlite3.Connection, params: dict[str, list[str]]) -> dict:
             "title": h.title, "author": h.author, "description": h.description,
             "language": h.language, "tiles": h.tiles, "repo": h.repo,
             "snippet": h.snippet, "url": h.url, "pmods": h.pmods,
+            "fb_working": h.fb_working, "fb_partial": h.fb_partial, "fb_broken": h.fb_broken,
+            "test_status": h.test_status,
         }
         for h in hits
     ]
@@ -248,6 +268,8 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json({"shuttles": shuttle_list(con)})
         elif path == "/api/pmods":
             self.send_json({"pmods": pmod_list(con)})
+        elif path == "/api/tests":
+            self.send_json(test_summary(con))
         elif path == "/api/search":
             self.send_json(do_search(con, params))
         elif path.startswith("/api/project/"):
